@@ -1,0 +1,479 @@
+fileFormatVersion: 2
+guid: ce028797b34ae440fbcebf14fb0fe829
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Character:Body
+    100004: Character:GeometryGroup
+    100006: Character:Hips_Skel
+    100008: Character:LeftClav_Skel
+    100010: Character:LeftFingers_Skel
+    100012: Character:LeftFoot_Skel
+    100014: Character:LeftHand_Skel
+    100016: Character:LeftLowerArm_Skel
+    100018: Character:LeftLowerLeg_Skel
+    100020: Character:LeftToes_Skel
+    100022: Character:LeftUpperArm_Skel
+    100024: Character:LeftUpperLeg_Skel
+    100026: Character:Neck_Skel
+    100028: Character:nurbsCircle1
+    100030: Character:RightClav_Skel
+    100032: Character:RightFingers_Skel
+    100034: Character:RightFoot_Skel
+    100036: Character:RightHand_Skel
+    100038: Character:RightLowerArm_Skel
+    100040: Character:RightLowerLeg_Skel
+    100042: Character:RightToes_Skel
+    100044: Character:RightUpperArm_Skel
+    100046: Character:RightUpperLeg_Skel
+    100048: Character:SkeletonGroup
+    100050: Character:Torso_Skel
+    100052: Character:Head_Skel
+    100054: Character:WeaponAttach
+    400000: //RootNode
+    400002: Character:Body
+    400004: Character:GeometryGroup
+    400006: Character:Hips_Skel
+    400008: Character:LeftClav_Skel
+    400010: Character:LeftFingers_Skel
+    400012: Character:LeftFoot_Skel
+    400014: Character:LeftHand_Skel
+    400016: Character:LeftLowerArm_Skel
+    400018: Character:LeftLowerLeg_Skel
+    400020: Character:LeftToes_Skel
+    400022: Character:LeftUpperArm_Skel
+    400024: Character:LeftUpperLeg_Skel
+    400026: Character:Neck_Skel
+    400028: Character:nurbsCircle1
+    400030: Character:RightClav_Skel
+    400032: Character:RightFingers_Skel
+    400034: Character:RightFoot_Skel
+    400036: Character:RightHand_Skel
+    400038: Character:RightLowerArm_Skel
+    400040: Character:RightLowerLeg_Skel
+    400042: Character:RightToes_Skel
+    400044: Character:RightUpperArm_Skel
+    400046: Character:RightUpperLeg_Skel
+    400048: Character:SkeletonGroup
+    400050: Character:Torso_Skel
+    400052: Character:Head_Skel
+    400054: Character:WeaponAttach
+    4300000: Character:Body
+    7400000: Idle
+    9500000: //RootNode
+    13700000: Character:Body
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 3
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Idle
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Character:GeometryGroup
+        weight: 0
+      - path: Character:GeometryGroup/Character:Body
+        weight: 0
+      - path: Character:SkeletonGroup
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:LeftUpperLeg_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:LeftUpperLeg_Skel/Character:LeftLowerLeg_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:LeftUpperLeg_Skel/Character:LeftLowerLeg_Skel/Character:LeftFoot_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:LeftUpperLeg_Skel/Character:LeftLowerLeg_Skel/Character:LeftFoot_Skel/Character:LeftToes_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:RightUpperLeg_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:RightUpperLeg_Skel/Character:RightLowerLeg_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:RightUpperLeg_Skel/Character:RightLowerLeg_Skel/Character:RightFoot_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:RightUpperLeg_Skel/Character:RightLowerLeg_Skel/Character:RightFoot_Skel/Character:RightToes_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:Torso_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:Torso_Skel/Character:Head_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:Torso_Skel/Character:LeftClav_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:Torso_Skel/Character:LeftClav_Skel/Character:LeftUpperArm_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:Torso_Skel/Character:LeftClav_Skel/Character:LeftUpperArm_Skel/Character:LeftLowerArm_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:Torso_Skel/Character:LeftClav_Skel/Character:LeftUpperArm_Skel/Character:LeftLowerArm_Skel/Character:LeftHand_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:Torso_Skel/Character:LeftClav_Skel/Character:LeftUpperArm_Skel/Character:LeftLowerArm_Skel/Character:LeftHand_Skel/Character:LeftFingers_Skel
+        weight: 0
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:Torso_Skel/Character:RightClav_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:Torso_Skel/Character:RightClav_Skel/Character:RightUpperArm_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:Torso_Skel/Character:RightClav_Skel/Character:RightUpperArm_Skel/Character:RightLowerArm_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:Torso_Skel/Character:RightClav_Skel/Character:RightUpperArm_Skel/Character:RightLowerArm_Skel/Character:RightHand_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:Torso_Skel/Character:RightClav_Skel/Character:RightUpperArm_Skel/Character:RightLowerArm_Skel/Character:RightHand_Skel/Character:nurbsCircle1
+        weight: 0
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:Torso_Skel/Character:RightClav_Skel/Character:RightUpperArm_Skel/Character:RightLowerArm_Skel/Character:RightHand_Skel/Character:RightFingers_Skel
+        weight: 0
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 1
+  humanDescription:
+    human:
+    - boneName: Character:Hips_Skel
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Character:LeftUpperLeg_Skel
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Character:RightUpperLeg_Skel
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Character:LeftLowerLeg_Skel
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Character:RightLowerLeg_Skel
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Character:LeftFoot_Skel
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Character:RightFoot_Skel
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Character:Torso_Skel
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Character:LeftClav_Skel
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Character:RightClav_Skel
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Character:LeftUpperArm_Skel
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Character:RightUpperArm_Skel
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Character:LeftLowerArm_Skel
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Character:RightLowerArm_Skel
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Character:LeftHand_Skel
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Character:RightHand_Skel
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Character:LeftToes_Skel
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Character:RightToes_Skel
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Character:Head_Skel
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: MarkIV(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Character:GeometryGroup
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Character:Body
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Character:SkeletonGroup
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Character:Hips_Skel
+      position: {x: 2.59742485e-08, y: 1.18790495, z: .100816518}
+      rotation: {x: .49190855, y: -.507962525, z: -.49190855, w: .507962584}
+      scale: {x: 1, y: .99999994, z: 1}
+      transformModified: 1
+    - name: Character:LeftUpperLeg_Skel
+      position: {x: .103178248, y: .0327620544, z: .226316676}
+      rotation: {x: -.707106829, y: -6.51925873e-08, z: -2.98023259e-08, w: -.707106769}
+      scale: {x: .99999994, y: 1.00000036, z: 1}
+      transformModified: 1
+    - name: Character:LeftLowerLeg_Skel
+      position: {x: .439725876, y: .0128175151, z: .0479184315}
+      rotation: {x: -5.587935e-09, y: .0956372321, z: -2.08616228e-07, w: -.995416284}
+      scale: {x: 1.00000048, y: 1.00000048, z: 1.00000083}
+      transformModified: 1
+    - name: Character:LeftFoot_Skel
+      position: {x: .477911711, y: .00161505642, z: .0594628528}
+      rotation: {x: -8.94069672e-08, y: -.594961762, z: 8.94069672e-08, w: -.803754091}
+      scale: {x: .999999762, y: .999999762, z: .999999881}
+      transformModified: 1
+    - name: Character:LeftToes_Skel
+      position: {x: .197008803, y: -.00101795536, z: .0163110271}
+      rotation: {x: -.345863402, y: .345863521, z: .616748333, w: -.616748273}
+      scale: {x: .999999881, y: 1.00000024, z: .99999994}
+      transformModified: 1
+    - name: Character:RightUpperLeg_Skel
+      position: {x: .10317985, y: .032761924, z: -.226316899}
+      rotation: {x: 2.79396772e-09, y: .707106709, z: .707106888, w: -2.98023224e-08}
+      scale: {x: .999999702, y: .999999881, z: 1}
+      transformModified: 1
+    - name: Character:RightLowerLeg_Skel
+      position: {x: -.439724594, y: -.0128169283, z: -.0479186103}
+      rotation: {x: 2.98023188e-08, y: -.0956371725, z: 8.39936476e-08, w: .995416284}
+      scale: {x: 1.00000012, y: 1.00000024, z: 1.00000012}
+      transformModified: 1
+    - name: Character:RightFoot_Skel
+      position: {x: -.477911651, y: -.0016148705, z: -.0594625026}
+      rotation: {x: 1.49011598e-07, y: .594961762, z: -1.45286307e-07, w: .803753972}
+      scale: {x: 1.00000024, y: .99999994, z: 1}
+      transformModified: 1
+    - name: Character:RightToes_Skel
+      position: {x: -.197008684, y: .00101792673, z: -.0163110495}
+      rotation: {x: .345863521, y: -.34586364, z: -.616748273, w: .616748273}
+      scale: {x: .999999881, y: 1, z: .999999821}
+      transformModified: 1
+    - name: Character:Torso_Skel
+      position: {x: -.329142094, y: -4.84287739e-08, z: -5.17055447e-08}
+      rotation: {x: -.706975639, y: .0136178918, z: .00908577535, w: -.707048416}
+      scale: {x: 1.00000012, y: .999999881, z: .999999881}
+      transformModified: 1
+    - name: Character:Head_Skel
+      position: {x: -.381849676, y: .00244781305, z: -.0594059154}
+      rotation: {x: .704836845, y: -.709369421, z: -7.61209407e-08, w: -1.61855276e-08}
+      scale: {x: 1.00000012, y: 1, z: 1}
+      transformModified: 1
+    - name: Character:LeftClav_Skel
+      position: {x: -.0638578087, y: .102407724, z: -.126462221}
+      rotation: {x: -.630875468, y: -.761494398, z: -.146906704, w: .023258768}
+      scale: {x: 1.00000012, y: 1.00000036, z: 1.00000036}
+      transformModified: 1
+    - name: Character:LeftUpperArm_Skel
+      position: {x: .291767567, y: 4.90993261e-06, z: 2.60770321e-07}
+      rotation: {x: .987074018, y: .0735047683, z: .137621552, w: .0366369747}
+      scale: {x: .99999994, y: .999999762, z: 1.00000024}
+      transformModified: 1
+    - name: Character:LeftLowerArm_Skel
+      position: {x: .491301566, y: -.0212740973, z: -.00152246654}
+      rotation: {x: .111765206, y: .0294557661, z: -.0542102382, w: .991817653}
+      scale: {x: .999999881, y: .999999821, z: .999999642}
+      transformModified: 1
+    - name: Character:LeftHand_Skel
+      position: {x: .277430713, y: .0213054419, z: -.00293197855}
+      rotation: {x: -.0646171644, y: -.0680220053, z: -.0049636662, w: .995576799}
+      scale: {x: 1.00000012, y: 1, z: 1}
+      transformModified: 1
+    - name: Character:LeftFingers_Skel
+      position: {x: .194623008, y: -1.32573768e-06, z: -1.9185245e-07}
+      rotation: {x: -.0012036569, y: .00278443727, z: .917902529, w: -.396794379}
+      scale: {x: 1.00000036, y: .999999702, z: .999999881}
+      transformModified: 1
+    - name: Character:RightClav_Skel
+      position: {x: -.0651616529, y: -.101580523, z: -.126462415}
+      rotation: {x: -.146754518, y: .0241977386, z: .625985861, w: .765518963}
+      scale: {x: 1.00000024, y: 1, z: 1.00000024}
+      transformModified: 1
+    - name: Character:RightUpperArm_Skel
+      position: {x: -.291769952, y: -4.69386578e-07, z: 2.23517418e-07}
+      rotation: {x: -.987416387, y: -.0681573004, z: -.137773305, w: -.0371771902}
+      scale: {x: .99999994, y: .999999762, z: .999999642}
+      transformModified: 1
+    - name: Character:RightLowerArm_Skel
+      position: {x: -.485290587, y: .025930509, z: .00152242184}
+      rotation: {x: .111916512, y: .0312714912, z: -.0635576621, w: .991189837}
+      scale: {x: .999999642, y: .999999702, z: .999999881}
+      transformModified: 1
+    - name: Character:RightHand_Skel
+      position: {x: -.282697678, y: -.0267893337, z: .00293141231}
+      rotation: {x: -.0646172166, y: -.0680219829, z: -.00496358005, w: .995576739}
+      scale: {x: 1.00000024, y: 1.00000012, z: 1.00000012}
+      transformModified: 1
+    - name: Character:nurbsCircle1
+      position: {x: -.20016861, y: .118837439, z: .0722114369}
+      rotation: {x: .5, y: -.5, z: -.5, w: .5}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Character:RightFingers_Skel
+      position: {x: -.194625407, y: 4.94066626e-07, z: 7.4505806e-09}
+      rotation: {x: .00120365247, y: -.00278437254, z: -.917902529, w: .396794468}
+      scale: {x: 1.00000024, y: .999999642, z: 1}
+      transformModified: 1
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 53da2e269b21c471d8d7b8a8161f953b,
+    type: 3}
+  animationType: 3
+  additionalBone: 0
+  userData: 

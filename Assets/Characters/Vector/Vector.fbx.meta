@@ -1,0 +1,174 @@
+fileFormatVersion: 2
+guid: c6c19ef2ac3d24d58a459713e32f2f25
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: GeometryGroup
+    100002: Head_Skel
+    100004: Hips_Skel
+    100006: LeftAnkle_Skel
+    100008: LeftElbow_Skel
+    100010: LeftFingers_Skel
+    100012: LeftFoot_Skel
+    100014: LeftHip_Skel
+    100016: LeftKnee_Skel
+    100018: LeftShoulder_Skel
+    100020: LeftThumb_Skel
+    100022: LeftTorso_Skel
+    100024: LeftWrist_Skel
+    100026: Neck_Skel
+    100028: RightAnkle_Skel
+    100030: RightElbow_Skel
+    100032: RightFingers_Skel
+    100034: RightFoot_Skel
+    100036: RightHip_Skel
+    100038: RightKnee_Skel
+    100040: RightShoulder_Skel
+    100042: RightThumb_Skel
+    100044: RightTorso_Skel
+    100046: RightWrist_Skel
+    100048: SkeletonGroup
+    100050: Torso_Skel
+    100052: Vector
+    100054: //RootNode
+    100056: Character:GeometryGroup
+    100058: Character:Head_Skel
+    100060: Character:Hips_Skel
+    100062: Character:LeftAnkle_Skel
+    100064: Character:LeftElbow_Skel
+    100066: Character:LeftFingers_Skel
+    100068: Character:LeftFoot_Skel
+    100070: Character:LeftHip_Skel
+    100072: Character:LeftKnee_Skel
+    100074: Character:LeftShoulder_Skel
+    100076: Character:LeftThumb_Skel
+    100078: Character:LeftTorso_Skel
+    100080: Character:LeftWrist_Skel
+    100082: Character:Neck_Skel
+    100084: Character:RightAnkle_Skel
+    100086: Character:RightElbow_Skel
+    100088: Character:RightFingers_Skel
+    100090: Character:RightFoot_Skel
+    100092: Character:RightHip_Skel
+    100094: Character:RightKnee_Skel
+    100096: Character:RightShoulder_Skel
+    100098: Character:RightThumb_Skel
+    100100: Character:RightTorso_Skel
+    100102: Character:RightWrist_Skel
+    100104: Character:SkeletonGroup
+    100106: Character:Torso_Skel
+    100108: Character:Vector 1
+    400000: GeometryGroup
+    400002: Head_Skel
+    400004: Hips_Skel
+    400006: LeftAnkle_Skel
+    400008: LeftElbow_Skel
+    400010: LeftFingers_Skel
+    400012: LeftFoot_Skel
+    400014: LeftHip_Skel
+    400016: LeftKnee_Skel
+    400018: LeftShoulder_Skel
+    400020: LeftThumb_Skel
+    400022: LeftTorso_Skel
+    400024: LeftWrist_Skel
+    400026: Neck_Skel
+    400028: RightAnkle_Skel
+    400030: RightElbow_Skel
+    400032: RightFingers_Skel
+    400034: RightFoot_Skel
+    400036: RightHip_Skel
+    400038: RightKnee_Skel
+    400040: RightShoulder_Skel
+    400042: RightThumb_Skel
+    400044: RightTorso_Skel
+    400046: RightWrist_Skel
+    400048: SkeletonGroup
+    400050: Torso_Skel
+    400052: Vector
+    400054: //RootNode
+    400056: Character:GeometryGroup
+    400058: Character:Head_Skel
+    400060: Character:Hips_Skel
+    400062: Character:LeftAnkle_Skel
+    400064: Character:LeftElbow_Skel
+    400066: Character:LeftFingers_Skel
+    400068: Character:LeftFoot_Skel
+    400070: Character:LeftHip_Skel
+    400072: Character:LeftKnee_Skel
+    400074: Character:LeftShoulder_Skel
+    400076: Character:LeftThumb_Skel
+    400078: Character:LeftTorso_Skel
+    400080: Character:LeftWrist_Skel
+    400082: Character:Neck_Skel
+    400084: Character:RightAnkle_Skel
+    400086: Character:RightElbow_Skel
+    400088: Character:RightFingers_Skel
+    400090: Character:RightFoot_Skel
+    400092: Character:RightHip_Skel
+    400094: Character:RightKnee_Skel
+    400096: Character:RightShoulder_Skel
+    400098: Character:RightThumb_Skel
+    400100: Character:RightTorso_Skel
+    400102: Character:RightWrist_Skel
+    400104: Character:SkeletonGroup
+    400106: Character:Torso_Skel
+    400108: Character:Vector 1
+    4300000: Vector
+    4300002: Character:Vector
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: Vector
+    13700002: Character:Vector 1
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
