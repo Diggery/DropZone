@@ -65,6 +65,7 @@ public class MainWeapon : MonoBehaviour {
 	
 	void Update () {
 
+
 		if (reloading) {
 			reloadTimer -= Time.deltaTime;
 			if (reloadTimer < 0) {
@@ -79,7 +80,6 @@ public class MainWeapon : MonoBehaviour {
 			animator.SetBool("MainWeaponReady", false);
 		} else {
 			animator.SetBool("MainWeaponReady", true);
-
 		}
 
 		if (muzzleLight.intensity > 0.1f) {
@@ -105,15 +105,27 @@ public class MainWeapon : MonoBehaviour {
 		targeting.AddDrift(aimDrift - aimBonus);
 		targeting.RaiseAim(weaponDrift - aimBonus);
 
-		Instantiate(muzzleFlashPrefab, muzzle.position + (muzzle.forward * 1.0f), transform.rotation);
+		Instantiate(muzzleFlashPrefab, muzzle.position + (muzzle.forward * 0.2f), transform.rotation);
 
 		GameObject bulletTrail = Instantiate(bulletTrailPrefab, muzzle.position, transform.rotation) as GameObject;
 		muzzleLight.intensity = 1;
-		Ray trajectory = new Ray(muzzle.position, muzzle.forward);
+
+
+		Vector3 targetPos = target.GetComponent<UnitController>().GetTargetPosition();
+
+
+		Quaternion directionOffset = Quaternion.AngleAxis((Random.value - 0.5f) * 20, Vector3.up);
+		Vector3 direction = directionOffset * muzzle.forward;
+		Ray trajectory = new Ray(muzzle.position, direction);
 		RaycastHit hit;
 		float distanceToTarget = 0.0f;
 		Vector3 hitLocation;
-		if (Physics.Raycast(trajectory, out hit, range)) {
+		LayerMask playerMask = 1 << LayerMask.NameToLayer("Player");
+		playerMask = ~playerMask;
+
+		Debug.DrawLine(muzzle.position, targetPos, Color.red, 1);
+
+		if (Physics.Raycast(trajectory, out hit, range, playerMask)) {
 			distanceToTarget = Vector3.Distance(hit.point, muzzle.position);
 			hitLocation = hit.point;
 			Vector4 damageInfo = new Vector4(hit.point.x, hit.point.y, hit.point.z, 0.15f);
@@ -126,14 +138,21 @@ public class MainWeapon : MonoBehaviour {
 			hitRotation *= Quaternion.AngleAxis(90, Vector3.right);
 
 			if (!hit.transform.tag.Equals("Shield")) Instantiate(bulletHitPrefab, hit.point, hitRotation);
-
+			print (hit.transform.tag);
+			if (hit.transform.tag.Equals("Enemy")) {
+				targeting.TargetHit();
+			} else {
+				targeting.TargetMiss();
+			}
 
 		} else {
 			distanceToTarget = range;
 			hitLocation = trajectory.GetPoint(range);
+			targeting.TargetMiss();
+
 		}
 
-		bulletTrail.transform.localScale = new Vector3(5.0f, 5.0f, distanceToTarget);
+		bulletTrail.transform.localScale = new Vector3(1.0f, 1.0f, distanceToTarget);
 		Vector3 upVector = (transform.position - Camera.main.transform.position).normalized;
 		bulletTrail.transform.LookAt(hitLocation, upVector);
 

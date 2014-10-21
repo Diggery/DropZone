@@ -24,10 +24,11 @@ public class InputControl : MonoBehaviour {
 	public void UnitSelected(Events.Notification notification) {
 		UnitController target = (UnitController)notification.data;
 		if (target.transform.tag.Equals("Enemy")) {
-			print ("BadGuy");
+			selectedUnit.SetMainTarget(target.gameObject);
 		}
 		if (target.transform.tag.Equals("Player")) {
 			selectedUnit = target;
+			print (selectedUnit);
 		}
 	}
 	

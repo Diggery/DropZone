@@ -12,11 +12,11 @@ public class FireControl : MonoBehaviour {
 	}
 
 	public void FireMainWeapon() {
-		transform.root.SendMessage("FireMainWeapon");
+		transform.parent.SendMessage("FireMainWeapon");
 
 	}
 	public void ReplaceMagazine() {
-		transform.root.SendMessage("ReplaceMagazine");
+		transform.parent.SendMessage("ReplaceMagazine");
 		
 	}
 }

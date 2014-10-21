@@ -1,0 +1,2307 @@
+fileFormatVersion: 2
+guid: af35c16c3f82941b1a371a3952444bff
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Squadie_Rig:Geometry_Group
+    100004: Squadie_Rig:Head_Skel
+    100006: Squadie_Rig:LeftFingers_Skel
+    100008: Squadie_Rig:LeftFoot_Skel
+    100010: Squadie_Rig:LeftHand_Skel
+    100012: Squadie_Rig:LeftLowerArm_Skel
+    100014: Squadie_Rig:LeftLowerLeg_Skel
+    100016: Squadie_Rig:LeftToes_Skel
+    100018: Squadie_Rig:LeftUpperArm_Skel
+    100020: Squadie_Rig:LeftUpperLeg_Skel
+    100022: Squadie_Rig:Neck_Skel
+    100024: Squadie_Rig:RightFingers_Skel
+    100026: Squadie_Rig:RightFoot_Skel
+    100028: Squadie_Rig:RightHand_Skel
+    100030: Squadie_Rig:RightLowerArm_Skel
+    100032: Squadie_Rig:RightLowerLeg_Skel
+    100034: Squadie_Rig:RightToes_Skel
+    100036: Squadie_Rig:RightUpperArm_Skel
+    100038: Squadie_Rig:RightUpperLeg_Skel
+    100040: Squadie_Rig:Root_Skel
+    100042: Squadie_Rig:Skeleton_Group
+    100044: Squadie_Rig:Spine1_Skel
+    100046: Squadie_Rig:Spine2_Skel
+    100048: Squadie_Rig:Squadie 1
+    100050: Squadie_Rig:SquadieHelmet
+    100052: Squadie_Rig:WeaponAttach
+    400000: //RootNode
+    400002: Squadie_Rig:Geometry_Group
+    400004: Squadie_Rig:Head_Skel
+    400006: Squadie_Rig:LeftFingers_Skel
+    400008: Squadie_Rig:LeftFoot_Skel
+    400010: Squadie_Rig:LeftHand_Skel
+    400012: Squadie_Rig:LeftLowerArm_Skel
+    400014: Squadie_Rig:LeftLowerLeg_Skel
+    400016: Squadie_Rig:LeftToes_Skel
+    400018: Squadie_Rig:LeftUpperArm_Skel
+    400020: Squadie_Rig:LeftUpperLeg_Skel
+    400022: Squadie_Rig:Neck_Skel
+    400024: Squadie_Rig:RightFingers_Skel
+    400026: Squadie_Rig:RightFoot_Skel
+    400028: Squadie_Rig:RightHand_Skel
+    400030: Squadie_Rig:RightLowerArm_Skel
+    400032: Squadie_Rig:RightLowerLeg_Skel
+    400034: Squadie_Rig:RightToes_Skel
+    400036: Squadie_Rig:RightUpperArm_Skel
+    400038: Squadie_Rig:RightUpperLeg_Skel
+    400040: Squadie_Rig:Root_Skel
+    400042: Squadie_Rig:Skeleton_Group
+    400044: Squadie_Rig:Spine1_Skel
+    400046: Squadie_Rig:Spine2_Skel
+    400048: Squadie_Rig:Squadie 1
+    400050: Squadie_Rig:SquadieHelmet
+    400052: Squadie_Rig:WeaponAttach
+    2300000: Squadie_Rig:SquadieHelmet
+    3300000: Squadie_Rig:SquadieHelmet
+    4300000: Squadie_Rig:Squadie
+    4300002: Squadie_Rig:SquadieHelmet
+    7400000: EnterHighCover
+    7400002: Transition_Idle_HighCover
+    7400004: TakeAim_Right
+    7400006: Cover_Aim_-0.1deg
+    7400008: Cover_Fire_-0.1deg
+    7400010: Cover_Aim_44.9deg
+    7400012: Cover_Fire_44.9deg
+    7400014: Cover_Aim_45.1deg
+    7400016: Cover_Fire_45.1deg
+    7400018: Cover_Aim_90deg
+    7400020: Cover_Fire_90deg
+    7400022: Cover_Aim_0.1deg
+    7400024: Cover_Fire_0.1deg
+    7400026: Cover_Aim_-45deg
+    7400028: Cover_Fire_-45.deg
+    7400030: Cover_Aim_-90deg
+    7400032: Cover_Fire_-90deg
+    7400034: Cover_Idle
+    7400036: Cover_Fire_135.1deg
+    7400038: Cover_Aim_135.1deg
+    7400040: Cover_Aim_134.9deg
+    7400042: Cover_Fire_134.9deg
+    7400044: Cover_Aim_180deg
+    7400046: Cover_Aim_-135.1deg
+    7400048: Cover_Fire_-135.1deg
+    7400050: Cover_Aim_-134.9deg
+    7400052: Cover_Fire_-134.9deg
+    9500000: //RootNode
+    13700000: Squadie_Rig:Squadie 1
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 3
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: EnterHighCover
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 15
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:Squadie 1
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:SquadieHelmet
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel/Squadie_Rig:LeftToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel/Squadie_Rig:RightToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel/Squadie_Rig:LeftFingers_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel/Squadie_Rig:Head_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:RightFingers_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:WeaponAttach
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Transition_Idle_HighCover
+      takeName: Take 001
+      firstFrame: 15
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:Squadie 1
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:SquadieHelmet
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel/Squadie_Rig:LeftToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel/Squadie_Rig:RightToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel/Squadie_Rig:LeftFingers_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel/Squadie_Rig:Head_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:RightFingers_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:WeaponAttach
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: TakeAim_Right
+      takeName: Take 001
+      firstFrame: 45
+      lastFrame: 60
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:Squadie 1
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:SquadieHelmet
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel/Squadie_Rig:LeftToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel/Squadie_Rig:RightToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel/Squadie_Rig:LeftFingers_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel/Squadie_Rig:Head_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:RightFingers_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:WeaponAttach
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Cover_Aim_0.1deg
+      takeName: Take 001
+      firstFrame: 60
+      lastFrame: 61
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:Squadie 1
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:SquadieHelmet
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel/Squadie_Rig:LeftToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel/Squadie_Rig:RightToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel/Squadie_Rig:LeftFingers_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel/Squadie_Rig:Head_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:RightFingers_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:WeaponAttach
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Cover_Fire_0.1deg
+      takeName: Take 001
+      firstFrame: 61
+      lastFrame: 64
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:Squadie 1
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:SquadieHelmet
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel/Squadie_Rig:LeftToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel/Squadie_Rig:RightToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel/Squadie_Rig:LeftFingers_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel/Squadie_Rig:Head_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:RightFingers_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:WeaponAttach
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Cover_Aim_44.9deg
+      takeName: Take 001
+      firstFrame: 66
+      lastFrame: 67
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:Squadie 1
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:SquadieHelmet
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel/Squadie_Rig:LeftToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel/Squadie_Rig:RightToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel/Squadie_Rig:LeftFingers_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel/Squadie_Rig:Head_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:RightFingers_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:WeaponAttach
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Cover_Fire_44.9deg
+      takeName: Take 001
+      firstFrame: 67
+      lastFrame: 70
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:Squadie 1
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:SquadieHelmet
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel/Squadie_Rig:LeftToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel/Squadie_Rig:RightToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel/Squadie_Rig:LeftFingers_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel/Squadie_Rig:Head_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:RightFingers_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:WeaponAttach
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Cover_Aim_45.1deg
+      takeName: Take 001
+      firstFrame: 72
+      lastFrame: 73
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:Squadie 1
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:SquadieHelmet
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel/Squadie_Rig:LeftToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel/Squadie_Rig:RightToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel/Squadie_Rig:LeftFingers_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel/Squadie_Rig:Head_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:RightFingers_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:WeaponAttach
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Cover_Fire_45.1deg
+      takeName: Take 001
+      firstFrame: 73
+      lastFrame: 76
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:Squadie 1
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:SquadieHelmet
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel/Squadie_Rig:LeftToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel/Squadie_Rig:RightToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel/Squadie_Rig:LeftFingers_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel/Squadie_Rig:Head_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:RightFingers_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:WeaponAttach
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Cover_Aim_90deg
+      takeName: Take 001
+      firstFrame: 78
+      lastFrame: 79
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:Squadie 1
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:SquadieHelmet
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel/Squadie_Rig:LeftToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel/Squadie_Rig:RightToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel/Squadie_Rig:LeftFingers_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel/Squadie_Rig:Head_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:RightFingers_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:WeaponAttach
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Cover_Fire_90deg
+      takeName: Take 001
+      firstFrame: 79
+      lastFrame: 82
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:Squadie 1
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:SquadieHelmet
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel/Squadie_Rig:LeftToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel/Squadie_Rig:RightToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel/Squadie_Rig:LeftFingers_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel/Squadie_Rig:Head_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:RightFingers_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:WeaponAttach
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Cover_Aim_-0.1deg
+      takeName: Take 001
+      firstFrame: 126
+      lastFrame: 127
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:Squadie 1
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:SquadieHelmet
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel/Squadie_Rig:LeftToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel/Squadie_Rig:RightToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel/Squadie_Rig:LeftFingers_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel/Squadie_Rig:Head_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:RightFingers_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:WeaponAttach
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Cover_Fire_-0.1deg
+      takeName: Take 001
+      firstFrame: 127
+      lastFrame: 130
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:Squadie 1
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:SquadieHelmet
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel/Squadie_Rig:LeftToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel/Squadie_Rig:RightToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel/Squadie_Rig:LeftFingers_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel/Squadie_Rig:Head_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:RightFingers_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:WeaponAttach
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Cover_Aim_-45deg
+      takeName: Take 001
+      firstFrame: 120
+      lastFrame: 121
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:Squadie 1
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:SquadieHelmet
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel/Squadie_Rig:LeftToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel/Squadie_Rig:RightToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel/Squadie_Rig:LeftFingers_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel/Squadie_Rig:Head_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:RightFingers_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:WeaponAttach
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Cover_Fire_-45.deg
+      takeName: Take 001
+      firstFrame: 121
+      lastFrame: 124
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:Squadie 1
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:SquadieHelmet
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel/Squadie_Rig:LeftToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel/Squadie_Rig:RightToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel/Squadie_Rig:LeftFingers_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel/Squadie_Rig:Head_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:RightFingers_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:WeaponAttach
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Cover_Aim_-90deg
+      takeName: Take 001
+      firstFrame: 114
+      lastFrame: 115
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:Squadie 1
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:SquadieHelmet
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel/Squadie_Rig:LeftToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel/Squadie_Rig:RightToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel/Squadie_Rig:LeftFingers_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel/Squadie_Rig:Head_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:RightFingers_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:WeaponAttach
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Cover_Fire_-90deg
+      takeName: Take 001
+      firstFrame: 115
+      lastFrame: 118
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:Squadie 1
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:SquadieHelmet
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel/Squadie_Rig:LeftToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel/Squadie_Rig:RightToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel/Squadie_Rig:LeftFingers_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel/Squadie_Rig:Head_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:RightFingers_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:WeaponAttach
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Cover_Idle
+      takeName: Take 001
+      firstFrame: 20
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group
+        weight: 0
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:Squadie 1
+        weight: 0
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:SquadieHelmet
+        weight: 0
+      - path: Squadie_Rig:Skeleton_Group
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel/Squadie_Rig:LeftToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel/Squadie_Rig:RightToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel/Squadie_Rig:LeftFingers_Skel
+        weight: 0
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel/Squadie_Rig:Head_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:RightFingers_Skel
+        weight: 0
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:WeaponAttach
+        weight: 0
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Cover_Aim_134.9deg
+      takeName: Take 001
+      firstFrame: 84
+      lastFrame: 85
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:Squadie 1
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:SquadieHelmet
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel/Squadie_Rig:LeftToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel/Squadie_Rig:RightToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel/Squadie_Rig:LeftFingers_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel/Squadie_Rig:Head_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:RightFingers_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:WeaponAttach
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Cover_Fire_134.9deg
+      takeName: Take 001
+      firstFrame: 85
+      lastFrame: 88
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:Squadie 1
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:SquadieHelmet
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel/Squadie_Rig:LeftToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel/Squadie_Rig:RightToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel/Squadie_Rig:LeftFingers_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel/Squadie_Rig:Head_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:RightFingers_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:WeaponAttach
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Cover_Aim_135.1deg
+      takeName: Take 001
+      firstFrame: 90
+      lastFrame: 91
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:Squadie 1
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:SquadieHelmet
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel/Squadie_Rig:LeftToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel/Squadie_Rig:RightToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel/Squadie_Rig:LeftFingers_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel/Squadie_Rig:Head_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:RightFingers_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:WeaponAttach
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Cover_Fire_135.1deg
+      takeName: Take 001
+      firstFrame: 91
+      lastFrame: 94
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:Squadie 1
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:SquadieHelmet
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel/Squadie_Rig:LeftToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel/Squadie_Rig:RightToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel/Squadie_Rig:LeftFingers_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel/Squadie_Rig:Head_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:RightFingers_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:WeaponAttach
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Cover_Aim_180deg
+      takeName: Take 001
+      firstFrame: 96
+      lastFrame: 97
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:Squadie 1
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:SquadieHelmet
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel/Squadie_Rig:LeftToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel/Squadie_Rig:RightToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel/Squadie_Rig:LeftFingers_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel/Squadie_Rig:Head_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:RightFingers_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:WeaponAttach
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Cover_Aim_-135.1deg
+      takeName: Take 001
+      firstFrame: 102
+      lastFrame: 103
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:Squadie 1
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:SquadieHelmet
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel/Squadie_Rig:LeftToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel/Squadie_Rig:RightToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel/Squadie_Rig:LeftFingers_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel/Squadie_Rig:Head_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:RightFingers_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:WeaponAttach
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Cover_Fire_-135.1deg
+      takeName: Take 001
+      firstFrame: 103
+      lastFrame: 106
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:Squadie 1
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:SquadieHelmet
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel/Squadie_Rig:LeftToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel/Squadie_Rig:RightToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel/Squadie_Rig:LeftFingers_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel/Squadie_Rig:Head_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:RightFingers_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:WeaponAttach
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Cover_Aim_-134.9deg
+      takeName: Take 001
+      firstFrame: 108
+      lastFrame: 109
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:Squadie 1
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:SquadieHelmet
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel/Squadie_Rig:LeftToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel/Squadie_Rig:RightToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel/Squadie_Rig:LeftFingers_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel/Squadie_Rig:Head_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:RightFingers_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:WeaponAttach
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Cover_Fire_-134.9deg
+      takeName: Take 001
+      firstFrame: 109
+      lastFrame: 112
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:Squadie 1
+        weight: 1
+      - path: Squadie_Rig:Geometry_Group/Squadie_Rig:SquadieHelmet
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:LeftUpperLeg_Skel/Squadie_Rig:LeftLowerLeg_Skel/Squadie_Rig:LeftFoot_Skel/Squadie_Rig:LeftToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:RightUpperLeg_Skel/Squadie_Rig:RightLowerLeg_Skel/Squadie_Rig:RightFoot_Skel/Squadie_Rig:RightToes_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel/Squadie_Rig:LeftFingers_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel/Squadie_Rig:Head_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:RightFingers_Skel
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:WeaponAttach
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 1
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: Squadie_Rig:Root_Skel
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 81ab474b9fdda495a9ccfb2d5aa7a4ee,
+    type: 3}
+  animationType: 2
+  additionalBone: 0
+  userData: 

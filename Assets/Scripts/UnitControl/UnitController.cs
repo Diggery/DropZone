@@ -19,8 +19,9 @@ public class UnitController : MonoBehaviour {
 	public Transform mainWeaponAttach;
 	Transform mainWeaponTarget;
 
+	CoverPoint currentCoverPoint;
 
-	
+
 	void Start () {
 		animator = GetComponentInChildren<Animator>();
 
@@ -44,7 +45,18 @@ public class UnitController : MonoBehaviour {
 	}
 
 	void Update() {
-		animator.SetFloat("Velocity", characterController.velocity.magnitude);
+		//give the animator a random number
+		animator.SetFloat("Random", Random.value);
+
+		float currentVelocity = characterController.velocity.magnitude;
+		animator.SetFloat("Velocity", currentVelocity);
+		if (currentVelocity > 0.01f) {
+			isMoving = true;
+		} else {
+			isMoving = false;
+		}
+
+		animator.SetBool("HasTarget", mainWeaponTarget);
 	}
 
 	public void SetUpColliders() {
@@ -58,13 +70,19 @@ public class UnitController : MonoBehaviour {
 		return animator;
 	}
 
+
 	public bool IsMoving() {
 		return isMoving;
+	}
+	public bool HasTarget() {
+		if (mainWeaponTarget) return true;
+		return false;
 	}
 
 	public void MoveTo(Vector3 location) {
 		animator.SetTrigger("StartMoving");
 		pathMover.SetDestination(location);	
+		currentCoverPoint = null;
 	}
 
 	public MainWeapon GetMainWeapon() {
@@ -87,10 +105,7 @@ public class UnitController : MonoBehaviour {
 		return targetCollision;
 	}
 
-	/// <summary>
-	/// Gets the target offset.
-	/// </summary>
-	/// <returns>The target offset.</returns>
+
 	public Vector3 GetTargetOffset() {
 		if (!targetCollision) return transform.position;
 		BoxCollider collision = targetCollision.GetComponent<BoxCollider>();
@@ -98,11 +113,32 @@ public class UnitController : MonoBehaviour {
 		return collision.center;
 	}
 
+	public Vector3 GetTargetPosition() {
+		if (!targetCollision) return transform.position;
+		BoxCollider collision = targetCollision.GetComponent<BoxCollider>();
+		if (!collision) return Vector3.zero;
+		return collision.center + targetCollision.position;
+	}
+
 	public void Hit(Vector4 damageInfo, Transform location) {
 		print ("hit " + location.name);
 	}
 
-
+	public void SetMainTarget(GameObject target) {
+		if (mainWeaponTarget == target.transform) {
+			mainWeaponTarget = null;
+		} else {
+			print ("Setting target to " + target.name);
+			mainWeapon.StartCoolingDown();
+			targetingControl.SetTarget(target.transform);
+			mainWeaponTarget = target.transform;
+		}
+	}
+	
+	public void ClearMainTarget() {
+		mainWeaponTarget = null;
+		targetingControl.ClearTarget();
+	}
 	
 	public void FireMainWeapon() {
 		if (mainWeaponTarget) mainWeapon.Fire(mainWeaponTarget);
@@ -112,7 +148,6 @@ public class UnitController : MonoBehaviour {
 		mainWeapon.ReplaceMagazine();
 	}
 
-	
 	public void tap(TouchManager.TapEvent touchEvent) {
 		Events.Send(gameObject, "UnitSelected", this);
 	}
@@ -121,18 +156,20 @@ public class UnitController : MonoBehaviour {
 
 		if (coverPoint) {
 			print ("Got a Point");
-//			Vector3 targetPos = GameObject.FindGameObjectWithTag("Enemy").transform.position;
-//			if (coverPoint.IsPositionVisible(targetPos)) {
-//				Debug.DrawLine(coverPoint.transform.position, targetPos,  Color.green, 100);
-//				
-//			} else {
-//				Debug.DrawLine(coverPoint.transform.position, targetPos,  Color.red, 100);
-//			}
+			animator.SetTrigger("EnterCover");
+			currentCoverPoint = coverPoint;
 		} else {
 			print ("NoCoverHere");
 		}
+	}
 
+	public CoverPoint GetCoverPoint() {
+		return currentCoverPoint;
 	}
 
 
+
+	public void RotateTo(Quaternion goal) {
+		pathMover.RotateTo (goal);
+	}
 }

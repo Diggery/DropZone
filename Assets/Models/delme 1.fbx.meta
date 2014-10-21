@@ -1,0 +1,118 @@
+fileFormatVersion: 2
+guid: 19991ad6cc411421792ad35454ca9e25
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Geometry_Group
+    100004: Head_Skel
+    100006: LeftFingers_Skel
+    100008: LeftFoot_Skel
+    100010: LeftHand_Skel
+    100012: LeftLowerArm_Skel
+    100014: LeftLowerLeg_Skel
+    100016: LeftToes_Skel
+    100018: LeftUpperArm_Skel
+    100020: LeftUpperLeg_Skel
+    100022: Neck_Skel
+    100024: RightFingers_Skel
+    100026: RightFoot_Skel
+    100028: RightHand_Skel
+    100030: RightLowerArm_Skel
+    100032: RightLowerLeg_Skel
+    100034: RightToes_Skel
+    100036: RightUpperArm_Skel
+    100038: RightUpperLeg_Skel
+    100040: Root_Skel
+    100042: Skeleton_Group
+    100044: Spine1_Skel
+    100046: Spine2_Skel
+    100048: Squadie 1
+    100050: SquadieHelmet
+    400000: //RootNode
+    400002: Geometry_Group
+    400004: Head_Skel
+    400006: LeftFingers_Skel
+    400008: LeftFoot_Skel
+    400010: LeftHand_Skel
+    400012: LeftLowerArm_Skel
+    400014: LeftLowerLeg_Skel
+    400016: LeftToes_Skel
+    400018: LeftUpperArm_Skel
+    400020: LeftUpperLeg_Skel
+    400022: Neck_Skel
+    400024: RightFingers_Skel
+    400026: RightFoot_Skel
+    400028: RightHand_Skel
+    400030: RightLowerArm_Skel
+    400032: RightLowerLeg_Skel
+    400034: RightToes_Skel
+    400036: RightUpperArm_Skel
+    400038: RightUpperLeg_Skel
+    400040: Root_Skel
+    400042: Skeleton_Group
+    400044: Spine1_Skel
+    400046: Spine2_Skel
+    400048: Squadie 1
+    400050: SquadieHelmet
+    2300000: SquadieHelmet
+    3300000: SquadieHelmet
+    4300000: Squadie
+    4300002: SquadieHelmet
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: Squadie 1
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

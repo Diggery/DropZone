@@ -14,14 +14,17 @@ public class MapControl : MonoBehaviour {
 	List<CoverPoint> coverPoints = new List<CoverPoint>();
 
 	void Start () {
+
+		//create all the cover points
 		AddCoverPoints();
 
+		//now that they are created, set up any data on them
 		foreach (CoverPoint cover in coverPoints) {
 			cover.SetVisibleCells();
+			cover.SetCornerFlags(); 
 		}
 
 		localCheckDistance *= localCheckDistance;
-
 
 	}
 	
@@ -154,8 +157,10 @@ public class MapControl : MonoBehaviour {
 						//newPoint.renderer.enabled = false;
 					}
 				} else {
-					print ("Missed Point");						
+					print ("Missed Point");	
+					Debug.DrawLine(ray.origin, ray.origin + (ray.direction * 10), Color.red, 10);
 
+				
 				}
 			}
 		}

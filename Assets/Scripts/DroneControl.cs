@@ -15,7 +15,7 @@ public class DroneControl : MonoBehaviour {
 
 	float moveSpeed = -2;
 
-	Transform returnPoint;
+	//Transform returnPoint;
 
 	float observationTimer;
 	Vector3 observationPoint;
@@ -80,7 +80,7 @@ public class DroneControl : MonoBehaviour {
 	}
 
 	public void SetReturn(Transform newReturnPoint) {
-		returnPoint = newReturnPoint;
+//		returnPoint = newReturnPoint;
 	}
 
 	public Vector3 GetObservationPoint() {

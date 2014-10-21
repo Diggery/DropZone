@@ -14,6 +14,11 @@ public class PathMover : Pathfinding {
 	
 	bool hasPath;
 
+	float headingRotTimer = 0.0f;
+	Quaternion headingRotStart = Quaternion.identity;
+	Quaternion headingRotEnd = Quaternion.identity;
+	float headingRotSpeed = 1.0f;
+
 	public float coolDown = 0.5f;
 	public float coolDownTimer;
 
@@ -40,6 +45,13 @@ public class PathMover : Pathfinding {
 	void Update () {
 		
 		if (coolDownTimer > 0) coolDownTimer -= Time.deltaTime;
+		// if we need to rotate somewhere, spin
+
+		if (headingRotTimer > 0) {
+			headingRotTimer -= Time.deltaTime * (180/headingRotSpeed);
+			transform.rotation = Quaternion.Lerp(headingRotStart, headingRotEnd, Util.EaseInOutSine(1 - headingRotTimer));
+		}
+
 
 		//stop if there is no path to follow
         if (Path.Count == 0) {
@@ -48,8 +60,6 @@ public class PathMover : Pathfinding {
 			return;
 		}
 
-		print ("Running");
-		
 		// Check to see if its a new path so the end can be fixed
 		if (!hasPath) {
 			hasPath = true;
@@ -97,6 +107,8 @@ public class PathMover : Pathfinding {
 				FinishPath();
             }	
 		}
+
+
 	}
 	
 	public void SetDestination(Vector3 newDestination) {
@@ -120,6 +132,7 @@ public class PathMover : Pathfinding {
 
 	}
 
+
 	void DrawTempLine(List<Vector3> newLine) {
 		
 		GameObject oldPathLine = new GameObject("OldPathLine");
@@ -135,18 +148,16 @@ public class PathMover : Pathfinding {
 
 	public List<Vector3> SimplifyPath(List<Vector3> complexPath) {
 
-		DrawTempLine(complexPath);
+		//DrawTempLine(complexPath);
 
 		float characterRadius = characterController.radius;
 
 		List<Vector3> simplePath = new List<Vector3>();
 
 		for (int currentNode = 0; currentNode < complexPath.Count; currentNode++) {
-			print ("processing " + currentNode);
 			simplePath.Add(complexPath[currentNode]);
 
 			for (int reverseCount = complexPath.Count - 1; reverseCount > currentNode; reverseCount--) {
-				print ("casting to " + reverseCount);
 				Vector3 currentNodePos = complexPath[currentNode];
 				currentNodePos.y = characterRadius + 0.1f;
 
@@ -164,7 +175,7 @@ public class PathMover : Pathfinding {
 				}
 			}
 		}
-		DrawTempLine(simplePath);
+		//DrawTempLine(simplePath);
 
 		return simplePath;
 	}
@@ -172,7 +183,17 @@ public class PathMover : Pathfinding {
 	public void FinishPath() {
 		Path.Clear();
 		hasPath = false;
-		unitController.FinishedMove(mapControl.GetCoverPoint(transform.position));
+		CoverPoint destinationPoint = mapControl.GetCoverPoint (transform.position);
+		unitController.FinishedMove(destinationPoint);
+		if (destinationPoint) RotateTo (destinationPoint.GetCoverHeading ());
+	}
+
+	public void RotateTo(Quaternion goal) {
+		if (headingRotTimer > 0) return;
+		headingRotTimer = 1.0f;
+		headingRotStart = transform.rotation;
+		headingRotEnd = goal;
+		headingRotSpeed = Quaternion.Angle (headingRotStart, headingRotEnd);
 	}
 	
 	public bool HasPath() {

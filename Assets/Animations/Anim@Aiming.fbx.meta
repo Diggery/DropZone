@@ -1,0 +1,1675 @@
+fileFormatVersion: 2
+guid: a6f8b84ab6106488db519a9b9d455b08
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: MainCharacter_Rig:Body
+    100004: MainCharacter_Rig:GeometryGroup
+    100006: MainCharacter_Rig:Head_Skel
+    100008: MainCharacter_Rig:Hips_Skel
+    100010: MainCharacter_Rig:LeftClav_Skel
+    100012: MainCharacter_Rig:LeftFingers_Skel
+    100014: MainCharacter_Rig:LeftFoot_Skel
+    100016: MainCharacter_Rig:LeftHand_Skel
+    100018: MainCharacter_Rig:LeftLowerArm_Skel
+    100020: MainCharacter_Rig:LeftLowerLeg_Skel
+    100022: MainCharacter_Rig:LeftToes_Skel
+    100024: MainCharacter_Rig:LeftUpperArm_Skel
+    100026: MainCharacter_Rig:LeftUpperLeg_Skel
+    100028: MainCharacter_Rig:RightClav_Skel
+    100030: MainCharacter_Rig:RightFingers_Skel
+    100032: MainCharacter_Rig:RightFoot_Skel
+    100034: MainCharacter_Rig:RightHand_Skel
+    100036: MainCharacter_Rig:RightLowerArm_Skel
+    100038: MainCharacter_Rig:RightLowerLeg_Skel
+    100040: MainCharacter_Rig:RightToes_Skel
+    100042: MainCharacter_Rig:RightUpperArm_Skel
+    100044: MainCharacter_Rig:RightUpperLeg_Skel
+    100046: MainCharacter_Rig:SkeletonGroup
+    100048: MainCharacter_Rig:Torso_Skel
+    100050: MainCharacter_Rig:WeaponAttach
+    100052: Character:Body
+    100054: Character:GeometryGroup
+    100056: Character:Head_Skel
+    100058: Character:Hips_Skel
+    100060: Character:LeftClav_Skel
+    100062: Character:LeftFingers_Skel
+    100064: Character:LeftFoot_Skel
+    100066: Character:LeftHand_Skel
+    100068: Character:LeftLowerArm_Skel
+    100070: Character:LeftLowerLeg_Skel
+    100072: Character:LeftToes_Skel
+    100074: Character:LeftUpperArm_Skel
+    100076: Character:LeftUpperLeg_Skel
+    100078: Character:RightClav_Skel
+    100080: Character:RightFingers_Skel
+    100082: Character:RightFoot_Skel
+    100084: Character:RightHand_Skel
+    100086: Character:RightLowerArm_Skel
+    100088: Character:RightLowerLeg_Skel
+    100090: Character:RightToes_Skel
+    100092: Character:RightUpperArm_Skel
+    100094: Character:RightUpperLeg_Skel
+    100096: Character:SkeletonGroup
+    100098: Character:Torso_Skel
+    100100: Character:WeaponAttach
+    400000: //RootNode
+    400002: MainCharacter_Rig:Body
+    400004: MainCharacter_Rig:GeometryGroup
+    400006: MainCharacter_Rig:Head_Skel
+    400008: MainCharacter_Rig:Hips_Skel
+    400010: MainCharacter_Rig:LeftClav_Skel
+    400012: MainCharacter_Rig:LeftFingers_Skel
+    400014: MainCharacter_Rig:LeftFoot_Skel
+    400016: MainCharacter_Rig:LeftHand_Skel
+    400018: MainCharacter_Rig:LeftLowerArm_Skel
+    400020: MainCharacter_Rig:LeftLowerLeg_Skel
+    400022: MainCharacter_Rig:LeftToes_Skel
+    400024: MainCharacter_Rig:LeftUpperArm_Skel
+    400026: MainCharacter_Rig:LeftUpperLeg_Skel
+    400028: MainCharacter_Rig:RightClav_Skel
+    400030: MainCharacter_Rig:RightFingers_Skel
+    400032: MainCharacter_Rig:RightFoot_Skel
+    400034: MainCharacter_Rig:RightHand_Skel
+    400036: MainCharacter_Rig:RightLowerArm_Skel
+    400038: MainCharacter_Rig:RightLowerLeg_Skel
+    400040: MainCharacter_Rig:RightToes_Skel
+    400042: MainCharacter_Rig:RightUpperArm_Skel
+    400044: MainCharacter_Rig:RightUpperLeg_Skel
+    400046: MainCharacter_Rig:SkeletonGroup
+    400048: MainCharacter_Rig:Torso_Skel
+    400050: MainCharacter_Rig:WeaponAttach
+    400052: Character:Body
+    400054: Character:GeometryGroup
+    400056: Character:Head_Skel
+    400058: Character:Hips_Skel
+    400060: Character:LeftClav_Skel
+    400062: Character:LeftFingers_Skel
+    400064: Character:LeftFoot_Skel
+    400066: Character:LeftHand_Skel
+    400068: Character:LeftLowerArm_Skel
+    400070: Character:LeftLowerLeg_Skel
+    400072: Character:LeftToes_Skel
+    400074: Character:LeftUpperArm_Skel
+    400076: Character:LeftUpperLeg_Skel
+    400078: Character:RightClav_Skel
+    400080: Character:RightFingers_Skel
+    400082: Character:RightFoot_Skel
+    400084: Character:RightHand_Skel
+    400086: Character:RightLowerArm_Skel
+    400088: Character:RightLowerLeg_Skel
+    400090: Character:RightToes_Skel
+    400092: Character:RightUpperArm_Skel
+    400094: Character:RightUpperLeg_Skel
+    400096: Character:SkeletonGroup
+    400098: Character:Torso_Skel
+    400100: Character:WeaponAttach
+    4300000: MainCharacter_Rig:Body
+    4300002: Character:Body
+    7400000: AimLeft
+    7400002: FireLeft
+    7400004: AimCenter
+    7400006: FireCenter
+    7400008: AimRight
+    7400010: FireRight
+    7400012: AimLeftDown
+    7400014: FireLeftDown
+    7400016: AimDown
+    7400018: FireDown
+    7400020: AimRightDown
+    7400022: FireRightDown
+    7400024: AimLeftUp
+    7400026: FireLeftUp
+    7400028: AimUp
+    7400030: FireUp
+    7400032: AimRightUp
+    7400034: FireRightUp
+    7400036: Aiming
+    9500000: //RootNode
+    13700000: MainCharacter_Rig:Body
+    13700002: Character:Body
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 0
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: AimLeft
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Character:GeometryGroup
+        weight: 1
+      - path: Character:GeometryGroup/Character:Body
+        weight: 1
+      - path: Character:SkeletonGroup
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:LeftUpperLeg_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:LeftUpperLeg_Skel/Character:LeftLowerLeg_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:LeftUpperLeg_Skel/Character:LeftLowerLeg_Skel/Character:LeftFoot_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:LeftUpperLeg_Skel/Character:LeftLowerLeg_Skel/Character:LeftFoot_Skel/Character:LeftToes_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:RightUpperLeg_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:RightUpperLeg_Skel/Character:RightLowerLeg_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:RightUpperLeg_Skel/Character:RightLowerLeg_Skel/Character:RightFoot_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:RightUpperLeg_Skel/Character:RightLowerLeg_Skel/Character:RightFoot_Skel/Character:RightToes_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:Torso_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:Torso_Skel/Character:Head_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:Torso_Skel/Character:LeftClav_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:Torso_Skel/Character:LeftClav_Skel/Character:LeftUpperArm_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:Torso_Skel/Character:LeftClav_Skel/Character:LeftUpperArm_Skel/Character:LeftLowerArm_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:Torso_Skel/Character:LeftClav_Skel/Character:LeftUpperArm_Skel/Character:LeftLowerArm_Skel/Character:LeftHand_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:Torso_Skel/Character:LeftClav_Skel/Character:LeftUpperArm_Skel/Character:LeftLowerArm_Skel/Character:LeftHand_Skel/Character:LeftFingers_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:Torso_Skel/Character:RightClav_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:Torso_Skel/Character:RightClav_Skel/Character:RightUpperArm_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:Torso_Skel/Character:RightClav_Skel/Character:RightUpperArm_Skel/Character:RightLowerArm_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:Torso_Skel/Character:RightClav_Skel/Character:RightUpperArm_Skel/Character:RightLowerArm_Skel/Character:RightHand_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:Torso_Skel/Character:RightClav_Skel/Character:RightUpperArm_Skel/Character:RightLowerArm_Skel/Character:RightHand_Skel/Character:RightFingers_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:Torso_Skel/Character:RightClav_Skel/Character:RightUpperArm_Skel/Character:RightLowerArm_Skel/Character:RightHand_Skel/Character:WeaponAttach
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: FireLeft
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 5
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: MainCharacter_Rig:GeometryGroup
+        weight: 1
+      - path: MainCharacter_Rig:GeometryGroup/MainCharacter_Rig:Body
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel/MainCharacter_Rig:LeftLowerLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel/MainCharacter_Rig:LeftLowerLeg_Skel/MainCharacter_Rig:LeftFoot_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel/MainCharacter_Rig:LeftLowerLeg_Skel/MainCharacter_Rig:LeftFoot_Skel/MainCharacter_Rig:LeftToes_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel/MainCharacter_Rig:RightLowerLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel/MainCharacter_Rig:RightLowerLeg_Skel/MainCharacter_Rig:RightFoot_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel/MainCharacter_Rig:RightLowerLeg_Skel/MainCharacter_Rig:RightFoot_Skel/MainCharacter_Rig:RightToes_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:Head_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel/MainCharacter_Rig:LeftLowerArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel/MainCharacter_Rig:LeftLowerArm_Skel/MainCharacter_Rig:LeftHand_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel/MainCharacter_Rig:LeftLowerArm_Skel/MainCharacter_Rig:LeftHand_Skel/MainCharacter_Rig:LeftFingers_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel/MainCharacter_Rig:RightHand_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel/MainCharacter_Rig:RightHand_Skel/MainCharacter_Rig:RightFingers_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel/MainCharacter_Rig:RightHand_Skel/MainCharacter_Rig:WeaponAttach
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: AimCenter
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 100
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: MainCharacter_Rig:GeometryGroup
+        weight: 1
+      - path: MainCharacter_Rig:GeometryGroup/MainCharacter_Rig:Body
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel/MainCharacter_Rig:LeftLowerLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel/MainCharacter_Rig:LeftLowerLeg_Skel/MainCharacter_Rig:LeftFoot_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel/MainCharacter_Rig:LeftLowerLeg_Skel/MainCharacter_Rig:LeftFoot_Skel/MainCharacter_Rig:LeftToes_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel/MainCharacter_Rig:RightLowerLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel/MainCharacter_Rig:RightLowerLeg_Skel/MainCharacter_Rig:RightFoot_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel/MainCharacter_Rig:RightLowerLeg_Skel/MainCharacter_Rig:RightFoot_Skel/MainCharacter_Rig:RightToes_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:Head_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel/MainCharacter_Rig:LeftLowerArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel/MainCharacter_Rig:LeftLowerArm_Skel/MainCharacter_Rig:LeftHand_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel/MainCharacter_Rig:LeftLowerArm_Skel/MainCharacter_Rig:LeftHand_Skel/MainCharacter_Rig:LeftFingers_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel/MainCharacter_Rig:RightHand_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel/MainCharacter_Rig:RightHand_Skel/MainCharacter_Rig:RightFingers_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel/MainCharacter_Rig:RightHand_Skel/MainCharacter_Rig:WeaponAttach
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: FireCenter
+      takeName: Take 001
+      firstFrame: 11
+      lastFrame: 15
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: .172413796
+        functionName: FireMainWeapon
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask:
+      - path: 
+        weight: 1
+      - path: MainCharacter_Rig:GeometryGroup
+        weight: 1
+      - path: MainCharacter_Rig:GeometryGroup/MainCharacter_Rig:Body
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel/MainCharacter_Rig:LeftLowerLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel/MainCharacter_Rig:LeftLowerLeg_Skel/MainCharacter_Rig:LeftFoot_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel/MainCharacter_Rig:LeftLowerLeg_Skel/MainCharacter_Rig:LeftFoot_Skel/MainCharacter_Rig:LeftToes_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel/MainCharacter_Rig:RightLowerLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel/MainCharacter_Rig:RightLowerLeg_Skel/MainCharacter_Rig:RightFoot_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel/MainCharacter_Rig:RightLowerLeg_Skel/MainCharacter_Rig:RightFoot_Skel/MainCharacter_Rig:RightToes_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:Head_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel/MainCharacter_Rig:LeftLowerArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel/MainCharacter_Rig:LeftLowerArm_Skel/MainCharacter_Rig:LeftHand_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel/MainCharacter_Rig:LeftLowerArm_Skel/MainCharacter_Rig:LeftHand_Skel/MainCharacter_Rig:LeftFingers_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel/MainCharacter_Rig:RightHand_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel/MainCharacter_Rig:RightHand_Skel/MainCharacter_Rig:RightFingers_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel/MainCharacter_Rig:RightHand_Skel/MainCharacter_Rig:WeaponAttach
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: AimRight
+      takeName: Take 001
+      firstFrame: 20
+      lastFrame: 21
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: MainCharacter_Rig:GeometryGroup
+        weight: 1
+      - path: MainCharacter_Rig:GeometryGroup/MainCharacter_Rig:Body
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel/MainCharacter_Rig:LeftLowerLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel/MainCharacter_Rig:LeftLowerLeg_Skel/MainCharacter_Rig:LeftFoot_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel/MainCharacter_Rig:LeftLowerLeg_Skel/MainCharacter_Rig:LeftFoot_Skel/MainCharacter_Rig:LeftToes_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel/MainCharacter_Rig:RightLowerLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel/MainCharacter_Rig:RightLowerLeg_Skel/MainCharacter_Rig:RightFoot_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel/MainCharacter_Rig:RightLowerLeg_Skel/MainCharacter_Rig:RightFoot_Skel/MainCharacter_Rig:RightToes_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:Head_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel/MainCharacter_Rig:LeftLowerArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel/MainCharacter_Rig:LeftLowerArm_Skel/MainCharacter_Rig:LeftHand_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel/MainCharacter_Rig:LeftLowerArm_Skel/MainCharacter_Rig:LeftHand_Skel/MainCharacter_Rig:LeftFingers_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel/MainCharacter_Rig:RightHand_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel/MainCharacter_Rig:RightHand_Skel/MainCharacter_Rig:RightFingers_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel/MainCharacter_Rig:RightHand_Skel/MainCharacter_Rig:WeaponAttach
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: FireRight
+      takeName: Take 001
+      firstFrame: 21
+      lastFrame: 25
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: MainCharacter_Rig:GeometryGroup
+        weight: 1
+      - path: MainCharacter_Rig:GeometryGroup/MainCharacter_Rig:Body
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel/MainCharacter_Rig:LeftLowerLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel/MainCharacter_Rig:LeftLowerLeg_Skel/MainCharacter_Rig:LeftFoot_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel/MainCharacter_Rig:LeftLowerLeg_Skel/MainCharacter_Rig:LeftFoot_Skel/MainCharacter_Rig:LeftToes_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel/MainCharacter_Rig:RightLowerLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel/MainCharacter_Rig:RightLowerLeg_Skel/MainCharacter_Rig:RightFoot_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel/MainCharacter_Rig:RightLowerLeg_Skel/MainCharacter_Rig:RightFoot_Skel/MainCharacter_Rig:RightToes_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:Head_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel/MainCharacter_Rig:LeftLowerArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel/MainCharacter_Rig:LeftLowerArm_Skel/MainCharacter_Rig:LeftHand_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel/MainCharacter_Rig:LeftLowerArm_Skel/MainCharacter_Rig:LeftHand_Skel/MainCharacter_Rig:LeftFingers_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel/MainCharacter_Rig:RightHand_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel/MainCharacter_Rig:RightHand_Skel/MainCharacter_Rig:RightFingers_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel/MainCharacter_Rig:RightHand_Skel/MainCharacter_Rig:WeaponAttach
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: AimLeftDown
+      takeName: Take 001
+      firstFrame: 30
+      lastFrame: 31
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: MainCharacter_Rig:GeometryGroup
+        weight: 1
+      - path: MainCharacter_Rig:GeometryGroup/MainCharacter_Rig:Body
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel/MainCharacter_Rig:LeftLowerLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel/MainCharacter_Rig:LeftLowerLeg_Skel/MainCharacter_Rig:LeftFoot_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel/MainCharacter_Rig:LeftLowerLeg_Skel/MainCharacter_Rig:LeftFoot_Skel/MainCharacter_Rig:LeftToes_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel/MainCharacter_Rig:RightLowerLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel/MainCharacter_Rig:RightLowerLeg_Skel/MainCharacter_Rig:RightFoot_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel/MainCharacter_Rig:RightLowerLeg_Skel/MainCharacter_Rig:RightFoot_Skel/MainCharacter_Rig:RightToes_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:Head_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel/MainCharacter_Rig:LeftLowerArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel/MainCharacter_Rig:LeftLowerArm_Skel/MainCharacter_Rig:LeftHand_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel/MainCharacter_Rig:LeftLowerArm_Skel/MainCharacter_Rig:LeftHand_Skel/MainCharacter_Rig:LeftFingers_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel/MainCharacter_Rig:RightHand_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel/MainCharacter_Rig:RightHand_Skel/MainCharacter_Rig:RightFingers_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel/MainCharacter_Rig:RightHand_Skel/MainCharacter_Rig:WeaponAttach
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: FireLeftDown
+      takeName: Take 001
+      firstFrame: 31
+      lastFrame: 35
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: MainCharacter_Rig:GeometryGroup
+        weight: 1
+      - path: MainCharacter_Rig:GeometryGroup/MainCharacter_Rig:Body
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel/MainCharacter_Rig:LeftLowerLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel/MainCharacter_Rig:LeftLowerLeg_Skel/MainCharacter_Rig:LeftFoot_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel/MainCharacter_Rig:LeftLowerLeg_Skel/MainCharacter_Rig:LeftFoot_Skel/MainCharacter_Rig:LeftToes_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel/MainCharacter_Rig:RightLowerLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel/MainCharacter_Rig:RightLowerLeg_Skel/MainCharacter_Rig:RightFoot_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel/MainCharacter_Rig:RightLowerLeg_Skel/MainCharacter_Rig:RightFoot_Skel/MainCharacter_Rig:RightToes_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:Head_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel/MainCharacter_Rig:LeftLowerArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel/MainCharacter_Rig:LeftLowerArm_Skel/MainCharacter_Rig:LeftHand_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel/MainCharacter_Rig:LeftLowerArm_Skel/MainCharacter_Rig:LeftHand_Skel/MainCharacter_Rig:LeftFingers_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel/MainCharacter_Rig:RightHand_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel/MainCharacter_Rig:RightHand_Skel/MainCharacter_Rig:RightFingers_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel/MainCharacter_Rig:RightHand_Skel/MainCharacter_Rig:WeaponAttach
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: AimDown
+      takeName: Take 001
+      firstFrame: 40
+      lastFrame: 41
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: MainCharacter_Rig:GeometryGroup
+        weight: 1
+      - path: MainCharacter_Rig:GeometryGroup/MainCharacter_Rig:Body
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel/MainCharacter_Rig:LeftLowerLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel/MainCharacter_Rig:LeftLowerLeg_Skel/MainCharacter_Rig:LeftFoot_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel/MainCharacter_Rig:LeftLowerLeg_Skel/MainCharacter_Rig:LeftFoot_Skel/MainCharacter_Rig:LeftToes_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel/MainCharacter_Rig:RightLowerLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel/MainCharacter_Rig:RightLowerLeg_Skel/MainCharacter_Rig:RightFoot_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel/MainCharacter_Rig:RightLowerLeg_Skel/MainCharacter_Rig:RightFoot_Skel/MainCharacter_Rig:RightToes_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:Head_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel/MainCharacter_Rig:LeftLowerArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel/MainCharacter_Rig:LeftLowerArm_Skel/MainCharacter_Rig:LeftHand_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel/MainCharacter_Rig:LeftLowerArm_Skel/MainCharacter_Rig:LeftHand_Skel/MainCharacter_Rig:LeftFingers_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel/MainCharacter_Rig:RightHand_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel/MainCharacter_Rig:RightHand_Skel/MainCharacter_Rig:RightFingers_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel/MainCharacter_Rig:RightHand_Skel/MainCharacter_Rig:WeaponAttach
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: FireDown
+      takeName: Take 001
+      firstFrame: 41
+      lastFrame: 45
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: MainCharacter_Rig:GeometryGroup
+        weight: 1
+      - path: MainCharacter_Rig:GeometryGroup/MainCharacter_Rig:Body
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel/MainCharacter_Rig:LeftLowerLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel/MainCharacter_Rig:LeftLowerLeg_Skel/MainCharacter_Rig:LeftFoot_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel/MainCharacter_Rig:LeftLowerLeg_Skel/MainCharacter_Rig:LeftFoot_Skel/MainCharacter_Rig:LeftToes_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel/MainCharacter_Rig:RightLowerLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel/MainCharacter_Rig:RightLowerLeg_Skel/MainCharacter_Rig:RightFoot_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel/MainCharacter_Rig:RightLowerLeg_Skel/MainCharacter_Rig:RightFoot_Skel/MainCharacter_Rig:RightToes_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:Head_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel/MainCharacter_Rig:LeftLowerArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel/MainCharacter_Rig:LeftLowerArm_Skel/MainCharacter_Rig:LeftHand_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel/MainCharacter_Rig:LeftLowerArm_Skel/MainCharacter_Rig:LeftHand_Skel/MainCharacter_Rig:LeftFingers_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel/MainCharacter_Rig:RightHand_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel/MainCharacter_Rig:RightHand_Skel/MainCharacter_Rig:RightFingers_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel/MainCharacter_Rig:RightHand_Skel/MainCharacter_Rig:WeaponAttach
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: AimRightDown
+      takeName: Take 001
+      firstFrame: 50
+      lastFrame: 51
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: MainCharacter_Rig:GeometryGroup
+        weight: 1
+      - path: MainCharacter_Rig:GeometryGroup/MainCharacter_Rig:Body
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel/MainCharacter_Rig:LeftLowerLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel/MainCharacter_Rig:LeftLowerLeg_Skel/MainCharacter_Rig:LeftFoot_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel/MainCharacter_Rig:LeftLowerLeg_Skel/MainCharacter_Rig:LeftFoot_Skel/MainCharacter_Rig:LeftToes_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel/MainCharacter_Rig:RightLowerLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel/MainCharacter_Rig:RightLowerLeg_Skel/MainCharacter_Rig:RightFoot_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel/MainCharacter_Rig:RightLowerLeg_Skel/MainCharacter_Rig:RightFoot_Skel/MainCharacter_Rig:RightToes_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:Head_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel/MainCharacter_Rig:LeftLowerArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel/MainCharacter_Rig:LeftLowerArm_Skel/MainCharacter_Rig:LeftHand_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel/MainCharacter_Rig:LeftLowerArm_Skel/MainCharacter_Rig:LeftHand_Skel/MainCharacter_Rig:LeftFingers_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel/MainCharacter_Rig:RightHand_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel/MainCharacter_Rig:RightHand_Skel/MainCharacter_Rig:RightFingers_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel/MainCharacter_Rig:RightHand_Skel/MainCharacter_Rig:WeaponAttach
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: FireRightDown
+      takeName: Take 001
+      firstFrame: 51
+      lastFrame: 55
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: MainCharacter_Rig:GeometryGroup
+        weight: 1
+      - path: MainCharacter_Rig:GeometryGroup/MainCharacter_Rig:Body
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel/MainCharacter_Rig:LeftLowerLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel/MainCharacter_Rig:LeftLowerLeg_Skel/MainCharacter_Rig:LeftFoot_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel/MainCharacter_Rig:LeftLowerLeg_Skel/MainCharacter_Rig:LeftFoot_Skel/MainCharacter_Rig:LeftToes_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel/MainCharacter_Rig:RightLowerLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel/MainCharacter_Rig:RightLowerLeg_Skel/MainCharacter_Rig:RightFoot_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel/MainCharacter_Rig:RightLowerLeg_Skel/MainCharacter_Rig:RightFoot_Skel/MainCharacter_Rig:RightToes_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:Head_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel/MainCharacter_Rig:LeftLowerArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel/MainCharacter_Rig:LeftLowerArm_Skel/MainCharacter_Rig:LeftHand_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel/MainCharacter_Rig:LeftLowerArm_Skel/MainCharacter_Rig:LeftHand_Skel/MainCharacter_Rig:LeftFingers_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel/MainCharacter_Rig:RightHand_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel/MainCharacter_Rig:RightHand_Skel/MainCharacter_Rig:RightFingers_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel/MainCharacter_Rig:RightHand_Skel/MainCharacter_Rig:WeaponAttach
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: AimLeftUp
+      takeName: Take 001
+      firstFrame: 60
+      lastFrame: 61
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: MainCharacter_Rig:GeometryGroup
+        weight: 1
+      - path: MainCharacter_Rig:GeometryGroup/MainCharacter_Rig:Body
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel/MainCharacter_Rig:LeftLowerLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel/MainCharacter_Rig:LeftLowerLeg_Skel/MainCharacter_Rig:LeftFoot_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel/MainCharacter_Rig:LeftLowerLeg_Skel/MainCharacter_Rig:LeftFoot_Skel/MainCharacter_Rig:LeftToes_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel/MainCharacter_Rig:RightLowerLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel/MainCharacter_Rig:RightLowerLeg_Skel/MainCharacter_Rig:RightFoot_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel/MainCharacter_Rig:RightLowerLeg_Skel/MainCharacter_Rig:RightFoot_Skel/MainCharacter_Rig:RightToes_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:Head_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel/MainCharacter_Rig:LeftLowerArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel/MainCharacter_Rig:LeftLowerArm_Skel/MainCharacter_Rig:LeftHand_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel/MainCharacter_Rig:LeftLowerArm_Skel/MainCharacter_Rig:LeftHand_Skel/MainCharacter_Rig:LeftFingers_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel/MainCharacter_Rig:RightHand_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel/MainCharacter_Rig:RightHand_Skel/MainCharacter_Rig:RightFingers_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel/MainCharacter_Rig:RightHand_Skel/MainCharacter_Rig:WeaponAttach
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: FireLeftUp
+      takeName: Take 001
+      firstFrame: 61
+      lastFrame: 65
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: MainCharacter_Rig:GeometryGroup
+        weight: 1
+      - path: MainCharacter_Rig:GeometryGroup/MainCharacter_Rig:Body
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel/MainCharacter_Rig:LeftLowerLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel/MainCharacter_Rig:LeftLowerLeg_Skel/MainCharacter_Rig:LeftFoot_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel/MainCharacter_Rig:LeftLowerLeg_Skel/MainCharacter_Rig:LeftFoot_Skel/MainCharacter_Rig:LeftToes_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel/MainCharacter_Rig:RightLowerLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel/MainCharacter_Rig:RightLowerLeg_Skel/MainCharacter_Rig:RightFoot_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel/MainCharacter_Rig:RightLowerLeg_Skel/MainCharacter_Rig:RightFoot_Skel/MainCharacter_Rig:RightToes_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:Head_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel/MainCharacter_Rig:LeftLowerArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel/MainCharacter_Rig:LeftLowerArm_Skel/MainCharacter_Rig:LeftHand_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel/MainCharacter_Rig:LeftLowerArm_Skel/MainCharacter_Rig:LeftHand_Skel/MainCharacter_Rig:LeftFingers_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel/MainCharacter_Rig:RightHand_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel/MainCharacter_Rig:RightHand_Skel/MainCharacter_Rig:RightFingers_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel/MainCharacter_Rig:RightHand_Skel/MainCharacter_Rig:WeaponAttach
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: AimUp
+      takeName: Take 001
+      firstFrame: 70
+      lastFrame: 71
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: MainCharacter_Rig:GeometryGroup
+        weight: 1
+      - path: MainCharacter_Rig:GeometryGroup/MainCharacter_Rig:Body
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel/MainCharacter_Rig:LeftLowerLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel/MainCharacter_Rig:LeftLowerLeg_Skel/MainCharacter_Rig:LeftFoot_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel/MainCharacter_Rig:LeftLowerLeg_Skel/MainCharacter_Rig:LeftFoot_Skel/MainCharacter_Rig:LeftToes_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel/MainCharacter_Rig:RightLowerLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel/MainCharacter_Rig:RightLowerLeg_Skel/MainCharacter_Rig:RightFoot_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel/MainCharacter_Rig:RightLowerLeg_Skel/MainCharacter_Rig:RightFoot_Skel/MainCharacter_Rig:RightToes_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:Head_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel/MainCharacter_Rig:LeftLowerArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel/MainCharacter_Rig:LeftLowerArm_Skel/MainCharacter_Rig:LeftHand_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel/MainCharacter_Rig:LeftLowerArm_Skel/MainCharacter_Rig:LeftHand_Skel/MainCharacter_Rig:LeftFingers_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel/MainCharacter_Rig:RightHand_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel/MainCharacter_Rig:RightHand_Skel/MainCharacter_Rig:RightFingers_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel/MainCharacter_Rig:RightHand_Skel/MainCharacter_Rig:WeaponAttach
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: FireUp
+      takeName: Take 001
+      firstFrame: 71
+      lastFrame: 75
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: MainCharacter_Rig:GeometryGroup
+        weight: 1
+      - path: MainCharacter_Rig:GeometryGroup/MainCharacter_Rig:Body
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel/MainCharacter_Rig:LeftLowerLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel/MainCharacter_Rig:LeftLowerLeg_Skel/MainCharacter_Rig:LeftFoot_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel/MainCharacter_Rig:LeftLowerLeg_Skel/MainCharacter_Rig:LeftFoot_Skel/MainCharacter_Rig:LeftToes_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel/MainCharacter_Rig:RightLowerLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel/MainCharacter_Rig:RightLowerLeg_Skel/MainCharacter_Rig:RightFoot_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel/MainCharacter_Rig:RightLowerLeg_Skel/MainCharacter_Rig:RightFoot_Skel/MainCharacter_Rig:RightToes_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:Head_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel/MainCharacter_Rig:LeftLowerArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel/MainCharacter_Rig:LeftLowerArm_Skel/MainCharacter_Rig:LeftHand_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel/MainCharacter_Rig:LeftLowerArm_Skel/MainCharacter_Rig:LeftHand_Skel/MainCharacter_Rig:LeftFingers_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel/MainCharacter_Rig:RightHand_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel/MainCharacter_Rig:RightHand_Skel/MainCharacter_Rig:RightFingers_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel/MainCharacter_Rig:RightHand_Skel/MainCharacter_Rig:WeaponAttach
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: AimRightUp
+      takeName: Take 001
+      firstFrame: 80
+      lastFrame: 81
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: MainCharacter_Rig:GeometryGroup
+        weight: 1
+      - path: MainCharacter_Rig:GeometryGroup/MainCharacter_Rig:Body
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel/MainCharacter_Rig:LeftLowerLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel/MainCharacter_Rig:LeftLowerLeg_Skel/MainCharacter_Rig:LeftFoot_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel/MainCharacter_Rig:LeftLowerLeg_Skel/MainCharacter_Rig:LeftFoot_Skel/MainCharacter_Rig:LeftToes_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel/MainCharacter_Rig:RightLowerLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel/MainCharacter_Rig:RightLowerLeg_Skel/MainCharacter_Rig:RightFoot_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel/MainCharacter_Rig:RightLowerLeg_Skel/MainCharacter_Rig:RightFoot_Skel/MainCharacter_Rig:RightToes_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:Head_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel/MainCharacter_Rig:LeftLowerArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel/MainCharacter_Rig:LeftLowerArm_Skel/MainCharacter_Rig:LeftHand_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel/MainCharacter_Rig:LeftLowerArm_Skel/MainCharacter_Rig:LeftHand_Skel/MainCharacter_Rig:LeftFingers_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel/MainCharacter_Rig:RightHand_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel/MainCharacter_Rig:RightHand_Skel/MainCharacter_Rig:RightFingers_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel/MainCharacter_Rig:RightHand_Skel/MainCharacter_Rig:WeaponAttach
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: FireRightUp
+      takeName: Take 001
+      firstFrame: 81
+      lastFrame: 85
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: MainCharacter_Rig:GeometryGroup
+        weight: 1
+      - path: MainCharacter_Rig:GeometryGroup/MainCharacter_Rig:Body
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel/MainCharacter_Rig:LeftLowerLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel/MainCharacter_Rig:LeftLowerLeg_Skel/MainCharacter_Rig:LeftFoot_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:LeftUpperLeg_Skel/MainCharacter_Rig:LeftLowerLeg_Skel/MainCharacter_Rig:LeftFoot_Skel/MainCharacter_Rig:LeftToes_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel/MainCharacter_Rig:RightLowerLeg_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel/MainCharacter_Rig:RightLowerLeg_Skel/MainCharacter_Rig:RightFoot_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:RightUpperLeg_Skel/MainCharacter_Rig:RightLowerLeg_Skel/MainCharacter_Rig:RightFoot_Skel/MainCharacter_Rig:RightToes_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:Head_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel/MainCharacter_Rig:LeftLowerArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel/MainCharacter_Rig:LeftLowerArm_Skel/MainCharacter_Rig:LeftHand_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:LeftClav_Skel/MainCharacter_Rig:LeftUpperArm_Skel/MainCharacter_Rig:LeftLowerArm_Skel/MainCharacter_Rig:LeftHand_Skel/MainCharacter_Rig:LeftFingers_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel/MainCharacter_Rig:RightHand_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel/MainCharacter_Rig:RightHand_Skel/MainCharacter_Rig:RightFingers_Skel
+        weight: 1
+      - path: MainCharacter_Rig:SkeletonGroup/MainCharacter_Rig:Hips_Skel/MainCharacter_Rig:Torso_Skel/MainCharacter_Rig:RightClav_Skel/MainCharacter_Rig:RightUpperArm_Skel/MainCharacter_Rig:RightLowerArm_Skel/MainCharacter_Rig:RightHand_Skel/MainCharacter_Rig:WeaponAttach
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Aiming
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 100
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Character:GeometryGroup
+        weight: 1
+      - path: Character:GeometryGroup/Character:Body
+        weight: 1
+      - path: Character:SkeletonGroup
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:LeftUpperLeg_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:LeftUpperLeg_Skel/Character:LeftLowerLeg_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:LeftUpperLeg_Skel/Character:LeftLowerLeg_Skel/Character:LeftFoot_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:LeftUpperLeg_Skel/Character:LeftLowerLeg_Skel/Character:LeftFoot_Skel/Character:LeftToes_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:RightUpperLeg_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:RightUpperLeg_Skel/Character:RightLowerLeg_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:RightUpperLeg_Skel/Character:RightLowerLeg_Skel/Character:RightFoot_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:RightUpperLeg_Skel/Character:RightLowerLeg_Skel/Character:RightFoot_Skel/Character:RightToes_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:Torso_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:Torso_Skel/Character:Head_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:Torso_Skel/Character:LeftClav_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:Torso_Skel/Character:LeftClav_Skel/Character:LeftUpperArm_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:Torso_Skel/Character:LeftClav_Skel/Character:LeftUpperArm_Skel/Character:LeftLowerArm_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:Torso_Skel/Character:LeftClav_Skel/Character:LeftUpperArm_Skel/Character:LeftLowerArm_Skel/Character:LeftHand_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:Torso_Skel/Character:LeftClav_Skel/Character:LeftUpperArm_Skel/Character:LeftLowerArm_Skel/Character:LeftHand_Skel/Character:LeftFingers_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:Torso_Skel/Character:RightClav_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:Torso_Skel/Character:RightClav_Skel/Character:RightUpperArm_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:Torso_Skel/Character:RightClav_Skel/Character:RightUpperArm_Skel/Character:RightLowerArm_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:Torso_Skel/Character:RightClav_Skel/Character:RightUpperArm_Skel/Character:RightLowerArm_Skel/Character:RightHand_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:Torso_Skel/Character:RightClav_Skel/Character:RightUpperArm_Skel/Character:RightLowerArm_Skel/Character:RightHand_Skel/Character:RightFingers_Skel
+        weight: 1
+      - path: Character:SkeletonGroup/Character:Hips_Skel/Character:Torso_Skel/Character:RightClav_Skel/Character:RightUpperArm_Skel/Character:RightLowerArm_Skel/Character:RightHand_Skel/Character:WeaponAttach
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 1
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 53da2e269b21c471d8d7b8a8161f953b,
+    type: 3}
+  animationType: 2
+  additionalBone: 0
+  userData: 

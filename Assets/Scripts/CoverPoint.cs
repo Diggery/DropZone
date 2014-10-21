@@ -16,7 +16,8 @@ public class CoverPoint : MonoBehaviour {
 	List<Vector2> visibleCellsFromSouth = new List<Vector2>();
 	List<Vector2> visibleCellsFromWest = new List<Vector2>();
 
-
+	bool isRightSideClear;
+	bool isLeftSideClear;
 	
 	public void SetCover(int[] newCover, Vector3 worldPos, float newGridSize, Vector2 newMapSize) {
 		cover = newCover;
@@ -84,7 +85,6 @@ public class CoverPoint : MonoBehaviour {
 		transform.localScale = new Vector3(gridSize, gridSize, gridSize);
 
 		foreach(Transform child in transform) Destroy(child.gameObject);
-
 	}
 
 	public int[] GetCover() {
@@ -93,24 +93,25 @@ public class CoverPoint : MonoBehaviour {
 	
 	public int GetEdgeDirection() {
 		int direction = 0;
+
 		//set for low cover
 		if (cover[0] > 0) direction = 0;
 		if (cover[1] > 0) direction = 1;
 		if (cover[2] > 0) direction = 2;
 		if (cover[3] > 0) direction = 3;
+
+		//override for high cover
+		if (cover[0] > 1) direction = 0;
+		if (cover[1] > 1) direction = 1;
+		if (cover[2] > 1) direction = 2;
+		if (cover[3] > 1) direction = 3;
 		
 		return direction;
-		
-//		mapPoint.y += 0.25f;
-//		LayerMask terrainMask = 1 << LayerMask.NameToLayer("Ground");
-//		RaycastHit hit;
-//
-//		if (Physics.Raycast(mapPoint, Vector3.back, out hit, 1.0f,  terrainMask)) {
-//			if (hit.transform.tag == "LowWall") north = 1;
-//			if (hit.transform.tag == "Wall") north = 2;
-//		}		
-
 	}	
+
+	public Quaternion GetCoverHeading() {
+		return Quaternion.AngleAxis (GetEdgeDirection () * 90, Vector3.up);
+	}
 	
 
 	public void SetFade(float newFade) {
@@ -199,4 +200,65 @@ public class CoverPoint : MonoBehaviour {
 		}
 		return;
 	}
+
+	public void SetCornerFlags() {
+
+
+		int edgeDirection = GetEdgeDirection();	
+
+		Vector3 rightStartPos = Vector3.zero;
+		Vector3 rightEndPos = Vector3.zero;
+		Vector3 leftStartPos = Vector3.zero;
+		Vector3 leftEndPos = Vector3.zero;
+
+
+		if (edgeDirection == 0) {
+			rightStartPos = transform.position + (Vector3.right * gridSize);
+			rightEndPos = rightStartPos + (Vector3.forward * gridSize);
+
+			leftStartPos = transform.position + (Vector3.right * -gridSize);
+			leftEndPos = leftStartPos + (Vector3.forward * gridSize);
+		}
+
+		if (edgeDirection == 1) {
+			rightStartPos = transform.position + (Vector3.forward * -gridSize);
+			rightEndPos = rightStartPos + (Vector3.right * gridSize);
+			
+			leftStartPos = transform.position + (Vector3.forward * gridSize);
+			leftEndPos = leftStartPos + (Vector3.right * gridSize);
+		}
+
+		if (edgeDirection == 2) {
+			rightStartPos = transform.position + (Vector3.right * -gridSize);
+			rightEndPos = rightStartPos + (Vector3.forward * -gridSize);
+			
+			leftStartPos = transform.position + (Vector3.right * gridSize);
+			leftEndPos = leftStartPos + (Vector3.forward * -gridSize);
+		}
+
+		if (edgeDirection == 3) {
+			rightStartPos = transform.position + (Vector3.forward * gridSize);
+			rightEndPos = rightStartPos + (Vector3.right * -gridSize);
+			
+			leftStartPos = transform.position + (Vector3.forward * -gridSize);
+			leftEndPos = leftStartPos + (Vector3.right * -gridSize);
+		}
+		LayerMask terrainMask = 1 << LayerMask.NameToLayer("Ground");
+
+		isRightSideClear = !Physics.Linecast (rightStartPos, rightEndPos, terrainMask);
+		isLeftSideClear = !Physics.Linecast (leftStartPos, leftEndPos, terrainMask);
+
+
+	}
+
+	public bool IsRightSideClear() {
+
+		return isRightSideClear;
+	}
+
+	public bool IsLeftSideClear() {
+		return isLeftSideClear;
+	}
+
+
 }
