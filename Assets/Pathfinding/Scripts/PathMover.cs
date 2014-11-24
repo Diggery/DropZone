@@ -12,16 +12,21 @@ public class PathMover : Pathfinding {
 
 	public float accelSpeed;
 	
-	bool hasPath;
+	bool waitingForPath;
+	
+	public List<Vector3> activePath = new List<Vector3>();
 
 	float headingRotTimer = 0.0f;
 	Quaternion headingRotStart = Quaternion.identity;
 	Quaternion headingRotEnd = Quaternion.identity;
 	float headingRotSpeed = 1.0f;
 
-	public float coolDown = 0.5f;
-	public float coolDownTimer;
+	float coolDown = 0.1f;
+	float coolDownTimer;
+	
+	public float testTimer;
 
+	Vector3 tempDestination;
 	Vector3 finishPos;
 
 	LineDrawer pathLine;
@@ -36,41 +41,52 @@ public class PathMover : Pathfinding {
 
 		mapControl = newMapControl;
 		
-		pathLine = GetComponent<LineDrawer>();
+		pathLine = gameObject.GetComponent<LineDrawer>();
 
 		distanceThreshold *= distanceThreshold;
 			
 	}
 	
 	void Update () {
+		testTimer += GameTime.deltaTime;
+	
+		if (unitController.dead) 
+			return;
 		
-		if (coolDownTimer > 0) coolDownTimer -= Time.deltaTime;
+		if (coolDownTimer > 0) coolDownTimer -= GameTime.deltaTime;
+		
 		// if we need to rotate somewhere, spin
-
 		if (headingRotTimer > 0) {
 			headingRotTimer -= Time.deltaTime * (180/headingRotSpeed);
-			transform.rotation = Quaternion.Lerp(headingRotStart, headingRotEnd, Util.EaseInOutSine(1 - headingRotTimer));
+			transform.rotation = Quaternion.Lerp(headingRotStart, headingRotEnd, Mathf.Clamp01(Util.EaseInOutSine(1 - headingRotTimer)));
+		}
+		
+		
+		if (Path.Count > 0) {
+			if (waitingForPath) {
+				Path[0] = transform.position;
+				Path[Path.Count - 1] = finishPos;
+				Path = SimplifyPath(Path);
+				StartPath(finishPos); //start moving if path is ready
+				return;
+			}
+			
+			if (Path[Path.Count - 1] != tempDestination) { //update drawn path if needed.\
+				Path[0] = transform.position;
+				Path[Path.Count - 1] = tempDestination;
+				Path = SimplifyPath(Path);
+				DrawPath();
+			}
 		}
 
-
-		//stop if there is no path to follow
-        if (Path.Count == 0) {
+		//stop here if there is no path to follow
+		if (activePath.Count == 0) {
 			if (characterController.velocity.sqrMagnitude > 0.01f) 
 				characterController.Move(Vector3.zero);
 			return;
 		}
 
-		// Check to see if its a new path so the end can be fixed
-		if (!hasPath) {
-			hasPath = true;
-			Path[0] = transform.position;
-			Path[Path.Count - 1] = finishPos;
-			Path = SimplifyPath(Path);
-			// draw a line down the path
-			DrawPath();
-		}
-		
-		Vector3 nextPath = Path[0];
+		Vector3 nextPath = activePath[0];
 		Vector3 moveDirection = nextPath - transform.position;
 
 		//if we are trying to move somewhere, face that direction
@@ -94,61 +110,73 @@ public class PathMover : Pathfinding {
 		Vector3 distanceCheckTo = new Vector3(nextPath.x, 0.0f, nextPath.z);
 		
 		// if there are more than 1 node left see if we are close enough to the next one
-		if (Path.Count > 1) {
+		if (activePath.Count > 1) {
             if ((distanceCheckFrom - distanceCheckTo).sqrMagnitude < distanceThreshold) {
-				Path.RemoveAt(0);
+				if (activePath.Count < 5) {
+					if (!mapControl.IsDestinationClear(finishPos, transform.position)) {
+						unitController.MoveTo(mapControl.FindBestCover(finishPos, 5 * mapControl.GetGridSize()));
+					}
+				}
+				activePath.RemoveAt(0);
 			}
 			
 		// otherwise setup a finish move
 		} else {
 
 			if (offsetFromNextPath.sqrMagnitude < distanceThreshold) {
-                Path.RemoveAt(0);
+				activePath.RemoveAt(0);
 				FinishPath();
             }	
 		}
-
-
 	}
 	
-	public void SetDestination(Vector3 newDestination) {
-
+	public void UpdatePath(Vector3 newDestination) {
 		if (coolDownTimer > 0) return;
-		
-		//set this so it can be reset when the path comes back
-		hasPath = false;
-		
 		FindPath(transform.position, newDestination);
-		coolDownTimer = coolDown + Random.value * 0.1f;		
+		tempDestination = newDestination;
+		coolDownTimer = coolDown + (Random.value * 0.1f);		
+	}
+	
+	
+	
+	public void StartPath(Vector3 newDestination) {
+	
 		finishPos = newDestination; 
-
+		
+		if (Path.Count < 1) {
+			waitingForPath = true;
+			FindPath(transform.position, newDestination);
+			return;
+		}
+		
+		waitingForPath = false;
+		
+		Path[0] = transform.position;
+		Path[Path.Count - 1] = finishPos;
+		activePath = Path.GetRange(0, Path.Count);
+		Path.Clear();
+		ClearPathLine();
+	}
+	
+	public Vector3 GetDestination() {
+		return finishPos;
 	}
 	
 	void DrawPath() {
 		
-		if (Path.Count > 3 && pathLine) {
+		if (Path.Count > 1 && pathLine) {
 			pathLine.DrawLine(Path);	
 		}
-
 	}
-
-
-	void DrawTempLine(List<Vector3> newLine) {
-		
-		GameObject oldPathLine = new GameObject("OldPathLine");
-		LineRenderer oldPathLineRenderer = oldPathLine.AddComponent<LineRenderer>();
-		oldPathLineRenderer.SetVertexCount(newLine.Count);
-		oldPathLineRenderer.SetWidth(0.3f, 0.3f);
-		
-		for (int oldPathIndex = 0; oldPathIndex < newLine.Count; oldPathIndex++) {
-			oldPathLineRenderer.SetPosition(oldPathIndex, newLine[oldPathIndex]);
-		}
-
+	
+	public void ClearPathLine() {
+		pathLine.ClearLine(true);
+	}
+	public void CancelPathLine() {
+		pathLine.ClearLine(false);
 	}
 
 	public List<Vector3> SimplifyPath(List<Vector3> complexPath) {
-
-		//DrawTempLine(complexPath);
 
 		float characterRadius = characterController.radius;
 
@@ -175,14 +203,17 @@ public class PathMover : Pathfinding {
 				}
 			}
 		}
-		//DrawTempLine(simplePath);
-
+		
+		for (int i = 0; i < simplePath.Count - 1; i++) {
+			if (simplePath[i] == simplePath[i + 1]) {
+				simplePath.RemoveAt(i + 1);
+			}
+		}
 		return simplePath;
 	}
 
 	public void FinishPath() {
-		Path.Clear();
-		hasPath = false;
+		activePath.Clear();
 		CoverPoint destinationPoint = mapControl.GetCoverPoint (transform.position);
 		unitController.FinishedMove(destinationPoint);
 		if (destinationPoint) RotateTo (destinationPoint.GetCoverHeading ());
@@ -197,17 +228,13 @@ public class PathMover : Pathfinding {
 	}
 	
 	public bool HasPath() {
-		if (Path.Count > 0) {
-			return true;
-		} else {
-			return false;
-		}
+		return (activePath.Count > 0);
 	}
 	public float GetMaxSpeed() {
 		return speed;
 	}
 
 	public float GetDistanceToNext() {
-		return (Path[0] - transform.position).magnitude;
+		return (activePath[0] - transform.position).magnitude;
 	}
 }

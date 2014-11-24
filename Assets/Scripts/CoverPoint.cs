@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class CoverPoint : MonoBehaviour {
 
+
+	MapControl mapControl;
 	public int[] cover;
 	public bool highCover = false;
 
@@ -19,19 +21,24 @@ public class CoverPoint : MonoBehaviour {
 	bool isRightSideClear;
 	bool isLeftSideClear;
 	
-	public void SetCover(int[] newCover, Vector3 worldPos, float newGridSize, Vector2 newMapSize) {
+	bool isOccupied;
+	bool isClaimed;
+	
+	public void SetCover(int[] newCover, Vector3 worldPos, float newGridSize, Vector2 newMapSize, MapControl newMapControl) {
 		cover = newCover;
 		gridSize = newGridSize;
 		mapSize = newMapSize;
+		mapControl = newMapControl;
 		
 		if (cover[0] == 0) {
 			DestroyImmediate(transform.Find("NorthLow").gameObject);
 			DestroyImmediate(transform.Find("NorthHigh").gameObject);
-			
 		}
+		
 		if (cover[0] == 1) {
 			DestroyImmediate(transform.Find("NorthHigh").gameObject);
 		}
+		
 		if (cover[0] == 2) {
 			DestroyImmediate(transform.Find("NorthLow").gameObject);
 			highCover = true;
@@ -44,6 +51,7 @@ public class CoverPoint : MonoBehaviour {
 		if (cover[1] == 1) {
 			DestroyImmediate(transform.Find("EastHigh").gameObject);
 		}
+		
 		if (cover[1] == 2) {
 			DestroyImmediate(transform.Find("EastLow").gameObject);
 			highCover = true;
@@ -56,6 +64,7 @@ public class CoverPoint : MonoBehaviour {
 		if (cover[2] == 1) {
 			DestroyImmediate(transform.Find("SouthHigh").gameObject);
 		}
+		
 		if (cover[2] == 2) {
 			DestroyImmediate(transform.Find("SouthLow").gameObject);
 			highCover = true;
@@ -65,9 +74,11 @@ public class CoverPoint : MonoBehaviour {
 			DestroyImmediate(transform.Find("WestLow").gameObject);
 			DestroyImmediate(transform.Find("WestHigh").gameObject);
 		}
+		
 		if (cover[3] == 1) {
 			DestroyImmediate(transform.Find("WestHigh").gameObject);
 		}
+		
 		if (cover[3] == 2) {
 			DestroyImmediate(transform.Find("WestLow").gameObject);
 			highCover = true;
@@ -116,12 +127,12 @@ public class CoverPoint : MonoBehaviour {
 
 	public void SetFade(float newFade) {
 		if (newFade <= 0) {
-		//	renderer.enabled = false;
+			renderer.enabled = false;
 		} else {
-		//	renderer.enabled = true;
+			renderer.enabled = true;
 		}
 		
-	//	renderer.material.SetFloat("_Fade", newFade);
+		renderer.material.SetFloat("_Fade", newFade);
 	}
 
 	Vector2 MapPosToCoor(Vector3 mapPos) {
@@ -138,13 +149,28 @@ public class CoverPoint : MonoBehaviour {
 	public bool IsTargetVisible(Transform target) {
 		return IsPositionVisible(target.position);
 	}
-
-	public bool IsPositionVisible(Vector3 mapPos) {
-		if (visibleCells.Contains(MapPosToCoor(mapPos))) {
-			return true;
-		} else {
-			return false;
+	
+	public bool IsTargetVisibleFromCover(Transform target) {
+	
+		if (IsCorner()) {
+			int direction = GetEdgeDirection();
+			if (direction == 0 || direction == 2 ) {
+				if (visibleCellsFromEast.Contains(MapPosToCoor(target.transform.position)) ||
+				    visibleCellsFromWest.Contains(MapPosToCoor(target.transform.position))) {
+				    return true;
+			 	}
+			}
+			if (direction == 1 || direction == 3) {
+				if (visibleCellsFromNorth.Contains(MapPosToCoor(target.transform.position)) || visibleCellsFromSouth.Contains(MapPosToCoor(target.transform.position))) {
+					return true;
+				}
+			}	
 		}
+		return false;
+	}
+	
+	public bool IsPositionVisible(Vector3 mapPos) {
+		return visibleCells.Contains(MapPosToCoor(mapPos));
 	}
 
 	public void SetVisibleCells() {
@@ -153,7 +179,7 @@ public class CoverPoint : MonoBehaviour {
 		for (int x = 0; x < mapSize.x; x++) {
 			for (int y = 0; y < mapSize.y; y++) {
 
-				if (Vector3.Distance(transform.position, CoorToMapPos(new Vector2(x,y))) < 10 * gridSize) {
+				if (Vector3.Distance(transform.position, CoorToMapPos(new Vector2(x,y))) < mapControl.localCheckDistance) {
 					if (CheckLOS(transform.position, new Vector2(x, y))) visibleCells.Add(new Vector2(x,y));
 
 					Vector3 northPos = transform.position + (Vector3.forward * gridSize);
@@ -260,5 +286,44 @@ public class CoverPoint : MonoBehaviour {
 		return isLeftSideClear;
 	}
 
+	public bool IsCorner() {
+		return IsRightSideClear() || IsLeftSideClear();
+	}
+	
+	public void Occupy() {
+		isOccupied = true;
+	}
+	
+	public void Leave() {
+		isOccupied = false;
+	}
+	
+	public bool IsOccupied() {
+		return isOccupied;
+	}	
+
+	public int GetCoverRating(GameObject[] targets) {
+		int score = 0;
+
+		foreach (GameObject target in targets) {
+			//deduct points for enemies that can see this point
+			if (IsTargetVisible(target.transform)) 
+				score -= 1;
+			
+			// add points if you can hit a target from behind cover
+			if (IsTargetVisibleFromCover(target.transform))
+				score += 2;
+				
+			//remove points if its too close to a target
+			float closeDistance = gridSize * 2;
+			if ((target.transform.position - transform.position).sqrMagnitude < (closeDistance * closeDistance)) {
+				score -= 3;
+			}
+			
+		}
+
+
+		return score;
+	}
 
 }

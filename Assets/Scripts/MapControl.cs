@@ -5,16 +5,27 @@ using System.Collections.Generic;
 
 public class MapControl : MonoBehaviour {
 	
+	//GameControl gameControl;
 	public Vector2 mapSize;
 	public float gridSize = 2.0f;
 	public float localCheckDistance;
+	public float showCoverRange;
 	
 	public GameObject coverPointPrefab;
+	Transform mapSelector;
 
 	List<CoverPoint> coverPoints = new List<CoverPoint>();
 
-	void Start () {
 
+
+	void Start () {
+		//gameControl = GetComponent<GameControl>();
+		
+		Vector2 MapStartPosition = new Vector2(-1, -1);
+		Vector2 MapEndPosition = new Vector2(mapSize.x + 1, mapSize.y + 1);
+			
+		Pathfinder.Instance.SetUp(MapStartPosition, MapEndPosition);
+		
 		//create all the cover points
 		AddCoverPoints();
 
@@ -25,19 +36,22 @@ public class MapControl : MonoBehaviour {
 		}
 
 		localCheckDistance *= localCheckDistance;
-
+		showCoverRange *= showCoverRange;
 	}
 	
-	void Update () {
-
+	public void SetMapSelector (Transform _mapSelector) {
+		mapSelector = _mapSelector;
 	
 	}
 
 	public float GetGridSize() {
-
 		return gridSize;
 	}
 	
+	public Vector2 GetMapSize() {
+		return mapSize;
+	}
+
 	public int[] GetCover(Vector3 mapPoint) {
 		
 		int north = 0, east = 0, south = 0, west = 0;
@@ -131,6 +145,19 @@ public class MapControl : MonoBehaviour {
 		}
 		return foundCover;
 	}
+	
+	public List<CoverPoint> GetCoverPointsInRange(Vector3 mapPos, float searchRange) {
+		float sqrRange = searchRange * searchRange; 
+		List<CoverPoint> coverPointsInRange = new List<CoverPoint>();
+		foreach (CoverPoint coverPoint in coverPoints) {
+			if ((coverPoint.transform.position - mapPos).sqrMagnitude < sqrRange)  {
+				coverPointsInRange.Add(coverPoint);
+			}
+		}
+			
+		return coverPointsInRange;
+	}
+		
 			
 	public void AddCoverPoints() {
 		GameObject coverContainer = new GameObject("CoverPoints");
@@ -142,27 +169,188 @@ public class MapControl : MonoBehaviour {
 
 				LayerMask terrainMask = 1 << LayerMask.NameToLayer("Ground");
 				if (Physics.Raycast(ray, out hit, Mathf.Infinity, terrainMask)) {
-					if (hit.transform.tag.Equals("Enemy")) print ("Hit an enemy");
 					mapPoint = hit.point;
 					int[] cover = GetCover(mapPoint);
 
 					if (cover[0] != 0 || cover[1] != 0 || cover[2] != 0 || cover[3] != 0) {
 						GameObject newPoint = Instantiate(coverPointPrefab, Vector3.zero, Quaternion.identity) as GameObject;	
 						CoverPoint coverPoint = newPoint.GetComponent<CoverPoint>();
-						coverPoint.SetCover(cover, mapPoint, gridSize, mapSize);
+						coverPoint.SetCover(cover, mapPoint, gridSize, mapSize, this);
 						coverPoints.Add(coverPoint);
 						newPoint.name = "CoverPoint " + (x * gridSize) + ", " + (y * gridSize);
 						newPoint.transform.tag = "CoverPoint";
 						newPoint.transform.parent = coverContainer.transform;
-						//newPoint.renderer.enabled = false;
+						newPoint.renderer.enabled = false;
 					}
 				} else {
 					print ("Missed Point");	
 					Debug.DrawLine(ray.origin, ray.origin + (ray.direction * 10), Color.red, 10);
-
-				
 				}
 			}
 		}
 	}
+	
+	public void ShowCoverPoints() {
+		foreach (CoverPoint coverPoint in coverPoints) {
+			float distanceToCover = (coverPoint.transform.position - mapSelector.position).sqrMagnitude;
+			coverPoint.SetFade(1 - distanceToCover/(showCoverRange - 1));
+		}		
+	}
+	
+	public void HideCoverPoints() {
+		foreach (CoverPoint coverPoint in coverPoints) {
+			coverPoint.SetFade(0);
+		}		
+	}
+		
+	public void MarkCoverPoint(CoverPoint coverPoint) {
+		GameObject marker = GameObject.CreatePrimitive(PrimitiveType.Cube);
+		marker.transform.position = new Vector3(coverPoint.transform.position.x, 1.0f, coverPoint.transform.position.z);
+		marker.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+		BoxCollider coll = marker.GetComponent<BoxCollider>();
+		Destroy(coll);
+		return;
+	}
+
+		
+	public Vector3 FindBestCover(Vector3 currentPos, float searchRange) {
+		CoverPoint bestCover = null;
+		float bestScore = Mathf.NegativeInfinity;
+		
+		GameObject[] targets;
+		
+		if (transform.tag.Equals("Player")) {
+			targets = GameObject.FindGameObjectsWithTag ("Enemy");
+		} else {
+			targets = GameObject.FindGameObjectsWithTag ("Player");
+		}
+		
+		List<CoverPoint> pointsInRange = GetCoverPointsInRange(currentPos, searchRange);
+		if (pointsInRange.Count < 1) return currentPos;
+		
+		foreach (CoverPoint coverPoint in pointsInRange) {
+			int coverRating = coverPoint.GetCoverRating(targets);
+			if (!coverPoint.IsOccupied()) {
+				if (coverRating > bestScore) {
+					bestCover = coverPoint;
+					bestScore = coverRating;
+				}
+			}
+		}
+		if (!bestCover) {
+			print ("Cant find anything");
+			return currentPos;
+		}
+		
+		return bestCover.transform.position;
+	}
+	
+	public Vector3 FindSafestCover(Vector3 currentPos, float searchRange) {
+		
+		GameObject[] targets;
+		
+		if (transform.tag.Equals("Player")) {
+			targets = GameObject.FindGameObjectsWithTag ("Enemy");
+		} else {
+			targets = GameObject.FindGameObjectsWithTag ("Player");
+		}	
+		
+		List<CoverPoint> pointsInRange = GetCoverPointsInRange(currentPos, searchRange); 
+		Dictionary<CoverPoint, float> safePoints = new Dictionary<CoverPoint, float>();
+		foreach (CoverPoint coverPoint in pointsInRange) {
+			bool visible = false;
+			foreach (GameObject target in targets) {
+				if (coverPoint.IsTargetVisible(target.transform) || coverPoint.IsTargetVisibleFromCover(target.transform)) {
+					visible = true;
+				}
+			}
+			
+			if (!visible) {
+				if (!safePoints.ContainsKey(coverPoint) && GetCoverPoint(currentPos) != coverPoint && !coverPoint.IsOccupied()) {
+					float sqrDistance = (coverPoint.transform.position - currentPos).sqrMagnitude;
+					safePoints.Add(coverPoint, sqrDistance);
+				}
+			}
+		}
+		if (safePoints.Count < 1) 
+			return currentPos;
+		
+		CoverPoint closestPoint = null;
+		float closest = Mathf.Infinity;
+		
+ 		foreach(KeyValuePair<CoverPoint, float> safePoint in safePoints) {
+
+			if (safePoint.Value < closest) {
+				closestPoint = safePoint.Key;
+				closest = safePoint.Value;
+			}
+		}
+		if (!closestPoint) {
+			return currentPos;
+		}
+		
+		return closestPoint.transform.position;
+	}
+	
+	public bool IsDestinationClear(Vector3 location, Vector3 currentPos) {
+		GameObject[] enemies = GameObject.FindGameObjectsWithTag ("Enemy");
+		float distance1 = (location - currentPos).sqrMagnitude;
+		bool isClosest = true;
+		foreach (GameObject enemy in enemies) {
+			Vector3 destination = enemy.GetComponent<UnitController>().currentDestination;
+			
+			if ((destination - location).sqrMagnitude < gridSize) { // is this guys destination matching ours?
+				float distance2 = (enemy.transform.position - destination).sqrMagnitude;
+				if (distance1 > distance2) isClosest = false;
+			}
+		}
+		
+		GameObject[] friends = GameObject.FindGameObjectsWithTag ("Player");
+		foreach (GameObject friend in friends) {
+			UnitController friendController = friend.GetComponent<UnitController>();
+			Vector3 destination;
+			if (!friendController) {
+				print(friend.name + " has no controller");
+				destination = Vector3.zero; //not sure why there is this here
+			} else {
+				destination = friendController.currentDestination;
+			}
+			
+			if ((destination - location).sqrMagnitude < gridSize) { // is this guys destination matching ours?
+				float distance2 = (friend.transform.position - destination).sqrMagnitude;
+				if (distance1 > distance2) isClosest = false;
+			}
+		}
+		
+		return isClosest;	
+	} 
+	
+	public bool IsDestinationClaimed(Vector3 location) {
+		GameObject[] enemies = GameObject.FindGameObjectsWithTag ("Enemy");
+		bool isClaimed = true;
+		foreach (GameObject enemy in enemies) {
+			
+			UnitController enemyController = enemy.GetComponent<UnitController>();
+			Vector3 destination;
+			if (!enemyController) {
+				print(enemy.name + " has no controller");
+				destination = Vector3.zero; //not sure why there is this here
+			} else {
+				destination = enemyController.currentDestination;
+			}			
+			if ((destination - location).sqrMagnitude < gridSize)
+				isClaimed = false;
+		}
+		
+		GameObject[] friends = GameObject.FindGameObjectsWithTag ("Player");
+		foreach (GameObject friend in friends) {
+			Vector3 destination = friend.GetComponent<UnitController>().currentDestination;
+			
+			if ((destination - location).sqrMagnitude < gridSize) 
+				isClaimed = false;
+		}
+		
+		return isClaimed;	
+	} 
+		
 }

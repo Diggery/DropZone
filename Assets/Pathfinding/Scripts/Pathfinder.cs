@@ -7,6 +7,7 @@ using System.Threading;
 
 public class Pathfinder : MonoBehaviour 
 {
+	bool setUpComplete;
     //Singleton
     private static Pathfinder instance;
     public static Pathfinder Instance { get { return instance; } private set {} }
@@ -28,8 +29,9 @@ public class Pathfinder : MonoBehaviour
     public bool MoveDiagonal = true;
 
     public bool DrawMapInEditor = false;
-    public bool CheckFullTileSize = false;
-
+	public bool CheckFullTileSize = false;
+	public bool RequireSetUp = false;
+	
     //FPS
     private float updateinterval = 1F;
     private int frames = 0;
@@ -50,22 +52,39 @@ public class Pathfinder : MonoBehaviour
     }
 
 	
-	void Start () 
+	public void SetUp (Vector2 _MapStartPosition, Vector2 _MapEndPosition) 
     {
+		
+		MapStartPosition = _MapStartPosition;
+		MapEndPosition = _MapEndPosition;
+		
         if (Tilesize <= 0)
         {
             Tilesize = 1;
         }
 
         Pathfinder.Instance.CreateMap();
+		setUpComplete = true;
 	}
 
+	public void Start () 
+	{
+		if (RequireSetUp) return;
+		if (Tilesize <= 0)
+		{
+			Tilesize = 1;
+		}
+		
+		Pathfinder.Instance.CreateMap();
+		setUpComplete = true;
+	}
 
     float overalltimer = 0;
     int iterations = 0;
     //Go through one 
 	void Update () 
     {
+    	if (!setUpComplete) return;
         timeleft -= Time.deltaTime;
         frames++;
 

@@ -123,7 +123,7 @@ public class TouchInterface : MonoBehaviour {
 			if (input[id].phase == InputData.InputPhase.Moved) {	
 		
 				touchManager.touchDrag(input[id].delta, input[id].distance, input[id].position, hit.transform, input[id].startTarget);
-				input[id].time += Time.deltaTime;
+				input[id].time += GameTime.deltaTime;
 				input[id].distance += input[id].delta;
 				// test for longtouch
 				if (input[id].time > longTouchTime) {

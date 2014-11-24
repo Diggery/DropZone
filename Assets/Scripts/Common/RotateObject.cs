@@ -13,7 +13,7 @@ public class RotateObject : MonoBehaviour {
 			Destroy (this);
 			return;
 		}
-		rotTimer -= Time.deltaTime;
+		rotTimer -= Time.deltaTime * rotSpeed;
 		transform.rotation = Quaternion.Lerp (from, to, 1 - rotTimer);
 
 	}

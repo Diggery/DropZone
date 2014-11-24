@@ -2,16 +2,16 @@
 using System.Collections;
 
 public class SelectorControl : MonoBehaviour {
-
+	/*
 	public GameObject linePrefab;
 
 	//Transform upperLeftCorner;
 //	Transform upperRightCorner;
 //	Transform lowerLeftCorner;
 //	Transform lowerRightCorner;
-	Transform lineAttach;
-	Transform buttons;
-	Transform frame;
+//	Transform lineAttach;
+//	Transform buttons;
+//	Transform frame;
 	Transform line;
 
 	Transform target;
@@ -31,9 +31,9 @@ public class SelectorControl : MonoBehaviour {
 	//	upperRightCorner = transform.Find("Center/UpperRight");
 	//	lowerLeftCorner = transform.Find("Center/LowerLeft");
 	//	lowerRightCorner = transform.Find("Center/LowerRight");
-		lineAttach = transform.Find("Center/LowerRight/LineAttach");
-		buttons = transform.Find("Center/Buttons");
-		frame = transform.Find("Selector");
+	//	frame = transform.Find("Selector");
+//		lineAttach = transform.Find("Center/LowerRight/LineAttach");
+//		buttons = transform.Find("Center/Buttons");
 
 		Transform attackButton = transform.Find("Center/Buttons/AttackIcon");
 		attackButton.gameObject.AddComponent<InputRepeater>().SetTarget(transform);
@@ -92,5 +92,5 @@ public class SelectorControl : MonoBehaviour {
 	//	frame.renderer.material.mainTextureOffset = new Vector2(0.0f, 0.5f);
 	//	buttons.gameObject.SetActive(true);
 	}
-		
+		*/
 }

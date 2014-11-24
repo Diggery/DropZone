@@ -9,8 +9,13 @@ public class GameTime : MonoBehaviour {
 	static GameTime theGameTime;
 	static bool gamePaused = false;
 
+	public float currentDeltaTime = 0;
 	float lastUpdateTime = 0;
 	float fixedTime = 0;
+	
+	float currentTimeScale = 1.0f;
+	float timeScaleGoal = 1.0f;
+	
 	
 	static void Initialize() {
 		if (!theGameTime) {
@@ -25,7 +30,7 @@ public class GameTime : MonoBehaviour {
 				Initialize();
 			}
 			if (theGameTime) 
-				return Time.realtimeSinceStartup - theGameTime.lastUpdateTime;
+				return theGameTime.currentDeltaTime;
 			return 0;
 		}
 	}
@@ -35,7 +40,7 @@ public class GameTime : MonoBehaviour {
 		set {
 			if (gamePaused != value) {
 				gamePaused = value;
-				Time.timeScale = gamePaused ? 0.0f : 1.0f;
+				theGameTime.timeScaleGoal = gamePaused ? 0.0f : 1.0f;
 			    Events.Send(theGameTime.gameObject, "OnPauseChanged", (object)gamePaused);
 				if (gamePaused)
 				    Events.Send(theGameTime.gameObject, "OnPauseGame");
@@ -46,8 +51,14 @@ public class GameTime : MonoBehaviour {
 	}
 	
 	void Update() {
+		currentDeltaTime = Time.realtimeSinceStartup - lastUpdateTime;
 		lastUpdateTime = Time.realtimeSinceStartup;
+		
 		fixedTime += 0.016f;
 		Shader.SetGlobalFloat("fixedTime", fixedTime);
+		
+		currentTimeScale = Mathf.Lerp(currentTimeScale, timeScaleGoal, currentDeltaTime * 4);
+		Time.timeScale = currentTimeScale;
+		
 	}
 }

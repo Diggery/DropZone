@@ -5,12 +5,15 @@ using System.Collections.Generic;
 
 public class LineDrawer : MonoBehaviour {
 	
-	public Transform[] waypoints;
+	public Vector3[] waypoints;
 	public int knots;
 	public float lineStretch;
 	public float lineWidth;
 	public float tension;
 	Mesh mesh;
+	GameObject lineObject;
+	
+	bool clearLine;
 	
 	public Material lineMaterial;
 	public Color startColor = Color.white;
@@ -18,27 +21,40 @@ public class LineDrawer : MonoBehaviour {
 	
 	
 	void Start () {
-		GameObject line = GameObject.CreatePrimitive(PrimitiveType.Cube);
-		line.name = "Line";
-		line.renderer.material = lineMaterial;
-		mesh = line.GetComponent<MeshFilter>().mesh;
+		lineObject = GameObject.CreatePrimitive(PrimitiveType.Cube);
+		lineObject.name = transform.name + "'s pathline";
+		lineObject.renderer.material = lineMaterial;
+		mesh = lineObject.GetComponent<MeshFilter>().mesh;
 		mesh.Clear();
 	}
-		
+	
+	void Update() {
+		if (clearLine) {
+			Color matColor = lineObject.renderer.material.color;
+			matColor.a = Mathf.Clamp01(matColor.a - Time.deltaTime);
+			if (matColor.a <= 0) {
+				mesh.Clear();
+				clearLine = false;
+				matColor.a = 1.0f;
+			}
+			lineObject.renderer.material.color = matColor;
+		}
+	}
 
 
     public void DrawLine(List<Vector3> nodes) {
-        nodes.RemoveAt(0);
-        mesh.Clear();
-		
+		mesh.Clear();
 		if (nodes.Count < 1) return;
+		waypoints = new Vector3[nodes.Count];
 		
 		for (int segment = 0; segment < nodes.Count - 1; segment++) {
-			
+			waypoints[segment] = nodes[segment];
 			Vector3 p1, p2, p3, p4;
 			
 			if (segment == 0) {
-				p1 = nodes[segment] - nodes[segment + 1];	
+				Vector3 offset = nodes[segment] - nodes[segment + 1];
+				p1 = nodes[segment] + offset;
+	
 			} else {
 				p1 = nodes[segment - 1];	
 			}
@@ -47,7 +63,8 @@ public class LineDrawer : MonoBehaviour {
 			p3 = nodes[segment + 1];
 			
 			if (segment + 2 >= nodes.Count) {
-				p4 = nodes[segment + 1];
+				Vector3 offset = p3 - p2;
+				p4 = p3 + offset;
 			} else {
 				p4 = nodes[segment + 2];
 			}
@@ -220,8 +237,19 @@ public class LineDrawer : MonoBehaviour {
 			if (uvOffset < 0.75f) break;
 
 		}
-		
 		mesh.uv = uvs;
 		mesh.colors = colors;
+	}
+	
+	public void ClearLine(bool fadeOut) {
+		if (fadeOut) {
+			clearLine = true;
+		} else {
+			mesh.Clear();
+		}
+	}
+	
+	void OnDestroy() {
+		Destroy(lineObject);
 	}
 }

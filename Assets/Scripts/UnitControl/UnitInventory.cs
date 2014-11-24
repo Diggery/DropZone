@@ -5,8 +5,6 @@ public class UnitInventory : MonoBehaviour {
 
 	UnitController unitController;
 
-	public Transform neck;
-	public GameObject customHead;
 
 	public int MagazineCount;
 	public int MortarCount;
@@ -16,20 +14,7 @@ public class UnitInventory : MonoBehaviour {
 	public void CreateInventory () {
 		unitController = GetComponent<UnitController>();
 
-		if (customHead) {
-//			Transform neck = unitController.model.Find(
-//				"Character:SkeletonGroup/" +
-//				"Character:Hips_Skel/" +
-//				"Character:Torso_Skel/" +
-//				"Character:Neck_Skel/" +
-//				"Character:Head_Skel");
-			if (!neck) Debug.Log(transform.name + " needs as neck");
-			GameObject newHead = Instantiate(customHead, Vector3.zero, Quaternion.identity) as GameObject;
-			newHead.transform.parent = neck;
-			newHead.transform.localPosition = Vector3.zero;
-			newHead.renderer.enabled = true;
-			   
-		}
+
 
 		GameObject mainWeaponObj = Instantiate(GetWeapon("AssaultRifle"), Vector3.zero, Quaternion.identity) as GameObject;
 		MainWeapon mainWeapon = mainWeaponObj.GetComponent<MainWeapon>();

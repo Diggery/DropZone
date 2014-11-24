@@ -4,11 +4,16 @@ using System.Collections;
 public class UnitController : MonoBehaviour {
 
 	CharacterController characterController;
-
-	public Transform model;
-
+	
 	public Transform targetCollision;
-	public Animator animator;
+	public GameObject headModel;
+	
+	float maxHealth = 5.0f;
+	float health = 5.0f;
+	public bool dead;
+	public bool dummy;
+	
+	Animator animator;
 	bool isMoving;
 	PathMover pathMover;
 
@@ -20,31 +25,61 @@ public class UnitController : MonoBehaviour {
 	Transform mainWeaponTarget;
 
 	CoverPoint currentCoverPoint;
+	public Vector3 currentDestination;
 
-
+	public bool selected;
+	public GameObject unitSelectArt;
+	
+	public bool useColorFader;
+	
 	void Start () {
-		animator = GetComponentInChildren<Animator>();
+	
+		if (useColorFader) {
+			UnitColorFade colorFade = gameObject.AddComponent<UnitColorFade>();
+			if (headModel) colorFade.SetHeadRenderer(headModel.renderer);
+		}
+		
+		animator = GetComponentInChildren<Animator> ();
 
-		characterController = GetComponent<CharacterController>();
-		if (!characterController) return;
+		characterController = GetComponent<CharacterController> ();
+		if (!characterController)
+				return;
 
-		GameObject mapObj = GameObject.Find("Map");
-		mapControl = mapObj.GetComponent<MapControl>();
+		GameObject mapObj = GameObject.Find ("Map");
+		mapControl = mapObj.GetComponent<MapControl> ();
+		if (!mapControl) 
+			Debug.Log (transform.name + " can't find the map.");
 
-		pathMover = GetComponent<PathMover>();
-		pathMover.Init(mapControl);
+		pathMover = GetComponent<PathMover> ();
+		if (!pathMover) {
+			Debug.Log (transform.name + " can't find thier path mover.");
+		} else {
+			pathMover.Init(mapControl);
+		}
 
 		targetingControl = GetComponent<TargetingControl>();
-		targetingControl.Init(mapControl, animator);
+		targetingControl.SetUp(mapControl, animator);
 
 		//secondaryWeapons = new SecondaryWeapon[secondaryWeaponAttach.Length];
 		UnitInventory inventory = GetComponent<UnitInventory>();
 		inventory.CreateInventory();
-		//SetUpColliders();
+
+		gameObject.AddComponent<UnitBehaviors>().SetUp(this, mapControl, pathMover);
 		
+		GameObject unitSelect = Instantiate(unitSelectArt) as GameObject;
+		unitSelect.GetComponent<UnitSelect>().SetUp(this);	
+		
+
 	}
 
 	void Update() {
+	
+		if (dead || dummy) 
+			return;
+			
+		if (mainWeaponTarget && mainWeaponTarget.tag.Equals("Dead"))
+			ClearMainTarget();
+			
 		//give the animator a random number
 		animator.SetFloat("Random", Random.value);
 
@@ -80,16 +115,30 @@ public class UnitController : MonoBehaviour {
 	}
 
 	public void MoveTo(Vector3 location) {
+	
+		
+		if ((location - transform.position).magnitude < mapControl.GetGridSize()) {
+			return;
+		}
+		
 		animator.SetTrigger("StartMoving");
-		pathMover.SetDestination(location);	
+		
+		CoverPoint destinationCover = mapControl.GetCoverPoint(location);
+		if (destinationCover) 
+			destinationCover.Occupy();
+		pathMover.StartPath(location);	
+		if (currentCoverPoint) currentCoverPoint.Leave();
 		currentCoverPoint = null;
+		currentDestination = location;
+		animator.SetInteger ("InCover", 0);
 	}
-
+	
 	public MainWeapon GetMainWeapon() {
 		return mainWeapon;
 	}
 	
 	public void AddMainWeapon(MainWeapon weapon) {
+		targetingControl.SetWeaponRange(weapon.range);
 		mainWeapon = weapon;
 		weapon.Attach(mainWeaponAttach, this);
 	}
@@ -98,6 +147,10 @@ public class UnitController : MonoBehaviour {
 		return GetComponent<TargetingControl>();
 	}
 
+	public void SetTargetCollision(Transform newTargetCollision) {
+		targetCollision = newTargetCollision;
+	}
+	
 	public Transform GetTargetCenter() {
 		if (!targetCollision) {
 			return transform;
@@ -128,7 +181,6 @@ public class UnitController : MonoBehaviour {
 		if (mainWeaponTarget == target.transform) {
 			mainWeaponTarget = null;
 		} else {
-			print ("Setting target to " + target.name);
 			mainWeapon.StartCoolingDown();
 			targetingControl.SetTarget(target.transform);
 			mainWeaponTarget = target.transform;
@@ -140,10 +192,6 @@ public class UnitController : MonoBehaviour {
 		targetingControl.ClearTarget();
 	}
 	
-	public void FireMainWeapon() {
-		if (mainWeaponTarget) mainWeapon.Fire(mainWeaponTarget);
-	}
-
 	public void ReplaceMagazine() {
 		mainWeapon.ReplaceMagazine();
 	}
@@ -152,15 +200,40 @@ public class UnitController : MonoBehaviour {
 		Events.Send(gameObject, "UnitSelected", this);
 	}
 
+	public void Select() {
+		selected = true;
+	}
+
+	public void Deselect() {
+		selected = false;
+		pathMover.ClearPathLine();
+	}
+
 	public void FinishedMove(CoverPoint coverPoint) {
 
 		if (coverPoint) {
-			print ("Got a Point");
-			animator.SetTrigger("EnterCover");
+			
 			currentCoverPoint = coverPoint;
+			currentCoverPoint.Occupy();
+			bool rightSideOfMap = transform.position.x > ((float)mapControl.GetMapSize().x/2.0f);
+						
+			if (currentCoverPoint.IsLeftSideClear()) {
+				animator.SetInteger ("InCover", 1);
+			} else if (currentCoverPoint.IsRightSideClear()) {
+				animator.SetInteger ("InCover", 2);
+			} else {
+				if (rightSideOfMap) {
+					animator.SetInteger ("InCover", 1);
+				} else {
+					animator.SetInteger ("InCover", 2);
+				}
+			}
+			
+			
 		} else {
-			print ("NoCoverHere");
+			animator.SetTrigger("StopMoving");
 		}
+		
 	}
 
 	public CoverPoint GetCoverPoint() {
@@ -171,5 +244,43 @@ public class UnitController : MonoBehaviour {
 
 	public void RotateTo(Quaternion goal) {
 		pathMover.RotateTo (goal);
+	}
+
+
+	public float GetHealth() {
+		return health;
+	}
+	
+	public float GetNormalizedHealth() {
+		return health/maxHealth;
+	}
+	
+	public void TakeDamage(Vector4 damageInfo) {
+		if (dead) return;
+		
+		if (!HasTarget()) 
+			targetingControl.ScanForTargets();
+			
+		//print (damageInfo.w + " damage taken");	
+	
+		health -= damageInfo.w;
+
+		if (health < 0) 
+			Die ();
+	}
+
+	public void Die() {
+		if (dead) return;
+		if (currentCoverPoint) currentCoverPoint.Leave();
+		transform.tag = "Dead";
+		transform.name += " is dead!";
+		dead = true;
+		GetComponent<RagDollControl>().enableRagDoll ();
+		
+		//clean up some components
+		Destroy(GetComponent<LineDrawer>());
+		
+		//drop anything being held
+		gameObject.BroadcastMessage("DropItem", SendMessageOptions.DontRequireReceiver);
 	}
 }

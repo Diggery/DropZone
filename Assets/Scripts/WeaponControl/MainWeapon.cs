@@ -12,11 +12,12 @@ public class MainWeapon : MonoBehaviour {
 	UnitController unitController;
 	Animator animator;
 	TargetingControl targeting;
-
+	
 	public float aimDrift = 0.0f;
 	public float weaponDrift = 0.0f;
 	public float aimBonus = 0.0f;
-
+	public float aimSpread = 10.0f;
+	
 	public float range;
 
 	bool coolingDown;
@@ -28,6 +29,9 @@ public class MainWeapon : MonoBehaviour {
 	bool reloading;
 	public int magazineSize = 40;
 	int magazineCount;
+	float magDamage = 1.0f;
+	float magRangeBonus = 5.0f;
+	
 	public float reloadTime = 2.0f;
 	float reloadTimer;
 
@@ -37,7 +41,8 @@ public class MainWeapon : MonoBehaviour {
 	Light muzzleLight;
 
 	bool readyToFire;
-	
+	bool dead;
+
 	public void SetInventory(UnitInventory inventory) {
 		unitInventory = inventory;
 	}
@@ -46,6 +51,7 @@ public class MainWeapon : MonoBehaviour {
 
 		unitController = control;
 		animator = unitController.GetAnimator();
+
 		targeting = unitController.GetTargeting();
 
 		transform.parent = attachPoint;
@@ -64,7 +70,15 @@ public class MainWeapon : MonoBehaviour {
 	}
 	
 	void Update () {
-
+		if (dead) 
+			return;
+			
+			
+		if (muzzleLight.intensity > 0.1f) {
+			muzzleLight.intensity = Mathf.Lerp(muzzleLight.intensity, 0, Time.deltaTime * 10);
+		} else {
+			muzzleLight.intensity = 0;
+		}
 
 		if (reloading) {
 			reloadTimer -= Time.deltaTime;
@@ -72,26 +86,40 @@ public class MainWeapon : MonoBehaviour {
 				FinishReloading();
 			}
 			animator.SetBool("MainWeaponReady", false);
-		} else if (coolingDown) {
+
+			return;
+		}  
+		
+		if (coolingDown) {
 			burstTimer -= Time.deltaTime;
 			if (burstTimer < 0) {
 				FinishCoolingDown();
 			}
 			animator.SetBool("MainWeaponReady", false);
-		} else {
-			animator.SetBool("MainWeaponReady", true);
-		}
+			return;
+		} 
+		animator.SetBool("MainWeaponReady", true);
 
-		if (muzzleLight.intensity > 0.1f) {
-			muzzleLight.intensity = Mathf.Lerp(muzzleLight.intensity, 0, Time.deltaTime * 10);
-		} else {
-			muzzleLight.intensity = 0;
+		if (unitController.HasTarget()) {
+		
+			AnimatorStateInfo animStateInfo = animator.GetCurrentAnimatorStateInfo(0);
+			if (animStateInfo.IsName("HighCover.Cover_Aim_Right") ||
+			    animStateInfo.IsName("HighCover.CoverOut_Aim_Right") ||
+			    animStateInfo.IsName("HighCover.Cover_Aim_Left") ||
+			    animStateInfo.IsName("HighCover.Cover_Aim_Left") ||
+			    animStateInfo.IsName("HighCover.CoverOut_Aim_Left") ||
+			    animStateInfo.IsName("NoCover.Aiming")) {
+			    
+				Fire();
+				
+			}
 		}
 	}
 
-	public void Fire(Transform target) {
+	public void Fire() {
+	
 		if (reloading || coolingDown) return;
-
+		animator.SetTrigger("FireMainWeapon");
 		if (burstCount < 1) {
 			StartCoolingDown();
 			return;
@@ -105,16 +133,12 @@ public class MainWeapon : MonoBehaviour {
 		targeting.AddDrift(aimDrift - aimBonus);
 		targeting.RaiseAim(weaponDrift - aimBonus);
 
-		Instantiate(muzzleFlashPrefab, muzzle.position + (muzzle.forward * 0.2f), transform.rotation);
+		Instantiate(muzzleFlashPrefab, muzzle.position + (muzzle.forward * 0.15f), transform.rotation);
 
 		GameObject bulletTrail = Instantiate(bulletTrailPrefab, muzzle.position, transform.rotation) as GameObject;
 		muzzleLight.intensity = 1;
 
-
-		Vector3 targetPos = target.GetComponent<UnitController>().GetTargetPosition();
-
-
-		Quaternion directionOffset = Quaternion.AngleAxis((Random.value - 0.5f) * 20, Vector3.up);
+		Quaternion directionOffset = Quaternion.AngleAxis((Random.value - 0.5f) * aimSpread, Vector3.up);
 		Vector3 direction = directionOffset * muzzle.forward;
 		Ray trajectory = new Ray(muzzle.position, direction);
 		RaycastHit hit;
@@ -123,13 +147,13 @@ public class MainWeapon : MonoBehaviour {
 		LayerMask playerMask = 1 << LayerMask.NameToLayer("Player");
 		playerMask = ~playerMask;
 
-		Debug.DrawLine(muzzle.position, targetPos, Color.red, 1);
-
-		if (Physics.Raycast(trajectory, out hit, range, playerMask)) {
+		if (Physics.Raycast(trajectory, out hit, range * 1.25f, playerMask)) {
 			distanceToTarget = Vector3.Distance(hit.point, muzzle.position);
 			hitLocation = hit.point;
-			Vector4 damageInfo = new Vector4(hit.point.x, hit.point.y, hit.point.z, 0.15f);
-			hit.transform.SendMessage("TakeDamage", damageInfo, SendMessageOptions.DontRequireReceiver);
+			float damage = magDamage + (Mathf.Pow(Mathf.Clamp01(1 - (hit.distance / range)), 3) * magRangeBonus);
+			
+			Vector4 damageInfo = new Vector4(hit.point.x, hit.point.y, hit.point.z, damage);
+			hit.transform.SendMessageUpwards("TakeDamage", damageInfo, SendMessageOptions.DontRequireReceiver);
 
 			Vector3 incomingVec = hit.point - muzzle.position;
 			Vector3 reflectVec = Vector3.Reflect(incomingVec, hit.normal);
@@ -138,15 +162,21 @@ public class MainWeapon : MonoBehaviour {
 			hitRotation *= Quaternion.AngleAxis(90, Vector3.right);
 
 			if (!hit.transform.tag.Equals("Shield")) Instantiate(bulletHitPrefab, hit.point, hitRotation);
-			print (hit.transform.tag);
-			if (hit.transform.tag.Equals("Enemy")) {
-				targeting.TargetHit();
+
+			string targetTag = hit.transform.root.tag;
+			if (targetTag.Equals("Enemy") || targetTag.Equals("Player")) {
+
+				if (targetTag.Equals(transform.tag)) {
+					targeting.TargetMiss();
+				} else {
+					targeting.TargetHit();
+				}
 			} else {
 				targeting.TargetMiss();
 			}
 
 		} else {
-			distanceToTarget = range;
+			distanceToTarget = range * 1.25f;
 			hitLocation = trajectory.GetPoint(range);
 			targeting.TargetMiss();
 
@@ -203,6 +233,17 @@ public class MainWeapon : MonoBehaviour {
 	public void FinishReloading() {
 		reloading = false;
 		magazineCount = magazineSize;
+	}
+	
+	public void DropItem() {
+		dead = true;
+		rigidbody.isKinematic = false;
+		rigidbody.useGravity = true;
+		GetComponent<Collider>().enabled = true;
+		transform.parent = null;
+		rigidbody.AddForce(Vector3.up  * 10);
+		gameObject.layer = LayerMask.NameToLayer("RagDoll");
+		
 	}
 
 }

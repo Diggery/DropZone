@@ -4,10 +4,13 @@ using System.Collections.Generic;
 
 public class TargetingControl : MonoBehaviour {
 
+	bool targetDummy;
+
 	UnitController unitController;
 	MapControl mapControl;
 	Animator animator;
 
+	float currentWeaponRange;
 	Transform forcedTarget;
 	Transform currentTarget;
 	Transform targetCenter;
@@ -23,30 +26,30 @@ public class TargetingControl : MonoBehaviour {
 	public int missCount;
 
 
-	float searchTime = 1;
-	float searchTimer = 1;
+	float scanTime = 1.0f;
+	float scanTimer = 1.0f;
 
-	public void Init (MapControl newMapControl, Animator newAnimator) {
+	public void SetUp (MapControl newMapControl, Animator newAnimator) {
 		unitController = GetComponent<UnitController>();
 		mapControl = newMapControl;
 		animator = newAnimator;
+		if (unitController.dummy)
+			targetDummy = true;
+		scanTimer = scanTime + Random.value * 0.5f;
 	}
 	
 	void Update () {
-
-		if (transform.tag != "Player") return; //disable everyone but the player
+	
+		if (targetDummy) return;  // targetdummys are dumb
 
 		if (unitController.IsMoving()) return; //no targeting while moving
 
-		searchTimer -= Time.deltaTime;
+		if (unitController.dead) return; //no targeting while dead
+		
+		scanTimer -= Time.deltaTime;
 
-		if (searchTimer < 0) {
-			Transform bestTarget = FindBestTarget();
-			if (bestTarget && bestTarget != currentTarget) 
-				unitController.SetMainTarget(bestTarget.gameObject);
-
-			searchTimer = searchTime;
-		}
+		if (scanTimer < 0) 
+			ScanForTargets();
 
 
 		if (missCount > 3) {
@@ -54,7 +57,11 @@ public class TargetingControl : MonoBehaviour {
 			unitController.ClearMainTarget();
 		}
 
-		if (!currentTarget) return;
+		if (!currentTarget) { //stop if there is nothing to shoot at and clean up some anim flags
+			animator.SetBool ("UseCoverLeft", false);
+			animator.SetBool ("UseCoverRight", false);
+			return; 
+		}
 
 		Vector3 aimPosition = transform.position + aimingGridOffset;
 
@@ -65,50 +72,20 @@ public class TargetingControl : MonoBehaviour {
 		float altitude = (Mathf.Asin(((targetCenter.position.y + targetOffset.y) - aimPosition.y) / distanceToTarget)) * Mathf.Rad2Deg;
 
 		float heading = (Mathf.Atan(relativePos.x / relativePos.z)) * Mathf.Rad2Deg;
-		float normalizedHeading = Mathf.InverseLerp(-90, 90, heading);
+		
+		if (relativePos.z < 0) {
+			heading += 180 * Mathf.Sign(relativePos.x);
+		
+		}
+					
+		float normalizedHeading = Mathf.InverseLerp(-180, 180, heading);
 		normalizedHeading = (normalizedHeading * 2) - 1;
 		float normalizedAltitude = Mathf.InverseLerp(-45, 45, altitude);
 		normalizedAltitude = (normalizedAltitude * 2) - 1;
 
-		Vector2 aimGoal = new Vector2(normalizedHeading, normalizedAltitude);
-		if (relativePos.z < 0) {
-			//transform.Rotate (Vector3.up, 360 * Time.deltaTime * Mathf.Sign (relativePos.x));
-			aimGoal.x = ((2 * Mathf.Sign(relativePos.x)) + aimGoal.x);
-		}
+		Vector2 aimGoal = new Vector2(Mathf.Clamp(heading, -180, 180), Mathf.Clamp(altitude, -45, 45));
+
 		aimingAngle = aimGoal; //Vector2.Lerp(aimingAngle, aimGoal, Time.deltaTime * 15);
-
-		// if they are in cover, make sure aim is not dead center
-		CoverPoint coverPoint = unitController.GetCoverPoint ();
-		if (coverPoint) {
-
-			if (!coverPoint.IsLeftSideClear()) { // At Right Corner
-
-				if (aimingAngle.x > -0.5f && aimingAngle.x < 0.015f) 
-					aimingAngle.x = 0.015f;
-
-				if (aimingAngle.x < -0.5f && aimingAngle.x > -1.0f) 
-					aimingAngle.x = -1.0f;
-
-			}
-
-			if (!coverPoint.IsRightSideClear()) { // At Left Corner
-
-				if (aimingAngle.x < 0.5f && aimingAngle.x > -0.015f) 
-					aimingAngle.x = -0.015f;
-				
-				if (aimingAngle.x > 0.5f && aimingAngle.x < 1.0f) 
-					aimingAngle.x = 1.0f;
-
-			}
-
-			if (coverPoint.IsRightSideClear() && coverPoint.IsLeftSideClear()) { // At A Post 
-				if (aimingAngle.x < 0.01f && aimingAngle.x >= 0.0f) 
-					aimingAngle.x = 0.015f;
-
-				if (aimingAngle.x > -0.01f && aimingAngle.x < 0.0f) 
-					aimingAngle.x = -0.015f;
-			}
-		}
 
 		if (aimHorizontally)
 			animator.SetFloat ("HorizontalAiming", aimingAngle.x + aimOffset.x);
@@ -117,7 +94,52 @@ public class TargetingControl : MonoBehaviour {
 			animator.SetFloat ("VerticalAiming", aimingAngle.y + aimOffset.y);
 
 		aimOffset *= 0.9f;
-
+		
+		CoverPoint coverPoint = unitController.GetCoverPoint ();
+		if (coverPoint) {
+			//lean out if needed
+			bool useCoverLeft = aimGoal.x < 0 && aimGoal.x > -45 && coverPoint.IsLeftSideClear();
+			animator.SetBool ("UseCoverLeft", useCoverLeft);
+			bool useCoverRight = aimGoal.x > 0 && aimGoal.x < 45 && coverPoint.IsRightSideClear();
+			animator.SetBool ("UseCoverRight", useCoverRight);
+			
+			//clear the target if we can't find him from the cover.
+			if (!coverPoint.IsLeftSideClear() && aimGoal.x > -90 && aimGoal.x < 0) 
+				unitController.ClearMainTarget();
+				
+			if (!coverPoint.IsRightSideClear() && aimGoal.x > 0 && aimGoal.x < 90) 
+				unitController.ClearMainTarget();
+		} else {
+			AnimatorStateInfo animStateInfo = animator.GetCurrentAnimatorStateInfo(0);
+			if (animStateInfo.IsName("NoCover.Aiming")) { // only rotate if they are aiming and out of cover
+				if (aimGoal.x < -90) 
+					transform.Rotate(Vector3.up, -20);
+				if (aimGoal.x > 90) 
+					transform.Rotate(Vector3.up, 20);
+			}
+		}
+	}
+	
+	
+	public void SetWeaponRange(float newRange) {
+		currentWeaponRange = newRange * newRange;
+	
+	}
+	
+	public void ScanForTargets() {
+		Transform bestTarget = FindBestTarget();
+		
+		if (bestTarget) {
+			if (bestTarget != currentTarget) 
+				unitController.SetMainTarget(bestTarget.gameObject);
+				if (transform.tag.Equals("Enemy")) {
+					SendMessage("SeeEnemy", currentTarget.position, SendMessageOptions.DontRequireReceiver);
+				}
+		} else {
+			unitController.ClearMainTarget();
+		}
+		scanTimer = scanTime + (Random.value * 0.1f);
+	
 	}
 
 	public void SetManualTarget (Transform newTarget) {
@@ -141,8 +163,14 @@ public class TargetingControl : MonoBehaviour {
 
 
 	public Transform FindBestTarget() {
+		GameObject[] allUnits = new GameObject[0];
 
-		GameObject[] allEnemies = GameObject.FindGameObjectsWithTag("Enemy");
+		if (transform.tag.Equals("Player")) {
+			allUnits = GameObject.FindGameObjectsWithTag("Enemy");
+		} else {
+			allUnits = GameObject.FindGameObjectsWithTag("Player");
+		}
+
 		Transform bestTarget = null;
 
 		Dictionary<Transform, float> allTargets = new Dictionary<Transform, float>();
@@ -152,11 +180,14 @@ public class TargetingControl : MonoBehaviour {
 		Vector3 origin = transform.position + aimingGridOffset;
 		LayerMask terrainMask = 1 << LayerMask.NameToLayer("Ground");
 
-		foreach (GameObject enemy in allEnemies) {
+		foreach (GameObject enemy in allUnits) {
+			UnitController enemyController = enemy.GetComponent<UnitController>();
+			if (!enemyController) print (enemy.name + " doesn't have a controller");
+			Vector3 targetPos = enemyController.GetTargetPosition();
+			
+			float rangeToTarget = (transform.position - enemy.transform.position).sqrMagnitude;
 
-			Vector3 targetPos = enemy.GetComponent<UnitController>().GetTargetPosition();
-
-			if (!Physics.Linecast(origin, targetPos, terrainMask)) {
+			if (!Physics.Linecast(origin, targetPos, terrainMask) && rangeToTarget < currentWeaponRange) {
 
 				//get all the easy targets
 				int targetCover = mapControl.GetCoverForTarget(transform, enemy.transform);
@@ -190,7 +221,7 @@ public class TargetingControl : MonoBehaviour {
 
 		// if there is no target found try ones behind cover.
 		if (!bestTarget) {
-			bestTarget = GetTargetFromCover();
+			bestTarget = GetTargetFromCover(allUnits);
 		}
 
 		if (bestTarget) 
@@ -211,7 +242,7 @@ public class TargetingControl : MonoBehaviour {
 		return closest;
 	}
 
-	public Transform GetTargetFromCover() {
+	public Transform GetTargetFromCover(GameObject[] allUnits) {
 		CoverPoint coverPoint = unitController.GetCoverPoint();
 		if (!coverPoint) return null;
 		Vector3 coverPos = coverPoint.transform.position + aimingGridOffset;
@@ -224,24 +255,26 @@ public class TargetingControl : MonoBehaviour {
 			Debug.DrawLine(coverPos, leftFirePos, Color.green, 1);
 		}
 
-		GameObject[] allEnemies = GameObject.FindGameObjectsWithTag("Enemy");
 		Transform bestTarget = null;
 		
 		Dictionary<Transform, float> allTargets = new Dictionary<Transform, float>();
 
-		Vector3 origin = transform.position + aimingGridOffset;
 		LayerMask terrainMask = 1 << LayerMask.NameToLayer("Ground");
 		
-		foreach (GameObject enemy in allEnemies) {
+		foreach (GameObject enemy in allUnits) {
 			Vector3 targetPos = enemy.GetComponent<UnitController>().GetTargetPosition();
-			if (GetRelativePosition(targetPos).z > 0) {
-				if (coverPoint.IsPositionVisible (leftFirePos) && !Physics.Linecast(leftFirePos, targetPos, terrainMask)) {
-					if (!allTargets.ContainsKey(enemy.transform))
-						allTargets.Add(enemy.transform, (transform.position - enemy.transform.position).sqrMagnitude);
-				}
-				if (coverPoint.IsPositionVisible (rightFirePos) && !Physics.Linecast(rightFirePos, targetPos, terrainMask)) {
-					if (!allTargets.ContainsKey(enemy.transform))
-						allTargets.Add(enemy.transform, (transform.position - enemy.transform.position).sqrMagnitude);
+			
+			float rangeToTarget = (transform.position - enemy.transform.position).sqrMagnitude;
+			if (rangeToTarget < currentWeaponRange) {
+				if (GetRelativePosition(targetPos).z > 0) {
+					if (coverPoint.IsPositionVisible (leftFirePos) && !Physics.Linecast(leftFirePos, targetPos, terrainMask)) {
+						if (!allTargets.ContainsKey(enemy.transform))
+							allTargets.Add(enemy.transform, (transform.position - enemy.transform.position).sqrMagnitude);
+					}
+					if (coverPoint.IsPositionVisible (rightFirePos) && !Physics.Linecast(rightFirePos, targetPos, terrainMask)) {
+						if (!allTargets.ContainsKey(enemy.transform))
+							allTargets.Add(enemy.transform, (transform.position - enemy.transform.position).sqrMagnitude);
+					}
 				}
 			}
 		}
