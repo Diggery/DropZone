@@ -95,7 +95,7 @@ public class TargetingControl : MonoBehaviour {
 
 		aimOffset *= 0.9f;
 		
-		CoverPoint coverPoint = unitController.GetCoverPoint ();
+		CoverPoint coverPoint = unitController.GetCurrentCoverPoint ();
 		if (coverPoint) {
 			//lean out if needed
 			bool useCoverLeft = aimGoal.x < 0 && aimGoal.x > -45 && coverPoint.IsLeftSideClear();
@@ -243,7 +243,7 @@ public class TargetingControl : MonoBehaviour {
 	}
 
 	public Transform GetTargetFromCover(GameObject[] allUnits) {
-		CoverPoint coverPoint = unitController.GetCoverPoint();
+		CoverPoint coverPoint = unitController.GetCurrentCoverPoint();
 		if (!coverPoint) return null;
 		Vector3 coverPos = coverPoint.transform.position + aimingGridOffset;
 		Vector3 leftDirection = Quaternion.AngleAxis(-90, Vector3.up) * transform.forward;

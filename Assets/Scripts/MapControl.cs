@@ -5,7 +5,6 @@ using System.Collections.Generic;
 
 public class MapControl : MonoBehaviour {
 	
-	//GameControl gameControl;
 	public Vector2 mapSize;
 	public float gridSize = 2.0f;
 	public float localCheckDistance;
@@ -14,12 +13,26 @@ public class MapControl : MonoBehaviour {
 	public GameObject coverPointPrefab;
 	Transform mapSelector;
 
-	List<CoverPoint> coverPoints = new List<CoverPoint>();
+	List<CoverPoint> allCoverPoints = new List<CoverPoint>();
+	
+	public class MapDataPoint {	
+		public Vector2 mapPos;
+		public CoverPoint coverPoint;
+		public bool isClaimed;
+		public bool isCollision;
+		
+		public MapDataPoint(Vector2 mapPos, CoverPoint coverPoint, bool isClaimed, bool isCollision) {
+			this.mapPos = mapPos;
+			this.coverPoint = coverPoint;
+			this.isClaimed = isClaimed;
+			this.isCollision = isCollision;
+		}
+	}
 
-
+	MapDataPoint[] mapData;
+		
 
 	void Start () {
-		//gameControl = GetComponent<GameControl>();
 		
 		Vector2 MapStartPosition = new Vector2(-1, -1);
 		Vector2 MapEndPosition = new Vector2(mapSize.x + 1, mapSize.y + 1);
@@ -27,16 +40,19 @@ public class MapControl : MonoBehaviour {
 		Pathfinder.Instance.SetUp(MapStartPosition, MapEndPosition);
 		
 		//create all the cover points
+		mapData = new MapDataPoint[Mathf.FloorToInt(mapSize.x) * Mathf.FloorToInt(mapSize.y)];
 		AddCoverPoints();
 
+		
 		//now that they are created, set up any data on them
-		foreach (CoverPoint cover in coverPoints) {
+		foreach (CoverPoint cover in allCoverPoints) {
 			cover.SetVisibleCells();
 			cover.SetCornerFlags(); 
 		}
 
 		localCheckDistance *= localCheckDistance;
 		showCoverRange *= showCoverRange;
+		
 	}
 	
 	public void SetMapSelector (Transform _mapSelector) {
@@ -116,7 +132,6 @@ public class MapControl : MonoBehaviour {
 	
 	public float GetHeadingFromCover(int[] cover) {
 		
-		
 		//set for low cover
 		if (cover[0] > 0) return 180.0f;
 		if (cover[1] > 0) return 270.0f;
@@ -133,27 +148,25 @@ public class MapControl : MonoBehaviour {
 	}
 
 	public CoverPoint GetCoverPoint(Vector3 mapPos) {
-		int xCoor = Mathf.FloorToInt(mapPos.x/gridSize);
-		int yCoor = Mathf.FloorToInt(mapPos.z/gridSize);
-		string CoverPointName = "CoverPoint " + (xCoor * gridSize) + ", " + (yCoor * gridSize);
-		CoverPoint foundCover = null;
-		foreach (CoverPoint coverPoint in coverPoints) {
-			if (coverPoint.gameObject.name.Equals(CoverPointName)) foundCover = coverPoint;
-		}
-		if (foundCover == null) {
-			//print ("no cover at " + CoverPointName);
-		}
-		return foundCover;
+	
+		float x = (mapPos.x - 0.5f)/gridSize;
+		float y = (mapPos.z - 0.5f)/gridSize;
+		
+		MapDataPoint mapDataPoint = GetMapData(new Vector2(x, y));
+	
+		return mapDataPoint.coverPoint;
 	}
 	
 	public List<CoverPoint> GetCoverPointsInRange(Vector3 mapPos, float searchRange) {
-		float sqrRange = searchRange * searchRange; 
+		
+		float x = (mapPos.x - 0.5f)/gridSize;
+		float y = (mapPos.z - 0.5f)/gridSize;
+		List<MapDataPoint> mapArea = GetMapArea(new Vector2(x, y), Mathf.CeilToInt(searchRange));
+		
 		List<CoverPoint> coverPointsInRange = new List<CoverPoint>();
-		foreach (CoverPoint coverPoint in coverPoints) {
-			if ((coverPoint.transform.position - mapPos).sqrMagnitude < sqrRange)  {
-				coverPointsInRange.Add(coverPoint);
-			}
-		}
+		
+		foreach (MapDataPoint cell in mapArea) 
+			if (cell.coverPoint) coverPointsInRange.Add(cell.coverPoint);
 			
 		return coverPointsInRange;
 	}
@@ -161,8 +174,12 @@ public class MapControl : MonoBehaviour {
 			
 	public void AddCoverPoints() {
 		GameObject coverContainer = new GameObject("CoverPoints");
+				
 		for (int x = 0; x < mapSize.x; x++) {
 			for (int y = 0; y < mapSize.y;y++) {
+			
+				MapDataPoint mapDataPoint = new MapDataPoint(new Vector2((x + 0.5f) * gridSize, (y + 0.5f) * gridSize), null, false, false);
+				
 				RaycastHit hit;
 				Ray ray = new Ray(new Vector3((x + 0.5f) * gridSize, 10.0f, (y + 0.5f) * gridSize) , Vector3.down);
 				Vector3 mapPoint = new Vector3(0,-100,0);
@@ -176,21 +193,69 @@ public class MapControl : MonoBehaviour {
 						GameObject newPoint = Instantiate(coverPointPrefab, Vector3.zero, Quaternion.identity) as GameObject;	
 						CoverPoint coverPoint = newPoint.GetComponent<CoverPoint>();
 						coverPoint.SetCover(cover, mapPoint, gridSize, mapSize, this);
-						coverPoints.Add(coverPoint);
+						allCoverPoints.Add(coverPoint);
 						newPoint.name = "CoverPoint " + (x * gridSize) + ", " + (y * gridSize);
 						newPoint.transform.tag = "CoverPoint";
 						newPoint.transform.parent = coverContainer.transform;
 						newPoint.renderer.enabled = false;
+						mapDataPoint.coverPoint = coverPoint;
+					} 
+					if (hit.transform.tag.Equals("Wall") || hit.transform.tag.Equals("LowWall")) {
+						mapDataPoint.isCollision = true;
 					}
 				} else {
 					print ("Missed Point");	
 					Debug.DrawLine(ray.origin, ray.origin + (ray.direction * 10), Color.red, 10);
 				}
+				SetMapData(new Vector2(x, y), mapDataPoint);
 			}
 		}
 	}
 	
+	
+	void SetMapData(Vector2 coor, MapDataPoint mapDataPoint) {
+		int xPos = Mathf.FloorToInt(coor.x);
+		int yPos = Mathf.FloorToInt(coor.y);
+		
+		mapData[yPos * Mathf.FloorToInt(mapSize.x) + xPos] = mapDataPoint;
+	}
+	
+	public MapDataPoint GetMapData(Vector3 mapPos) {
+		float x = (mapPos.x - 0.5f)/gridSize;
+		float y = (mapPos.z - 0.5f)/gridSize;
+		return GetMapData(new Vector2(x, y));
+	}
+	
+	MapDataPoint GetMapData(Vector2 coor) {
+		
+		int xPos = Mathf.FloorToInt(coor.x);
+		int yPos = Mathf.FloorToInt(coor.y);
+		
+		return mapData[yPos * Mathf.FloorToInt(mapSize.x) + xPos];
+	}
+	
+	List<MapDataPoint> GetMapArea(Vector2 coor, int range) {
+		int xPos = Mathf.FloorToInt(coor.x);
+		int yPos = Mathf.FloorToInt(coor.y);
+		
+		int startX = Mathf.Max(xPos - range, 0);
+		int startY = Mathf.Max(yPos - range, 0);
+		int endX = Mathf.Min(xPos + range, Mathf.FloorToInt(mapSize.x) - 1);
+		int endY = Mathf.Min(yPos + range, Mathf.FloorToInt(mapSize.y) - 1);
+
+		List<MapDataPoint> mapDataInRange = new List<MapDataPoint>();
+		
+		for( int y = startY; y <= endY; ++y )
+			for( int x = startX; x <= endX; ++x )
+				mapDataInRange.Add ( mapData[ y * Mathf.FloorToInt(mapSize.x) + x ] );
+				
+		return mapDataInRange;
+	}
+	
 	public void ShowCoverPoints() {
+
+		List<CoverPoint> coverPoints = GetCoverPointsInRange(mapSelector.position, showCoverRange + gridSize);
+		
 		foreach (CoverPoint coverPoint in coverPoints) {
 			float distanceToCover = (coverPoint.transform.position - mapSelector.position).sqrMagnitude;
 			coverPoint.SetFade(1 - distanceToCover/(showCoverRange - 1));
@@ -198,21 +263,33 @@ public class MapControl : MonoBehaviour {
 	}
 	
 	public void HideCoverPoints() {
-		foreach (CoverPoint coverPoint in coverPoints) {
+		foreach (CoverPoint coverPoint in allCoverPoints) {
 			coverPoint.SetFade(0);
 		}		
 	}
 		
-	public void MarkCoverPoint(CoverPoint coverPoint) {
-		GameObject marker = GameObject.CreatePrimitive(PrimitiveType.Cube);
-		marker.transform.position = new Vector3(coverPoint.transform.position.x, 1.0f, coverPoint.transform.position.z);
-		marker.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-		BoxCollider coll = marker.GetComponent<BoxCollider>();
-		Destroy(coll);
-		return;
-	}
-
+	public void MarkMapArea(Vector2 mapPos, int range) {
+	
+		List<MapDataPoint> mapCellsInRange = GetMapArea(mapPos, range);
 		
+		foreach (MapDataPoint mapcell in mapCellsInRange) {
+			GameObject marker = GameObject.CreatePrimitive(PrimitiveType.Cube);
+			marker.transform.position = new Vector3(mapcell.mapPos.x, 1.25f, mapcell.mapPos.y);
+			marker.transform.localScale = new Vector3(0.25f, 2f, 0.25f);
+			BoxCollider coll = marker.GetComponent<BoxCollider>();
+			
+			if (mapcell.isCollision) {
+				marker.renderer.material.color = Color.red;
+			}
+			
+			if (mapcell.coverPoint) {
+				marker.renderer.material.color = Color.green;
+			}
+			
+			Destroy(coll);
+		}
+	}
+	
 	public Vector3 FindBestCover(Vector3 currentPos, float searchRange) {
 		CoverPoint bestCover = null;
 		float bestScore = Mathf.NegativeInfinity;

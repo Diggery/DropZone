@@ -214,7 +214,8 @@ public class PathMover : Pathfinding {
 
 	public void FinishPath() {
 		activePath.Clear();
-		CoverPoint destinationPoint = mapControl.GetCoverPoint (transform.position);
+		CoverPoint destinationPoint = mapControl.GetCoverPoint (finishPos);
+
 		unitController.FinishedMove(destinationPoint);
 		if (destinationPoint) RotateTo (destinationPoint.GetCoverHeading ());
 	}

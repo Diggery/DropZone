@@ -115,18 +115,20 @@ public class UnitController : MonoBehaviour {
 	}
 
 	public void MoveTo(Vector3 location) {
-	
 		
-		if ((location - transform.position).magnitude < mapControl.GetGridSize()) {
-			return;
-		}
+		if ((location - transform.position).magnitude < mapControl.GetGridSize()) return; // quit if the path is too short
+		
+		MapControl.MapDataPoint mapDataPoint = mapControl.GetMapData(location);
+		
+		if (mapDataPoint.isCollision) return; // dont want to move into collision
 		
 		animator.SetTrigger("StartMoving");
 		
-		CoverPoint destinationCover = mapControl.GetCoverPoint(location);
-		if (destinationCover) 
-			destinationCover.Occupy();
-		pathMover.StartPath(location);	
+		if (mapDataPoint.coverPoint) 
+			mapDataPoint.coverPoint.Occupy();
+			
+		pathMover.StartPath(location);
+
 		if (currentCoverPoint) currentCoverPoint.Leave();
 		currentCoverPoint = null;
 		currentDestination = location;
@@ -236,7 +238,7 @@ public class UnitController : MonoBehaviour {
 		
 	}
 
-	public CoverPoint GetCoverPoint() {
+	public CoverPoint GetCurrentCoverPoint() {
 		return currentCoverPoint;
 	}
 

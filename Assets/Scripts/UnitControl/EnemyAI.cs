@@ -43,7 +43,7 @@ public class EnemyAI : MonoBehaviour {
 	
 	public void TakeDamage(Vector4 damageInfo) {
 		boredom = 0.0f;
-		CoverPoint cover = unitController.GetCoverPoint();
+		CoverPoint cover = unitController.GetCurrentCoverPoint();
 		if (!cover) {
 			unitBehaviors.FindCloseCover();
 			GameObject[] allies = GameObject.FindGameObjectsWithTag("Enemy");
@@ -58,7 +58,7 @@ public class EnemyAI : MonoBehaviour {
 	public void Alert() {
 		if (boredom > 2) {
 			boredom = 0.0f;
-			CoverPoint cover = unitController.GetCoverPoint();
+			CoverPoint cover = unitController.GetCurrentCoverPoint();
 			if (!cover) {
 				unitBehaviors.FindCloseCover();
 			}
