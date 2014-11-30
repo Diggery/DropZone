@@ -70,10 +70,13 @@ public class MainWeapon : MonoBehaviour {
 	}
 	
 	void Update () {
-		if (dead) 
+		if (dead) {
+			if (muzzleLight) {
+				Destroy(muzzleLight.gameObject);
+			}
 			return;
-			
-			
+		}
+		
 		if (muzzleLight.intensity > 0.1f) {
 			muzzleLight.intensity = Mathf.Lerp(muzzleLight.intensity, 0, Time.deltaTime * 10);
 		} else {

@@ -53,6 +53,7 @@ public class MapControl : MonoBehaviour {
 		localCheckDistance *= localCheckDistance;
 		showCoverRange *= showCoverRange;
 		
+		
 	}
 	
 	public void SetMapSelector (Transform _mapSelector) {
@@ -149,8 +150,8 @@ public class MapControl : MonoBehaviour {
 
 	public CoverPoint GetCoverPoint(Vector3 mapPos) {
 	
-		float x = (mapPos.x - 0.5f)/gridSize;
-		float y = (mapPos.z - 0.5f)/gridSize;
+		float x = mapPos.x/gridSize;
+		float y = mapPos.z/gridSize;
 		
 		MapDataPoint mapDataPoint = GetMapData(new Vector2(x, y));
 	
@@ -401,6 +402,29 @@ public class MapControl : MonoBehaviour {
 		
 		return isClosest;	
 	} 
+	
+	public Vector3 FindCorner(Vector3 currentPos, float searchRange) {
+		List<CoverPoint> pointsInRange = GetCoverPointsInRange(currentPos, searchRange); 
+		
+		CoverPoint bestCorner = null;
+		float dist = Mathf.Infinity;
+		foreach (CoverPoint coverPoint in pointsInRange) {
+			if (!coverPoint.IsCorner()) continue;
+			float coverDist = (coverPoint.transform.position - currentPos).sqrMagnitude;
+			if (coverDist < dist) {
+				dist = coverDist;
+				bestCorner = coverPoint;
+				
+			}
+		}
+			
+		if (!bestCorner) {
+			return currentPos;
+		}
+		
+		return bestCorner.transform.position;
+	}
+	
 	
 	public bool IsDestinationClaimed(Vector3 location) {
 		GameObject[] enemies = GameObject.FindGameObjectsWithTag ("Enemy");

@@ -5,6 +5,7 @@
     	_HitColor ("Hit Color", Color) = (1,0,0,1)
     	_HitColorFade ("Hit Fade", Range (0.0, 1.0)) = 0.0
     	_HealColor ("Heal Color", Color) = (0,1,0,1)
+    	_HealColorFade ("Heal Fade", Range (0.0, 1.0)) = 0.0
 	}
 	SubShader {
 		Tags { "RenderType"="Opaque" }
@@ -18,7 +19,8 @@
 		float4 _HitColor;
 		float _HitColorFade;
 		float4 _HealColor;
-
+		float _HealColorFade;
+		
 		struct Input {
 			float2 uv_MainTex;
 		};
@@ -27,7 +29,7 @@
 			half4 c = tex2D (_MainTex, IN.uv_MainTex);
 			o.Albedo = c.rgb;//lerp(c, _HitColor.rgb, _HitColor.a);
 			o.Alpha = c.a;
-			o.Emission = _HitColor.rgb * _HitColorFade;
+			o.Emission = (_HitColor.rgb * _HitColorFade) + (_HealColor.rgb * _HealColorFade);
 		}
 		ENDCG
 	} 

@@ -32,11 +32,20 @@ public class UnitColorFade : MonoBehaviour {
 			if (headMat) headMat.SetFloat("_HitColorFade", hitFade);
 		}
 		hitFade = Mathf.Clamp01(hitFade - (Time.deltaTime * 2));
+		
+		if (healFade > 0) {
+			unitMat.SetFloat("_HealColorFade", healFade);
+			if (headMat) headMat.SetFloat("_HealColorFade", healFade);
+		}
+		healFade = Mathf.Clamp01(healFade - (Time.deltaTime * 2));
 	}
 	
 	public void TakeDamage(Vector4 damageInfo) {
-		print ("IM HIT!!!!!!!!!!!!!");
 		hitFade = 1.0f;
+	}
 	
+	
+	public void RecieveHealing(float healAmount) {
+		hitFade = 1.0f;
 	}
 }

@@ -318,7 +318,7 @@ public class RagDollControl : MonoBehaviour {
 		
 		CharacterJointConfig leftShoulderJointConfig = new CharacterJointConfig();
 		leftShoulderJointConfig.connectedBody = root.rigidbody;
-		leftShoulderJointConfig.axis = setUpData.leftShoulder.joint.swingAxis;
+		leftShoulderJointConfig.axis = setUpData.leftShoulder.joint.axis;
 		leftShoulderJointConfig.swingAxis = setUpData.leftShoulder.joint.swingAxis;
 		leftShoulderJointConfig.lowTwistLimit = -70.0f;
 		leftShoulderJointConfig.highTwistLimit = 10.0f;

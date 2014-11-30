@@ -46,13 +46,11 @@ public class UnitSelect : MonoBehaviour {
 		renderer.material.color = currentColor;
 		
 		if (renderer.enabled) {
-			transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.identity, GameTime.deltaTime * 5);
+			transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one, GameTime.deltaTime * 5);
 		} else {
-			transform.rotation = Quaternion.AngleAxis(90, Vector3.up);
+			transform.localScale = new Vector3(3.0f, 3.0f, 3.0f);
 		}
-		
-		
-		
+
 		if (unitController.dead) Destroy(gameObject);
 	}
 }

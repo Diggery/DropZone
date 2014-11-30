@@ -7,11 +7,9 @@ public class EnemyAI : MonoBehaviour {
 	MapControl mapControl;
 	UnitBehaviors unitBehaviors;
 	
-	float boredom = 0.0f;
+	float boredom = 3.0f;
 	float boredRate = Random.Range(0.75f, 1.0f);
-	
-	Vector3 lastKnownPosition;
-	
+		
 	public void SetUp(UnitController _unitController, MapControl _mapControl, UnitBehaviors _unitBehaviors) {
 		unitController = _unitController;
 		mapControl = _mapControl;
@@ -25,14 +23,23 @@ public class EnemyAI : MonoBehaviour {
 	
 		boredom += Time.deltaTime * boredRate;
 		
+		CoverPoint currentCoverPoint = unitController.GetCurrentCoverPoint();
+
+		if (boredom > 5 && !currentCoverPoint) {
+			boredom = 0;
+			unitBehaviors.FindCloseCorner();
+		}
+						
+		if (boredom > 7 && currentCoverPoint && !currentCoverPoint.IsCorner()) {
+			unitBehaviors.FindCloseCorner();
+		}
+			
 		
 		if (boredom > 15) {
 			boredom = 0.0f;
 			if (Random.value < 0.5f) { // 50% chance they will search when totally bored
 				SearchArea();
 			}
-				
-		
 		}
 	
 		if (unitController.dead) {
@@ -77,7 +84,6 @@ public class EnemyAI : MonoBehaviour {
 			boredom = 0.0f;
 			print (transform.name + " heard about an enemy");
 			Vector3 enemyPos = (Vector3)notification.data;
-			lastKnownPosition = enemyPos;
 			unitBehaviors.SearchForEnemy(enemyPos);
 		}
 	}

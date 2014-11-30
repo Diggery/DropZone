@@ -74,7 +74,7 @@ public class LineDrawer : MonoBehaviour {
 			p3.y += 0.1f;
 			p4.y += 0.1f;
 			
-			Vector3 lastPoint = nodes[segment];
+			Vector3 lastPoint = nodes[segment] + new Vector3(0.0f, 0.1f, 0.0f);
 			
 			for (int i = 1; i < knots + 1; i++) {
 				Vector3 newPoint = Curve.GetHermitePoint(p1, p2, p3, p4, i/(float)knots, tension);
@@ -213,9 +213,9 @@ public class LineDrawer : MonoBehaviour {
 			uvOffset += distanceOffset;
 
 			uvs[(i * 4) + 2] = new Vector2(0.0f, uvOffset);
-			colors[(i * 4) + 2] = Color.Lerp(startColor, endColor, i / (float)numOfQuads);
+			colors[(i * 4) + 2] = Color.Lerp(startColor, endColor, (i + 1)/ (float)numOfQuads);
 			uvs[(i * 4) + 3] = new Vector2(1.0f, uvOffset);
-			colors[(i * 4) + 3] = Color.Lerp(startColor, endColor, i / (float)numOfQuads);
+			colors[(i * 4) + 3] = Color.Lerp(startColor, endColor, (i + 1)/ (float)numOfQuads);
 		}
 		
 		

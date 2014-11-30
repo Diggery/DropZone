@@ -85,13 +85,13 @@ public class CharacterConfig : MonoBehaviour {
 		setUpData.rightHip.collision.center = new Vector3(-0.20f, 0.000f, 0.000f);
 		setUpData.rightHip.collision.radius = 0.08f;
 		setUpData.rightHip.collision.height = 0.380f;
-		setUpData.rightHip.joint.axis = new Vector3(0.0f, 0.0f, -1.0f);
+		setUpData.rightHip.joint.axis = new Vector3(0.0f, 0.0f, 1.0f);
 		setUpData.rightHip.joint.swingAxis = new Vector3(-1.0f, 0.0f, 0.0f);
 		
 		setUpData.rightKnee.collision.center = new Vector3(-0.20f, 0.000f, 0.000f);
 		setUpData.rightKnee.collision.radius = 0.08f;
 		setUpData.rightKnee.collision.height = 0.476f;
-		setUpData.rightKnee.joint.axis = new Vector3(0.0f, 0.0f, -1.0f);
+		setUpData.rightKnee.joint.axis = new Vector3(0.0f, 0.0f, 1.0f);
 		setUpData.rightKnee.joint.swingAxis = new Vector3(-1.0f, 0.0f, 0.0f);	
 		
 		setUpData.spine.collision.center = new Vector3(0.0f, 0.02f, 0.0f);
@@ -107,7 +107,7 @@ public class CharacterConfig : MonoBehaviour {
 		setUpData.leftShoulder.collision.center = new Vector3(0.12f, 0.000f, 0.000f);
 		setUpData.leftShoulder.collision.radius = 0.08f;
 		setUpData.leftShoulder.collision.height = 0.30f;
-		setUpData.leftShoulder.joint.axis = new Vector3(0.0f, 0.0f, -1.0f);
+		setUpData.leftShoulder.joint.axis = new Vector3(0.0f, 0.0f, 1.0f);
 		setUpData.leftShoulder.joint.swingAxis = new Vector3(0.0f, -1.0f, 0.0f);
 				
 		setUpData.leftElbow.collision.center = new Vector3(0.20f, 0.000f, 0.000f);
@@ -119,13 +119,13 @@ public class CharacterConfig : MonoBehaviour {
 		setUpData.rightShoulder.collision.center = new Vector3(-0.12f, 0.000f, 0.000f);
 		setUpData.rightShoulder.collision.radius = 0.08f;
 		setUpData.rightShoulder.collision.height = 0.30f;
-		setUpData.rightShoulder.joint.axis = new Vector3(0.0f, 0.0f, 1.0f);
+		setUpData.rightShoulder.joint.axis = new Vector3(0.0f, 0.0f, -1.0f);
 		setUpData.rightShoulder.joint.swingAxis = new Vector3(0.0f, 1.0f, 0.0f);
 				
 		setUpData.rightElbow.collision.center = new Vector3(-0.20f, 0.000f, 0.000f);
 		setUpData.rightElbow.collision.radius = 0.08f;
 		setUpData.rightElbow.collision.height = 0.35f;
-		setUpData.rightElbow.joint.axis = new Vector3(0.0f, 1.0f, 0.0f);
+		setUpData.rightElbow.joint.axis = new Vector3(0.0f, -1.0f, 0.0f);
 		setUpData.rightElbow.joint.swingAxis = new Vector3(0.0f, 0.0f, 1.0f);
 				
 		ragDollControl.setUp(setUpData);

@@ -3,39 +3,55 @@ using System.Collections;
 
 public class GameControl : MonoBehaviour {
 
+	public string[] tempNames;
+
 	public GameObject friendlySoldier;
 	public GameObject enemySoldier;
 	
-	bool globalPause = false;
-	bool pausedBySelector = false;
+	public bool globalPause = false;
+	public bool pausedBySelector = false;
+	
+	public GameObject[] profileCameras;
 	
 	void Start () {
-	
+		AddFriendlyUnits ();
+		AddEnemyUnits ();	
+		
+		GameObject[] spawners = GameObject.FindGameObjectsWithTag ("Spawner");
+		foreach(GameObject spawner in spawners) {
+			spawner.SendMessage("SetUp", this);
+		}
 	}
 	
 	void Update () {
-		if (Input.GetKeyUp (KeyCode.A)) {
-			AddFriendlyUnits ();
-			AddEnemyUnits ();
-		}
-		if (Input.GetKeyUp (KeyCode.Space)) {
 
-			if (globalPause) {
-				GlobalResume();
-			} else {
-				GlobalPause();
-			}
-		}
+
 	
 	}
 
 	public void AddFriendlyUnits() {
 		GameObject[] markers = GameObject.FindGameObjectsWithTag ("FriendlyMarker");
-		foreach (GameObject marker in markers) {
-			GameObject newUnit = Instantiate(GetFriendlyUnit(), marker.transform.position, marker.transform.rotation) as GameObject;
-			newUnit.name = "Friendly_" + newUnit.GetInstanceID();
-			Destroy(marker);
+		int count = Mathf.Min(markers.Length, 4);
+		for (int i = 0; i < count; i++) {
+		
+			//create the unit and place it at the marker;
+			GameObject newUnit = Instantiate(GetFriendlyUnit(), markers[i].transform.position, markers[i].transform.rotation) as GameObject;
+			newUnit.name = "Unit" + (i + 1);
+			UnitController unitController = newUnit.GetComponent<UnitController>();
+			unitController.unitName = tempNames[i];
 			
+			//create a camera for the unit pane 
+			GameObject profileCamera = Instantiate(profileCameras[i], markers[i].transform.position, markers[i].transform.rotation) as GameObject;
+			ChaseCam chaseCam = profileCamera.GetComponent<ChaseCam>();
+			chaseCam.SetLookAtTarget(unitController.headModel.transform);
+			chaseCam.RandomizeCameraPos();
+			
+			//link the unit to the unit pane
+			InterfaceControl interfaceControl = Camera.main.gameObject.GetComponent<InterfaceControl>();
+			if (!interfaceControl) Debug.Log("No InterfaceControl found on the camera");
+			interfaceControl.EnableUnitPane(unitController);			
+			
+			Destroy(markers[i]);
 		}
 	}
 

@@ -8,20 +8,31 @@ public class MapSelector : MonoBehaviour {
 	bool buttonsUp = false;
 	bool invalidMove = false;
 	Vector3 goalPos;
+	Quaternion goalRot;
 	
 	Vector3 buttonOffset;
-	Transform buttons;
 	Transform cancelButton;
+	Transform cancelIcon;
+	Transform cancelGlow;
 	Transform acceptButton;
+	Transform acceptIcon;
+	Transform acceptGlow;
 	BoxCollider selectorCollision;
 	
 	InputControl inputControl;
 	MapControl mapControl;
 	
+	float buttonTransAmount;
+	float buttonGlowAmount;
+	
+	
 	public void SetUp () {
-		buttons = transform.Find("Buttons");
-		cancelButton = transform.Find("Buttons/Cancel");
-		acceptButton = transform.Find("Buttons/Accept");
+		cancelButton = transform.Find("Cancel");
+		cancelIcon = transform.Find("Cancel/CancelIcon");
+		cancelGlow = transform.Find("CancelGlow");
+		acceptButton = transform.Find("Accept");
+		acceptIcon = transform.Find("Accept/AcceptIcon");
+		acceptGlow = transform.Find("AcceptGlow");
 		
 		GameObject inputControlObj = GameObject.Find("Map");
 		if (!inputControlObj) print ("Need a 'Map' object added with a input control and map control on it");
@@ -39,33 +50,51 @@ public class MapSelector : MonoBehaviour {
 	
 	void Update () {
 		if (visible){
-			renderer.material.color = Color.Lerp(renderer.material.color, Color.white, GameTime.deltaTime * 2);
+			renderer.material.color = Color.Lerp(renderer.material.color, Color.white, GameTime.deltaTime * 10);
 			transform.position = Vector3.Lerp(transform.position, goalPos, GameTime.deltaTime * 10);
+			transform.rotation = Quaternion.Lerp(transform.rotation, goalRot, GameTime.deltaTime * 10);
+			
 			mapControl.ShowCoverPoints();
 		} else {
-			renderer.material.color = Color.Lerp(renderer.material.color, Color.black, GameTime.deltaTime * 10);	
+			renderer.material.color = Color.Lerp(renderer.material.color, new Color(1.0f, 1.0f, 1.0f, 0.0f), GameTime.deltaTime * 10);	
 		}
 		
 		if (invalidMove) {
 			if (buttonsUp) HideButtons();
-			transform.renderer.material.mainTextureOffset = new Vector2(0.25f, 0.0f);
 		} else {
-			transform.renderer.material.mainTextureOffset = new Vector2(0.0f, 0.0f);
+			if (buttonsUp) ShowButtons();
 		}
 		
 		if (buttonsUp) {
-			buttonOffset = Vector2.Lerp(buttonOffset, new Vector2(0.0f, 0.0f), GameTime.deltaTime * 10);
+			buttonTransAmount = Mathf.Lerp(buttonTransAmount, 1, GameTime.deltaTime * 5);
+			buttonGlowAmount = Mathf.Lerp(buttonGlowAmount, 1, GameTime.deltaTime * 1);
 		} else {
-			buttonOffset = Vector2.Lerp(buttonOffset, new Vector2(0.5f, 0.0f), GameTime.deltaTime * 15);
+			buttonTransAmount = Mathf.Lerp(buttonTransAmount, -1, GameTime.deltaTime * 8);
+			buttonGlowAmount = Mathf.Lerp(buttonGlowAmount, -1, GameTime.deltaTime * 5);
 		}
-		cancelButton.renderer.material.mainTextureOffset = buttonOffset; 
-		acceptButton.renderer.material.mainTextureOffset = buttonOffset; 
+		
+		//acceptButton.localScale = Vector3.Lerp(new Vector3(0.1f, 0.1f, 0.1f), Vector3.one, buttonTransAmount);
+		acceptButton.localRotation = Quaternion.Lerp(Quaternion.AngleAxis(-45, Vector3.up), Quaternion.identity, buttonTransAmount * 2);
+		acceptButton.renderer.material.color = Color.Lerp(new Color(1.0f, 1.0f, 1.0f, 0.0f), Color.white, buttonTransAmount);
+
+		acceptIcon.renderer.material.color = Color.Lerp(Color.clear, Color.white, buttonTransAmount );
+		
+		acceptGlow.renderer.material.color = Color.Lerp(Color.black, Color.gray, buttonGlowAmount );
+		
+		//cancelButton.localScale = Vector3.Lerp(new Vector3(0.1f, 0.1f, 0.1f), Vector3.one, buttonTransAmount);
+		cancelButton.localRotation = Quaternion.Lerp(Quaternion.AngleAxis(45, Vector3.up), Quaternion.identity, buttonTransAmount * 2);
+		cancelButton.renderer.material.color = Color.Lerp(new Color(1.0f, 1.0f, 1.0f, 0.0f), Color.white, buttonTransAmount);
+		
+		cancelIcon.renderer.material.color = Color.Lerp(Color.clear, Color.white, buttonTransAmount );
+		
+		cancelGlow.renderer.material.color = Color.Lerp(Color.black, Color.gray, buttonGlowAmount );
 		
 		
 		//rotateButtons
 		float buttonHeading = Camera.main.transform.eulerAngles.y / 90;
 		buttonHeading = Mathf.Round(buttonHeading) * 90 ;
-		buttons.rotation = Quaternion.Lerp(buttons.rotation, Quaternion.AngleAxis(buttonHeading + 180,  Vector3.up), GameTime.deltaTime * 10);
+		acceptIcon.rotation = Quaternion.Lerp(acceptIcon.rotation, Quaternion.AngleAxis(buttonHeading + 180,  Vector3.up), GameTime.deltaTime * 10);
+		cancelIcon.rotation = Quaternion.Lerp(cancelIcon.rotation, Quaternion.AngleAxis(buttonHeading + 180,  Vector3.up), GameTime.deltaTime * 10);
 	}
 	
 	public void SetPos(Vector3 newPos) {
@@ -76,6 +105,7 @@ public class MapSelector : MonoBehaviour {
 		newGoalPos += new Vector3(gridSize/2, 0.0f, gridSize/2);	
 		
 		if (newGoalPos != goalPos) {
+			buttonGlowAmount = 0;
 			goalPos = newGoalPos;
 			inputControl.UpdateUnitsPath(goalPos);
 		}
@@ -85,15 +115,24 @@ public class MapSelector : MonoBehaviour {
 		RaycastHit hit;
 		LayerMask terrainMask = 1 << LayerMask.NameToLayer("Ground");
 		if (Physics.Raycast(ray, out hit, Mathf.Infinity,  terrainMask)) {
-			goalPos.y = hit.point.y;
+			goalPos.y = hit.point.y + 0.1f;
 			if (hit.transform.tag == "Wall" || hit.transform.tag == "LowWall") {
 				invalidMove = true;
 			} else {
 				invalidMove = false;
 			}
 		} else {
-			goalPos.y = newPos.y;
+			goalPos.y = newPos.y + 0.1f;
 			invalidMove = false;
+		}
+		
+		MapControl.MapDataPoint mapData = mapControl.GetMapData(goalPos);
+		
+		if (mapData.coverPoint) {
+			int direction = mapData.coverPoint.GetEdgeDirection();
+			goalRot = Quaternion.AngleAxis(direction * 90, Vector3.up);
+		} else {
+			goalRot = Quaternion.identity;
 		}
 		
 		if (!visible) transform.position = goalPos;

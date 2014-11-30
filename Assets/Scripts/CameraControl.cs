@@ -18,6 +18,8 @@ public class CameraControl : MonoBehaviour {
 	
 	
 	void Start () {
+		Events.Listen(gameObject, "NeedCameraFocus");
+		
 		cameraObj = Camera.main.transform;
 		cameraLookAt = GameObject.Find("CameraLookAt").transform;
 		cameraLookAt.parent = null;
@@ -34,16 +36,15 @@ public class CameraControl : MonoBehaviour {
 	
 
 		// lookAt position
-		Vector3 lookAtGoal = new Vector3(cameraOffset.x, 0, touchOffset.y);
+		Vector3 lookAtGoal = new Vector3(cameraOffset.x + (touchOffset.x * 0.15f), 0, touchOffset.y);
 		if (mapSelector.visible) {
 			lookAtGoal = Vector3.Lerp(lookAtGoal, mapSelector.transform.position, 0.5f);
 		}
 		
-		
 		cameraLookAt.position = Vector3.Lerp(cameraLookAt.position, lookAtGoal, GameTime.deltaTime * cameraSpeed);
 		
 		// cameraRoot position
-		Vector3 rootPos = new Vector3(cameraOffset.x + touchOffset.x, 0.0f, cameraLookAt.position.z - 10);
+		Vector3 rootPos = new Vector3(cameraOffset.x + touchOffset.x, 0.0f, cameraLookAt.position.z - cameraOffset.z);
 		transform.position = Vector3.Lerp(transform.position, rootPos, GameTime.deltaTime * cameraSpeed);
 		
 		//camera rotation
@@ -62,8 +63,13 @@ public class CameraControl : MonoBehaviour {
 	
 	public void drag(TouchManager.TouchDragEvent touchEvent) {
 		
-		float widthOffset = (float)mapSize.x / 2.5f;
-		touchOffset.x = Mathf.Clamp(touchOffset.x - (((float)touchEvent.touchDelta.x / (float)Screen.width) * 10), -widthOffset, widthOffset);
+		float widthOffset = (float)mapSize.x / 2.0f;
+		touchOffset.x = Mathf.Clamp(touchOffset.x - (((float)touchEvent.touchDelta.x / (float)Screen.width) * 20), -widthOffset, widthOffset);
 		touchOffset.y -= ((float)touchEvent.touchDelta.y / (float)Screen.height) * 20;
+	}
+	
+	public void NeedCameraFocus(Events.Notification notification) {
+		Transform focusTarget = (Transform)notification.data;
+		cameraLookAt.position = focusTarget.position;
 	}
 }

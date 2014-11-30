@@ -81,6 +81,20 @@ public class TouchManager : MonoBehaviour {
 		touchTarget.BroadcastMessage("tap", new TapEvent(touchTarget, touchPosition), SendMessageOptions.DontRequireReceiver);
 	}
 	
+	public class DoubleTapEvent {
+		public Transform touchTarget;
+		public Vector2 touchPosition;
+		
+		public DoubleTapEvent(Transform touchTarget, Vector2 touchPosition) {
+			this.touchTarget = touchTarget;
+			this.touchPosition = touchPosition;
+		}
+	}
+	
+	public void doubleTap(Transform touchTarget, Vector2 touchPosition)  {
+		if (!touchTarget) return;	
+		touchTarget.BroadcastMessage("doubleTap", new DoubleTapEvent(touchTarget, touchPosition), SendMessageOptions.DontRequireReceiver);
+	}	
 	
 	
 	public void swipeLeft(float touchTime, Transform startTarget, Transform endTarget) {

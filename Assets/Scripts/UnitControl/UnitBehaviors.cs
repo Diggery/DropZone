@@ -16,6 +16,12 @@ public class UnitBehaviors : MonoBehaviour {
 			gameObject.AddComponent<EnemyAI>().SetUp(_unitController, _mapControl, this);
 		}
 	}
+	
+	void Update() {
+		if (Input.GetKeyUp (KeyCode.A))  {
+			FindCloseCorner();
+		}	
+	}
 
 	public void FindNewPosition() {
 		unitController.MoveTo(mapControl.FindBestCover(transform.position, 10));
@@ -28,7 +34,11 @@ public class UnitBehaviors : MonoBehaviour {
 	public void FindSafePosition() {
 		unitController.MoveTo(mapControl.FindSafestCover(transform.position, 10));
 	}
-		
+	
+	public void FindCloseCorner() {
+		unitController.MoveTo(mapControl.FindCorner(transform.position, 3));
+	}	
+			
 	public void SearchForEnemy(Vector3 lastKnownPosition) {
 		unitController.MoveTo(mapControl.FindSafestCover(lastKnownPosition, 7));
 	}

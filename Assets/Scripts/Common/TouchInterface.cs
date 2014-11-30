@@ -10,11 +10,20 @@ public class TouchInterface : MonoBehaviour {
 	public LayerMask ignoreLayers;
 
 	TouchManager touchManager;
+	
+	
+	double lastTime;
+	double currentTime; 
+	float deltaTime;	
 		
 	float tapTime = 0.25f;
 	float gestureTime = 0.25f;
 	float longTouchTime = 1.0f;
+	float doubleTapTime = 0.5f;
+	float doubleTapTimer = 0.5f;
 	float swipeDistance = 30.0f;
+	
+	bool doubleTapReady;
 	
 	public class InputData {	
 		public enum InputPhase { Began, Moved, Ended, Hover, Other };
@@ -39,6 +48,8 @@ public class TouchInterface : MonoBehaviour {
 		
 	void Start() {
 		touchManager = GetComponent<TouchManager>();
+		lastTime = Time.realtimeSinceStartup;
+		
 		
 		for (int i = 0; i < input.Length; i++) {
 			input[i] = new InputData();
@@ -46,11 +57,21 @@ public class TouchInterface : MonoBehaviour {
 	}
 	
 	void Update() {
+		//track our own time so we can work when paused.
+		currentTime = Time.realtimeSinceStartup;
+		deltaTime = (float)(currentTime - lastTime);
+		lastTime = Time.realtimeSinceStartup;
+		
 		if (!Camera.main) return;
 				
 		if (debugOn) {
 			if (!debugText) debugText = DebugText.Create(new Vector2(0.1f, 0.9f));
 			debugText.text = "Touches =  " + Input.touches.Length + "\n";		
+		}
+		
+		if (doubleTapTimer > 0) {
+			doubleTapTimer -= deltaTime;
+			if (doubleTapTimer < 0) doubleTapReady = false;
 		}
 				
 		currentInputSet.Clear();
@@ -123,7 +144,7 @@ public class TouchInterface : MonoBehaviour {
 			if (input[id].phase == InputData.InputPhase.Moved) {	
 		
 				touchManager.touchDrag(input[id].delta, input[id].distance, input[id].position, hit.transform, input[id].startTarget);
-				input[id].time += GameTime.deltaTime;
+				input[id].time += deltaTime;
 				input[id].distance += input[id].delta;
 				// test for longtouch
 				if (input[id].time > longTouchTime) {
@@ -146,7 +167,16 @@ public class TouchInterface : MonoBehaviour {
 				touchManager.touchUp(hit.transform, input[id].startTarget, input[id].position, input[id].distance, input[id].time);
 				
 				if (input[id].gestureArmed) {
-					if (input[id].time < tapTime) touchManager.tap(hit.transform, input[id].position);
+					if (input[id].time < tapTime) {
+						touchManager.tap(hit.transform, input[id].position);
+						if (doubleTapReady) {
+							touchManager.doubleTap(hit.transform, input[id].position);
+							doubleTapReady = false;
+						}
+						
+						doubleTapReady = true;
+						doubleTapTimer = doubleTapTime;
+					}
 					
 					if (input[id].distance.x < -swipeDistance) {
 						

@@ -8,8 +8,11 @@ public class UnitController : MonoBehaviour {
 	public Transform targetCollision;
 	public GameObject headModel;
 	
+	public string unitName = "NoName";
+	
 	float maxHealth = 5.0f;
 	float health = 5.0f;
+	float deathTimer = 10.0f;
 	public bool dead;
 	public bool dummy;
 	
@@ -39,7 +42,7 @@ public class UnitController : MonoBehaviour {
 			if (headModel) colorFade.SetHeadRenderer(headModel.renderer);
 		}
 		
-		animator = GetComponentInChildren<Animator> ();
+		animator = GetComponent<Animator> ();
 
 		characterController = GetComponent<CharacterController> ();
 		if (!characterController)
@@ -74,8 +77,12 @@ public class UnitController : MonoBehaviour {
 
 	void Update() {
 	
-		if (dead || dummy) 
-			return;
+		if (dead) {
+			deathTimer -= Time.deltaTime;
+			if (deathTimer < 0) Destroy(gameObject);
+		}
+		
+		if (dummy) return;
 			
 		if (mainWeaponTarget && mainWeaponTarget.tag.Equals("Dead"))
 			ClearMainTarget();
@@ -102,9 +109,17 @@ public class UnitController : MonoBehaviour {
 	}
 
 	public Animator GetAnimator() {
+		if (!animator) 
+			Debug.Log("No Animator to get");
 		return animator;
 	}
-
+	public void Spawn() {
+		if (!animator) 
+			animator = GetComponent<Animator> ();
+		animator.SetTrigger("Spawning");
+		
+		
+	}
 
 	public bool IsMoving() {
 		return isMoving;
@@ -116,7 +131,7 @@ public class UnitController : MonoBehaviour {
 
 	public void MoveTo(Vector3 location) {
 		
-		if ((location - transform.position).magnitude < mapControl.GetGridSize()) return; // quit if the path is too short
+		if ((location - transform.position).magnitude < mapControl.GetGridSize() / 2) return; // quit if the path is too short
 		
 		MapControl.MapDataPoint mapDataPoint = mapControl.GetMapData(location);
 		
@@ -203,6 +218,7 @@ public class UnitController : MonoBehaviour {
 	}
 
 	public void Select() {
+		if (dead) return;
 		selected = true;
 	}
 
@@ -257,13 +273,19 @@ public class UnitController : MonoBehaviour {
 		return health/maxHealth;
 	}
 	
+	
+	UnitPane unitPane;
+	public void SetUnitPane(UnitPane _unitPane) {
+		unitPane = _unitPane;
+	}
+	
 	public void TakeDamage(Vector4 damageInfo) {
 		if (dead) return;
 		
 		if (!HasTarget()) 
 			targetingControl.ScanForTargets();
 			
-		//print (damageInfo.w + " damage taken");	
+		if (unitPane) unitPane.TakeDamage();	
 	
 		health -= damageInfo.w;
 
@@ -273,6 +295,7 @@ public class UnitController : MonoBehaviour {
 
 	public void Die() {
 		if (dead) return;
+		Deselect();
 		if (currentCoverPoint) currentCoverPoint.Leave();
 		transform.tag = "Dead";
 		transform.name += " is dead!";
