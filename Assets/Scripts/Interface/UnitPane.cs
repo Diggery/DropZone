@@ -6,12 +6,14 @@ public class UnitPane : MonoBehaviour {
 	Vector3 openGoal;
 	Vector3 closeGoal;
 	
-	Color openColor = new Color(0.0f, 0.0f, 0.0f, 1.0f);
-	Color closeColor = new Color(0.0f, 0.0f, 0.0f, 0.75f);
+	Color frameColor = new Color(0.0f, 0.0f, 0.0f, 1.0f);
+	Color openColor = new Color(0.1f, 0.0f, 0.0f, 1.0f);
+	Color closeColor = new Color(0.0f, 0.0f, 0.0f, 0.5f);
 	Color selectColor = new Color(0.2f, 0.0f, 0.0f, 1.0f);
 	Color flashColor = new Color (1.0f, 0.5f, 0.0f);		
 	
-	Color currentColor;
+	Color currentFrameColor;
+	Color currentFillColor;
 	
 	public UnitController unit;
 	
@@ -82,28 +84,33 @@ public class UnitPane : MonoBehaviour {
 		transAmount = Mathf.Clamp01(transAmount + (GameTime.deltaTime * direction * 3));
 		
 		Vector3 closePos = closeGoal;
-		Color colorGoal = closeColor;
+		
+		Color frameGoal = frameColor;
+		Color fillGoal = closeColor;
 		
 		if (unit.selected) {
 			closePos.x -= 0.025f;
 			if (opened) {
-				colorGoal = openColor;
+				fillGoal = openColor;
 			} else {
-				colorGoal = selectColor;
+				fillGoal = selectColor;
 			}
 			
 		} else {
 			if (opened) {
-				colorGoal = openColor;
+				fillGoal = openColor;
 			}
 		}
 		
-		currentColor = Color.Lerp(currentColor, colorGoal, GameTime.deltaTime * 5);
-		if (hidden) {
-			currentColor.a = 0.1f;
-		}
-		    
-		renderer.material.color = currentColor;
+		currentFrameColor = Color.Lerp(currentFrameColor, frameGoal, GameTime.deltaTime * 3);
+		if (hidden) currentFrameColor.a = 0.5f;
+		
+		renderer.material.SetColor("_FrameColor",  currentFrameColor);
+		
+		currentFillColor = Color.Lerp(currentFillColor, fillGoal, GameTime.deltaTime * 5);
+		if (hidden) currentFillColor.a = 0.1f;
+		
+		renderer.material.SetColor("_FillColor",  currentFillColor);
 		
 		transform.localPosition = Vector3.Lerp(closePos, openGoal, slideCurve.Evaluate(transAmount));
 	}
@@ -115,7 +122,7 @@ public class UnitPane : MonoBehaviour {
 				unit.Deselect();
 			} else {
 				Events.Send(gameObject, "UnitSelected", unit);	
-				currentColor = flashColor;	
+				currentFillColor = flashColor;	
 			}	
 		}
 		if (touchEvent.touchTarget == badge) {
@@ -130,6 +137,7 @@ public class UnitPane : MonoBehaviour {
 		
 
 	public void Toggle() {
+		currentFrameColor = Color.white;
 		if (opened) 
 			Close();
 		else 
@@ -157,7 +165,7 @@ public class UnitPane : MonoBehaviour {
 	}
 	
 	public void TakeDamage() {
-		currentColor = Color.red;
+		currentFrameColor = Color.red;
 	
 	}
 }

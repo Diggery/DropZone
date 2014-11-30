@@ -6,11 +6,13 @@ public class PauseButton : MonoBehaviour {
 	GameControl gameControl;
 	TextMesh pauseText;
 	
-	Color pauseColor = new Color(0.15f, 0.0f, 0.0f, 1.0f);
+	Color pauseColor = new Color(0.10f, 0.0f, 0.0f, 1.0f);
 	Color unpausedColor = new Color(0.0f, 0.0f, 0.0f, 0.25f);
-	Color selectColor = new Color(0.2f, 0.0f, 0.0f, 1.0f);
-	Color flashColor = new Color (1.0f, 0.5f, 0.0f);		
-	Color currentColor;		
+	Color frameColor = new Color(0.0f, 0.0f, 0.0f, 0.9f);
+	Color frameFlashColor = new Color(1.0f, 0.25f, 0.0f, 1.0f);
+	Color fillFlashColor = new Color (0.5f, 0.25f, 0.0f, 0.5f);		
+	Color currentFrameColor;		
+	Color currentFillColor;		
 	
 	
 	void Start () {
@@ -22,11 +24,11 @@ public class PauseButton : MonoBehaviour {
 	
 	void Update () {
 	
-		Color colorGoal = unpausedColor;
+		Color fillGoal = unpausedColor;
 		Quaternion rotGoal = Quaternion.AngleAxis(-45, Vector3.right);
 		
 		if (GameTime.paused) {
-			colorGoal = pauseColor;
+			fillGoal = pauseColor;
 			rotGoal = Quaternion.identity;
 			pauseText.text = "Paused";
 			
@@ -34,9 +36,12 @@ public class PauseButton : MonoBehaviour {
 			pauseText.text = "";
 		}
 		
+		currentFrameColor = Color.Lerp(currentFrameColor, frameColor, GameTime.deltaTime * 5);
+		renderer.material.SetColor("_FrameColor",  currentFrameColor);		
 		
-		currentColor = Color.Lerp(currentColor, colorGoal, GameTime.deltaTime * 5);
-		renderer.material.color = currentColor;	
+		currentFillColor = Color.Lerp(currentFillColor, fillGoal, GameTime.deltaTime * 5);
+		renderer.material.SetColor("_FillColor",  currentFillColor);
+		
 		transform.localRotation = Quaternion.Lerp (transform.localRotation, rotGoal, GameTime.deltaTime * 8);
 		
 		if (Input.GetKeyUp (KeyCode.Space)) {
@@ -51,7 +56,8 @@ public class PauseButton : MonoBehaviour {
 	}
 	
 	public void tap(TouchManager.TapEvent touchEvent) {
-		currentColor = flashColor;
+		currentFrameColor = frameFlashColor;
+		currentFillColor = fillFlashColor;
 		
 		if (GameTime.paused) {
 			gameControl.GlobalResume();
