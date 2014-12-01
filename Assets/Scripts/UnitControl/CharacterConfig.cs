@@ -91,7 +91,7 @@ public class CharacterConfig : MonoBehaviour {
 		setUpData.rightKnee.collision.center = new Vector3(-0.20f, 0.000f, 0.000f);
 		setUpData.rightKnee.collision.radius = 0.08f;
 		setUpData.rightKnee.collision.height = 0.476f;
-		setUpData.rightKnee.joint.axis = new Vector3(0.0f, 0.0f, 1.0f);
+		setUpData.rightKnee.joint.axis = new Vector3(0.0f, 0.0f, -1.0f);
 		setUpData.rightKnee.joint.swingAxis = new Vector3(-1.0f, 0.0f, 0.0f);	
 		
 		setUpData.spine.collision.center = new Vector3(0.0f, 0.02f, 0.0f);
@@ -128,7 +128,7 @@ public class CharacterConfig : MonoBehaviour {
 		setUpData.rightElbow.joint.axis = new Vector3(0.0f, -1.0f, 0.0f);
 		setUpData.rightElbow.joint.swingAxis = new Vector3(0.0f, 0.0f, 1.0f);
 				
-		ragDollControl.setUp(setUpData);
+		ragDollControl.SetUp(setUpData);
 
 		Destroy (this);
 	}

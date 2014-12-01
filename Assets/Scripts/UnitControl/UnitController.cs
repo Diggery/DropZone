@@ -113,12 +113,12 @@ public class UnitController : MonoBehaviour {
 			Debug.Log("No Animator to get");
 		return animator;
 	}
-	public void Spawn() {
+	public void Spawn(Vector3 rallyPoint) {
 		if (!animator) 
 			animator = GetComponent<Animator> ();
 		animator.SetTrigger("Spawning");
-		
-		
+		DelayedMove delayedMove = gameObject.AddComponent<DelayedMove>();
+		delayedMove.SetUp(rallyPoint, 1.5f);
 	}
 
 	public bool IsMoving() {

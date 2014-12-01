@@ -6,13 +6,14 @@ public class PauseButton : MonoBehaviour {
 	GameControl gameControl;
 	TextMesh pauseText;
 	
-	Color pauseColor = new Color(0.10f, 0.0f, 0.0f, 1.0f);
+	Color pauseColor = new Color(0.10f, 0.0f, 0.0f, 0.1f);
 	Color unpausedColor = new Color(0.0f, 0.0f, 0.0f, 0.25f);
 	Color frameColor = new Color(0.0f, 0.0f, 0.0f, 0.9f);
 	Color frameFlashColor = new Color(1.0f, 0.25f, 0.0f, 1.0f);
 	Color fillFlashColor = new Color (0.5f, 0.25f, 0.0f, 0.5f);		
 	Color currentFrameColor;		
 	Color currentFillColor;		
+	Color currentHiLiteColor;		
 	
 	
 	void Start () {
@@ -25,12 +26,14 @@ public class PauseButton : MonoBehaviour {
 	void Update () {
 	
 		Color fillGoal = unpausedColor;
+		Color hiLiteGoal = unpausedColor;
 		Quaternion rotGoal = Quaternion.AngleAxis(-45, Vector3.right);
 		
 		if (GameTime.paused) {
 			fillGoal = pauseColor;
 			rotGoal = Quaternion.identity;
 			pauseText.text = "Paused";
+			hiLiteGoal = Color.red;
 			
 		} else {
 			pauseText.text = "";
@@ -41,6 +44,9 @@ public class PauseButton : MonoBehaviour {
 		
 		currentFillColor = Color.Lerp(currentFillColor, fillGoal, GameTime.deltaTime * 5);
 		renderer.material.SetColor("_FillColor",  currentFillColor);
+		
+		currentHiLiteColor = Color.Lerp(currentHiLiteColor, hiLiteGoal, GameTime.deltaTime * 5);
+		renderer.material.SetColor("_HiLiteColor",  currentHiLiteColor);
 		
 		transform.localRotation = Quaternion.Lerp (transform.localRotation, rotGoal, GameTime.deltaTime * 8);
 		

@@ -22,6 +22,10 @@ public class UnitBehaviors : MonoBehaviour {
 			FindCloseCorner();
 		}	
 	}
+	
+	public void FindCoverAtPosition(Vector3 destination) {
+		unitController.MoveTo(mapControl.FindBestCover(destination, 5));
+	}
 
 	public void FindNewPosition() {
 		unitController.MoveTo(mapControl.FindBestCover(transform.position, 10));

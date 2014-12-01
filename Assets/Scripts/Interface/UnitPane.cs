@@ -7,13 +7,14 @@ public class UnitPane : MonoBehaviour {
 	Vector3 closeGoal;
 	
 	Color frameColor = new Color(0.0f, 0.0f, 0.0f, 1.0f);
-	Color openColor = new Color(0.1f, 0.0f, 0.0f, 1.0f);
-	Color closeColor = new Color(0.0f, 0.0f, 0.0f, 0.5f);
-	Color selectColor = new Color(0.2f, 0.0f, 0.0f, 1.0f);
+	Color openColor = new Color(0.0f, 0.0f, 0.0f, 0.5f);
+	Color closeColor = new Color(0.0f, 0.0f, 0.0f, 0.1f);
+	Color selectColor = new Color(0.2f, 0.0f, 0.0f, 0.2f);
 	Color flashColor = new Color (1.0f, 0.5f, 0.0f);		
 	
 	Color currentFrameColor;
 	Color currentFillColor;
+	Color currentHiLiteColor;
 	
 	public UnitController unit;
 	
@@ -54,10 +55,6 @@ public class UnitPane : MonoBehaviour {
 			}
 		}
 
-//		Keyframe[] keys = slideCurve.keys;
-//		foreach (Keyframe key in keys) 
-//			print (key.time + ", " + key.value + ", " + key.inTangent + ", " + key.outTangent);
-		
 		openGoal = transform.localPosition;
 		closeGoal = new Vector3(0.101f, openGoal.y, 0.15f);
 		
@@ -87,9 +84,11 @@ public class UnitPane : MonoBehaviour {
 		
 		Color frameGoal = frameColor;
 		Color fillGoal = closeColor;
+		Color HiLiteGoal = Color.clear;
 		
 		if (unit.selected) {
 			closePos.x -= 0.025f;
+			HiLiteGoal = Color.red;
 			if (opened) {
 				fillGoal = openColor;
 			} else {
@@ -109,8 +108,10 @@ public class UnitPane : MonoBehaviour {
 		
 		currentFillColor = Color.Lerp(currentFillColor, fillGoal, GameTime.deltaTime * 5);
 		if (hidden) currentFillColor.a = 0.1f;
-		
 		renderer.material.SetColor("_FillColor",  currentFillColor);
+		
+		currentHiLiteColor = Color.Lerp(currentHiLiteColor, HiLiteGoal, GameTime.deltaTime * 5);
+		renderer.material.SetColor("_HiLiteColor",  currentHiLiteColor);
 		
 		transform.localPosition = Vector3.Lerp(closePos, openGoal, slideCurve.Evaluate(transAmount));
 	}
@@ -123,6 +124,7 @@ public class UnitPane : MonoBehaviour {
 			} else {
 				Events.Send(gameObject, "UnitSelected", unit);	
 				currentFillColor = flashColor;	
+				currentHiLiteColor = Color.yellow;	
 			}	
 		}
 		if (touchEvent.touchTarget == badge) {

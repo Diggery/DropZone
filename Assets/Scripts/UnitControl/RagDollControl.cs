@@ -136,7 +136,7 @@ public class RagDollControl : MonoBehaviour {
 		return newPath;
 	}
 	
-	public void setUp (RagDollData setUpData) {
+	public void SetUp (RagDollData setUpData) {
 		
 		root = setUpData.rootTransform;
 		string layerName = setUpData.layerName;
@@ -397,8 +397,8 @@ public class RagDollControl : MonoBehaviour {
 		rightElbowJointConfig.lowTwistLimit = -90.0f;
 		rightElbowJointConfig.highTwistLimit = 00.0f;
 		rightElbowJointConfig.swing1Limit = 0.0f;
-		setUpJoint(rightElbow, rightElbowJointConfig);		
-
+		setUpJoint(rightElbow, rightElbowJointConfig);	
+	
 	}
 	
 	CharacterJoint setUpJoint(Transform target, CharacterJointConfig config) {

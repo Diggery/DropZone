@@ -14,7 +14,8 @@ public class CameraControl : MonoBehaviour {
 	MapSelector mapSelector;
 	MapControl mapControl;
 	Vector2 mapSize;
-	
+	float widthOffset;
+	public AnimationCurve widthZCurve;
 	
 	
 	void Start () {
@@ -30,13 +31,16 @@ public class CameraControl : MonoBehaviour {
 		cameraOffset.x = (float)mapSize.x/2.0f;
 		
 		touchOffset.y = cameraLookAt.position.z;
+		
+		widthOffset = (float)mapSize.x / 1.5f;
+		
 	}
 	
 	void LateUpdate () {
 	
 
 		// lookAt position
-		Vector3 lookAtGoal = new Vector3(cameraOffset.x + (touchOffset.x * 0.15f), 0, touchOffset.y);
+		Vector3 lookAtGoal = new Vector3(cameraOffset.x + (touchOffset.x * 0.75f), 0, touchOffset.y);
 		if (mapSelector.visible) {
 			lookAtGoal = Vector3.Lerp(lookAtGoal, mapSelector.transform.position, 0.5f);
 		}
@@ -44,7 +48,8 @@ public class CameraControl : MonoBehaviour {
 		cameraLookAt.position = Vector3.Lerp(cameraLookAt.position, lookAtGoal, GameTime.deltaTime * cameraSpeed);
 		
 		// cameraRoot position
-		Vector3 rootPos = new Vector3(cameraOffset.x + touchOffset.x, 0.0f, cameraLookAt.position.z - cameraOffset.z);
+		float rootZPos = cameraLookAt.position.z - (cameraOffset.z * widthZCurve.Evaluate((cameraOffset.x + touchOffset.x)/(widthOffset * 1.5f)));
+		Vector3 rootPos = new Vector3(cameraOffset.x + touchOffset.x, 0.0f, rootZPos);
 		transform.position = Vector3.Lerp(transform.position, rootPos, GameTime.deltaTime * cameraSpeed);
 		
 		//camera rotation
@@ -63,7 +68,6 @@ public class CameraControl : MonoBehaviour {
 	
 	public void drag(TouchManager.TouchDragEvent touchEvent) {
 		
-		float widthOffset = (float)mapSize.x / 2.0f;
 		touchOffset.x = Mathf.Clamp(touchOffset.x - (((float)touchEvent.touchDelta.x / (float)Screen.width) * 20), -widthOffset, widthOffset);
 		touchOffset.y -= ((float)touchEvent.touchDelta.y / (float)Screen.height) * 20;
 	}

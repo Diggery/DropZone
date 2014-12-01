@@ -13,14 +13,14 @@ public class GameControl : MonoBehaviour {
 	
 	public GameObject[] profileCameras;
 	
+	SpawnControl spawnControl;
+	
 	void Start () {
 		AddFriendlyUnits ();
 		AddEnemyUnits ();	
 		
-		GameObject[] spawners = GameObject.FindGameObjectsWithTag ("Spawner");
-		foreach(GameObject spawner in spawners) {
-			spawner.SendMessage("SetUp", this);
-		}
+		spawnControl = GetComponent<SpawnControl>();
+		spawnControl.SetUp(this);
 	}
 	
 	void Update () {

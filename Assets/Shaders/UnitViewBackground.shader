@@ -4,6 +4,7 @@ Shader "DropZone/UnitView_Background" {
 		_MainTex ("Texture", 2D) = "white" { }
     	_FrameColor ("Frame Color", Color) = (1,1,1,1)
     	_FillColor ("Fill Color", Color) = (1,1,1,1)
+    	_HiLiteColor ("HiLite Color", Color) = (1,1,1,1)
 	}
 
 	SubShader {
@@ -23,6 +24,7 @@ Shader "DropZone/UnitView_Background" {
 			sampler2D _MainTex;
 			fixed4 _FrameColor;
 			fixed4 _FillColor;
+			fixed4 _HiLiteColor;
 			
 			struct vertex2fragment {
    			 	float4 pos : SV_POSITION;
@@ -49,7 +51,12 @@ Shader "DropZone/UnitView_Background" {
     			half4 fillColor = _FillColor;
     			fillColor.a =  fillColor.a * texColor.g;    			
     			
-    			half4 finalColor = lerp(fillColor, frameColor, frameColor.a);
+    			half4 hiLiteColor = _HiLiteColor;
+    			hiLiteColor.a =  hiLiteColor.a * texColor.b;    			
+    			    			
+    			half4 fill_and_frame = lerp(fillColor, frameColor, frameColor.a);
+    		    half4 finalColor = lerp(fill_and_frame, hiLiteColor, hiLiteColor.a);
+
     			return finalColor;
 			}
 			ENDCG
