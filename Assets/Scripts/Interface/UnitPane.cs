@@ -118,6 +118,9 @@ public class UnitPane : MonoBehaviour {
 	
 	
 	public void tap(TouchManager.TapEvent touchEvent) {
+	
+		if (dead) return;
+	
 		if (touchEvent.touchTarget == transform) {
 			if (unit.selected) {
 				unit.Deselect();
@@ -134,6 +137,9 @@ public class UnitPane : MonoBehaviour {
 	}
 	
 	public void doubleTap(TouchManager.DoubleTapEvent touchEvent) {
+	
+		if (dead) return;
+	
 		Events.Send(gameObject, "NeedCameraFocus", unit.transform);	
 	}
 		

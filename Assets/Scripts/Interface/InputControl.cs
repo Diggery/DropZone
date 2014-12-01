@@ -37,6 +37,9 @@ public class InputControl : MonoBehaviour {
 	
 	public void UnitSelected(Events.Notification notification) {
 		UnitController target = (UnitController)notification.data;
+		
+		CancelPath();
+		
 		if (target.transform.tag.Equals("Enemy")) {
 			selectedUnit.SetMainTarget(target.gameObject);
 		}
@@ -49,6 +52,7 @@ public class InputControl : MonoBehaviour {
 	}
 
 	public void Deselect() {
+
 		selectedUnit.Deselect();
 		selectedUnit = null;
 	}	
@@ -66,6 +70,7 @@ public class InputControl : MonoBehaviour {
 	public void CancelPath() {
 		if (selectedUnit) {
 			selectedUnit.GetComponent<PathMover>().CancelPathLine();
+			selector.HideSelector();
 			gameControl.SelectorResume();
 		}
 		

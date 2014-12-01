@@ -245,6 +245,9 @@ public class MainWeapon : MonoBehaviour {
 		GetComponent<Collider>().enabled = true;
 		transform.parent = null;
 		rigidbody.AddForce(Vector3.up  * 10);
+		Vector3 rotVector = Vector3.forward;
+		rotVector = Quaternion.AngleAxis(Random.Range(-45, 45), Vector3.right) * rotVector;
+		rigidbody.AddRelativeTorque(rotVector  * 100);
 		gameObject.layer = LayerMask.NameToLayer("RagDoll");
 		
 	}
