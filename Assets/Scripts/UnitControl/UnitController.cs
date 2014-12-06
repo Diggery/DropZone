@@ -34,6 +34,9 @@ public class UnitController : MonoBehaviour {
 	public GameObject unitSelectArt;
 	
 	public bool useColorFader;
+
+	Spawner spawner;
+	float lifeTime;	
 	
 	void Start () {
 	
@@ -99,6 +102,9 @@ public class UnitController : MonoBehaviour {
 		}
 
 		animator.SetBool("HasTarget", mainWeaponTarget);
+		
+		lifeTime += Time.deltaTime;
+		
 	}
 
 	public void SetUpColliders() {
@@ -106,6 +112,9 @@ public class UnitController : MonoBehaviour {
 		foreach (Collider obj in collisionObjs) {
 			obj.gameObject.AddComponent<InputRepeater>().SetTarget(transform);
 		}
+	}
+	public void SetSpawner(Spawner _spawner) {
+		spawner = _spawner;
 	}
 
 	public Animator GetAnimator() {
@@ -137,7 +146,7 @@ public class UnitController : MonoBehaviour {
 		
 		if (mapDataPoint.isCollision) return; // dont want to move into collision
 		
-		animator.SetTrigger("StartMoving");
+		if ( !pathMover.HasPath() ) animator.SetTrigger("StartMoving");
 		
 		if (mapDataPoint.coverPoint) 
 			mapDataPoint.coverPoint.Occupy();
@@ -292,6 +301,7 @@ public class UnitController : MonoBehaviour {
 		if (health < 0) 
 			Die ();
 	}
+	
 
 	public void Die() {
 		if (dead) return;
@@ -302,8 +312,12 @@ public class UnitController : MonoBehaviour {
 		dead = true;
 		GetComponent<RagDollControl>().enableRagDoll ();
 		
+		if (spawner) spawner.SpawnedUnitDead(lifeTime);
+		
 		//clean up some components
 		Destroy(GetComponent<LineDrawer>());
+		Destroy(GetComponent<UnitBehaviors>());
+		Destroy(GetComponent<EnemyAI>());
 		
 		//drop anything being held
 		gameObject.BroadcastMessage("DropItem", SendMessageOptions.DontRequireReceiver);

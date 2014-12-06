@@ -316,7 +316,7 @@ public class MapControl : MonoBehaviour {
 			}
 		}
 		if (!bestCover) {
-			print ("Cant find anything");
+			//print ("Cant find anything");
 			return currentPos;
 		}
 		

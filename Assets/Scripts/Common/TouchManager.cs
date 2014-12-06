@@ -78,6 +78,7 @@ public class TouchManager : MonoBehaviour {
 
 	public void tap(Transform touchTarget, Vector2 touchPosition)  {
 		if (!touchTarget) return;	
+		print (touchTarget.name + " was tapped");
 		touchTarget.BroadcastMessage("tap", new TapEvent(touchTarget, touchPosition), SendMessageOptions.DontRequireReceiver);
 	}
 	

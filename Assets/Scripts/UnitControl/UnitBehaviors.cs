@@ -6,6 +6,7 @@ public class UnitBehaviors : MonoBehaviour {
 	UnitController unitController;
 	MapControl mapControl;
 	PathMover pathMover;
+
 	
 	public void SetUp(UnitController _unitController, MapControl _mapControl, PathMover _pathMover) {
 		unitController = _unitController;
@@ -18,6 +19,7 @@ public class UnitBehaviors : MonoBehaviour {
 	}
 	
 	void Update() {
+		
 		if (Input.GetKeyUp (KeyCode.A))  {
 			FindCloseCorner();
 		}	
@@ -55,4 +57,7 @@ public class UnitBehaviors : MonoBehaviour {
 			}
 		}
 	}
+
+
+	
 }

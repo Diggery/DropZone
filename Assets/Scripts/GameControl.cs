@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GameControl : MonoBehaviour {
 
@@ -14,6 +15,9 @@ public class GameControl : MonoBehaviour {
 	public GameObject[] profileCameras;
 	
 	SpawnControl spawnControl;
+	
+	List<UnitController> squad = new List<UnitController>();
+	
 	
 	void Start () {
 		AddFriendlyUnits ();
@@ -66,12 +70,20 @@ public class GameControl : MonoBehaviour {
 			
 		}
 	}
+	
+	//Get unit prefabs
+	public GameObject GetFriendlyUnit() { return friendlySoldier; }
+	public GameObject GetEnemyUnit() { return enemySoldier; }
+	
 
-	public GameObject GetFriendlyUnit() {
-		return friendlySoldier;
+	//get active squad
+	public List<UnitController> GetSquad() { return squad; }
+
+	public void AddSquadMember(UnitController squadMember) { 
+		if (!squad.Contains(squadMember)) squad.Add(squadMember); 
 	}
-	public GameObject GetEnemyUnit() {
-		return enemySoldier;
+	public void RemoveSquadMember(UnitController squadMember) { 
+		if (squad.Contains(squadMember)) squad.Remove(squadMember); 
 	}
 	
 	public void SelectorPause() {

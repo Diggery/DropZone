@@ -5,6 +5,7 @@ public class EnemyAI : MonoBehaviour {
 
 	UnitController unitController;
 	MapControl mapControl;
+	Spawner spawner;
 	UnitBehaviors unitBehaviors;
 	
 	float boredom = 3.0f;
@@ -129,4 +130,6 @@ public class EnemyAI : MonoBehaviour {
 		}
 		return closest.transform;
 	}
+		
+
 }

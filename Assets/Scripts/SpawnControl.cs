@@ -31,8 +31,21 @@ public class SpawnControl : MonoBehaviour {
 	}
 	
 	void SpawnRandomUnit() {
-		Spawner spawner = spawners[Random.Range(0, spawners.Count)];
-		if (!spawner.Spawn()) print ("Failed to Spawn anything");
+		
+		List<Spawner> availableSpawners = new List<Spawner>();
+		
+		foreach (Spawner randomSpawner in spawners) {
+			if (randomSpawner.IsReadyToSpawn()) availableSpawners.Add(randomSpawner);
+		}
+		
+		if (availableSpawners.Count < 1) {
+			
+			return;
+		}
+		
+		Spawner spawner = spawners[Random.Range(0, availableSpawners.Count)];
+		UnitController newUnit = spawner.Spawn();
+		if (!newUnit) Debug.Log("Nothing spawned");
 	}
 	
 	void SpawnClosestUnit() {

@@ -27,17 +27,18 @@ public class UnitColorFade : MonoBehaviour {
 	}
 	
 	void Update () {
-		if (hitFade > 0) {
+		hitFade = Mathf.Clamp01(hitFade - (Time.deltaTime * 2));
+		healFade = Mathf.Clamp01(healFade - (Time.deltaTime * 2));
+		
+		if (hitFade >= 0) {
 			unitMat.SetFloat("_HitColorFade", hitFade);
 			if (headMat) headMat.SetFloat("_HitColorFade", hitFade);
 		}
-		hitFade = Mathf.Clamp01(hitFade - (Time.deltaTime * 2));
-		
-		if (healFade > 0) {
+		if (healFade >= 0) {
 			unitMat.SetFloat("_HealColorFade", healFade);
 			if (headMat) headMat.SetFloat("_HealColorFade", healFade);
 		}
-		healFade = Mathf.Clamp01(healFade - (Time.deltaTime * 2));
+		
 	}
 	
 	public void TakeDamage(Vector4 damageInfo) {

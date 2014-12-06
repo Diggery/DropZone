@@ -9,6 +9,8 @@ public class Spawner : MonoBehaviour {
 	
 	float coolDown = 3.0f;
 	float coolDownTimer = 3.0f;
+	
+	float dangerous = 0.0f;
 		
 	int maxUnits = 3;
 	List<UnitController> activeUnits = new List<UnitController>();
@@ -25,27 +27,48 @@ public class Spawner : MonoBehaviour {
 	void Update () {
 		if (!ready) return;
 		
-		CleanUpList();
-
-		
-		
+		if (dangerous > 0) {
+			dangerous -= Time.deltaTime;
+		}
+			
 		if (coolDownTimer > 0) {
 			coolDownTimer -= Time.deltaTime;
 		}
 	}
 	
-	public UnitController Spawn() {
-		if (coolDownTimer > 0) return null;
-		
-		if (activeUnits.Count >= maxUnits) return null;
+	public bool IsReadyToSpawn() {
 	
+		if (coolDownTimer > 0) {
+			Debug.Log(transform.name + " is still cooling down");
+			return false;
+		}
+		
+		if (activeUnits.Count >= maxUnits) {
+			Debug.Log(transform.name + " is already full");
+			return false;
+		}
+		
+		if (dangerous > 0){
+			Debug.Log(transform.name + " is too dangerous");
+			return false;
+		}	
+		
+		return true;
+	}
+	
+	public UnitController Spawn() {
+
+		if (!IsReadyToSpawn()) return null;
+		
 		if (!animation.IsPlaying("Spawn")) animation.Play("Spawn");
+		
 		
 		Vector3 spawnPos = transform.position + transform.forward;
 		GameObject newUnit = Instantiate(gameControl.GetEnemyUnit(), spawnPos, transform.rotation) as GameObject;
-		UnitController newController = newUnit.GetComponent<UnitController>();
 		
+		UnitController newController = newUnit.GetComponent<UnitController>();
 		newController.Spawn(rallyPoint.position);
+		newController.SetSpawner(this);
 		
 		activeUnits.Add (newController);
 		coolDownTimer = coolDown;
@@ -60,6 +83,16 @@ public class Spawner : MonoBehaviour {
 		rallyPoint.position = rallyPointPos;
 	}
 	
+	public void SpawnedUnitDead(float unitLifeTime) {
+	
+		CleanUpList();
+	
+		if (unitLifeTime < 3) {
+			Debug.Log("This place is too dangerous");
+			dangerous += 10.0f;
+		}
+	}
+	
 	void CleanUpList() {
 		List<UnitController> deadUnits = new List<UnitController>();
 		foreach(UnitController unit in activeUnits) {
@@ -71,4 +104,5 @@ public class Spawner : MonoBehaviour {
 			activeUnits.Remove(dead);
 		}
 	}
+	
 }
