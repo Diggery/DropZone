@@ -4,16 +4,19 @@ using System.Collections;
 public class BulletTrailControl : MonoBehaviour {
 
 	float timer ;
-
+	
+	public float trailLength = 1.0f;
+	public float trailSpeed = 1.0f;
+	
 	void Start () {
-		renderer.material.mainTextureScale = new Vector2(1.0f, transform.localScale.z / 100);
+		renderer.material.mainTextureScale = new Vector2(1.0f, transform.localScale.z / trailLength);
 	}
 	
 	void Update () {
 
-		timer += Time.deltaTime;
-		renderer.material.mainTextureOffset = new Vector2(0.0f, -timer);
-		if (timer > transform.localScale.z / 100) Destroy(gameObject);
+		timer += Time.deltaTime * trailSpeed;
+		renderer.material.mainTextureOffset = new Vector2(0.0f, -(timer - 0.25f));
+		if (timer > transform.localScale.z / trailLength) Destroy(gameObject);
 	
 	}
 }

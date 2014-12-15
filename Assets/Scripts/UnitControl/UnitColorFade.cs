@@ -44,9 +44,11 @@ public class UnitColorFade : MonoBehaviour {
 	public void TakeDamage(Vector4 damageInfo) {
 		hitFade = 1.0f;
 	}
-	
+	public void HitDeflected(Vector4 damageInfo) {
+		healFade = 1.0f;
+	}		
 	
 	public void RecieveHealing(float healAmount) {
-		hitFade = 1.0f;
+		healFade = 1.0f;
 	}
 }

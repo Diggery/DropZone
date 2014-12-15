@@ -6,7 +6,6 @@ public class CharacterConfig : MonoBehaviour {
 	UnitController unitController;
 	
 	public string nameSpace; 
-	public GameObject customHead;
 	Transform characterObj; 
 	
 	public RagDollControl.RagDollData setUpData;
@@ -30,14 +29,14 @@ public class CharacterConfig : MonoBehaviour {
 		newPath = newPath.Substring(0, newPath.Length - 1);
 		return newPath;
 	}
+	
 
-	void Awake() {
+	public void Init(GameObject helmet) {
 
 		unitController = GetComponent<UnitController>();
 		if (!unitController) Debug.Log("ERROR: Can't Find Player Controller");
 		unitController.SetTargetCollision(transform.Find(AddNameSpaceToPath("Skeleton_Group/Root_Skel/Spine1_Skel/Spine2_Skel")));
-
-		if (customHead) {
+		if (helmet) {
 			string neckPath = 
 				"Skeleton_Group/" +
 				"Root_Skel/" +
@@ -50,7 +49,7 @@ public class CharacterConfig : MonoBehaviour {
 			if (!neck) {
 				Debug.Log("No neck found at " + neckPath);
 			}
-			GameObject newHead = Instantiate(customHead, neck.position, neck.rotation) as GameObject;
+			GameObject newHead = Instantiate(helmet, neck.position, neck.rotation) as GameObject;
 			newHead.transform.parent = neck;
 			newHead.renderer.enabled = true;
 			if (unitController.useColorFader) {

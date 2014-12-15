@@ -6,8 +6,8 @@ public class GameControl : MonoBehaviour {
 
 	public string[] tempNames;
 
-	public GameObject friendlySoldier;
-	public GameObject enemySoldier;
+	public GameObject[] soldiers;
+	public GameObject[] helmets;
 	
 	public bool globalPause = false;
 	public bool pausedBySelector = false;
@@ -15,22 +15,19 @@ public class GameControl : MonoBehaviour {
 	public GameObject[] profileCameras;
 	
 	SpawnControl spawnControl;
+	MapControl mapControl;
 	
 	List<UnitController> squad = new List<UnitController>();
 	
 	
 	void Start () {
+		mapControl = GetComponent<MapControl> ();
+	
 		AddFriendlyUnits ();
 		AddEnemyUnits ();	
 		
 		spawnControl = GetComponent<SpawnControl>();
 		spawnControl.SetUp(this);
-	}
-	
-	void Update () {
-
-
-	
 	}
 
 	public void AddFriendlyUnits() {
@@ -39,21 +36,20 @@ public class GameControl : MonoBehaviour {
 		for (int i = 0; i < count; i++) {
 		
 			//create the unit and place it at the marker;
-			GameObject newUnit = Instantiate(GetFriendlyUnit(), markers[i].transform.position, markers[i].transform.rotation) as GameObject;
+			MapControl.MapDataPoint mapCell = mapControl.GetMapData(markers[i].transform.position);	
+			GameObject newUnit = Instantiate(GetUnitType("Squadie"), mapCell.mapPos, markers[i].transform.rotation) as GameObject;
+			newUnit.GetComponent<CharacterConfig>().Init(GetHelmetType("SquadieHelmet"));
 			newUnit.name = "Unit" + (i + 1);
 			UnitController unitController = newUnit.GetComponent<UnitController>();
 			unitController.unitName = tempNames[i];
-			
-			//create a camera for the unit pane 
-			GameObject profileCamera = Instantiate(profileCameras[i], markers[i].transform.position, markers[i].transform.rotation) as GameObject;
-			ChaseCam chaseCam = profileCamera.GetComponent<ChaseCam>();
-			chaseCam.SetLookAtTarget(unitController.headModel.transform);
-			chaseCam.RandomizeCameraPos();
-			
+			AddSquadMember(unitController);
+		
 			//link the unit to the unit pane
 			InterfaceControl interfaceControl = Camera.main.gameObject.GetComponent<InterfaceControl>();
 			if (!interfaceControl) Debug.Log("No InterfaceControl found on the camera");
-			interfaceControl.EnableUnitPane(unitController);			
+			interfaceControl.EnableUnitPane(unitController);		
+			
+			mapCell.isOccupied = true;
 			
 			Destroy(markers[i]);
 		}
@@ -62,22 +58,55 @@ public class GameControl : MonoBehaviour {
 	public void AddEnemyUnits() {
 		GameObject[] markers = GameObject.FindGameObjectsWithTag ("EnemyMarker");
 		foreach (GameObject marker in markers) {
-			GameObject newUnit = Instantiate(GetEnemyUnit(), marker.transform.position, marker.transform.rotation) as GameObject;
-			newUnit.name = "Enemy_" + newUnit.GetInstanceID();
+			GameObject soldierPrefab;
+			GameObject helmetPrefab;	
+			bool isCaptain = false;
+		
+			if (marker.name.Equals("Captain")) {
+				soldierPrefab = GetUnitType("EnemySoldier");
+				helmetPrefab = GetHelmetType("EnemyCaptainHelmet");
+				isCaptain = true;
+			} else {
+				soldierPrefab = GetUnitType("EnemySoldier");
+				helmetPrefab = GetHelmetType("EnemyHelmet");
+			}
+			GameObject newUnit = Instantiate(soldierPrefab, marker.transform.position, marker.transform.rotation) as GameObject;
+			newUnit.GetComponent<CharacterConfig>().Init(helmetPrefab);
+			UnitController unitController = newUnit.GetComponent<UnitController>();
+			if (isCaptain) {
+				newUnit.AddComponent<EnemyCaptain>().SetUp(unitController);
+				unitController.SetStats(UnitStatistics.GetUnitStats("Captain"));
+			} else {
+				unitController.SetStats(UnitStatistics.GetUnitStats("Soldier"));
+			}
 			if (marker.name.Equals("Dummy")) 
-				newUnit.GetComponent<UnitController>().dummy = true;
+				unitController.dummy = true;
 			Destroy(marker);
-			
 		}
 	}
 	
 	//Get unit prefabs
-	public GameObject GetFriendlyUnit() { return friendlySoldier; }
-	public GameObject GetEnemyUnit() { return enemySoldier; }
+	public GameObject GetUnitType(string unitName) { 
+		foreach (GameObject soldier in soldiers) {
+			if (soldier.name.Equals(unitName)) return soldier;
+		}
+		return soldiers[0]; 
+	}
+
 	
+	//Get Helmet prefabs
+	public GameObject GetHelmetType(string helmetName) { 
+		foreach (GameObject helmet in helmets) {
+			if (helmet.name.Equals(helmetName)) return helmet;
+		}
+		return helmets[0]; 
+	}
+
 
 	//get active squad
-	public List<UnitController> GetSquad() { return squad; }
+	public List<UnitController> GetSquad() { 
+		return squad; 
+	}
 
 	public void AddSquadMember(UnitController squadMember) { 
 		if (!squad.Contains(squadMember)) squad.Add(squadMember); 

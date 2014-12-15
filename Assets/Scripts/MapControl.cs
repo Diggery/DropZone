@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -11,21 +12,25 @@ public class MapControl : MonoBehaviour {
 	public float showCoverRange;
 	
 	public GameObject coverPointPrefab;
-	Transform mapSelector;
+	GameControl gameControl;
 
 	List<CoverPoint> allCoverPoints = new List<CoverPoint>();
 	
 	public class MapDataPoint {	
-		public Vector2 mapPos;
+		public Vector3 mapPos;
 		public CoverPoint coverPoint;
 		public bool isClaimed;
+		public bool isOccupied;
 		public bool isCollision;
+		public Vector2[] cellsVisible;
 		
-		public MapDataPoint(Vector2 mapPos, CoverPoint coverPoint, bool isClaimed, bool isCollision) {
+		public MapDataPoint(Vector3 mapPos, CoverPoint coverPoint, bool isClaimed,  bool isOccupied, bool isCollision, Vector2[] cellsVisible) {
 			this.mapPos = mapPos;
 			this.coverPoint = coverPoint;
 			this.isClaimed = isClaimed;
+			this.isOccupied = isOccupied;
 			this.isCollision = isCollision;
+			this.cellsVisible = cellsVisible;
 		}
 	}
 
@@ -33,7 +38,9 @@ public class MapControl : MonoBehaviour {
 		
 
 	void Start () {
-		
+		localCheckDistance *= localCheckDistance;
+		showCoverRange *= showCoverRange;
+				
 		Vector2 MapStartPosition = new Vector2(-1, -1);
 		Vector2 MapEndPosition = new Vector2(mapSize.x + 1, mapSize.y + 1);
 			
@@ -41,24 +48,16 @@ public class MapControl : MonoBehaviour {
 		
 		//create all the cover points
 		mapData = new MapDataPoint[Mathf.FloorToInt(mapSize.x) * Mathf.FloorToInt(mapSize.y)];
-		AddCoverPoints();
+		FillOutMapData();
 
-		
 		//now that they are created, set up any data on them
 		foreach (CoverPoint cover in allCoverPoints) {
-			cover.SetVisibleCells();
+			//cover.SetVisibleCells();
 			cover.SetCornerFlags(); 
 		}
 
-		localCheckDistance *= localCheckDistance;
-		showCoverRange *= showCoverRange;
-		
-		
-	}
-	
-	public void SetMapSelector (Transform _mapSelector) {
-		mapSelector = _mapSelector;
-	
+		gameControl = GetComponent<GameControl>();
+		if (!gameControl) Debug.Log ("Map can't find gameControl");
 	}
 
 	public float GetGridSize() {
@@ -70,9 +69,7 @@ public class MapControl : MonoBehaviour {
 	}
 
 	public int[] GetCover(Vector3 mapPoint) {
-		
 		int north = 0, east = 0, south = 0, west = 0;
-		
 		mapPoint.y += (0.25f * gridSize);
 		LayerMask terrainMask = 1 << LayerMask.NameToLayer("Ground");
 		RaycastHit hit;
@@ -148,38 +145,96 @@ public class MapControl : MonoBehaviour {
 		return 0.0f;
 	}
 
-	public CoverPoint GetCoverPoint(Vector3 mapPos) {
 	
-		float x = mapPos.x/gridSize;
-		float y = mapPos.z/gridSize;
-		
-		MapDataPoint mapDataPoint = GetMapData(new Vector2(x, y));
-	
-		return mapDataPoint.coverPoint;
+	Vector2 MapPosToCoor(Vector3 mapPos) {
+		Vector2 coor = new Vector2(Mathf.FloorToInt(mapPos.x/gridSize), Mathf.FloorToInt(mapPos.z/gridSize));
+		return coor;
 	}
 	
-	public List<CoverPoint> GetCoverPointsInRange(Vector3 mapPos, float searchRange) {
+	Vector3 CoorToMapPos(Vector2 coor) {
+		Vector3 mapPos = new Vector3(coor.x * gridSize, transform.position.y, coor.y * gridSize);
+		return mapPos;
+	}	
+	
+	void SetMapData(Vector2 coor, MapDataPoint mapDataPoint) {
+		int xPos = Mathf.FloorToInt(coor.x);
+		int yPos = Mathf.FloorToInt(coor.y);
+		
+		mapData[yPos * Mathf.FloorToInt(mapSize.x) + xPos] = mapDataPoint;
+	}
+	
+	public MapDataPoint GetMapData(Vector3 mapPos) {
+		float x = mapPos.x/gridSize;
+		float y = mapPos.z/gridSize;
+		return GetMapData(new Vector2(x, y));
+	}
+	
+	MapDataPoint GetMapData(Vector2 coor) {
+		int xPos = Mathf.FloorToInt(coor.x);
+		int yPos = Mathf.FloorToInt(coor.y);
+		return mapData[yPos * Mathf.FloorToInt(mapSize.x) + xPos];
+	}
+
+
+	public CoverPoint GetCoverPoint(Vector3 mapPos) {
+		float x = mapPos.x/gridSize;
+		float y = mapPos.z/gridSize;
+		return GetMapData(new Vector2(x, y)).coverPoint;
+	}
+	
+	List<CoverPoint> GetCoverPointsInRange(Vector3 mapPos, float searchRange) {
+		List<CoverPoint> coverPointsInRange = new List<CoverPoint>();
+		
+		List<MapDataPoint> cellsInRange = GetMapCellsInRange(mapPos, searchRange); 
+		
+		for ( int i = 0; i < cellsInRange.Count; i++) {
+			if (cellsInRange[i].coverPoint) 
+				coverPointsInRange.Add(cellsInRange[i].coverPoint);
+		}
+
+		return coverPointsInRange;
+	}
+	
+	List<MapDataPoint> GetMapArea(Vector2 coor, int range) {
+		int xPos = Mathf.FloorToInt(coor.x);
+		int yPos = Mathf.FloorToInt(coor.y);
+		
+		int startX = Mathf.Max(xPos - range, 0);
+		int startY = Mathf.Max(yPos - range, 0);
+		int endX = Mathf.Min(xPos + range, Mathf.FloorToInt(mapSize.x) - 1);
+		int endY = Mathf.Min(yPos + range, Mathf.FloorToInt(mapSize.y) - 1);
+		
+		List<MapDataPoint> mapDataInRange = new List<MapDataPoint>();
+		
+		for( int y = startY; y <= endY; ++y )
+			for( int x = startX; x <= endX; ++x )
+				mapDataInRange.Add ( mapData[ y * Mathf.FloorToInt(mapSize.x) + x ] );
+		
+		return mapDataInRange;
+	}		
+		
+	public List<MapDataPoint> GetMapCellsInRange(Vector3 mapPos, float searchRange) {
 		
 		float x = (mapPos.x - 0.5f)/gridSize;
 		float y = (mapPos.z - 0.5f)/gridSize;
 		List<MapDataPoint> mapArea = GetMapArea(new Vector2(x, y), Mathf.CeilToInt(searchRange));
-		
-		List<CoverPoint> coverPointsInRange = new List<CoverPoint>();
-		
-		foreach (MapDataPoint cell in mapArea) 
-			if (cell.coverPoint) coverPointsInRange.Add(cell.coverPoint);
-			
-		return coverPointsInRange;
-	}
-		
-			
-	public void AddCoverPoints() {
+		return mapArea;
+	}	
+				
+	public void FillOutMapData() {
 		GameObject coverContainer = new GameObject("CoverPoints");
 				
 		for (int x = 0; x < mapSize.x; x++) {
 			for (int y = 0; y < mapSize.y;y++) {
 			
-				MapDataPoint mapDataPoint = new MapDataPoint(new Vector2((x + 0.5f) * gridSize, (y + 0.5f) * gridSize), null, false, false);
+				MapDataPoint mapDataPoint = new MapDataPoint(
+					new Vector3((x + 0.5f) * gridSize, 0.0f, (y + 0.5f) * gridSize), 
+					null, 
+					false, 
+					false, 
+					false, 
+					new Vector2[0]
+					);
 				
 				RaycastHit hit;
 				Ray ray = new Ray(new Vector3((x + 0.5f) * gridSize, 10.0f, (y + 0.5f) * gridSize) , Vector3.down);
@@ -208,58 +263,19 @@ public class MapControl : MonoBehaviour {
 					print ("Missed Point");	
 					Debug.DrawLine(ray.origin, ray.origin + (ray.direction * 10), Color.red, 10);
 				}
+				mapDataPoint.cellsVisible = SetVisibleCells(mapDataPoint.mapPos);
 				SetMapData(new Vector2(x, y), mapDataPoint);
 			}
 		}
 	}
-	
-	
-	void SetMapData(Vector2 coor, MapDataPoint mapDataPoint) {
-		int xPos = Mathf.FloorToInt(coor.x);
-		int yPos = Mathf.FloorToInt(coor.y);
-		
-		mapData[yPos * Mathf.FloorToInt(mapSize.x) + xPos] = mapDataPoint;
-	}
-	
-	public MapDataPoint GetMapData(Vector3 mapPos) {
-		float x = (mapPos.x - 0.5f)/gridSize;
-		float y = (mapPos.z - 0.5f)/gridSize;
-		return GetMapData(new Vector2(x, y));
-	}
-	
-	MapDataPoint GetMapData(Vector2 coor) {
-		
-		int xPos = Mathf.FloorToInt(coor.x);
-		int yPos = Mathf.FloorToInt(coor.y);
-		
-		return mapData[yPos * Mathf.FloorToInt(mapSize.x) + xPos];
-	}
-	
-	List<MapDataPoint> GetMapArea(Vector2 coor, int range) {
-		int xPos = Mathf.FloorToInt(coor.x);
-		int yPos = Mathf.FloorToInt(coor.y);
-		
-		int startX = Mathf.Max(xPos - range, 0);
-		int startY = Mathf.Max(yPos - range, 0);
-		int endX = Mathf.Min(xPos + range, Mathf.FloorToInt(mapSize.x) - 1);
-		int endY = Mathf.Min(yPos + range, Mathf.FloorToInt(mapSize.y) - 1);
 
-		List<MapDataPoint> mapDataInRange = new List<MapDataPoint>();
-		
-		for( int y = startY; y <= endY; ++y )
-			for( int x = startX; x <= endX; ++x )
-				mapDataInRange.Add ( mapData[ y * Mathf.FloorToInt(mapSize.x) + x ] );
-				
-		return mapDataInRange;
-	}
-	
-	public void ShowCoverPoints() {
+	public void ShowCoverPoints(Vector3 mapPos) {
 
-		List<CoverPoint> coverPoints = GetCoverPointsInRange(mapSelector.position, showCoverRange + gridSize);
+		List<CoverPoint> coverPoints = GetCoverPointsInRange(mapPos, showCoverRange + gridSize);
 		
-		foreach (CoverPoint coverPoint in coverPoints) {
-			float distanceToCover = (coverPoint.transform.position - mapSelector.position).sqrMagnitude;
-			coverPoint.SetFade(1 - distanceToCover/(showCoverRange - 1));
+		for(int i = 0; i < coverPoints.Count; i++) {
+			float distanceToCover = (coverPoints[i].transform.position - mapPos).sqrMagnitude;
+			coverPoints[i].SetFade(1 - distanceToCover/(showCoverRange - 1));
 		}		
 	}
 	
@@ -268,7 +284,24 @@ public class MapControl : MonoBehaviour {
 			coverPoint.SetFade(0);
 		}		
 	}
+	public void MarkMapCell(Vector3 mapPos) {
+		MapDataPoint mapCell = GetMapData(mapPos);
+		GameObject marker = GameObject.CreatePrimitive(PrimitiveType.Cube);
+		marker.transform.position = new Vector3(mapCell.mapPos.x, 1.25f, mapCell.mapPos.z);
+		marker.transform.localScale = new Vector3(0.25f, 2f, 0.25f);
+		BoxCollider coll = marker.GetComponent<BoxCollider>();
 		
+		if (mapCell.isCollision) {
+			marker.renderer.material.color = Color.red;
+		}
+		
+		if (mapCell.coverPoint) {
+			marker.renderer.material.color = Color.green;
+		}
+		
+		Destroy(coll);
+	}		
+	
 	public void MarkMapArea(Vector2 mapPos, int range) {
 	
 		List<MapDataPoint> mapCellsInRange = GetMapArea(mapPos, range);
@@ -290,84 +323,103 @@ public class MapControl : MonoBehaviour {
 			Destroy(coll);
 		}
 	}
+
+	public bool IsPositionVisible(Vector3 pos1, Vector3 pos2) {
+		MapDataPoint mapData1 = GetMapData(pos1);
+		MapDataPoint mapData2 = GetMapData(pos2);
+		
+		bool exists = Array.Exists(
+			mapData1.cellsVisible,
+			delegate(Vector2 coor) { return coor.Equals(MapPosToCoor(mapData2.mapPos)); }
+		);	
+		
+		return exists;
+	}
 	
-	public Vector3 FindBestCover(Vector3 currentPos, float searchRange) {
+	public Vector3 FindBestCover(Vector3 currentPos, float searchRange, string tag) {
 		CoverPoint bestCover = null;
 		float bestScore = Mathf.NegativeInfinity;
 		
 		GameObject[] targets;
 		
-		if (transform.tag.Equals("Player")) {
+		if (tag.Equals("Player")) {
 			targets = GameObject.FindGameObjectsWithTag ("Enemy");
-		} else {
+		} else if (tag.Equals("Enemy")) {
 			targets = GameObject.FindGameObjectsWithTag ("Player");
-		}
-		
-		List<CoverPoint> pointsInRange = GetCoverPointsInRange(currentPos, searchRange);
-		if (pointsInRange.Count < 1) return currentPos;
-		
-		foreach (CoverPoint coverPoint in pointsInRange) {
-			int coverRating = coverPoint.GetCoverRating(targets);
-			if (!coverPoint.IsOccupied()) {
-				if (coverRating > bestScore) {
-					bestCover = coverPoint;
-					bestScore = coverRating;
-				}
-			}
-		}
-		if (!bestCover) {
-			//print ("Cant find anything");
+		} else {
 			return currentPos;
 		}
 		
+		MapDataPoint[] cellsInRange = GetMapCellsInRange(currentPos, searchRange).ToArray(); 
+		if (cellsInRange.Length < 1) return currentPos;
+		
+		for ( int i = 0; i < cellsInRange.Length; i++) {
+			if (cellsInRange[i].isOccupied) continue;
+			if (!cellsInRange[i].coverPoint) continue;
+			
+			float coverRating = (float)cellsInRange[i].coverPoint.GetCoverRating(targets);
+			float coverDistance = (cellsInRange[i].mapPos - currentPos).sqrMagnitude/(searchRange * searchRange);
+			
+			if (coverRating - coverDistance > bestScore) {
+				bestCover = cellsInRange[i].coverPoint;
+				bestScore = coverRating - coverDistance;
+			}
+		}
+		
+		if (!bestCover) {
+			print ("no cover found at " + currentPos);
+			return currentPos;
+		}	
 		return bestCover.transform.position;
 	}
 	
-	public Vector3 FindSafestCover(Vector3 currentPos, float searchRange) {
-		
+	public Vector3 FindSafestCover(Vector3 currentPos, float searchRange, string tag) {
 		GameObject[] targets;
 		
-		if (transform.tag.Equals("Player")) {
+		if (tag.Equals("Player")) {
 			targets = GameObject.FindGameObjectsWithTag ("Enemy");
-		} else {
+		} else if (tag.Equals("Enemy")) {
 			targets = GameObject.FindGameObjectsWithTag ("Player");
-		}	
+		} else {
+			return currentPos;
+		}
 		
-		List<CoverPoint> pointsInRange = GetCoverPointsInRange(currentPos, searchRange); 
-		Dictionary<CoverPoint, float> safePoints = new Dictionary<CoverPoint, float>();
-		foreach (CoverPoint coverPoint in pointsInRange) {
+		MapDataPoint[] cellsInRange = GetMapCellsInRange(currentPos, searchRange).ToArray(); 
+		List<MapDataPoint> cellThatAreSafe = new List<MapDataPoint>();
+		float closest = Mathf.Infinity;
+		for ( int i = 0; i < cellsInRange.Length; i++) {
+			if (!cellsInRange[i].coverPoint) continue;
 			bool visible = false;
 			foreach (GameObject target in targets) {
-				if (coverPoint.IsTargetVisible(target.transform) || coverPoint.IsTargetVisibleFromCover(target.transform)) {
-					visible = true;
+				if ((target.transform.position - currentPos).sqrMagnitude < localCheckDistance) {
+					if (cellsInRange[i].coverPoint.IsCorner()) {
+						Vector3[] firingPositions = cellsInRange[i].coverPoint.GetFiringPositions();
+						for (int j = 0; j < firingPositions.Length; j++) {
+							if (IsPositionVisible(cellsInRange[i].mapPos, firingPositions[j])) {
+								visible = true;
+							}						
+						}
+					}
+					if (IsPositionVisible(cellsInRange[i].mapPos, target.transform.position)) {
+						visible = true;
+					}
 				}
 			}
 			
 			if (!visible) {
-				if (!safePoints.ContainsKey(coverPoint) && GetCoverPoint(currentPos) != coverPoint && !coverPoint.IsOccupied()) {
-					float sqrDistance = (coverPoint.transform.position - currentPos).sqrMagnitude;
-					safePoints.Add(coverPoint, sqrDistance);
+				float sqrDistance = (cellsInRange[i].mapPos - currentPos).sqrMagnitude;
+				if (sqrDistance < closest) {
+					closest = sqrDistance;
+					cellThatAreSafe.Insert(0, cellsInRange[i]);
 				}
 			}
 		}
-		if (safePoints.Count < 1) 
-			return currentPos;
-		
-		CoverPoint closestPoint = null;
-		float closest = Mathf.Infinity;
-		
- 		foreach(KeyValuePair<CoverPoint, float> safePoint in safePoints) {
 
-			if (safePoint.Value < closest) {
-				closestPoint = safePoint.Key;
-				closest = safePoint.Value;
-			}
-		}
-		if (!closestPoint) {
+		if (cellThatAreSafe.Count < 1) {
 			return currentPos;
 		}
 		
-		return closestPoint.transform.position;
+		return cellThatAreSafe[0].mapPos;
 	}
 	
 	public bool IsDestinationClear(Vector3 location, Vector3 currentPos) {
@@ -404,54 +456,72 @@ public class MapControl : MonoBehaviour {
 	} 
 	
 	public Vector3 FindCorner(Vector3 currentPos, float searchRange) {
-		List<CoverPoint> pointsInRange = GetCoverPointsInRange(currentPos, searchRange); 
+		MapDataPoint[] cellsInRange = GetMapCellsInRange(currentPos, searchRange).ToArray(); 
 		
 		CoverPoint bestCorner = null;
 		float dist = Mathf.Infinity;
-		foreach (CoverPoint coverPoint in pointsInRange) {
-			if (!coverPoint.IsCorner()) continue;
-			float coverDist = (coverPoint.transform.position - currentPos).sqrMagnitude;
+		for ( int i = 0; i < cellsInRange.Length; i++) {
+			if (!cellsInRange[i].coverPoint) continue;
+			if (!cellsInRange[i].coverPoint.IsCorner()) continue;
+			float coverDist = (cellsInRange[i].mapPos - currentPos).sqrMagnitude;
 			if (coverDist < dist) {
 				dist = coverDist;
-				bestCorner = coverPoint;
-				
+				bestCorner = cellsInRange[i].coverPoint;
 			}
 		}
 			
 		if (!bestCorner) {
-			return currentPos;
+			return FindOpenPosition(currentPos, searchRange);
 		}
 		
 		return bestCorner.transform.position;
 	}
 	
+	public Vector3 FindOpenPosition(Vector3 mapPos, float searchRange) {
 	
-	public bool IsDestinationClaimed(Vector3 location) {
-		GameObject[] enemies = GameObject.FindGameObjectsWithTag ("Enemy");
-		bool isClaimed = true;
-		foreach (GameObject enemy in enemies) {
-			
-			UnitController enemyController = enemy.GetComponent<UnitController>();
-			Vector3 destination;
-			if (!enemyController) {
-				print(enemy.name + " has no controller");
-				destination = Vector3.zero; //not sure why there is this here
-			} else {
-				destination = enemyController.currentDestination;
-			}			
-			if ((destination - location).sqrMagnitude < gridSize)
-				isClaimed = false;
+		if (searchRange > 50) {
+			Debug.Log ("Too large of range, or no possible spots");
+			return mapPos;
 		}
-		
-		GameObject[] friends = GameObject.FindGameObjectsWithTag ("Player");
-		foreach (GameObject friend in friends) {
-			Vector3 destination = friend.GetComponent<UnitController>().currentDestination;
-			
-			if ((destination - location).sqrMagnitude < gridSize) 
-				isClaimed = false;
+		List<MapDataPoint> mapCellsInRange = GetMapCellsInRange(mapPos, searchRange);
+		Vector3 closestPos = mapPos;
+		float dist = Mathf.Infinity;
+		bool posFound = false;		
+		foreach (MapDataPoint mapcell in mapCellsInRange) {
+			if (!mapcell.isClaimed && !mapcell.isOccupied && !mapcell.isCollision) {
+				Vector3 newPos = new Vector3(mapcell.mapPos.x, mapPos.y, mapcell.mapPos.y);
+				float pointDist = (mapPos - newPos).sqrMagnitude;
+				if (pointDist < dist) {
+					dist = pointDist;
+					closestPos = newPos;
+					posFound = true;
+				}
+			}
 		}
+		if (!posFound) closestPos = FindOpenPosition(closestPos, searchRange + 5);
+		return closestPos;
+	}
+
+	Vector2[] SetVisibleCells(Vector3 mapPos) {
 		
-		return isClaimed;	
-	} 
+		List<Vector2> visibleCells = new List<Vector2>();
+		for (int x = 0; x < mapSize.x; x++) {
+			for (int y = 0; y < mapSize.y; y++) {
+				if ((mapPos - CoorToMapPos(new Vector2(x,y))).sqrMagnitude < localCheckDistance) {
+					if (CheckLOS(mapPos, new Vector2(x, y))) visibleCells.Add(new Vector2(x,y));
+				}
+			}
+		}
+		return visibleCells.ToArray();
+	}
+	
+	bool CheckLOS(Vector3 start, Vector2 coor) {
+		Vector3 origin = new Vector3(start.x, 0.75f, start.z);
+		Vector3 destination = new Vector3((coor.x + 0.5f) * gridSize, 0.75f, (coor.y + 0.5f) * gridSize);
 		
+		LayerMask terrainMask = 1 << LayerMask.NameToLayer("Ground");
+		
+		return !Physics.Linecast(origin, destination, terrainMask);
+	}
+	
 }

@@ -5,13 +5,12 @@ public class UnitBehaviors : MonoBehaviour {
 
 	UnitController unitController;
 	MapControl mapControl;
-	PathMover pathMover;
-
 	
-	public void SetUp(UnitController _unitController, MapControl _mapControl, PathMover _pathMover) {
+	public bool retreating;
+		
+	public void SetUp(UnitController _unitController, MapControl _mapControl) {
 		unitController = _unitController;
 		mapControl = _mapControl;
-		pathMover = _pathMover;
 		
 		if (transform.tag.Equals("Enemy")) {
 			gameObject.AddComponent<EnemyAI>().SetUp(_unitController, _mapControl, this);
@@ -21,43 +20,54 @@ public class UnitBehaviors : MonoBehaviour {
 	void Update() {
 		
 		if (Input.GetKeyUp (KeyCode.A))  {
-			FindCloseCorner();
+			FindNewPosition();
 		}	
 	}
 	
-	public void FindCoverAtPosition(Vector3 destination) {
-		unitController.MoveTo(mapControl.FindBestCover(destination, 5));
+	public void MoveComplete() {
+		retreating = false;
 	}
 
+	
+	public void FindCoverAtPosition(Vector3 destination) {
+		if (retreating) return;
+		unitController.MoveTo(mapControl.FindBestCover(destination, 3, transform.tag));
+	}
+
+	public void MoveCloseTo(Vector3 destination) {
+		if (retreating) return;
+		unitController.MoveTo(mapControl.FindOpenPosition(destination, 3));
+	}
+	
 	public void FindNewPosition() {
-		unitController.MoveTo(mapControl.FindBestCover(transform.position, 10));
+		if (retreating) return;
+		unitController.MoveTo(mapControl.FindBestCover(transform.position, 10, transform.tag));
 	}	
 	
 	public void FindCloseCover() {
-		unitController.MoveTo(mapControl.FindBestCover(transform.position, 3.0f));
+		if (retreating) return;
+		MapControl.MapDataPoint mapCell = mapControl.GetMapData(transform.position);
+		if (!mapCell.coverPoint || !mapCell.coverPoint.IsCorner())
+			unitController.MoveTo(mapControl.FindBestCover(transform.position, 3.0f, transform.tag));
 	}
 		
 	public void FindSafePosition() {
-		unitController.MoveTo(mapControl.FindSafestCover(transform.position, 10));
+		if (retreating) return;
+		unitController.MoveTo(mapControl.FindSafestCover(transform.position, 10, transform.tag));
 	}
-	
+	public void FindSafePosition(Vector3 destination) {
+		if (retreating) return;
+		unitController.MoveTo(mapControl.FindSafestCover(destination, 5, transform.tag));
+	}	
 	public void FindCloseCorner() {
+		if (retreating) return;
 		unitController.MoveTo(mapControl.FindCorner(transform.position, 3));
 	}	
 			
 	public void SearchForEnemy(Vector3 lastKnownPosition) {
-		unitController.MoveTo(mapControl.FindSafestCover(lastKnownPosition, 7));
+		if (retreating) return;
+		unitController.MoveTo(mapControl.FindSafestCover(lastKnownPosition, 7, transform.tag));
 	}
-	
-	public void TakeDamage(Vector4 damageInfo) {
-		//print ("Health is " + unitController.GetNormalizedHealth());
-		if (unitController.GetNormalizedHealth() < 0.5f) {
-			if (!pathMover.HasPath()) { 
-				FindSafePosition();
-			}
-		}
-	}
-
 
 	
 }

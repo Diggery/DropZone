@@ -8,25 +8,38 @@ public class EnemyAI : MonoBehaviour {
 	Spawner spawner;
 	UnitBehaviors unitBehaviors;
 	
+	int rank = 0;
+	
 	float boredom = 3.0f;
 	float boredRate = Random.Range(0.75f, 1.0f);
+	
 		
 	public void SetUp(UnitController _unitController, MapControl _mapControl, UnitBehaviors _unitBehaviors) {
 		unitController = _unitController;
+		spawner = unitController.GetSpawner();
 		mapControl = _mapControl;
 		unitBehaviors = _unitBehaviors;
 		
-		Events.Listen(gameObject, "EnemySpotted");
+		if (gameObject.name.Contains("Captain")) rank = 1;
 		
+		Events.Listen(gameObject, "EnemySpotted");
 	}
 	
-	void Update () {
+	public void SetRank(int newRank) {
+		rank = newRank;
+	}
+	public int GetRank() {
+		return rank;
+	}	
 	
-		boredom += Time.deltaTime * boredRate;
+	void Update () {
+		if (unitBehaviors.retreating) return;
+		if (!unitController.enemyCaptain) 
+			boredom += Time.deltaTime * boredRate;
 		
 		CoverPoint currentCoverPoint = unitController.GetCurrentCoverPoint();
 
-		if (boredom > 5 && !currentCoverPoint) {
+		if (boredom > 5) {
 			boredom = 0;
 			unitBehaviors.FindCloseCorner();
 		}
@@ -50,6 +63,7 @@ public class EnemyAI : MonoBehaviour {
 	}
 	
 	public void TakeDamage(Vector4 damageInfo) {
+		if (unitBehaviors.retreating) return;
 		boredom = 0.0f;
 		CoverPoint cover = unitController.GetCurrentCoverPoint();
 		if (!cover) {
@@ -61,6 +75,16 @@ public class EnemyAI : MonoBehaviour {
 				}
 			}
 		}
+		if (rank < 1) {
+			if (unitController.GetNormalizedHealth() < 0.3f) {
+				unitBehaviors.FindSafePosition(spawner.transform.position);
+			}
+		}
+	}
+	
+	
+	public void ResetAI() {
+		boredom = 20f;
 	}
 	
 	public void Alert() {
@@ -108,7 +132,7 @@ public class EnemyAI : MonoBehaviour {
 		
 		averagePos.z = Mathf.Lerp (transform.position.z, averagePos.z, 0.5f);
 		
-		Vector3 coverAtDest = mapControl.FindBestCover(averagePos, 5);
+		Vector3 coverAtDest = mapControl.FindBestCover(averagePos, 5, transform.tag);
 		
 		if (coverAtDest != averagePos) {
 			unitController.MoveTo(coverAtDest);
@@ -130,6 +154,8 @@ public class EnemyAI : MonoBehaviour {
 		}
 		return closest.transform;
 	}
-		
-
+	
+	void OnDestroy() {
+		if (unitController.enemyCaptain) unitController.enemyCaptain.SquadMemberDead(unitController);
+	}
 }

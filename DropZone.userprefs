@@ -1,20 +1,27 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/UnitControl/UnitColorFade.cs">
+    <Files>
+      <File FileName="Assets/Scripts/WeaponControl/MainWeapon.cs" Line="179" Column="53" />
+      <File FileName="Assets/Scripts/UnitControl/UnitStatistics.cs" Line="9" Column="1" />
+      <File FileName="Assets/Scripts/MapSelector.cs" Line="123" Column="69" />
+      <File FileName="Assets/Scripts/UnitControl/UnitController.cs" Line="334" Column="1" />
+      <File FileName="Assets/Scripts/UnitControl/UnitColorFade.cs" Line="48" Column="27" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
-            <Node name="Scripts" expanded="True">
-              <Node name="Common" expanded="True" />
-              <Node name="Interface" expanded="True" />
-              <Node name="UnitControl" expanded="True" />
-              <Node name="WeaponControl" expanded="True" />
-              <Node name="Spawner.cs" selected="True" />
+            <Node name="Pathfinding" expanded="True">
+              <Node name="Scripts" expanded="True" />
             </Node>
-          </Node>
-          <Node name="Assembly-CSharp-firstpass" expanded="True">
-            <Node name="Shaders" expanded="True" />
+            <Node name="Scripts" expanded="True">
+              <Node name="Interface" expanded="True" />
+              <Node name="UnitControl" expanded="True">
+                <Node name="UnitColorFade.cs" selected="True" />
+              </Node>
+              <Node name="WeaponControl" expanded="True" />
+            </Node>
           </Node>
         </State>
       </Pad>

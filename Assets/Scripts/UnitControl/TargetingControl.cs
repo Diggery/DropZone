@@ -41,12 +41,22 @@ public class TargetingControl : MonoBehaviour {
 	void Update () {
 	
 		if (targetDummy) return;  // targetdummys are dumb
-
-		if (unitController.IsMoving()) return; //no targeting while moving
-
 		if (unitController.dead) return; //no targeting while dead
 		
 		scanTimer -= Time.deltaTime;
+		
+		if (unitController.IsMoving()) {
+			if (transform.tag.Equals("Enemy")) {
+				if (scanTimer < 0) {
+					if (ScanForTargets()) {
+						GetComponent<UnitBehaviors>().FindCloseCover();
+					}
+				}
+			}
+			return;
+		} 
+
+		
 
 		if (scanTimer < 0) 
 			ScanForTargets();
@@ -85,7 +95,7 @@ public class TargetingControl : MonoBehaviour {
 
 		Vector2 aimGoal = new Vector2(Mathf.Clamp(heading, -180, 180), Mathf.Clamp(altitude, -45, 45));
 
-		aimingAngle = aimGoal; //Vector2.Lerp(aimingAngle, aimGoal, Time.deltaTime * 15);
+		aimingAngle = Vector2.Lerp(aimingAngle, aimGoal, Time.deltaTime * 10);
 
 		if (aimHorizontally)
 			animator.SetFloat ("HorizontalAiming", aimingAngle.x + aimOffset.x);
@@ -93,7 +103,7 @@ public class TargetingControl : MonoBehaviour {
 		if (aimVertically)
 			animator.SetFloat ("VerticalAiming", aimingAngle.y + aimOffset.y);
 
-		aimOffset *= 0.9f;
+		aimOffset *= 0.95f;
 		
 		CoverPoint coverPoint = unitController.GetCurrentCoverPoint ();
 		if (coverPoint) {
@@ -126,12 +136,14 @@ public class TargetingControl : MonoBehaviour {
 	
 	}
 	
-	public void ScanForTargets() {
+	public bool ScanForTargets() {
 		Transform bestTarget = FindBestTarget();
+		bool targetUpdated = false;
 		
 		if (bestTarget) {
 			if (bestTarget != currentTarget) 
 				unitController.SetMainTarget(bestTarget.gameObject);
+				targetUpdated = true;
 				if (transform.tag.Equals("Enemy")) {
 					SendMessage("SeeEnemy", currentTarget.position, SendMessageOptions.DontRequireReceiver);
 				}
@@ -139,7 +151,7 @@ public class TargetingControl : MonoBehaviour {
 			unitController.ClearMainTarget();
 		}
 		scanTimer = scanTime + (Random.value * 0.1f);
-	
+		return targetUpdated;
 	}
 
 	public void SetManualTarget (Transform newTarget) {
@@ -251,10 +263,6 @@ public class TargetingControl : MonoBehaviour {
 		Vector3 rightDirection = Quaternion.AngleAxis(90, Vector3.up) * transform.forward;
 		Vector3 rightFirePos = coverPos + rightDirection;
 
-		if (coverPoint.IsPositionVisible (leftFirePos)) {
-			Debug.DrawLine(coverPos, leftFirePos, Color.green, 1);
-		}
-
 		Transform bestTarget = null;
 		
 		Dictionary<Transform, float> allTargets = new Dictionary<Transform, float>();
@@ -267,11 +275,11 @@ public class TargetingControl : MonoBehaviour {
 			float rangeToTarget = (transform.position - enemy.transform.position).sqrMagnitude;
 			if (rangeToTarget < currentWeaponRange) {
 				if (GetRelativePosition(targetPos).z > 0) {
-					if (coverPoint.IsPositionVisible (leftFirePos) && !Physics.Linecast(leftFirePos, targetPos, terrainMask)) {
+					if (mapControl.IsPositionVisible (transform.position, leftFirePos) && !Physics.Linecast(leftFirePos, targetPos, terrainMask)) {
 						if (!allTargets.ContainsKey(enemy.transform))
 							allTargets.Add(enemy.transform, (transform.position - enemy.transform.position).sqrMagnitude);
 					}
-					if (coverPoint.IsPositionVisible (rightFirePos) && !Physics.Linecast(rightFirePos, targetPos, terrainMask)) {
+					if (mapControl.IsPositionVisible (transform.position, rightFirePos) && !Physics.Linecast(rightFirePos, targetPos, terrainMask)) {
 						if (!allTargets.ContainsKey(enemy.transform))
 							allTargets.Add(enemy.transform, (transform.position - enemy.transform.position).sqrMagnitude);
 					}

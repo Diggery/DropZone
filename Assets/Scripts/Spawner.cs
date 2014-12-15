@@ -17,6 +17,8 @@ public class Spawner : MonoBehaviour {
 	
 	Transform rallyPoint;
 	
+	public bool mainSpawner;
+	
 	public void SetUp(GameControl _gameControl) {
 		gameControl = _gameControl;
 		ready = true;
@@ -56,7 +58,7 @@ public class Spawner : MonoBehaviour {
 		return true;
 	}
 	
-	public UnitController Spawn() {
+	public GameObject Spawn() {
 
 		if (!IsReadyToSpawn()) return null;
 		
@@ -64,15 +66,17 @@ public class Spawner : MonoBehaviour {
 		
 		
 		Vector3 spawnPos = transform.position + transform.forward;
-		GameObject newUnit = Instantiate(gameControl.GetEnemyUnit(), spawnPos, transform.rotation) as GameObject;
+		GameObject newUnit = Instantiate(gameControl.GetUnitType("EnemySoldier"), spawnPos, transform.rotation) as GameObject;
+		newUnit.GetComponent<CharacterConfig>().Init(gameControl.GetHelmetType("EnemyHelmet"));
 		
 		UnitController newController = newUnit.GetComponent<UnitController>();
+		newController.SetStats(UnitStatistics.GetUnitStats("Soldier"));		
 		newController.Spawn(rallyPoint.position);
 		newController.SetSpawner(this);
 		
 		activeUnits.Add (newController);
 		coolDownTimer = coolDown;
-		return newController;
+		return newUnit;
 	}
 	
 	public List<UnitController> GetActiveUnits() {
@@ -103,6 +107,10 @@ public class Spawner : MonoBehaviour {
 		foreach(UnitController dead in deadUnits) {
 			activeUnits.Remove(dead);
 		}
+	}
+	
+	public int GetEnenmyCount() {
+		return activeUnits.Count;
 	}
 	
 }

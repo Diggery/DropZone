@@ -31,6 +31,7 @@ public class MainWeapon : MonoBehaviour {
 	int magazineCount;
 	float magDamage = 1.0f;
 	float magRangeBonus = 5.0f;
+	float magArmorPiercing = 0.25f;
 	
 	public float reloadTime = 2.0f;
 	float reloadTimer;
@@ -153,11 +154,7 @@ public class MainWeapon : MonoBehaviour {
 		if (Physics.Raycast(trajectory, out hit, range * 1.25f, playerMask)) {
 			distanceToTarget = Vector3.Distance(hit.point, muzzle.position);
 			hitLocation = hit.point;
-			float damage = magDamage + (Mathf.Pow(Mathf.Clamp01(1 - (hit.distance / range)), 3) * magRangeBonus);
 			
-			Vector4 damageInfo = new Vector4(hit.point.x, hit.point.y, hit.point.z, damage);
-			hit.transform.SendMessageUpwards("TakeDamage", damageInfo, SendMessageOptions.DontRequireReceiver);
-
 			Vector3 incomingVec = hit.point - muzzle.position;
 			Vector3 reflectVec = Vector3.Reflect(incomingVec, hit.normal);
 
@@ -165,19 +162,30 @@ public class MainWeapon : MonoBehaviour {
 			hitRotation *= Quaternion.AngleAxis(90, Vector3.right);
 
 			if (!hit.transform.tag.Equals("Shield")) Instantiate(bulletHitPrefab, hit.point, hitRotation);
-
+			float damage = magDamage + (Mathf.Pow(Mathf.Clamp01(1 - (hit.distance / range)), 3) * magRangeBonus);
+			Vector4 damageInfo = new Vector4(hit.point.x, hit.point.y, hit.point.z, damage);
+			
 			string targetTag = hit.transform.root.tag;
 			if (targetTag.Equals("Enemy") || targetTag.Equals("Player")) {
-
+				
 				if (targetTag.Equals(transform.tag)) {
 					targeting.TargetMiss();
 				} else {
 					targeting.TargetHit();
+					UnitController targetController = hit.transform.root.GetComponent<UnitController>();
+					float armorPenetrationChance = (Random.value + magArmorPiercing) / 2.0f;
+					if (armorPenetrationChance > targetController.GetArmorRating()) {
+						hit.transform.SendMessageUpwards("TakeDamage", damageInfo, SendMessageOptions.DontRequireReceiver);
+					} else {
+						hit.transform.SendMessageUpwards("HitDeflected", damageInfo, SendMessageOptions.DontRequireReceiver);
+					}
 				}
 			} else {
 				targeting.TargetMiss();
+				hit.transform.SendMessageUpwards("TakeDamage", damageInfo, SendMessageOptions.DontRequireReceiver);
 			}
 
+			
 		} else {
 			distanceToTarget = range * 1.25f;
 			hitLocation = trajectory.GetPoint(range);

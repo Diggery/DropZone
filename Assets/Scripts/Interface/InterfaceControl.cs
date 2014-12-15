@@ -8,7 +8,7 @@ public class InterfaceControl : MonoBehaviour {
 	float UIScale_Portrait = 0.8f;
 	float UIScale = 1.0f;
 	
-	List<UnitPane> unitPanes = new List<UnitPane>();
+	public UnitPane[] unitPanes;
 		
 	int currentHieght;
 	
@@ -52,10 +52,6 @@ public class InterfaceControl : MonoBehaviour {
 			Debug.Log ("No pane for " + unit.transform.name);
 		}
 	
-	}
-	
-	public void AddUnitPane(UnitPane pane) {
-		unitPanes.Add(pane);
 	}
 	
 	public void CloseUnitPanes() {

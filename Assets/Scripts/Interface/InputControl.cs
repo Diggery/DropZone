@@ -40,7 +40,7 @@ public class InputControl : MonoBehaviour {
 		
 		CancelPath();
 		
-		if (target.transform.tag.Equals("Enemy")) {
+		if (target.transform.tag.Equals("Enemy") && selectedUnit) {
 			selectedUnit.SetMainTarget(target.gameObject);
 		}
 		if (target.transform.tag.Equals("Player")) {

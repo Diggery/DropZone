@@ -12,9 +12,12 @@ public class UnitController : MonoBehaviour {
 	
 	float maxHealth = 5.0f;
 	float health = 5.0f;
+	float armorRating = 0.0f;
+	
 	float deathTimer = 10.0f;
 	public bool dead;
 	public bool dummy;
+	public EnemyCaptain enemyCaptain;
 	
 	Animator animator;
 	bool isMoving;
@@ -57,10 +60,11 @@ public class UnitController : MonoBehaviour {
 			Debug.Log (transform.name + " can't find the map.");
 
 		pathMover = GetComponent<PathMover> ();
+		
 		if (!pathMover) {
 			Debug.Log (transform.name + " can't find thier path mover.");
 		} else {
-			pathMover.Init(mapControl);
+			pathMover.SetUp(mapControl);
 		}
 
 		targetingControl = GetComponent<TargetingControl>();
@@ -70,12 +74,21 @@ public class UnitController : MonoBehaviour {
 		UnitInventory inventory = GetComponent<UnitInventory>();
 		inventory.CreateInventory();
 
-		gameObject.AddComponent<UnitBehaviors>().SetUp(this, mapControl, pathMover);
+		if (!dummy) gameObject.AddComponent<UnitBehaviors>().SetUp(this, mapControl);
 		
 		GameObject unitSelect = Instantiate(unitSelectArt) as GameObject;
 		unitSelect.GetComponent<UnitSelect>().SetUp(this);	
 		
 
+	}
+	
+	public void SetStats(UnitStatistics.UnitStats stats) {
+	
+		gameObject.name = stats.name + " " + gameObject.GetInstanceID();
+		
+		maxHealth = stats.maxHealth;
+		health = maxHealth;
+		armorRating = stats.armorRating;
 	}
 
 	void Update() {
@@ -116,6 +129,16 @@ public class UnitController : MonoBehaviour {
 	public void SetSpawner(Spawner _spawner) {
 		spawner = _spawner;
 	}
+	public Spawner GetSpawner() {
+		return spawner;
+	}
+	public void SetEnemyCaptain(EnemyCaptain newCaptain) {
+		enemyCaptain = newCaptain;
+	}
+	public void RemoveEnemyCaptain() {
+		enemyCaptain = null;
+		GetComponent<EnemyAI>().ResetAI();
+	}
 
 	public Animator GetAnimator() {
 		if (!animator) 
@@ -127,7 +150,12 @@ public class UnitController : MonoBehaviour {
 			animator = GetComponent<Animator> ();
 		animator.SetTrigger("Spawning");
 		DelayedMove delayedMove = gameObject.AddComponent<DelayedMove>();
-		delayedMove.SetUp(rallyPoint, 1.5f);
+		if (enemyCaptain) {
+			delayedMove.SetUp(enemyCaptain.transform.position, 1.5f);
+		} else {
+			delayedMove.SetUp(rallyPoint, 1.5f);
+		}
+		
 	}
 
 	public bool IsMoving() {
@@ -140,20 +168,20 @@ public class UnitController : MonoBehaviour {
 
 	public void MoveTo(Vector3 location) {
 		
-		if ((location - transform.position).magnitude < mapControl.GetGridSize() / 2) return; // quit if the path is too short
+		if ((location - transform.position).magnitude < mapControl.GetGridSize() / 3) return; // quit if the path is too short
+
+		MapControl.MapDataPoint newMapCell = mapControl.GetMapData(location);
 		
-		MapControl.MapDataPoint mapDataPoint = mapControl.GetMapData(location);
-		
-		if (mapDataPoint.isCollision) return; // dont want to move into collision
+		if (newMapCell.isCollision) return; // dont want to move into collision
 		
 		if ( !pathMover.HasPath() ) animator.SetTrigger("StartMoving");
 		
-		if (mapDataPoint.coverPoint) 
-			mapDataPoint.coverPoint.Occupy();
-			
 		pathMover.StartPath(location);
 
-		if (currentCoverPoint) currentCoverPoint.Leave();
+		MapControl.MapDataPoint currentMapCell = mapControl.GetMapData(transform.position);
+		currentMapCell.isClaimed = false;
+		currentMapCell.isOccupied = false;
+		
 		currentCoverPoint = null;
 		currentDestination = location;
 		animator.SetInteger ("InCover", 0);
@@ -183,7 +211,6 @@ public class UnitController : MonoBehaviour {
 		}
 		return targetCollision;
 	}
-
 
 	public Vector3 GetTargetOffset() {
 		if (!targetCollision) return transform.position;
@@ -236,12 +263,11 @@ public class UnitController : MonoBehaviour {
 		pathMover.ClearPathLine();
 	}
 
-	public void FinishedMove(CoverPoint coverPoint) {
+	public void FinishedMove(MapControl.MapDataPoint mapCell) {
 
-		if (coverPoint) {
+		if (mapCell.coverPoint) {
 			
-			currentCoverPoint = coverPoint;
-			currentCoverPoint.Occupy();
+			currentCoverPoint = mapCell.coverPoint;
 			bool rightSideOfMap = transform.position.x > ((float)mapControl.GetMapSize().x/2.0f);
 						
 			if (currentCoverPoint.IsLeftSideClear()) {
@@ -256,10 +282,11 @@ public class UnitController : MonoBehaviour {
 				}
 			}
 			
-			
 		} else {
 			animator.SetTrigger("StopMoving");
 		}
+		
+		SendMessage("MoveComplete", SendMessageOptions.DontRequireReceiver);
 		
 	}
 
@@ -273,7 +300,10 @@ public class UnitController : MonoBehaviour {
 		pathMover.RotateTo (goal);
 	}
 
-
+	public float GetArmorRating() {
+		return armorRating;
+	}
+	
 	public float GetHealth() {
 		return health;
 	}
@@ -289,7 +319,7 @@ public class UnitController : MonoBehaviour {
 	}
 	
 	public void TakeDamage(Vector4 damageInfo) {
-		if (dead) return;
+		if (dead || dummy) return;
 		
 		if (!HasTarget()) 
 			targetingControl.ScanForTargets();
@@ -301,12 +331,16 @@ public class UnitController : MonoBehaviour {
 		if (health < 0) 
 			Die ();
 	}
-	
+
 
 	public void Die() {
 		if (dead) return;
 		Deselect();
-		if (currentCoverPoint) currentCoverPoint.Leave();
+		
+		MapControl.MapDataPoint currentMapCell = mapControl.GetMapData(transform.position);
+		currentMapCell.isClaimed = false;
+		currentMapCell.isOccupied = false;
+		
 		transform.tag = "Dead";
 		transform.name += " is dead!";
 		dead = true;
@@ -314,10 +348,12 @@ public class UnitController : MonoBehaviour {
 		
 		if (spawner) spawner.SpawnedUnitDead(lifeTime);
 		
+		
 		//clean up some components
 		Destroy(GetComponent<LineDrawer>());
 		Destroy(GetComponent<UnitBehaviors>());
 		Destroy(GetComponent<EnemyAI>());
+		Destroy(GetComponent<EnemyCaptain>());
 		
 		//drop anything being held
 		gameObject.BroadcastMessage("DropItem", SendMessageOptions.DontRequireReceiver);

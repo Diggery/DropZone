@@ -25,6 +25,9 @@ public class MapSelector : MonoBehaviour {
 	float buttonTransAmount;
 	float buttonGlowAmount;
 	
+	public Texture moveYes;
+	public Texture moveNo;
+	
 	
 	public void SetUp () {
 		cancelButton = transform.Find("Cancel");
@@ -38,7 +41,6 @@ public class MapSelector : MonoBehaviour {
 		if (!inputControlObj) print ("Need a 'Map' object added with a input control and map control on it");
 		inputControl = inputControlObj.GetComponent<InputControl>();
 		mapControl = inputControlObj.GetComponent<MapControl>();
-		mapControl.SetMapSelector(transform);
 		gridSize = mapControl.GetGridSize();
 		selectorCollision = GetComponent<BoxCollider>();
 		
@@ -52,17 +54,17 @@ public class MapSelector : MonoBehaviour {
 		if (visible){
 			renderer.material.color = Color.Lerp(renderer.material.color, Color.white, GameTime.deltaTime * 10);
 			transform.position = Vector3.Lerp(transform.position, goalPos, GameTime.deltaTime * 10);
-			transform.rotation = Quaternion.Lerp(transform.rotation, goalRot, GameTime.deltaTime * 10);
-			
-			mapControl.ShowCoverPoints();
+			transform.rotation = Quaternion.Lerp(transform.rotation, goalRot, GameTime.deltaTime * 10);			
 		} else {
 			renderer.material.color = Color.Lerp(renderer.material.color, new Color(1.0f, 1.0f, 1.0f, 0.0f), GameTime.deltaTime * 10);	
 		}
 		
 		if (invalidMove) {
 			if (buttonsUp) HideButtons();
+			renderer.material.mainTexture = moveNo;
 		} else {
 			if (buttonsUp) ShowButtons();
+			renderer.material.mainTexture = moveYes;
 		}
 		
 		if (buttonsUp) {
@@ -98,6 +100,9 @@ public class MapSelector : MonoBehaviour {
 	}
 	
 	public void SetPos(Vector3 newPos) {
+	
+		
+		
 		Vector3 newGoalPos;
 		newGoalPos.x = Mathf.Floor((newPos.x / gridSize)) * gridSize;
 		newGoalPos.y = newPos.y;
@@ -108,6 +113,7 @@ public class MapSelector : MonoBehaviour {
 			buttonGlowAmount = 0;
 			goalPos = newGoalPos;
 			inputControl.UpdateUnitsPath(goalPos);
+			mapControl.ShowCoverPoints(newGoalPos);
 		}
 		
 		//find y pos
@@ -116,7 +122,8 @@ public class MapSelector : MonoBehaviour {
 		LayerMask terrainMask = 1 << LayerMask.NameToLayer("Ground");
 		if (Physics.Raycast(ray, out hit, Mathf.Infinity,  terrainMask)) {
 			goalPos.y = hit.point.y + 0.1f;
-			if (hit.transform.tag == "Wall" || hit.transform.tag == "LowWall") {
+			MapControl.MapDataPoint mapCell = mapControl.GetMapData(goalPos);
+			if (mapCell.isCollision || mapCell.isOccupied) {
 				invalidMove = true;
 			} else {
 				invalidMove = false;
@@ -138,6 +145,7 @@ public class MapSelector : MonoBehaviour {
 		if (!visible) transform.position = goalPos;
 		selectorCollision.enabled = true;
 		visible = true;
+		
 	}
 	
 	public void ShowButtons() {

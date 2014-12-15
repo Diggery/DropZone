@@ -28,19 +28,14 @@ public class UnitPane : MonoBehaviour {
 	public Texture badgeClose;
 	public Texture badgeDead;
 	
+	public GameObject profileCameraPrefab;
+	
 	TextMesh unitName;
 	
 	AnimationCurve slideCurve = new AnimationCurve();
-	
-	InterfaceControl interfaceControl;
-	
+		
 	void Start () {		
 
-				
-		interfaceControl = Camera.main.gameObject.GetComponent<InterfaceControl>();
-		if (!interfaceControl) Debug.Log("No InterfaceControl found on the camera");
-		interfaceControl.AddUnitPane(this);
-		
 		slideCurve.AddKey(new Keyframe(0, 0, 0, 0));
 		slideCurve.AddKey(new Keyframe(0.25f, 0.075f, 1.15f, 1.15f));
 		slideCurve.AddKey(new Keyframe(0.75f, 0.925f, 1.3f, 1.3f));
@@ -65,6 +60,13 @@ public class UnitPane : MonoBehaviour {
 		unit = _unit;
 		unitName.text = unit.unitName;
 		unit.SetUnitPane(this);
+		
+		//create a camera for the unit pane 
+		GameObject profileCamera = Instantiate(profileCameraPrefab, unit.transform.position, unit.transform.rotation) as GameObject;
+		ChaseCam chaseCam = profileCamera.GetComponent<ChaseCam>();
+		chaseCam.SetLookAtTarget(unit.headModel.transform);
+		chaseCam.RandomizeCameraPos();
+		
 	}
 	
 	void Update () {
@@ -164,6 +166,10 @@ public class UnitPane : MonoBehaviour {
 		Close();
 		hidden = true;
 		unitName.renderer.material.color = new Color(1.0f, 1.0f, 1.0f, 0.5f);
+		if (!unit) {
+			transform.localPosition = new Vector3(1, 0, 0);
+		
+		}
 	}
 	
 	public void Die() {

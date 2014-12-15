@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 public class PathMover : Pathfinding {
 	
-	
 	public float speed;
 	float currentSpeed;
 	public float turnSpeed;
@@ -16,7 +15,7 @@ public class PathMover : Pathfinding {
 	
 	public List<Vector3> activePath = new List<Vector3>();
 
-	float headingRotTimer = 0.0f;
+	float headingRotTimer = -1.0f;
 	Quaternion headingRotStart = Quaternion.identity;
 	Quaternion headingRotEnd = Quaternion.identity;
 	float headingRotSpeed = 1.0f;
@@ -35,7 +34,7 @@ public class PathMover : Pathfinding {
 	UnitController unitController;
 	MapControl mapControl;
 
-	public void Init (MapControl newMapControl) {
+	public void SetUp (MapControl newMapControl) {
 		characterController = GetComponent<CharacterController>();
 		unitController = GetComponent<UnitController>();
 
@@ -58,7 +57,7 @@ public class PathMover : Pathfinding {
 		// if we need to rotate somewhere, spin
 		if (headingRotTimer > 0) {
 			headingRotTimer -= Time.deltaTime * (180/headingRotSpeed);
-			transform.rotation = Quaternion.Lerp(headingRotStart, headingRotEnd, Mathf.Clamp01(Util.EaseInOutSine(1 - headingRotTimer)));
+			transform.rotation = Quaternion.Lerp(headingRotStart, headingRotEnd, Mathf.Clamp01(Util.EaseInOutSine(1 - headingRotTimer)));;
 		}
 		
 		
@@ -114,7 +113,7 @@ public class PathMover : Pathfinding {
             if ((distanceCheckFrom - distanceCheckTo).sqrMagnitude < distanceThreshold) {
 				if (activePath.Count < 5) {
 					if (!mapControl.IsDestinationClear(finishPos, transform.position)) {
-						unitController.MoveTo(mapControl.FindBestCover(finishPos, 5 * mapControl.GetGridSize()));
+						unitController.MoveTo(mapControl.FindBestCover(finishPos, 5 * mapControl.GetGridSize(), transform.tag));
 					}
 				}
 				activePath.RemoveAt(0);
@@ -140,8 +139,15 @@ public class PathMover : Pathfinding {
 	
 	
 	public void StartPath(Vector3 newDestination) {
-	
+		if (HasPath()) {
+			MapControl.MapDataPoint oldDestinationCell = mapControl.GetMapData(finishPos);
+			oldDestinationCell.isClaimed = false;
+		}
+		
 		finishPos = newDestination; 
+		
+		MapControl.MapDataPoint newDestinationCell = mapControl.GetMapData(finishPos);
+		newDestinationCell.isClaimed = true;
 		
 		if (Path.Count < 1) {
 			waitingForPath = true;
@@ -214,18 +220,24 @@ public class PathMover : Pathfinding {
 
 	public void FinishPath() {
 		activePath.Clear();
-		CoverPoint destinationPoint = mapControl.GetCoverPoint (finishPos);
-
-		unitController.FinishedMove(destinationPoint);
-		if (destinationPoint) RotateTo (destinationPoint.GetCoverHeading ());
+		MapControl.MapDataPoint destinationCell = mapControl.GetMapData (finishPos);
+		destinationCell.isClaimed = false;
+		destinationCell.isOccupied = true;
+		
+		unitController.FinishedMove(destinationCell);
+		if (destinationCell.coverPoint) RotateTo (destinationCell.coverPoint.GetCoverHeading ());
 	}
 
 	public void RotateTo(Quaternion goal) {
+		
 		if (headingRotTimer > 0) return;
-		headingRotTimer = 1.0f;
 		headingRotStart = transform.rotation;
 		headingRotEnd = goal;
-		headingRotSpeed = Quaternion.Angle (headingRotStart, headingRotEnd);
+		
+		float angleToRotate = Quaternion.Angle (headingRotStart, headingRotEnd);
+		if (angleToRotate == 0) return;
+		headingRotSpeed = angleToRotate;
+		headingRotTimer = 1.0f;
 	}
 	
 	public bool HasPath() {
