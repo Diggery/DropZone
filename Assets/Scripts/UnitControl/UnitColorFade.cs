@@ -27,8 +27,8 @@ public class UnitColorFade : MonoBehaviour {
 	}
 	
 	void Update () {
-		hitFade = Mathf.Clamp01(hitFade - (Time.deltaTime * 2));
-		healFade = Mathf.Clamp01(healFade - (Time.deltaTime * 2));
+		hitFade = Mathf.Clamp01(hitFade - (Time.deltaTime * 5));
+		healFade = Mathf.Clamp01(healFade - (Time.deltaTime * 5));
 		
 		if (hitFade >= 0) {
 			unitMat.SetFloat("_HitColorFade", hitFade);

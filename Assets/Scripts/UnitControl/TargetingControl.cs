@@ -10,6 +10,7 @@ public class TargetingControl : MonoBehaviour {
 	MapControl mapControl;
 	Animator animator;
 
+	
 	float currentWeaponRange;
 	Transform forcedTarget;
 	Transform currentTarget;

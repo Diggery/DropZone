@@ -8,6 +8,9 @@ public class MainWeapon : MonoBehaviour {
 	public GameObject bulletTrailPrefab;
 	public GameObject bulletHitPrefab;
 	public GameObject muzzleFlashPrefab;
+	
+	public GameObject hitIndicator;
+	public GameObject deflectIndicator;
 
 	UnitController unitController;
 	Animator animator;
@@ -173,12 +176,18 @@ public class MainWeapon : MonoBehaviour {
 				} else {
 					targeting.TargetHit();
 					UnitController targetController = hit.transform.root.GetComponent<UnitController>();
-					float armorPenetrationChance = (Random.value + magArmorPiercing) / 2.0f;
+					float armorPenetrationRangeBonus = Mathf.Clamp01((1 - (hit.distance / range)) / 2.0f);
+					float armorPenetrationChance = ((Random.value + magArmorPiercing) / 2.0f) + armorPenetrationRangeBonus;
 					if (armorPenetrationChance > targetController.GetArmorRating()) {
 						hit.transform.SendMessageUpwards("TakeDamage", damageInfo, SendMessageOptions.DontRequireReceiver);
+						GameObject indicator = Instantiate(hitIndicator, hit.point, Quaternion.identity) as GameObject;
+						indicator.GetComponent<IndicatorMover>().Launch(incomingVec);
 					} else {
 						hit.transform.SendMessageUpwards("HitDeflected", damageInfo, SendMessageOptions.DontRequireReceiver);
+						GameObject indicator = Instantiate(deflectIndicator, hit.point, Quaternion.identity) as GameObject;
+						indicator.GetComponent<IndicatorMover>().Launch(incomingVec);
 					}
+
 				}
 			} else {
 				targeting.TargetMiss();
