@@ -16,13 +16,15 @@ public class Pathfinder2D : MonoBehaviour
     public int HeuristicAggression;
     public float zStart = -10F;
     public float zEnd = 10F;
+    public int slowValue;
 
     public Vector2 MapStartPosition;
     public Vector2 MapEndPosition;
 
     public List<string> DisallowedTags;
-    public List<string> IgnoreTags;
-    public bool MoveDiagonal = true;
+	public List<string> IgnoreTags;
+	public List<string> SlowTags;
+	public bool MoveDiagonal = true;
 
     public bool DrawMapInEditor = false;
 
@@ -134,7 +136,7 @@ public class Pathfinder2D : MonoBehaviour
                         if (h.point.z < maxZ)
                         {
                             //It is a disallowed walking tile, make it false
-                            Map[j, i] = new Node(j, i, y, ID, x, 0, false); //Non walkable tile!
+                            Map[j, i] = new Node(j, i, y, ID, x, 0, 0, false); //Non walkable tile!
                             free = false;
                             maxZ = h.point.z;
                         }
@@ -147,8 +149,13 @@ public class Pathfinder2D : MonoBehaviour
                     {
                         if (h.point.z < maxZ)
                         {
+							int weight = 0;
+							
+							if (SlowTags.Contains(h.transform.tag)) {
+								weight = slowValue;
+							}
                             //It is allowed to walk on this tile, make it walkable!
-                            Map[j, i] = new Node(j, i, y, ID, x, h.point.z, true); //walkable tile!
+							Map[j, i] = new Node(j, i, y, ID, x, h.point.z, weight, true); //walkable tile!
                             free = false;
                             maxZ = h.point.z;
                         }
@@ -157,7 +164,7 @@ public class Pathfinder2D : MonoBehaviour
                 //We hit nothing set tile to false
                 if (free == true)
                 {
-                    Map[j, i] = new Node(j, i, y, ID, x, 0, false);//Non walkable tile! 
+                    Map[j, i] = new Node(j, i, y, ID, x, 0, 0, false);//Non walkable tile! 
                 }
             }
         }
@@ -326,7 +333,7 @@ public class Pathfinder2D : MonoBehaviour
 
         if (n.walkable)
         {
-            return new Node(x, y, n.yCoord, n.ID, n.xCoord, n.zCoord, n.walkable);
+            return new Node(x, y, n.yCoord, n.ID, n.xCoord, n.zCoord, n.weight, n.walkable);
         }
         else
         {
@@ -340,7 +347,7 @@ public class Pathfinder2D : MonoBehaviour
                     {
                         if (Map[j, i].walkable)
                         {
-                            return new Node(j, i, Map[j, i].yCoord, Map[j, i].ID, Map[j, i].xCoord, Map[j, i].zCoord, Map[j, i].walkable);
+							return new Node(j, i, Map[j, i].yCoord, Map[j, i].ID, Map[j, i].xCoord, Map[j, i].zCoord, Map[j, i].weight, Map[j, i].walkable);
                         }
                     }
                 }
@@ -380,7 +387,7 @@ public class Pathfinder2D : MonoBehaviour
                     n = node;
                 }
             }
-            endNode = new Node(n.x, n.y, n.yCoord, n.ID, n.xCoord, n.zCoord, n.walkable);
+			endNode = new Node(n.x, n.y, n.yCoord, n.ID, n.xCoord, n.zCoord, n.weight, n.walkable);
         }
     }
 
@@ -431,7 +438,7 @@ public class Pathfinder2D : MonoBehaviour
                                 //If it is not on the open list then add it to
                                 if (!OnOpenList(Map[j, i].ID))
                                 {
-                                    Node addNode = new Node(Map[j, i].x, Map[j, i].y, Map[j, i].yCoord, Map[j, i].ID, Map[j, i].xCoord, Map[j, i].zCoord, Map[j, i].walkable, currentNode);
+									Node addNode = new Node(Map[j, i].x, Map[j, i].y, Map[j, i].yCoord, Map[j, i].ID, Map[j, i].xCoord, Map[j, i].zCoord, Map[j, i].weight, Map[j, i].walkable, currentNode);
                                     addNode.H = GetHeuristics(Map[j, i].x, Map[j, i].y);
                                     addNode.G = GetMovementCost(x, y, j, i) + currentNode.G;
                                     addNode.F = addNode.H + addNode.G;
@@ -489,7 +496,7 @@ public class Pathfinder2D : MonoBehaviour
                                     //If it is not on the open list then add it to
                                     if (!OnOpenList(Map[j, i].ID))
                                     {
-                                        Node addNode = new Node(Map[j, i].x, Map[j, i].y, Map[j, i].yCoord, Map[j, i].ID, Map[j, i].xCoord, Map[j, i].zCoord, Map[j, i].walkable, currentNode);
+										Node addNode = new Node(Map[j, i].x, Map[j, i].y, Map[j, i].yCoord, Map[j, i].ID, Map[j, i].xCoord, Map[j, i].zCoord,  Map[j, i].weight, Map[j, i].walkable, currentNode);
                                         addNode.H = GetHeuristics(Map[j, i].x, Map[j, i].y);
                                         addNode.G = GetMovementCost(x, y, j, i) + currentNode.G;
                                         addNode.F = addNode.H + addNode.G;

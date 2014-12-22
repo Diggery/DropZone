@@ -20,13 +20,15 @@ public class Pathfinder : MonoBehaviour
     public int HeuristicAggression;
     public float HighestPoint = 100F;
     public float LowestPoint = -50F;
+    public int slowValue = 2;
 
     public Vector2 MapStartPosition;
     public Vector2 MapEndPosition;
 
     public List<string> DisallowedTags;
-    public List<string> IgnoreTags;
-    public bool MoveDiagonal = true;
+	public List<string> IgnoreTags;
+	public List<string> SlowTags;
+	public bool MoveDiagonal = true;
 
     public bool DrawMapInEditor = false;
 	public bool CheckFullTileSize = false;
@@ -165,7 +167,7 @@ public class Pathfinder : MonoBehaviour
                         if (h.point.y > maxY)
                         {
                             //It is a disallowed walking tile, make it false
-                            Map[j, i] = new Node(j, i, 0, ID, x, y, false); //Non walkable tile!
+                            Map[j, i] = new Node(j, i, 0, ID, x, y, 0, false); //Non walkable tile!
                             free = false;
                             maxY = h.point.y;
                         }
@@ -178,8 +180,14 @@ public class Pathfinder : MonoBehaviour
                     {
                         if (h.point.y > maxY)
                         {
+							int weight = 0;
+							
+							if (SlowTags.Contains(h.transform.tag)) {
+								weight = slowValue;
+							}
+							
                             //It is allowed to walk on this tile, make it walkable!
-                            Map[j, i] = new Node(j, i, h.point.y, ID, x, y, true); //walkable tile!
+							Map[j, i] = new Node(j, i, h.point.y, ID, x, y, weight, true); //walkable tile!
                             free = false;
                             maxY = h.point.y;
                         }
@@ -188,7 +196,7 @@ public class Pathfinder : MonoBehaviour
                 //We hit nothing set tile to false
                 if (free == true)
                 {
-                Map[j, i] = new Node(j, i, 0 ,ID, x, y, false);//Non walkable tile! 
+                Map[j, i] = new Node(j, i, 0 ,ID, x, y, 0, false);//Non walkable tile! 
                 }        
             }
         }
@@ -360,7 +368,7 @@ public class Pathfinder : MonoBehaviour
 
         if (n.walkable)
         {
-            return new Node(x, z, n.yCoord, n.ID, n.xCoord, n.zCoord, n.walkable);
+            return new Node(x, z, n.yCoord, n.ID, n.xCoord, n.zCoord, n.weight, n.walkable);
         }
         else
         {
@@ -374,7 +382,7 @@ public class Pathfinder : MonoBehaviour
                     {
                         if (Map[j, i].walkable)
                         {
-                            return new Node(j, i, Map[j, i].yCoord, Map[j, i].ID, Map[j, i].xCoord, Map[j, i].zCoord, Map[j, i].walkable);
+							return new Node(j, i, Map[j, i].yCoord, Map[j, i].ID, Map[j, i].xCoord, Map[j, i].zCoord, Map[j, i].weight, Map[j, i].walkable);
                         }
                     }
                 }
@@ -414,7 +422,7 @@ public class Pathfinder : MonoBehaviour
                     n = node;
                 }
             }
-            endNode = new Node(n.x, n.y, n.yCoord, n.ID, n.xCoord, n.zCoord, n.walkable);
+            endNode = new Node(n.x, n.y, n.yCoord, n.ID, n.xCoord, n.zCoord, n.weight, n.walkable);
         }
     }
 
@@ -468,7 +476,7 @@ public class Pathfinder : MonoBehaviour
                                     //If it is not on the open list then add it to
                                     if (!OnOpenList(Map[j, i].ID))
                                     {
-                                        Node addNode = new Node(Map[j, i].x, Map[j, i].y, Map[j, i].yCoord, Map[j, i].ID, Map[j, i].xCoord, Map[j, i].zCoord, Map[j, i].walkable, currentNode);
+										Node addNode = new Node(Map[j, i].x, Map[j, i].y, Map[j, i].yCoord, Map[j, i].ID, Map[j, i].xCoord, Map[j, i].zCoord, Map[j, i].weight, Map[j, i].walkable, currentNode);
                                         addNode.H = GetHeuristics(Map[j, i].x, Map[j, i].y);
                                         addNode.G = GetMovementCost(x, y, j, i) + currentNode.G;
                                         addNode.F = addNode.H + addNode.G;
@@ -516,7 +524,7 @@ public class Pathfinder : MonoBehaviour
                     if (i != y || j != x)
                     {
                         //Check that we are not moving diagonal
-                        if(GetMovementCost(x, y, j, i) < 14)
+						if (!IsDiagonal(x, y, j, i)) //GetMovementCost(x, y, j, i) < 14)
                         {
                             //Check the node is walkable
                             if (Map[j, i].walkable)
@@ -530,7 +538,7 @@ public class Pathfinder : MonoBehaviour
                                         //If it is not on the open list then add it to
                                         if (!OnOpenList(Map[j, i].ID))
                                         {
-                                            Node addNode = new Node(Map[j, i].x, Map[j, i].y, Map[j, i].yCoord, Map[j, i].ID, Map[j, i].xCoord, Map[j, i].zCoord, Map[j, i].walkable, currentNode);
+											Node addNode = new Node(Map[j, i].x, Map[j, i].y, Map[j, i].yCoord, Map[j, i].ID, Map[j, i].xCoord, Map[j, i].zCoord, Map[j, i].weight, Map[j, i].walkable, currentNode);
                                             addNode.H = GetHeuristics(Map[j, i].x, Map[j, i].y);
                                             addNode.G = GetMovementCost(x, y, j, i) + currentNode.G;
                                             addNode.F = addNode.H + addNode.G;
@@ -600,10 +608,16 @@ public class Pathfinder : MonoBehaviour
         return (int)(Mathf.Abs(a.x - b.x) * (10F + (10F * HA))) + (int)(Mathf.Abs(a.y - b.y) * (10F + (10F * HA)));
     }
 
+	private bool IsDiagonal(int x, int y, int j, int i)
+	{
+		return (x != j && y != i);
+	}
+
     private int GetMovementCost(int x, int y, int j, int i)
     {
-        //Moving straight or diagonal?
-        return (x != j && y != i) ? 14 : 10;
+		int nodeWeight = Map[j, i].weight;
+		//Moving straight or diagonal?
+		return (x != j && y != i) ? 14 + nodeWeight : 10 + nodeWeight;
     }
 
     private Node GetNodeFromOpenList(int id)

@@ -192,7 +192,13 @@ public class PathMover : Pathfinding {
 			simplePath.Add(complexPath[currentNode]);
 
 			for (int reverseCount = complexPath.Count - 1; reverseCount > currentNode; reverseCount--) {
+			
 				Vector3 currentNodePos = complexPath[currentNode];
+				
+				// don't remove nodes if a wall is being jumped
+				if (currentNode + 1 < complexPath.Count) 
+					if (currentNodePos.y != complexPath[currentNode + 1].y) continue;
+					
 				currentNodePos.y = characterRadius + 0.1f;
 
 				Vector3 nextNodePos = complexPath[reverseCount];

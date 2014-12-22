@@ -11,9 +11,10 @@ public class Node
     public float xCoord     = 0;
     public float zCoord     = 0;
     public int ID           = 0;
-    public bool walkable    = true;
-    public Node parent      = null;
-
+	public int weight   	= 0;
+	public bool walkable    = true;
+	public Node parent      = null;
+	
     public int F            = 0;
     public int H            = 0;
     public int G            = 0;
@@ -21,7 +22,7 @@ public class Node
     //Use for faster look ups
     public int sortedIndex = -1;
 
-    public Node(int indexX, int indexY, float height, int idValue, float xcoord, float zcoord, bool w, Node p = null)
+	public Node(int indexX, int indexY, float height, int idValue, float xcoord, float zcoord, int _weight, bool _walkable, Node p = null)
     {
         x = indexX;
         y = indexY;
@@ -29,8 +30,9 @@ public class Node
         ID = idValue;
         xCoord = xcoord;
         zCoord = zcoord;
-        walkable = w;
-        parent = p;
+		weight = _weight;
+		walkable = _walkable;
+		parent = p;
         F = 0;
         G = 0;
         H = 0;

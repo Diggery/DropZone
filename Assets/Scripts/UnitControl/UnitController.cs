@@ -358,4 +358,8 @@ public class UnitController : MonoBehaviour {
 		//drop anything being held
 		gameObject.BroadcastMessage("DropItem", SendMessageOptions.DontRequireReceiver);
 	}
+	
+	void OnDestroy() {
+		if (mainWeapon) Destroy(mainWeapon.gameObject);
+	}
 }
