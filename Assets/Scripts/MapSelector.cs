@@ -75,22 +75,19 @@ public class MapSelector : MonoBehaviour {
 			buttonGlowAmount = Mathf.Lerp(buttonGlowAmount, -1, GameTime.deltaTime * 5);
 		}
 		
-		//acceptButton.localScale = Vector3.Lerp(new Vector3(0.1f, 0.1f, 0.1f), Vector3.one, buttonTransAmount);
-		acceptButton.localRotation = Quaternion.Lerp(Quaternion.AngleAxis(-45, Vector3.up), Quaternion.identity, buttonTransAmount * 2);
+		acceptButton.localScale = Vector3.Lerp(new Vector3(0.1f, 0.1f, 0.1f), Vector3.one, buttonTransAmount);
 		acceptButton.renderer.material.color = Color.Lerp(new Color(1.0f, 1.0f, 1.0f, 0.0f), Color.white, buttonTransAmount);
 
 		acceptIcon.renderer.material.color = Color.Lerp(Color.clear, Color.white, buttonTransAmount );
 		
 		acceptGlow.renderer.material.color = Color.Lerp(Color.black, Color.gray, buttonGlowAmount );
 		
-		//cancelButton.localScale = Vector3.Lerp(new Vector3(0.1f, 0.1f, 0.1f), Vector3.one, buttonTransAmount);
-		cancelButton.localRotation = Quaternion.Lerp(Quaternion.AngleAxis(45, Vector3.up), Quaternion.identity, buttonTransAmount * 2);
+		cancelButton.localScale = Vector3.Lerp(new Vector3(0.1f, 0.1f, 0.1f), Vector3.one, buttonTransAmount);
 		cancelButton.renderer.material.color = Color.Lerp(new Color(1.0f, 1.0f, 1.0f, 0.0f), Color.white, buttonTransAmount);
 		
 		cancelIcon.renderer.material.color = Color.Lerp(Color.clear, Color.white, buttonTransAmount );
 		
 		cancelGlow.renderer.material.color = Color.Lerp(Color.black, Color.gray, buttonGlowAmount );
-		
 		
 		//rotateButtons
 		float buttonHeading = Camera.main.transform.eulerAngles.y / 90;

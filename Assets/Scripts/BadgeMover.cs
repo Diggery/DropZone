@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class IndicatorMover : MonoBehaviour {
+public class BadgeMover : MonoBehaviour {
 
 	Vector3 velocity;
-	float damp = 0.85f;
+	float damp = 0.9f;
 	float lifeTime = 3.0f;
 	float lifeLength = 3.0f;
 	
@@ -12,9 +12,9 @@ public class IndicatorMover : MonoBehaviour {
 	Transform glow;
 	public Transform number;
 	
-	public enum IndicatorType { Hit, Deflect, Heal };
+	public enum BadgeType { Hit, Deflect, Heal };
 	
-	public IndicatorType type = IndicatorType.Deflect;
+	public BadgeType type = BadgeType.Deflect;
 	public Color glowColor;
 	public AnimationCurve glowFade;
 	public Color badgeColor;
@@ -54,8 +54,8 @@ public class IndicatorMover : MonoBehaviour {
 			TextMesh numberText = number.GetComponent<TextMesh>();
 			numberText.text = Mathf.FloorToInt(damage).ToString();
 		}
-		velocity = direction.normalized * Random.Range(0.45f, 0.5f);
+		velocity = direction.normalized * Random.Range(0.25f, 0.35f);
 		velocity = Quaternion.AngleAxis(Random.Range(-10, 10), Vector3.up) * velocity;
-		if (type == IndicatorType.Hit) velocity *= 1.1f;
+		if (type == BadgeType.Hit) velocity *= 1.1f;
 	}
 }

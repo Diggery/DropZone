@@ -29,19 +29,21 @@ public class TouchManager : MonoBehaviour {
 		public Vector2 touchPosition;
 		public Transform touchTarget;
 		public Transform startTarget;
+		public Vector3 touchPoint;
 		
-		public TouchDragEvent (Vector2 touchDelta, Vector2 touchDistance, Vector2 touchPosition, Transform touchTarget, Transform startTarget) {
+		public TouchDragEvent (Vector2 touchDelta, Vector2 touchDistance, Vector2 touchPosition, Transform touchTarget, Transform startTarget, Vector3 touchPoint) {
 			this.touchDelta = touchDelta;
 			this.touchDistance = touchDistance;
 			this.touchPosition = touchPosition;
 			this.touchTarget = touchTarget;
 			this.startTarget = startTarget;
+			this.touchPoint = touchPoint;
 		}
 	}
 	
-	public void touchDrag(Vector2 touchDelta, Vector2 touchDistance, Vector2 touchPosition, Transform touchTarget, Transform startTarget) {
+	public void touchDrag(Vector2 touchDelta, Vector2 touchDistance, Vector2 touchPosition, Transform touchTarget, Transform startTarget, Vector3 touchPoint) {
 		if (!startTarget) return;
-		startTarget.BroadcastMessage("drag", new TouchDragEvent(touchDelta, touchDistance, touchPosition, touchTarget, startTarget), SendMessageOptions.DontRequireReceiver);
+		startTarget.BroadcastMessage("drag", new TouchDragEvent(touchDelta, touchDistance, touchPosition, touchTarget, startTarget, touchPoint), SendMessageOptions.DontRequireReceiver);
 	}
 	
 	public class TouchUpEvent {

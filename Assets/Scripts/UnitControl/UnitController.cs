@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class UnitController : MonoBehaviour {
 
@@ -26,9 +27,13 @@ public class UnitController : MonoBehaviour {
 	TargetingControl targetingControl;
 	MapControl mapControl;
 
+	Transform rightHandAttach;
+	Transform leftHandAttach;
+
 	MainWeapon mainWeapon;
-	public Transform mainWeaponAttach;
 	Transform mainWeaponTarget;
+	
+	List<Equipment> equipments = new List<Equipment>();
 
 	CoverPoint currentCoverPoint;
 	public Vector3 currentDestination;
@@ -70,7 +75,6 @@ public class UnitController : MonoBehaviour {
 		targetingControl = GetComponent<TargetingControl>();
 		targetingControl.SetUp(mapControl, animator);
 
-		//secondaryWeapons = new SecondaryWeapon[secondaryWeaponAttach.Length];
 		UnitInventory inventory = GetComponent<UnitInventory>();
 		inventory.CreateInventory();
 
@@ -90,7 +94,12 @@ public class UnitController : MonoBehaviour {
 		health = maxHealth;
 		armorRating = stats.armorRating;
 	}
-
+	
+	public void SetAttachPoints(Transform rightHand, Transform leftHand) {
+		rightHandAttach = rightHand;
+		leftHandAttach = leftHand;		
+	}
+	
 	void Update() {
 	
 		if (dead) {
@@ -117,7 +126,7 @@ public class UnitController : MonoBehaviour {
 		animator.SetBool("HasTarget", mainWeaponTarget);
 		
 		lifeTime += Time.deltaTime;
-		
+
 	}
 
 	public void SetUpColliders() {
@@ -187,16 +196,45 @@ public class UnitController : MonoBehaviour {
 		animator.SetInteger ("InCover", 0);
 	}
 	
-	public MainWeapon GetMainWeapon() {
-		return mainWeapon;
-	}
+
 	
 	public void AddMainWeapon(MainWeapon weapon) {
 		targetingControl.SetWeaponRange(weapon.range);
 		mainWeapon = weapon;
-		weapon.Attach(mainWeaponAttach, this);
+		weapon.Attach(rightHandAttach, this);
 	}
-
+	
+	public MainWeapon GetMainWeapon() {
+		return mainWeapon;
+	}
+		
+	public void AddEquipment(Equipment equipment) {
+		if (!equipments.Contains(equipment)) equipments.Add(equipment);
+		equipment.Attach(leftHandAttach, this);
+	}
+	
+	public void RemoveEquipment(Equipment equipment) {
+		if (equipments.Contains(equipment)) equipments.Remove(equipment);
+	}
+	
+	public Equipment GetEquipment(string name) {
+		Equipment item = null;
+		foreach(Equipment equipment in equipments) {
+			if (equipment.name.Equals(name)) item = equipment;
+		}
+		return item;
+	}
+	
+	public Equipment[] GetAllEquipment() {
+		return equipments.ToArray();
+	}
+	
+	public void CancelEquipment() {
+		foreach(Equipment equipment in equipments) {
+			equipment.Cancel();
+		}
+	}	
+	
 	public TargetingControl GetTargeting() {
 		return GetComponent<TargetingControl>();
 	}
@@ -261,6 +299,7 @@ public class UnitController : MonoBehaviour {
 	public void Deselect() {
 		selected = false;
 		pathMover.ClearPathLine();
+		CancelEquipment();
 	}
 
 	public void FinishedMove(MapControl.MapDataPoint mapCell) {

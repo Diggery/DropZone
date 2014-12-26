@@ -136,6 +136,10 @@ public class GameControl : MonoBehaviour {
 		GameTime.paused = true;
 	}
 	public void Resume() {
-		GameTime.paused = globalPause || pausedBySelector;
+		if (globalPause) {
+			GameTime.paused = true;
+			return; 
+		}
+		GameTime.paused = false;
 	}
 }

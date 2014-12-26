@@ -14,45 +14,21 @@ public class UnitInventory : MonoBehaviour {
 	public void CreateInventory () {
 		unitController = GetComponent<UnitController>();
 
-
-
 		GameObject mainWeaponObj = Instantiate(GetWeapon("AssaultRifle"), Vector3.zero, Quaternion.identity) as GameObject;
 		MainWeapon mainWeapon = mainWeaponObj.GetComponent<MainWeapon>();
 		mainWeapon.SetInventory(this);
 		unitController.AddMainWeapon(mainWeapon);
 
-		//GameObject secondaryWeaponObj = Instantiate(GetWeapon("MortarMarkI"), Vector3.zero, Quaternion.identity) as GameObject;
-		//SecondaryWeapon secondaryWeapon = secondaryWeaponObj.GetComponent<SecondaryWeapon>();
-		//secondaryWeapon.SetInventory(this);
-		//mechController.AddSecondaryWeapon(secondaryWeapon, 0);
-
-
+		GameObject equipmentObj = Instantiate(GetWeapon("FragGrenade"), Vector3.zero, Quaternion.identity) as GameObject;
+		Equipment equipment = equipmentObj.GetComponent<Equipment>();
+		equipment.SetInventory(this);
+		unitController.AddEquipment(equipment);
 	}
 	
 	void Update () {
 	
 	}
 
-	public int CheckMortarRounds() {
-		return MortarCount;
-	}
-
-	public int GetMortarRounds(int amount) {
-		int givenAmount = 0;
-		if (amount < MortarCount) {
-			givenAmount = amount;
-			MortarCount -= amount;
-		} else {
-			givenAmount = MortarCount;
-			MortarCount = 0;
-		}
-		return givenAmount;
-	}
-
-	public void AddMortarRounds(int amount) {
-		MortarCount += amount;
-	}
-	
 	public int CheckMagazineCount() {
 		return MagazineCount;
 	}

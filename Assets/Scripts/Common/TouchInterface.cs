@@ -36,6 +36,7 @@ public class TouchInterface : MonoBehaviour {
 		public float time;
 		public bool gestureArmed;
 		public Transform startTarget;
+		public Vector3 touchPoint;
 		
 		public InputData() {
 			
@@ -136,6 +137,7 @@ public class TouchInterface : MonoBehaviour {
 				input[id].time = 0.0f;
 				input[id].gestureArmed = true;
 				input[id].startTarget = hit.transform;
+				input[id].touchPoint = hit.point;
 				touchManager.touchDown(hit.transform, input[id].position);
 
 			}
@@ -143,7 +145,7 @@ public class TouchInterface : MonoBehaviour {
 			// touch move effects
 			if (input[id].phase == InputData.InputPhase.Moved) {	
 		
-				touchManager.touchDrag(input[id].delta, input[id].distance, input[id].position, hit.transform, input[id].startTarget);
+				touchManager.touchDrag(input[id].delta, input[id].distance, input[id].position, hit.transform, input[id].startTarget, input[id].touchPoint);
 				input[id].time += deltaTime;
 				input[id].distance += input[id].delta;
 				// test for longtouch
@@ -159,6 +161,8 @@ public class TouchInterface : MonoBehaviour {
 				
 				// turn off gestures
 				if (input[id].time > gestureTime) input[id].gestureArmed = false;
+				input[id].touchPoint = hit.point;
+				
 			}
 				
 			//touch up effects
@@ -209,6 +213,8 @@ public class TouchInterface : MonoBehaviour {
 					}
 				}
 				input[id].startTarget = null;
+				input[id].touchPoint = input[id].touchPoint;
+				
 			}
 		}
 		if (debugOn) {

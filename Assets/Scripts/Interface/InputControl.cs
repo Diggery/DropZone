@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class InputControl : MonoBehaviour {
 	
@@ -14,6 +15,8 @@ public class InputControl : MonoBehaviour {
 	GameControl gameControl;
 	
 	InterfaceControl interfaceControl;
+	
+	List<GameObject> openGizmoControls = new List<GameObject>();
 	
 	void Start () {		
 		
@@ -31,11 +34,18 @@ public class InputControl : MonoBehaviour {
 		gameControl = gameControlObj.GetComponent<GameControl>();
 	}
 	
-	void Update () {
-
+	public void AddGizmoControl(GameObject newControl) {
+		openGizmoControls.Add(newControl);
 	}
 	
+	public void RemoveGizmoControl(GameObject oldControl) {
+		if (openGizmoControls.Contains(oldControl)) {
+			openGizmoControls.Remove(oldControl);
+		}
+	}	
+	
 	public void UnitSelected(Events.Notification notification) {
+		
 		UnitController target = (UnitController)notification.data;
 		
 		CancelPath();
@@ -44,10 +54,15 @@ public class InputControl : MonoBehaviour {
 			selectedUnit.SetMainTarget(target.gameObject);
 		}
 		if (target.transform.tag.Equals("Player")) {
+			interfaceControl.ClearEquipmentButtons();
 			if (selectedUnit) 
 				selectedUnit.Deselect();
 			selectedUnit = target;
 			target.Select();
+			Equipment[] targetEquip = target.GetAllEquipment();
+			foreach (Equipment equipment in targetEquip) {
+				interfaceControl.AddEquipmentButton(equipment);
+			}
 		}
 	}
 
@@ -67,13 +82,18 @@ public class InputControl : MonoBehaviour {
 		Deselect();
 		gameControl.SelectorResume();
 	}
+	
 	public void CancelPath() {
 		if (selectedUnit) {
 			selectedUnit.GetComponent<PathMover>().CancelPathLine();
 			selector.HideSelector();
 			gameControl.SelectorResume();
 		}
-		
+	}
+	public void CancelGizmoControls() {
+		foreach (GameObject control in openGizmoControls) {
+			control.SendMessage("Cancel");
+		}
 	}
 		
 	public void UpdateUnitsPath(Vector3 moveLoc) {
@@ -82,21 +102,25 @@ public class InputControl : MonoBehaviour {
 	}
 	
 	public void StartControl() {
-		
 		if (!selectedUnit) return;
-		
 	}
 	
 	public void touchDown(TouchManager.TouchDownEvent touchEvent) {
 		selector.HideButtons();
-	}	
+	}
+		
 	public void touchDrag(TouchManager.TouchDragEvent touchEvent) {
 
 	}	
+	
 	public void touchUp(TouchManager.TouchUpEvent touchEvent) {
 
 	}
+	
 	public void tap(TouchManager.TapEvent touchEvent) {
+	
+		CancelGizmoControls();
+	
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		RaycastHit hit;
 		LayerMask terrainMask = 1 << LayerMask.NameToLayer("Ground");

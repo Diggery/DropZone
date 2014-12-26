@@ -181,11 +181,11 @@ public class MainWeapon : MonoBehaviour {
 					if (armorPenetrationChance > targetController.GetArmorRating()) {
 						hit.transform.SendMessageUpwards("TakeDamage", damageInfo, SendMessageOptions.DontRequireReceiver);
 						GameObject indicator = Instantiate(hitIndicator, hit.point, Quaternion.identity) as GameObject;
-						indicator.GetComponent<IndicatorMover>().Launch(incomingVec, damageInfo.w);
+						indicator.GetComponent<BadgeMover>().Launch(incomingVec, damageInfo.w);
 					} else {
 						hit.transform.SendMessageUpwards("HitDeflected", damageInfo, SendMessageOptions.DontRequireReceiver);
 						GameObject indicator = Instantiate(deflectIndicator, hit.point, Quaternion.identity) as GameObject;
-						indicator.GetComponent<IndicatorMover>().Launch(incomingVec, 0);
+						indicator.GetComponent<BadgeMover>().Launch(incomingVec, 0);
 					}
 
 				}

@@ -11,7 +11,7 @@ public class UnitSelect : MonoBehaviour {
 	public Color enemyColor;
 	public Color otherColor;
 	
-	Color currentColor;
+	Color currentColor = Color.white;
 	Color colorGoal;
 	float fadeGoal;
 	
@@ -42,13 +42,13 @@ public class UnitSelect : MonoBehaviour {
 			fadeGoal = 0.0f;
 		}
 		
-		currentColor = Color.Lerp (currentColor, new Color (colorGoal.r, colorGoal.g, colorGoal.b, fadeGoal), GameTime.deltaTime * 5);
-		renderer.material.color = currentColor;
-		
 		if (renderer.enabled) {
+			currentColor = Color.Lerp (currentColor, new Color (colorGoal.r, colorGoal.g, colorGoal.b, fadeGoal), GameTime.deltaTime * 5);
+			renderer.material.color = currentColor;
 			transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one, GameTime.deltaTime * 5);
 		} else {
 			transform.localScale = new Vector3(3.0f, 3.0f, 3.0f);
+			renderer.material.color = currentColor = Color.green;
 		}
 
 		if (unitController.dead) Destroy(gameObject);

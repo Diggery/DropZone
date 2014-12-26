@@ -36,6 +36,27 @@ public class CharacterConfig : MonoBehaviour {
 		unitController = GetComponent<UnitController>();
 		if (!unitController) Debug.Log("ERROR: Can't Find Player Controller");
 		unitController.SetTargetCollision(transform.Find(AddNameSpaceToPath("Skeleton_Group/Root_Skel/Spine1_Skel/Spine2_Skel")));
+		
+		Transform rightHand = transform.Find(AddNameSpaceToPath (
+			"Skeleton_Group/" +
+			"Root_Skel/" +
+			"Spine1_Skel/" +
+			"Spine2_Skel/" +
+			"RightUpperArm_Skel/" +
+			"RightLowerArm_Skel/" +
+			"RightHand_Skel/" +
+			"WeaponAttach"));
+		Transform leftHand = transform.Find(AddNameSpaceToPath (
+			"Skeleton_Group/" +
+			"Root_Skel/" +
+			"Spine1_Skel/" +
+			"Spine2_Skel/" +
+			"LeftUpperArm_Skel/" +
+			"LeftLowerArm_Skel/" +
+			"LeftHand_Skel"));
+			
+		unitController.SetAttachPoints(rightHand, leftHand);
+		
 		if (helmet) {
 			string neckPath = 
 				"Skeleton_Group/" +
