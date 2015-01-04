@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -8,7 +9,7 @@ public class InputControl : MonoBehaviour {
 
 
 	public GameObject selectorPrefab;
-	public MapSelector selector;
+	MapSelector selector;
 	
 	CameraControl cameraControl;
 	
@@ -19,9 +20,10 @@ public class InputControl : MonoBehaviour {
 	List<GameObject> openGizmoControls = new List<GameObject>();
 	
 	void Start () {		
+		Events.Listen(gameObject, "SelectUnit");
+		Events.Listen(gameObject, "DeselectUnit");
 		
 		interfaceControl = Camera.main.gameObject.GetComponent<InterfaceControl>();
-		Events.Listen(gameObject, "UnitSelected");
 		GameObject selectorObj = GameObject.Instantiate(selectorPrefab, Vector3.zero, Quaternion.identity) as GameObject;
 		selectorObj.name = "MapSelector";
 		selector = selectorObj.GetComponent<MapSelector>();
@@ -43,12 +45,16 @@ public class InputControl : MonoBehaviour {
 			openGizmoControls.Remove(oldControl);
 		}
 	}	
+
+	public void SelectUnit(Events.Notification notification) {
+		UnitController unit = (UnitController)notification.data;
+		UnitSelected(unit);
+	}
 	
-	public void UnitSelected(Events.Notification notification) {
-		
-		UnitController target = (UnitController)notification.data;
-		
+	public void UnitSelected(UnitController target) {
+			
 		CancelPath();
+		gameControl.Pause("UnitSelected");
 		
 		if (target.transform.tag.Equals("Enemy") && selectedUnit) {
 			selectedUnit.SetMainTarget(target.gameObject);
@@ -65,11 +71,18 @@ public class InputControl : MonoBehaviour {
 			}
 		}
 	}
-
-	public void Deselect() {
-
-		selectedUnit.Deselect();
-		selectedUnit = null;
+	
+	public void DeselectUnit(Events.Notification notification) {
+		DeselectUnit();
+	}
+	
+	public void DeselectUnit() {
+		interfaceControl.ClearEquipmentButtons();
+		if (selectedUnit) {
+			selectedUnit.Deselect();
+			selectedUnit = null;
+			gameControl.Resume("UnitSelected");
+		}
 	}	
 
 	public UnitController GetSelectedUnit() {
@@ -79,15 +92,15 @@ public class InputControl : MonoBehaviour {
 	public void SendUnitToPosition(Vector3 moveLoc) {
 		if (!selectedUnit) return;
 		selectedUnit.GetComponent<UnitController>().MoveTo(moveLoc);
-		Deselect();
-		gameControl.SelectorResume();
+		DeselectUnit();
+		gameControl.Resume("MapSelector");
 	}
 	
 	public void CancelPath() {
 		if (selectedUnit) {
 			selectedUnit.GetComponent<PathMover>().CancelPathLine();
 			selector.HideSelector();
-			gameControl.SelectorResume();
+			gameControl.Resume("MapSelector");
 		}
 	}
 	public void CancelGizmoControls() {
@@ -108,16 +121,8 @@ public class InputControl : MonoBehaviour {
 	public void touchDown(TouchManager.TouchDownEvent touchEvent) {
 		selector.HideButtons();
 	}
-		
-	public void touchDrag(TouchManager.TouchDragEvent touchEvent) {
 
-	}	
-	
-	public void touchUp(TouchManager.TouchUpEvent touchEvent) {
-
-	}
-	
-	public void tap(TouchManager.TapEvent touchEvent) {
+	public void MapClicked() {
 	
 		CancelGizmoControls();
 	
@@ -128,13 +133,14 @@ public class InputControl : MonoBehaviour {
 			if (selectedUnit) {
 				selector.SetPos(hit.point);	
 				selector.ShowButtons();
-				gameControl.SelectorPause();
+				gameControl.Pause("MapSelector");
 			}
 		}
 	}
 	
-	public void drag(TouchManager.TouchDragEvent touchEvent) {
-		cameraControl.drag(touchEvent);
+	public void MapDragged(PointerEventData eventData) {
+		cameraControl.Dragged(eventData.delta);
 	}
+			
 
 }

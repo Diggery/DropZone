@@ -10,12 +10,12 @@ public class GameControl : MonoBehaviour {
 	public GameObject[] helmets;
 	
 	public bool globalPause = false;
-	public bool pausedBySelector = false;
 	
 	public GameObject[] profileCameras;
 	
 	SpawnControl spawnControl;
 	MapControl mapControl;
+	PauseControl pauseControl;
 	
 	List<UnitController> squad = new List<UnitController>();
 	
@@ -28,6 +28,10 @@ public class GameControl : MonoBehaviour {
 		
 		spawnControl = GetComponent<SpawnControl>();
 		spawnControl.SetUp(this);
+	}
+	
+	public void SetPauseControl(PauseControl _pauseControl) {
+		pauseControl = _pauseControl;
 	}
 
 	public void AddFriendlyUnits() {
@@ -115,12 +119,20 @@ public class GameControl : MonoBehaviour {
 		if (squad.Contains(squadMember)) squad.Remove(squadMember); 
 	}
 	
+	public void SquadieHit(UnitController squadMember) {
+		Pause("SquadieHit");
+	} 
+	public void SquadieInjured(UnitController squadMember) {
+		Pause("SquadieInjured");
+	}
+	public void SquadieDead(UnitController squadMember) {
+		Pause("SquadieDead");
+	}
+	
 	public void SelectorPause() {
-		pausedBySelector = true;
 		Pause();
 	}
 	public void SelectorResume() {
-		pausedBySelector = false;
 		Resume();
 	}
 	
@@ -132,14 +144,93 @@ public class GameControl : MonoBehaviour {
 		globalPause = false;
 		Resume();
 	}	
+
+	public void Pause(string reason) {
+		switch(reason) {
+		
+		case "UnitSelected" :
+			if (pauseControl.onSelection) {
+				Pause();
+				pauseControl.SetPauseInfo("Unit was selected.");
+			}
+			break;
+			
+		case "MapSelector" :
+			if (pauseControl.onMoveControl) {
+				Pause();
+				pauseControl.SetPauseInfo("MoveSelector active.");
+			}			
+			break;
+			
+		case "SquadieHit" :
+			if (pauseControl.onHit) {
+				Pause();
+				pauseControl.SetPauseInfo("A Squadie was hit.");
+			}			
+			break;
+			
+		case "SquadieInjured" :
+			if (pauseControl.onHit || pauseControl.onInjured) {
+				Pause();
+				pauseControl.SetPauseInfo("A Squadie is heavily injured.");
+			}			
+			break;
+			
+		case "SquadieDead" :
+			if (pauseControl.onHit || pauseControl.onInjured || pauseControl.onDeath) {
+				Pause();
+				pauseControl.SetPauseInfo("A Squadie has been incapacitated.");
+			}			
+			break;
+			
+		case "NewEnemy" :
+			if (pauseControl.onNewEnemy) {
+				Pause();
+				pauseControl.SetPauseInfo("A new enemy has been spotted.");
+			}			
+			break;
+			
+		case "NewCaptain" :
+			if (pauseControl.onNewCaptain) {
+				Pause();
+				pauseControl.SetPauseInfo("A new captain has been spotted.");
+			}			
+			break;
+			
+		case "SpecialAction" :
+			if (pauseControl.onSpecialAction) {
+				Pause();
+				pauseControl.SetPauseInfo("An enemy is using a special item.");
+			}			
+			break;
+			
+			
+		default :
+				Pause();
+			break;
+		}
+	
+		
+	}
+		
 	public void Pause() {
 		GameTime.paused = true;
 	}
+	
+	public void Resume(string reason) {
+		Resume();
+		pauseControl.ClearPauseInfo();
+	}
+	
 	public void Resume() {
 		if (globalPause) {
 			GameTime.paused = true;
 			return; 
 		}
 		GameTime.paused = false;
+	}
+	
+	public void OnDestroy() {
+		LoadSave.SaveAll();
 	}
 }

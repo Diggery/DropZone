@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using System.Collections;
 
 public class CameraControl : MonoBehaviour {
@@ -66,14 +67,17 @@ public class CameraControl : MonoBehaviour {
 		mapSelector = _mapSelector;
 	}
 	
-	public void drag(TouchManager.TouchDragEvent touchEvent) {
+
+	public void Dragged(Vector2 direction) {
 		
-		touchOffset.x = Mathf.Clamp(touchOffset.x - (((float)touchEvent.touchDelta.x / (float)Screen.width) * 20), -widthOffset, widthOffset);
-		touchOffset.y -= ((float)touchEvent.touchDelta.y / (float)Screen.height) * 20;
+		touchOffset.x = Mathf.Clamp(touchOffset.x - (((float)direction.x / (float)Screen.width) * 20), -widthOffset, widthOffset);
+		touchOffset.y -= ((float)direction.y / (float)Screen.height) * 20;
 	}
-	
+			
 	public void NeedCameraFocus(Events.Notification notification) {
 		Transform focusTarget = (Transform)notification.data;
 		cameraLookAt.position = focusTarget.position;
 	}
+
+	
 }

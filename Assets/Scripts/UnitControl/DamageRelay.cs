@@ -9,7 +9,7 @@ public class DamageRelay : MonoBehaviour {
 		target = newTarget;
 	}	
 
-	public void TakeDamage(Vector4 damageInfo) {
+	public void TakeDamage(UnitController.DamageInfo damageInfo) {
 		target.Hit(damageInfo, transform);
 	}
 

@@ -26,7 +26,8 @@ public class UnitController : MonoBehaviour {
 
 	TargetingControl targetingControl;
 	MapControl mapControl;
-
+	GameControl gameControl;
+	
 	Transform rightHandAttach;
 	Transform leftHandAttach;
 
@@ -61,9 +62,18 @@ public class UnitController : MonoBehaviour {
 
 		GameObject mapObj = GameObject.Find ("Map");
 		mapControl = mapObj.GetComponent<MapControl> ();
-		if (!mapControl) 
-			Debug.Log (transform.name + " can't find the map.");
-
+		if (!mapControl) Debug.Log (transform.name + " can't find the map.");		
+		gameControl = mapObj.GetComponent<GameControl> ();
+		if (!gameControl) Debug.Log (transform.name + " can't find the game control.");		
+		
+		
+		// add input handlers		
+		InputControl inputControl = mapObj.GetComponent<InputControl> ();
+		if (!inputControl) 
+			Debug.Log (transform.name + " can't find the inputControl.");
+		gameObject.AddComponent<UnitInput>().SetInputControl(inputControl, this);
+		//
+		
 		pathMover = GetComponent<PathMover> ();
 		
 		if (!pathMover) {
@@ -82,8 +92,6 @@ public class UnitController : MonoBehaviour {
 		
 		GameObject unitSelect = Instantiate(unitSelectArt) as GameObject;
 		unitSelect.GetComponent<UnitSelect>().SetUp(this);	
-		
-
 	}
 	
 	public void SetStats(UnitStatistics.UnitStats stats) {
@@ -264,7 +272,7 @@ public class UnitController : MonoBehaviour {
 		return collision.center + targetCollision.position;
 	}
 
-	public void Hit(Vector4 damageInfo, Transform location) {
+	public void Hit(DamageInfo damageInfo, Transform location) {
 		print ("hit " + location.name);
 	}
 
@@ -285,10 +293,6 @@ public class UnitController : MonoBehaviour {
 	
 	public void ReplaceMagazine() {
 		mainWeapon.ReplaceMagazine();
-	}
-
-	public void tap(TouchManager.TapEvent touchEvent) {
-		Events.Send(gameObject, "UnitSelected", this);
 	}
 
 	public void Select() {
@@ -357,7 +361,20 @@ public class UnitController : MonoBehaviour {
 		unitPane = _unitPane;
 	}
 	
-	public void TakeDamage(Vector4 damageInfo) {
+	public class DamageInfo {
+		public Vector3 direction;
+		public float damage;
+		public enum DamageType { Projectile, Energy, Explosive };
+		public DamageType damageType;
+		
+		public DamageInfo(Vector3 direction, float damage, DamageType damageType) {
+			this.direction = direction;
+			this.damage = damage;
+			this.damageType = damageType;
+		}
+	}	
+	
+	public void TakeDamage(DamageInfo damageInfo) {
 		if (dead || dummy) return;
 		
 		if (!HasTarget()) 
@@ -365,16 +382,27 @@ public class UnitController : MonoBehaviour {
 			
 		if (unitPane) unitPane.TakeDamage();	
 	
-		health -= damageInfo.w;
+		health -= damageInfo.damage;
+		
+		if (tag.Equals("Player") && GetNormalizedHealth() < 0.5) {
+			gameControl.SquadieInjured(this);
+		} else {
+			gameControl.SquadieHit(this);
+		}
 
 		if (health < 0) 
-			Die ();
+			Die (damageInfo);
 	}
 
 
-	public void Die() {
+	public void Die(DamageInfo damageInfo) {
 		if (dead) return;
-		Deselect();
+		
+		//if its a player, tell the game control about it
+		if (tag.Equals("Player")) gameControl.SquadieDead(this);
+		Events.Send(gameObject, "DeselectUnit", this);
+		
+		Vector3 direction = damageInfo.direction;
 		
 		MapControl.MapDataPoint currentMapCell = mapControl.GetMapData(transform.position);
 		currentMapCell.isClaimed = false;
@@ -383,7 +411,14 @@ public class UnitController : MonoBehaviour {
 		transform.tag = "Dead";
 		transform.name += " is dead!";
 		dead = true;
-		GetComponent<RagDollControl>().enableRagDoll ();
+		RagDollControl ragdoll = GetComponent<RagDollControl>();
+		if (damageInfo.damageType == DamageInfo.DamageType.Explosive) {
+			direction.y = 1;
+			ragdoll.enableRagDoll (direction * 100);
+		} else {
+			ragdoll.enableRagDoll ();
+		}
+		
 		
 		if (spawner) spawner.SpawnedUnitDead(lifeTime);
 		
@@ -396,6 +431,8 @@ public class UnitController : MonoBehaviour {
 		
 		//drop anything being held
 		gameObject.BroadcastMessage("DropItem", SendMessageOptions.DontRequireReceiver);
+		
+
 	}
 	
 	void OnDestroy() {

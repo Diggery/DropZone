@@ -12,7 +12,7 @@ public class EnemyAI : MonoBehaviour {
 	
 	float boredom = 3.0f;
 	float boredRate = Random.Range(0.75f, 1.0f);
-	
+	public bool spotted;
 		
 	public void SetUp(UnitController _unitController, MapControl _mapControl, UnitBehaviors _unitBehaviors) {
 		unitController = _unitController;
@@ -62,7 +62,7 @@ public class EnemyAI : MonoBehaviour {
 		
 	}
 	
-	public void TakeDamage(Vector4 damageInfo) {
+	public void TakeDamage(UnitController.DamageInfo damageInfo) {
 		if (unitBehaviors.retreating) return;
 		boredom = 0.0f;
 		CoverPoint cover = unitController.GetCurrentCoverPoint();

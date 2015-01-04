@@ -52,7 +52,6 @@ public class MapControl : MonoBehaviour {
 
 		//now that they are created, set up any data on them
 		foreach (CoverPoint cover in allCoverPoints) {
-			//cover.SetVisibleCells();
 			cover.SetCornerFlags(); 
 		}
 

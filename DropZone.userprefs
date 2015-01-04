@@ -1,23 +1,28 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/WeaponControl/Equipment.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Interface/PauseControl.cs">
     <Files>
-      <File FileName="Assets/Scripts/ParticleGroup.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/WeaponControl/FragGrenade.cs" Line="9" Column="1" />
-      <File FileName="Assets/Scripts/WeaponControl/Equipment.cs" Line="44" Column="44" />
-      <File FileName="Assets/Scripts/Interface/EquipmentButton.cs" Line="29" Column="58" />
-      <File FileName="Assets/Scripts/Interface/InterfaceControl.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/UnitControl/UnitController.cs" Line="230" Column="3" />
+      <File FileName="Assets/Scripts/Common/LoadSave.cs" Line="49" Column="30" />
+      <File FileName="Assets/Scripts/MapSelector.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/UnitControl/UnitController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Interface/MapInput.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Interface/InputControl.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/CameraControl.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/GameControl.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Interface/PauseControl.cs" Line="33" Column="22" />
+      <File FileName="Assets/Scripts/Interface/UnitPane.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/UnitControl/EnemyAI.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/UnitControl/TargetingControl.cs" Line="1" Column="1" />
+      <File FileName="Assets/Plugins/PlayerPrefs.cs" Line="221" Column="29" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
             <Node name="Scripts" expanded="True">
-              <Node name="Interface" expanded="True" />
-              <Node name="UnitControl" expanded="True" />
-              <Node name="WeaponControl" expanded="True">
-                <Node name="Equipment.cs" selected="True" />
+              <Node name="Common" expanded="True" />
+              <Node name="Interface" expanded="True">
+                <Node name="PauseControl.cs" selected="True" />
               </Node>
             </Node>
           </Node>

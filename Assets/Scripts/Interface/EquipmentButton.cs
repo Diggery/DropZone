@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using System.Collections;
 
-public class EquipmentButton : MonoBehaviour {
+public class EquipmentButton : MonoBehaviour, IPointerClickHandler {
 
 	bool inUse;
 	bool disabled;
@@ -50,7 +51,7 @@ public class EquipmentButton : MonoBehaviour {
 		disabled = true;
 	}
 		
-	public void tap(TouchManager.TapEvent touchEvent) {
+	public void OnPointerClick(PointerEventData eventData) {
 		if (!equipment) return;
 		if (equipment.InUse()) return;
 		if (disabled) return;

@@ -166,7 +166,7 @@ public class MainWeapon : MonoBehaviour {
 
 			if (!hit.transform.tag.Equals("Shield")) Instantiate(bulletHitPrefab, hit.point, hitRotation);
 			float damage = magDamage + (Mathf.Pow(Mathf.Clamp01(1 - (hit.distance / range)), 3) * magRangeBonus);
-			Vector4 damageInfo = new Vector4(hit.point.x, hit.point.y, hit.point.z, damage);
+			UnitController.DamageInfo damageInfo = new UnitController.DamageInfo(hit.point, damage, UnitController.DamageInfo.DamageType.Projectile);
 			
 			string targetTag = hit.transform.root.tag;
 			if (targetTag.Equals("Enemy") || targetTag.Equals("Player")) {
@@ -181,7 +181,7 @@ public class MainWeapon : MonoBehaviour {
 					if (armorPenetrationChance > targetController.GetArmorRating()) {
 						hit.transform.SendMessageUpwards("TakeDamage", damageInfo, SendMessageOptions.DontRequireReceiver);
 						GameObject indicator = Instantiate(hitIndicator, hit.point, Quaternion.identity) as GameObject;
-						indicator.GetComponent<BadgeMover>().Launch(incomingVec, damageInfo.w);
+						indicator.GetComponent<BadgeMover>().Launch(incomingVec, damage);
 					} else {
 						hit.transform.SendMessageUpwards("HitDeflected", damageInfo, SendMessageOptions.DontRequireReceiver);
 						GameObject indicator = Instantiate(deflectIndicator, hit.point, Quaternion.identity) as GameObject;

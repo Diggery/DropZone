@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using System.Collections;
 
-public class UnitPane : MonoBehaviour {
+public class UnitPane : MonoBehaviour, IPointerClickHandler {
 
 	Vector3 openGoal;
 	Vector3 closeGoal;
@@ -41,14 +42,7 @@ public class UnitPane : MonoBehaviour {
 		slideCurve.AddKey(new Keyframe(0.75f, 0.925f, 1.3f, 1.3f));
 		slideCurve.AddKey(new Keyframe(1, 1, 0, 0));
 		
-		//get everything with colliders so input can be directed here
-		BoxCollider[] parts = gameObject.GetComponentsInChildren<BoxCollider>(); 
-		foreach (BoxCollider part in parts) {
-			if (part.transform != transform) {
-				InputRepeater repeater = part.gameObject.AddComponent<InputRepeater>();
-				repeater.SetTarget(transform);
-			}
-		}
+		badge.gameObject.AddComponent<ButtonControl>().SetTarget(gameObject);
 
 		openGoal = transform.localPosition;
 		closeGoal = new Vector3(0.101f, openGoal.y, 0.15f);
@@ -119,26 +113,29 @@ public class UnitPane : MonoBehaviour {
 	}
 	
 	
-	public void tap(TouchManager.TapEvent touchEvent) {
-	
+	public void OnPointerClick(PointerEventData eventData) {
+		
 		if (dead) return;
 	
-		if (touchEvent.touchTarget == transform) {
-			if (unit.selected) {
-				unit.Deselect();
-			} else {
-				Events.Send(gameObject, "UnitSelected", unit);	
-				currentFillColor = flashColor;	
-				currentHiLiteColor = Color.yellow;	
-			}	
-		}
-		if (touchEvent.touchTarget == badge) {
-			touchEvent.touchTarget.renderer.material.mainTexture = opened ? badgeOpen : badgeClose;
-			Toggle();
-		}			
+		if (unit.selected) {
+			Events.Send(gameObject, "DeselectUnit", unit);	
+		} else {
+			Events.Send(gameObject, "SelectUnit", unit);	
+			currentFillColor = flashColor;	
+			currentHiLiteColor = Color.yellow;	
+		}	
+			
 	}
 	
-	public void doubleTap(TouchManager.DoubleTapEvent touchEvent) {
+	public void ButtonClicked(string name) {
+		if (dead) return;
+		if (name.Contains("Badge")) {
+			badge.renderer.material.mainTexture = opened ? badgeOpen : badgeClose;
+			Toggle();
+		}	
+	}
+	
+	public void doubleTap() {
 	
 		if (dead) return;
 	

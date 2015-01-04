@@ -19,7 +19,7 @@ public class UnitInventory : MonoBehaviour {
 		mainWeapon.SetInventory(this);
 		unitController.AddMainWeapon(mainWeapon);
 
-		GameObject equipmentObj = Instantiate(GetWeapon("FragGrenade"), Vector3.zero, Quaternion.identity) as GameObject;
+		GameObject equipmentObj = Instantiate(GetWeapon("SmartGrenade"), Vector3.zero, Quaternion.identity) as GameObject;
 		Equipment equipment = equipmentObj.GetComponent<Equipment>();
 		equipment.SetInventory(this);
 		unitController.AddEquipment(equipment);
@@ -48,9 +48,10 @@ public class UnitInventory : MonoBehaviour {
 
 
 	public GameObject GetWeapon(string weaponName) {
-		foreach (GameObject weapon in weapons) 
+		foreach (GameObject weapon in weapons) {
 			if (weapon.name.Equals(weaponName)) return weapon;
-		Debug.Log ("Weapon not found");
+		}
+		Debug.Log (weaponName + " not found");
 		return null;
 	}
 }

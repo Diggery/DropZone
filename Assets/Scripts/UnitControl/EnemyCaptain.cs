@@ -106,7 +106,7 @@ public class EnemyCaptain : MonoBehaviour {
 		unitBehaviors.retreating = true;
 	}
 	
-	public void TakeDamage(Vector4 damageInfo) {
+	public void TakeDamage(UnitController.DamageInfo damageInfo) {
 		if (unitController.GetNormalizedHealth() < 0.5f) {
 			Retreat();
 		}

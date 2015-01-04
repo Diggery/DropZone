@@ -212,6 +212,7 @@ public class TargetingControl : MonoBehaviour {
 
 				//get all the targets, just in case
 				allTargets.Add(enemy.transform, (transform.position - enemy.transform.position).sqrMagnitude);
+				
 			} 
 		}
 
@@ -237,8 +238,7 @@ public class TargetingControl : MonoBehaviour {
 			bestTarget = GetTargetFromCover(allUnits);
 		}
 
-		if (bestTarget) 
-			Debug.DrawLine(origin, bestTarget.GetComponent<UnitController>().GetTargetPosition(), Color.green, 1);
+			
 		return bestTarget;
 	}
 

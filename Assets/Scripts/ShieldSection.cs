@@ -102,12 +102,12 @@ public class ShieldSection : MonoBehaviour {
 
 	}
 	
-	public void TakeDamage(Vector4 damageInfo) {
+	public void TakeDamage(UnitController.DamageInfo damageInfo) {
 		flashColor = shieldControl.shieldHitColor;
-		Vector3 hitPos = new Vector3(damageInfo.x, damageInfo.y, damageInfo.z);
+		Vector3 hitPos = damageInfo.direction;
 		GameObject shieldHit = Instantiate(shieldControl.shieldHitPrefab, hitPos, transform.rotation) as GameObject;
 		shieldHit.transform.parent = transform;
-		currentPower -= damageInfo.w;
+		currentPower -= damageInfo.damage;
 		regenTimer = regenDelay;
 		if (currentPower < 0) {
 			BreakShield();

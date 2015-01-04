@@ -1,7 +1,8 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using System.Collections;
 
-public class MapSelector : MonoBehaviour {
+public class MapSelector : MonoBehaviour, IDragHandler {
 	
 	float gridSize = 1.0f;
 	public bool visible = false;
@@ -31,9 +32,11 @@ public class MapSelector : MonoBehaviour {
 	
 	public void SetUp () {
 		cancelButton = transform.Find("Cancel");
+		cancelButton.gameObject.AddComponent<ButtonControl>();
 		cancelIcon = transform.Find("Cancel/CancelIcon");
 		cancelGlow = transform.Find("CancelGlow");
 		acceptButton = transform.Find("Accept");
+		acceptButton.gameObject.AddComponent<ButtonControl>();
 		acceptIcon = transform.Find("Accept/AcceptIcon");
 		acceptGlow = transform.Find("AcceptGlow");
 		
@@ -47,7 +50,7 @@ public class MapSelector : MonoBehaviour {
 		GameObject cameraRoot = GameObject.Find("CameraRoot");
 		CameraControl cameraControl = cameraRoot.GetComponent<CameraControl>();
 		cameraControl.SetMapSelector(this);
-		
+		Events.Listen(gameObject, "DeselectUnit");
 	}
 	
 	void Update () {
@@ -97,9 +100,7 @@ public class MapSelector : MonoBehaviour {
 	}
 	
 	public void SetPos(Vector3 newPos) {
-	
-		
-		
+			
 		Vector3 newGoalPos;
 		newGoalPos.x = Mathf.Floor((newPos.x / gridSize)) * gridSize;
 		newGoalPos.y = newPos.y;
@@ -157,11 +158,18 @@ public class MapSelector : MonoBehaviour {
 		acceptButton.GetComponent<BoxCollider>().enabled = false;
 		buttonsUp = false;
 	}
-	public void drag(TouchManager.TouchDragEvent touchEvent) {
-		if (touchEvent.startTarget.name.Equals("Accept") || touchEvent.touchTarget.name.Equals("Cancel")) {
-			return;
-		}
-			
+	public void DeselectUnit() {
+		HideSelector();
+	}	
+	public void HideSelector() {
+		HideButtons();
+		selectorCollision.enabled = false;
+		visible = false;
+		mapControl.HideCoverPoints();
+	}
+	
+	public void OnDrag(PointerEventData eventData) {
+
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		RaycastHit hit;
 		LayerMask terrainMask = 1 << LayerMask.NameToLayer("Ground");
@@ -170,24 +178,17 @@ public class MapSelector : MonoBehaviour {
 		}
 	}
 	
-	public void HideSelector() {
-		HideButtons();
-		selectorCollision.enabled = false;
-		visible = false;
-		mapControl.HideCoverPoints();
-	}
-	
-	public void tap(TouchManager.TapEvent touchEvent) {
-		if (touchEvent.touchTarget.name == "Accept") {
+
+	public void ButtonClicked(string buttonName) {
+		if (buttonName.Equals("Accept")) {
 			inputControl.SendUnitToPosition(transform.position);
 			HideSelector();
-		} else if (touchEvent.touchTarget.name == "Cancel") {
+		} else if (buttonName.Equals("Cancel")) {
 			inputControl.CancelPath();
 			HideSelector();	
+			inputControl.DeselectUnit();
 		} else {
 			ShowButtons();
 		}
 	}
-		
-
 }
