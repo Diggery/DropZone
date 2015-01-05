@@ -13,15 +13,19 @@ public class GameControl : MonoBehaviour {
 	
 	public GameObject[] profileCameras;
 	
+	public GameObject markerPrefab;
+	
 	SpawnControl spawnControl;
 	MapControl mapControl;
 	PauseControl pauseControl;
+	CameraControl cameraControl;
 	
 	List<UnitController> squad = new List<UnitController>();
 	
 	
 	void Start () {
 		mapControl = GetComponent<MapControl> ();
+		cameraControl = Camera.main.transform.root.GetComponent<CameraControl>();
 	
 		AddFriendlyUnits ();
 		AddEnemyUnits ();	
@@ -29,6 +33,8 @@ public class GameControl : MonoBehaviour {
 		spawnControl = GetComponent<SpawnControl>();
 		spawnControl.SetUp(this);
 	}
+	
+
 	
 	public void SetPauseControl(PauseControl _pauseControl) {
 		pauseControl = _pauseControl;
@@ -121,12 +127,24 @@ public class GameControl : MonoBehaviour {
 	
 	public void SquadieHit(UnitController squadMember) {
 		Pause("SquadieHit");
+		if (pauseControl.moveCamera && pauseControl.onHit) {
+			cameraControl.LookAtTarget(squadMember.transform);
+			AddMarker(squadMember.transform.position, Marker.MarkerType.Hit);
+		}
 	} 
 	public void SquadieInjured(UnitController squadMember) {
 		Pause("SquadieInjured");
+		if (pauseControl.moveCamera && pauseControl.onInjured) {
+			cameraControl.LookAtTarget(squadMember.transform);
+			AddMarker(squadMember.transform.position, Marker.MarkerType.Injury);
+		}
 	}
 	public void SquadieDead(UnitController squadMember) {
 		Pause("SquadieDead");
+		if (pauseControl.moveCamera && pauseControl.onHit || pauseControl.onInjured || pauseControl.onDeath) {
+			cameraControl.LookAtTarget(squadMember.transform);
+			AddMarker(squadMember.transform.position, Marker.MarkerType.Death);	
+		}
 	}
 	
 	public void SelectorPause() {
@@ -228,6 +246,12 @@ public class GameControl : MonoBehaviour {
 			return; 
 		}
 		GameTime.paused = false;
+	}
+	
+	GameObject AddMarker(Vector3 markerPos, Marker.MarkerType type) {
+		GameObject marker = Instantiate(markerPrefab, markerPos, Quaternion.identity) as GameObject;
+		marker.GetComponent<Marker>().SetUp(type);
+		return marker;
 	}
 	
 	public void OnDestroy() {

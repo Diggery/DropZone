@@ -22,6 +22,7 @@ public class PauseControl : MonoBehaviour {
 	public bool onNewEnemy;
 	public bool onNewCaptain;
 	public bool onSpecialAction;
+	public bool moveCamera;
 	
 	public AnimationCurve transitionCurve;
 	float transitionTimer;
@@ -44,9 +45,9 @@ public class PauseControl : MonoBehaviour {
 			
 		bool[] settings = LoadSave.GetPauseSettings();
 		
-		if (settings.Length < 8) {
+		if (settings.Length < 9) {
 			Debug.Log("No Settings");
-			bool[] initSet = new bool[8] {false, false, false, false, false, false, false, false};
+			bool[] initSet = new bool[9] {false, false, false, false, false, false, false, false, false};
 			LoadSave.SetPauseSettings(initSet);	
 		}
 		
@@ -58,7 +59,8 @@ public class PauseControl : MonoBehaviour {
 		onNewEnemy 			= settings[5];
 		onNewCaptain 		= settings[6];
 		onSpecialAction 	= settings[7];		
-	
+		moveCamera 			= settings[8];		
+		
 		Toggle[] toggles = gameObject.GetComponentsInChildren<Toggle>();
 		foreach (Toggle toggle in toggles) {
 			if (toggle.gameObject.name.Equals("OnSelection")) toggle.isOn = onSelection;
@@ -69,7 +71,10 @@ public class PauseControl : MonoBehaviour {
 			if (toggle.gameObject.name.Equals("OnNewEnemy")) toggle.isOn = onNewEnemy;
 			if (toggle.gameObject.name.Equals("OnNewCaptain")) toggle.isOn = onNewCaptain;
 			if (toggle.gameObject.name.Equals("OnSpecialAction")) toggle.isOn = onSpecialAction;
+			if (toggle.gameObject.name.Equals("MoveCamera")) toggle.isOn = moveCamera;
 		}	
+		ExpandClicked();
+		transitionTimer = 0.9f;
 	}
 	
 	void Update () {
@@ -138,7 +143,7 @@ public class PauseControl : MonoBehaviour {
 	}
 	
 	public void ExpandClicked() {
-		currentFrameColor = new Color(0.5f, 0.0f, 0.0f, 1.0f);
+		currentFrameColor = Color.red;
 		LoadSave.SaveAll();
 		expanded = !expanded;
 	}
@@ -153,6 +158,7 @@ public class PauseControl : MonoBehaviour {
 		if (item.gameObject.name.Equals("OnNewEnemy")) onNewEnemy = item.isOn;
 		if (item.gameObject.name.Equals("OnNewCaptain")) onNewCaptain = item.isOn;
 		if (item.gameObject.name.Equals("OnSpecialAction")) onSpecialAction = item.isOn;
+		if (item.gameObject.name.Equals("MoveCamera")) moveCamera = item.isOn;
 		SaveToggles();
 	}
 	void SaveToggles() {
@@ -165,6 +171,7 @@ public class PauseControl : MonoBehaviour {
 		settings.Add(onNewEnemy); 			
 		settings.Add(onNewCaptain); 		
 		settings.Add(onSpecialAction);
+		settings.Add(moveCamera);
 		LoadSave.SetPauseSettings(settings.ToArray());	
 	}
 	

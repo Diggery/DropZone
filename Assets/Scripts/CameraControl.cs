@@ -18,6 +18,9 @@ public class CameraControl : MonoBehaviour {
 	float widthOffset;
 	public AnimationCurve widthZCurve;
 	
+	bool lookBackwards;
+	
+	
 	
 	void Start () {
 		Events.Listen(gameObject, "NeedCameraFocus");
@@ -38,10 +41,10 @@ public class CameraControl : MonoBehaviour {
 	}
 	
 	void LateUpdate () {
-	
 
 		// lookAt position
 		Vector3 lookAtGoal = new Vector3(cameraOffset.x + (touchOffset.x * 0.75f), 0, touchOffset.y);
+		
 		if (mapSelector.visible) {
 			lookAtGoal = Vector3.Lerp(lookAtGoal, mapSelector.transform.position, 0.5f);
 		}
@@ -49,7 +52,8 @@ public class CameraControl : MonoBehaviour {
 		cameraLookAt.position = Vector3.Lerp(cameraLookAt.position, lookAtGoal, GameTime.deltaTime * cameraSpeed);
 		
 		// cameraRoot position
-		float rootZPos = cameraLookAt.position.z - (cameraOffset.z * widthZCurve.Evaluate((cameraOffset.x + touchOffset.x)/(widthOffset * 1.5f)));
+		float zOffset = lookBackwards ? cameraOffset.z * -1 : cameraOffset.z;
+		float rootZPos = cameraLookAt.position.z - (zOffset * widthZCurve.Evaluate((cameraOffset.x + touchOffset.x)/(widthOffset * 1.5f)));
 		Vector3 rootPos = new Vector3(cameraOffset.x + touchOffset.x, 0.0f, rootZPos);
 		transform.position = Vector3.Lerp(transform.position, rootPos, GameTime.deltaTime * cameraSpeed);
 		
@@ -67,8 +71,19 @@ public class CameraControl : MonoBehaviour {
 		mapSelector = _mapSelector;
 	}
 	
-
+	public void ToggleLookDirection() {
+		lookBackwards = !lookBackwards;
+	}
+	
+	public void LookAtTarget(Transform target) {
+		touchOffset.x = target.position.x - (mapSize.x/2);
+		touchOffset.y = target.position.z;
+					
+	}
+		
 	public void Dragged(Vector2 direction) {
+		
+		if (lookBackwards) direction = -direction;
 		
 		touchOffset.x = Mathf.Clamp(touchOffset.x - (((float)direction.x / (float)Screen.width) * 20), -widthOffset, widthOffset);
 		touchOffset.y -= ((float)direction.y / (float)Screen.height) * 20;

@@ -15,7 +15,6 @@ public class UnitController : MonoBehaviour {
 	float health = 5.0f;
 	float armorRating = 0.0f;
 	
-	float deathTimer = 10.0f;
 	public bool dead;
 	public bool dummy;
 	public EnemyCaptain enemyCaptain;
@@ -45,7 +44,11 @@ public class UnitController : MonoBehaviour {
 	public bool useColorFader;
 
 	Spawner spawner;
+	
+	//timers 
 	float lifeTime;	
+	float deathTimer = 10.0f;
+	float alertCooldown = -1.0f;	
 	
 	void Start () {
 	
@@ -134,6 +137,7 @@ public class UnitController : MonoBehaviour {
 		animator.SetBool("HasTarget", mainWeaponTarget);
 		
 		lifeTime += Time.deltaTime;
+		if (alertCooldown > 0) alertCooldown -= Time.deltaTime;
 
 	}
 
@@ -384,10 +388,14 @@ public class UnitController : MonoBehaviour {
 	
 		health -= damageInfo.damage;
 		
-		if (tag.Equals("Player") && GetNormalizedHealth() < 0.5) {
-			gameControl.SquadieInjured(this);
-		} else {
-			gameControl.SquadieHit(this);
+		// warn the game control if injured, but not too often
+		if (tag.Equals("Player") && alertCooldown < 0) {
+		 	alertCooldown = 2.0f;
+			if (GetNormalizedHealth() < 0.5) {
+				gameControl.SquadieInjured(this);
+			} else {
+				gameControl.SquadieHit(this);
+			}
 		}
 
 		if (health < 0) 

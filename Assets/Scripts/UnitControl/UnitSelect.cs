@@ -48,7 +48,7 @@ public class UnitSelect : MonoBehaviour {
 			transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one, GameTime.deltaTime * 5);
 		} else {
 			transform.localScale = new Vector3(3.0f, 3.0f, 3.0f);
-			renderer.material.color = currentColor = Color.green;
+			renderer.material.color = currentColor = Color.red;
 		}
 
 		if (unitController.dead) Destroy(gameObject);
