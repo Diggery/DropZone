@@ -1,4 +1,4 @@
-using UnityEngine;
+	using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Collections;
 
@@ -146,16 +146,22 @@ public class MapSelector : MonoBehaviour, IDragHandler {
 		
 	}
 	
+	public Vector3[] GetButtonPositions() {
+		Vector3[] positions = new Vector3[2];
+		positions[0] = acceptButton.position + acceptButton.GetComponent<SphereCollider>().center;
+		positions[1] = cancelButton.position + cancelButton.GetComponent<SphereCollider>().center;
+		return positions;
+	}
+	
 	public void ShowButtons() {
 		if (invalidMove) return;
-		cancelButton.GetComponent<BoxCollider>().enabled = true;
-		acceptButton.GetComponent<BoxCollider>().enabled = true;
+		cancelButton.GetComponent<SphereCollider>().enabled = true;
+		acceptButton.GetComponent<SphereCollider>().enabled = true;
 		buttonsUp = true;
-		
 	}
 	public void HideButtons() {
-		cancelButton.GetComponent<BoxCollider>().enabled = false;
-		acceptButton.GetComponent<BoxCollider>().enabled = false;
+		cancelButton.GetComponent<SphereCollider>().enabled = false;
+		acceptButton.GetComponent<SphereCollider>().enabled = false;
 		buttonsUp = false;
 	}
 	public void DeselectUnit() {

@@ -124,18 +124,39 @@ public class InputControl : MonoBehaviour {
 
 	public void MapClicked() {
 	
-		CancelGizmoControls();
-	
+		
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		RaycastHit hit;
 		LayerMask terrainMask = 1 << LayerMask.NameToLayer("Ground");
+		
+		
 		if(Physics.Raycast(ray, out hit, Mathf.Infinity, terrainMask)) {
+			
+			//GameObject marker = GameObject.CreatePrimitive(PrimitiveType.Cube);
+			//marker.transform.position = hit.point;
+			//marker.transform.localScale = new Vector3(0.1f, 0.2f, 0.1f);
+			
+			// hack to click button selectors if the raycast missed from some reason
+			Vector3[] buttonPositions = selector.GetButtonPositions();
+			
+			if (Vector3.Distance(buttonPositions[0], hit.point) < 0.6f) {
+				selector.ButtonClicked("Accept");
+				return;
+			}
+			
+			if (Vector3.Distance(buttonPositions[1], hit.point) < 0.6f) {
+				selector.ButtonClicked("Cancel");
+				return;
+			}			
+			
 			if (selectedUnit) {
-				selector.SetPos(hit.point);	
 				selector.ShowButtons();
+				selector.SetPos(hit.point);	
 				gameControl.Pause("MapSelector");
 			}
 		}
+		CancelGizmoControls();
+		
 	}
 	
 	public void MapDragged(PointerEventData eventData) {
