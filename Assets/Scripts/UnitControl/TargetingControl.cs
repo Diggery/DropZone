@@ -195,7 +195,12 @@ public class TargetingControl : MonoBehaviour {
 
 		foreach (GameObject enemy in allUnits) {
 			UnitController enemyController = enemy.GetComponent<UnitController>();
-			if (!enemyController) print (enemy.name + " doesn't have a controller");
+			if (!enemyController) {
+				print (enemy.name + " doesn't have a controller");
+				print("Lets Kill him");
+				Destroy(enemy);
+				continue;
+			}
 			Vector3 targetPos = enemyController.GetTargetPosition();
 			
 			float rangeToTarget = (transform.position - enemy.transform.position).sqrMagnitude;

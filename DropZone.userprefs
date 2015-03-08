@@ -1,30 +1,29 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Interface/ButtonControl.cs">
-    <Files>
-      <File FileName="Assets/Scripts/Interface/MapInput.cs" Line="21" Column="1" />
-      <File FileName="Assets/Scripts/MapSelector.cs" Line="81" Column="5" />
-      <File FileName="Assets/Scripts/Interface/ButtonControl.cs" Line="14" Column="17" />
-      <File FileName="Assets/Scripts/Interface/InputControl.cs" Line="137" Column="1" />
-    </Files>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
             <Node name="Scripts" expanded="True">
-              <Node name="Interface" expanded="True">
-                <Node name="ButtonControl.cs" selected="True" />
+              <Node name="Common" expanded="True" />
+              <Node name="Interface" expanded="True" />
+              <Node name="UnitControl" expanded="True">
+                <Node name="UnitStatistics.cs" selected="True" />
               </Node>
+              <Node name="WeaponControl" expanded="True" />
             </Node>
+            <Node name="Shaders" expanded="True" />
+          </Node>
+          <Node name="Assembly-CSharp-firstpass" expanded="True">
+            <Node name="Shaders" expanded="True" />
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/briancollins/Unity/DropZone/Assets/Scripts/Interface/ButtonControl.cs" line="14" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

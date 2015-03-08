@@ -12,6 +12,7 @@ public class UnitPane : MonoBehaviour, IPointerClickHandler {
 	Color closeColor = new Color(0.0f, 0.0f, 0.0f, 0.1f);
 	Color selectColor = new Color(0.2f, 0.0f, 0.0f, 0.2f);
 	Color flashColor = new Color (1.0f, 0.5f, 0.0f);		
+	Color idleHealthColor = new Color (0.0f, 0.0f, 0.0f, 0.5f);		
 	
 	Color currentFrameColor;
 	Color currentFillColor;
@@ -31,6 +32,13 @@ public class UnitPane : MonoBehaviour, IPointerClickHandler {
 	
 	public GameObject profileCameraPrefab;
 	
+	Equipment equipment1;
+	public Transform equipment1Button;
+	Equipment equipment2;
+	public Transform equipment2Button;
+
+	public Transform healthBar;
+	
 	TextMesh unitName;
 	
 	AnimationCurve slideCurve = new AnimationCurve();
@@ -48,6 +56,16 @@ public class UnitPane : MonoBehaviour, IPointerClickHandler {
 		closeGoal = new Vector3(0.101f, openGoal.y, 0.15f);
 		
 		unitName = transform.Find ("UnitName").GetComponent<TextMesh>();
+		
+		equipment1Button.name = "Equipment1";
+		equipment1Button.renderer.material.renderQueue = 3100;
+		equipment1Button.gameObject.AddComponent<SphereCollider>();
+		equipment1Button.gameObject.AddComponent<ButtonControl>().SetTarget(gameObject);
+		
+		equipment2Button.name = "Equipment2";
+		equipment2Button.renderer.material.renderQueue = 3100;
+		equipment2Button.gameObject.AddComponent<SphereCollider>();
+		equipment2Button.gameObject.AddComponent<ButtonControl>().SetTarget(gameObject);
 	}
 	
 	public void SetUnit(UnitController _unit) {
@@ -61,6 +79,7 @@ public class UnitPane : MonoBehaviour, IPointerClickHandler {
 		chaseCam.SetLookAtTarget(unit.headModel.transform);
 		chaseCam.RandomizeCameraPos();
 		
+		Invoke("FillOutEquipmentButtons", 0.1f);
 	}
 	
 	void Update () {
@@ -83,7 +102,6 @@ public class UnitPane : MonoBehaviour, IPointerClickHandler {
 		Color HiLiteGoal = Color.clear;
 		
 		if (unit.selected) {
-			closePos.x -= 0.025f;
 			HiLiteGoal = Color.red;
 			if (opened) {
 				fillGoal = openColor;
@@ -110,8 +128,25 @@ public class UnitPane : MonoBehaviour, IPointerClickHandler {
 		renderer.material.SetColor("_HiLiteColor",  currentHiLiteColor);
 		
 		transform.localPosition = Vector3.Lerp(closePos, openGoal, slideCurve.Evaluate(transAmount));
+		
+		float health = unit.GetNormalizedHealth();
+		
+		Color healthColorGoal = Color.Lerp(Color.red, idleHealthColor, health);
+		healthBar.renderer.material.color = Color.Lerp(healthBar.renderer.material.color, healthColorGoal, GameTime.deltaTime * 3);
+		healthBar.renderer.material.mainTextureOffset = Vector2.Lerp(Vector2.up, Vector2.zero, health);
 	}
 	
+	void FillOutEquipmentButtons() {
+		Equipment[] allEquip = unit.GetAllEquipment();
+		if (allEquip.Length >= 1) {
+			equipment1 = allEquip[0];
+			equipment1Button.renderer.material.mainTexture = equipment1.buttonTexture;
+		}
+		if (allEquip.Length > 1) {
+			equipment2 = allEquip[1];
+			equipment2Button.renderer.material.mainTexture = equipment2.buttonTexture;
+		}	
+	}
 	
 	public void OnPointerClick(PointerEventData eventData) {
 		
@@ -132,7 +167,15 @@ public class UnitPane : MonoBehaviour, IPointerClickHandler {
 		if (name.Contains("Badge")) {
 			badge.renderer.material.mainTexture = opened ? badgeOpen : badgeClose;
 			Toggle();
-		}	
+		} else if (name.Equals("Equipment1")) {
+			equipment1.Activate(this);
+		} else if (	name.Equals("Equipment2")) {
+			equipment2.Activate(this);
+		}			
+	}
+	
+	public void DisableEquipmentButton(Equipment usedEquipment) {
+	
 	}
 	
 	public void doubleTap() {
@@ -177,6 +220,11 @@ public class UnitPane : MonoBehaviour, IPointerClickHandler {
 	
 	public void TakeDamage() {
 		currentFrameColor = Color.red;
-	
+		healthBar.renderer.material.color = Color.red;
 	}
+	
+	public void Heal() {
+		healthBar.renderer.material.color = Color.green;
+	}
+		
 }

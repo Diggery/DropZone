@@ -23,8 +23,8 @@ public static class UnitStatistics : object {
 	
 	static UnitStats captainStats = new UnitStats(
 		"Captain", 		//name
-		10.0f,			//maxHealth
-		0.5f 			//armorRating
+		5.0f,			//maxHealth
+		0.75f 			//armorRating
 		);
 	
 	
@@ -48,5 +48,24 @@ public static class UnitStatistics : object {
 		}
 		
 		return stats;
+	}
+	
+	public static UnitStats GetPlayerStats(string playerName) {
+	
+		if (!LoadSave.DoesPlayerExist(playerName)) {
+			LoadSave.CreatePlayerStats(playerName, 5.0f, 0.25f);
+		}
+	
+	
+		float[] stats = LoadSave.GetPlayerStats(playerName);
+	
+		float maxHealth = stats[0];
+		float armorRating = stats[1];
+		
+		return new UnitStats(
+			playerName, 		//name
+			maxHealth,			//maxHealth
+			armorRating 		//armorRating
+		);	
 	}
 }

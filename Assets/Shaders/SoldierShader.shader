@@ -2,10 +2,7 @@
 	Properties {
 		_MainTex ("Base (RGB)", 2D) = "white" {}
     	_Color ("Main Color", Color) = (1,1,1,1)
-    	_HitColor ("Hit Color", Color) = (1,0,0,1)
-    	_HitColorFade ("Hit Fade", Range (0.0, 1.0)) = 0.0
-    	_HealColor ("Heal Color", Color) = (0,1,0,1)
-    	_HealColorFade ("Heal Fade", Range (0.0, 1.0)) = 0.0
+    	_FlashColor ("Flash Color", Color) = (1,0,0,1)
 	}
 	SubShader {
 		Tags { "RenderType"="Opaque" }
@@ -16,10 +13,7 @@
 
 		sampler2D _MainTex;
 		float4 _Color;
-		float4 _HitColor;
-		float _HitColorFade;
-		float4 _HealColor;
-		float _HealColorFade;
+		float4 _FlashColor;
 		
 		struct Input {
 			float2 uv_MainTex;
@@ -27,9 +21,9 @@
 
 		void surf (Input IN, inout SurfaceOutput o) {
 			half4 c = tex2D (_MainTex, IN.uv_MainTex);
-			o.Albedo = c.rgb;//lerp(c, _HitColor.rgb, _HitColor.a);
+			o.Albedo = c.rgb;
 			o.Alpha = c.a;
-			o.Emission = (_HitColor.rgb * _HitColorFade) + (_HealColor.rgb * _HealColorFade);
+			o.Emission = (_FlashColor.rgb);
 		}
 		ENDCG
 	} 

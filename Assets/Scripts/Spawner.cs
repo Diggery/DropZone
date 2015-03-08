@@ -66,8 +66,8 @@ public class Spawner : MonoBehaviour {
 		
 		
 		Vector3 spawnPos = transform.position + transform.forward;
-		GameObject newUnit = Instantiate(gameControl.GetUnitType("EnemySoldier"), spawnPos, transform.rotation) as GameObject;
-		newUnit.GetComponent<CharacterConfig>().Init(gameControl.GetHelmetType("EnemyHelmet"));
+		GameObject newUnit = Instantiate(gameControl.GetUnitType("NecriteSoldier"), spawnPos, transform.rotation) as GameObject;
+		newUnit.GetComponent<CharacterConfig>().Init(gameControl.GetHelmetType("NecriteSkull"));
 		
 		UnitController newController = newUnit.GetComponent<UnitController>();
 		newController.SetStats(UnitStatistics.GetUnitStats("Soldier"));		

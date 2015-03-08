@@ -21,6 +21,18 @@ ModelImporter:
     100030: UpperLeft
     100032: SpaceBar1
     100034: HiLite
+    100036: Equipment1
+    100038: Equipment1 1
+    100040: Equipment1 2
+    100042: Equipment1 3
+    100044: Equipment2
+    100046: Equipment2 1
+    100048: Equipment2 2
+    100050: Equipment2 3
+    100052: HealthBar
+    100054: HealthBar 1
+    100056: HealthBar 2
+    100058: HealthBar 3
     400000: Badge
     400002: Badge 1
     400004: Badge 2
@@ -39,6 +51,18 @@ ModelImporter:
     400030: UpperLeft
     400032: SpaceBar1
     400034: HiLite
+    400036: Equipment1
+    400038: Equipment1 1
+    400040: Equipment1 2
+    400042: Equipment1 3
+    400044: Equipment2
+    400046: Equipment2 1
+    400048: Equipment2 2
+    400050: Equipment2 3
+    400052: HealthBar
+    400054: HealthBar 1
+    400056: HealthBar 2
+    400058: HealthBar 3
     2300000: Badge
     2300002: Badge 1
     2300004: Badge 2
@@ -54,6 +78,18 @@ ModelImporter:
     2300024: UnitPane4
     2300026: SpaceBar1
     2300028: HiLite
+    2300030: Equipment1
+    2300032: Equipment1 1
+    2300034: Equipment1 2
+    2300036: Equipment1 3
+    2300038: Equipment2
+    2300040: Equipment2 1
+    2300042: Equipment2 2
+    2300044: Equipment2 3
+    2300046: HealthBar
+    2300048: HealthBar 1
+    2300050: HealthBar 2
+    2300052: HealthBar 3
     3300000: Badge
     3300002: Badge 1
     3300004: Badge 2
@@ -69,6 +105,18 @@ ModelImporter:
     3300024: UnitPane4
     3300026: SpaceBar1
     3300028: HiLite
+    3300030: Equipment1
+    3300032: Equipment1 1
+    3300034: Equipment1 2
+    3300036: Equipment1 3
+    3300038: Equipment2
+    3300040: Equipment2 1
+    3300042: Equipment2 2
+    3300044: Equipment2 3
+    3300046: HealthBar
+    3300048: HealthBar 1
+    3300050: HealthBar 2
+    3300052: HealthBar 3
     4300000: UnitPane4
     4300002: Image
     4300004: Badge
@@ -84,6 +132,18 @@ ModelImporter:
     4300024: SpaceBar
     4300026: SpaceBar1
     4300028: HiLite
+    4300030: Equipment1
+    4300032: Equipment2
+    4300034: Equipment1
+    4300036: Equipment2
+    4300038: Equipment1
+    4300040: Equipment2
+    4300042: Equipment1
+    4300044: Equipment2
+    4300046: HealthBar
+    4300048: HealthBar
+    4300050: HealthBar
+    4300052: HealthBar
     7400000: Take 001
     9500000: //RootNode
   materials:

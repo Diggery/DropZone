@@ -51,7 +51,10 @@ public class GameControl : MonoBehaviour {
 			newUnit.GetComponent<CharacterConfig>().Init(GetHelmetType("SquadieHelmet"));
 			newUnit.name = "Unit" + (i + 1);
 			UnitController unitController = newUnit.GetComponent<UnitController>();
+			
 			unitController.unitName = tempNames[i];
+			unitController.SetStats(UnitStatistics.GetPlayerStats(unitController.unitName));
+			
 			AddSquadMember(unitController);
 		
 			//link the unit to the unit pane
@@ -77,8 +80,8 @@ public class GameControl : MonoBehaviour {
 				helmetPrefab = GetHelmetType("EnemyCaptainHelmet");
 				isCaptain = true;
 			} else {
-				soldierPrefab = GetUnitType("EnemySoldier");
-				helmetPrefab = GetHelmetType("EnemyHelmet");
+				soldierPrefab = GetUnitType("NecriteSoldier");
+				helmetPrefab = GetHelmetType("NecriteSkull");
 			}
 			GameObject newUnit = Instantiate(soldierPrefab, marker.transform.position, marker.transform.rotation) as GameObject;
 			newUnit.GetComponent<CharacterConfig>().Init(helmetPrefab);

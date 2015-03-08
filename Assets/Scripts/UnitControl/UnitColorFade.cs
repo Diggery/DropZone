@@ -5,8 +5,12 @@ public class UnitColorFade : MonoBehaviour {
 
 	Material unitMat;
 	Material headMat;
-	float hitFade;
-	float healFade;
+	
+	Color flashColor 		= new Color(1.0f, 1.0f, 1.0f, 1.0f);
+	
+	Color damageColor 		= new Color(1.0f, 0.0f, 0.0f, 1.0f);
+	Color healColor 		= new Color(25f/255f, 75f/255f, 0f/255f, 1.0f);
+	Color deflectColor 		= new Color(100f/255f, 180/255f, 250/255f, 1.0f);
 	
 	AnimationCurve fadeCurve = new AnimationCurve();
 
@@ -19,7 +23,6 @@ public class UnitColorFade : MonoBehaviour {
 		SkinnedMeshRenderer[] unitRenderer = gameObject.GetComponentsInChildren<SkinnedMeshRenderer>();	
 	
 		unitMat = unitRenderer[0].material;
-	
 	}
 	
 	public void SetHeadRenderer(Renderer newHeadRenderer) {
@@ -27,28 +30,25 @@ public class UnitColorFade : MonoBehaviour {
 	}
 	
 	void Update () {
-		hitFade = Mathf.Clamp01(hitFade - (Time.deltaTime * 5));
-		healFade = Mathf.Clamp01(healFade - (Time.deltaTime * 5));
-		
-		if (hitFade >= 0) {
-			unitMat.SetFloat("_HitColorFade", hitFade);
-			if (headMat) headMat.SetFloat("_HitColorFade", hitFade);
-		}
-		if (healFade >= 0) {
-			unitMat.SetFloat("_HealColorFade", healFade);
-			if (headMat) headMat.SetFloat("_HealColorFade", healFade);
-		}
-		
+		if (flashColor.r + flashColor.g + flashColor.b > 0.05f) {
+			flashColor = Color.Lerp(flashColor, Color.black, GameTime.deltaTime * 5);
+			unitMat.SetColor("_FlashColor", flashColor);
+			if (headMat) headMat.SetColor("_FlashColor", flashColor);
+			if (flashColor.r + flashColor.g + flashColor.b < 0.05f) {
+				flashColor = Color.black;
+				unitMat.SetColor("_FlashColor", flashColor);
+				if (headMat) headMat.SetColor("_FlashColor", flashColor);
+			}
+		} 
 	}
 	
 	public void TakeDamage(UnitController.DamageInfo damageInfo) {
-		hitFade = 1.0f;
+		flashColor = damageColor;
+	}
+	public void Heal(float healAmount) {
+		flashColor = healColor;
 	}
 	public void HitDeflected(UnitController.DamageInfo damageInfo) {
-		healFade = 1.0f;
+		flashColor = deflectColor;
 	}		
-	
-	public void RecieveHealing(float healAmount) {
-		healFade = 1.0f;
-	}
 }

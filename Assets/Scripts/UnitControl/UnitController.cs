@@ -15,6 +15,10 @@ public class UnitController : MonoBehaviour {
 	float health = 5.0f;
 	float armorRating = 0.0f;
 	
+	float healTimer = 5;
+	float healCoolDown = 1;
+	float healTimeOut = 5;
+	
 	public bool dead;
 	public bool dummy;
 	public EnemyCaptain enemyCaptain;
@@ -40,8 +44,11 @@ public class UnitController : MonoBehaviour {
 
 	public bool selected;
 	public GameObject unitSelectArt;
+	GameObject unitSelect;
 	
 	public bool useColorFader;
+
+	
 
 	Spawner spawner;
 	
@@ -93,13 +100,13 @@ public class UnitController : MonoBehaviour {
 
 		if (!dummy) gameObject.AddComponent<UnitBehaviors>().SetUp(this, mapControl);
 		
-		GameObject unitSelect = Instantiate(unitSelectArt) as GameObject;
+		unitSelect = Instantiate(unitSelectArt) as GameObject;
 		unitSelect.GetComponent<UnitSelect>().SetUp(this);	
 	}
 	
 	public void SetStats(UnitStatistics.UnitStats stats) {
 	
-		gameObject.name = stats.name + " " + gameObject.GetInstanceID();
+		gameObject.name = stats.name;
 		
 		maxHealth = stats.maxHealth;
 		health = maxHealth;
@@ -138,6 +145,13 @@ public class UnitController : MonoBehaviour {
 		
 		lifeTime += Time.deltaTime;
 		if (alertCooldown > 0) alertCooldown -= Time.deltaTime;
+		
+		if (!dead && health < maxHealth) {
+			healTimer -= Time.deltaTime;
+			if (healTimer < 0) {
+				gameObject.SendMessage("Heal", 0.5f);
+			}
+		}
 
 	}
 
@@ -301,6 +315,7 @@ public class UnitController : MonoBehaviour {
 
 	public void Select() {
 		if (dead) return;
+		unitSelect.SendMessage("Select");
 		selected = true;
 	}
 
@@ -388,8 +403,9 @@ public class UnitController : MonoBehaviour {
 	
 		health -= damageInfo.damage;
 		
-		// warn the game control if injured, but not too often
-		if (tag.Equals("Player") && alertCooldown < 0) {
+		if (health < 0) {  //if health is less than 0 die
+			Die (damageInfo);
+		} else if (tag.Equals("Player") && alertCooldown < 0) { // warn the game control if injured, but not too often
 		 	alertCooldown = 2.0f;
 			if (GetNormalizedHealth() < 0.5) {
 				gameControl.SquadieInjured(this);
@@ -397,11 +413,14 @@ public class UnitController : MonoBehaviour {
 				gameControl.SquadieHit(this);
 			}
 		}
-
-		if (health < 0) 
-			Die (damageInfo);
+		healTimer = healTimeOut;
 	}
-
+	
+	public void Heal(float amount) {
+		if (unitPane) unitPane.Heal();	
+		health = Mathf.Min(health + amount, maxHealth);
+		healTimer = healCoolDown;
+	}
 
 	public void Die(DamageInfo damageInfo) {
 		if (dead) return;
@@ -421,7 +440,8 @@ public class UnitController : MonoBehaviour {
 		dead = true;
 		RagDollControl ragdoll = GetComponent<RagDollControl>();
 		if (damageInfo.damageType == DamageInfo.DamageType.Explosive) {
-			direction.y = 1;
+			direction.y += 0.75f;
+			print (direction);
 			ragdoll.enableRagDoll (direction * 100);
 		} else {
 			ragdoll.enableRagDoll ();

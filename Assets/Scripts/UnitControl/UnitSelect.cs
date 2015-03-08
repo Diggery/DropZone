@@ -53,4 +53,9 @@ public class UnitSelect : MonoBehaviour {
 
 		if (unitController.dead) Destroy(gameObject);
 	}
+	
+	public void Select() {
+		transform.localScale = new Vector3(3.0f, 3.0f, 3.0f);
+		renderer.material.color = currentColor = Color.red;		
+	}
 }

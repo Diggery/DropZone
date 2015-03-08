@@ -14,16 +14,13 @@ public class InputControl : MonoBehaviour {
 	CameraControl cameraControl;
 	
 	GameControl gameControl;
-	
-	InterfaceControl interfaceControl;
-	
+		
 	List<GameObject> openGizmoControls = new List<GameObject>();
 	
 	void Start () {		
 		Events.Listen(gameObject, "SelectUnit");
 		Events.Listen(gameObject, "DeselectUnit");
 		
-		interfaceControl = Camera.main.gameObject.GetComponent<InterfaceControl>();
 		GameObject selectorObj = GameObject.Instantiate(selectorPrefab, Vector3.zero, Quaternion.identity) as GameObject;
 		selectorObj.name = "MapSelector";
 		selector = selectorObj.GetComponent<MapSelector>();
@@ -60,15 +57,10 @@ public class InputControl : MonoBehaviour {
 			selectedUnit.SetMainTarget(target.gameObject);
 		}
 		if (target.transform.tag.Equals("Player")) {
-			interfaceControl.ClearEquipmentButtons();
 			if (selectedUnit) 
 				selectedUnit.Deselect();
 			selectedUnit = target;
 			target.Select();
-			Equipment[] targetEquip = target.GetAllEquipment();
-			foreach (Equipment equipment in targetEquip) {
-				interfaceControl.AddEquipmentButton(equipment);
-			}
 		}
 	}
 	
@@ -77,7 +69,6 @@ public class InputControl : MonoBehaviour {
 	}
 	
 	public void DeselectUnit() {
-		interfaceControl.ClearEquipmentButtons();
 		if (selectedUnit) {
 			selectedUnit.Deselect();
 			selectedUnit = null;
@@ -137,21 +128,23 @@ public class InputControl : MonoBehaviour {
 			//marker.transform.localScale = new Vector3(0.1f, 0.2f, 0.1f);
 			
 			// hack to click button selectors if the raycast missed from some reason
-			Vector3[] buttonPositions = selector.GetButtonPositions();
+			Vector3[] buttonPositions = selector.GetButtonWorldPositions();
 			
 			if (Vector3.Distance(buttonPositions[0], hit.point) < 0.6f) {
+				print ("Missed raycast");
 				selector.ButtonClicked("Accept");
 				return;
 			}
 			
 			if (Vector3.Distance(buttonPositions[1], hit.point) < 0.6f) {
+				print ("Missed raycast");
 				selector.ButtonClicked("Cancel");
 				return;
 			}			
 			
 			if (selectedUnit) {
-				selector.ShowButtons();
 				selector.SetPos(hit.point);	
+				selector.ShowButtons();
 				gameControl.Pause("MapSelector");
 			}
 		}

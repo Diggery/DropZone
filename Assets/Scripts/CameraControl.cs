@@ -10,7 +10,7 @@ public class CameraControl : MonoBehaviour {
 	public Vector3 cameraOffset;
 	Vector3 touchOffset;
 	
-	public float cameraSpeed = 8.0f;
+	public float cameraSpeed = 12.0f;
 	
 	MapSelector mapSelector;
 	MapControl mapControl;
@@ -19,6 +19,9 @@ public class CameraControl : MonoBehaviour {
 	public AnimationCurve widthZCurve;
 	
 	bool lookBackwards;
+	
+	public AnimationCurve moveCurve;
+	float moveTimer;
 	
 	
 	

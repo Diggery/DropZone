@@ -12,7 +12,8 @@ public class Equipment : MonoBehaviour {
 	public GameObject gizmoPrefab;
 	
 	GameObject currentGizmo;
-	EquipmentButton currentButton;
+	UnitPane unitPane;
+	
 	
 	public void SetInventory(UnitInventory _unitInventory) {
 		unitInventory = _unitInventory;
@@ -25,8 +26,8 @@ public class Equipment : MonoBehaviour {
 		transform.localRotation = Quaternion.identity;		
 	}
 			
-	public void Activate(EquipmentButton _currentButton) {
-		currentButton = _currentButton;
+	public void Activate(UnitPane _unitPane) {
+		unitPane = _unitPane;
 		GameObject control = Instantiate(gizmoPrefab, unitController.transform.position, Quaternion.identity) as GameObject; 
 		currentGizmo = control;
 		control.transform.parent = unitController.transform;
@@ -49,14 +50,14 @@ public class Equipment : MonoBehaviour {
 		if (currentGizmo) {
 			currentGizmo.SendMessage("Cancel");
 			currentGizmo = null;
-			currentButton = null;
+			unitPane = null;
 		}
 	}
 	
 	public void Trigger(Vector3 direction) {
 		currentGizmo = null;
 		unitController.RemoveEquipment(this);
-		if (currentButton) currentButton.Disable();
+		if (unitPane) unitPane.DisableEquipmentButton(this);
 		Fire(direction);	
 	}
 	

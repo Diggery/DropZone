@@ -15,6 +15,87 @@ ModelImporter:
     100018: NecriteDome
     100020: NecriteSkull
     100022: NecriteSkullJaw
+    100024: Geometry_Group
+    100026: Head_Skel
+    100028: LeftFingers_Skel
+    100030: LeftFoot_Skel
+    100032: LeftHand_Skel
+    100034: LeftLowerArm_Skel
+    100036: LeftLowerLeg_Skel
+    100038: LeftToes_Skel
+    100040: LeftUpperArm_Skel
+    100042: LeftUpperLeg_Skel
+    100044: Neck_Skel
+    100046: Necrite 1
+    100048: RightFingers_Skel
+    100050: RightFoot_Skel
+    100052: RightHand_Skel
+    100054: RightLowerArm_Skel
+    100056: RightLowerLeg_Skel
+    100058: RightToes_Skel
+    100060: RightUpperArm_Skel
+    100062: RightUpperLeg_Skel
+    100064: Root_Skel
+    100066: Skeleton_Group
+    100068: Spine1_Skel
+    100070: Spine2_Skel
+    100072: WeaponAttach
+    100074: Necrite_Rig:Geometry_Group
+    100076: Necrite_Rig:Head_Skel
+    100078: Necrite_Rig:LeftFingers_Skel
+    100080: Necrite_Rig:LeftFoot_Skel
+    100082: Necrite_Rig:LeftHand_Skel
+    100084: Necrite_Rig:LeftLowerArm_Skel
+    100086: Necrite_Rig:LeftLowerLeg_Skel
+    100088: Necrite_Rig:LeftToes_Skel
+    100090: Necrite_Rig:LeftUpperArm_Skel
+    100092: Necrite_Rig:LeftUpperLeg_Skel
+    100094: Necrite_Rig:Neck_Skel
+    100096: Necrite_Rig:Necrite 1
+    100098: Necrite_Rig:NecriteDome
+    100100: Necrite_Rig:NecriteSkull
+    100102: Necrite_Rig:NecriteSkullJaw
+    100104: Necrite_Rig:RightFingers_Skel
+    100106: Necrite_Rig:RightFoot_Skel
+    100108: Necrite_Rig:RightHand_Skel
+    100110: Necrite_Rig:RightLowerArm_Skel
+    100112: Necrite_Rig:RightLowerLeg_Skel
+    100114: Necrite_Rig:RightToes_Skel
+    100116: Necrite_Rig:RightUpperArm_Skel
+    100118: Necrite_Rig:RightUpperLeg_Skel
+    100120: Necrite_Rig:Root_Skel
+    100122: Necrite_Rig:Skeleton_Group
+    100124: Necrite_Rig:Spine1_Skel
+    100126: Necrite_Rig:Spine2_Skel
+    100128: Necrite_Rig:WeaponAttach
+    100130: Squadie_Rig:Geometry_Group
+    100132: Squadie_Rig:Head_Skel
+    100134: Squadie_Rig:LeftFingers_Skel
+    100136: Squadie_Rig:LeftFoot_Skel
+    100138: Squadie_Rig:LeftHand_Skel
+    100140: Squadie_Rig:LeftLowerArm_Skel
+    100142: Squadie_Rig:LeftLowerLeg_Skel
+    100144: Squadie_Rig:LeftToes_Skel
+    100146: Squadie_Rig:LeftUpperArm_Skel
+    100148: Squadie_Rig:LeftUpperLeg_Skel
+    100150: Squadie_Rig:Neck_Skel
+    100152: Squadie_Rig:Necrite 1
+    100154: Squadie_Rig:NecriteDome
+    100156: Squadie_Rig:NecriteSkull
+    100158: Squadie_Rig:NecriteSkullJaw
+    100160: Squadie_Rig:RightFingers_Skel
+    100162: Squadie_Rig:RightFoot_Skel
+    100164: Squadie_Rig:RightHand_Skel
+    100166: Squadie_Rig:RightLowerArm_Skel
+    100168: Squadie_Rig:RightLowerLeg_Skel
+    100170: Squadie_Rig:RightToes_Skel
+    100172: Squadie_Rig:RightUpperArm_Skel
+    100174: Squadie_Rig:RightUpperLeg_Skel
+    100176: Squadie_Rig:Root_Skel
+    100178: Squadie_Rig:Skeleton_Group
+    100180: Squadie_Rig:Spine1_Skel
+    100182: Squadie_Rig:Spine2_Skel
+    100184: Squadie_Rig:WeaponAttach
     400000: ambientLight1
     400002: directionalLight1
     400004: directionalLight2
@@ -27,6 +108,87 @@ ModelImporter:
     400018: NecriteDome
     400020: NecriteSkull
     400022: NecriteSkullJaw
+    400024: Geometry_Group
+    400026: Head_Skel
+    400028: LeftFingers_Skel
+    400030: LeftFoot_Skel
+    400032: LeftHand_Skel
+    400034: LeftLowerArm_Skel
+    400036: LeftLowerLeg_Skel
+    400038: LeftToes_Skel
+    400040: LeftUpperArm_Skel
+    400042: LeftUpperLeg_Skel
+    400044: Neck_Skel
+    400046: Necrite 1
+    400048: RightFingers_Skel
+    400050: RightFoot_Skel
+    400052: RightHand_Skel
+    400054: RightLowerArm_Skel
+    400056: RightLowerLeg_Skel
+    400058: RightToes_Skel
+    400060: RightUpperArm_Skel
+    400062: RightUpperLeg_Skel
+    400064: Root_Skel
+    400066: Skeleton_Group
+    400068: Spine1_Skel
+    400070: Spine2_Skel
+    400072: WeaponAttach
+    400074: Necrite_Rig:Geometry_Group
+    400076: Necrite_Rig:Head_Skel
+    400078: Necrite_Rig:LeftFingers_Skel
+    400080: Necrite_Rig:LeftFoot_Skel
+    400082: Necrite_Rig:LeftHand_Skel
+    400084: Necrite_Rig:LeftLowerArm_Skel
+    400086: Necrite_Rig:LeftLowerLeg_Skel
+    400088: Necrite_Rig:LeftToes_Skel
+    400090: Necrite_Rig:LeftUpperArm_Skel
+    400092: Necrite_Rig:LeftUpperLeg_Skel
+    400094: Necrite_Rig:Neck_Skel
+    400096: Necrite_Rig:Necrite 1
+    400098: Necrite_Rig:NecriteDome
+    400100: Necrite_Rig:NecriteSkull
+    400102: Necrite_Rig:NecriteSkullJaw
+    400104: Necrite_Rig:RightFingers_Skel
+    400106: Necrite_Rig:RightFoot_Skel
+    400108: Necrite_Rig:RightHand_Skel
+    400110: Necrite_Rig:RightLowerArm_Skel
+    400112: Necrite_Rig:RightLowerLeg_Skel
+    400114: Necrite_Rig:RightToes_Skel
+    400116: Necrite_Rig:RightUpperArm_Skel
+    400118: Necrite_Rig:RightUpperLeg_Skel
+    400120: Necrite_Rig:Root_Skel
+    400122: Necrite_Rig:Skeleton_Group
+    400124: Necrite_Rig:Spine1_Skel
+    400126: Necrite_Rig:Spine2_Skel
+    400128: Necrite_Rig:WeaponAttach
+    400130: Squadie_Rig:Geometry_Group
+    400132: Squadie_Rig:Head_Skel
+    400134: Squadie_Rig:LeftFingers_Skel
+    400136: Squadie_Rig:LeftFoot_Skel
+    400138: Squadie_Rig:LeftHand_Skel
+    400140: Squadie_Rig:LeftLowerArm_Skel
+    400142: Squadie_Rig:LeftLowerLeg_Skel
+    400144: Squadie_Rig:LeftToes_Skel
+    400146: Squadie_Rig:LeftUpperArm_Skel
+    400148: Squadie_Rig:LeftUpperLeg_Skel
+    400150: Squadie_Rig:Neck_Skel
+    400152: Squadie_Rig:Necrite 1
+    400154: Squadie_Rig:NecriteDome
+    400156: Squadie_Rig:NecriteSkull
+    400158: Squadie_Rig:NecriteSkullJaw
+    400160: Squadie_Rig:RightFingers_Skel
+    400162: Squadie_Rig:RightFoot_Skel
+    400164: Squadie_Rig:RightHand_Skel
+    400166: Squadie_Rig:RightLowerArm_Skel
+    400168: Squadie_Rig:RightLowerLeg_Skel
+    400170: Squadie_Rig:RightToes_Skel
+    400172: Squadie_Rig:RightUpperArm_Skel
+    400174: Squadie_Rig:RightUpperLeg_Skel
+    400176: Squadie_Rig:Root_Skel
+    400178: Squadie_Rig:Skeleton_Group
+    400180: Squadie_Rig:Spine1_Skel
+    400182: Squadie_Rig:Spine2_Skel
+    400184: Squadie_Rig:WeaponAttach
     2300000: pCube1
     2300002: pSphere1
     2300004: Squadie1
@@ -35,6 +197,10 @@ ModelImporter:
     2300010: NecriteDome
     2300012: NecriteSkull
     2300014: NecriteSkullJaw
+    2300016: Necrite_Rig:NecriteSkull
+    2300018: Necrite_Rig:NecriteSkullJaw
+    2300020: Squadie_Rig:NecriteSkull
+    2300022: Squadie_Rig:NecriteSkullJaw
     3300000: pCube1
     3300002: pSphere1
     3300004: Squadie1
@@ -43,6 +209,10 @@ ModelImporter:
     3300010: NecriteDome
     3300012: NecriteSkull
     3300014: NecriteSkullJaw
+    3300016: Necrite_Rig:NecriteSkull
+    3300018: Necrite_Rig:NecriteSkullJaw
+    3300020: Squadie_Rig:NecriteSkull
+    3300022: Squadie_Rig:NecriteSkullJaw
     4300000: Squadie1
     4300002: SquadieHelmet1
     4300004: pCube1
@@ -51,10 +221,25 @@ ModelImporter:
     4300010: NecriteSkull
     4300012: NecriteSkullJaw
     4300014: NecriteDome
+    4300016: Necrite_Rig:Necrite
+    4300018: Necrite_Rig:NecriteSkull
+    4300020: Necrite_Rig:NecriteSkullJaw
+    4300022: Necrite_Rig:NecriteDome
+    4300024: Squadie_Rig:Necrite
+    4300026: Squadie_Rig:NecriteSkull
+    4300028: Squadie_Rig:NecriteSkullJaw
+    4300030: Squadie_Rig:NecriteDome
+    7400000: Take 001
     9500000: //RootNode
+    13700000: Necrite 1
+    13700002: NecriteDome
+    13700004: Necrite_Rig:Necrite 1
+    13700006: Necrite_Rig:NecriteDome
+    13700008: Squadie_Rig:Necrite 1
+    13700010: Squadie_Rig:NecriteDome
   materials:
     importMaterials: 1
-    materialName: 0
+    materialName: 1
     materialSearch: 1
   animations:
     legacyGenerateAnimations: 4

@@ -77,7 +77,8 @@ public class EnemyAI : MonoBehaviour {
 		}
 		if (rank < 1) {
 			if (unitController.GetNormalizedHealth() < 0.3f) {
-				unitBehaviors.FindSafePosition(spawner.transform.position);
+				if (spawner) 
+					unitBehaviors.FindSafePosition(spawner.transform.position);
 			}
 		}
 	}

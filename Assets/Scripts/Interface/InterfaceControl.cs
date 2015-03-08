@@ -10,7 +10,6 @@ public class InterfaceControl : MonoBehaviour {
 	
 	public UnitPane[] unitPanes;
 	
-	public EquipmentButton[] equipmentButtons;
 		
 	int currentHieght;
 	
@@ -28,7 +27,6 @@ public class InterfaceControl : MonoBehaviour {
 	}
 	
 	void Initialize() {
-		ClearEquipmentButtons();
 		
 		currentHieght = Screen.height;
 		if (Screen.width > Screen.height) {
@@ -69,20 +67,6 @@ public class InterfaceControl : MonoBehaviour {
 			pane.Open();
 	}
 	
-	public bool AddEquipmentButton(Equipment equipment) {
-		foreach (EquipmentButton equipmentButton in equipmentButtons) {
-			if (equipmentButton.IsOpen()) {
-				equipmentButton.Activate(equipment);
-				return true;
-			}
-		}	
-		return false;
-	}
-	public void ClearEquipmentButtons() {
-		foreach (EquipmentButton equipmentButton in equipmentButtons) {
-			equipmentButton.Clear();
-		}
-	}
 		
 	public void lockToEdge(Transform newElement) {
 		

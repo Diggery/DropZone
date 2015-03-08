@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using System.Collections;
 
 public class ThrowControl : MonoBehaviour {
@@ -60,27 +62,30 @@ public class ThrowControl : MonoBehaviour {
 		line.localPosition = handle.localPosition * 0.5f;
 	}
 	
-	public void touchDown(TouchManager.TouchDownEvent touchEvent) {
+	public void HandleBeginDrag(PointerEventData eventData) {
+		print ("start drag");
 		touched = true;
 	}	
 	
-	public void drag(TouchManager.TouchDragEvent touchEvent) {
+	public void HandleDrag(PointerEventData eventData) {
 		if (released) return;
-		Vector3 touchPos = transform.InverseTransformPoint(touchEvent.touchPoint);
+		print ("drag");
+		Vector3 touchPos = transform.InverseTransformPoint(eventData.worldPosition);
 		posGoal = Vector3.ClampMagnitude(touchPos, 2);
 		posGoal.y = 0.1f;
 	}	
+		
+	public void HandleEndDrag(PointerEventData eventData) {
+		print ("end drag");
+		touched = false;
+	}
 	
-	public void tap(TouchManager.TapEvent touchEvent) {
+	public void OnHandleClicked(PointerEventData eventData) {
 		if (primed) {
 			firePos = handle.localPosition;
 			gameControl.SelectorResume();
 			released = true;
 		}
-	}
-	
-	public void touchUp(TouchManager.TouchUpEvent touchEvent) {
-		touched = false;
 	}
 	
 	void Prime() {

@@ -32,7 +32,6 @@ public class FragGrenade : Equipment {
 		renderer.enabled = true;
 	}
 	public override void Fire(Vector3 direction) {
-		print (direction);
 		transform.parent = null;
 		rigidbody.isKinematic = false;
 		rigidbody.useGravity = true;
@@ -46,9 +45,10 @@ public class FragGrenade : Equipment {
 		
 		Collider[] hitColliders = Physics.OverlapSphere(transform.position, 5);
 		float damage = 10;
-		Vector3 offset = new Vector3 (0,0,0);
+		Vector3 offset = Vector3.zero;
 		
 		foreach (Collider collider in hitColliders ) {
+			offset = (collider.transform.position - transform.position).normalized;
 			UnitController.DamageInfo damageInfo = new UnitController.DamageInfo(offset, damage, UnitController.DamageInfo.DamageType.Explosive);
 			collider.SendMessage("TakeDamage", damageInfo, SendMessageOptions.DontRequireReceiver);
 		}

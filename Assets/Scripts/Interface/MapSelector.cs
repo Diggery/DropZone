@@ -66,12 +66,11 @@ public class MapSelector : MonoBehaviour, IDragHandler {
 			if (buttonsUp) HideButtons();
 			renderer.material.mainTexture = moveNo;
 		} else {
-			if (buttonsUp) ShowButtons();
 			renderer.material.mainTexture = moveYes;
 		}
 		
 		if (buttonsUp) {
-			buttonTransAmount = Mathf.Lerp(buttonTransAmount, 1, GameTime.deltaTime * 5);
+			buttonTransAmount = Mathf.Lerp(buttonTransAmount, 1, GameTime.deltaTime * 10);
 			buttonGlowAmount = Mathf.Lerp(buttonGlowAmount, 1, GameTime.deltaTime * 1);
 		} else {
 			buttonTransAmount = Mathf.Lerp(buttonTransAmount, -1, GameTime.deltaTime * 8);
@@ -123,6 +122,7 @@ public class MapSelector : MonoBehaviour, IDragHandler {
 			MapControl.MapDataPoint mapCell = mapControl.GetMapData(goalPos);
 			if (mapCell.isCollision || mapCell.isOccupied) {
 				invalidMove = true;
+				print ("invalid");
 			} else {
 				invalidMove = false;
 			}
@@ -146,22 +146,22 @@ public class MapSelector : MonoBehaviour, IDragHandler {
 		
 	}
 	
-	public Vector3[] GetButtonPositions() {
+	public Vector3[] GetButtonWorldPositions() {
 		Vector3[] positions = new Vector3[2];
-		positions[0] = acceptButton.position + acceptButton.GetComponent<SphereCollider>().center;
-		positions[1] = cancelButton.position + cancelButton.GetComponent<SphereCollider>().center;
+		positions[0] = acceptButton.position + acceptButton.GetComponent<BoxCollider>().center;
+		positions[1] = cancelButton.position + cancelButton.GetComponent<BoxCollider>().center;
 		return positions;
 	}
 	
 	public void ShowButtons() {
 		if (invalidMove) return;
-		cancelButton.GetComponent<SphereCollider>().enabled = true;
-		acceptButton.GetComponent<SphereCollider>().enabled = true;
+		cancelButton.GetComponent<BoxCollider>().enabled = true;
+		acceptButton.GetComponent<BoxCollider>().enabled = true;
 		buttonsUp = true;
 	}
 	public void HideButtons() {
-		cancelButton.GetComponent<SphereCollider>().enabled = false;
-		acceptButton.GetComponent<SphereCollider>().enabled = false;
+		cancelButton.GetComponent<BoxCollider>().enabled = false;
+		acceptButton.GetComponent<BoxCollider>().enabled = false;
 		buttonsUp = false;
 	}
 	public void DeselectUnit() {

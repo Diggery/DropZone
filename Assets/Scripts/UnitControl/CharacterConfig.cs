@@ -35,6 +35,9 @@ public class CharacterConfig : MonoBehaviour {
 
 		unitController = GetComponent<UnitController>();
 		if (!unitController) Debug.Log("ERROR: Can't Find Player Controller");
+		
+			
+		
 		unitController.SetTargetCollision(transform.Find(AddNameSpaceToPath("Skeleton_Group/Root_Skel/Spine1_Skel/Spine2_Skel")));
 		
 		Transform rightHand = transform.Find(AddNameSpaceToPath (
