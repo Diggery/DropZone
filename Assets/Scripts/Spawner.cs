@@ -23,7 +23,7 @@ public class Spawner : MonoBehaviour {
 		gameControl = _gameControl;
 		ready = true;
 		rallyPoint = transform.Find ("RallyPoint");
-		rallyPoint.renderer.enabled = false;
+		rallyPoint.GetComponent<Renderer>().enabled = false;
 	}
 	
 	void Update () {
@@ -62,7 +62,7 @@ public class Spawner : MonoBehaviour {
 
 		if (!IsReadyToSpawn()) return null;
 		
-		if (!animation.IsPlaying("Spawn")) animation.Play("Spawn");
+		if (!GetComponent<Animation>().IsPlaying("Spawn")) GetComponent<Animation>().Play("Spawn");
 		
 		
 		Vector3 spawnPos = transform.position + transform.forward;

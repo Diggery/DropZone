@@ -241,12 +241,12 @@ public class MainWeapon : MonoBehaviour {
 		Rigidbody magBody = oldMag.AddComponent<Rigidbody>();
 		magBody.mass = 100;
 		magBody.AddForce(Vector3.down * 1000, ForceMode.Impulse);
-		magazine.renderer.enabled = false;
+		magazine.GetComponent<Renderer>().enabled = false;
 
 	}
 
 	public void ReplaceMagazine() {
-		magazine.renderer.enabled = true;
+		magazine.GetComponent<Renderer>().enabled = true;
 
 	}
 
@@ -257,14 +257,14 @@ public class MainWeapon : MonoBehaviour {
 	
 	public void DropItem() {
 		dead = true;
-		rigidbody.isKinematic = false;
-		rigidbody.useGravity = true;
+		GetComponent<Rigidbody>().isKinematic = false;
+		GetComponent<Rigidbody>().useGravity = true;
 		GetComponent<Collider>().enabled = true;
 		transform.parent = null;
-		rigidbody.AddForce(Vector3.up  * 10);
+		GetComponent<Rigidbody>().AddForce(Vector3.up  * 10);
 		Vector3 rotVector = Vector3.forward;
 		rotVector = Quaternion.AngleAxis(Random.Range(-45, 45), Vector3.right) * rotVector;
-		rigidbody.AddRelativeTorque(rotVector  * 100);
+		GetComponent<Rigidbody>().AddRelativeTorque(rotVector  * 100);
 		gameObject.layer = LayerMask.NameToLayer("RagDoll");
 		
 	}

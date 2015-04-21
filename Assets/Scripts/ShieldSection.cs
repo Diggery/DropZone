@@ -96,9 +96,9 @@ public class ShieldSection : MonoBehaviour {
 			activeTimer = activeTimer + Time.deltaTime;
 		}
 
-		renderer.material.mainTextureOffset = new Vector2(0, activeCurve.Evaluate(Mathf.Clamp01(1 - activeTimer)));
+		GetComponent<Renderer>().material.mainTextureOffset = new Vector2(0, activeCurve.Evaluate(Mathf.Clamp01(1 - activeTimer)));
 		flashColor = Color.Lerp(flashColor, Color.black, Time.deltaTime * 3);
-		renderer.material.SetColor("_Flash", flashColor);
+		GetComponent<Renderer>().material.SetColor("_Flash", flashColor);
 
 	}
 	
@@ -121,7 +121,7 @@ public class ShieldSection : MonoBehaviour {
 		regenOffset = Random.Range(0, 1.0f);
 		shieldBroken = true;
 		shieldControl.RotateAwayFrom(this);
-		collider.enabled = false;
+		GetComponent<Collider>().enabled = false;
 	}
 
 	public void RecoverShield() {
@@ -129,7 +129,7 @@ public class ShieldSection : MonoBehaviour {
 		activeTimer = 0.0f;
 		shieldBroken = false;
 		shieldFailed = false;
-		collider.enabled = true;
+		GetComponent<Collider>().enabled = true;
 		shieldFailFX.enableEmission = false;
 	}
 

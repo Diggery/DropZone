@@ -9,13 +9,13 @@ public class BulletTrailControl : MonoBehaviour {
 	public float trailSpeed = 1.0f;
 	
 	void Start () {
-		renderer.material.mainTextureScale = new Vector2(1.0f, transform.localScale.z / trailLength);
+		GetComponent<Renderer>().material.mainTextureScale = new Vector2(1.0f, transform.localScale.z / trailLength);
 	}
 	
 	void Update () {
 
 		timer += Time.deltaTime * trailSpeed;
-		renderer.material.mainTextureOffset = new Vector2(0.0f, -(timer - 0.25f));
+		GetComponent<Renderer>().material.mainTextureOffset = new Vector2(0.0f, -(timer - 0.25f));
 		if (timer > transform.localScale.z / trailLength) Destroy(gameObject);
 	
 	}

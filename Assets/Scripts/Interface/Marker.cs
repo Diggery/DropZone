@@ -30,23 +30,23 @@ public class Marker : MonoBehaviour {
 		icon = transform.Find("Post/Label/Icon");
 		switch (type) {
 			case MarkerType.Unknown :
-			icon.renderer.material.mainTexture = unknownTex;
+			icon.GetComponent<Renderer>().material.mainTexture = unknownTex;
 			break;
 			
 			case MarkerType.Hit :
-			icon.renderer.material.mainTexture = hitTex;
+			icon.GetComponent<Renderer>().material.mainTexture = hitTex;
 			break;
 			
 			case MarkerType.Injury :
-			icon.renderer.material.mainTexture = injuryTex;
+			icon.GetComponent<Renderer>().material.mainTexture = injuryTex;
 			break;
 			
 			case MarkerType.Death :
-			icon.renderer.material.mainTexture = deathTex;
+			icon.GetComponent<Renderer>().material.mainTexture = deathTex;
 			break;
 			
 			case MarkerType.NewEnemy :
-			icon.renderer.material.mainTexture = newEnemyTex;
+			icon.GetComponent<Renderer>().material.mainTexture = newEnemyTex;
 			break;
 			
 		}
@@ -66,11 +66,11 @@ public class Marker : MonoBehaviour {
 			Color markerColor = Color.Lerp(Color.black, Color.clear, transCurve.Evaluate(endTimer));
 			Color iconColor = Color.Lerp(Color.white, Color.clear, transCurve.Evaluate(endTimer));
 			
-			renderer.material.color = markerColor;
-			post.renderer.material.color = markerColor;
-			dot.renderer.material.color = markerColor;
-			label.renderer.material.color = markerColor;
-			icon.renderer.material.color = iconColor;	
+			GetComponent<Renderer>().material.color = markerColor;
+			post.GetComponent<Renderer>().material.color = markerColor;
+			dot.GetComponent<Renderer>().material.color = markerColor;
+			label.GetComponent<Renderer>().material.color = markerColor;
+			icon.GetComponent<Renderer>().material.color = iconColor;	
 			if (endTimer > 1) Destroy(gameObject);		
 		}		
 				
@@ -78,12 +78,12 @@ public class Marker : MonoBehaviour {
 		startTimer += GameTime.deltaTime * 3;
 		float scale = transCurve.Evaluate(startTimer);
 		transform.localScale = new Vector3(scale, scale, scale);
-		if (!transform.renderer.enabled) {
-			renderer.enabled = true;	
-			post.renderer.enabled = true;	
-			dot.renderer.enabled = true;	
-			label.renderer.enabled = true;	
-			icon.renderer.enabled = true;	
+		if (!transform.GetComponent<Renderer>().enabled) {
+			GetComponent<Renderer>().enabled = true;	
+			post.GetComponent<Renderer>().enabled = true;	
+			dot.GetComponent<Renderer>().enabled = true;	
+			label.GetComponent<Renderer>().enabled = true;	
+			icon.GetComponent<Renderer>().enabled = true;	
 		}		
 	}
 }

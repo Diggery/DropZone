@@ -252,7 +252,7 @@ public class MapControl : MonoBehaviour {
 						newPoint.name = "CoverPoint " + (x * gridSize) + ", " + (y * gridSize);
 						newPoint.transform.tag = "CoverPoint";
 						newPoint.transform.parent = coverContainer.transform;
-						newPoint.renderer.enabled = false;
+						newPoint.GetComponent<Renderer>().enabled = false;
 						mapDataPoint.coverPoint = coverPoint;
 					} 
 					if (hit.transform.tag.Equals("Wall") || hit.transform.tag.Equals("LowWall")) {
@@ -291,11 +291,11 @@ public class MapControl : MonoBehaviour {
 		BoxCollider coll = marker.GetComponent<BoxCollider>();
 		
 		if (mapCell.isCollision) {
-			marker.renderer.material.color = Color.red;
+			marker.GetComponent<Renderer>().material.color = Color.red;
 		}
 		
 		if (mapCell.coverPoint) {
-			marker.renderer.material.color = Color.green;
+			marker.GetComponent<Renderer>().material.color = Color.green;
 		}
 		
 		Destroy(coll);
@@ -312,11 +312,11 @@ public class MapControl : MonoBehaviour {
 			BoxCollider coll = marker.GetComponent<BoxCollider>();
 			
 			if (mapcell.isCollision) {
-				marker.renderer.material.color = Color.red;
+				marker.GetComponent<Renderer>().material.color = Color.red;
 			}
 			
 			if (mapcell.coverPoint) {
-				marker.renderer.material.color = Color.green;
+				marker.GetComponent<Renderer>().material.color = Color.green;
 			}
 			
 			Destroy(coll);

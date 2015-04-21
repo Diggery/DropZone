@@ -41,7 +41,7 @@ public class DynamicTDGridObject : MonoBehaviour
     public void UpdateMap()
     {
         List<Vector3> checkList = new List<Vector3>();
-        Bounds bR = renderer.bounds;
+        Bounds bR = GetComponent<Renderer>().bounds;
         Bounds bM = gameObject.GetComponent<MeshFilter>().mesh.bounds;
         checkList = DynamicSetupList(bR.min.x, bR.max.x, bR.min.z, bR.max.z, bR, bM);
   

@@ -36,32 +36,32 @@ public class DroneControl : MonoBehaviour {
 		}
 
 		windDirection = Vector3.Lerp(windDirection, windGoal, Time.deltaTime);
-		rigidbody.AddForce(windDirection);
-		rigidbody.AddTorque(new Vector3(windDirection.z * 0.5f, 0, windDirection.x * 0.5f));
+		GetComponent<Rigidbody>().AddForce(windDirection);
+		GetComponent<Rigidbody>().AddTorque(new Vector3(windDirection.z * 0.5f, 0, windDirection.x * 0.5f));
 
 		if (!target) return;
 
 		float distance = Mathf.Abs(goalAltitude - transform.position.y);
 		if (goalAltitude > transform.position.y) {
-			rigidbody.AddForce(Vector3.up * hoverForce * distance, ForceMode.Force);
+			GetComponent<Rigidbody>().AddForce(Vector3.up * hoverForce * distance, ForceMode.Force);
 		} else {
-			rigidbody.AddForce(Vector3.down * hoverForce * distance, ForceMode.Force);
+			GetComponent<Rigidbody>().AddForce(Vector3.down * hoverForce * distance, ForceMode.Force);
 		}
 
 		moveSpeed += Time.deltaTime;
 
 
 		Vector3 thrust = (observationPoint - transform.position).normalized;
-		rigidbody.AddForce(thrust * hoverForce * Mathf.Clamp01(moveSpeed), ForceMode.Force);
+		GetComponent<Rigidbody>().AddForce(thrust * hoverForce * Mathf.Clamp01(moveSpeed), ForceMode.Force);
 
 
 		Vector3 predictedUp = Quaternion.AngleAxis(
-			rigidbody.angularVelocity.magnitude * Mathf.Rad2Deg * stability / speed,
-			rigidbody.angularVelocity
+			GetComponent<Rigidbody>().angularVelocity.magnitude * Mathf.Rad2Deg * stability / speed,
+			GetComponent<Rigidbody>().angularVelocity
 			) * transform.up;
 		
 		Vector3 torqueVector = Vector3.Cross(predictedUp, Vector3.up);
-		rigidbody.AddTorque(torqueVector * speed * speed);
+		GetComponent<Rigidbody>().AddTorque(torqueVector * speed * speed);
 
 
 		observationTimer -= Time.deltaTime;

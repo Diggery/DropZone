@@ -128,19 +128,19 @@ public class InputControl : MonoBehaviour {
 			//marker.transform.localScale = new Vector3(0.1f, 0.2f, 0.1f);
 			
 			// hack to click button selectors if the raycast missed from some reason
-			Vector3[] buttonPositions = selector.GetButtonWorldPositions();
-			
-			if (Vector3.Distance(buttonPositions[0], hit.point) < 0.6f) {
-				print ("Missed raycast");
-				selector.ButtonClicked("Accept");
-				return;
-			}
-			
-			if (Vector3.Distance(buttonPositions[1], hit.point) < 0.6f) {
-				print ("Missed raycast");
-				selector.ButtonClicked("Cancel");
-				return;
-			}			
+//			Vector3[] buttonPositions = selector.GetButtonWorldPositions();
+//			
+//			if (Vector3.Distance(buttonPositions[0], hit.point) < 0.6f) {
+//				print ("Missed raycast");
+//				selector.ButtonClicked("Accept");
+//				return;
+//			}
+//			
+//			if (Vector3.Distance(buttonPositions[1], hit.point) < 0.6f) {
+//				print ("Missed raycast");
+//				selector.ButtonClicked("Cancel");
+//				return;
+//			}			
 			
 			if (selectedUnit) {
 				selector.SetPos(hit.point);	

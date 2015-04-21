@@ -50,9 +50,9 @@ public class ThrowControl : MonoBehaviour {
 			fireTimer -= Time.deltaTime * 8.0f;
 			handle.localPosition = Vector3.Lerp (firePos, Vector3.zero, 1 - fireTimer);
 			line.localPosition = handle.localPosition * 0.5f;
-			Color fadeColor = Color.Lerp (handle.renderer.material.color, Color.clear, 1 - fireTimer);
-			handle.renderer.material.color = fadeColor;
-			line.renderer.material.color = fadeColor;
+			Color fadeColor = Color.Lerp (handle.GetComponent<Renderer>().material.color, Color.clear, 1 - fireTimer);
+			handle.GetComponent<Renderer>().material.color = fadeColor;
+			line.GetComponent<Renderer>().material.color = fadeColor;
 			if (fireTimer < 0) 
 				Throw();
 			return;

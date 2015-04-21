@@ -29,7 +29,7 @@ public class ConnectorLine : MonoBehaviour {
 		scale.x = width/2.0f;
 		scale.z = Vector3.Distance(start.position, end.position);
 		transform.localScale = scale;
-		renderer.material.color = Color.Lerp(renderer.material.color, lineColor, Time.deltaTime * 10);
+		GetComponent<Renderer>().material.color = Color.Lerp(GetComponent<Renderer>().material.color, lineColor, Time.deltaTime * 10);
 	}
 
 	public void SetEndPoints(Transform newStart, Transform newEnd) {

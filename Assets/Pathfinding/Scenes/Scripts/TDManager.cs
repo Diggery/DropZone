@@ -37,16 +37,16 @@ public class TDManager : MonoBehaviour
             //Set color of "show" tower based on the spot being available
             if (hit.transform.tag == "Ground")
             {
-                ghostTower.renderer.material.color = Color.green;
+                ghostTower.GetComponent<Renderer>().material.color = Color.green;
             }
             else
             {
-                ghostTower.renderer.material.color = Color.red;
+                ghostTower.GetComponent<Renderer>().material.color = Color.red;
             }
         }
         else
         {
-            ghostTower.renderer.material.color = Color.red;
+            ghostTower.GetComponent<Renderer>().material.color = Color.red;
         }
 
         //Return all hit information which we use later

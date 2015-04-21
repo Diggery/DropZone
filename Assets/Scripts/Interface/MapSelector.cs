@@ -55,18 +55,18 @@ public class MapSelector : MonoBehaviour, IDragHandler {
 	
 	void Update () {
 		if (visible){
-			renderer.material.color = Color.Lerp(renderer.material.color, Color.white, GameTime.deltaTime * 10);
+			GetComponent<Renderer>().material.color = Color.Lerp(GetComponent<Renderer>().material.color, Color.white, GameTime.deltaTime * 10);
 			transform.position = Vector3.Lerp(transform.position, goalPos, GameTime.deltaTime * 10);
 			transform.rotation = Quaternion.Lerp(transform.rotation, goalRot, GameTime.deltaTime * 10);			
 		} else {
-			renderer.material.color = Color.Lerp(renderer.material.color, new Color(1.0f, 1.0f, 1.0f, 0.0f), GameTime.deltaTime * 10);	
+			GetComponent<Renderer>().material.color = Color.Lerp(GetComponent<Renderer>().material.color, new Color(1.0f, 1.0f, 1.0f, 0.0f), GameTime.deltaTime * 10);	
 		}
 		
 		if (invalidMove) {
 			if (buttonsUp) HideButtons();
-			renderer.material.mainTexture = moveNo;
+			GetComponent<Renderer>().material.mainTexture = moveNo;
 		} else {
-			renderer.material.mainTexture = moveYes;
+			GetComponent<Renderer>().material.mainTexture = moveYes;
 		}
 		
 		if (buttonsUp) {
@@ -78,18 +78,18 @@ public class MapSelector : MonoBehaviour, IDragHandler {
 		}
 		
 		acceptButton.localScale = Vector3.Lerp(new Vector3(0.1f, 0.1f, 0.1f), Vector3.one, buttonTransAmount);
-		acceptButton.renderer.material.color = Color.Lerp(new Color(1.0f, 1.0f, 1.0f, 0.0f), Color.white, buttonTransAmount);
+		acceptButton.GetComponent<Renderer>().material.color = Color.Lerp(new Color(1.0f, 1.0f, 1.0f, 0.0f), Color.white, buttonTransAmount);
 
-		acceptIcon.renderer.material.color = Color.Lerp(Color.clear, Color.white, buttonTransAmount );
+		acceptIcon.GetComponent<Renderer>().material.color = Color.Lerp(Color.clear, Color.white, buttonTransAmount );
 		
-		acceptGlow.renderer.material.color = Color.Lerp(Color.black, Color.gray, buttonGlowAmount );
+		acceptGlow.GetComponent<Renderer>().material.color = Color.Lerp(Color.black, Color.gray, buttonGlowAmount );
 		
 		cancelButton.localScale = Vector3.Lerp(new Vector3(0.1f, 0.1f, 0.1f), Vector3.one, buttonTransAmount);
-		cancelButton.renderer.material.color = Color.Lerp(new Color(1.0f, 1.0f, 1.0f, 0.0f), Color.white, buttonTransAmount);
+		cancelButton.GetComponent<Renderer>().material.color = Color.Lerp(new Color(1.0f, 1.0f, 1.0f, 0.0f), Color.white, buttonTransAmount);
 		
-		cancelIcon.renderer.material.color = Color.Lerp(Color.clear, Color.white, buttonTransAmount );
+		cancelIcon.GetComponent<Renderer>().material.color = Color.Lerp(Color.clear, Color.white, buttonTransAmount );
 		
-		cancelGlow.renderer.material.color = Color.Lerp(Color.black, Color.gray, buttonGlowAmount );
+		cancelGlow.GetComponent<Renderer>().material.color = Color.Lerp(Color.black, Color.gray, buttonGlowAmount );
 		
 		//rotateButtons
 		float buttonHeading = Camera.main.transform.eulerAngles.y / 90;

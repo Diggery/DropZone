@@ -23,21 +23,21 @@ public class LineDrawer : MonoBehaviour {
 	void Start () {
 		lineObject = GameObject.CreatePrimitive(PrimitiveType.Cube);
 		lineObject.name = transform.name + "'s pathline";
-		lineObject.renderer.material = lineMaterial;
+		lineObject.GetComponent<Renderer>().material = lineMaterial;
 		mesh = lineObject.GetComponent<MeshFilter>().mesh;
 		mesh.Clear();
 	}
 	
 	void Update() {
 		if (clearLine) {
-			Color matColor = lineObject.renderer.material.color;
+			Color matColor = lineObject.GetComponent<Renderer>().material.color;
 			matColor.a = Mathf.Clamp01(matColor.a - Time.deltaTime);
 			if (matColor.a <= 0) {
 				mesh.Clear();
 				clearLine = false;
 				matColor.a = 1.0f;
 			}
-			lineObject.renderer.material.color = matColor;
+			lineObject.GetComponent<Renderer>().material.color = matColor;
 		}
 	}
 

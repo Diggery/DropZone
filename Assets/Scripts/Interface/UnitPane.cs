@@ -58,12 +58,12 @@ public class UnitPane : MonoBehaviour, IPointerClickHandler {
 		unitName = transform.Find ("UnitName").GetComponent<TextMesh>();
 		
 		equipment1Button.name = "Equipment1";
-		equipment1Button.renderer.material.renderQueue = 3100;
+		equipment1Button.GetComponent<Renderer>().material.renderQueue = 3100;
 		equipment1Button.gameObject.AddComponent<SphereCollider>();
 		equipment1Button.gameObject.AddComponent<ButtonControl>().SetTarget(gameObject);
 		
 		equipment2Button.name = "Equipment2";
-		equipment2Button.renderer.material.renderQueue = 3100;
+		equipment2Button.GetComponent<Renderer>().material.renderQueue = 3100;
 		equipment2Button.gameObject.AddComponent<SphereCollider>();
 		equipment2Button.gameObject.AddComponent<ButtonControl>().SetTarget(gameObject);
 	}
@@ -118,33 +118,33 @@ public class UnitPane : MonoBehaviour, IPointerClickHandler {
 		currentFrameColor = Color.Lerp(currentFrameColor, frameGoal, GameTime.deltaTime * 3);
 		if (hidden) currentFrameColor.a = 0.5f;
 		
-		renderer.material.SetColor("_FrameColor",  currentFrameColor);
+		GetComponent<Renderer>().material.SetColor("_FrameColor",  currentFrameColor);
 		
 		currentFillColor = Color.Lerp(currentFillColor, fillGoal, GameTime.deltaTime * 5);
 		if (hidden) currentFillColor.a = 0.1f;
-		renderer.material.SetColor("_FillColor",  currentFillColor);
+		GetComponent<Renderer>().material.SetColor("_FillColor",  currentFillColor);
 		
 		currentHiLiteColor = Color.Lerp(currentHiLiteColor, HiLiteGoal, GameTime.deltaTime * 5);
-		renderer.material.SetColor("_HiLiteColor",  currentHiLiteColor);
+		GetComponent<Renderer>().material.SetColor("_HiLiteColor",  currentHiLiteColor);
 		
 		transform.localPosition = Vector3.Lerp(closePos, openGoal, slideCurve.Evaluate(transAmount));
 		
 		float health = unit.GetNormalizedHealth();
 		
 		Color healthColorGoal = Color.Lerp(Color.red, idleHealthColor, health);
-		healthBar.renderer.material.color = Color.Lerp(healthBar.renderer.material.color, healthColorGoal, GameTime.deltaTime * 3);
-		healthBar.renderer.material.mainTextureOffset = Vector2.Lerp(Vector2.up, Vector2.zero, health);
+		healthBar.GetComponent<Renderer>().material.color = Color.Lerp(healthBar.GetComponent<Renderer>().material.color, healthColorGoal, GameTime.deltaTime * 3);
+		healthBar.GetComponent<Renderer>().material.mainTextureOffset = Vector2.Lerp(Vector2.up, Vector2.zero, health);
 	}
 	
 	void FillOutEquipmentButtons() {
 		Equipment[] allEquip = unit.GetAllEquipment();
 		if (allEquip.Length >= 1) {
 			equipment1 = allEquip[0];
-			equipment1Button.renderer.material.mainTexture = equipment1.buttonTexture;
+			equipment1Button.GetComponent<Renderer>().material.mainTexture = equipment1.buttonTexture;
 		}
 		if (allEquip.Length > 1) {
 			equipment2 = allEquip[1];
-			equipment2Button.renderer.material.mainTexture = equipment2.buttonTexture;
+			equipment2Button.GetComponent<Renderer>().material.mainTexture = equipment2.buttonTexture;
 		}	
 	}
 	
@@ -165,7 +165,7 @@ public class UnitPane : MonoBehaviour, IPointerClickHandler {
 	public void ButtonClicked(string name) {
 		if (dead) return;
 		if (name.Contains("Badge")) {
-			badge.renderer.material.mainTexture = opened ? badgeOpen : badgeClose;
+			badge.GetComponent<Renderer>().material.mainTexture = opened ? badgeOpen : badgeClose;
 			Toggle();
 		} else if (name.Equals("Equipment1")) {
 			equipment1.Activate(this);
@@ -205,7 +205,7 @@ public class UnitPane : MonoBehaviour, IPointerClickHandler {
 	public void Hide() {
 		Close();
 		hidden = true;
-		unitName.renderer.material.color = new Color(1.0f, 1.0f, 1.0f, 0.5f);
+		unitName.GetComponent<Renderer>().material.color = new Color(1.0f, 1.0f, 1.0f, 0.5f);
 		if (!unit) {
 			transform.localPosition = new Vector3(1, 0, 0);
 		
@@ -215,16 +215,16 @@ public class UnitPane : MonoBehaviour, IPointerClickHandler {
 	public void Die() {
 		dead = true;
 		Hide();
-		badge.renderer.material.mainTexture = badgeDead;
+		badge.GetComponent<Renderer>().material.mainTexture = badgeDead;
 	}
 	
 	public void TakeDamage() {
 		currentFrameColor = Color.red;
-		healthBar.renderer.material.color = Color.red;
+		healthBar.GetComponent<Renderer>().material.color = Color.red;
 	}
 	
 	public void Heal() {
-		healthBar.renderer.material.color = Color.green;
+		healthBar.GetComponent<Renderer>().material.color = Color.green;
 	}
 		
 }

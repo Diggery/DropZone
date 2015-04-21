@@ -19,7 +19,7 @@ public class UnitSelect : MonoBehaviour {
 		unitController = _unitController;
 		unit = unitController.transform;
 		name = unit.name + "'s selector";
-		renderer.enabled = false;
+		GetComponent<Renderer>().enabled = false;
 		fadeGoal = 0.0f;
 		
 		if (unit.tag.Equals("Player")) {
@@ -34,7 +34,7 @@ public class UnitSelect : MonoBehaviour {
 	void Update () {
 		transform.position = unit.position + new Vector3(0.0f, 0.1f, 0.0f);
 		
-		renderer.enabled = (fadeGoal > 0);
+		GetComponent<Renderer>().enabled = (fadeGoal > 0);
 		
 		if (unitController.selected) {
 			fadeGoal = 1.0f;
@@ -42,13 +42,13 @@ public class UnitSelect : MonoBehaviour {
 			fadeGoal = 0.0f;
 		}
 		
-		if (renderer.enabled) {
+		if (GetComponent<Renderer>().enabled) {
 			currentColor = Color.Lerp (currentColor, new Color (colorGoal.r, colorGoal.g, colorGoal.b, fadeGoal), GameTime.deltaTime * 5);
-			renderer.material.color = currentColor;
+			GetComponent<Renderer>().material.color = currentColor;
 			transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one, GameTime.deltaTime * 5);
 		} else {
 			transform.localScale = new Vector3(3.0f, 3.0f, 3.0f);
-			renderer.material.color = currentColor = Color.red;
+			GetComponent<Renderer>().material.color = currentColor = Color.red;
 		}
 
 		if (unitController.dead) Destroy(gameObject);
@@ -56,6 +56,6 @@ public class UnitSelect : MonoBehaviour {
 	
 	public void Select() {
 		transform.localScale = new Vector3(3.0f, 3.0f, 3.0f);
-		renderer.material.color = currentColor = Color.red;		
+		GetComponent<Renderer>().material.color = currentColor = Color.red;		
 	}
 }

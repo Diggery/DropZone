@@ -171,7 +171,7 @@ public class RagDollControl : MonoBehaviour {
 		leftHipRigidbody.isKinematic = true;
 		
 		CharacterJointConfig leftHipJointConfig = new CharacterJointConfig();
-		leftHipJointConfig.connectedBody = root.rigidbody;
+		leftHipJointConfig.connectedBody = root.GetComponent<Rigidbody>();
 		leftHipJointConfig.axis = setUpData.leftHip.joint.axis;
 		leftHipJointConfig.swingAxis = setUpData.leftHip.joint.swingAxis;
 		leftHipJointConfig.lowTwistLimit = -30.0f;
@@ -196,7 +196,7 @@ public class RagDollControl : MonoBehaviour {
 		leftKneeRigidbody.isKinematic = true;
 		
 		CharacterJointConfig leftKneeJointConfig = new CharacterJointConfig();
-		leftKneeJointConfig.connectedBody = leftHip.rigidbody;
+		leftKneeJointConfig.connectedBody = leftHip.GetComponent<Rigidbody>();
 		leftKneeJointConfig.axis = setUpData.leftKnee.joint.axis;
 		leftKneeJointConfig.swingAxis = setUpData.leftKnee.joint.swingAxis;
 		leftKneeJointConfig.lowTwistLimit = -80.0f;
@@ -221,7 +221,7 @@ public class RagDollControl : MonoBehaviour {
 		rightHipRigidbody.isKinematic = true;
 		
 		CharacterJointConfig rightHipJointConfig = new CharacterJointConfig();
-		rightHipJointConfig.connectedBody = root.rigidbody;
+		rightHipJointConfig.connectedBody = root.GetComponent<Rigidbody>();
 		rightHipJointConfig.axis = setUpData.rightHip.joint.axis;
 		rightHipJointConfig.swingAxis = setUpData.rightHip.joint.swingAxis;
 		rightHipJointConfig.lowTwistLimit = -30.0f;
@@ -246,7 +246,7 @@ public class RagDollControl : MonoBehaviour {
 		rightKneeRigidbody.isKinematic = true;
 		
 		CharacterJointConfig rightKneeJointConfig = new CharacterJointConfig();
-		rightKneeJointConfig.connectedBody = rightHip.rigidbody;
+		rightKneeJointConfig.connectedBody = rightHip.GetComponent<Rigidbody>();
 		rightKneeJointConfig.axis = setUpData.rightKnee.joint.axis;
 		rightKneeJointConfig.swingAxis = setUpData.rightKnee.joint.swingAxis;
 		rightKneeJointConfig.lowTwistLimit = -80.0f;
@@ -270,7 +270,7 @@ public class RagDollControl : MonoBehaviour {
 		spineRigidbody.isKinematic = true;
 		
 		CharacterJointConfig spineJointConfig = new CharacterJointConfig();
-		spineJointConfig.connectedBody = root.rigidbody;
+		spineJointConfig.connectedBody = root.GetComponent<Rigidbody>();
 		spineJointConfig.axis = setUpData.spine.joint.axis;
 		spineJointConfig.swingAxis = setUpData.spine.joint.swingAxis;
 		spineJointConfig.lowTwistLimit = -20.0f;
@@ -292,7 +292,7 @@ public class RagDollControl : MonoBehaviour {
 		headRigidbody.isKinematic = true;
 		
 		CharacterJointConfig headJointConfig = new CharacterJointConfig();
-		headJointConfig.connectedBody = spine.rigidbody;
+		headJointConfig.connectedBody = spine.GetComponent<Rigidbody>();
 		headJointConfig.axis = setUpData.head.joint.axis;
 		headJointConfig.swingAxis = setUpData.head.joint.swingAxis;
 		headJointConfig.lowTwistLimit = -40.0f;
@@ -317,7 +317,7 @@ public class RagDollControl : MonoBehaviour {
 		leftShoulderRigidbody.isKinematic = true;
 		
 		CharacterJointConfig leftShoulderJointConfig = new CharacterJointConfig();
-		leftShoulderJointConfig.connectedBody = root.rigidbody;
+		leftShoulderJointConfig.connectedBody = root.GetComponent<Rigidbody>();
 		leftShoulderJointConfig.axis = setUpData.leftShoulder.joint.axis;
 		leftShoulderJointConfig.swingAxis = setUpData.leftShoulder.joint.swingAxis;
 		leftShoulderJointConfig.lowTwistLimit = -70.0f;
@@ -341,7 +341,7 @@ public class RagDollControl : MonoBehaviour {
 		leftElbowRigidbody.isKinematic = true;
 		
 		CharacterJointConfig leftElbowJointConfig = new CharacterJointConfig();
-		leftElbowJointConfig.connectedBody = leftShoulder.rigidbody;
+		leftElbowJointConfig.connectedBody = leftShoulder.GetComponent<Rigidbody>();
 		leftElbowJointConfig.axis = setUpData.leftElbow.joint.axis;
 		leftElbowJointConfig.swingAxis = setUpData.leftElbow.joint.swingAxis;
 		leftElbowJointConfig.lowTwistLimit = -90.0f;
@@ -367,7 +367,7 @@ public class RagDollControl : MonoBehaviour {
 		rightShoulderRigidbody.isKinematic = true;
 		
 		CharacterJointConfig rightShoulderJointConfig = new CharacterJointConfig();
-		rightShoulderJointConfig.connectedBody = root.rigidbody;
+		rightShoulderJointConfig.connectedBody = root.GetComponent<Rigidbody>();
 		rightShoulderJointConfig.axis = setUpData.rightShoulder.joint.axis;
 		rightShoulderJointConfig.swingAxis = setUpData.rightShoulder.joint.swingAxis;
 		rightShoulderJointConfig.lowTwistLimit = -70.0f;
@@ -391,7 +391,7 @@ public class RagDollControl : MonoBehaviour {
 		rightElbowRigidbody.isKinematic = true;
 		
 		CharacterJointConfig rightElbowJointConfig = new CharacterJointConfig();
-		rightElbowJointConfig.connectedBody = rightShoulder.rigidbody;
+		rightElbowJointConfig.connectedBody = rightShoulder.GetComponent<Rigidbody>();
 		rightElbowJointConfig.axis = setUpData.rightElbow.joint.axis;
 		rightElbowJointConfig.swingAxis = setUpData.rightElbow.joint.swingAxis;
 		rightElbowJointConfig.lowTwistLimit = -90.0f;
@@ -440,7 +440,7 @@ public class RagDollControl : MonoBehaviour {
 			currentRigidbody.isKinematic = false;		
 		}
 		CharacterController characterController = GetComponent<CharacterController>();
-		root.rigidbody.AddForce(newForce + (characterController.velocity * 10) + (Vector3.up * 10), ForceMode.Impulse);
+		root.GetComponent<Rigidbody>().AddForce(newForce + (characterController.velocity * 10) + (Vector3.up * 10), ForceMode.Impulse);
 		characterController.enabled = false;
 	}
 	

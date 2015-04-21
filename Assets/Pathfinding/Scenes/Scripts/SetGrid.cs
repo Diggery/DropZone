@@ -8,6 +8,6 @@ public class SetGrid : MonoBehaviour {
 
     void Start()
     {
-        gameObject.renderer.material.mainTextureScale = new Vector2(X , Y);
+        gameObject.GetComponent<Renderer>().material.mainTextureScale = new Vector2(X , Y);
     }
 }

@@ -6,7 +6,7 @@ public class ParticleKiller : MonoBehaviour {
 
 	void Update () {
 	
-		if (!particleSystem.IsAlive()) {
+		if (!GetComponent<ParticleSystem>().IsAlive()) {
 			Destroy (gameObject);    
 	    }	
 	}

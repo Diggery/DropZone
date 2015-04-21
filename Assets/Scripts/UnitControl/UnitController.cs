@@ -61,7 +61,7 @@ public class UnitController : MonoBehaviour {
 	
 		if (useColorFader) {
 			UnitColorFade colorFade = gameObject.AddComponent<UnitColorFade>();
-			if (headModel) colorFade.SetHeadRenderer(headModel.renderer);
+			if (headModel) colorFade.SetHeadRenderer(headModel.GetComponent<Renderer>());
 		}
 		
 		animator = GetComponent<Animator> ();

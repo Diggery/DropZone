@@ -37,12 +37,12 @@ public class BadgeMover : MonoBehaviour {
 		transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one, Time.deltaTime * 5);
 
 		float amount = 1 - (lifeTime/lifeLength);
-		glow.renderer.material.color = Color.Lerp(Color.black, glowColor, glowFade.Evaluate(amount));
+		glow.GetComponent<Renderer>().material.color = Color.Lerp(Color.black, glowColor, glowFade.Evaluate(amount));
 		float badgeAlpha = badgeFade.Evaluate(amount);
 		badgeColor.a = badgeAlpha;
-		badge.renderer.material.color = badgeColor;
+		badge.GetComponent<Renderer>().material.color = badgeColor;
 		numberColor.a = badgeAlpha;
-		number.renderer.material.color = numberColor;
+		number.GetComponent<Renderer>().material.color = numberColor;
 		
 		if (lifeTime < 0) {
 			Destroy(gameObject);

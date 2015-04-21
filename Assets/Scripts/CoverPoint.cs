@@ -128,12 +128,12 @@ public class CoverPoint : MonoBehaviour {
 
 	public void SetFade(float newFade) {
 		if (newFade <= 0) {
-			renderer.enabled = false;
+			GetComponent<Renderer>().enabled = false;
 		} else {
-			renderer.enabled = true;
+			GetComponent<Renderer>().enabled = true;
 		}
 		
-		renderer.material.SetFloat("_Fade", newFade);
+		GetComponent<Renderer>().material.SetFloat("_Fade", newFade);
 	}
 	
 	void AddFiringPosition(Vector3 newPosition) {

@@ -11,7 +11,7 @@ public class DynamicMapUpdate : MonoBehaviour
     void Start () 
     {
         lastPosition = transform.position;
-        lastBounds = renderer.bounds;
+        lastBounds = GetComponent<Renderer>().bounds;
         StartCoroutine(UpdateMap());
 	}	
 
@@ -19,7 +19,7 @@ public class DynamicMapUpdate : MonoBehaviour
     {
         if (transform.position != lastPosition)
         {
-            Bounds bR = renderer.bounds;
+            Bounds bR = GetComponent<Renderer>().bounds;
             Pathfinder.Instance.DynamicRaycastUpdate(lastBounds);
             Pathfinder.Instance.DynamicRaycastUpdate(bR);
             lastPosition = transform.position;

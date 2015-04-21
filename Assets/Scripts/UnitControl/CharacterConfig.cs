@@ -75,7 +75,7 @@ public class CharacterConfig : MonoBehaviour {
 			}
 			GameObject newHead = Instantiate(helmet, neck.position, neck.rotation) as GameObject;
 			newHead.transform.parent = neck;
-			newHead.renderer.enabled = true;
+			newHead.GetComponent<Renderer>().enabled = true;
 			if (unitController.useColorFader) {
 				unitController.headModel = newHead;
 			}

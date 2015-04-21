@@ -25,7 +25,7 @@ public class ProjectileControl : MonoBehaviour {
 		thrust.emissionRate = 0;
 		float drift = 0.05f;
 		Vector3 offset = new Vector3(Random.Range (-drift, drift), Random.Range (-drift, drift), 0);
-		rigidbody.AddForce((transform.forward + offset) * -150, ForceMode.Impulse);
+		GetComponent<Rigidbody>().AddForce((transform.forward + offset) * -150, ForceMode.Impulse);
 		thrustDelay += Random.Range(-0.25f, 0.25f);
 	}
 	void Update () {
@@ -52,9 +52,9 @@ public class ProjectileControl : MonoBehaviour {
 
 		if (thrusting) {
 			Vector3 offsetVector = ((target.position + aimOffset) - transform.position).normalized;
-			rigidbody.AddForce(offsetVector * 500);
+			GetComponent<Rigidbody>().AddForce(offsetVector * 500);
 		}
-		if (rigidbody.velocity.y > 0) DisableThrust();
+		if (GetComponent<Rigidbody>().velocity.y > 0) DisableThrust();
 
 	}
 	void DisableThrust() {

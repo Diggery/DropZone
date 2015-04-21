@@ -22,7 +22,7 @@ public class WaypointNode : MonoBehaviour
     {
         if(Application.isPlaying)
         {
-            gameObject.collider.enabled = false;
+            gameObject.GetComponent<Collider>().enabled = false;
         }
     }
 

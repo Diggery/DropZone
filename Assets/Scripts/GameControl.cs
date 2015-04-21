@@ -60,7 +60,7 @@ public class GameControl : MonoBehaviour {
 			//link the unit to the unit pane
 			InterfaceControl interfaceControl = Camera.main.gameObject.GetComponent<InterfaceControl>();
 			if (!interfaceControl) Debug.Log("No InterfaceControl found on the camera");
-			interfaceControl.EnableUnitPane(unitController);		
+			//interfaceControl.EnableUnitPane(unitController);		
 			
 			mapCell.isOccupied = true;
 			
