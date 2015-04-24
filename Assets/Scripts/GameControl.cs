@@ -60,7 +60,7 @@ public class GameControl : MonoBehaviour {
 			//link the unit to the unit pane
 			InterfaceControl interfaceControl = Camera.main.gameObject.GetComponent<InterfaceControl>();
 			if (!interfaceControl) Debug.Log("No InterfaceControl found on the camera");
-			//interfaceControl.EnableUnitPane(unitController);		
+			interfaceControl.EnableUnitPane(unitController);		
 			
 			mapCell.isOccupied = true;
 			
@@ -103,6 +103,8 @@ public class GameControl : MonoBehaviour {
 		foreach (GameObject soldier in soldiers) {
 			if (soldier.name.Equals(unitName)) return soldier;
 		}
+		
+		// couldn't find anything just return the first one.
 		return soldiers[0]; 
 	}
 

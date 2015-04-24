@@ -100,6 +100,7 @@ public class EnemyCaptain : MonoBehaviour {
 		if (unitBehaviors.retreating) return;
 		print ("Retreat!!!");
 		foreach (UnitController member in squad) {
+			
 			member.GetComponent<UnitBehaviors>().FindCoverAtPosition(mainSpawner.transform.position);
 		}
 		unitBehaviors.FindCoverAtPosition(mainSpawner.transform.position);

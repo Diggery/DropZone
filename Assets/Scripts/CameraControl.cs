@@ -94,7 +94,9 @@ public class CameraControl : MonoBehaviour {
 			
 	public void NeedCameraFocus(Events.Notification notification) {
 		Transform focusTarget = (Transform)notification.data;
-		cameraLookAt.position = focusTarget.position;
+		
+		touchOffset.x = focusTarget.position.x - (mapSize.x/2);
+		touchOffset.y = focusTarget.position.z;
 	}
 
 	

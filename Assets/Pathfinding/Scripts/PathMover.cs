@@ -187,18 +187,21 @@ public class PathMover : Pathfinding {
 		float characterRadius = characterController.radius;
 
 		List<Vector3> simplePath = new List<Vector3>();
-
+		simplePath.Add(complexPath[0]);
+		
 		for (int currentNode = 0; currentNode < complexPath.Count; currentNode++) {
 			simplePath.Add(complexPath[currentNode]);
-
-			for (int reverseCount = complexPath.Count - 1; reverseCount > currentNode; reverseCount--) {
+			
+			// check from the end of the list towards the current position
+			for (int reverseCount = complexPath.Count - 1; reverseCount > currentNode + 1; reverseCount--) {
 			
 				Vector3 currentNodePos = complexPath[currentNode];
 				
 				// don't remove nodes if a wall is being jumped
-				if (currentNode + 1 < complexPath.Count) 
-					if (currentNodePos.y != complexPath[currentNode + 1].y) continue;
-					
+				float hieghtDistance = currentNodePos.y - complexPath[currentNode + 1].y;
+				bool hieghtIsSame = hieghtDistance < 0.001f && -hieghtDistance < 0.001f;
+				if (currentNode + 1 < complexPath.Count && !hieghtIsSame) continue;
+				
 				currentNodePos.y = characterRadius + 0.1f;
 
 				Vector3 nextNodePos = complexPath[reverseCount];
@@ -207,11 +210,9 @@ public class PathMover : Pathfinding {
 				LayerMask terrainMask = 1 << LayerMask.NameToLayer("Ground");
 				Ray pathRay = new Ray(currentNodePos, (nextNodePos - currentNodePos).normalized);
 				float distance = (nextNodePos - currentNodePos).magnitude;
-				RaycastHit hit;
 
-
-				if (!Physics.SphereCast(pathRay, characterRadius,  out hit, distance, terrainMask)) {
-					currentNode = reverseCount - 1;
+				if (!Physics.SphereCast(pathRay, characterRadius - 0.1f, distance, terrainMask)) {
+					currentNode = reverseCount -1;
 				}
 			}
 		}
@@ -223,6 +224,7 @@ public class PathMover : Pathfinding {
 		}
 		return simplePath;
 	}
+
 
 	public void FinishPath() {
 		activePath.Clear();
