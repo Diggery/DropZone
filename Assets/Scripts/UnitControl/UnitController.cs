@@ -466,4 +466,14 @@ public class UnitController : MonoBehaviour {
 	void OnDestroy() {
 		if (mainWeapon) Destroy(mainWeapon.gameObject);
 	}
+	
+	public void OnCollisionEnter(Collision collision) {
+		print ("Collion");
+	
+		if (collision.transform.tag.Equals("LowWall")) {
+			print ("Low Wall");
+		}
+		
+		
+	}
 }

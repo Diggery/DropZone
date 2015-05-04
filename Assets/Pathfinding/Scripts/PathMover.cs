@@ -116,6 +116,9 @@ public class PathMover : Pathfinding {
 						unitController.MoveTo(mapControl.FindBestCover(finishPos, 5 * mapControl.GetGridSize(), transform.tag));
 					}
 				}
+				if ((activePath[0].y + (mapControl.gridSize * 0.25f)) < activePath[1].y) {
+					unitController.GetAnimator().SetTrigger("JumpWall");
+				}
 				activePath.RemoveAt(0);
 			}
 			
