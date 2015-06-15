@@ -72,7 +72,7 @@ public class InterfaceControl : MonoBehaviour {
 		
 		float screenX;
 		float screenY;
-		
+		//print ("Locking " + newElement.name);
 		switch(newElement.name) {
 		case "LowerLeft" :
 			screenX = 0.0f;

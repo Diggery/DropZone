@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 219773e3bd4a645d0b75fe50c4c39f28
 ModelImporter:
-  serializedVersion: 16
+  serializedVersion: 18
   fileIDToRecycleName:
     100000: //RootNode
     100002: Squadie_Rig:Geometry_Group
@@ -135,7 +135,7 @@ ModelImporter:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     optimizeGameObjects: 0
-    motionNodeName: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel
+    motionNodeName: 
     animationCompression: 3
     animationRotationError: .5
     animationPositionError: .5
@@ -796,11 +796,11 @@ ModelImporter:
       - path: 
         weight: 1
       - path: Squadie_Rig:Geometry_Group
-        weight: 0
+        weight: 1
       - path: Squadie_Rig:Geometry_Group/Squadie_Rig:Squadie 1
-        weight: 0
+        weight: 1
       - path: Squadie_Rig:Geometry_Group/Squadie_Rig:SquadieHelmet
-        weight: 0
+        weight: 1
       - path: Squadie_Rig:Skeleton_Group
         weight: 1
       - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel
@@ -832,7 +832,7 @@ ModelImporter:
       - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel
         weight: 1
       - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:LeftUpperArm_Skel/Squadie_Rig:LeftLowerArm_Skel/Squadie_Rig:LeftHand_Skel/Squadie_Rig:LeftFingers_Skel
-        weight: 0
+        weight: 1
       - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel
         weight: 1
       - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:Neck_Skel/Squadie_Rig:Head_Skel
@@ -844,7 +844,9 @@ ModelImporter:
       - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel
         weight: 1
       - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:RightFingers_Skel
-        weight: 0
+        weight: 1
+      - path: Squadie_Rig:Skeleton_Group/Squadie_Rig:Root_Skel/Squadie_Rig:Spine1_Skel/Squadie_Rig:Spine2_Skel/Squadie_Rig:RightUpperArm_Skel/Squadie_Rig:RightLowerArm_Skel/Squadie_Rig:RightHand_Skel/Squadie_Rig:WeaponAttach
+        weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
     - serializedVersion: 16
@@ -1254,11 +1256,13 @@ ModelImporter:
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
+    keepQuads: 0
     weldVertices: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
+    useFileScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     splitTangentsAcrossUV: 1
@@ -1282,3 +1286,5 @@ ModelImporter:
   animationType: 2
   additionalBone: 0
   userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -171,6 +171,7 @@ public class MapControl : MonoBehaviour {
 	MapDataPoint GetMapData(Vector2 coor) {
 		int xPos = Mathf.FloorToInt(coor.x);
 		int yPos = Mathf.FloorToInt(coor.y);
+		//print ("getting " + xPos + ", " + yPos);
 		return mapData[yPos * Mathf.FloorToInt(mapSize.x) + xPos];
 	}
 

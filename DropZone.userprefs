@@ -1,36 +1,33 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Pathfinding/Scripts/PathMover.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Interface/UnitPane.cs">
     <Files>
-      <File FileName="Assets/Scripts/Interface/PauseControl.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Interface/InterfaceControl.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/GameControl.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/UnitControl/EnemyCaptain.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/SpawnControl.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Spawner.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/UnitControl/UnitController.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Interface/UnitPane.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Interface/ButtonControl.cs" Line="1" Column="1" />
-      <File FileName="Assets/Plugins/Events.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/CameraControl.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Interface/LockToEdge.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/BadgeMover.cs" Line="1" Column="1" />
-      <File FileName="Assets/Pathfinding/Scripts/Pathfinder.cs" Line="1" Column="1" />
-      <File FileName="Assets/Pathfinding/Scripts/PathMover.cs" Line="122" Column="6" />
-      <File FileName="Assets/Scripts/ProjectileControl.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/UnitControl/TargetingControl.cs" Line="158" Column="5" />
+      <File FileName="Assets/Scripts/CoverPoint.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/UnitControl/UnitController.cs" Line="286" Column="34" />
+      <File FileName="Assets/Scripts/WeaponControl/MainWeapon.cs" Line="137" Column="105" />
+      <File FileName="Assets/Scripts/WeaponControl/FireControl.cs" Line="1" Column="1" />
+      <File FileName="Assets/FireWhileAiming.cs" Line="9" Column="35" />
+      <File FileName="Assets/Scripts/MapControl.cs" Line="1" Column="1" />
+      <File FileName="Assets/Pathfinding/Scripts/PathMover.cs" Line="119" Column="46" />
+      <File FileName="Assets/Scripts/Interface/UnitPane.cs" Line="141" Column="38" />
+      <File FileName="Assets/Shaders/Unlit-TexWithMask.shader" Line="51" Column="36" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
             <Node name="Pathfinding" expanded="True">
-              <Node name="Scripts" expanded="True">
-                <Node name="PathMover.cs" selected="True" />
-              </Node>
+              <Node name="Scripts" expanded="True" />
             </Node>
             <Node name="Scripts" expanded="True">
+              <Node name="Interface" expanded="True">
+                <Node name="UnitPane.cs" selected="True" />
+              </Node>
               <Node name="UnitControl" expanded="True" />
+              <Node name="WeaponControl" expanded="True" />
             </Node>
+            <Node name="Shaders" expanded="True" />
           </Node>
         </State>
       </Pad>

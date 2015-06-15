@@ -9,7 +9,7 @@ public class UnitPane : MonoBehaviour, IPointerClickHandler {
 	Color frameColor = new Color(0.0f, 0.0f, 0.0f, 1.0f);
 	Color openColor = new Color(0.0f, 0.0f, 0.0f, 0.5f);
 	Color closeColor = new Color(0.0f, 0.0f, 0.0f, 0.1f);
-	Color selectColor = new Color(0.2f, 0.0f, 0.0f, 0.2f);
+	Color selectColor = new Color(0.2f, 0.0f, 0.0f, 0.8f);
 	Color flashColor = new Color (1.0f, 0.5f, 0.0f);		
 	Color idleHealthColor = new Color (0.0f, 0.0f, 0.0f, 0.5f);		
 	
@@ -40,13 +40,12 @@ public class UnitPane : MonoBehaviour, IPointerClickHandler {
 	
 	public GameObject profileCameraPrefab;
 	
-	Equipment equipment1;
-	public Button equipment1Button;
-	Equipment equipment2;
-	public Button equipment2Button;
+	Equipment equipment;
+	public Button equipmentButton;
+	public Image equipmentButtonImage;
+	Material equipmentButtonMaterial;
 
 	public Transform healthBar;
-	
 	
 	RectTransform panePosition;
 	
@@ -56,12 +55,15 @@ public class UnitPane : MonoBehaviour, IPointerClickHandler {
 		panePosition = GetComponent<RectTransform>();
 		mainMaterial = Instantiate(unitPaneMaterial) as Material;
 		GetComponent<Image>().material = mainMaterial;
-		
-		Transform unitNameObj = transform.Find("Name");
-		
+				
 		Transform healthBarObj = transform.Find("HealthBar");
 		healthBarMaterial = Instantiate(healthBarObj.GetComponent<Image>().material) as Material;
 		healthBarObj.GetComponent<Image>().material = healthBarMaterial;
+		
+		equipmentButtonMaterial = Instantiate(equipmentButton.GetComponent<Image>().material) as Material;
+		equipmentButton.GetComponent<Image>().material = equipmentButtonMaterial;
+		
+		
 	}
 	
 	public void SetUnit(UnitController _unit) {
@@ -84,7 +86,7 @@ public class UnitPane : MonoBehaviour, IPointerClickHandler {
 		chaseCam.RandomizeCameraPos();
 		
 		
-		Invoke("FillOutEquipmentButtons", 0.1f);
+		Invoke("FillOutEquipmentButton", 0.1f);
 	}
 	
 	void Update () {
@@ -131,28 +133,21 @@ public class UnitPane : MonoBehaviour, IPointerClickHandler {
 		mainMaterial.SetColor("_HiLiteColor",  currentHiLiteColor);
 		
 		Vector2 panePos = panePosition.anchoredPosition;
-		panePos.x = Mathf.Lerp(-30, 0, slideCurve.Evaluate(transAmount));
+		panePos.x = Mathf.Lerp(-30, -10, slideCurve.Evaluate(transAmount));
 		panePosition.anchoredPosition = panePos;
 		
 		  
 		
 		float health = unit.GetNormalizedHealth();
+		Color healthColorGoal = Color.Lerp(Color.red, idleHealthColor, health);
+		healthBarMaterial.color = Color.Lerp(healthBarMaterial.color, healthColorGoal, GameTime.deltaTime * 3);
 		
-		//Color healthColorGoal = Color.Lerp(Color.red, idleHealthColor, health);
-	//	healthBar.GetComponent<Renderer>().material.color = Color.Lerp(healthBar.GetComponent<Renderer>().material.color, healthColorGoal, GameTime.deltaTime * 3);
-	//	healthBar.GetComponent<Renderer>().material.mainTextureOffset = Vector2.Lerp(Vector2.up, Vector2.zero, health);
+		healthBarMaterial.mainTextureOffset = Vector2.Lerp(new Vector2(0.0f, 0.7f), new Vector2(0.0f, 0.0f), health);
 	}
 	
-	void FillOutEquipmentButtons() {
-		Equipment[] allEquip = unit.GetAllEquipment();
-//		if (allEquip.Length >= 1) {
-//			equipment1 = allEquip[0];
-//			equipment1Button.GetComponent<Renderer>().material.mainTexture = equipment1.buttonTexture;
-//		}
-//		if (allEquip.Length > 1) {
-//			equipment2 = allEquip[1];
-//			equipment2Button.GetComponent<Renderer>().material.mainTexture = equipment2.buttonTexture;
-//		}	
+	void FillOutEquipmentButton() {
+		equipment = unit.GetEquipment();
+		equipmentButtonImage.sprite = equipment.buttonTexture;
 	}
 	
 	public void OnPointerClick(PointerEventData eventData) {
@@ -182,10 +177,8 @@ public class UnitPane : MonoBehaviour, IPointerClickHandler {
 		if (name.Contains("Badge")) {
 			badge.sprite = opened ? badgeOpen : badgeClose;
 			Toggle();
-		} else if (name.Equals("Equipment1")) {
-			equipment1.Activate(this);
-		} else if (	name.Equals("Equipment2")) {
-			equipment2.Activate(this);
+		} else if (name.Equals("Equipment")) {
+			equipment.Activate(this);
 		}			
 	}
 	
@@ -214,9 +207,11 @@ public class UnitPane : MonoBehaviour, IPointerClickHandler {
 	public void Hide() {
 		Close();
 		hidden = true;
-//		if (!unit) {
-//			transform.localPosition = new Vector3(1, 0, 0);
-//		}
+		if (!unit) {
+			Vector2 panePos = panePosition.anchoredPosition;
+			panePos.x = -45;
+			panePosition.anchoredPosition = panePos;
+		}
 	}
 	
 	public void Die() {
@@ -227,11 +222,11 @@ public class UnitPane : MonoBehaviour, IPointerClickHandler {
 	
 	public void TakeDamage() {
 		currentFrameColor = Color.red;
-	//	healthBar.GetComponent<Renderer>().material.color = Color.red;
+		healthBarMaterial.color = Color.red;
 	}
 	
 	public void Heal() {
-	//	healthBar.GetComponent<Renderer>().material.color = Color.green;
+		healthBarMaterial.color = Color.green;
 	}
 		
 }

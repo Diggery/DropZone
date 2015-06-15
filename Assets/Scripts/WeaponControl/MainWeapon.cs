@@ -107,26 +107,13 @@ public class MainWeapon : MonoBehaviour {
 		} 
 		animator.SetBool("MainWeaponReady", true);
 
-		if (unitController.HasTarget()) {
-		
-			AnimatorStateInfo animStateInfo = animator.GetCurrentAnimatorStateInfo(0);
-			if (animStateInfo.IsName("HighCover.Cover_Aim_Right") ||
-			    animStateInfo.IsName("HighCover.CoverOut_Aim_Right") ||
-			    animStateInfo.IsName("HighCover.Cover_Aim_Left") ||
-			    animStateInfo.IsName("HighCover.Cover_Aim_Left") ||
-			    animStateInfo.IsName("HighCover.CoverOut_Aim_Left") ||
-			    animStateInfo.IsName("NoCover.Aiming")) {
-			    
-				Fire();
-				
-			}
-		}
+
 	}
 
 	public void Fire() {
 	
 		if (reloading || coolingDown) return;
-		animator.SetTrigger("FireMainWeapon");
+				
 		if (burstCount < 1) {
 			StartCoolingDown();
 			return;
@@ -139,14 +126,15 @@ public class MainWeapon : MonoBehaviour {
 
 		targeting.AddDrift(aimDrift - aimBonus);
 		targeting.RaiseAim(weaponDrift - aimBonus);
+		Vector3 directionToTarget = (targeting.GetTargetPosition() - muzzle.position).normalized;
 
 		Instantiate(muzzleFlashPrefab, muzzle.position + (muzzle.forward * 0.15f), transform.rotation);
-
+	
 		GameObject bulletTrail = Instantiate(bulletTrailPrefab, muzzle.position, transform.rotation) as GameObject;
 		muzzleLight.intensity = 1;
 
 		Quaternion directionOffset = Quaternion.AngleAxis((Random.value - 0.5f) * aimSpread, Vector3.up);
-		Vector3 direction = directionOffset * muzzle.forward;
+		Vector3 direction = directionOffset * Vector3.Lerp(directionToTarget, muzzle.forward, 0.5f).normalized;
 		Ray trajectory = new Ray(muzzle.position, direction);
 		RaycastHit hit;
 		float distanceToTarget = 0.0f;
@@ -244,9 +232,9 @@ public class MainWeapon : MonoBehaviour {
 		magazine.GetComponent<Renderer>().enabled = false;
 
 	}
-
+	
 	public void ReplaceMagazine() {
-		magazine.GetComponent<Renderer>().enabled = true;
+			magazine.GetComponent<Renderer>().enabled = true;
 
 	}
 

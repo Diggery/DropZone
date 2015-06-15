@@ -204,7 +204,9 @@ public class CoverPoint : MonoBehaviour {
 	public bool IsLeftSideClear() { return isLeftSideClear; }
 
 	public bool IsCorner() { return IsRightSideClear() || IsLeftSideClear(); }
-
+	
+	public bool IsLowCover() { return !highCover; }
+	
 	public int GetCoverRating(GameObject[] targets) {
 		int score = 0;
 

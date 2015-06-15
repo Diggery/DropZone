@@ -23,6 +23,9 @@ public class ThrowControl : MonoBehaviour {
 	GameControl gameControl;
 	InputControl inputControl;
 	
+	public Texture dragTexture;
+	public Texture throwTexture;
+	
 	void SetUp (Equipment _equipment) {
 		handle = transform.Find("ThrowHandle");
 		line = transform.Find("ThrowLine");
@@ -31,6 +34,8 @@ public class ThrowControl : MonoBehaviour {
 		gameControl = gameControlObj.GetComponent<GameControl>();
 		inputControl = gameControlObj.GetComponent<InputControl>();
 		inputControl.AddGizmoControl(gameObject);
+		SetHandleTexture (dragTexture);
+		
 	}
 	
 	void Update () {
@@ -62,6 +67,10 @@ public class ThrowControl : MonoBehaviour {
 		line.localPosition = handle.localPosition * 0.5f;
 	}
 	
+	void SetHandleTexture (Texture newTexture) {
+		handle.GetComponent<Renderer>().material.mainTexture = newTexture;
+	}
+	
 	public void HandleBeginDrag(PointerEventData eventData) {
 		print ("start drag");
 		touched = true;
@@ -91,7 +100,9 @@ public class ThrowControl : MonoBehaviour {
 	void Prime() {
 		primed = true;
 		equipment.Ready();
+		SetHandleTexture(throwTexture);
 		gameControl.SelectorPause();
+		
 	}
 	
 	void Throw() {

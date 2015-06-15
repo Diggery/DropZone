@@ -17,7 +17,12 @@ public class InputControl : MonoBehaviour {
 		
 	List<GameObject> openGizmoControls = new List<GameObject>();
 	
-	void Start () {		
+	float doubleClickTime = 0.25f;
+	float doubleClickTimer;
+	
+	void Start () {	
+		doubleClickTimer = doubleClickTime;
+			
 		Events.Listen(gameObject, "SelectUnit");
 		Events.Listen(gameObject, "DeselectUnit");
 		
@@ -32,6 +37,11 @@ public class InputControl : MonoBehaviour {
 		GameObject gameControlObj = GameObject.Find("Map");
 		gameControl = gameControlObj.GetComponent<GameControl>();
 	}
+	
+	void Update() {
+		doubleClickTimer -= Time.deltaTime;
+	}
+		
 	
 	public void AddGizmoControl(GameObject newControl) {
 		openGizmoControls.Add(newControl);
@@ -57,6 +67,10 @@ public class InputControl : MonoBehaviour {
 			selectedUnit.SetMainTarget(target.gameObject);
 		}
 		if (target.transform.tag.Equals("Player")) {
+			if (doubleClickTimer > 0) {
+				target.OpenPane();
+			}
+			doubleClickTimer = doubleClickTime;
 			if (selectedUnit) 
 				selectedUnit.Deselect();
 			selectedUnit = target;
@@ -115,32 +129,11 @@ public class InputControl : MonoBehaviour {
 
 	public void MapClicked() {
 	
-		
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		RaycastHit hit;
 		LayerMask terrainMask = 1 << LayerMask.NameToLayer("Ground");
 		
-		
 		if(Physics.Raycast(ray, out hit, Mathf.Infinity, terrainMask)) {
-			
-			//GameObject marker = GameObject.CreatePrimitive(PrimitiveType.Cube);
-			//marker.transform.position = hit.point;
-			//marker.transform.localScale = new Vector3(0.1f, 0.2f, 0.1f);
-			
-			// hack to click button selectors if the raycast missed from some reason
-//			Vector3[] buttonPositions = selector.GetButtonWorldPositions();
-//			
-//			if (Vector3.Distance(buttonPositions[0], hit.point) < 0.6f) {
-//				print ("Missed raycast");
-//				selector.ButtonClicked("Accept");
-//				return;
-//			}
-//			
-//			if (Vector3.Distance(buttonPositions[1], hit.point) < 0.6f) {
-//				print ("Missed raycast");
-//				selector.ButtonClicked("Cancel");
-//				return;
-//			}			
 			
 			if (selectedUnit) {
 				selector.SetPos(hit.point);	

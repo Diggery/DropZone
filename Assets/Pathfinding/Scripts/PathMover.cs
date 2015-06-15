@@ -125,7 +125,7 @@ public class PathMover : Pathfinding {
 		// otherwise setup a finish move
 		} else {
 
-			if (offsetFromNextPath.sqrMagnitude < distanceThreshold) {
+			if (offsetFromNextPath.sqrMagnitude < (distanceThreshold*2)) {
 				activePath.RemoveAt(0);
 				FinishPath();
             }	

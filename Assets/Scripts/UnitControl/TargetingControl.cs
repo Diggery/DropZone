@@ -40,7 +40,7 @@ public class TargetingControl : MonoBehaviour {
 	}
 	
 	void Update () {
-	
+		
 		if (targetDummy) return;  // targetdummys are dumb
 		if (unitController.dead) return; //no targeting while dead
 		
@@ -48,6 +48,7 @@ public class TargetingControl : MonoBehaviour {
 		
 		if (unitController.IsMoving()) {
 			if (transform.tag.Equals("Enemy")) {
+			
 				if (scanTimer < 0) {
 					if (ScanForTargets()) {
 						GetComponent<UnitBehaviors>().FindCloseCover();
@@ -57,21 +58,24 @@ public class TargetingControl : MonoBehaviour {
 			return;
 		} 
 
-		
-
-		if (scanTimer < 0) 
+		if (scanTimer < 0) {
 			ScanForTargets();
+			
+		}
 
-
-		if (missCount > 3) {
+		if (missCount > 5) {
 			missCount = 0;
 			unitController.ClearMainTarget();
 		}
-
 		if (!currentTarget) { //stop if there is nothing to shoot at and clean up some anim flags
 			animator.SetBool ("UseCoverLeft", false);
 			animator.SetBool ("UseCoverRight", false);
 			return; 
+		} else {
+			Debug.DrawLine(
+				transform.position, 
+				currentTarget.position,
+				Color.red);
 		}
 
 		Vector3 aimPosition = transform.position + aimingGridOffset;
@@ -114,12 +118,14 @@ public class TargetingControl : MonoBehaviour {
 			bool useCoverRight = aimGoal.x > 0 && aimGoal.x < 45 && coverPoint.IsRightSideClear();
 			animator.SetBool ("UseCoverRight", useCoverRight);
 			
-			//clear the target if we can't find him from the cover.
-			if (!coverPoint.IsLeftSideClear() && aimGoal.x > -90 && aimGoal.x < 0) 
-				unitController.ClearMainTarget();
-				
-			if (!coverPoint.IsRightSideClear() && aimGoal.x > 0 && aimGoal.x < 90) 
-				unitController.ClearMainTarget();
+			//clear the target if we can't find him from high cover.
+			if (!coverPoint.IsLowCover()) {
+				if (!coverPoint.IsLeftSideClear() && aimGoal.x > -90 && aimGoal.x < 0) 
+					unitController.ClearMainTarget();
+					
+				if (!coverPoint.IsRightSideClear() && aimGoal.x > 0 && aimGoal.x < 90) 
+					unitController.ClearMainTarget();
+			}
 		} else {
 			AnimatorStateInfo animStateInfo = animator.GetCurrentAnimatorStateInfo(0);
 			if (animStateInfo.IsName("NoCover.Aiming")) { // only rotate if they are aiming and out of cover
@@ -140,7 +146,6 @@ public class TargetingControl : MonoBehaviour {
 	public bool ScanForTargets() {
 		Transform bestTarget = FindBestTarget();
 		bool targetUpdated = false;
-		
 		if (bestTarget) {
 			if (bestTarget != currentTarget) 
 				unitController.SetMainTarget(bestTarget.gameObject);
@@ -149,7 +154,8 @@ public class TargetingControl : MonoBehaviour {
 					SendMessage("SeeEnemy", currentTarget.position, SendMessageOptions.DontRequireReceiver);
 				}
 		} else {
-			unitController.ClearMainTarget();
+			if (currentTarget) 
+				unitController.ClearMainTarget();
 		}
 		scanTimer = scanTime + (Random.value * 0.1f);
 		return targetUpdated;
@@ -171,9 +177,13 @@ public class TargetingControl : MonoBehaviour {
 	}
 
 	public void ClearTarget () {
+		print ("Clearing Target");
 		currentTarget = null;		
 	}
-
+	
+	public Vector3 GetTargetPosition () {
+		return targetCenter.position;		
+	}
 
 	public Transform FindBestTarget() {
 		GameObject[] allUnits = new GameObject[0];

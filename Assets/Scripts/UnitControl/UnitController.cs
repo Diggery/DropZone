@@ -37,7 +37,7 @@ public class UnitController : MonoBehaviour {
 	MainWeapon mainWeapon;
 	Transform mainWeaponTarget;
 	
-	List<Equipment> equipments = new List<Equipment>();
+	Equipment equipment;
 
 	CoverPoint currentCoverPoint;
 	public Vector3 currentDestination;
@@ -234,31 +234,18 @@ public class UnitController : MonoBehaviour {
 		return mainWeapon;
 	}
 		
-	public void AddEquipment(Equipment equipment) {
-		if (!equipments.Contains(equipment)) equipments.Add(equipment);
+	public void AddEquipment(Equipment _equipment) {
+		print ("Added");
+		equipment = _equipment;
 		equipment.Attach(leftHandAttach, this);
 	}
 	
-	public void RemoveEquipment(Equipment equipment) {
-		if (equipments.Contains(equipment)) equipments.Remove(equipment);
+	public Equipment GetEquipment() {
+		return equipment;
 	}
-	
-	public Equipment GetEquipment(string name) {
-		Equipment item = null;
-		foreach(Equipment equipment in equipments) {
-			if (equipment.name.Equals(name)) item = equipment;
-		}
-		return item;
-	}
-	
-	public Equipment[] GetAllEquipment() {
-		return equipments.ToArray();
-	}
-	
+
 	public void CancelEquipment() {
-		foreach(Equipment equipment in equipments) {
-			equipment.Cancel();
-		}
+		equipment.Cancel();
 	}	
 	
 	public TargetingControl GetTargeting() {
@@ -318,7 +305,11 @@ public class UnitController : MonoBehaviour {
 		unitSelect.SendMessage("Select");
 		selected = true;
 	}
-
+	public void OpenPane() {
+		if (unitPane) 
+			unitPane.Open ();
+	}
+		
 	public void Deselect() {
 		selected = false;
 		pathMover.ClearPathLine();
@@ -330,17 +321,23 @@ public class UnitController : MonoBehaviour {
 		if (mapCell.coverPoint) {
 			
 			currentCoverPoint = mapCell.coverPoint;
-			bool rightSideOfMap = transform.position.x > ((float)mapControl.GetMapSize().x/2.0f);
-						
-			if (currentCoverPoint.IsLeftSideClear()) {
-				animator.SetInteger ("InCover", 1);
-			} else if (currentCoverPoint.IsRightSideClear()) {
-				animator.SetInteger ("InCover", 2);
+			
+			if (currentCoverPoint.IsLowCover()) {
+				animator.SetInteger ("InCover", 3);
 			} else {
-				if (rightSideOfMap) {
+			
+				bool rightSideOfMap = transform.position.x > ((float)mapControl.GetMapSize().x/2.0f);
+							
+				if (currentCoverPoint.IsLeftSideClear()) {
 					animator.SetInteger ("InCover", 1);
-				} else {
+				} else if (currentCoverPoint.IsRightSideClear()) {
 					animator.SetInteger ("InCover", 2);
+				} else {
+					if (rightSideOfMap) {
+						animator.SetInteger ("InCover", 1);
+					} else {
+						animator.SetInteger ("InCover", 2);
+					}
 				}
 			}
 			
