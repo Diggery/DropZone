@@ -235,7 +235,6 @@ public class UnitController : MonoBehaviour {
 	}
 		
 	public void AddEquipment(Equipment _equipment) {
-		print ("Added");
 		equipment = _equipment;
 		equipment.Attach(leftHandAttach, this);
 	}
@@ -247,6 +246,10 @@ public class UnitController : MonoBehaviour {
 	public void CancelEquipment() {
 		equipment.Cancel();
 	}	
+	
+	public void RemoveEquipment(Equipment _equipment) {
+		equipment = null;
+	}
 	
 	public TargetingControl GetTargeting() {
 		return GetComponent<TargetingControl>();
@@ -313,7 +316,7 @@ public class UnitController : MonoBehaviour {
 	public void Deselect() {
 		selected = false;
 		pathMover.ClearPathLine();
-		CancelEquipment();
+		if (equipment) CancelEquipment();
 	}
 
 	public void FinishedMove(MapControl.MapDataPoint mapCell) {

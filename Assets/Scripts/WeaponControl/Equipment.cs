@@ -56,7 +56,7 @@ public class Equipment : MonoBehaviour {
 	
 	public void Trigger(Vector3 direction) {
 		currentGizmo = null;
-		//unitController.RemoveEquipment(this);
+		unitController.RemoveEquipment(this);
 		if (unitPane) unitPane.DisableEquipmentButton(this);
 		Fire(direction);	
 	}

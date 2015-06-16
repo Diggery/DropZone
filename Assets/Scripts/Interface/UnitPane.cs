@@ -37,6 +37,7 @@ public class UnitPane : MonoBehaviour, IPointerClickHandler {
 	public Sprite badgeOpen;
 	public Sprite badgeClose;
 	public Sprite badgeDead;
+	public Sprite emptyEquipmentTexture;
 	
 	public GameObject profileCameraPrefab;
 	
@@ -178,12 +179,15 @@ public class UnitPane : MonoBehaviour, IPointerClickHandler {
 			badge.sprite = opened ? badgeOpen : badgeClose;
 			Toggle();
 		} else if (name.Equals("Equipment")) {
-			equipment.Activate(this);
+			if (equipment)
+				equipment.Activate(this);
 		}			
 	}
 	
 	public void DisableEquipmentButton(Equipment usedEquipment) {
-	
+		equipment = null;
+		equipmentButtonImage.sprite = emptyEquipmentTexture;
+		
 	}
 	
 
