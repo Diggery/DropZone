@@ -21,7 +21,6 @@ public class UnitInventory : MonoBehaviour {
 
 		GameObject equipmentObj = Instantiate(GetWeapon("FragGrenade"), Vector3.zero, Quaternion.identity) as GameObject;
 		Equipment equipment = equipmentObj.GetComponent<Equipment>();
-		equipment.SetInventory(this);
 		unitController.AddEquipment(equipment);
 	}
 	

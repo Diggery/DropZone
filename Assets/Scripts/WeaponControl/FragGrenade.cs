@@ -9,9 +9,6 @@ public class FragGrenade : Equipment {
 	
 	public GameObject explosion;
 
-	void Start () {
-		GetComponent<Renderer>().enabled = false;
-	}
 	
 	void Update () {
 		if (inAir) {
@@ -29,13 +26,15 @@ public class FragGrenade : Equipment {
 	}
 	
 	public override void Ready() {
-		GetComponent<Renderer>().enabled = true;
+		
 	}
+	
 	public override void Fire(Vector3 direction) {
 		transform.parent = null;
 		GetComponent<Rigidbody>().isKinematic = false;
 		GetComponent<Rigidbody>().useGravity = true;
 		GetComponent<Rigidbody>().AddForce((-direction  * 3) + new Vector3 (0.0f, 8.0f, 0.0f), ForceMode.Impulse);
+		
 		inAir = true;
 	}
 	

@@ -27,18 +27,23 @@ public class PauseControl : MonoBehaviour {
 	public AnimationCurve transitionCurve;
 	float transitionTimer;
 	
+	public Color fillColor;
+	public Color frameColor;
+	public Color hiliteColor;
+	
 	Material backgroundMaterial;
+	Color currentFillColor;
 	Color currentFrameColor;
 	Color currentHiLiteColor;
 	
 	void Start () {
 		GameObject mapObj = GameObject.Find ("Map");
 		gameControl = mapObj.GetComponent<GameControl>();
+		backgroundMaterial = gameObject.GetComponent<Image>().material;
 		gameControl.SetPauseControl(this);
 		rect = GetComponent<RectTransform>();
 		SetToggles();
 		UpdatePauseButton();
-		backgroundMaterial = gameObject.GetComponent<Image>().material;
 	}
 	
 	void SetToggles() {
@@ -79,7 +84,6 @@ public class PauseControl : MonoBehaviour {
 	
 	void Update () {
 	
-
 		transitionTimer = Mathf.Clamp01(transitionTimer + (GameTime.deltaTime * 4 * (expanded ? 1 : -1)));
 		if (transitionTimer > 0 && transitionTimer < 1) {
 			float transAmount = transitionCurve.Evaluate(transitionTimer);
@@ -87,21 +91,25 @@ public class PauseControl : MonoBehaviour {
 			expandButton.rotation = Quaternion.Lerp(Quaternion.identity, Quaternion.AngleAxis(180, Vector3.forward), transAmount);
 		}
 
-		Color frameGoal = Color.black;
-		Color HiLiteGoal = Color.clear;
+		Color fillGoal = fillColor;
+		Color frameGoal = frameColor;
+		Color HiLiteGoal = hiliteColor;
 		 
 		if (gameControl.globalPause) {
 			HiLiteGoal = Color.red;
+			fillGoal = Color.red;
 		}	
+		
+		currentFillColor = Color.Lerp(currentFillColor, fillGoal, GameTime.deltaTime * 3);
+		backgroundMaterial.SetColor("_FillColor",  currentFillColor);
 		
 		currentFrameColor = Color.Lerp(currentFrameColor, frameGoal, GameTime.deltaTime * 3);
 		backgroundMaterial.SetColor("_FrameColor",  currentFrameColor);
 
 		currentHiLiteColor = Color.Lerp(currentHiLiteColor, HiLiteGoal, GameTime.deltaTime * 3);
-		backgroundMaterial.SetColor("_HiLiteColor",  currentHiLiteColor);
+		backgroundMaterial.SetColor("_HiliteColor",  currentHiLiteColor);
 		
 		if (Input.GetKeyUp (KeyCode.Space)) {
-			
 			if (gameControl.globalPause) {
 				gameControl.GlobalResume();
 			} else {
@@ -127,7 +135,7 @@ public class PauseControl : MonoBehaviour {
 			pauseButtonLabel.color = Color.red;
 			pauseButtonLabel.text = "Paused";
 		} else {
-			pauseButtonLabel.color = new Color(0.25f, 0.0f, 0.0f, 1.0f);;
+			pauseButtonLabel.color = new Color(0.25f, 0.0f, 0.0f, 1.0f);
 			pauseButtonLabel.text = "Running";
 		}
 	}
@@ -143,7 +151,6 @@ public class PauseControl : MonoBehaviour {
 	}
 	
 	public void ExpandClicked() {
-		currentFrameColor = Color.red;
 		LoadSave.SaveAll();
 		expanded = !expanded;
 	}

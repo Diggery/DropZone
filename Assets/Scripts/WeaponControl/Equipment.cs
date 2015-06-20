@@ -3,8 +3,7 @@ using System.Collections;
 
 public class Equipment : MonoBehaviour {
 
-	[HideInInspector]
-	public UnitInventory unitInventory;
+
 	[HideInInspector]
 	public UnitController unitController;
 	
@@ -14,16 +13,18 @@ public class Equipment : MonoBehaviour {
 	GameObject currentGizmo;
 	UnitPane unitPane;
 	
+	public int uses = 3;
 	
-	public void SetInventory(UnitInventory _unitInventory) {
-		unitInventory = _unitInventory;
-	}
+	
+
 
 	public void Attach(Transform attachPoint, UnitController _unitController) {
 		unitController = _unitController;
 		transform.parent = attachPoint;
 		transform.localPosition = Vector3.zero;
-		transform.localRotation = Quaternion.identity;		
+		transform.localRotation = Quaternion.identity;
+		GetComponent<Renderer>().enabled = false;
+		
 	}
 			
 	public void Activate(UnitPane _unitPane) {
@@ -56,9 +57,19 @@ public class Equipment : MonoBehaviour {
 	
 	public void Trigger(Vector3 direction) {
 		currentGizmo = null;
-		unitController.RemoveEquipment(this);
-		if (unitPane) unitPane.DisableEquipmentButton(this);
-		Fire(direction);	
+		
+		GameObject newEquipmentObj = Instantiate(gameObject, transform.position, transform.rotation) as GameObject;
+		Equipment newEquipment = newEquipmentObj.GetComponent<Equipment>();
+		newEquipment.Fire(direction);
+		newEquipmentObj.GetComponent<Renderer>().enabled = true;
+		
+		uses--;
+		if (uses < 1) {
+			unitController.RemoveEquipment(this);
+			if (unitPane) unitPane.DisableEquipmentButton(this);
+			Destroy(gameObject);
+		}
+
 	}
 	
 	public void DropItem() {
