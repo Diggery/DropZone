@@ -96,9 +96,12 @@ public class PathMover : Pathfinding {
 		}
 		
 		// find the amount to move and move it
+		
 		currentSpeed = Mathf.Lerp(currentSpeed, speed, Time.deltaTime * accelSpeed);
+		if (unitController.IsDragging()) currentSpeed = 2;
 			
 		moveDirection = moveDirection.normalized * currentSpeed * Time.deltaTime;
+
 		characterController.Move(moveDirection);
 		
 		// save the offset from the next path for later 

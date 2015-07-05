@@ -177,7 +177,6 @@ public class TargetingControl : MonoBehaviour {
 	}
 
 	public void ClearTarget () {
-		print ("Clearing Target");
 		currentTarget = null;		
 	}
 	

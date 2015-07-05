@@ -11,6 +11,7 @@ public class ButtonControl : MonoBehaviour, IPointerClickHandler {
 	}
 	
 	public void OnPointerClick(PointerEventData eventData) {
+	
 		if (!target) {
 			transform.root.SendMessage("ButtonClicked", name);
 		} else {

@@ -43,12 +43,19 @@ public class UnitColorFade : MonoBehaviour {
 	}
 	
 	public void TakeDamage(UnitController.DamageInfo damageInfo) {
+		if (headMat) headMat.SetVector("_HitPosition", damageInfo.hitPos);
+		unitMat.SetVector("_HitPosition", damageInfo.hitPos);
+		
 		flashColor = damageColor;
 	}
 	public void Heal(float healAmount) {
+		if (headMat) headMat.SetVector("_HitPosition", transform.position + new Vector3(0.0f, 1.0f, 0.0f));
+		unitMat.SetVector("_HitPosition",  transform.position + new Vector3(0.0f, 1.5f, 0.0f));
 		flashColor = healColor;
 	}
 	public void HitDeflected(UnitController.DamageInfo damageInfo) {
+		if (headMat) headMat.SetVector("_HitPosition", damageInfo.hitPos);
+		unitMat.SetVector("_HitPosition", damageInfo.hitPos);
 		flashColor = deflectColor;
 	}		
 }

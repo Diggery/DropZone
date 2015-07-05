@@ -3,16 +3,23 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections;
 
-public class HandleControl : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler {
+public class HandleControl : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerDownHandler, IPointerClickHandler {
 
 	
 	public GameObject target;
+	
+	float lastClickDownTime = 0.0f;
 	
 	public void SetTarget(GameObject _target) {
 		target = _target;
 	}
 	
+	public void OnPointerDown(PointerEventData eventData) {
+		lastClickDownTime = GameTime.time;
+	}
+	
 	public void OnPointerClick(PointerEventData eventData) {
+		if ((GameTime.time - lastClickDownTime) > 0.25f) return;
 		if (!target) {
 			transform.root.SendMessage("OnHandleClicked", eventData);
 		} else {
@@ -20,7 +27,6 @@ public class HandleControl : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 		}
 	}
 	public void OnBeginDrag(PointerEventData eventData) {
-		print ("start drag");
 		if (!target) {
 			transform.root.SendMessage("HandleBeginDrag", eventData);
 		} else {
@@ -28,7 +34,6 @@ public class HandleControl : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 		}	
 	}
 	public void OnDrag(PointerEventData eventData) {
-		print ("drag");
 		if (!target) {
 			transform.root.SendMessage("HandleDrag", eventData);
 		} else {
@@ -36,7 +41,6 @@ public class HandleControl : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 		}	
 	}
 	public void OnEndDrag(PointerEventData eventData) {
-		print ("end drag");
 		if (!target) {
 			transform.root.SendMessage("HandleEndDrag", eventData);
 		} else {

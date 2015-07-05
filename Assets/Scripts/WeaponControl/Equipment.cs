@@ -15,9 +15,9 @@ public class Equipment : MonoBehaviour {
 	
 	public int uses = 3;
 	
+	Vector3 triggerDirection = Vector3.zero;
 	
-
-
+	
 	public void Attach(Transform attachPoint, UnitController _unitController) {
 		unitController = _unitController;
 		transform.parent = attachPoint;
@@ -46,7 +46,13 @@ public class Equipment : MonoBehaviour {
 	public virtual void Fire(Vector3 direction) {
 		
 	}
-		
+
+	public void SetTriggerDirection(Vector3 direction) {
+		triggerDirection = direction;
+	}
+	public Vector3 GetTriggerDirection() {
+		return triggerDirection;
+	}		
 	public void Cancel() {
 		if (currentGizmo) {
 			currentGizmo.SendMessage("Cancel");
@@ -55,12 +61,12 @@ public class Equipment : MonoBehaviour {
 		}
 	}
 	
-	public void Trigger(Vector3 direction) {
+	public void Trigger() {
 		currentGizmo = null;
 		
 		GameObject newEquipmentObj = Instantiate(gameObject, transform.position, transform.rotation) as GameObject;
 		Equipment newEquipment = newEquipmentObj.GetComponent<Equipment>();
-		newEquipment.Fire(direction);
+		newEquipment.Fire(triggerDirection);
 		newEquipmentObj.GetComponent<Renderer>().enabled = true;
 		
 		uses--;
@@ -74,5 +80,9 @@ public class Equipment : MonoBehaviour {
 	
 	public void DropItem() {
 		Destroy(gameObject);
+	}
+	
+	public Animator GetAnimator() {
+		return unitController.GetAnimator();
 	}
 }

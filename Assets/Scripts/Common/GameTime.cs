@@ -23,7 +23,17 @@ public class GameTime : MonoBehaviour {
 			theGameTime = go.AddComponent(typeof(GameTime)) as GameTime;
 		}
 	}
-	
+	public static float time { 
+		get { 
+			if (!theGameTime) {
+				Initialize();
+			}
+			if (theGameTime) 
+				return theGameTime.lastUpdateTime;
+			return 0;
+		}	
+	}
+		
 	public static float deltaTime { 
 		get { 
 			if (!theGameTime) {

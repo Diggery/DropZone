@@ -145,12 +145,18 @@ public class MapControl : MonoBehaviour {
 	}
 
 	
-	Vector2 MapPosToCoor(Vector3 mapPos) {
+	public Vector2 MapPosToCoor(Vector3 mapPos) {
 		Vector2 coor = new Vector2(Mathf.FloorToInt(mapPos.x/gridSize), Mathf.FloorToInt(mapPos.z/gridSize));
 		return coor;
 	}
 	
-	Vector3 CoorToMapPos(Vector2 coor) {
+	public Vector2 MapPosToNearestCell(Vector3 mapPos) {
+		Vector3 pos = new Vector3(Mathf.FloorToInt(mapPos.x/gridSize), 0, Mathf.FloorToInt(mapPos.z/gridSize));
+		return pos;
+	}
+	
+	
+	public Vector3 CoorToMapPos(Vector2 coor) {
 		Vector3 mapPos = new Vector3(coor.x * gridSize, transform.position.y, coor.y * gridSize);
 		return mapPos;
 	}	

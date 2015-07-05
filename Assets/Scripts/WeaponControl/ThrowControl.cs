@@ -10,9 +10,8 @@ public class ThrowControl : MonoBehaviour {
 	bool released;
 	bool canceled;
 	
-	Vector3 firePos;
+	Vector3 firePos = Vector3.zero;
 	float fireTimer = 1.0f;
-	
 	
 	Vector3 posGoal;
 	
@@ -72,26 +71,25 @@ public class ThrowControl : MonoBehaviour {
 	}
 	
 	public void HandleBeginDrag(PointerEventData eventData) {
-		print ("start drag");
 		touched = true;
 	}	
 	
 	public void HandleDrag(PointerEventData eventData) {
 		if (released) return;
-		print ("drag");
 		Vector3 touchPos = transform.InverseTransformPoint(eventData.worldPosition);
 		posGoal = Vector3.ClampMagnitude(touchPos, 2);
 		posGoal.y = 0.1f;
 	}	
 		
 	public void HandleEndDrag(PointerEventData eventData) {
-		print ("end drag");
+		SetHandleTexture(throwTexture);
 		touched = false;
 	}
 	
 	public void OnHandleClicked(PointerEventData eventData) {
 		if (primed) {
 			firePos = handle.localPosition;
+			equipment.SetTriggerDirection(handle.localPosition);
 			gameControl.SelectorResume();
 			released = true;
 		}
@@ -100,15 +98,12 @@ public class ThrowControl : MonoBehaviour {
 	void Prime() {
 		primed = true;
 		equipment.Ready();
-		SetHandleTexture(throwTexture);
-		gameControl.SelectorPause();
-		
 	}
 	
 	void Throw() {
-		if (!canceled) {
-			equipment.Trigger(firePos);
-		}
+		if (canceled) return;
+
+		equipment.GetAnimator().SetTrigger("Throw");
 		inputControl.RemoveGizmoControl(gameObject);
 		Destroy(gameObject);
 	}

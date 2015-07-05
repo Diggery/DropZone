@@ -14,11 +14,13 @@ public class GameControl : MonoBehaviour {
 	public GameObject[] profileCameras;
 	
 	public GameObject markerPrefab;
+	public GameObject dragMarkerPrefab;
 	
 	SpawnControl spawnControl;
 	MapControl mapControl;
 	PauseControl pauseControl;
 	CameraControl cameraControl;
+	InputControl inputControl;
 	
 	List<UnitController> squad = new List<UnitController>();
 	
@@ -40,6 +42,10 @@ public class GameControl : MonoBehaviour {
 		pauseControl = _pauseControl;
 	}
 
+	public void SetInputControl(InputControl _inputControl) {
+		inputControl = _inputControl;
+	}
+	
 	public void AddFriendlyUnits() {
 		GameObject[] markers = GameObject.FindGameObjectsWithTag ("FriendlyMarker");
 		int count = Mathf.Min(markers.Length, 4);
@@ -146,11 +152,20 @@ public class GameControl : MonoBehaviour {
 	}
 	public void SquadieDead(UnitController squadMember) {
 		Pause("SquadieDead");
+		
+		GameObject dragMarkerObj = Instantiate(dragMarkerPrefab, squadMember.transform.position, Quaternion.identity) as GameObject;
+		DragMarker dragMarker = dragMarkerObj.GetComponent<DragMarker>();
+		dragMarker.Init(squadMember, inputControl, this);
+		squadMember.SetDragMarker(dragMarker);
+		
 		if (pauseControl.moveCamera && pauseControl.onHit || pauseControl.onInjured || pauseControl.onDeath) {
 			cameraControl.LookAtTarget(squadMember.transform);
 			AddMarker(squadMember.transform.position, Marker.MarkerType.Death);	
 		}
+
 	}
+	
+
 	
 	public void SelectorPause() {
 		Pause();
@@ -253,11 +268,12 @@ public class GameControl : MonoBehaviour {
 		GameTime.paused = false;
 	}
 	
-	GameObject AddMarker(Vector3 markerPos, Marker.MarkerType type) {
+	public GameObject AddMarker(Vector3 markerPos, Marker.MarkerType type) {
 		GameObject marker = Instantiate(markerPrefab, markerPos, Quaternion.identity) as GameObject;
 		marker.GetComponent<Marker>().SetUp(type);
 		return marker;
 	}
+
 	
 	public void OnDestroy() {
 		LoadSave.SaveAll();

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 public class InputControl : MonoBehaviour {
 	
 	public UnitController selectedUnit;
+	
 
 
 	public GameObject selectorPrefab;
@@ -17,11 +18,8 @@ public class InputControl : MonoBehaviour {
 		
 	List<GameObject> openGizmoControls = new List<GameObject>();
 	
-	float doubleClickTime = 0.25f;
-	float doubleClickTimer;
-	
+
 	void Start () {	
-		doubleClickTimer = doubleClickTime;
 			
 		Events.Listen(gameObject, "SelectUnit");
 		Events.Listen(gameObject, "DeselectUnit");
@@ -36,12 +34,9 @@ public class InputControl : MonoBehaviour {
 	
 		GameObject gameControlObj = GameObject.Find("Map");
 		gameControl = gameControlObj.GetComponent<GameControl>();
+		gameControl.SetInputControl(this);
 	}
-	
-	void Update() {
-		doubleClickTimer -= Time.deltaTime;
-	}
-		
+
 	
 	public void AddGizmoControl(GameObject newControl) {
 		openGizmoControls.Add(newControl);
@@ -59,7 +54,6 @@ public class InputControl : MonoBehaviour {
 	}
 	
 	public void UnitSelected(UnitController target) {
-			
 		CancelPath();
 		gameControl.Pause("UnitSelected");
 		
@@ -67,10 +61,7 @@ public class InputControl : MonoBehaviour {
 			selectedUnit.SetMainTarget(target.gameObject);
 		}
 		if (target.transform.tag.Equals("Player")) {
-			if (doubleClickTimer > 0) {
-				target.OpenPane();
-			}
-			doubleClickTimer = doubleClickTime;
+
 			if (selectedUnit) 
 				selectedUnit.Deselect();
 			selectedUnit = target;
@@ -78,6 +69,13 @@ public class InputControl : MonoBehaviour {
 		}
 	}
 	
+	
+	public void UnitDoubleClicked(UnitController target) {
+		target.OpenPane();
+		Events.Send(gameObject, "NeedCameraFocus", target.transform);	
+		
+	}
+		
 	public void DeselectUnit(Events.Notification notification) {
 		DeselectUnit();
 	}

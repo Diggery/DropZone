@@ -96,7 +96,7 @@ public class SmartThrowControl : MonoBehaviour {
 	
 	void Throw() {
 		if (!canceled) {
-			equipment.Trigger(firePos);
+			equipment.Trigger();
 		}
 		inputControl.RemoveGizmoControl(gameObject);
 		Destroy(gameObject);

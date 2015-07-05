@@ -152,7 +152,6 @@ public class UnitPane : MonoBehaviour, IPointerClickHandler {
 	}
 	
 	public void OnPointerClick(PointerEventData eventData) {
-		print (eventData.clickCount + ", " + eventData.clickTime);
 		
 		if (dead) return;
 	
@@ -165,6 +164,7 @@ public class UnitPane : MonoBehaviour, IPointerClickHandler {
 		}
 		
 		if (eventData.clickCount > 1) {	
+			Open();
 			Events.Send(gameObject, "NeedCameraFocus", unit.transform);	
 		}
 		
@@ -179,8 +179,10 @@ public class UnitPane : MonoBehaviour, IPointerClickHandler {
 			badge.sprite = opened ? badgeOpen : badgeClose;
 			Toggle();
 		} else if (name.Equals("Equipment")) {
-			if (equipment)
+			if (equipment) {
 				equipment.Activate(this);
+				Events.Send(gameObject, "NeedCameraFocus", unit.transform);	
+			}
 		}			
 	}
 	

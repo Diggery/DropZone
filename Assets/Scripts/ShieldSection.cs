@@ -104,7 +104,7 @@ public class ShieldSection : MonoBehaviour {
 	
 	public void TakeDamage(UnitController.DamageInfo damageInfo) {
 		flashColor = shieldControl.shieldHitColor;
-		Vector3 hitPos = damageInfo.direction;
+		Vector3 hitPos = damageInfo.hitPos;
 		GameObject shieldHit = Instantiate(shieldControl.shieldHitPrefab, hitPos, transform.rotation) as GameObject;
 		shieldHit.transform.parent = transform;
 		currentPower -= damageInfo.damage;

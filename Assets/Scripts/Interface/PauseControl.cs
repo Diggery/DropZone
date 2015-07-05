@@ -97,7 +97,8 @@ public class PauseControl : MonoBehaviour {
 		 
 		if (gameControl.globalPause) {
 			HiLiteGoal = Color.red;
-			fillGoal = Color.red;
+			frameGoal = new Color(1.0f, 0.5f, 0.0f, 1.0f);
+			fillGoal = new Color(0.25f, 0.0f, 0.0f, 1.0f);
 		}	
 		
 		currentFillColor = Color.Lerp(currentFillColor, fillGoal, GameTime.deltaTime * 3);
@@ -131,7 +132,7 @@ public class PauseControl : MonoBehaviour {
 	
 	void UpdatePauseButton() {
 		if (GameTime.paused) {
-			currentHiLiteColor = Color.yellow;
+			currentHiLiteColor = Color.red;
 			pauseButtonLabel.color = Color.red;
 			pauseButtonLabel.text = "Paused";
 		} else {

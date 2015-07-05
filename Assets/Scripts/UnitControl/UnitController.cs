@@ -8,7 +8,7 @@ public class UnitController : MonoBehaviour {
 	
 	public Transform targetCollision;
 	public GameObject headModel;
-	
+		
 	public string unitName = "NoName";
 	
 	float maxHealth = 5.0f;
@@ -23,9 +23,13 @@ public class UnitController : MonoBehaviour {
 	public bool dummy;
 	public EnemyCaptain enemyCaptain;
 	
+	
 	Animator animator;
 	bool isMoving;
 	PathMover pathMover;
+	
+	DragControl dragControl = null;
+	DragMarker dragMarker;
 
 	TargetingControl targetingControl;
 	MapControl mapControl;
@@ -118,11 +122,29 @@ public class UnitController : MonoBehaviour {
 		leftHandAttach = leftHand;		
 	}
 	
+	public Transform GetAttachPoint(string name) {
+	
+		switch (name) {
+		case "RightHand" :
+			return rightHandAttach;
+			
+		case "LeftHand" :
+			return leftHandAttach;
+			
+		case "Target" :
+			return targetCollision;
+		}
+		
+		return targetCollision;
+	}
+	
 	void Update() {
 	
 		if (dead) {
 			deathTimer -= Time.deltaTime;
-			if (deathTimer < 0) Destroy(gameObject);
+	
+			//if (deathTimer < 0) Destroy(gameObject);
+			
 		}
 		
 		if (dummy) return;
@@ -247,6 +269,10 @@ public class UnitController : MonoBehaviour {
 		equipment.Cancel();
 	}	
 	
+	public void TriggerEquipment() {
+		equipment.Trigger();
+	}	
+		
 	public void RemoveEquipment(Equipment _equipment) {
 		equipment = null;
 	}
@@ -381,13 +407,13 @@ public class UnitController : MonoBehaviour {
 	}
 	
 	public class DamageInfo {
-		public Vector3 direction;
+		public Vector3 hitPos;
 		public float damage;
 		public enum DamageType { Projectile, Energy, Explosive };
 		public DamageType damageType;
 		
-		public DamageInfo(Vector3 direction, float damage, DamageType damageType) {
-			this.direction = direction;
+		public DamageInfo(Vector3 hitPos, float damage, DamageType damageType) {
+			this.hitPos = hitPos;
 			this.damage = damage;
 			this.damageType = damageType;
 		}
@@ -421,15 +447,51 @@ public class UnitController : MonoBehaviour {
 		health = Mathf.Min(health + amount, maxHealth);
 		healTimer = healCoolDown;
 	}
-
+	
+	// -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // 
+	// A few functions to control when someone is getting dragged
+	
+	public void SetDragMarker(DragMarker _dragMarker) {
+		dragMarker = _dragMarker;
+	}
+	
+	public void StartDragging(DragControl _dragControl) {
+		dragControl = _dragControl;
+		animator.SetBool("IsDragging", true);
+	}
+	public void PauseDragging() {
+		dragControl.StopDragging();
+	}
+	public bool IsDragging() {
+		if (dragControl) {
+			return true;
+		}
+	
+		return false;
+	}
+	public void ResumeDragging() {
+		dragControl.StartDragging();
+	}
+	public void StopDragging() {
+		if (dragControl) dragControl.StopDragging();
+		dragControl = null;
+		animator.SetBool("IsDragging", false);
+	}
+	// -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- 
+	
+	
+	
 	public void Die(DamageInfo damageInfo) {
 		if (dead) return;
 		
 		//if its a player, tell the game control about it
-		if (tag.Equals("Player")) gameControl.SquadieDead(this);
+		if (tag.Equals("Player")) {
+			gameControl.SquadieDead(this);
+
+		}
 		Events.Send(gameObject, "DeselectUnit", this);
 		
-		Vector3 direction = damageInfo.direction;
+		Vector3 direction = damageInfo.hitPos;
 		
 		MapControl.MapDataPoint currentMapCell = mapControl.GetMapData(transform.position);
 		currentMapCell.isClaimed = false;
@@ -441,7 +503,6 @@ public class UnitController : MonoBehaviour {
 		RagDollControl ragdoll = GetComponent<RagDollControl>();
 		if (damageInfo.damageType == DamageInfo.DamageType.Explosive) {
 			direction.y += 0.75f;
-			print (direction);
 			ragdoll.enableRagDoll (direction * 100);
 		} else {
 			ragdoll.enableRagDoll ();
@@ -460,7 +521,9 @@ public class UnitController : MonoBehaviour {
 		//drop anything being held
 		gameObject.BroadcastMessage("DropItem", SendMessageOptions.DontRequireReceiver);
 		
-
+		//stop dragging anything
+		StopDragging();
+		
 	}
 	
 	void OnDestroy() {
