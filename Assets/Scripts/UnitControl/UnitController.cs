@@ -460,6 +460,7 @@ public class UnitController : MonoBehaviour {
 		animator.SetBool("IsDragging", true);
 	}
 	public void PauseDragging() {
+		if (!dragControl) StopDragging();
 		dragControl.StopDragging();
 	}
 	public bool IsDragging() {
@@ -470,6 +471,7 @@ public class UnitController : MonoBehaviour {
 		return false;
 	}
 	public void ResumeDragging() {
+		if (!dragControl) StopDragging();
 		dragControl.StartDragging();
 	}
 	public void StopDragging() {

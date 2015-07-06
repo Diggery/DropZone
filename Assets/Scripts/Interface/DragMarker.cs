@@ -13,12 +13,15 @@ public class DragMarker : MonoBehaviour {
 	Transform ring;
 	Renderer ringRenderer;
 	
+	public Texture evacTexture;
+	public Texture cancelTexture;
+	
 	BoxCollider buttonCollision;
 	
-	float deathTime = 10;
-	float deathTimer = 10;
+	float deathTime = 60;
+	float deathTimer;
 	float pulseTime = 1;
-	float pulseTimer = 1;
+	float pulseTimer;
 	Vector2 pulseScale = Vector2.one;
 	Vector2 scrollAmount = Vector2.zero;
 	
@@ -31,6 +34,7 @@ public class DragMarker : MonoBehaviour {
 	bool waiting;
 	bool selected;
 	bool dead;
+	bool markerActive;
 	
 	public void Init (UnitController _target, InputControl _inputControl, GameControl _gameControl) {
 		
@@ -48,6 +52,9 @@ public class DragMarker : MonoBehaviour {
 		buttonCollision.enabled = false;
 		postRenderer.enabled = false;
 		labelRenderer.enabled = false;
+		
+		deathTimer = deathTime;
+		pulseTimer = pulseTime;
 
 		label.gameObject.AddComponent<ButtonControl>().SetTarget(gameObject);
 		
@@ -90,13 +97,21 @@ public class DragMarker : MonoBehaviour {
 				markerScale = 0.5f;
 			} else {
 				if (dragControl.dragActive) {
+					if (!markerActive) {
+						markerActive = true;
+						labelRenderer.material.SetTexture("_OverTex", evacTexture);
+					}
 					markerColor = new Color ( 0.0f, 0.0f, 0.0f, 0.0f);
 					markerScale = 0.5f;
 					pulseScaleAmount = 0.6f;
 					labelColor.a = 0;
 				} else {
+					if (markerActive) {
+						markerActive = false;
+						labelRenderer.material.SetTexture("_OverTex", cancelTexture);
+					}
 					markerColor = new Color ( 0.0f, 0.0f, 0.0f, 1.0f);
-					markerScale = 1.0f;
+					markerScale = 0.6f;
 					pulseScaleAmount = 1.0f;
 					labelColor.a = 1;
 				}
@@ -174,7 +189,7 @@ public class DragMarker : MonoBehaviour {
 		inputControl.CancelPath();
 	}
 	
-	public void StartDragging() {
+	void StartDragging() {
 		waiting = false;
 		dragControl = target.GetTargetCenter().gameObject.AddComponent<DragControl>();
 		dragControl.SetUpDragging(unitDragging.GetAttachPoint("LeftHand"));
@@ -185,6 +200,7 @@ public class DragMarker : MonoBehaviour {
 		waiting = true;
 		if (unitDragging) unitDragging.StopDragging();
 		unitDragging = null;
+		labelRenderer.material.SetTexture("_OverTex", evacTexture);
 	}
 	
 	void MakeActive() {
