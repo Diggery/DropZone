@@ -11,7 +11,6 @@ public class Marker : MonoBehaviour {
 	Transform icon;
 	Renderer iconRenderer;
 	
-	UnitController target;
 	InputControl inputControl;
 	
 	public Texture unknownTex;

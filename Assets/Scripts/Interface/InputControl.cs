@@ -66,6 +66,14 @@ public class InputControl : MonoBehaviour {
 				selectedUnit.Deselect();
 			selectedUnit = target;
 			target.Select();
+			if (target.IsDragging()) {
+				gameControl.ShowEvacZones(true);
+			}
+			
+			///special hack for ragdoll debugging
+			//target.Die ();
+			//Transform torso = target.GetTargetCenter();
+			//torso.parent.parent.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 		}
 	}
 	
@@ -82,8 +90,12 @@ public class InputControl : MonoBehaviour {
 	
 	public void DeselectUnit() {
 		if (selectedUnit) {
+			if (selectedUnit.IsDragging()) {
+				gameControl.ShowEvacZones(false);
+			}
 			selectedUnit.Deselect();
 			selectedUnit = null;
+			
 			gameControl.Resume("UnitSelected");
 		}
 	}	

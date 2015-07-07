@@ -192,7 +192,7 @@ public class DragMarker : MonoBehaviour {
 	void StartDragging() {
 		waiting = false;
 		dragControl = target.GetTargetCenter().gameObject.AddComponent<DragControl>();
-		dragControl.SetUpDragging(unitDragging.GetAttachPoint("LeftHand"));
+		dragControl.SetUpDragging(unitDragging.GetAttachPoint("LeftHand"), this);
 		unitDragging.StartDragging(dragControl);
 	}
 	
@@ -211,5 +211,9 @@ public class DragMarker : MonoBehaviour {
 	void MakeInactive() {
 		selected = false;
 		buttonCollision.enabled = false;
+	}
+	
+	public void RemoveMarker() {
+		Destroy (gameObject);
 	}
 }

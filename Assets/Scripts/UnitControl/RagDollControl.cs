@@ -10,6 +10,7 @@ public class RagDollControl : MonoBehaviour {
 		public float lowTwistLimit;
 		public float highTwistLimit;
 		public float swing1Limit;
+		public float swing2Limit;
 	}	
 
 	
@@ -174,9 +175,10 @@ public class RagDollControl : MonoBehaviour {
 		leftHipJointConfig.connectedBody = root.GetComponent<Rigidbody>();
 		leftHipJointConfig.axis = setUpData.leftHip.joint.axis;
 		leftHipJointConfig.swingAxis = setUpData.leftHip.joint.swingAxis;
-		leftHipJointConfig.lowTwistLimit = -30.0f;
-		leftHipJointConfig.highTwistLimit = 70.0f;
-		leftHipJointConfig.swing1Limit = 30.0f;
+		leftHipJointConfig.lowTwistLimit = -50.0f;
+		leftHipJointConfig.highTwistLimit = 50.0f;
+		leftHipJointConfig.swing1Limit = 15.0f;
+		leftHipJointConfig.swing2Limit = 0.0f;
 		setUpJoint(leftHip, leftHipJointConfig);
 		
 		//LeftKnee
@@ -202,6 +204,7 @@ public class RagDollControl : MonoBehaviour {
 		leftKneeJointConfig.lowTwistLimit = -80.0f;
 		leftKneeJointConfig.highTwistLimit = 00.0f;
 		leftKneeJointConfig.swing1Limit = 0.0f;
+		leftKneeJointConfig.swing2Limit = 0.0f;
 		setUpJoint(leftKnee, leftKneeJointConfig);
 
 		//RightHip
@@ -224,9 +227,10 @@ public class RagDollControl : MonoBehaviour {
 		rightHipJointConfig.connectedBody = root.GetComponent<Rigidbody>();
 		rightHipJointConfig.axis = setUpData.rightHip.joint.axis;
 		rightHipJointConfig.swingAxis = setUpData.rightHip.joint.swingAxis;
-		rightHipJointConfig.lowTwistLimit = -30.0f;
-		rightHipJointConfig.highTwistLimit = 70.0f;
-		rightHipJointConfig.swing1Limit = 30.0f;
+		rightHipJointConfig.lowTwistLimit = -50.0f;
+		rightHipJointConfig.highTwistLimit = 50.0f;
+		rightHipJointConfig.swing1Limit = 15.0f;
+		rightHipJointConfig.swing2Limit = 0.0f;
 		setUpJoint(rightHip, rightHipJointConfig);
 		
 		//RightKnee
@@ -252,6 +256,7 @@ public class RagDollControl : MonoBehaviour {
 		rightKneeJointConfig.lowTwistLimit = -80.0f;
 		rightKneeJointConfig.highTwistLimit = 00.0f;
 		rightKneeJointConfig.swing1Limit = 0.0f;
+		rightKneeJointConfig.swing2Limit = 0.0f;
 		setUpJoint(rightKnee, rightKneeJointConfig);
 		
 		
@@ -276,6 +281,7 @@ public class RagDollControl : MonoBehaviour {
 		spineJointConfig.lowTwistLimit = -20.0f;
 		spineJointConfig.highTwistLimit = 20.0f;
 		spineJointConfig.swing1Limit = 10.0f;
+		spineJointConfig.swing2Limit = 0.0f;
 		setUpJoint(spine, spineJointConfig);
 		
 		//Head
@@ -298,6 +304,7 @@ public class RagDollControl : MonoBehaviour {
 		headJointConfig.lowTwistLimit = -40.0f;
 		headJointConfig.highTwistLimit = 25.0f;
 		headJointConfig.swing1Limit = 25.0f;
+		headJointConfig.swing2Limit = 0.0f;
 		setUpJoint(head, headJointConfig);
 
 		//leftShoulder
@@ -321,8 +328,9 @@ public class RagDollControl : MonoBehaviour {
 		leftShoulderJointConfig.axis = setUpData.leftShoulder.joint.axis;
 		leftShoulderJointConfig.swingAxis = setUpData.leftShoulder.joint.swingAxis;
 		leftShoulderJointConfig.lowTwistLimit = -70.0f;
-		leftShoulderJointConfig.highTwistLimit = 10.0f;
-		leftShoulderJointConfig.swing1Limit = 50.0f;
+		leftShoulderJointConfig.highTwistLimit = 30.0f;
+		leftShoulderJointConfig.swing1Limit = 45.0f;
+		leftShoulderJointConfig.swing2Limit = 45.0f;
 		setUpJoint(leftShoulder, leftShoulderJointConfig);
 		
 		//leftElbow
@@ -347,6 +355,7 @@ public class RagDollControl : MonoBehaviour {
 		leftElbowJointConfig.lowTwistLimit = -90.0f;
 		leftElbowJointConfig.highTwistLimit = 00.0f;
 		leftElbowJointConfig.swing1Limit = 0.0f;
+		leftElbowJointConfig.swing2Limit = 0.0f;
 		setUpJoint(leftElbow, leftElbowJointConfig);		
 		
 		
@@ -370,9 +379,10 @@ public class RagDollControl : MonoBehaviour {
 		rightShoulderJointConfig.connectedBody = root.GetComponent<Rigidbody>();
 		rightShoulderJointConfig.axis = setUpData.rightShoulder.joint.axis;
 		rightShoulderJointConfig.swingAxis = setUpData.rightShoulder.joint.swingAxis;
-		rightShoulderJointConfig.lowTwistLimit = -70.0f;
-		rightShoulderJointConfig.highTwistLimit = 10.0f;
-		rightShoulderJointConfig.swing1Limit = 50.0f;
+		rightShoulderJointConfig.lowTwistLimit = -30.0f;
+		rightShoulderJointConfig.highTwistLimit = 70.0f;
+		rightShoulderJointConfig.swing1Limit = 45.0f;
+		rightShoulderJointConfig.swing2Limit = 45.0f;
 		setUpJoint(rightShoulder, rightShoulderJointConfig);
 		
 		//RightElbow
@@ -397,6 +407,7 @@ public class RagDollControl : MonoBehaviour {
 		rightElbowJointConfig.lowTwistLimit = -90.0f;
 		rightElbowJointConfig.highTwistLimit = 00.0f;
 		rightElbowJointConfig.swing1Limit = 0.0f;
+		rightElbowJointConfig.swing2Limit = 0.0f;
 		setUpJoint(rightElbow, rightElbowJointConfig);	
 	
 	}
@@ -421,7 +432,7 @@ public class RagDollControl : MonoBehaviour {
 		newCharacterJoint.swing1Limit = swing1Limit;
 			
 		SoftJointLimit swing2Limit = new SoftJointLimit();
-		swing2Limit.limit =  0.0f;
+		swing2Limit.limit =  config.swing2Limit;
 		newCharacterJoint.swing2Limit = swing2Limit;
 
 			

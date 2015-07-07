@@ -156,7 +156,6 @@ public class GameControl : MonoBehaviour {
 		GameObject dragMarkerObj = Instantiate(dragMarkerPrefab, squadMember.transform.position, Quaternion.identity) as GameObject;
 		DragMarker dragMarker = dragMarkerObj.GetComponent<DragMarker>();
 		dragMarker.Init(squadMember, inputControl, this);
-		squadMember.SetDragMarker(dragMarker);
 		
 		if (pauseControl.moveCamera && pauseControl.onHit || pauseControl.onInjured || pauseControl.onDeath) {
 			cameraControl.LookAtTarget(squadMember.transform);
@@ -274,6 +273,38 @@ public class GameControl : MonoBehaviour {
 		return marker;
 	}
 
+	
+	public void ShowEvacZones(bool show) {
+		GameObject[] beacons = GameObject.FindGameObjectsWithTag("Beacon");
+		
+		foreach (GameObject beacon in beacons) {
+			DropBeacon beaconControl = beacon.GetComponent<DropBeacon>();
+			if (show) {
+				beaconControl.ShowEvacZone();
+			} else {
+				beaconControl.HideEvacZone();
+			}
+		}
+	}
+				
+	public bool CheckEvacRange(DragControl dragControl) {
+		GameObject[] beacons = GameObject.FindGameObjectsWithTag("Beacon");
+		
+		foreach (GameObject beacon in beacons) {
+			DropBeacon beaconControl = beacon.GetComponent<DropBeacon>();
+			if (beaconControl.Evac(dragControl)) {
+				DragMarker marker = dragControl.GetDragMarker();
+				marker.RemoveMarker();
+				dragControl.Evac(beaconControl.transform.position);
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public void UnitEvac(UnitController unit) {
+		print (unit.gameObject.name + " is safe");
+	}
 	
 	public void OnDestroy() {
 		LoadSave.SaveAll();

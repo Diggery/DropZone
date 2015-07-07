@@ -29,7 +29,6 @@ public class UnitController : MonoBehaviour {
 	PathMover pathMover;
 	
 	DragControl dragControl = null;
-	DragMarker dragMarker;
 
 	TargetingControl targetingControl;
 	MapControl mapControl;
@@ -451,16 +450,20 @@ public class UnitController : MonoBehaviour {
 	// -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // 
 	// A few functions to control when someone is getting dragged
 	
-	public void SetDragMarker(DragMarker _dragMarker) {
-		dragMarker = _dragMarker;
-	}
-	
 	public void StartDragging(DragControl _dragControl) {
 		dragControl = _dragControl;
 		animator.SetBool("IsDragging", true);
 	}
 	public void PauseDragging() {
-		if (!dragControl) StopDragging();
+		if (!dragControl) {
+			StopDragging();
+			return;		
+		}
+		if (gameControl.CheckEvacRange(dragControl)) {
+			StopDragging();
+			return;
+		}
+			
 		dragControl.StopDragging();
 	}
 	public bool IsDragging() {
@@ -471,7 +474,10 @@ public class UnitController : MonoBehaviour {
 		return false;
 	}
 	public void ResumeDragging() {
-		if (!dragControl) StopDragging();
+		if (!dragControl) {
+			StopDragging();
+			return;
+		}
 		dragControl.StartDragging();
 	}
 	public void StopDragging() {
@@ -481,7 +487,10 @@ public class UnitController : MonoBehaviour {
 	}
 	// -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- 
 	
-	
+	public void Die() {
+		Die(new DamageInfo(Vector3.down, 5, DamageInfo.DamageType.Projectile));
+	}
+		
 	
 	public void Die(DamageInfo damageInfo) {
 		if (dead) return;
