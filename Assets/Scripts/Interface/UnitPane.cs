@@ -6,12 +6,15 @@ using System.Collections;
 
 public class UnitPane : MonoBehaviour, IPointerClickHandler {
 
-	Color frameColor = new Color(0.0f, 0.0f, 0.0f, 1.0f);
-	Color openColor = new Color(0.0f, 0.0f, 0.0f, 0.5f);
-	Color closeColor = new Color(0.0f, 0.0f, 0.0f, 0.1f);
-	Color selectColor = new Color(0.2f, 0.0f, 0.0f, 0.8f);
-	Color flashColor = new Color (1.0f, 0.5f, 0.0f);		
-	Color idleHealthColor = new Color (0.0f, 0.0f, 0.0f, 0.5f);		
+	float transTimer = 0.0f;
+	float transAmount = 0.0f;
+	
+	Color frameColor = new Color(0.25f, 0.0f, 0.0f, 1.0f);
+	Color openColor = new Color(0.0f, 0.0f, 0.0f, 0.75f);
+	Color closeColor = new Color(0.0f, 0.0f, 0.0f, 0.25f);
+	Color selectColor = new Color(0.6f, 0.0f, 0.0f, 1.0f);
+	Color flashColor = new Color (1.0f, 0.75f, 0.25f);		
+	Color idleHealthColor = new Color (0.0f, 0.0f, 0.0f, 0.25f);		
 	
 	Color currentFrameColor;
 	Color currentFillColor;
@@ -23,77 +26,89 @@ public class UnitPane : MonoBehaviour, IPointerClickHandler {
 	bool hidden;
 	bool dead;
 	
-	public Text unitName;
+	RectTransform bullet;
+	Text unitName;
 	
-	public Material unitPaneMaterial;
 	Material mainMaterial;
 	Material healthBarMaterial;
 	Button badgeButton;
+		
+	Image badge;
 	
-	
-	float transAmount = 0.0f;
-	
-	public Image badge;
-	public Sprite badgeOpen;
-	public Sprite badgeClose;
-	public Sprite badgeDead;
 	public Sprite emptyEquipmentTexture;
+	public Sprite emptyWeaponTexture;
 	
-	public GameObject profileCameraPrefab;
 	
 	Equipment equipment;
-	public Button equipmentButton;
-	public Image equipmentButtonImage;
+	Button equipmentButton;
+	Image equipmentButtonImage;
 	Material equipmentButtonMaterial;
-
-	public Transform healthBar;
+	
+	MainWeapon weapon;
+	Button weaponButton;
+	Image weaponButtonImage;
+	Material weaponButtonMaterial;
+		
+	public GameObject profileCameraPrefab;
+	Camera portraitCam;
+	RawImage portrait;
+	Material portraitMat;
 	
 	RectTransform panePosition;
+	RectTransform portraitPosition;
+			
+	InterfaceControl interfaceControl;
 	
-	AnimationCurve slideCurve = new AnimationCurve();
-		
 	void Start () {		
 		panePosition = GetComponent<RectTransform>();
-		mainMaterial = Instantiate(unitPaneMaterial) as Material;
+		
+		mainMaterial = Instantiate(GetComponent<Image>().material) as Material;
 		GetComponent<Image>().material = mainMaterial;
 				
-		Transform healthBarObj = transform.Find("HealthBar");
-		healthBarMaterial = Instantiate(healthBarObj.GetComponent<Image>().material) as Material;
-		healthBarObj.GetComponent<Image>().material = healthBarMaterial;
+		Image healthBarImage = transform.Find("HealthBar").GetComponent<Image>();
+		healthBarMaterial = healthBarImage.material = Instantiate(healthBarImage.material) as Material;
 		
-		equipmentButtonMaterial = Instantiate(equipmentButton.GetComponent<Image>().material) as Material;
+		equipmentButton = transform.Find("Equipment").GetComponent<Button>();
+		equipmentButtonImage = equipmentButton.GetComponent<Image>();
+		equipmentButtonMaterial = equipmentButtonImage.material = Instantiate(equipmentButton.GetComponent<Image>().material) as Material;
 		equipmentButton.GetComponent<Image>().material = equipmentButtonMaterial;
 		
+		weaponButton = transform.Find("Weapon").GetComponent<Button>();
+		weaponButtonImage = weaponButton.GetComponent<Image>();
+		weaponButtonMaterial = weaponButtonImage.material = Instantiate(weaponButton.GetComponent<Image>().material) as Material;
+		weaponButton.GetComponent<Image>().material = weaponButtonMaterial;
+		
+		bullet = transform.Find("Bullet").GetComponent<RectTransform>();
+		unitName = bullet.Find("Name").GetComponent<Text>();
+		
+		portrait = transform.Find("Portrait").GetComponent<RawImage>();
+		portraitMat = portrait.material = Instantiate(portrait.material) as Material;
+		portraitPosition = portrait.GetComponent<RectTransform>();
 		
 	}
 	
-	public void SetUnit(UnitController _unit) {
+	public void Setup(UnitController _unit, InterfaceControl _interfaceControl) {
 		unit = _unit;
 		if (!unitName) print ("No Unit Name");
 		unitName.text = unit.unitName;
 		unit.SetUnitPane(this);
-		
-		// set up transition curve;
-		slideCurve.AddKey(new Keyframe(0, 0, 0, 0));
-		slideCurve.AddKey(new Keyframe(0.25f, 0.075f, 1.15f, 1.15f));
-		slideCurve.AddKey(new Keyframe(0.75f, 0.925f, 1.3f, 1.3f));
-		slideCurve.AddKey(new Keyframe(1, 1, 0, 0));
-		
-		
+		interfaceControl = _interfaceControl;
+
 		//create a camera for the unit pane 
 		GameObject profileCamera = Instantiate(profileCameraPrefab, unit.transform.position, unit.transform.rotation) as GameObject;
 		ChaseCam chaseCam = profileCamera.GetComponent<ChaseCam>();
-		chaseCam.SetLookAtTarget(unit.headModel.transform);
+		chaseCam.SetLookAtTarget(unit.headModel.transform, unit);
 		chaseCam.RandomizeCameraPos();
-		
+		portraitCam = profileCamera.GetComponent<Camera>();
+		portrait.texture = profileCamera.GetComponent<Camera>().targetTexture;
 		
 		Invoke("FillOutEquipmentButton", 0.1f);
+		Invoke("FillOutWeaponButton", 0.1f);
 	}
 	
 	void Update () {
 		if (!unit) {
 			if (!hidden) Hide();
-			return;
 		}
 			
 		if (unit.dead) {
@@ -101,24 +116,33 @@ public class UnitPane : MonoBehaviour, IPointerClickHandler {
 		}
 			
 		int direction = opened ? 1 : -1;
-		transAmount = Mathf.Clamp01(transAmount + (GameTime.deltaTime * direction * 3));
+		transTimer = Mathf.Clamp01(transTimer + (GameTime.deltaTime * direction * 2));
+		transAmount = Util.EaseInOutQuart(transTimer);
 		
 		Color frameGoal = frameColor;
 		Color fillGoal = closeColor;
-		Color HiLiteGoal = Color.clear;
+		Color HiLiteGoal = Color.black;
+		float openPos = 0;
+		float closePos = -10;
 		
-		if (unit.selected) {
-			HiLiteGoal = Color.red;
-			if (opened) {
-				fillGoal = openColor;
+		if (unit) {
+			if (unit.selected) {
+				HiLiteGoal = Color.red;
+				if (opened) {
+					fillGoal = openColor;
+				} else {
+					fillGoal = selectColor;
+				}
+				
 			} else {
-				fillGoal = selectColor;
+				if (opened) {
+					fillGoal = openColor;
+				}
 			}
-			
 		} else {
-			if (opened) {
-				fillGoal = openColor;
-			}
+			HiLiteGoal = Color.black;
+			fillGoal = Color.black;
+			closePos = -40;
 		}
 		
 		currentFrameColor = Color.Lerp(currentFrameColor, frameGoal, GameTime.deltaTime * 3);
@@ -134,22 +158,43 @@ public class UnitPane : MonoBehaviour, IPointerClickHandler {
 		mainMaterial.SetColor("_HiLiteColor",  currentHiLiteColor);
 		
 		Vector2 panePos = panePosition.anchoredPosition;
-		panePos.x = Mathf.Lerp(-30, -10, slideCurve.Evaluate(transAmount));
+		panePos.y = Mathf.Lerp(closePos, openPos, transAmount);
 		panePosition.anchoredPosition = panePos;
 		
-		  
+		Vector2 portraitPos = portraitPosition.anchoredPosition;
+		portraitPos.y = Mathf.Lerp(5, 14, transAmount);
+		portraitPosition.anchoredPosition = portraitPos;	
+		portraitMat.color = Color.Lerp(Color.clear, Color.white, transAmount);
+		portraitCam.enabled = transAmount > 0.05f;
 		
-		float health = unit.GetNormalizedHealth();
+		Vector2 bulletPos = bullet.anchoredPosition;
+		bulletPos.x = Mathf.Lerp(5, 17, transAmount);
+		bulletPos.y = Mathf.Lerp(3.4f, 2.7f, transAmount);
+		bullet.anchoredPosition = bulletPos;		
+		  
+		float health;
+		if (unit) {
+			health = unit.GetNormalizedHealth();
+		} else {
+			health = 0;
+		} 
+		
 		Color healthColorGoal = Color.Lerp(Color.red, idleHealthColor, health);
 		healthBarMaterial.color = Color.Lerp(healthBarMaterial.color, healthColorGoal, GameTime.deltaTime * 3);
 		
-		healthBarMaterial.mainTextureOffset = Vector2.Lerp(new Vector2(0.0f, 0.7f), new Vector2(0.0f, 0.0f), health);
+		healthBarMaterial.mainTextureOffset = Vector2.Lerp(new Vector2(0.7f, 0.0f), new Vector2(0.0f, 0.0f), health);
+		
 	}
 	
 	void FillOutEquipmentButton() {
 		equipment = unit.GetEquipment();
 		equipmentButtonImage.sprite = equipment.buttonTexture;
 	}
+	
+	void FillOutWeaponButton() {
+		weapon = unit.GetWeapon();
+		weaponButtonImage.sprite = weapon.buttonTexture;	
+	}	
 	
 	public void OnPointerClick(PointerEventData eventData) {
 		
@@ -172,15 +217,12 @@ public class UnitPane : MonoBehaviour, IPointerClickHandler {
 	}
 	
 	public void ButtonClicked(string name) {
-		if (dead) return;
-		
-
-		if (name.Contains("Badge")) {
-			badge.sprite = opened ? badgeOpen : badgeClose;
+		if (unit.dead) return;
+		if (name.Contains("ClickRegion")) {
 			Toggle();
 		} else if (name.Equals("Equipment")) {
-			if (equipment) {
-				equipment.Activate(this);
+			if (equipment && !dead) {
+				equipment.Equip(this);
 				Events.Send(gameObject, "NeedCameraFocus", unit.transform);	
 			}
 		}			
@@ -194,7 +236,6 @@ public class UnitPane : MonoBehaviour, IPointerClickHandler {
 	
 
 	public void Toggle() {
-		currentFrameColor = Color.white;
 		
 		if (opened) 
 			Close();
@@ -203,6 +244,10 @@ public class UnitPane : MonoBehaviour, IPointerClickHandler {
 	}
 	
 	public void Open() {
+		currentFrameColor = Color.white;
+		Events.Send(gameObject, "SelectUnit", unit);
+		Events.Send(gameObject, "NeedCameraFocus", unit.transform);	
+		interfaceControl.CloseUnselectedUnitPanes();
 		opened = true;
 	}
 	
@@ -214,16 +259,12 @@ public class UnitPane : MonoBehaviour, IPointerClickHandler {
 		Close();
 		hidden = true;
 		if (!unit) {
-			Vector2 panePos = panePosition.anchoredPosition;
-			panePos.x = -45;
-			panePosition.anchoredPosition = panePos;
+			//print ("hiding");
 		}
 	}
 	
 	public void Die() {
 		dead = true;
-		Hide();
-		badge.sprite = badgeDead;
 	}
 	
 	public void TakeDamage() {

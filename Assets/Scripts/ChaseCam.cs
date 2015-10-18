@@ -5,8 +5,10 @@ public class ChaseCam : MonoBehaviour {
 
 
 	Transform lookAtTarget;
+	UnitController unitController;
 	
-	Vector3 cameraOffset = new Vector3(1.0f, 0.4f, 1.5f);
+	Vector3 activeCameraOffset = new Vector3(1.2f, 0.5f, 2.25f);
+	Vector3 deadCameraOffset = new Vector3(0.0f, 3.5f, 2.0f);
 	Vector3 lookAtOffset = new Vector3(0.0f, -0.1f, 0.0f);
 	
 	void Start () {
@@ -17,6 +19,14 @@ public class ChaseCam : MonoBehaviour {
 	
 		if (!lookAtTarget) return;
 		
+		
+		Vector3 cameraOffset;
+		
+		if (unitController) {
+			cameraOffset = unitController.dead ? deadCameraOffset : activeCameraOffset; 
+		} else {
+			cameraOffset = activeCameraOffset;
+		}		       
 		
 		Vector3 posGoal = lookAtTarget.TransformPoint((Vector3.forward * cameraOffset.z) + (Vector3.right * cameraOffset.x));
 		posGoal.y = lookAtTarget.position.y + cameraOffset.y;
@@ -34,16 +44,21 @@ public class ChaseCam : MonoBehaviour {
 	
 	public void SetLookAtTarget(Transform _lookAtTarget) {
 		lookAtTarget = _lookAtTarget;
+		unitController = lookAtTarget.gameObject.GetComponent<UnitController>();
+	}
+	public void SetLookAtTarget(Transform _lookAtTarget, UnitController _unitController) {
+		lookAtTarget = _lookAtTarget;
+		unitController = _unitController;
 	}
 	public void RandomizeCameraPos() {
-		float newXPos = Random.Range(cameraOffset.x * 0.25f, cameraOffset.x * 1.5f);
+		float newXPos = Random.Range(activeCameraOffset.x * 0.25f, activeCameraOffset.x * 1.5f);
 		if (Random.value < 0.5f) newXPos *= -1.0f;
-		cameraOffset.x = newXPos;
+		activeCameraOffset.x = newXPos;
 	}
 		
 	public void SetOffset(Vector3 _cameraOffset, Vector3 _lookAtOffset) {
 		lookAtOffset = _lookAtOffset;
-		cameraOffset = _cameraOffset;
+		activeCameraOffset = _cameraOffset;
 	}
 }
 

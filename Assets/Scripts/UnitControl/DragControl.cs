@@ -37,12 +37,12 @@ public class DragControl : MonoBehaviour {
 
 	void FixedUpdate() {
 		if (evacActive) {
-			evacForce = Mathf.Lerp(evacForce, 300, Time.deltaTime * 0.15f);
+			evacForce = Mathf.Lerp(evacForce, 300, Time.deltaTime * 0.5f);
 			dragHandle.AddForce(Vector3.up * evacForce);
 			
 			Vector3 adjustmentForce = Vector3.ClampMagnitude(evacPos - transform.position, 1);
 			adjustmentForce.y = 0;
-			dragHandle.AddForce(adjustmentForce * 10);
+			dragHandle.AddForce(adjustmentForce * 50);
 			
 			
 		}

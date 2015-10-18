@@ -45,7 +45,7 @@ public class InterfaceControl : MonoBehaviour {
 		bool added = false;
 		foreach (UnitPane pane in unitPanes) {
 			if(!pane.unit) {
-				pane.SetUnit(unit);
+				pane.Setup(unit, this);
 				added = true;
 				break;
 			}
@@ -59,8 +59,13 @@ public class InterfaceControl : MonoBehaviour {
 	public void CloseUnitPanes() {
 		foreach (UnitPane pane in unitPanes) 
 			pane.Close();
-			
 	}
+	
+	public void CloseUnselectedUnitPanes() {
+		foreach (UnitPane pane in unitPanes) {
+			if (!pane.unit.selected) pane.Close();
+		}
+	}		
 	
 	public void OpenUnitPanes() {
 		foreach (UnitPane pane in unitPanes) 

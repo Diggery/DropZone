@@ -130,7 +130,7 @@ public class PathMover : Pathfinding {
 
 			if (offsetFromNextPath.sqrMagnitude < (distanceThreshold*2)) {
 				activePath.RemoveAt(0);
-				FinishPath();
+				FinishPath(finishPos);
             }	
 		}
 	}
@@ -231,10 +231,10 @@ public class PathMover : Pathfinding {
 		return simplePath;
 	}
 
-
-	public void FinishPath() {
+	public void FinishPath(Vector3 _finishPos) {
+		Vector3 pos = mapControl.GetNearestMapPos(_finishPos);
 		activePath.Clear();
-		MapControl.MapDataPoint destinationCell = mapControl.GetMapData (finishPos);
+		MapControl.MapDataPoint destinationCell = mapControl.GetMapData (pos);
 		destinationCell.isClaimed = false;
 		destinationCell.isOccupied = true;
 		

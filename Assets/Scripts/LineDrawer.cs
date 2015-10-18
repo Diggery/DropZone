@@ -22,7 +22,7 @@ public class LineDrawer : MonoBehaviour {
 	
 	void Start () {
 		lineObject = GameObject.CreatePrimitive(PrimitiveType.Cube);
-		lineObject.name = transform.name + "'s pathline";
+		lineObject.name = transform.name + "'s curve";
 		lineObject.GetComponent<Renderer>().material = lineMaterial;
 		mesh = lineObject.GetComponent<MeshFilter>().mesh;
 		mesh.Clear();
@@ -119,11 +119,16 @@ public class LineDrawer : MonoBehaviour {
 		
 		verts[numOfVerts + 3] = quad[3];
 		
+		int numOfTris = 0;
+		int[] tris = new int[0];
+		
+		
+		//dont try and get the length of a mesh with no vertices
+		if (numOfVerts > 0) {
+			numOfTris = mesh.triangles.Length;		
+			tris = mesh.triangles;			
+		}	
 
-		
-		int numOfTris = mesh.triangles.Length;
-		
-		int[] tris = mesh.triangles;
 		tris = resizeTraingles(tris, 6);
 	
 		tris[numOfTris] = numOfVerts + 2;

@@ -7,6 +7,9 @@ public class Equipment : MonoBehaviour {
 	[HideInInspector]
 	public UnitController unitController;
 	
+	[HideInInspector]
+	public Vector3 triggerDirection = Vector3.zero;
+	
 	public Sprite buttonTexture;
 	public GameObject gizmoPrefab;
 	
@@ -15,8 +18,12 @@ public class Equipment : MonoBehaviour {
 	
 	public int uses = 3;
 	
-	Vector3 triggerDirection = Vector3.zero;
+	public virtual void Commit(Vector3 direction) {
+		triggerDirection = direction;
+	}
 	
+	public virtual void Trigger() {}
+	public virtual void ConfigureGizmo(GameObject control) {}
 	
 	public void Attach(Transform attachPoint, UnitController _unitController) {
 		unitController = _unitController;
@@ -24,59 +31,43 @@ public class Equipment : MonoBehaviour {
 		transform.localPosition = Vector3.zero;
 		transform.localRotation = Quaternion.identity;
 		GetComponent<Renderer>().enabled = false;
-		
 	}
-			
-	public void Activate(UnitPane _unitPane) {
+	
+	public void Equip(UnitPane _unitPane) {
+		if (currentGizmo) currentGizmo.SendMessage("Cancel");
+		if (unitController.IsMoving()) unitController.StopMoving();
 		unitPane = _unitPane;
 		GameObject control = Instantiate(gizmoPrefab, unitController.transform.position, Quaternion.identity) as GameObject; 
 		currentGizmo = control;
-		control.transform.parent = unitController.transform;
-		control.SendMessage("SetUp", this);
+		ConfigureGizmo(control);
 	}
 	
 	public bool InUse() {
 		return currentGizmo;
 	}
-	
-	public virtual void Ready() {
-	
-	}
-	
-	public virtual void Fire(Vector3 direction) {
-		
-	}
 
-	public void SetTriggerDirection(Vector3 direction) {
-		triggerDirection = direction;
-	}
 	public Vector3 GetTriggerDirection() {
 		return triggerDirection;
 	}		
+	
 	public void Cancel() {
 		if (currentGizmo) {
-			currentGizmo.SendMessage("Cancel");
+			
 			currentGizmo = null;
 			unitPane = null;
 		}
 	}
 	
-	public void Trigger() {
+	public void Use() {
 		currentGizmo = null;
-		
-		GameObject newEquipmentObj = Instantiate(gameObject, transform.position, transform.rotation) as GameObject;
-		Equipment newEquipment = newEquipmentObj.GetComponent<Equipment>();
-		newEquipment.Fire(triggerDirection);
-		newEquipmentObj.GetComponent<Renderer>().enabled = true;
-		
 		uses--;
 		if (uses < 1) {
 			unitController.RemoveEquipment(this);
 			if (unitPane) unitPane.DisableEquipmentButton(this);
 			Destroy(gameObject);
-		}
-
+		}	
 	}
+		
 	
 	public void DropItem() {
 		Destroy(gameObject);

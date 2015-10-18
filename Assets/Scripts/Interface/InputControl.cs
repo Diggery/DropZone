@@ -118,7 +118,16 @@ public class InputControl : MonoBehaviour {
 			gameControl.Resume("MapSelector");
 		}
 	}
-	public void CancelGizmoControls() {
+	bool SomeGizmoOverridesMap(Vector3 mapPos) {
+	
+		foreach(GameObject control in openGizmoControls) {
+			Gizmo gizmo = control.GetComponent<Gizmo>();
+			if (gizmo.OverrideMapInput(mapPos)) return true;
+		}
+		return false;
+	}
+	
+	void CancelGizmoControls() {
 		foreach (GameObject control in openGizmoControls) {
 			control.SendMessage("Cancel");
 		}
@@ -144,13 +153,14 @@ public class InputControl : MonoBehaviour {
 		LayerMask terrainMask = 1 << LayerMask.NameToLayer("Ground");
 		
 		if(Physics.Raycast(ray, out hit, Mathf.Infinity, terrainMask)) {
-			
+			if (SomeGizmoOverridesMap(hit.point)) return;	
 			if (selectedUnit) {
 				selector.SetPos(hit.point);	
 				selector.ShowButtons();
 				gameControl.Pause("MapSelector");
 			}
 		}
+		
 		CancelGizmoControls();
 		
 	}

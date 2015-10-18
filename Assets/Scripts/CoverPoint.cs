@@ -191,10 +191,12 @@ public class CoverPoint : MonoBehaviour {
 
 		if (!Physics.Linecast (rightStartPos, rightEndPos, terrainMask)) {
 			isRightSideClear = true;
+			//print ("right is clear");
 			AddFiringPosition(rightStartPos);
 		}
 		if (!Physics.Linecast (leftStartPos, leftEndPos, terrainMask)) {
 			isLeftSideClear = true;
+			//print ("left is clear");
 			AddFiringPosition(leftStartPos);
 		}
 	}
@@ -217,8 +219,8 @@ public class CoverPoint : MonoBehaviour {
 			
 			// add points if you can hit a target from behind cover
 			if (IsCorner()) {
-				for(int i = 1; i < firingPositions.Count; i++) 
-					if (mapControl.IsPositionVisible(target.transform.position, firingPositions[i])) 
+				foreach(Vector3 firingPosition in firingPositions) 
+					if (mapControl.IsPositionVisible(target.transform.position, firingPosition)) 
 						score += 2;
 			} 
 

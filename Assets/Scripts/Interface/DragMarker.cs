@@ -118,16 +118,17 @@ public class DragMarker : MonoBehaviour {
 			}
 		
 		} else {
-			// toogle the collision if units are selected.
+			bool markersActive = inputControl.selectedUnit && !inputControl.selectedUnit.IsDragging();
+			
 			if (inputControl.selectedUnit != selected) {
-				if (inputControl.selectedUnit) {
+				if (markersActive) {
 					MakeActive();
 				} else {
 					MakeInactive();
 				}
 			}
 			
-			if (inputControl.selectedUnit) {
+			if (markersActive) {
 				markerScale = 1.0f;
 				pulseScaleAmount = 1.0f;
 				labelColor.a = 1;
@@ -190,10 +191,18 @@ public class DragMarker : MonoBehaviour {
 	}
 	
 	void StartDragging() {
+	
 		waiting = false;
 		dragControl = target.GetTargetCenter().gameObject.AddComponent<DragControl>();
 		dragControl.SetUpDragging(unitDragging.GetAttachPoint("LeftHand"), this);
+		if (gameControl.CheckEvacRange(dragControl)) return;
+		
+		
 		unitDragging.StartDragging(dragControl);
+		gameControl.ShowEvacZones(true);
+		
+		//if (target.IsMoving()) target.ResumeDragging();
+		
 	}
 	
 	public void CancelDragging() {
@@ -201,6 +210,7 @@ public class DragMarker : MonoBehaviour {
 		if (unitDragging) unitDragging.StopDragging();
 		unitDragging = null;
 		labelRenderer.material.SetTexture("_OverTex", evacTexture);
+		gameControl.ShowEvacZones(false);
 	}
 	
 	void MakeActive() {
@@ -215,5 +225,8 @@ public class DragMarker : MonoBehaviour {
 	
 	public void RemoveMarker() {
 		Destroy (gameObject);
+	}
+	public bool IsMarkerWaiting() {
+		return waiting;
 	}
 }

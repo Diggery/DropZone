@@ -9,7 +9,6 @@ public class PauseControl : MonoBehaviour {
 	GameControl gameControl;
 	public Text pauseButtonLabel;
 	public Text pauseInfo;
-	public RectTransform expandButton;
 	
 	bool expanded;
 	RectTransform rect;
@@ -24,22 +23,32 @@ public class PauseControl : MonoBehaviour {
 	public bool onSpecialAction;
 	public bool moveCamera;
 	
-	public AnimationCurve transitionCurve;
-	float transitionTimer;
+	float transTimer;
 	
 	public Color fillColor;
 	public Color frameColor;
 	public Color hiliteColor;
 	
-	Material backgroundMaterial;
-	Color currentFillColor;
-	Color currentFrameColor;
-	Color currentHiLiteColor;
-	
+	Material menuMaterial;
+	Color menuFillColor;
+	Color menuFrameColor;
+	Color menuHiLiteColor;
+
+	Material buttonMaterial;
+	Color buttonFillColor;
+	Color buttonFrameColor;
+	Color buttonHiLiteColor;
+	Color buttonFillMax;
+				
 	void Start () {
+		buttonFillMax = new Color (0.5f, 0.0f, 0.0f, 1.0f);
 		GameObject mapObj = GameObject.Find ("Map");
 		gameControl = mapObj.GetComponent<GameControl>();
-		backgroundMaterial = gameObject.GetComponent<Image>().material;
+		
+		menuMaterial = gameObject.GetComponent<Image>().material;
+		
+		buttonMaterial = transform.Find("PauseButton").GetComponent<Image>().material;
+		
 		gameControl.SetPauseControl(this);
 		rect = GetComponent<RectTransform>();
 		SetToggles();
@@ -79,17 +88,14 @@ public class PauseControl : MonoBehaviour {
 			if (toggle.gameObject.name.Equals("MoveCamera")) toggle.isOn = moveCamera;
 		}	
 		ExpandClicked();
-		transitionTimer = 0.9f;
+		transTimer = 0.9f;
 	}
 	
-	void Update () {
-	
-		transitionTimer = Mathf.Clamp01(transitionTimer + (GameTime.deltaTime * 4 * (expanded ? 1 : -1)));
-		if (transitionTimer > 0 && transitionTimer < 1) {
-			float transAmount = transitionCurve.Evaluate(transitionTimer);
-			rect.anchoredPosition = Vector2.Lerp(Vector2.zero, new Vector2(0, -395), transAmount);
-			expandButton.rotation = Quaternion.Lerp(Quaternion.identity, Quaternion.AngleAxis(180, Vector3.forward), transAmount);
-		}
+	void Update () {		
+		transTimer = Mathf.Clamp01(transTimer + (GameTime.deltaTime * (expanded ? -1 : 1)));
+		float transAmount = Util.EaseInOutQuart(transTimer);
+		
+		rect.anchoredPosition = Vector2.Lerp(new Vector2(-70, 0), new Vector2(-395, 0), transAmount);
 
 		Color fillGoal = fillColor;
 		Color frameGoal = frameColor;
@@ -101,14 +107,24 @@ public class PauseControl : MonoBehaviour {
 			fillGoal = new Color(0.25f, 0.0f, 0.0f, 1.0f);
 		}	
 		
-		currentFillColor = Color.Lerp(currentFillColor, fillGoal, GameTime.deltaTime * 3);
-		backgroundMaterial.SetColor("_FillColor",  currentFillColor);
+		menuFillColor = Color.Lerp(menuFillColor, fillGoal, GameTime.deltaTime * 3);
+		menuMaterial.SetColor("_FillColor",  menuFillColor);
 		
-		currentFrameColor = Color.Lerp(currentFrameColor, frameGoal, GameTime.deltaTime * 3);
-		backgroundMaterial.SetColor("_FrameColor",  currentFrameColor);
+		menuFrameColor = Color.Lerp(menuFrameColor, frameGoal, GameTime.deltaTime * 3);
+		menuMaterial.SetColor("_FrameColor",  menuFrameColor);
 
-		currentHiLiteColor = Color.Lerp(currentHiLiteColor, HiLiteGoal, GameTime.deltaTime * 3);
-		backgroundMaterial.SetColor("_HiliteColor",  currentHiLiteColor);
+		menuHiLiteColor = Color.Lerp(menuHiLiteColor, HiLiteGoal, GameTime.deltaTime * 3);
+		menuMaterial.SetColor("_HiliteColor",  menuHiLiteColor);
+		
+		buttonFrameColor = Color.Lerp(buttonFrameColor, new Color (0.5f, 0.0f, 0.0f, 1.0f), GameTime.deltaTime * 3);
+		buttonMaterial.SetColor("_FrameColor",  buttonFrameColor);
+		
+		if (GameTime.paused) {
+			buttonFillColor = Color.Lerp(Color.black, buttonFillMax, (Mathf.Sin(GameTime.time * 5) * 0.5f) + 0.5f);
+		} else {
+			buttonFillColor = new Color (0.1f, 0.0f, 0.0f, 0.5f);
+		}
+		buttonMaterial.SetColor("_FillColor",  buttonFillColor);
 		
 		if (Input.GetKeyUp (KeyCode.Space)) {
 			if (gameControl.globalPause) {
@@ -132,11 +148,9 @@ public class PauseControl : MonoBehaviour {
 	
 	void UpdatePauseButton() {
 		if (GameTime.paused) {
-			currentHiLiteColor = Color.red;
-			pauseButtonLabel.color = Color.red;
+			menuHiLiteColor = Color.red;
 			pauseButtonLabel.text = "Paused";
 		} else {
-			pauseButtonLabel.color = new Color(0.25f, 0.0f, 0.0f, 1.0f);
 			pauseButtonLabel.text = "Running";
 		}
 	}

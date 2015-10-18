@@ -36,14 +36,16 @@ public class GameControl : MonoBehaviour {
 		spawnControl.SetUp(this);
 	}
 	
-
-	
 	public void SetPauseControl(PauseControl _pauseControl) {
 		pauseControl = _pauseControl;
 	}
 
 	public void SetInputControl(InputControl _inputControl) {
 		inputControl = _inputControl;
+	}
+	
+	public MapControl GetMapControl() {
+		return mapControl;
 	}
 	
 	public void AddFriendlyUnits() {
@@ -304,6 +306,7 @@ public class GameControl : MonoBehaviour {
 
 	public void UnitEvac(UnitController unit) {
 		print (unit.gameObject.name + " is safe");
+		Destroy(unit.gameObject);
 	}
 	
 	public void OnDestroy() {

@@ -4,6 +4,8 @@ using System.Collections;
 public class UnitInventory : MonoBehaviour {
 
 	UnitController unitController;
+	
+	public InventoryObject intentoryObject;
 
 
 	public int MagazineCount;
@@ -13,13 +15,17 @@ public class UnitInventory : MonoBehaviour {
 
 	public void CreateInventory () {
 		unitController = GetComponent<UnitController>();
-
-		GameObject mainWeaponObj = Instantiate(GetWeapon("AssaultRifle"), Vector3.zero, Quaternion.identity) as GameObject;
+				
+		GameObject mainWeaponObj = intentoryObject.GetWeapon(gameObject.name);
+		GameObject equipmentObj = intentoryObject.GetEquipment(gameObject.name);
+		
+		
+		//GameObject mainWeaponObj = Instantiate(weapons[0], Vector3.zero, Quaternion.identity) as GameObject;
 		MainWeapon mainWeapon = mainWeaponObj.GetComponent<MainWeapon>();
 		mainWeapon.SetInventory(this);
 		unitController.AddMainWeapon(mainWeapon);
 
-		GameObject equipmentObj = Instantiate(GetWeapon("FragGrenade"), Vector3.zero, Quaternion.identity) as GameObject;
+		//GameObject equipmentObj = Instantiate(weapons[2], Vector3.zero, Quaternion.identity) as GameObject;
 		Equipment equipment = equipmentObj.GetComponent<Equipment>();
 		unitController.AddEquipment(equipment);
 	}
@@ -43,14 +49,5 @@ public class UnitInventory : MonoBehaviour {
 	
 	public void AddMagazine(int amount) {
 		MagazineCount += amount;
-	}
-
-
-	public GameObject GetWeapon(string weaponName) {
-		foreach (GameObject weapon in weapons) {
-			if (weapon.name.Equals(weaponName)) return weapon;
-		}
-		Debug.Log (weaponName + " not found");
-		return null;
 	}
 }

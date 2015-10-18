@@ -4,7 +4,6 @@ Shader "DropZone/UnitView_Image" {
     	_Color ("Main Color", Color) = (1,1,1,0.5)
 		_MainTex ("Texture", 2D) = "white" { }
 		_MaskTex ("Mask", 2D) = "white" { }
-		_OverlayTex ("Overlay", 2D) = "white" { }
 	}
 
 	SubShader {
@@ -24,7 +23,6 @@ Shader "DropZone/UnitView_Image" {
 			fixed4 _Color;
 			sampler2D _MainTex;
 			sampler2D _MaskTex;
-			sampler2D _OverlayTex;
 			
 			struct vertex2fragment {
    			 	float4 pos : SV_POSITION;
@@ -39,19 +37,20 @@ Shader "DropZone/UnitView_Image" {
 			    vertex2fragment output;
     			output.pos = mul (UNITY_MATRIX_MVP, vertData.vertex);
     			output.uv = TRANSFORM_TEX (vertData.texcoord, _MainTex);
-    			output.color = vertData.color * _Color;
+    			output.color = vertData.color;
    			    return output;
 			}
 			
 			half4 frag (vertex2fragment input) : COLOR {
     			half4 texColor = tex2D (_MainTex, input.uv);
     			half4 maskColor = tex2D (_MaskTex, input.uv);
-    			half4 overlayColor = tex2D (_OverlayTex, input.uv);
+    			float2 scrollUV = input.uv; 	
+      			scrollUV.y += _Time * -1.0f;
+    			half4 interlaceColor = tex2D (_MaskTex, scrollUV);
     			
-    			texColor.a = texColor.a * maskColor.a;
+    			texColor.a = texColor.a * maskColor.g * _Color.a * clamp(interlaceColor.a + maskColor.r, 0, 1);
     			
-    			half4 finalColor = lerp(texColor, overlayColor, overlayColor.a);
-    			return finalColor;
+    			return texColor;
 			}
 			ENDCG
     	}

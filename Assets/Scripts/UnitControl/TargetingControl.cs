@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class TargetingControl : MonoBehaviour {
 
 	bool targetDummy;
-
+	
 	UnitController unitController;
 	MapControl mapControl;
 	Animator animator;
@@ -140,9 +140,11 @@ public class TargetingControl : MonoBehaviour {
 	
 	public void SetWeaponRange(float newRange) {
 		currentWeaponRange = newRange * newRange;
-	
 	}
-	
+	public float GetWeaponRange() {
+		return currentWeaponRange;
+	}
+		
 	public bool ScanForTargets() {
 		Transform bestTarget = FindBestTarget();
 		bool targetUpdated = false;
@@ -214,8 +216,9 @@ public class TargetingControl : MonoBehaviour {
 			
 			float rangeToTarget = (transform.position - enemy.transform.position).sqrMagnitude;
 
-			if (!Physics.Linecast(origin, targetPos, terrainMask) && rangeToTarget < currentWeaponRange) {
-
+			//	if (!Physics.Linecast(origin, targetPos, terrainMask) && rangeToTarget < currentWeaponRange) {
+			if (mapControl.IsPositionVisible(origin, targetPos) && rangeToTarget < currentWeaponRange) {
+			
 				//get all the easy targets
 				int targetCover = mapControl.GetCoverForTarget(transform, enemy.transform);
 				if (targetCover == 0) easyTargets.Add(enemy.transform, (transform.position - enemy.transform.position).sqrMagnitude);

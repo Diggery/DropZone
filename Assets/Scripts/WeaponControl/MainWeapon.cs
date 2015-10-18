@@ -46,7 +46,9 @@ public class MainWeapon : MonoBehaviour {
 
 	bool readyToFire;
 	bool dead;
-
+	
+	public Sprite buttonTexture;
+	
 	public void SetInventory(UnitInventory inventory) {
 		unitInventory = inventory;
 	}

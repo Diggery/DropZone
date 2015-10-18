@@ -21,6 +21,8 @@ public class UnitController : MonoBehaviour {
 	
 	public bool dead;
 	public bool dummy;
+	public bool showDebug;
+	
 	public EnemyCaptain enemyCaptain;
 	
 	
@@ -61,7 +63,7 @@ public class UnitController : MonoBehaviour {
 	float alertCooldown = -1.0f;	
 	
 	void Start () {
-	
+		
 		if (useColorFader) {
 			UnitColorFade colorFade = gameObject.AddComponent<UnitColorFade>();
 			if (headModel) colorFade.SetHeadRenderer(headModel.GetComponent<Renderer>());
@@ -155,13 +157,8 @@ public class UnitController : MonoBehaviour {
 		animator.SetFloat("Random", Random.value);
 
 		float currentVelocity = characterController.velocity.magnitude;
+		
 		animator.SetFloat("Velocity", currentVelocity);
-		if (currentVelocity > 0.01f) {
-			isMoving = true;
-		} else {
-			isMoving = false;
-		}
-
 		animator.SetBool("HasTarget", mainWeaponTarget);
 		
 		lifeTime += Time.deltaTime;
@@ -201,6 +198,7 @@ public class UnitController : MonoBehaviour {
 			Debug.Log("No Animator to get");
 		return animator;
 	}
+	
 	public void Spawn(Vector3 rallyPoint) {
 		if (!animator) 
 			animator = GetComponent<Animator> ();
@@ -213,7 +211,9 @@ public class UnitController : MonoBehaviour {
 		}
 		
 	}
-
+	public void IsMoving(bool state) {
+		isMoving = state;
+	}
 	public bool IsMoving() {
 		return isMoving;
 	}
@@ -223,7 +223,16 @@ public class UnitController : MonoBehaviour {
 	}
 
 	public void MoveTo(Vector3 location) {
+	
+		if (showDebug) {
+			GameObject[] debugMarkers = GameObject.FindGameObjectsWithTag("DebugMarker");
+			foreach (GameObject marker in debugMarkers) Destroy(marker);
+		}
 		
+		if (!mapControl.IsValidLocation(location)) {
+			print ("invalid location");
+			return;
+		} 
 		if ((location - transform.position).magnitude < mapControl.GetGridSize() / 3) return; // quit if the path is too short
 
 		MapControl.MapDataPoint newMapCell = mapControl.GetMapData(location);
@@ -241,9 +250,15 @@ public class UnitController : MonoBehaviour {
 		currentCoverPoint = null;
 		currentDestination = location;
 		animator.SetInteger ("InCover", 0);
+		
+		
+		// if they are trying to start draggin someone then you tell them to move before the get there.. stop it.
+		if (dragControl) {
+			if (dragControl.GetDragMarker().IsMarkerWaiting()) {
+				dragControl.GetDragMarker().CancelDragging();
+			}
+		}
 	}
-	
-
 	
 	public void AddMainWeapon(MainWeapon weapon) {
 		targetingControl.SetWeaponRange(weapon.range);
@@ -263,7 +278,11 @@ public class UnitController : MonoBehaviour {
 	public Equipment GetEquipment() {
 		return equipment;
 	}
-
+	
+	public MainWeapon GetWeapon() {
+		return mainWeapon;
+	}
+	
 	public void CancelEquipment() {
 		equipment.Cancel();
 	}	
@@ -343,45 +362,58 @@ public class UnitController : MonoBehaviour {
 		pathMover.ClearPathLine();
 		if (equipment) CancelEquipment();
 	}
+	
+	public void StopMoving() {
+		pathMover.FinishPath(transform.position);
+	}
 
 	public void FinishedMove(MapControl.MapDataPoint mapCell) {
 
 		if (mapCell.coverPoint) {
-			
-			currentCoverPoint = mapCell.coverPoint;
-			
-			if (currentCoverPoint.IsLowCover()) {
-				animator.SetInteger ("InCover", 3);
-			} else {
-			
-				bool rightSideOfMap = transform.position.x > ((float)mapControl.GetMapSize().x/2.0f);
-							
-				if (currentCoverPoint.IsLeftSideClear()) {
-					animator.SetInteger ("InCover", 1);
-				} else if (currentCoverPoint.IsRightSideClear()) {
-					animator.SetInteger ("InCover", 2);
-				} else {
-					if (rightSideOfMap) {
-						animator.SetInteger ("InCover", 1);
-					} else {
-						animator.SetInteger ("InCover", 2);
-					}
-				}
-			}
-			
+			SetCoverState(mapCell.coverPoint);
 		} else {
 			animator.SetTrigger("StopMoving");
 		}
 		
-		SendMessage("MoveComplete", SendMessageOptions.DontRequireReceiver);
+		if (showDebug) {
+			mapControl.MarkAllVisible(mapCell.mapPos, targetingControl.GetWeaponRange());
+		}
 		
+		SendMessage("MoveComplete", SendMessageOptions.DontRequireReceiver);
 	}
 
+	public void SetCoverState() {
+		SetCoverState(GetNewCoverPoint());
+	}
+	
+	public void SetCoverState(CoverPoint coverPoint) {
+		currentCoverPoint = coverPoint;	
+		if (coverPoint.IsLowCover()) {
+			animator.SetInteger ("InCover", 3);
+		} else {
+			
+			bool rightSideOfMap = transform.position.x > ((float)mapControl.GetMapSize().x/2.0f);
+			
+			if (coverPoint.IsLeftSideClear()) {
+				animator.SetInteger ("InCover", 1);
+			} else if (coverPoint.IsRightSideClear()) {
+				animator.SetInteger ("InCover", 2);
+			} else {
+				if (rightSideOfMap) {
+					animator.SetInteger ("InCover", 1);
+				} else {
+					animator.SetInteger ("InCover", 2);
+				}
+			}
+		}		
+	}
+
+	public CoverPoint GetNewCoverPoint() {
+		return mapControl.GetCoverPoint(transform.position);
+	}
 	public CoverPoint GetCurrentCoverPoint() {
 		return currentCoverPoint;
 	}
-
-
 
 	public void RotateTo(Quaternion goal) {
 		pathMover.RotateTo (goal);
@@ -454,6 +486,7 @@ public class UnitController : MonoBehaviour {
 		dragControl = _dragControl;
 		animator.SetBool("IsDragging", true);
 	}
+	
 	public void PauseDragging() {
 		if (!dragControl) {
 			StopDragging();
@@ -466,6 +499,7 @@ public class UnitController : MonoBehaviour {
 			
 		dragControl.StopDragging();
 	}
+	
 	public bool IsDragging() {
 		if (dragControl) {
 			return true;
@@ -473,6 +507,7 @@ public class UnitController : MonoBehaviour {
 	
 		return false;
 	}
+	
 	public void ResumeDragging() {
 		if (!dragControl) {
 			StopDragging();
@@ -480,6 +515,7 @@ public class UnitController : MonoBehaviour {
 		}
 		dragControl.StartDragging();
 	}
+	
 	public void StopDragging() {
 		if (dragControl) dragControl.StopDragging();
 		dragControl = null;
@@ -490,7 +526,6 @@ public class UnitController : MonoBehaviour {
 	public void Die() {
 		Die(new DamageInfo(Vector3.down, 5, DamageInfo.DamageType.Projectile));
 	}
-		
 	
 	public void Die(DamageInfo damageInfo) {
 		if (dead) return;
@@ -547,7 +582,5 @@ public class UnitController : MonoBehaviour {
 		if (collision.transform.tag.Equals("LowWall")) {
 			print ("Low Wall");
 		}
-		
-		
 	}
 }

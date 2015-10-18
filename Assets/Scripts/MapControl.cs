@@ -50,11 +50,6 @@ public class MapControl : MonoBehaviour {
 		mapData = new MapDataPoint[Mathf.FloorToInt(mapSize.x) * Mathf.FloorToInt(mapSize.y)];
 		FillOutMapData();
 
-		//now that they are created, set up any data on them
-		foreach (CoverPoint cover in allCoverPoints) {
-			cover.SetCornerFlags(); 
-		}
-
 		gameControl = GetComponent<GameControl>();
 		if (!gameControl) Debug.Log ("Map can't find gameControl");
 	}
@@ -180,8 +175,20 @@ public class MapControl : MonoBehaviour {
 		//print ("getting " + xPos + ", " + yPos);
 		return mapData[yPos * Mathf.FloorToInt(mapSize.x) + xPos];
 	}
-
-
+	
+	
+	public Vector3 GetNearestMapPos(Vector3 pos) {
+		Vector3 newMapPos;
+		float gridSize = GetGridSize();
+		newMapPos.x = Mathf.Floor((pos.x / gridSize)) * gridSize;
+		newMapPos.y = pos.y;
+		newMapPos.z = Mathf.Floor((pos.z / gridSize)) * gridSize;
+		newMapPos += new Vector3(gridSize/2, 0.0f, gridSize/2);
+		return newMapPos;
+	}
+	
+	
+	
 	public CoverPoint GetCoverPoint(Vector3 mapPos) {
 		float x = mapPos.x/gridSize;
 		float y = mapPos.z/gridSize;
@@ -260,7 +267,9 @@ public class MapControl : MonoBehaviour {
 						newPoint.transform.tag = "CoverPoint";
 						newPoint.transform.parent = coverContainer.transform;
 						newPoint.GetComponent<Renderer>().enabled = false;
+						coverPoint.SetCornerFlags();
 						mapDataPoint.coverPoint = coverPoint;
+						
 					} 
 					if (hit.transform.tag.Equals("Wall") || hit.transform.tag.Equals("LowWall")) {
 						mapDataPoint.isCollision = true;
@@ -269,7 +278,16 @@ public class MapControl : MonoBehaviour {
 					print ("Missed Point");	
 					Debug.DrawLine(ray.origin, ray.origin + (ray.direction * 10), Color.red, 10);
 				}
-				mapDataPoint.cellsVisible = SetVisibleCells(mapDataPoint.mapPos);
+				
+				if (mapDataPoint.coverPoint) {
+					Vector3[] firingpositions = mapDataPoint.coverPoint.GetFiringPositions();
+					mapDataPoint.cellsVisible = GetVisibleCells(firingpositions);
+					//if (firingpositions.Length > 1) 
+						//print ("Using " + firingpositions.Length + " firing positions");
+				} else {
+					mapDataPoint.cellsVisible = GetVisibleCells(mapDataPoint.mapPos);
+				}
+					
 				SetMapData(new Vector2(x, y), mapDataPoint);
 			}
 		}
@@ -290,11 +308,25 @@ public class MapControl : MonoBehaviour {
 			coverPoint.SetFade(0);
 		}		
 	}
+	
+	
+	public void MarkAllVisible(Vector3 mapPos, float range) {
+		List<MapDataPoint> cells = GetMapCellsInRange(mapPos, range);
+		foreach (MapDataPoint cell in cells) {
+			if (IsPositionVisible(mapPos, cell.mapPos)) {
+				MarkMapCell(cell.mapPos);
+				Debug.DrawLine(mapPos, cell.mapPos,new Color(1.0f,0.0f,0.0f,0.1f), 30);
+				
+			}
+		}
+	}
+	
 	public void MarkMapCell(Vector3 mapPos) {
 		MapDataPoint mapCell = GetMapData(mapPos);
 		GameObject marker = GameObject.CreatePrimitive(PrimitiveType.Cube);
+		marker.tag = "DebugMarker";
 		marker.transform.position = new Vector3(mapCell.mapPos.x, 1.25f, mapCell.mapPos.z);
-		marker.transform.localScale = new Vector3(0.25f, 2f, 0.25f);
+		marker.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
 		BoxCollider coll = marker.GetComponent<BoxCollider>();
 		
 		if (mapCell.isCollision) {
@@ -507,14 +539,21 @@ public class MapControl : MonoBehaviour {
 		if (!posFound) closestPos = FindOpenPosition(closestPos, searchRange + 5);
 		return closestPos;
 	}
-
-	Vector2[] SetVisibleCells(Vector3 mapPos) {
-		
+	
+	Vector2[] GetVisibleCells(Vector3 firingPosition) {
+		Vector3[] firingPositions = new Vector3[1];
+		firingPositions[0] = firingPosition;
+		return GetVisibleCells(firingPositions); 
+	}
+	Vector2[] GetVisibleCells(Vector3[] firingPositions) {
 		List<Vector2> visibleCells = new List<Vector2>();
-		for (int x = 0; x < mapSize.x; x++) {
-			for (int y = 0; y < mapSize.y; y++) {
-				if ((mapPos - CoorToMapPos(new Vector2(x,y))).sqrMagnitude < localCheckDistance) {
-					if (CheckLOS(mapPos, new Vector2(x, y))) visibleCells.Add(new Vector2(x,y));
+		
+		foreach (Vector3 firingPosition in firingPositions) {
+			for (int x = 0; x < mapSize.x; x++) {
+				for (int y = 0; y < mapSize.y; y++) {
+					if ((firingPosition - CoorToMapPos(new Vector2(x,y))).sqrMagnitude < localCheckDistance) {
+						if (CheckLOS(firingPosition, new Vector2(x, y))) visibleCells.Add(new Vector2(x,y));
+					}
 				}
 			}
 		}
@@ -530,4 +569,10 @@ public class MapControl : MonoBehaviour {
 		return !Physics.Linecast(origin, destination, terrainMask);
 	}
 	
+	public bool IsValidLocation(Vector2 mapCoor) {
+		bool xOK = mapCoor.x <= mapSize.x && mapCoor.x >= 0;
+		bool yOK = mapCoor.y <= mapSize.y && mapCoor.y >= 0;
+		
+		return xOK && yOK;
+	}
 }

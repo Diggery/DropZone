@@ -25,17 +25,31 @@ public class FragGrenade : Equipment {
 		}
 	}
 	
-	public override void Ready() {
-		
+	public override void ConfigureGizmo(GameObject control) {
+		control.GetComponent<Gizmo>().Setup(this);
 	}
 	
-	public override void Fire(Vector3 direction) {
+	public override void Commit(Vector3 direction) {
+		triggerDirection = direction;
+		GetAnimator().SetTrigger("Throw");
+	}
+
+	void Release(Vector3 direction) {
 		transform.parent = null;
 		GetComponent<Rigidbody>().isKinematic = false;
 		GetComponent<Rigidbody>().useGravity = true;
 		GetComponent<Rigidbody>().AddForce((-direction  * 3) + new Vector3 (0.0f, 8.0f, 0.0f), ForceMode.Impulse);
 		
 		inAir = true;
+	}
+	
+	public override void Trigger() {
+		
+		GameObject newEquipmentObj = Instantiate(gameObject, transform.position, transform.rotation) as GameObject;
+		FragGrenade newEquipment = newEquipmentObj.GetComponent<FragGrenade>();
+		newEquipment.Release(triggerDirection);
+		newEquipmentObj.GetComponent<Renderer>().enabled = true;
+		Use ();
 	}
 	
 	public void Explode() {
