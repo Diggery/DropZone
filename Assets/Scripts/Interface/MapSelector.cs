@@ -167,6 +167,7 @@ public class MapSelector : MonoBehaviour, IDragHandler {
 	public void DeselectUnit() {
 		HideSelector();
 	}	
+	
 	public void HideSelector() {
 		HideButtons();
 		selectorCollision.enabled = false;

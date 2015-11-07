@@ -176,7 +176,7 @@ public class UnitController : MonoBehaviour {
 	public void SetUpColliders() {
 		Collider[] collisionObjs = transform.GetComponentsInChildren<Collider>();
 		foreach (Collider obj in collisionObjs) {
-			obj.gameObject.AddComponent<InputRepeater>().SetTarget(transform);
+			obj.gameObject.AddComponent<InputRepeater>().SetTarget(gameObject);
 		}
 	}
 	public void SetSpawner(Spawner _spawner) {
@@ -387,6 +387,10 @@ public class UnitController : MonoBehaviour {
 	}
 	
 	public void SetCoverState(CoverPoint coverPoint) {
+		if (!coverPoint) {
+			print ("Didnt get cover point");
+			return;
+		}
 		currentCoverPoint = coverPoint;	
 		if (coverPoint.IsLowCover()) {
 			animator.SetInteger ("InCover", 3);

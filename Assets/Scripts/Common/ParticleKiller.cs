@@ -2,11 +2,15 @@ using UnityEngine;
 using System.Collections;
 
 public class ParticleKiller : MonoBehaviour {
-
-
-	void Update () {
 	
-		if (!GetComponent<ParticleSystem>().IsAlive()) {
+	ParticleSystem system;
+	
+	void Update () {
+		if (!system) {
+			system = GetComponent<ParticleSystem>();
+			return;
+		}
+		if (!system.IsAlive()) {
 			Destroy (gameObject);    
 	    }	
 	}

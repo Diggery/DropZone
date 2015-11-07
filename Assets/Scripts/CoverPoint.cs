@@ -2,25 +2,21 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
+
+[System.Serializable]
 public class CoverPoint : MonoBehaviour {
 
 
-	MapControl mapControl;
+	public MapControl mapControl;
 	public int[] cover;
 	public bool highCover = false;
 
-	float gridSize;
+	public float gridSize;
 
-	List<Vector3> firingPositions = new List<Vector3>();
-	
-	public List<Vector2> visibleCells = new List<Vector2>();
-	public List<Vector2> visibleCellsFromNorth = new List<Vector2>();
-	public List<Vector2> visibleCellsFromEast = new List<Vector2>();
-	public List<Vector2> visibleCellsFromSouth = new List<Vector2>();
-	public List<Vector2> visibleCellsFromWest = new List<Vector2>();
+	public List<Vector3> firingPositions = new List<Vector3>();
 
-	bool isRightSideClear;
-	bool isLeftSideClear;
+	public bool isRightSideClear;
+	public bool isLeftSideClear;
 
 	
 	public void SetCover(int[] newCover, Vector3 worldPos, float newGridSize, Vector2 newMapSize, MapControl newMapControl) {
@@ -88,12 +84,12 @@ public class CoverPoint : MonoBehaviour {
             combine[i].mesh = meshFilters[i].sharedMesh;
             combine[i].transform = meshFilters[i].transform.localToWorldMatrix;
         }
-        transform.GetComponent<MeshFilter>().mesh = new Mesh();
-        transform.GetComponent<MeshFilter>().mesh.CombineMeshes(combine);
+		transform.GetComponent<MeshFilter>().sharedMesh = new Mesh();
+        transform.GetComponent<MeshFilter>().sharedMesh.CombineMeshes(combine);
 		transform.position = worldPos;
 		transform.localScale = new Vector3(gridSize, gridSize, gridSize);
 
-		foreach(Transform child in transform) Destroy(child.gameObject);
+		foreach(Transform child in transform) Object.DestroyImmediate(child.gameObject);
 		
 		AddFiringPosition(transform.position);
 		

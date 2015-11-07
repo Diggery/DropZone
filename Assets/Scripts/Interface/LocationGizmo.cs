@@ -10,7 +10,7 @@ public class LocationGizmo : Gizmo {
 	Transform rightAcceptButton;
 	Transform leftCancelButton;
 	Transform rightCancelButton;
-
+	
 	Transform acceptButtonIcon;
 	Renderer acceptButtonIconRenderer;
 	Transform cancelButtonIcon;
@@ -74,6 +74,7 @@ public class LocationGizmo : Gizmo {
 		cancelButtonIcon = locationBackground.Find("CancelButtonIcon");
 		
 		locationIconRenderer = locationBackground.Find("LocationIcon").GetComponent<Renderer>();
+		locationIconRenderer.material.mainTexture = _equipment.gizmoIcon;
 				
 		leftAcceptRenderer = leftAcceptButton.GetComponent<Renderer>();
 		rightAcceptRenderer = rightAcceptButton.GetComponent<Renderer>();

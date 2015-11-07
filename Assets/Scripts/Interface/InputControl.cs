@@ -142,9 +142,6 @@ public class InputControl : MonoBehaviour {
 		if (!selectedUnit) return;
 	}
 	
-	public void touchDown(TouchManager.TouchDownEvent touchEvent) {
-		selector.HideButtons();
-	}
 
 	public void MapClicked() {
 	

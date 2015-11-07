@@ -146,6 +146,7 @@ public class RagDollControl : MonoBehaviour {
 		//Root
 		root.gameObject.layer = LayerMask.NameToLayer(layerName);
 		BoxCollider rootCollision = root.gameObject.AddComponent<BoxCollider>();
+		root.gameObject.AddComponent<InputRepeater>();
 		rootCollision.center = setUpData.root.collision.center;
 		rootCollision.size = setUpData.root.collision.size;
 		
@@ -160,6 +161,7 @@ public class RagDollControl : MonoBehaviour {
 		if (!leftHip) Debug.Log ("Can't find leftHip on " + transform.name);
 		leftHip.gameObject.layer = LayerMask.NameToLayer(layerName);
 		CapsuleCollider leftHipCollision = leftHip.gameObject.AddComponent<CapsuleCollider>();
+		leftHip.gameObject.AddComponent<InputRepeater>();
 		leftHipCollision.center = setUpData.leftHip.collision.center;
 		leftHipCollision.radius = setUpData.leftHip.collision.radius;
 		leftHipCollision.height = setUpData.leftHip.collision.height;
@@ -186,6 +188,7 @@ public class RagDollControl : MonoBehaviour {
 		if (!leftKnee) Debug.Log ("Can't find leftKnee on " + transform.name);
 		leftKnee.gameObject.layer = LayerMask.NameToLayer(layerName);
 		CapsuleCollider leftKneeCollision = leftKnee.gameObject.AddComponent<CapsuleCollider>();
+		leftKnee.gameObject.AddComponent<InputRepeater>();
 		leftKneeCollision.center = setUpData.leftKnee.collision.center;
 		leftKneeCollision.radius = setUpData.leftKnee.collision.radius;
 		leftKneeCollision.height = setUpData.leftKnee.collision.height;
@@ -212,6 +215,7 @@ public class RagDollControl : MonoBehaviour {
 		if (!rightHip) Debug.Log ("Can't find rightHip on " + transform.name);
 		rightHip.gameObject.layer = LayerMask.NameToLayer(layerName);
 		CapsuleCollider rightHipCollision = rightHip.gameObject.AddComponent<CapsuleCollider>();
+		rightHip.gameObject.AddComponent<InputRepeater>();
 		rightHipCollision.center = setUpData.rightHip.collision.center;
 		rightHipCollision.radius = setUpData.rightHip.collision.radius;
 		rightHipCollision.height = setUpData.rightHip.collision.height;
@@ -238,6 +242,7 @@ public class RagDollControl : MonoBehaviour {
 		if (!rightKnee) Debug.Log ("Can't find rightKnee on " + transform.name);
 		rightKnee.gameObject.layer = LayerMask.NameToLayer(layerName);
 		CapsuleCollider rightKneeCollision = rightKnee.gameObject.AddComponent<CapsuleCollider>();
+		rightKnee.gameObject.AddComponent<InputRepeater>();
 		rightKneeCollision.center = setUpData.rightKnee.collision.center;
 		rightKneeCollision.radius = setUpData.rightKnee.collision.radius;
 		rightKneeCollision.height = setUpData.rightKnee.collision.height;
@@ -265,6 +270,7 @@ public class RagDollControl : MonoBehaviour {
 		if (!spine) Debug.Log ("Can't find spine on " + transform.name);
 		spine.gameObject.layer = LayerMask.NameToLayer(layerName);
 		BoxCollider spineCollision = spine.gameObject.AddComponent<BoxCollider>();
+		spine.gameObject.AddComponent<InputRepeater>();
 		spineCollision.center = setUpData.spine.collision.center;
 		spineCollision.size = setUpData.spine.collision.size;
 		
@@ -289,6 +295,7 @@ public class RagDollControl : MonoBehaviour {
 		if (!head) Debug.Log ("Can't find head on " + transform.name);
 		head.gameObject.layer = LayerMask.NameToLayer(layerName);
 		SphereCollider headCollision = head.gameObject.AddComponent<SphereCollider>();
+		head.gameObject.AddComponent<InputRepeater>();
 		headCollision.center = setUpData.head.collision.center;
 		headCollision.radius = setUpData.head.collision.radius;
 		
@@ -312,6 +319,7 @@ public class RagDollControl : MonoBehaviour {
 		if (!leftShoulder) Debug.Log ("Can't find leftShoulder on " + transform.name);
 		leftShoulder.gameObject.layer = LayerMask.NameToLayer(layerName);
 		CapsuleCollider leftShoulderCollision = leftShoulder.gameObject.AddComponent<CapsuleCollider>();
+		leftShoulder.gameObject.AddComponent<InputRepeater>();
 		leftShoulderCollision.center = setUpData.leftShoulder.collision.center;
 		leftShoulderCollision.radius = setUpData.leftShoulder.collision.radius;
 		leftShoulderCollision.height = setUpData.leftShoulder.collision.height;
@@ -338,6 +346,7 @@ public class RagDollControl : MonoBehaviour {
 		if (!leftElbow) Debug.Log ("Can't find leftElbow on " + transform.name);
 		leftElbow.gameObject.layer = LayerMask.NameToLayer(layerName);
 		CapsuleCollider leftElbowCollision = leftElbow.gameObject.AddComponent<CapsuleCollider>();
+		leftElbow.gameObject.AddComponent<InputRepeater>();
 		leftElbowCollision.center = setUpData.leftElbow.collision.center;
 		leftElbowCollision.radius = setUpData.leftElbow.collision.radius;
 		leftElbowCollision.height = setUpData.leftElbow.collision.height;
@@ -364,6 +373,7 @@ public class RagDollControl : MonoBehaviour {
 		if (!rightShoulder) Debug.Log ("Can't find rightShoulder on " + transform.name);
 		rightShoulder.gameObject.layer = LayerMask.NameToLayer(layerName);
 		CapsuleCollider rightShoulderCollision = rightShoulder.gameObject.AddComponent<CapsuleCollider>();
+		rightShoulder.gameObject.AddComponent<InputRepeater>();
 		rightShoulderCollision.center = setUpData.rightShoulder.collision.center;
 		rightShoulderCollision.radius = setUpData.rightShoulder.collision.radius;
 		rightShoulderCollision.height = setUpData.rightShoulder.collision.height;
@@ -390,6 +400,7 @@ public class RagDollControl : MonoBehaviour {
 		if (!rightElbow) Debug.Log ("Can't find rightElbow on " + transform.name);
 		rightElbow.gameObject.layer = LayerMask.NameToLayer(layerName);
 		CapsuleCollider rightElbowCollision = rightElbow.gameObject.AddComponent<CapsuleCollider>();
+		rightElbow.gameObject.AddComponent<InputRepeater>();
 		rightElbowCollision.center = setUpData.rightElbow.collision.center;
 		rightElbowCollision.radius = setUpData.rightElbow.collision.radius;
 		rightElbowCollision.height = setUpData.rightElbow.collision.height;

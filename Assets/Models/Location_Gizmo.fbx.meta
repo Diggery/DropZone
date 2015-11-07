@@ -15,6 +15,7 @@ ModelImporter:
     100014: LocationSelectIcon
     100016: LocationIcon
     100018: LocationBackground
+    100020: RotationArrow
     400000: AcceptButton_Left
     400002: AcceptButton_Right
     400004: AcceptButtonIcon
@@ -25,6 +26,7 @@ ModelImporter:
     400014: LocationSelectIcon
     400016: LocationIcon
     400018: LocationBackground
+    400020: RotationArrow
     2300000: AcceptButton_Left
     2300002: AcceptButton_Right
     2300004: AcceptButtonIcon
@@ -35,6 +37,7 @@ ModelImporter:
     2300014: LocationSelectIcon
     2300016: LocationIcon
     2300018: LocationBackground
+    2300020: RotationArrow
     3300000: AcceptButton_Left
     3300002: AcceptButton_Right
     3300004: AcceptButtonIcon
@@ -45,6 +48,7 @@ ModelImporter:
     3300014: LocationSelectIcon
     3300016: LocationIcon
     3300018: LocationBackground
+    3300020: RotationArrow
     4300000: LocationSelection
     4300002: LocationSelectIcon
     4300004: AcceptButton_Right
@@ -55,6 +59,7 @@ ModelImporter:
     4300014: CancelButtonIcon
     4300016: LocationIcon
     4300018: LocationBackground
+    4300020: RotationArrow
     9500000: //RootNode
   materials:
     importMaterials: 1

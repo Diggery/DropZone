@@ -81,11 +81,15 @@ public class CharacterConfig : MonoBehaviour {
 			}
 		}
 		
-		
 		RagDollControl ragDollControl = gameObject.AddComponent<RagDollControl>();
-
-
-		setUpData.layerName = "RagDoll";
+		
+		if (unitController.tag.Equals("Player")) {
+			setUpData.layerName = "PlayerRagDoll";
+		} else {
+			setUpData.layerName = "EnemyRagDoll";
+		}
+		
+		
 		setUpData.nameSpace = nameSpace;
 		setUpData.rootTransform = transform.Find(AddNameSpaceToPath("Skeleton_Group/Root_Skel"));
 		if (!setUpData.rootTransform) Debug.Log ("Can't find root on " + transform.name);

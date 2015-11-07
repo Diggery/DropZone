@@ -129,10 +129,10 @@ public class TargetingControl : MonoBehaviour {
 		} else {
 			AnimatorStateInfo animStateInfo = animator.GetCurrentAnimatorStateInfo(0);
 			if (animStateInfo.IsName("NoCover.Aiming")) { // only rotate if they are aiming and out of cover
-				if (aimGoal.x < -90) 
-					transform.Rotate(Vector3.up, -20);
-				if (aimGoal.x > 90) 
-					transform.Rotate(Vector3.up, 20);
+				if (aimGoal.x < -45) 
+					transform.Rotate(Vector3.up, -60);
+				if (aimGoal.x > 45) 
+					transform.Rotate(Vector3.up, 60);
 			}
 		}
 	}
