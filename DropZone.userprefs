@@ -1,21 +1,29 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/EquipmentControl/HomingGrenade.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/EquipmentControl/MainWeapon.cs">
     <Files>
       <File FileName="Assets/Editor/GenerateMapData.cs" Line="66" Column="9" />
-      <File FileName="Assets/Scripts/CoverPoint.cs" Line="6" Column="21" />
-      <File FileName="Assets/Scripts/MapDataObject.cs" Line="28" Column="29" />
-      <File FileName="Assets/Pathfinding/Scripts/PathMover.cs" Line="242" Column="71" />
-      <File FileName="Assets/Scripts/MapControl.cs" Line="410" Column="29" />
-      <File FileName="Assets/Scripts/Interface/MapSelector.cs" Line="175" Column="21" />
-      <File FileName="Assets/Scripts/UnitControl/UnitBehaviors.cs" Line="46" Column="2" />
-      <File FileName="Assets/Scripts/UnitControl/UnitController.cs" Line="110" Column="1" />
-      <File FileName="Assets/Scripts/InventoryObject.cs" Line="7" Column="22" />
-      <File FileName="Assets/Scripts/GameControl.cs" Line="57" Column="14" />
-      <File FileName="Assets/Scripts/Common/ParticleKiller.cs" Line="6" Column="24" />
-      <File FileName="Assets/Scripts/EquipmentControl/MainWeapon.cs" Line="151" Column="1" />
-      <File FileName="Assets/Scripts/EquipmentControl/HomingGrenade.cs" Line="12" Column="1" />
-      <File FileName="Assets/Scripts/UnitControl/EnemyAI.cs" Line="144" Column="1" />
+      <File FileName="Assets/Scripts/CoverPoint.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/MapDataObject.cs" Line="1" Column="1" />
+      <File FileName="Assets/Pathfinding/Scripts/PathMover.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/MapControl.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Interface/MapSelector.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/UnitControl/UnitBehaviors.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/UnitControl/UnitController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/InventoryObject.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/GameControl.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Common/ParticleKiller.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/EquipmentControl/HomingGrenade.cs" Line="5" Column="1" />
+      <File FileName="Assets/Scripts/UnitControl/EnemyAI.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/EquipmentControl/FragGrenade.cs" Line="43" Column="3" />
+      <File FileName="Assets/Scripts/Interface/ThrowGizmo.cs" Line="87" Column="16" />
+      <File FileName="Assets/Scripts/EquipmentControl/Equipment.cs" Line="26" Column="33" />
+      <File FileName="Assets/Scripts/UnitControl/CharacterConfig.cs" Line="102" Column="15" />
+      <File FileName="Assets/Scripts/UnitControl/RagDollControl.cs" Line="464" Column="35" />
+      <File FileName="Assets/Scripts/Interface/InputControl.cs" Line="51" Column="24" />
+      <File FileName="Assets/Scripts/Interface/UnitInput.cs" Line="23" Column="26" />
+      <File FileName="Assets/Scripts/Common/InputRepeater.cs" Line="33" Column="42" />
+      <File FileName="Assets/Scripts/EquipmentControl/MainWeapon.cs" Line="267" Column="5" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -26,11 +34,11 @@
             </Node>
             <Node name="Scripts" expanded="True">
               <Node name="Common" expanded="True" />
-              <Node name="EquipmentControl" expanded="True" />
-              <Node name="Interface" expanded="True" />
-              <Node name="UnitControl" expanded="True">
-                <Node name="EnemyAI.cs" selected="True" />
+              <Node name="EquipmentControl" expanded="True">
+                <Node name="MainWeapon.cs" selected="True" />
               </Node>
+              <Node name="Interface" expanded="True" />
+              <Node name="UnitControl" expanded="True" />
             </Node>
           </Node>
           <Node name="Assembly-CSharp-Editor" expanded="True">

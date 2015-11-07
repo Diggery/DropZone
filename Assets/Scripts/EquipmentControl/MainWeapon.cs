@@ -142,8 +142,17 @@ public class MainWeapon : MonoBehaviour {
 		RaycastHit hit;
 		float distanceToTarget = 0.0f;
 		Vector3 hitLocation;
-		LayerMask playerMask = 1 << LayerMask.NameToLayer("Player");
-		LayerMask ragdollMask = 1 << LayerMask.NameToLayer("PlayerRagDoll");
+		
+		LayerMask playerMask;
+		LayerMask ragdollMask;
+		if (unitController.tag.Equals("Player")) {
+			playerMask = 1 << LayerMask.NameToLayer("Player");
+			ragdollMask = 1 << LayerMask.NameToLayer("PlayerRagDoll");		
+		} else {
+			playerMask = 1 << LayerMask.NameToLayer("Enemy");
+			ragdollMask = 1 << LayerMask.NameToLayer("EnemyRagDoll");		
+		}
+	
 		LayerMask finalMask = playerMask | ragdollMask;
 		finalMask = ~finalMask;
 
@@ -264,7 +273,7 @@ public class MainWeapon : MonoBehaviour {
 		Vector3 rotVector = Vector3.forward;
 		rotVector = Quaternion.AngleAxis(Random.Range(-45, 45), Vector3.right) * rotVector;
 		GetComponent<Rigidbody>().AddRelativeTorque(rotVector  * 100);
-		//gameObject.layer = LayerMask.NameToLayer("Items");
+		gameObject.layer = LayerMask.NameToLayer("PickupItem");
 		
 	}
 
