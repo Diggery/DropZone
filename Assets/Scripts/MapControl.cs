@@ -173,6 +173,10 @@ public class MapControl : MonoBehaviour {
 	MapDataPoint GetMapData(Vector2 coor) {
 		int xPos = Mathf.FloorToInt(coor.x);
 		int yPos = Mathf.FloorToInt(coor.y);
+		int index = yPos * Mathf.FloorToInt(mapSize.x) + xPos;
+		if (index < 0 || index > mapData.Length - 1) {
+			Debug.Log ("Map Position: " + coor.x + ", " + coor.y + " is off the map");
+		}
 		return mapData[yPos * Mathf.FloorToInt(mapSize.x) + xPos];
 	}
 	

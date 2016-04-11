@@ -30,7 +30,6 @@ public class InputRepeater : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 		
 	public void OnPointerClick(PointerEventData eventData) {
 	
-		print ("Repeater on " + gameObject.name);
 		if (!target) {
 			transform.root.SendMessage("OnPointerClick", eventData, SendMessageOptions.DontRequireReceiver);
 		} else {

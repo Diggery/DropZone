@@ -32,7 +32,12 @@ public class EnemyCaptain : MonoBehaviour {
 			if (actionTimer < 0) {
 				if (squad.Count >= 3) {
 					foreach (UnitController member in squad) {
-						member.GetComponent<EnemyAI>().SearchArea();
+						EnemyAI ai = member.GetComponent<EnemyAI>();
+						if (!ai) {
+							SquadMemberDead(member);	
+							return;
+						}
+						ai.SearchArea();
 						print ("searching");
 					}
 				}
@@ -43,8 +48,6 @@ public class EnemyCaptain : MonoBehaviour {
 				actionTimer = 10f;
 			}
 		}
-	
-	
 	}
 	
 	void GatherSoldiers() {
@@ -82,6 +85,7 @@ public class EnemyCaptain : MonoBehaviour {
 	
 	public void SquadMemberDead(UnitController deadUnit) {
 		if (squad.Contains(deadUnit)) {
+			Debug.Log(deadUnit.gameObject.name + " removed from squad");
 			squad.Remove(deadUnit);
 		} else {
 			Debug.Log(deadUnit.gameObject.name + " is not a member of " + transform.name + "'s squad.");
@@ -100,8 +104,8 @@ public class EnemyCaptain : MonoBehaviour {
 		if (unitBehaviors.retreating) return;
 		print ("Retreat!!!");
 		foreach (UnitController member in squad) {
-			
-			member.GetComponent<UnitBehaviors>().FindCoverAtPosition(mainSpawner.transform.position);
+			UnitBehaviors behaviors = member.GetComponent<UnitBehaviors>();
+			if (behaviors) behaviors.FindCoverAtPosition(mainSpawner.transform.position);
 		}
 		unitBehaviors.FindCoverAtPosition(mainSpawner.transform.position);
 		unitBehaviors.retreating = true;

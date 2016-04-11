@@ -20,7 +20,6 @@ public class UnitInput : MonoBehaviour, IPointerClickHandler {
 			inputControl.UnitDoubleClicked(unitController);
 			return;
 		}
-		print ("PointerClick");
 		lastClickTime = eventData.clickTime;
 		inputControl.UnitSelected(unitController);
 	}
