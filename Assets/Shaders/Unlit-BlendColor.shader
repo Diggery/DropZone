@@ -12,7 +12,7 @@ Shader "Unlit/BlendColor" {
 		Tags {"Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Transparent"}
 		LOD 100
 	
-		ZWrite Off
+		//ZWrite Off
 		Blend SrcAlpha OneMinusSrcAlpha 
 		
 	    Pass {

@@ -1,61 +1,70 @@
 fileFormatVersion: 2
-guid: a1cd0674d493f4e0a8597d625387a2e0
+guid: 955a187d9cadf46a483a32db8693225c
+timeCreated: 1471449752
+licenseType: Pro
 ModelImporter:
-  serializedVersion: 16
+  serializedVersion: 19
   fileIDToRecycleName:
-    100000: Accept
+    100000: AcceptButton
     100002: AcceptIcon
-    100004: Cancel
-    100006: CancelIcon
-    100008: //RootNode
-    100010: Selector
-    100012: AcceptButton
-    100014: AcceptGlow
-    100016: CancelButton
-    100018: CancelGlow
-    100020: Camera
-    100022: Lamp
-    400000: Accept
+    100004: Background
+    100006: //RootNode
+    100008: Ground
+    100010: MapSelector
+    100012: nurbsCircle1
+    100014: TileControl
+    100016: pSphere1
+    100018: InnerShell
+    100020: Tile
+    100022: InnerShell1
+    100024: OuterShell
+    100026: Shell
+    400000: AcceptButton
     400002: AcceptIcon
-    400004: Cancel
-    400006: CancelIcon
-    400008: //RootNode
-    400010: Selector
-    400012: AcceptButton
-    400014: AcceptGlow
-    400016: CancelButton
-    400018: CancelGlow
-    400020: Camera
-    400022: Lamp
-    2300000: Accept
+    400004: Background
+    400006: //RootNode
+    400008: Ground
+    400010: MapSelector
+    400012: nurbsCircle1
+    400014: TileControl
+    400016: pSphere1
+    400018: InnerShell
+    400020: Tile
+    400022: InnerShell1
+    400024: OuterShell
+    400026: Shell
+    2300000: AcceptButton
     2300002: AcceptIcon
-    2300004: Cancel
-    2300006: CancelIcon
-    2300008: Selector
-    2300010: AcceptButton
-    2300012: AcceptGlow
-    2300014: CancelButton
-    2300016: CancelGlow
-    2300018: //RootNode
-    3300000: Accept
+    2300004: Background
+    2300006: //RootNode
+    2300008: Ground
+    2300010: pSphere1
+    2300012: InnerShell
+    2300014: Tile
+    2300016: InnerShell1
+    2300018: OuterShell
+    3300000: AcceptButton
     3300002: AcceptIcon
-    3300004: Cancel
-    3300006: CancelIcon
-    3300008: Selector
-    3300010: AcceptButton
-    3300012: AcceptGlow
-    3300014: CancelButton
-    3300016: CancelGlow
-    3300018: //RootNode
-    4300000: AcceptIcon
-    4300002: CancelIcon
-    4300004: Selector
-    4300006: Cancel
-    4300008: Accept
-    4300010: CancelGlow
-    4300012: AcceptGlow
-    4300014: AcceptButton
-    4300016: CancelButton
+    3300004: Background
+    3300006: //RootNode
+    3300008: Ground
+    3300010: pSphere1
+    3300012: InnerShell
+    3300014: Tile
+    3300016: InnerShell1
+    3300018: OuterShell
+    4300000: Ground
+    4300002: Background
+    4300004: AcceptButton
+    4300006: AcceptIcon
+    4300008: pSphere1
+    4300010: Tile
+    4300012: InnerShell
+    4300014: InnerShell1
+    4300016: OuterShell
+    7400000: Open
+    7400002: Close
+    7400004: Hide
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -64,19 +73,104 @@ ModelImporter:
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
+    resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
     animationCompression: 1
-    animationRotationError: .5
-    animationPositionError: .5
-    animationScaleError: .5
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Open
+      takeName: Take 001
+      firstFrame: 10
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Ground
+        weight: 1
+      - path: Ground/Background
+        weight: 1
+      - path: Ground/Background/AcceptButton
+        weight: 1
+      - path: Ground/Background/AcceptButton/AcceptIcon
+        weight: 1
+      - path: TileControl
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
+    - serializedVersion: 16
+      name: Close
+      takeName: Take 001
+      firstFrame: 30
+      lastFrame: 55
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Ground
+        weight: 1
+      - path: Ground/Background
+        weight: 1
+      - path: Ground/Background/AcceptButton
+        weight: 1
+      - path: Ground/Background/AcceptButton/AcceptIcon
+        weight: 1
+      - path: TileControl
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: .00999999978
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
@@ -84,30 +178,35 @@ ModelImporter:
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
+    keepQuads: 0
     weldVertices: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
+    useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
-    splitTangentsAcrossUV: 1
     normalImportMode: 0
-    tangentImportMode: 1
+    tangentImportMode: 3
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
     human: []
     skeleton: []
-    armTwist: .5
-    foreArmTwist: .5
-    upperLegTwist: .5
-    legTwist: .5
-    armStretch: .0500000007
-    legStretch: .0500000007
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
+    hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2
+  humanoidOversampling: 1
   additionalBone: 0
   userData: 
+  assetBundleName: 
+  assetBundleVariant: 

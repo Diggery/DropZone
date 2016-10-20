@@ -1,0 +1,167 @@
+fileFormatVersion: 2
+guid: f1596aebf76a4439d9f2f29663c4145d
+timeCreated: 1476462008
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Rig:Back_Attach
+    100004: Rig:Combot_Head_01
+    100006: Rig:Combot_LeftArm01
+    100008: Rig:Combot_Legs_01
+    100010: Rig:Combot_RightArm_01
+    100012: Rig:Combot_Torso
+    100014: Rig:Geometry
+    100016: Rig:Head_Skel
+    100018: Rig:Hips_Skel
+    100020: Rig:Holster_Attach
+    100022: Rig:LeftClav_Skel
+    100024: Rig:LeftFingers1_Skel
+    100026: Rig:LeftFingers2_Skel
+    100028: Rig:LeftFoot_Skel
+    100030: Rig:LeftHand_Attach
+    100032: Rig:LeftHand_Skel
+    100034: Rig:LeftLowerArm_Skel
+    100036: Rig:LeftLowerLeg_Skel
+    100038: Rig:LeftShoulder_Skel
+    100040: Rig:LeftThumb_Skel
+    100042: Rig:LeftToes_Skel
+    100044: Rig:LeftUpperArm_Skel
+    100046: Rig:LeftUpperLeg_Skel
+    100048: Rig:Neck_Skel
+    100050: Rig:RightClav_Skel
+    100052: Rig:RightFingers1_Skel
+    100054: Rig:RightFingers2_Skel
+    100056: Rig:RightFoot_Skel
+    100058: Rig:RightHand_Attach
+    100060: Rig:RightHand_Skel
+    100062: Rig:RightLowerArm_Skel
+    100064: Rig:RightLowerLeg_Skel
+    100066: Rig:RightShoulder_Skel
+    100068: Rig:RightThumb_Skel
+    100070: Rig:RightToes_Skel
+    100072: Rig:RightUpperArm_Skel
+    100074: Rig:RightUpperLeg_Skel
+    100076: Rig:RootMotion_Skel
+    100078: Rig:Skeleton
+    100080: Rig:Spine1_Skel
+    100082: Rig:Spine2_Skel
+    400000: //RootNode
+    400002: Rig:Back_Attach
+    400004: Rig:Combot_Head_01
+    400006: Rig:Combot_LeftArm01
+    400008: Rig:Combot_Legs_01
+    400010: Rig:Combot_RightArm_01
+    400012: Rig:Combot_Torso
+    400014: Rig:Geometry
+    400016: Rig:Head_Skel
+    400018: Rig:Hips_Skel
+    400020: Rig:Holster_Attach
+    400022: Rig:LeftClav_Skel
+    400024: Rig:LeftFingers1_Skel
+    400026: Rig:LeftFingers2_Skel
+    400028: Rig:LeftFoot_Skel
+    400030: Rig:LeftHand_Attach
+    400032: Rig:LeftHand_Skel
+    400034: Rig:LeftLowerArm_Skel
+    400036: Rig:LeftLowerLeg_Skel
+    400038: Rig:LeftShoulder_Skel
+    400040: Rig:LeftThumb_Skel
+    400042: Rig:LeftToes_Skel
+    400044: Rig:LeftUpperArm_Skel
+    400046: Rig:LeftUpperLeg_Skel
+    400048: Rig:Neck_Skel
+    400050: Rig:RightClav_Skel
+    400052: Rig:RightFingers1_Skel
+    400054: Rig:RightFingers2_Skel
+    400056: Rig:RightFoot_Skel
+    400058: Rig:RightHand_Attach
+    400060: Rig:RightHand_Skel
+    400062: Rig:RightLowerArm_Skel
+    400064: Rig:RightLowerLeg_Skel
+    400066: Rig:RightShoulder_Skel
+    400068: Rig:RightThumb_Skel
+    400070: Rig:RightToes_Skel
+    400072: Rig:RightUpperArm_Skel
+    400074: Rig:RightUpperLeg_Skel
+    400076: Rig:RootMotion_Skel
+    400078: Rig:Skeleton
+    400080: Rig:Spine1_Skel
+    400082: Rig:Spine2_Skel
+    4300000: Rig:Combot_Torso
+    4300002: Rig:Combot_Head_01
+    4300004: Rig:Combot_Legs_01
+    4300006: Rig:Combot_RightArm_01
+    4300008: Rig:Combot_LeftArm01
+    7400000: Corner_Left
+    9500000: //RootNode
+    13700000: Rig:Combot_Head_01
+    13700002: Rig:Combot_LeftArm01
+    13700004: Rig:Combot_Legs_01
+    13700006: Rig:Combot_RightArm_01
+    13700008: Rig:Combot_Torso
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: Rig:Skeleton/Rig:RootMotion_Skel
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

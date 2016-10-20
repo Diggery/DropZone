@@ -1,0 +1,650 @@
+fileFormatVersion: 2
+guid: d4df71267fc344d6fa048cc885f57473
+timeCreated: 1471131072
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Rig:Body
+    100002: Rig:Geometry
+    100004: Rig:Head_Attach
+    100006: Rig:Head_Skel
+    100008: Rig:Holster_Attach
+    100010: Rig:LeftClav_Skel
+    100012: Rig:LeftFingers1_Skel
+    100014: Rig:LeftFingers2_Skel
+    100016: Rig:LeftFoot_Skel
+    100018: Rig:LeftHand_Skel
+    100020: Rig:LeftLowerArm_Skel
+    100022: Rig:LeftLowerLeg_Skel
+    100024: Rig:LeftThumb_Skel
+    100026: Rig:LeftToe_Skel
+    100028: Rig:LeftUpperArm_Skel
+    100030: Rig:LeftUpperLeg_Skel
+    100032: Rig:Neck_Skel
+    100034: Rig:RightClav_Skel
+    100036: Rig:RightFingers1_Skel
+    100038: Rig:RightFingers2_Skel
+    100040: Rig:RightFoot_Skel
+    100042: Rig:RightHand_Attach
+    100044: Rig:RightHand_Skel
+    100046: Rig:RightLowerArm_Skel
+    100048: Rig:RightLowerLeg_Skel
+    100050: Rig:RightThumb_Skel
+    100052: Rig:RightToe_Skel
+    100054: Rig:RightUpperArm_Skel
+    100056: Rig:RightUpperLeg_Skel
+    100058: Rig:Root_Skel
+    100060: Rig:RootMotion
+    100062: Rig:Skeleton
+    100064: Rig:Spine1_Skel
+    100066: Rig:Spine2_Skel
+    100068: //RootNode
+    100070: Rig:Back_Attach
+    400000: Rig:Body
+    400002: Rig:Geometry
+    400004: Rig:Head_Attach
+    400006: Rig:Head_Skel
+    400008: Rig:Holster_Attach
+    400010: Rig:LeftClav_Skel
+    400012: Rig:LeftFingers1_Skel
+    400014: Rig:LeftFingers2_Skel
+    400016: Rig:LeftFoot_Skel
+    400018: Rig:LeftHand_Skel
+    400020: Rig:LeftLowerArm_Skel
+    400022: Rig:LeftLowerLeg_Skel
+    400024: Rig:LeftThumb_Skel
+    400026: Rig:LeftToe_Skel
+    400028: Rig:LeftUpperArm_Skel
+    400030: Rig:LeftUpperLeg_Skel
+    400032: Rig:Neck_Skel
+    400034: Rig:RightClav_Skel
+    400036: Rig:RightFingers1_Skel
+    400038: Rig:RightFingers2_Skel
+    400040: Rig:RightFoot_Skel
+    400042: Rig:RightHand_Attach
+    400044: Rig:RightHand_Skel
+    400046: Rig:RightLowerArm_Skel
+    400048: Rig:RightLowerLeg_Skel
+    400050: Rig:RightThumb_Skel
+    400052: Rig:RightToe_Skel
+    400054: Rig:RightUpperArm_Skel
+    400056: Rig:RightUpperLeg_Skel
+    400058: Rig:Root_Skel
+    400060: Rig:RootMotion
+    400062: Rig:Skeleton
+    400064: Rig:Spine1_Skel
+    400066: Rig:Spine2_Skel
+    400068: //RootNode
+    400070: Rig:Back_Attach
+    4300000: Rig:Body
+    7400000: run
+    7400002: fast_run
+    7400004: turn_right
+    7400006: turn_left
+    7400008: turn_180
+    9500000: //RootNode
+    13700000: Rig:Body
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: Rig:Skeleton/Rig:RootMotion
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: run
+      takeName: run
+      firstFrame: 1
+      lastFrame: 24
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Rig:Geometry
+        weight: 1
+      - path: Rig:Geometry/Rig:Body
+        weight: 1
+      - path: Rig:Skeleton
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Holster_Attach
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:LeftUpperLeg_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:LeftUpperLeg_Skel/Rig:LeftLowerLeg_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:LeftUpperLeg_Skel/Rig:LeftLowerLeg_Skel/Rig:LeftFoot_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:LeftUpperLeg_Skel/Rig:LeftLowerLeg_Skel/Rig:LeftFoot_Skel/Rig:LeftToe_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:RightUpperLeg_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:RightUpperLeg_Skel/Rig:RightLowerLeg_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:RightUpperLeg_Skel/Rig:RightLowerLeg_Skel/Rig:RightFoot_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:RightUpperLeg_Skel/Rig:RightLowerLeg_Skel/Rig:RightFoot_Skel/Rig:RightToe_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:Back_Attach
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:LeftClav_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:LeftClav_Skel/Rig:LeftUpperArm_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:LeftClav_Skel/Rig:LeftUpperArm_Skel/Rig:LeftLowerArm_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:LeftClav_Skel/Rig:LeftUpperArm_Skel/Rig:LeftLowerArm_Skel/Rig:LeftHand_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:LeftClav_Skel/Rig:LeftUpperArm_Skel/Rig:LeftLowerArm_Skel/Rig:LeftHand_Skel/Rig:LeftFingers1_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:LeftClav_Skel/Rig:LeftUpperArm_Skel/Rig:LeftLowerArm_Skel/Rig:LeftHand_Skel/Rig:LeftFingers1_Skel/Rig:LeftFingers2_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:LeftClav_Skel/Rig:LeftUpperArm_Skel/Rig:LeftLowerArm_Skel/Rig:LeftHand_Skel/Rig:LeftThumb_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:Neck_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:Neck_Skel/Rig:Head_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:Neck_Skel/Rig:Head_Skel/Rig:Head_Attach
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:RightClav_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:RightClav_Skel/Rig:RightUpperArm_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:RightClav_Skel/Rig:RightUpperArm_Skel/Rig:RightLowerArm_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:RightClav_Skel/Rig:RightUpperArm_Skel/Rig:RightLowerArm_Skel/Rig:RightHand_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:RightClav_Skel/Rig:RightUpperArm_Skel/Rig:RightLowerArm_Skel/Rig:RightHand_Skel/Rig:RightFingers1_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:RightClav_Skel/Rig:RightUpperArm_Skel/Rig:RightLowerArm_Skel/Rig:RightHand_Skel/Rig:RightFingers1_Skel/Rig:RightFingers2_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:RightClav_Skel/Rig:RightUpperArm_Skel/Rig:RightLowerArm_Skel/Rig:RightHand_Skel/Rig:RightHand_Attach
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:RightClav_Skel/Rig:RightUpperArm_Skel/Rig:RightLowerArm_Skel/Rig:RightHand_Skel/Rig:RightThumb_Skel
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
+    - serializedVersion: 16
+      name: fast_run
+      takeName: fast_run
+      firstFrame: 1
+      lastFrame: 24
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Rig:Geometry
+        weight: 1
+      - path: Rig:Geometry/Rig:Body
+        weight: 1
+      - path: Rig:Skeleton
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Holster_Attach
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:LeftUpperLeg_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:LeftUpperLeg_Skel/Rig:LeftLowerLeg_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:LeftUpperLeg_Skel/Rig:LeftLowerLeg_Skel/Rig:LeftFoot_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:LeftUpperLeg_Skel/Rig:LeftLowerLeg_Skel/Rig:LeftFoot_Skel/Rig:LeftToe_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:RightUpperLeg_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:RightUpperLeg_Skel/Rig:RightLowerLeg_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:RightUpperLeg_Skel/Rig:RightLowerLeg_Skel/Rig:RightFoot_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:RightUpperLeg_Skel/Rig:RightLowerLeg_Skel/Rig:RightFoot_Skel/Rig:RightToe_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:LeftClav_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:LeftClav_Skel/Rig:LeftUpperArm_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:LeftClav_Skel/Rig:LeftUpperArm_Skel/Rig:LeftLowerArm_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:LeftClav_Skel/Rig:LeftUpperArm_Skel/Rig:LeftLowerArm_Skel/Rig:LeftHand_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:LeftClav_Skel/Rig:LeftUpperArm_Skel/Rig:LeftLowerArm_Skel/Rig:LeftHand_Skel/Rig:LeftFingers1_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:LeftClav_Skel/Rig:LeftUpperArm_Skel/Rig:LeftLowerArm_Skel/Rig:LeftHand_Skel/Rig:LeftFingers1_Skel/Rig:LeftFingers2_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:LeftClav_Skel/Rig:LeftUpperArm_Skel/Rig:LeftLowerArm_Skel/Rig:LeftHand_Skel/Rig:LeftThumb_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:Neck_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:Neck_Skel/Rig:Head_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:Neck_Skel/Rig:Head_Skel/Rig:Head_Attach
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:RightClav_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:RightClav_Skel/Rig:RightUpperArm_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:RightClav_Skel/Rig:RightUpperArm_Skel/Rig:RightLowerArm_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:RightClav_Skel/Rig:RightUpperArm_Skel/Rig:RightLowerArm_Skel/Rig:RightHand_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:RightClav_Skel/Rig:RightUpperArm_Skel/Rig:RightLowerArm_Skel/Rig:RightHand_Skel/Rig:RightFingers1_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:RightClav_Skel/Rig:RightUpperArm_Skel/Rig:RightLowerArm_Skel/Rig:RightHand_Skel/Rig:RightFingers1_Skel/Rig:RightFingers2_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:RightClav_Skel/Rig:RightUpperArm_Skel/Rig:RightLowerArm_Skel/Rig:RightHand_Skel/Rig:RightHand_Attach
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:RightClav_Skel/Rig:RightUpperArm_Skel/Rig:RightLowerArm_Skel/Rig:RightHand_Skel/Rig:RightThumb_Skel
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: turn_right
+      takeName: turn_right
+      firstFrame: 24
+      lastFrame: 48
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Rig:Geometry
+        weight: 1
+      - path: Rig:Geometry/Rig:Body
+        weight: 1
+      - path: Rig:Skeleton
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Holster_Attach
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:LeftUpperLeg_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:LeftUpperLeg_Skel/Rig:LeftLowerLeg_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:LeftUpperLeg_Skel/Rig:LeftLowerLeg_Skel/Rig:LeftFoot_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:LeftUpperLeg_Skel/Rig:LeftLowerLeg_Skel/Rig:LeftFoot_Skel/Rig:LeftToe_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:RightUpperLeg_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:RightUpperLeg_Skel/Rig:RightLowerLeg_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:RightUpperLeg_Skel/Rig:RightLowerLeg_Skel/Rig:RightFoot_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:RightUpperLeg_Skel/Rig:RightLowerLeg_Skel/Rig:RightFoot_Skel/Rig:RightToe_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:Back_Attach
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:LeftClav_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:LeftClav_Skel/Rig:LeftUpperArm_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:LeftClav_Skel/Rig:LeftUpperArm_Skel/Rig:LeftLowerArm_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:LeftClav_Skel/Rig:LeftUpperArm_Skel/Rig:LeftLowerArm_Skel/Rig:LeftHand_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:LeftClav_Skel/Rig:LeftUpperArm_Skel/Rig:LeftLowerArm_Skel/Rig:LeftHand_Skel/Rig:LeftFingers1_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:LeftClav_Skel/Rig:LeftUpperArm_Skel/Rig:LeftLowerArm_Skel/Rig:LeftHand_Skel/Rig:LeftFingers1_Skel/Rig:LeftFingers2_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:LeftClav_Skel/Rig:LeftUpperArm_Skel/Rig:LeftLowerArm_Skel/Rig:LeftHand_Skel/Rig:LeftThumb_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:Neck_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:Neck_Skel/Rig:Head_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:Neck_Skel/Rig:Head_Skel/Rig:Head_Attach
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:RightClav_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:RightClav_Skel/Rig:RightUpperArm_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:RightClav_Skel/Rig:RightUpperArm_Skel/Rig:RightLowerArm_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:RightClav_Skel/Rig:RightUpperArm_Skel/Rig:RightLowerArm_Skel/Rig:RightHand_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:RightClav_Skel/Rig:RightUpperArm_Skel/Rig:RightLowerArm_Skel/Rig:RightHand_Skel/Rig:RightFingers1_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:RightClav_Skel/Rig:RightUpperArm_Skel/Rig:RightLowerArm_Skel/Rig:RightHand_Skel/Rig:RightFingers1_Skel/Rig:RightFingers2_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:RightClav_Skel/Rig:RightUpperArm_Skel/Rig:RightLowerArm_Skel/Rig:RightHand_Skel/Rig:RightHand_Attach
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:RightClav_Skel/Rig:RightUpperArm_Skel/Rig:RightLowerArm_Skel/Rig:RightHand_Skel/Rig:RightThumb_Skel
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: turn_left
+      takeName: turn_left
+      firstFrame: 49
+      lastFrame: 72
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Rig:Geometry
+        weight: 1
+      - path: Rig:Geometry/Rig:Body
+        weight: 1
+      - path: Rig:Skeleton
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Holster_Attach
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:LeftUpperLeg_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:LeftUpperLeg_Skel/Rig:LeftLowerLeg_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:LeftUpperLeg_Skel/Rig:LeftLowerLeg_Skel/Rig:LeftFoot_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:LeftUpperLeg_Skel/Rig:LeftLowerLeg_Skel/Rig:LeftFoot_Skel/Rig:LeftToe_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:RightUpperLeg_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:RightUpperLeg_Skel/Rig:RightLowerLeg_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:RightUpperLeg_Skel/Rig:RightLowerLeg_Skel/Rig:RightFoot_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:RightUpperLeg_Skel/Rig:RightLowerLeg_Skel/Rig:RightFoot_Skel/Rig:RightToe_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:Back_Attach
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:LeftClav_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:LeftClav_Skel/Rig:LeftUpperArm_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:LeftClav_Skel/Rig:LeftUpperArm_Skel/Rig:LeftLowerArm_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:LeftClav_Skel/Rig:LeftUpperArm_Skel/Rig:LeftLowerArm_Skel/Rig:LeftHand_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:LeftClav_Skel/Rig:LeftUpperArm_Skel/Rig:LeftLowerArm_Skel/Rig:LeftHand_Skel/Rig:LeftFingers1_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:LeftClav_Skel/Rig:LeftUpperArm_Skel/Rig:LeftLowerArm_Skel/Rig:LeftHand_Skel/Rig:LeftFingers1_Skel/Rig:LeftFingers2_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:LeftClav_Skel/Rig:LeftUpperArm_Skel/Rig:LeftLowerArm_Skel/Rig:LeftHand_Skel/Rig:LeftThumb_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:Neck_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:Neck_Skel/Rig:Head_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:Neck_Skel/Rig:Head_Skel/Rig:Head_Attach
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:RightClav_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:RightClav_Skel/Rig:RightUpperArm_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:RightClav_Skel/Rig:RightUpperArm_Skel/Rig:RightLowerArm_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:RightClav_Skel/Rig:RightUpperArm_Skel/Rig:RightLowerArm_Skel/Rig:RightHand_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:RightClav_Skel/Rig:RightUpperArm_Skel/Rig:RightLowerArm_Skel/Rig:RightHand_Skel/Rig:RightFingers1_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:RightClav_Skel/Rig:RightUpperArm_Skel/Rig:RightLowerArm_Skel/Rig:RightHand_Skel/Rig:RightFingers1_Skel/Rig:RightFingers2_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:RightClav_Skel/Rig:RightUpperArm_Skel/Rig:RightLowerArm_Skel/Rig:RightHand_Skel/Rig:RightHand_Attach
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:RightClav_Skel/Rig:RightUpperArm_Skel/Rig:RightLowerArm_Skel/Rig:RightHand_Skel/Rig:RightThumb_Skel
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: turn_180
+      takeName: turn_180
+      firstFrame: 73
+      lastFrame: 96
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Rig:Geometry
+        weight: 1
+      - path: Rig:Geometry/Rig:Body
+        weight: 1
+      - path: Rig:Skeleton
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Holster_Attach
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:LeftUpperLeg_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:LeftUpperLeg_Skel/Rig:LeftLowerLeg_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:LeftUpperLeg_Skel/Rig:LeftLowerLeg_Skel/Rig:LeftFoot_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:LeftUpperLeg_Skel/Rig:LeftLowerLeg_Skel/Rig:LeftFoot_Skel/Rig:LeftToe_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:RightUpperLeg_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:RightUpperLeg_Skel/Rig:RightLowerLeg_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:RightUpperLeg_Skel/Rig:RightLowerLeg_Skel/Rig:RightFoot_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:RightUpperLeg_Skel/Rig:RightLowerLeg_Skel/Rig:RightFoot_Skel/Rig:RightToe_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:Back_Attach
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:LeftClav_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:LeftClav_Skel/Rig:LeftUpperArm_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:LeftClav_Skel/Rig:LeftUpperArm_Skel/Rig:LeftLowerArm_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:LeftClav_Skel/Rig:LeftUpperArm_Skel/Rig:LeftLowerArm_Skel/Rig:LeftHand_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:LeftClav_Skel/Rig:LeftUpperArm_Skel/Rig:LeftLowerArm_Skel/Rig:LeftHand_Skel/Rig:LeftFingers1_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:LeftClav_Skel/Rig:LeftUpperArm_Skel/Rig:LeftLowerArm_Skel/Rig:LeftHand_Skel/Rig:LeftFingers1_Skel/Rig:LeftFingers2_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:LeftClav_Skel/Rig:LeftUpperArm_Skel/Rig:LeftLowerArm_Skel/Rig:LeftHand_Skel/Rig:LeftThumb_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:Neck_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:Neck_Skel/Rig:Head_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:Neck_Skel/Rig:Head_Skel/Rig:Head_Attach
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:RightClav_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:RightClav_Skel/Rig:RightUpperArm_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:RightClav_Skel/Rig:RightUpperArm_Skel/Rig:RightLowerArm_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:RightClav_Skel/Rig:RightUpperArm_Skel/Rig:RightLowerArm_Skel/Rig:RightHand_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:RightClav_Skel/Rig:RightUpperArm_Skel/Rig:RightLowerArm_Skel/Rig:RightHand_Skel/Rig:RightFingers1_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:RightClav_Skel/Rig:RightUpperArm_Skel/Rig:RightLowerArm_Skel/Rig:RightHand_Skel/Rig:RightFingers1_Skel/Rig:RightFingers2_Skel
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:RightClav_Skel/Rig:RightUpperArm_Skel/Rig:RightLowerArm_Skel/Rig:RightHand_Skel/Rig:RightHand_Attach
+        weight: 1
+      - path: Rig:Skeleton/Rig:RootMotion/Rig:Root_Skel/Rig:Spine1_Skel/Rig:Spine2_Skel/Rig:RightClav_Skel/Rig:RightUpperArm_Skel/Rig:RightLowerArm_Skel/Rig:RightHand_Skel/Rig:RightThumb_Skel
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 1
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: Rig:RootMotion
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 42b505466b86c4270b9989cc0aef3b07,
+    type: 3}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
