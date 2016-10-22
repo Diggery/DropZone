@@ -1,6 +1,6 @@
 //Maya ASCII 2016 scene
-//Name: Combot_Blank.ma
-//Last modified: Sat, Oct 22, 2016 01:09:17 PM
+//Name: Combot_StandingCover.ma
+//Last modified: Sat, Oct 22, 2016 01:09:29 PM
 //Codeset: UTF-8
 file -rdi 1 -ns "Rig" -rfn "CombotRN" -op "v=0;" -typ "mayaAscii" "/Users/briancollins/Unity/LZisHOT/MayaSource/Combot/Combot.ma";
 file -rdi 1 -ns "AssaultRifle" -rfn "AssaultRifleRN" -op "v=0;" -typ "mayaAscii"
@@ -123,7 +123,7 @@ createNode mesh -n "GroundShape" -p "Ground";
 	setAttr ".covm[0]"  0 1 1;
 	setAttr ".cdvm[0]"  0 1 1;
 createNode fosterParent -n "AssaultRifleRNfosterParent1";
-	rename -uid "3AE30F45-294B-A4EC-C2D7-93819EC999F4";
+	rename -uid "DB711B00-904A-94FC-9807-1AA49432531C";
 createNode parentConstraint -n "AssaultRifle_parentConstraint1" -p "AssaultRifleRNfosterParent1";
 	rename -uid "91F3783A-674C-5CB5-7B08-69A0E277B356";
 	addAttr -dcb 0 -ci true -k true -sn "w0" -ln "RightHand_AttachW0" -dv 1 -min 0 
@@ -1008,4 +1008,4 @@ connectAttr "checker1.msg" ":defaultTextureList1.tx" -na;
 connectAttr "directionalLight1.iog" ":defaultLightSet.dsm" -na;
 connectAttr "directionalLight2.iog" ":defaultLightSet.dsm" -na;
 connectAttr "ambientLight1.iog" ":defaultLightSet.dsm" -na;
-// End of Combot_Blank.ma
+// End of Combot_StandingCover.ma

@@ -3,10 +3,6 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Code/UnitControl/UnitMover.cs">
     <Files>
       <File FileName="Assets/Code/UnitControl/UnitMover.cs" Line="32" Column="37" />
-      <File FileName="Assets/Code/Pathfinding/Pathfinder.cs" Line="1" Column="1" />
-      <File FileName="Assets/Code/Interface/InputControl.cs" Line="1" Column="1" />
-      <File FileName="Assets/Code/Interface/MapSelector.cs" Line="1" Column="1" />
-      <File FileName="Assets/Code/Map/MapInput.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
