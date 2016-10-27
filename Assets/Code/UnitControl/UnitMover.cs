@@ -173,7 +173,7 @@ public class UnitMover : Pathfinding {
 
     void DrawPath() {
         if (Path.Count > 1 && pathLine) {
-            pathLine.DrawLine(Path);  
+            pathLine.DrawLine(Path.ToArray());  
         }
     }
 

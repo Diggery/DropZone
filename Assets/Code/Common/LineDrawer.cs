@@ -1,268 +1,224 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
-
 
 public class LineDrawer : MonoBehaviour {
-	
+
+    float lineWidth = 0.1f;
+    float dotSize = 0.5f;
+    Mesh lineMesh;
+    GameObject lineObject;
+    public Material lineMaterial;
+
+    bool clearLine;
+
+    Vector3[] waypoints;
+
     public Transform[] testPath;
-	Vector3[] waypoints;
-	public int knots;
-	public float lineStretch;
-	public float lineWidth;
-	public float tension;
-	Mesh mesh;
-	GameObject lineObject;
-	
-	bool clearLine;
-	
-	public Material lineMaterial;
-	public Color startColor = Color.white;
-	public Color endColor = Color.white;
-	
-	
-	void CreateLineObject () {
-		lineObject = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        Destroy(lineObject.GetComponent<BoxCollider>());
-		lineObject.name = transform.name + "'s curve";
-		lineObject.GetComponent<Renderer>().material = lineMaterial;
-		mesh = lineObject.GetComponent<MeshFilter>().mesh;
-	}
-	
-	void Update() {
-		if (clearLine) {
-			Color matColor = lineObject.GetComponent<Renderer>().material.color;
-			matColor.a = Mathf.Clamp01(matColor.a - Time.deltaTime);
-			if (matColor.a <= 0) {
-				mesh.Clear();
-				clearLine = false;
-				matColor.a = 1.0f;
-			}
-			lineObject.GetComponent<Renderer>().material.color = matColor;
-		}
-	}
 
+   
+    class Quad {
+        public Vector3[] verts;
+        public Vector2[] UVs;
+        public Color[] colors;
 
-    public void DrawLine(List<Vector3> nodes) {
-        if (!lineObject) CreateLineObject();
-		mesh.Clear();
-		if (nodes.Count < 1) return;
-		waypoints = new Vector3[nodes.Count];
-		
-		for (int segment = 0; segment < nodes.Count - 1; segment++) {
-			waypoints[segment] = nodes[segment];
-			Vector3 p1, p2, p3, p4;
-			
-			if (segment == 0) {
-				Vector3 offset = nodes[segment] - nodes[segment + 1];
-				p1 = nodes[segment] + offset;
-	
-			} else {
-				p1 = nodes[segment - 1];	
-			}
-
-			p2 = nodes[segment];
-			p3 = nodes[segment + 1];
-			
-			if (segment + 2 >= nodes.Count) {
-				Vector3 offset = p3 - p2;
-				p4 = p3 + offset;
-			} else {
-				p4 = nodes[segment + 2];
-			}
-			
-			p1.y += 0.1f;
-			p2.y += 0.1f;
-			p3.y += 0.1f;
-			p4.y += 0.1f;
-			
-			Vector3 lastPoint = nodes[segment] + new Vector3(0.0f, 0.1f, 0.0f);
-			
-			for (int i = 1; i < knots + 1; i++) {
-				Vector3 newPoint = Curve.GetHermitePoint(p1, p2, p3, p4, i/(float)knots, tension);
-				
-				bool isStart = (i == 1 && segment == 0) ? true : false;	
-				
-				bool isEnd =  (i == knots  && segment == nodes.Count - 2) ? true : false;
-				
-				AddLine(mesh, AddQuad(lastPoint, newPoint, lineWidth), isStart, isEnd);
-				lastPoint = newPoint;
-			}
-		}
-		setColorsAndUVs(mesh);
-		mesh.RecalculateBounds();
+        public Quad() {
+            this.verts = new Vector3[4];
+            this.UVs = new Vector2[4];
+            this.colors = new Color[4];
+        }
     }
 
-	void AddLine(Mesh mesh, Vector3[] quad, bool isStart, bool isEnd) {
-						
-		int numOfVerts = mesh.vertices.Length;
-		
-		Vector3[] verts = mesh.vertices;
-		verts = resizeVertices(verts, 4);
-		
-		Vector2[] uvs = mesh.uv;
-		uvs = resizeUVs(uvs, 4);
-		
-		Color[] colors = mesh.colors;
-		colors = resizeColors(colors, 4);
-		
-		
-		if (!isStart) {
-			quad[0] = verts[numOfVerts - 2];
-			quad[1] = verts[numOfVerts - 1];
-		}
-		
+
+    void Start() {
+    }
+
+    void Update() {
+        if (clearLine) {
+            Color matColor = lineObject.GetComponent<Renderer>().material.color;
+            matColor.a = Mathf.Clamp01(matColor.a - Time.deltaTime);
+            if (matColor.a <= 0) {
+                lineMesh.Clear();
+                clearLine = false;
+                matColor.a = 1.0f;
+            }
+            lineObject.GetComponent<Renderer>().material.color = matColor;
+        }
 	
-		verts[numOfVerts] = quad[0];
-		
-		verts[numOfVerts + 1] = quad[1];
-		
-		verts[numOfVerts + 2] = quad[2];
-		
-		verts[numOfVerts + 3] = quad[3];
-		
-		int numOfTris = 0;
-		int[] tris = new int[0];
-		
-		
-		//dont try and get the length of a mesh with no vertices
-		if (numOfVerts > 0) {
-			numOfTris = mesh.triangles.Length;		
-			tris = mesh.triangles;			
-		}	
+    }
 
-		tris = resizeTraingles(tris, 6);
-	
-		tris[numOfTris] = numOfVerts + 2;
-		tris[numOfTris+1] = numOfVerts + 1;
-		tris[numOfTris+2] = numOfVerts;
-		
-		tris[numOfTris+3] = numOfVerts + 2;
-		tris[numOfTris+4] = numOfVerts + 3;
-		tris[numOfTris+5] = numOfVerts + 1;
+    void CreateLineObject() {
+        lineObject = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        Destroy(lineObject.GetComponent<BoxCollider>());
+        lineObject.name = transform.name + "'s pathline";
+        lineObject.GetComponent<Renderer>().material = lineMaterial;
+        lineObject.transform.Translate(0.0f, 0.1f, 0.0f);
+        lineMesh = lineObject.GetComponent<MeshFilter>().mesh;
+    }
 
-		mesh.vertices = verts;
-		mesh.triangles = tris;
-		mesh.uv = uvs;
-		mesh.colors = colors;
-	}
-	
-	Vector3[] AddQuad(Vector3 start, Vector3 end, float width) {
-		
-		
-		
-		Vector3[] quad = new Vector3[4];
+    public void DrawLine(Vector3[] points) {
 
-		Vector3 offset = (start - end).normalized * width;
+        if (!lineObject)
+            CreateLineObject();
+        lineMesh.Clear();
 
-		offset = Quaternion.AngleAxis(90, Vector3.up) * offset;
-		
-	
-		quad[0] = (start + offset);
-		quad[1] = (start - offset);
-		
-		quad[2] = (end + offset);
-		quad[3] = (end - offset);
-		
-		return quad;
-	}
-	
+        waypoints = points;
+        for (int i = 0; i < waypoints.Length - 1; i++) {
+            Vector3 start = waypoints[i];
+            Vector3 end = waypoints[i + 1];
+            lineMesh = AddGeometery(lineMesh, MakeLineSegment(start, end, lineWidth));
+            lineMesh = AddGeometery(lineMesh, MakeDot(end, dotSize));
+        }
+    }
 
-	Vector3[] resizeVertices(Vector3[] oldVerts, int numAdded) {
-		//print ("resizing verts by " + numAdded);
-		Vector3[] newVerts = new Vector3[oldVerts.Length + numAdded];
-		for(int i = 0; i < oldVerts.Length; i++) newVerts[i] = oldVerts[i];
-		return newVerts;
-	}
-	
-	Vector2[] resizeUVs(Vector2[] oldUVs, int numAdded) {
-		//print ("resizing uvs by " + numAdded);
-		Vector2[] newUVs = new Vector2[oldUVs.Length + numAdded];
-		for(int i = 0; i < oldUVs.Length; i++) newUVs[i] = oldUVs[i];
-		return newUVs;
-	}
-	
-	Color[] resizeColors(Color[] oldColors, int numAdded) {
-		//print ("resizing uvs by " + numAdded);
-		Color[] newColors = new Color[oldColors.Length + numAdded];
-		for(int i = 0; i < oldColors.Length; i++) newColors[i] = oldColors[i];
-		return newColors;
-	}
-	
-	int[] resizeTraingles(int[] oldTris, int numAdded) {
-		int[] newTris = new int[oldTris.Length + numAdded];
-		for(int i = 0; i < oldTris.Length; i++) newTris[i] = oldTris[i];
-		return newTris;
-	}
-	
-	void setColorsAndUVs(Mesh mesh) {
-		int numOfVerts = mesh.vertices.Length;
-		int numOfQuads = numOfVerts / 4;
-		
-		Vector2[] uvs = mesh.uv;
-		Vector3[] verts = mesh.vertices;
-		Color[] colors = mesh.colors;
-		
-		
-		
-		// put colors and UVs through the line
-		float uvOffset = 0.0f;
-		for (int i = 0; i < numOfQuads; i++) {
-			float distanceOffset = Vector3.Distance(verts[i * 4], verts[(i * 4) + 2]) * lineStretch;
-			if (uvOffset + distanceOffset > 0.75f) uvOffset = 0.25f;
-			uvs[i * 4] 		 = new Vector2(0.0f, uvOffset);
-			colors[i * 4] = Color.Lerp(startColor, endColor, i / (float)numOfQuads);
-			uvs[(i * 4) + 1] = new Vector2(1.0f, uvOffset);
-			colors[(i * 4) + 1] = Color.Lerp(startColor, endColor, i / (float)numOfQuads);
+    Mesh AddGeometery(Mesh mesh, Quad quad) {
 
-			
-			uvOffset += distanceOffset;
+        int numOfVerts = mesh.vertices.Length;
 
-			uvs[(i * 4) + 2] = new Vector2(0.0f, uvOffset);
-			colors[(i * 4) + 2] = Color.Lerp(startColor, endColor, (i + 1)/ (float)numOfQuads);
-			uvs[(i * 4) + 3] = new Vector2(1.0f, uvOffset);
-			colors[(i * 4) + 3] = Color.Lerp(startColor, endColor, (i + 1)/ (float)numOfQuads);
-		}
+        Vector3[] verts = mesh.vertices;
+        verts = resizeVertices(verts, 4);
 
-        Color startClear = new Color(startColor.r, startColor.g, startColor.b, 0.0f);
-        colors[0] = startClear;
-        colors[1] = startClear;
+        Vector2[] uvs = mesh.uv;
+        uvs = resizeUVs(uvs, 4);
 
-        Color endClear = new Color(endColor.r, endColor.g, endColor.b, 0.0f);
-        colors[colors.Length - 2] = endClear;
-        colors[colors.Length - 1] = endClear;
-		
-		// set the UVs for the end of the line
-		uvOffset = 1.0f;
+        Color[] colors = mesh.colors;
 
-		for (int i = numOfQuads; i > 1; i--) {
+        colors = resizeColors(colors, 4);
 
-			float distanceOffset = Vector3.Distance(verts[(i * 4) - 1], verts[(i * 4) - 3]) * lineStretch;
-			
-			uvs[(i * 4) - 1] = new Vector2(1.0f, uvOffset);
-			uvs[(i * 4) - 2] = new Vector2(0.0f, uvOffset);
-			
-			uvOffset -= distanceOffset;
+        verts[numOfVerts] = quad.verts[0];
+        uvs[numOfVerts] = quad.UVs[0];
+        colors[numOfVerts] = quad.colors[0];
 
-			uvs[(i * 4) - 3] = new Vector2(1.0f, uvOffset);
-			uvs[(i * 4) - 4] = new Vector2(0.0f, uvOffset);
-			
-			if (uvOffset < 0.75f) break;
+        verts[numOfVerts + 1] = quad.verts[1];
+        uvs[numOfVerts + 1] = quad.UVs[1];
+        colors[numOfVerts + 1] = quad.colors[1];
 
-		}
-		mesh.uv = uvs;
-		mesh.colors = colors;
-	}
-	
-	public void ClearLine(bool fadeOut) {
-		if (fadeOut) {
-			clearLine = true;
-		} else {
-			mesh.Clear();
-		}
-	}
-	
-	void OnDestroy() {
-		Destroy(lineObject);
-	}
+        verts[numOfVerts + 2] = quad.verts[2];
+        uvs[numOfVerts + 2] = quad.UVs[2];
+        colors[numOfVerts + 2] = quad.colors[2];
+
+        verts[numOfVerts + 3] = quad.verts[3];
+        uvs[numOfVerts + 3] = quad.UVs[3];
+        colors[numOfVerts + 3] = quad.colors[3];
+
+        int numOfTris = 0;
+        int[] tris = new int[0];
+
+        if (numOfVerts > 0) {
+            numOfTris = mesh.triangles.Length;      
+            tris = mesh.triangles;          
+        }   
+
+        tris = resizeTraingles(tris, 6);
+
+        tris[numOfTris] = numOfVerts + 2;
+        tris[numOfTris + 1] = numOfVerts + 1;
+        tris[numOfTris + 2] = numOfVerts;
+
+        tris[numOfTris + 3] = numOfVerts + 2;
+        tris[numOfTris + 4] = numOfVerts + 3;
+        tris[numOfTris + 5] = numOfVerts + 1;
+
+        mesh.vertices = verts;
+        mesh.triangles = tris;
+        mesh.uv = uvs;
+        mesh.colors = colors;
+        return mesh;
+    }
+
+    Quad MakeLineSegment(Vector3 start, Vector3 end, float width) {
+
+        Quad quad = new Quad();
+
+        Vector3 offset = (start - end).normalized * (width * 0.5f);
+
+        offset = Quaternion.AngleAxis(90, Vector3.up) * offset;
+
+        quad.verts[0] = (start + offset);
+        quad.UVs[0] = new Vector2(0.0f, 0.0f);
+        quad.colors[0] = Color.white;
+
+        quad.verts[1] = (start - offset);
+        quad.UVs[1] = new Vector2(0.333f, 0.0f);
+        quad.colors[1] = Color.white;
+
+        quad.verts[2] = (end + offset);
+        quad.UVs[2] = new Vector2(0.0f, 1.0f);
+        quad.colors[2] = Color.white;
+
+        quad.verts[3] = (end - offset);
+        quad.UVs[3] = new Vector2(0.333f, 1.0f);
+        quad.colors[3] = Color.white;
+
+        return quad;
+    }
+
+    Quad MakeDot(Vector3 pos, float radius) {
+        
+        Quad quad = new Quad();
+
+        pos.y += 0.1f;
+
+        quad.verts[0] = pos + (Vector3.left * radius);
+        quad.UVs[0] = new Vector2(0.333f, 1.0f);
+        quad.colors[0] = Color.white;
+
+        quad.verts[1] = pos + (Vector3.back * radius);
+        quad.UVs[1] = new Vector2(0.333f, 0.0f);
+        quad.colors[1] = Color.white;
+
+        quad.verts[2] = pos + (Vector3.forward * radius);
+        quad.UVs[2] = new Vector2(1.0f, 1.0f);
+        quad.colors[2] = Color.white;
+
+        quad.verts[3] = pos + (Vector3.right * radius);
+        quad.UVs[3] = new Vector2(1.0f, 0.0f);
+        quad.colors[3] = Color.white;
+
+        return quad;    
+    }
+
+
+    Vector3[] resizeVertices(Vector3[] oldVerts, int numAdded) {
+        //print ("resizing verts by " + numAdded);
+        Vector3[] newVerts = new Vector3[oldVerts.Length + numAdded];
+        for (int i = 0; i < oldVerts.Length; i++)
+            newVerts[i] = oldVerts[i];
+        return newVerts;
+    }
+
+    Vector2[] resizeUVs(Vector2[] oldUVs, int numAdded) {
+        //print ("resizing uvs by " + numAdded);
+        Vector2[] newUVs = new Vector2[oldUVs.Length + numAdded];
+        for (int i = 0; i < oldUVs.Length; i++)
+            newUVs[i] = oldUVs[i];
+        return newUVs;
+    }
+
+    Color[] resizeColors(Color[] oldColors, int numAdded) {
+        //print ("resizing uvs by " + numAdded);
+        Color[] newColors = new Color[oldColors.Length + numAdded];
+        for (int i = 0; i < oldColors.Length; i++)
+            newColors[i] = oldColors[i];
+        return newColors;
+    }
+
+    int[] resizeTraingles(int[] oldTris, int numAdded) {
+        int[] newTris = new int[oldTris.Length + numAdded];
+        for (int i = 0; i < oldTris.Length; i++)
+            newTris[i] = oldTris[i];
+        return newTris;
+    }
+
+    public void ClearLine(bool fadeOut) {
+        if (fadeOut) {
+            clearLine = true;
+        }
+        else {
+            lineMesh.Clear();
+        }
+    }
+
+    void OnDestroy() {
+        Destroy(lineObject);
+    }
 }
