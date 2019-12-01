@@ -8,6 +8,7 @@ public class UnitControl : MonoBehaviour {
 
   public bool autoInit;
   NavMeshAgent navAgent;
+  Renderer body;
 
   bool IsMoving { get; set; }
 
@@ -33,6 +34,9 @@ public class UnitControl : MonoBehaviour {
 
   public void Init() {
     navAgent = GetComponent<NavMeshAgent>();
+    navAgent.avoidancePriority = Random.Range(0, 100);
+
+    body = transform.Find("Body").GetComponent<Renderer>();
   }
 
   void Update() {
@@ -49,5 +53,19 @@ public class UnitControl : MonoBehaviour {
   public void MoveComplete() {
     pathComplete.Invoke();
     IsMoving = false;
+  }
+
+  public void SetColor(string state) {
+    switch (state) {
+      case "Idle":
+        body.material.color = Color.gray;
+        break;
+      case "Moving":
+        body.material.color = Color.blue;
+        break;
+      case "Attacking":
+        body.material.color = Color.red;
+        break;
+    }
   }
 }

@@ -20,6 +20,7 @@ public class UnitBrain : MonoBehaviour {
         if (CurrentState) CurrentState.StateExit();
         CurrentState = states[value];
         CurrentState.StateEnter();
+        unitControl.SetColor(CurrentState.StateName);
       } else {
         Debug.Log("There is no state called " + value);
       }
@@ -40,10 +41,11 @@ public class UnitBrain : MonoBehaviour {
     navAgent = GetComponent<NavMeshAgent>();
     SqrVisualRange = visualRange * visualRange;
     unitControl.pathComplete.AddListener(MoveComplete);
-    GatherStates();
+    StartCoroutine(GatherStates());
   }
 
-  void GatherStates() {
+  IEnumerator GatherStates() {
+    yield return new WaitForEndOfFrame();
     UnitState[] newStates = GetComponents<UnitState>();
     foreach (UnitState state in newStates) {
       state.StateInit();
@@ -53,7 +55,8 @@ public class UnitBrain : MonoBehaviour {
   }
 
   void Update() {
-    CurrentState.StateUpdate();
+    if (CurrentState)
+      CurrentState.StateUpdate();
   }
 
   public void MoveTo(Vector3 mapPos) {
@@ -101,15 +104,21 @@ public class UnitBrain : MonoBehaviour {
       if (closestTarget && closestDistance < targetDistance) continue;
 
       Ray ray = new Ray(
-          transform.position + (Vector3.up * 0.75f),
+          transform.position + (Vector3.up * 1.25f),
           (target.transform.position - transform.position).normalized
-      );
-
-      if (!Physics.Raycast(ray, targetDistance, terrainMask)) {
+      ) ;
+      if (!Physics.Linecast(transform.position + (Vector3.up * 1.25f), target.transform.position + (Vector3.up * 1.25f), out RaycastHit hit, terrainMask)) { 
         closestTarget = targetControl;
         closestDistance = targetDistance;
+        if (showDebug) {
+          Debug.DrawLine(transform.position + (Vector3.up * 1.25f), target.transform.position + (Vector3.up * 1.25f), Color.green);
+
+        }
       } else {
-        if (showDebug) Debug.Log("targets is blocked by terrain");
+        if (showDebug) {
+          Debug.Log("targets is blocked by " + hit.transform.name);
+          Debug.DrawLine(transform.position + (Vector3.up * 1.25f), target.transform.position + (Vector3.up * 1.25f), Color.red);
+        }
       }
     }
     return closestTarget;
