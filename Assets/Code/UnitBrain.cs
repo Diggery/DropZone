@@ -31,7 +31,7 @@ public class UnitBrain : MonoBehaviour {
   NavMeshAgent navAgent;
 
   float visualRange = 10;
-  float SqrVisualRange { get; set;}
+  float SqrVisualRange { get; set; }
   public bool showDebug;
 
   void Start() {
@@ -63,12 +63,12 @@ public class UnitBrain : MonoBehaviour {
 
   public void MoveToSafeSpot() {
     Debug.Log("Need to move to a safe spot");
-    if (FindSafePos(transform.position, SqrVisualRange, gameObject.tag, out Vector3 safePos)) {
+    if (FindSafePos(transform.position, visualRange, gameObject.tag, out Vector3 safePos)) {
       MoveTo(safePos);
     } else {
       Debug.Log("Can't Find a safe space");
     }
-    
+
   }
 
   void MoveComplete() {
@@ -113,7 +113,6 @@ public class UnitBrain : MonoBehaviour {
       }
     }
     return closestTarget;
-
   }
 
   public bool FindSafePos(Vector3 searchPos, float searchRange, string tag, out Vector3 safePos) {
@@ -129,27 +128,39 @@ public class UnitBrain : MonoBehaviour {
     }
 
     List<MapData.MapCell> cellsInRange = mapControl.mapData.GetMapArea(searchPos, Mathf.RoundToInt(searchRange));
-    Dictionary<MapData.MapCell, float> cellsThatAreSafe = new Dictionary<MapData.MapCell, float>();
 
-    for (int i = 0; i < cellsInRange.Count; i++) {
-      if (cellsInRange[i].isCollision) continue;
+    Dictionary<MapData.MapCell, float> scoredCells = new Dictionary<MapData.MapCell, float>();
+
+    foreach (MapData.MapCell cell in cellsInRange) {
+      bool isVisible = false;
+      float cellScore = Mathf.Infinity;
+
       foreach (GameObject target in targets) {
-
-        if (!mapControl.IsPositionVisible(target.transform.position, cellsInRange[i].mapPos)) {
-          float distanceFromSearch = (cellsInRange[i].mapPos - searchPos).sqrMagnitude + Random.Range(0, SqrVisualRange);
-          float distanceFromTarget = Mathf.Max(SqrVisualRange - (cellsInRange[i].mapPos - target.transform.position).sqrMagnitude, 0);
-          cellsThatAreSafe.Add(cellsInRange[i], distanceFromSearch + distanceFromTarget);
+        if (mapControl.IsPositionVisible(target.transform.position, cell.mapPos, true)) {
+          isVisible = true;
         }
+        float distanceFromSearch = (cell.mapPos - searchPos).sqrMagnitude;
+        float distanceFromTarget = Mathf.Max(SqrVisualRange - (cell.mapPos - target.transform.position).sqrMagnitude, 0);
+        cellScore = Mathf.Min(cellScore, distanceFromSearch + distanceFromTarget);
       }
+      scoredCells.Add(cell, (isVisible || cell.isCollision) ? Mathf.Infinity : cellScore);
     }
 
-    if (cellsThatAreSafe.Count < 1) {
+    if (scoredCells.Count < 1) {
       safePos = searchPos;
       return false;
     }
+    //foreach (KeyValuePair<MapData.MapCell, float> cell in scoredCells) {
+    //  if (cell.Value > 10000) {
+    //    Debug.DrawLine(cell.Key.mapPos + Vector3.up, cell.Key.mapPos, Color.red);
+    //  } else {
+    //    Debug.DrawLine(cell.Key.mapPos + Vector3.up, cell.Key.mapPos, Color.green);
+    //  }
+    //}
 
-    var sortedCells = cellsThatAreSafe.OrderBy(element => element.Value);
-    safePos = sortedCells.First().Key.mapPos;
+    safePos = scoredCells.OrderBy(element => element.Value).First().Key.mapPos;
+   // Debug.DrawLine(safePos + (Vector3.up * 2), safePos, Color.white);
+
     return true;
   }
 }

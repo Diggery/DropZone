@@ -48,20 +48,6 @@ public class UnitState : MonoBehaviour {
     Debug.Log(gameObject.name + "------>  Exiting " + stateName + " state.");
   }
 
-  protected bool CanSeeEnemy(UnitControl target) {
-    Vector3 start = transform.position + (Vector3.up * 1.25f);
-    Vector3 end = target.transform.position + (Vector3.up * 1.25f);
-    bool canSeeEnemy = !Physics.Linecast(start, end, terrainMask);
-    Debug.DrawLine(start, end, Color.red);
-
-    return canSeeEnemy;
-  }
-
-
-
-
-
-
 private void OnCollisionEnter(Collision other) {
     UnitControl control = other.gameObject.GetComponent<UnitControl>();
   }

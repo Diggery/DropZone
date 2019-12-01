@@ -17,13 +17,9 @@ public class UnitStateIdle : UnitState {
 
   public override void StateUpdate() {
     base.StateUpdate();
-    GameObject[] playerObjs = GameObject.FindGameObjectsWithTag("Player");
-    foreach(GameObject playerObj in playerObjs) {
-      UnitControl playerControl = playerObj.GetComponent<UnitControl>();
-      if (CanSeeEnemy(playerControl)) {
-        Debug.Log(gameObject.name + " can see " + playerControl.name);
-        brain.MoveToSafeSpot();
-      }
+    UnitControl closestEnenmy = brain.ScanForTargets();
+    if (closestEnenmy) {
+      brain.MoveToSafeSpot();
     }
   }
 

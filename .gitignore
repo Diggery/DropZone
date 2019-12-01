@@ -1,13 +1,10 @@
 
 *.csproj
-
 *.sln
-
 *.unityproj
-
 Library
-
 temp
-
 Temp
 DropZone.apk
+.vs
+
