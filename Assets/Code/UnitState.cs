@@ -38,26 +38,31 @@ public class UnitState : MonoBehaviour {
 
   public virtual void StateEnter() {
     isActive = true;
-   // Debug.Log(gameObject.name + "------>  Entering " + stateName + " state.");
+    Debug.Log(gameObject.name + "------>  Entering " + stateName + " state.");
   }
 
   public virtual void StateUpdate() { }
 
   public virtual void StateExit() {
     isActive = false;
-   // Debug.Log(gameObject.name + "------>  Exiting " + stateName + " state.");
+    Debug.Log(gameObject.name + "------>  Exiting " + stateName + " state.");
   }
 
   protected bool CanSeeEnemy(UnitControl target) {
-    Vector3 dirToTarget = (target.transform.position - transform.position);
-
-    Ray ray = new Ray(transform.position + (Vector3.up * 1.25f), dirToTarget.normalized);
-    bool canSeeEnemy = !Physics.Raycast(ray, out RaycastHit hit, dirToTarget.magnitude, terrainMask);
+    Vector3 start = transform.position + (Vector3.up * 1.25f);
+    Vector3 end = target.transform.position + (Vector3.up * 1.25f);
+    bool canSeeEnemy = !Physics.Linecast(start, end, terrainMask);
+    Debug.DrawLine(start, end, Color.red);
 
     return canSeeEnemy;
   }
 
-  private void OnCollisionEnter(Collision other) {
+
+
+
+
+
+private void OnCollisionEnter(Collision other) {
     UnitControl control = other.gameObject.GetComponent<UnitControl>();
   }
 

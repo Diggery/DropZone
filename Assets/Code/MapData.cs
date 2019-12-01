@@ -36,6 +36,7 @@ public class MapData : ScriptableObject {
   [SerializeField]
   private Vector3 origin;
   public Vector3 Origin { get => origin; set => origin = value; }
+
   public int maxVisualRange = 5;
   public float SqrRange {
     get {

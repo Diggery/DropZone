@@ -10,8 +10,9 @@ public class MapControl : MonoBehaviour {
   Vector2 mapSize;
   public MapData mapData;
 
-  public static MapControl Instance { get; private set; }
-  private void CreateInstance() {
+  public static MapControl Instance { get; set; }
+
+  void Awake() {
     if (Instance == null) {
       Instance = this;
     } else {
@@ -19,10 +20,8 @@ public class MapControl : MonoBehaviour {
     }
   }
 
-  void Awake() {
-    CreateInstance();
-  }
-    
+
+
   public Vector2 GetMapSize() {
     Vector3 lowerLeftPos = lowerLeftMarker.transform.position;
     lowerLeftPos.x = Mathf.Round(lowerLeftPos.x);
@@ -53,10 +52,24 @@ public class MapControl : MonoBehaviour {
     return 0.0f;
   }
 
-  public bool IsPositionVisible(Vector3 pos1, Vector3 pos2) {
-    MapData.MapCell cell1 = mapData.GetMapCell(pos1);
-    MapData.MapCell cell2 = mapData.GetMapCell(pos2);
-    return Array.Exists(cell1.cellsVisible, element => element.Equals(cell2.id));
+  public bool IsPositionVisible(Vector3 origin, Vector3 destination, bool usePeeking = false) {
+    MapData.MapCell originCell = mapData.GetMapCell(origin);
+    MapData.MapCell destinationCell = mapData.GetMapCell(destination);
+    bool visible = Array.Exists(originCell.cellsVisible, element => element.Equals(destinationCell.id));
+    if (!visible && usePeeking && originCell.CanPeek) {
+      for (int i = 0; i < 4; i++) {
+        if (originCell.peekDirection[i]) {
+          MapData.MapCell coverPos = mapData.GetMapCell(originCell.mapPos + (Quaternion.AngleAxis(90 * i, Vector3.up) * Vector3.forward));
+          if (Array.Exists(originCell.cellsVisible, element => element.Equals(destinationCell.id))) {
+            visible = true;
+          }
+        }
+      }
+    }
+
+    return visible;
   }
+
+
 
 }
