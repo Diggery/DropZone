@@ -14,6 +14,7 @@ public class UnitStateAttacking : UnitState {
 
   public override void StateEnter() {
     base.StateEnter();
+    unitControl.MoveTo(brain.CurrentTarget.transform.position);
   }
 
   public override void StateUpdate() {

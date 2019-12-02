@@ -29,7 +29,7 @@ public class UnitBrain : MonoBehaviour {
 
   UnitControl unitControl;
   MapControl mapControl;
-  NavMeshAgent navAgent;
+  public UnitControl CurrentTarget { get; set; }
 
   float visualRange = 10;
   float SqrVisualRange { get; set; }
@@ -38,7 +38,6 @@ public class UnitBrain : MonoBehaviour {
   void Start() {
     unitControl = GetComponent<UnitControl>();
     mapControl = MapControl.Instance;
-    navAgent = GetComponent<NavMeshAgent>();
     SqrVisualRange = visualRange * visualRange;
     unitControl.pathComplete.AddListener(MoveComplete);
     StartCoroutine(GatherStates());
@@ -64,14 +63,13 @@ public class UnitBrain : MonoBehaviour {
     unitControl.MoveTo(mapPos);
   }
 
-  public void MoveToSafeSpot() {
-    Debug.Log("Need to move to a safe spot");
+  public void MoveToSafeSpot(UnitControl closestEnenmy) {
     if (FindSafePos(transform.position, visualRange, gameObject.tag, out Vector3 safePos)) {
       MoveTo(safePos);
     } else {
       Debug.Log("Can't Find a safe space");
+      AttackTarget(closestEnenmy);
     }
-
   }
 
   void MoveComplete() {
@@ -124,6 +122,11 @@ public class UnitBrain : MonoBehaviour {
     return closestTarget;
   }
 
+  public void AttackTarget(UnitControl enemy) {
+    CurrentTarget = enemy;
+    State = "Attacking";
+  }
+
   public bool FindSafePos(Vector3 searchPos, float searchRange, string tag, out Vector3 safePos) {
     GameObject[] targets;
 
@@ -148,7 +151,7 @@ public class UnitBrain : MonoBehaviour {
         if (mapControl.IsPositionVisible(target.transform.position, cell.mapPos, true)) {
           isVisible = true;
         }
-        float distanceFromSearch = (cell.mapPos - searchPos).sqrMagnitude;
+        float distanceFromSearch = (cell.mapPos - searchPos).sqrMagnitude + Random.Range(0, SqrVisualRange);
         float distanceFromTarget = Mathf.Max(SqrVisualRange - (cell.mapPos - target.transform.position).sqrMagnitude, 0);
         cellScore = Mathf.Min(cellScore, distanceFromSearch + distanceFromTarget);
       }
