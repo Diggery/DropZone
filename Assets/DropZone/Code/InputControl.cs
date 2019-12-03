@@ -16,8 +16,10 @@ public class InputControl : MonoBehaviour {
   bool mouseRightInProgress = false;
   Vector3 mouseRightDownPos = Vector3.zero;
 
-  public delegate void OnEnterModifierMode(KeyCode key);
-  public delegate void OnExitModifierMode(KeyCode key);
+  public delegate void OnModifierMode(KeyCode key, bool setting);
+  bool controlModifier = false;
+  bool altModifier = false;
+  bool shiftModifier = false;
 
 
   UnitControl selectedUnit;
@@ -28,8 +30,7 @@ public class InputControl : MonoBehaviour {
     gameManager = GameManager.Instance;
     mapSelector = GameObject.Find("MapSelector").GetComponent<MapSelector>();
 
-    OnEnterModifierMode enterModifier = new OnEnterModifierMode(onEnterModifierMode);
-    OnEnterModifierMode exitModifier = new OnEnterModifierMode(onExitModifierMode);
+    OnModifierMode setModifierMode = new OnModifierMode(onModifierMode);
   }
 
   // Update is called once per frame
@@ -79,7 +80,7 @@ public class InputControl : MonoBehaviour {
     if (Input.GetMouseButtonUp(1)) {
       mouseRightInProgress = false;
     }
-    
+
     if (Input.GetKey(KeyCode.Q)) CameraControl.Rotate(1);
     if (Input.GetKey(KeyCode.E)) CameraControl.Rotate(-1);
 
@@ -93,10 +94,18 @@ public class InputControl : MonoBehaviour {
       CameraControl.Zoom(scrollAmount);
     }
 
-    if (Input.GetKeyDown(KeyCode.LeftControl)) onEnterModifierMode(KeyCode.LeftControl);
-    if (Input.GetKeyUp(KeyCode.LeftControl)) onExitModifierMode(KeyCode.LeftControl);
-    if (Input.GetKeyDown(KeyCode.LeftAlt)) onEnterModifierMode(KeyCode.LeftAlt);
-    if (Input.GetKeyUp(KeyCode.LeftAlt)) onExitModifierMode(KeyCode.LeftControl);
+    if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl)) 
+      onModifierMode(KeyCode.LeftControl, true);
+    if (Input.GetKeyUp(KeyCode.LeftControl) || Input.GetKeyUp(KeyCode.RightControl)) 
+      onModifierMode(KeyCode.LeftControl, false);
+    if (Input.GetKeyDown(KeyCode.LeftAlt) || Input.GetKeyDown(KeyCode.RightAlt)) 
+      onModifierMode(KeyCode.LeftAlt, true);
+    if (Input.GetKeyUp(KeyCode.LeftAlt) || Input.GetKeyUp(KeyCode.RightAlt)) 
+      onModifierMode(KeyCode.LeftControl, false);
+    if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)) 
+      onModifierMode(KeyCode.LeftShift, true);
+    if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.RightShift)) 
+      onModifierMode(KeyCode.LeftShift, false);
   }
 
   public bool GetTerrainIntersection(out Vector3 mapPos) {
@@ -132,10 +141,17 @@ public class InputControl : MonoBehaviour {
     deselected.Select(false);
   }
 
-  void onEnterModifierMode(KeyCode key) {
-    Debug.Log(key + " is down");
-  }
-  void onExitModifierMode(KeyCode key) {
-    Debug.Log(key + " is up");
+  void onModifierMode(KeyCode key, bool setting) {
+    switch (key) {
+      case KeyCode.LeftControl:
+        controlModifier = setting;
+        break;
+      case KeyCode.LeftAlt:
+        shiftModifier = setting;
+        break;
+      case KeyCode.LeftShift:
+        altModifier = setting;
+        break;
+    }
   }
 }
