@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour {
 
   public UnitInventory unitInventory;
   public PrefabInventory prefabInventory;
+  public MapControl mapControl;
 
   public static GameManager Instance { get; private set; }
 
@@ -23,7 +24,6 @@ public class GameManager : MonoBehaviour {
 
   void Awake() {
     CreateInstance();
-
   }
 
   void Start() {

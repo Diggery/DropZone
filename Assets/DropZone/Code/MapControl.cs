@@ -10,6 +10,8 @@ public class MapControl : MonoBehaviour {
   Vector2 mapSize;
   public MapData mapData;
 
+  MapSelector mapSelector;
+
   public static MapControl Instance { get; set; }
 
   void Awake() {
@@ -20,7 +22,10 @@ public class MapControl : MonoBehaviour {
     }
   }
 
+  void Start() {
+    mapSelector = GameObject.Find("MapSelector").GetComponent<MapSelector>();
 
+  }
 
   public Vector2 GetMapSize() {
     Vector3 lowerLeftPos = lowerLeftMarker.transform.position;
@@ -70,6 +75,8 @@ public class MapControl : MonoBehaviour {
     return visible;
   }
 
-
+  public void SelectMapPos(Vector3 mapPos) {
+    mapSelector.SelectMapPos(mapData.GetMapCell(mapPos).mapPos);
+  }
 
 }

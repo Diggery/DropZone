@@ -8,6 +8,7 @@ public class MapSelector : MonoBehaviour {
   Material selectorMat;
   Transform fader;
   BoxCollider acceptButton;
+  Transform selectorBox;
 
   bool isOpen = false;
   public bool IsOpen {
@@ -35,13 +36,25 @@ public class MapSelector : MonoBehaviour {
     Vector3 collsionSize = acceptButton.size;
     collsionSize.z = 0.1f;
     acceptButton.size = collsionSize;
+
+    selectorBox = transform.Find("Ground/Background");
   }
 
   // Update is called once per frame
   void Update() {
-    if (Input.GetKeyDown(KeyCode.Space)) {
-      IsOpen = !IsOpen;
-    }
+
     selectorMat.color = Color.Lerp(Color.black, Color.clear, fader.localPosition.y);
+
+    float buttonHeading = Camera.main.transform.eulerAngles.y / 90;
+    buttonHeading = Mathf.Round(buttonHeading) * 90;
+
+    selectorBox.rotation = Quaternion.Lerp(selectorBox.rotation,
+        Quaternion.AngleAxis(buttonHeading + 180, Vector3.up),
+        GameTime.deltaTime * 10);
+  }
+
+  public void SelectMapPos(Vector3 mapPos) {
+    transform.position = mapPos;
+    IsOpen = true;
   }
 }

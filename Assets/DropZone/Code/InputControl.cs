@@ -5,10 +5,11 @@ using UnityEngine.EventSystems;
 
 public class InputControl : MonoBehaviour {
 
+  GameManager gameManager;
+
   Camera mainCamera;
   public CameraControl CameraControl { get; set; }
-  GameManager gameManager;
-  MapSelector mapSelector;
+  MapControl mapControl;
 
   bool mouseLeftInProgress = false;
   Vector3 mouseLeftDownPos = Vector3.zero;
@@ -28,9 +29,8 @@ public class InputControl : MonoBehaviour {
     mainCamera = Camera.main;
     CameraControl = mainCamera.transform.root.GetComponent<CameraControl>();
     gameManager = GameManager.Instance;
-    mapSelector = GameObject.Find("MapSelector").GetComponent<MapSelector>();
-
-    OnModifierMode setModifierMode = new OnModifierMode(onModifierMode);
+    mapControl = gameManager.mapControl;
+    _ = new OnModifierMode(onModifierMode);
   }
 
   // Update is called once per frame
@@ -56,7 +56,9 @@ public class InputControl : MonoBehaviour {
     }
 
     if (Input.GetMouseButtonUp(0)) {
-      if (mouseLeftInProgress) mapSelector.IsOpen = true;
+      if (mouseLeftInProgress) {  //clicked on the floor
+        mapControl.SelectMapPos(mouseLeftDownPos);
+      }
       mouseLeftInProgress = false;
     }
 
