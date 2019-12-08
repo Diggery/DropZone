@@ -55,6 +55,10 @@ public class UnitControl : MonoBehaviour {
     IsMoving = false;
   }
 
+  public void Select(bool setting) {
+
+  }
+
   public void SetColor(string state) {
     switch (state) {
       case "Idle":
