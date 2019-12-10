@@ -10,6 +10,8 @@ public class InputControl : MonoBehaviour {
   Camera mainCamera;
   public CameraControl CameraControl { get; set; }
   MapControl mapControl;
+  MapSelector mapSelector;
+  UnitSelector unitSelector;
 
   bool mouseLeftInProgress = false;
   Vector3 mouseLeftDownPos = Vector3.zero;
@@ -24,12 +26,20 @@ public class InputControl : MonoBehaviour {
 
 
   UnitControl selectedUnit;
+  public UnitControl SelectedUnit {
+    get { return selectedUnit; }
+  }
 
   void Start() {
     mainCamera = Camera.main;
     CameraControl = mainCamera.transform.root.GetComponent<CameraControl>();
     gameManager = GameManager.Instance;
     mapControl = gameManager.mapControl;
+    gameManager.inputControl = this;
+    mapSelector = Instantiate(gameManager.GetPrefab("MapSelector")).GetComponent<MapSelector>();
+    mapSelector.Init();
+    unitSelector = Instantiate(gameManager.GetPrefab("UnitSelector")).GetComponent<UnitSelector>();
+    unitSelector.Init();
     _ = new OnModifierMode(onModifierMode);
   }
 
@@ -42,12 +52,15 @@ public class InputControl : MonoBehaviour {
       eventData.position = Input.mousePosition;
       List<RaycastResult> results = new List<RaycastResult>();
       EventSystem.current.RaycastAll(eventData, results);
-      if (results[0].gameObject.tag.Equals("Floor")) {
+      GameObject clickedOn = results[0].gameObject;
+      if (clickedOn.tag.Equals("Floor")) {
         mouseLeftDownPos = Input.mousePosition;
         mouseLeftInProgress = GetTerrainIntersection(out Vector3 mapPos);
         if (mouseLeftInProgress) {
           mouseLeftDownPos = mapPos;
         }
+      } else if (clickedOn.transform.root.tag.Equals("Player")) {
+        SelectUnit(clickedOn.transform.root.GetComponent<UnitControl>());
       }
     }
 
@@ -57,7 +70,7 @@ public class InputControl : MonoBehaviour {
 
     if (Input.GetMouseButtonUp(0)) {
       if (mouseLeftInProgress) {  //clicked on the floor
-        mapControl.SelectMapPos(mouseLeftDownPos);
+        mapSelector.SelectMapPos(mapControl.GetCellPos(mouseLeftDownPos));
       }
       mouseLeftInProgress = false;
     }
@@ -96,19 +109,52 @@ public class InputControl : MonoBehaviour {
       CameraControl.Zoom(scrollAmount);
     }
 
-    if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl)) 
+    if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))
       onModifierMode(KeyCode.LeftControl, true);
-    if (Input.GetKeyUp(KeyCode.LeftControl) || Input.GetKeyUp(KeyCode.RightControl)) 
+    if (Input.GetKeyUp(KeyCode.LeftControl) || Input.GetKeyUp(KeyCode.RightControl))
       onModifierMode(KeyCode.LeftControl, false);
-    if (Input.GetKeyDown(KeyCode.LeftAlt) || Input.GetKeyDown(KeyCode.RightAlt)) 
+    if (Input.GetKeyDown(KeyCode.LeftAlt) || Input.GetKeyDown(KeyCode.RightAlt))
       onModifierMode(KeyCode.LeftAlt, true);
-    if (Input.GetKeyUp(KeyCode.LeftAlt) || Input.GetKeyUp(KeyCode.RightAlt)) 
+    if (Input.GetKeyUp(KeyCode.LeftAlt) || Input.GetKeyUp(KeyCode.RightAlt))
       onModifierMode(KeyCode.LeftControl, false);
-    if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)) 
+    if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
       onModifierMode(KeyCode.LeftShift, true);
-    if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.RightShift)) 
+    if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.RightShift))
       onModifierMode(KeyCode.LeftShift, false);
   }
+
+
+  public void SelectUnit(UnitControl selected) {
+    Debug.Log("Selecting " + selected.name);
+    if (!selected) return;
+
+    if (!selected.tag.Equals("Player")) return;
+
+    foreach (UnitControl unit in gameManager.units) {
+      if (unit != selected) unit.IsSelected = false;
+    }
+
+    if (!gameManager.units.Contains(selected)) {
+      gameManager.units.Add(selected);
+    }
+
+    mapSelector.IsOpen = false;
+    unitSelector.IsOpen = true;
+    unitSelector.transform.position = selected.transform.position;
+    selectedUnit = selected;
+    selected.IsSelected = true;
+  }
+
+  public void DeselectUnit() {
+
+  }
+
+
+  public void MoveSelectedUnit(Vector3 mapPos) {
+    if (!selectedUnit) return;
+    selectedUnit.MoveTo(mapPos);
+  }
+
 
   public bool GetTerrainIntersection(out Vector3 mapPos) {
     Ray ray = mainCamera.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0.0f));
@@ -118,30 +164,7 @@ public class InputControl : MonoBehaviour {
     return didHit;
   }
 
-  public void SelectUnit(UnitControl selected) {
-    if (!selected.tag.Equals("Friend")) return;
 
-    foreach (UnitControl unit in gameManager.units) {
-      if (unit != selected) unit.Select(false);
-    }
-
-    if (!gameManager.units.Contains(selected)) {
-      gameManager.units.Add(selected);
-    }
-
-    selectedUnit = selected;
-    selected.Select(true);
-  }
-
-  public void DeselectCluster(UnitControl deselected) {
-    if (!deselected.tag.Equals("Friend")) return;
-
-    if (!selectedUnit || selectedUnit != deselected)
-      return;
-
-    selectedUnit = null;
-    deselected.Select(false);
-  }
 
   void onModifierMode(KeyCode key, bool setting) {
     switch (key) {
@@ -156,4 +179,6 @@ public class InputControl : MonoBehaviour {
         break;
     }
   }
+
+
 }

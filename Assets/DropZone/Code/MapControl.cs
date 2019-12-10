@@ -23,8 +23,6 @@ public class MapControl : MonoBehaviour {
   }
 
   void Start() {
-    mapSelector = GameObject.Find("MapSelector").GetComponent<MapSelector>();
-
   }
 
   public Vector2 GetMapSize() {
@@ -47,16 +45,6 @@ public class MapControl : MonoBehaviour {
     return lowerLeftMarker.transform.position;
   }
 
-  public float GetHeadingFromCover(bool[] cover) {
-
-    if (cover[0]) return 180.0f;
-    if (cover[1]) return 270.0f;
-    if (cover[2]) return 0.0f;
-    if (cover[3]) return 90.0f;
-
-    return 0.0f;
-  }
-
   public bool IsPositionVisible(Vector3 origin, Vector3 destination, bool usePeeking = false) {
     MapData.MapCell originCell = mapData.GetMapCell(origin);
     MapData.MapCell destinationCell = mapData.GetMapCell(destination);
@@ -75,8 +63,17 @@ public class MapControl : MonoBehaviour {
     return visible;
   }
 
-  public void SelectMapPos(Vector3 mapPos) {
-    mapSelector.SelectMapPos(mapData.GetMapCell(mapPos).mapPos);
+  public Quaternion GetCoverOrientation(MapData.MapCell mapCell) {
+    int heading = 0;
+    if (mapCell.coverDirection[0]) heading = 0;
+    if (mapCell.coverDirection[1]) heading = 90;
+    if (mapCell.coverDirection[2]) heading = 180;
+    if (mapCell.coverDirection[3]) heading = -90;
+    return Quaternion.AngleAxis(heading, Vector3.up);
   }
 
+  public Vector3 GetCellPos(Vector3 position) {
+    
+    return mapData.GetMapCell(position).mapPos;
+  }
 }

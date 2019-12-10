@@ -28,7 +28,7 @@ public class MapData : ScriptableObject {
       get { return peekDirection[0] || peekDirection[1] || peekDirection[2] || peekDirection[3]; }
     }
   }
-
+       
   [SerializeField]
   private Vector3 size;
   public Vector3 Size { get => size; set => size = value; }

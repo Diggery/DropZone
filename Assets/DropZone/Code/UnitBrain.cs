@@ -20,7 +20,6 @@ public class UnitBrain : MonoBehaviour {
         if (CurrentState) CurrentState.StateExit();
         CurrentState = states[value];
         CurrentState.StateEnter();
-        unitControl.SetColor(CurrentState.StateName);
       } else {
         Debug.Log("There is no state called " + value);
       }
