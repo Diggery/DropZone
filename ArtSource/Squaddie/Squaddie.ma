@@ -1,6 +1,6 @@
 //Maya ASCII 2019 scene
 //Name: Squaddie.ma
-//Last modified: Tue, Dec 10, 2019 02:56:26 PM
+//Last modified: Tue, Dec 10, 2019 09:16:36 PM
 //Codeset: UTF-8
 requires maya "2019";
 requires "mtoa" "3.1.2";
@@ -14,13 +14,13 @@ fileInfo "osv" "Mac OS X 10.14.6";
 createNode transform -s -n "persp";
 	rename -uid "8AE88FE5-9E4F-A651-C284-2B9D0B3AEE5A";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" 68.619742738732384 153.80637602111565 40.325338377624362 ;
-	setAttr ".r" -type "double3" 320.06164727125673 -1072.5999999993078 0 ;
+	setAttr ".t" -type "double3" -302.57613180448408 845.92000847261136 939.18627244087986 ;
+	setAttr ".r" -type "double3" 324.26164727125672 -1101.3999999993077 1.7080365254482608e-15 ;
 createNode camera -s -n "perspShape" -p "persp";
 	rename -uid "F24A7375-4A47-D9F6-FAB3-65BE38EF56BB";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999986;
-	setAttr ".coi" 47.730523198980919;
+	setAttr ".coi" 1237.4145306732512;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
