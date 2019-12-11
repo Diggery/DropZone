@@ -1688,6 +1688,7 @@ MonoBehaviour:
   prefabInventory: {fileID: 11400000, guid: d04b7692b0c474b4989f08f9a4ecb138, type: 2}
   mapControl: {fileID: 187577066}
   inputControl: {fileID: 0}
+  uiLayout: {fileID: 0}
   units: []
 --- !u!114 &1231308509
 MonoBehaviour:

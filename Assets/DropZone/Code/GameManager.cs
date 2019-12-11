@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour {
   public PrefabInventory prefabInventory;
   public MapControl mapControl;
   public InputControl inputControl;
+  public UILayout uiLayout;
 
   public static GameManager Instance { get; private set; }
 
@@ -30,7 +31,6 @@ public class GameManager : MonoBehaviour {
   void Start() {
     gameObject.AddComponent<InputControl>();
     SceneManager.LoadScene("UILayout", LoadSceneMode.Additive);
-
   }
 
   public GameObject GetPrefab(string name) {
@@ -39,6 +39,10 @@ public class GameManager : MonoBehaviour {
 
   public MapData.MapCell GetMapCell(Vector3 mapPos) {
     return mapControl.mapData.GetMapCell(mapPos);
+  }
+
+  public void SetUI(UILayout newUI) {
+    uiLayout = newUI;
   }
 
 }
