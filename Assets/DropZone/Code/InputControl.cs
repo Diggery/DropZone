@@ -70,7 +70,9 @@ public class InputControl : MonoBehaviour {
 
     if (Input.GetMouseButtonUp(0)) {
       if (mouseLeftInProgress) {  //clicked on the floor
-        mapSelector.SelectMapPos(mapControl.GetCellPos(mouseLeftDownPos));
+        if (selectedUnit) {
+          mapSelector.SelectMapPos(mapControl.GetCellPos(mouseLeftDownPos));
+        }
       }
       mouseLeftInProgress = false;
     }

@@ -7,17 +7,16 @@ using UnityEngine.SceneManagement;
 public class UILayout : MonoBehaviour {
 
   Button confirmButton;
-  void Start() {
+  GameManager gameManager;
 
-    confirmButton = transform.Find("ConfirmButton").GetComponent<Button>();
-    confirmButton.onClick.AddListener(OnConfirm);
+  void Start() {
+    gameManager = GameManager.Instance;
+    gameManager.SetUI(this);
   }
 
   void Update() {
 
   }
 
-  void OnConfirm() {
-    Debug.Log("Confirmed");
-  }
+
 }
