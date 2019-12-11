@@ -13,7 +13,7 @@ public class EnemyManager : MonoBehaviour
       spawners.Add(spawnerObj.GetComponent<Spawner>());
     }
 
-    Invoke("SpawnStuff", 5);
+   // Invoke("SpawnStuff", 5);
   }
 
   void SpawnStuff() {

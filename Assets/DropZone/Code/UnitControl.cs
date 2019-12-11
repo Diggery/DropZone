@@ -6,11 +6,22 @@ using UnityEngine.Events;
 
 public class UnitControl : MonoBehaviour {
 
+  GameManager gameManager;
+
+
   public bool autoInit;
   NavMeshAgent navAgent;
-  Renderer body;
 
   bool IsMoving { get; set; }
+
+  bool isSelected = false;
+  public bool IsSelected {
+    get { return isSelected; } 
+    set {
+      Debug.Log(gameObject.name + " is Selected");
+      isSelected = value; 
+    } 
+  }
 
   [HideInInspector]
   public UnityEvent pathComplete = new UnityEvent();
@@ -33,10 +44,10 @@ public class UnitControl : MonoBehaviour {
   }
 
   public void Init() {
+    gameManager = GameManager.Instance;
     navAgent = GetComponent<NavMeshAgent>();
     navAgent.avoidancePriority = Random.Range(0, 100);
 
-    body = transform.Find("Body").GetComponent<Renderer>();
   }
 
   void Update() {
@@ -51,25 +62,11 @@ public class UnitControl : MonoBehaviour {
   }
 
   public void MoveComplete() {
+    Quaternion newOrientation = gameManager.mapControl.GetCoverOrientation(gameManager.GetMapCell(transform.position));
     pathComplete.Invoke();
     IsMoving = false;
+    Debug.Log("Move Complete");
+    transform.rotation = newOrientation;
   }
 
-  public void Select(bool setting) {
-
-  }
-
-  public void SetColor(string state) {
-    switch (state) {
-      case "Idle":
-        body.material.color = Color.gray;
-        break;
-      case "Moving":
-        body.material.color = Color.blue;
-        break;
-      case "Attacking":
-        body.material.color = Color.red;
-        break;
-    }
-  }
 }
