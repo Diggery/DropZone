@@ -1,6 +1,6 @@
 //Maya ASCII 2019 scene
 //Name: Squaddie.ma
-//Last modified: Tue, Dec 10, 2019 09:16:36 PM
+//Last modified: Wed, Dec 11, 2019 07:57:50 AM
 //Codeset: UTF-8
 requires maya "2019";
 requires "mtoa" "3.1.2";
@@ -7426,25 +7426,25 @@ createNode parentConstraint -n "Hips_Skel_parentConstraint1" -p "Hips_Skel";
 	setAttr ".rsrr" -type "double3" -6.3611093629270335e-15 0 0 ;
 	setAttr -k on ".w0";
 createNode lightLinker -s -n "lightLinker1";
-	rename -uid "998322B7-2D41-F182-BE45-0C9B16F1C5D9";
+	rename -uid "4DEC9AA7-C14D-96A9-255C-4392DD679525";
 	setAttr -s 6 ".lnk";
 	setAttr -s 6 ".slnk";
 createNode displayLayerManager -n "layerManager";
-	rename -uid "DC2291DA-0F42-1FC2-51E3-3ABB4717C0B9";
+	rename -uid "432599F7-CD45-E2DF-891F-5184BDA71466";
 	setAttr ".cdl" 3;
 	setAttr -s 4 ".dli[1:3]"  1 2 3;
 	setAttr -s 4 ".dli";
 createNode displayLayer -n "defaultLayer";
 	rename -uid "283C8D76-A342-998C-731F-A3AB9024D1F2";
 createNode renderLayerManager -n "renderLayerManager";
-	rename -uid "3690A694-DE42-02B5-F841-EAA22F119CA9";
+	rename -uid "060540A0-904E-D0E9-7C14-DAA228B0F2E1";
 createNode renderLayer -n "defaultRenderLayer";
 	rename -uid "6BB97606-2E4D-EBDC-66FC-AEA2A9E69C8B";
 	setAttr ".g" yes;
 createNode shapeEditorManager -n "shapeEditorManager";
-	rename -uid "F1749E7B-CB4B-4982-89A8-4CB502DAD7C3";
+	rename -uid "97EB7F77-0946-93FC-9FFE-8EA423066173";
 createNode poseInterpolatorManager -n "poseInterpolatorManager";
-	rename -uid "FA8A79C5-D545-641D-5213-A48E1B14CC7C";
+	rename -uid "217E6289-F64A-58B0-EC8B-C9ADAB919FBC";
 createNode shadingEngine -n "lambert2SG";
 	rename -uid "F319B0CC-944F-80D3-D5F9-398431F8A238";
 	setAttr ".ihi" 0;
@@ -9530,6 +9530,7 @@ createNode displayLayer -n "Control_Layer";
 	setAttr ".do" 2;
 createNode displayLayer -n "Skeleton_Layer";
 	rename -uid "B5895229-5146-A565-79EB-909F2E863A5B";
+	setAttr ".v" no;
 	setAttr ".do" 3;
 createNode objectSet -n "ExportSet";
 	rename -uid "B7E72BA4-2449-4ACF-7B18-E3B11E0DD1FB";
