@@ -21,7 +21,7 @@ public class UnitIK : MonoBehaviour {
   
   private void OnAnimatorIK(int layerIndex) {
     if (!weapon) return;
-    if (!unitControl.currentTarget) return;
+    if (!unitControl.HasTarget) return;
 
     lookPosition = unitControl.CurrentTargetPos;
 

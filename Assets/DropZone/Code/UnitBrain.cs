@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class UnitBrain : MonoBehaviour {
-
+  public bool isBrainDead = false;
   Dictionary<string, UnitState> states = new Dictionary<string, UnitState>();
   public UnitState CurrentState { get; set; }
   public string State {
@@ -53,6 +53,8 @@ public class UnitBrain : MonoBehaviour {
   }
 
   void Update() {
+    if (isBrainDead) return;
+    
     if (CurrentState)
       CurrentState.StateUpdate();
   }

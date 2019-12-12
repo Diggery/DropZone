@@ -12,17 +12,21 @@ public class UnitControl : MonoBehaviour {
   Animator animator;
   UnitIK unitIK;
 
-  public UnitControl currentTarget;
+  TargetControl targetControl;
+
+  public bool HasTarget {
+    get { return targetControl.CurrentTarget; }
+  }
   public Vector3 CurrentTargetPos {
-    get { return currentTarget.transform.position; }
+    get { return targetControl.CurrentTarget.transform.position; }
   }
 
   Dictionary<string, Transform> attachPoints = new Dictionary<string, Transform>();
 
   bool isMoving;
   bool IsMoving {
-    get { 
-      return isMoving; 
+    get {
+      return isMoving;
     }
     set {
       isMoving = value;
@@ -30,13 +34,24 @@ public class UnitControl : MonoBehaviour {
     }
   }
 
+  bool inCover = false;
+  bool InCover {
+    get {
+      return inCover;
+    }
+    set {
+      inCover = value;
+      animator.SetBool("InCover", inCover);
+    }
+  }
+
   bool isSelected = false;
   public bool IsSelected {
-    get { return isSelected; } 
+    get { return isSelected; }
     set {
       Debug.Log(gameObject.name + " is Selected");
-      isSelected = value; 
-    } 
+      isSelected = value;
+    }
   }
 
   [HideInInspector]
@@ -56,7 +71,7 @@ public class UnitControl : MonoBehaviour {
   }
 
   void Start() {
-    if (autoInit) Init();
+    if (autoInit)Init();
   }
 
   public void Init() {
@@ -65,7 +80,7 @@ public class UnitControl : MonoBehaviour {
     navAgent.avoidancePriority = Random.Range(0, 100);
     animator = GetComponent<Animator>();
     unitIK = GetComponent<UnitIK>().Init();
-
+    targetControl = gameObject.AddComponent<TargetControl>();
     gameObject.GetComponent<CharacterSetup>().Init();
   }
 
@@ -81,10 +96,12 @@ public class UnitControl : MonoBehaviour {
   }
 
   public void MoveComplete() {
-    Quaternion newOrientation = gameManager.mapControl.GetCoverOrientation(gameManager.GetMapCell(transform.position));
+    MapData.MapCell mapCell = gameManager.GetMapCell(transform.position);
+    Quaternion newOrientation = gameManager.mapControl.GetCoverOrientation(mapCell);
     pathComplete.Invoke();
+    InCover = mapCell.HasCover;
     IsMoving = false;
-    Debug.Log("Move Complete");
+    Debug.Log("Move Complete, in cover:  " + InCover);
     transform.rotation = newOrientation;
   }
 
