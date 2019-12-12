@@ -13,6 +13,7 @@ public class MapSelector : MonoBehaviour {
   NavMeshPath path;
   LineRenderer line;
   RectTransform confirmLabel;
+  Transform frame;
   Camera mainCamera;
   Vector2 UISize;
 
@@ -42,6 +43,7 @@ public class MapSelector : MonoBehaviour {
     gameManager = GameManager.Instance;
     inputControl = gameManager.inputControl;
     panel = transform.Find("CoverPanel").GetComponent<Renderer>();
+    frame = transform.Find("Frame");
     path = new NavMeshPath();
     line = transform.Find("Line").GetComponent<LineRenderer>();
 
@@ -102,6 +104,7 @@ public class MapSelector : MonoBehaviour {
   void OnLabelLerp(float amount) {
     if (!confirmLabel.gameObject.activeSelf) confirmLabel.gameObject.SetActive(true);
     confirmLabel.localScale = Vector2.Lerp(Vector2.zero, Vector2.one, amount);
+    frame.localPosition = Vector3.Lerp(Vector3.up * -2, Vector3.up * 0.95f, amount);
   }
 
   void OnLabelFinish(bool reverse) {

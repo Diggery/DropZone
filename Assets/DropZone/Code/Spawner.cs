@@ -35,7 +35,7 @@ public class Spawner : MonoBehaviour {
  
   GameObject CreateUnit(string unitName, Vector3 pos, Quaternion rot) {
 
-    GameObject prefab = gameManager.unitInventory.GetUnitPrefab(unitName);
+    GameObject prefab = gameManager.characterInventory.GetCharacter(unitName).prefab;
     GameObject newUnit = GameObject.Instantiate(prefab, pos, rot);
     newUnit.GetComponent<UnitControl>().Init();
     spawnQueue--;

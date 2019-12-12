@@ -142,7 +142,7 @@ public class InputControl : MonoBehaviour {
 
     mapSelector.IsOpen = false;
     unitSelector.IsOpen = true;
-    unitSelector.transform.position = selected.transform.position;
+    unitSelector.SelectedUnit = selected.transform;
     selectedUnit = selected;
     selected.IsSelected = true;
   }

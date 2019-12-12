@@ -9,11 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e24053f449864534ea33f31029bb703e, type: 3}
-  m_Name: UnitInventory
+  m_Script: {fileID: 11500000, guid: db38e4bec08b6894f8de9878a93cffcd, type: 3}
+  m_Name: CharacterInventory
   m_EditorClassIdentifier: 
-  units:
-  - name: Human
-    prefab: {fileID: 5125207795106340619, guid: 6621a7c1fc98e554ca62d919bd3d96ae,
+  characters:
+  - name: Captain Bob
+    prefab: {fileID: 1506360018236373272, guid: 11917e493b9b1f7448b1c059744fbf0b,
       type: 3}
-    variants: []
+    mainWeapon: MkII
+    sideArm: Mac10

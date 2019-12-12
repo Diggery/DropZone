@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour {
 
 
-  public UnitInventory unitInventory;
+  public CharacterInventory characterInventory;
+  public PrefabInventory weaponInventory;
   public PrefabInventory prefabInventory;
   public MapControl mapControl;
   public InputControl inputControl;
@@ -35,6 +36,10 @@ public class GameManager : MonoBehaviour {
 
   public GameObject GetPrefab(string name) {
     return prefabInventory.GetPrefab(name);
+  }
+
+  public GameObject GetWeapon(string name) {
+    return weaponInventory.GetPrefab(name);
   }
 
   public MapData.MapCell GetMapCell(Vector3 mapPos) {

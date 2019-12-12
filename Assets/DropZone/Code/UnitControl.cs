@@ -7,12 +7,28 @@ using UnityEngine.Events;
 public class UnitControl : MonoBehaviour {
 
   GameManager gameManager;
-
-
   public bool autoInit;
   NavMeshAgent navAgent;
+  Animator animator;
+  UnitIK unitIK;
 
-  bool IsMoving { get; set; }
+  public UnitControl currentTarget;
+  public Vector3 CurrentTargetPos {
+    get { return currentTarget.transform.position; }
+  }
+
+  Dictionary<string, Transform> attachPoints = new Dictionary<string, Transform>();
+
+  bool isMoving;
+  bool IsMoving {
+    get { 
+      return isMoving; 
+    }
+    set {
+      isMoving = value;
+      animator.SetBool("IsMoving", isMoving);
+    }
+  }
 
   bool isSelected = false;
   public bool IsSelected {
@@ -47,7 +63,10 @@ public class UnitControl : MonoBehaviour {
     gameManager = GameManager.Instance;
     navAgent = GetComponent<NavMeshAgent>();
     navAgent.avoidancePriority = Random.Range(0, 100);
+    animator = GetComponent<Animator>();
+    unitIK = GetComponent<UnitIK>().Init();
 
+    gameObject.GetComponent<CharacterSetup>().Init();
   }
 
   void Update() {
@@ -69,4 +88,14 @@ public class UnitControl : MonoBehaviour {
     transform.rotation = newOrientation;
   }
 
+  public bool EquipMainWeapon(Weapon weapon) {
+    weapon.Init(animator.GetBoneTransform(HumanBodyBones.Chest), attachPoints["RightHand"]);
+    unitIK.EquippedWeapon = weapon;
+    return true;
+  }
+
+  public void SetAttachPoint(string name, Transform point) {
+    if (!attachPoints.ContainsKey(name))
+      attachPoints.Add(name, point);
+  }
 }
