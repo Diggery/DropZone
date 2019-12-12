@@ -9,14 +9,18 @@ public class MapSelector : MonoBehaviour {
 
   InputControl inputControl;
   GameManager gameManager;
-
+  Renderer panel;
   NavMeshPath path;
   LineRenderer line;
   RectTransform confirmLabel;
   Camera mainCamera;
   Vector2 UISize;
 
+  public Interpolator.LerpFloat panelTrans;
   public Interpolator.LerpFloat labelTrans;
+
+  [ColorUsage(true, true)]
+  public Color flashColor;
 
   bool isOpen = false;
   public bool IsOpen {
@@ -27,8 +31,8 @@ public class MapSelector : MonoBehaviour {
       if (!confirmLabel) CreateLabel();
       if (isOpen) {
         Interpolator.Start(labelTrans);
-      } else { 
-        Interpolator.Reverse(labelTrans); 
+      } else {
+        Interpolator.Reverse(labelTrans);
       }
     }
   }
@@ -37,7 +41,7 @@ public class MapSelector : MonoBehaviour {
   public MapSelector Init() {
     gameManager = GameManager.Instance;
     inputControl = gameManager.inputControl;
-
+    panel = transform.Find("CoverPanel").GetComponent<Renderer>();
     path = new NavMeshPath();
     line = transform.Find("Line").GetComponent<LineRenderer>();
 
@@ -45,7 +49,7 @@ public class MapSelector : MonoBehaviour {
 
     labelTrans.onTick = OnLabelLerp;
     labelTrans.onFinish = OnLabelFinish;
-
+    panelTrans.onTick = OnPanelLerp;
     return this;
   }
 
@@ -62,8 +66,16 @@ public class MapSelector : MonoBehaviour {
 
     transform.position = mapPos;
 
-    Quaternion newOrientation = gameManager.mapControl.GetCoverOrientation(gameManager.GetMapCell(transform.position));
+    MapData.MapCell mapCell = gameManager.GetMapCell(transform.position);
+    Quaternion newOrientation = gameManager.mapControl.GetCoverOrientation(mapCell);
     transform.rotation = newOrientation;
+
+    if (mapCell.HasCover) {
+      Interpolator.Start(panelTrans);
+      panel.enabled = true;
+    } else {
+      panel.enabled = false;
+    }
 
     IsOpen = true;
 
@@ -94,6 +106,11 @@ public class MapSelector : MonoBehaviour {
 
   void OnLabelFinish(bool reverse) {
     confirmLabel.gameObject.SetActive(!reverse);
+  }
+
+  void OnPanelLerp(float amount) {
+    Color panelColor = Color.Lerp(Color.white, flashColor, amount);
+    panel.material.SetColor("_EmissionColor", panelColor);
   }
 
   public void OnConfirm() {

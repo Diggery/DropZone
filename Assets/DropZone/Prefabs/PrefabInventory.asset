@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabs:
   - name: MapSelector
-    prefab: {fileID: 745944913276671043, guid: 43e72827f433375489d541788b2e3128, type: 3}
+    prefab: {fileID: 4358802072376122310, guid: 43e72827f433375489d541788b2e3128,
+      type: 3}
   - name: UnitSelector
     prefab: {fileID: 5262079526147148651, guid: 1c1c27e4ec82ce643ad9a6dc6d7fc1c5,
       type: 3}
