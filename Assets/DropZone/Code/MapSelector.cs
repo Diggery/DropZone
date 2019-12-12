@@ -9,9 +9,7 @@ public class MapSelector : MonoBehaviour {
 
   InputControl inputControl;
   GameManager gameManager;
-  Animator animator;
-  Material selectorMat;
-  Transform fader;
+
   NavMeshPath path;
   LineRenderer line;
   RectTransform confirmLabel;
@@ -39,11 +37,6 @@ public class MapSelector : MonoBehaviour {
   public MapSelector Init() {
     gameManager = GameManager.Instance;
     inputControl = gameManager.inputControl;
-    Renderer frame = transform.Find("Frame").GetComponent<Renderer>();
-    Renderer shell = transform.Find("Shell").GetComponent<Renderer>();
-    selectorMat = Instantiate(shell.material);
-    shell.material = selectorMat;
-    frame.material = selectorMat;
 
     path = new NavMeshPath();
     line = transform.Find("Line").GetComponent<LineRenderer>();
