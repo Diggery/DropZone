@@ -575,6 +575,7 @@ MonoBehaviour:
   rightShoulderAttach: {fileID: 1820668737}
   rightHandAttach: {fileID: 2109876865}
   rightShoulderOffset: {x: 0.06, y: 0, z: 0.09}
+  weapon: {fileID: 0}
   weaponPivot: {fileID: 919081165}
   weaponGrip: {fileID: 1366624116}
   lookGoal: {fileID: 645199057}
@@ -625,6 +626,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gripPos: {x: 0, y: 0, z: 0}
   stockPos: {x: 0, y: -0.098, z: 0.267}
+  shoulderOffset: {x: 0, y: -0.02, z: 0.09}
 --- !u!1 &970853609
 GameObject:
   m_ObjectHideFlags: 0

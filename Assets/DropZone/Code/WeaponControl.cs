@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class WeaponControl : MonoBehaviour {
   Transform grip;
-  public Vector3 gripPos = Vector3.zero;
-  public Vector3 stockPos = Vector3.zero;
+  public Vector3 gripOffset = Vector3.zero;
+  public Vector3 stockOffset = Vector3.zero;
   public Vector3 shoulderOffset = Vector3.zero;
 
-  Transform shoulder;
-  Transform hand;
+  Transform stockPivot;
+  Transform gripPivot;
 
   float blendAmount;
   public float GripBlend {
@@ -22,18 +22,25 @@ public class WeaponControl : MonoBehaviour {
   public Vector3 LookPos {
     set { lookPos = value; }
   }
-  public void Init(Transform shoulderAttach, Transform handAttach) {
+  public void Init(Transform stockPivot, Transform gripPivot) {
     grip = transform.GetChild(0);
-    shoulder = shoulderAttach;
-    hand = handAttach;
+    this.stockPivot = stockPivot;
+    this.gripPivot = gripPivot;
   }
 
   void Update() {
-    Vector3 weaponLookPosition = shoulder.position + shoulderOffset;
-    Quaternion weaponLookRotation = Quaternion.LookRotation((lookPos - transform.position).normalized);
 
-    grip.localPosition = Vector3.Lerp(gripPos, stockPos, blendAmount);
-    transform.position = Vector3.Lerp(hand.position, weaponLookPosition, blendAmount);
-    transform.rotation = Quaternion.Lerp(hand.rotation, weaponLookRotation, blendAmount);
+    if (blendAmount > 0) {
+      Vector3 weaponLookPosition = stockPivot.TransformPoint(shoulderOffset);
+      Quaternion weaponLookRotation = Quaternion.LookRotation((lookPos - transform.position).normalized);
+      grip.localPosition = Vector3.Lerp(gripOffset, stockOffset, blendAmount);
+      transform.position = Vector3.Lerp(gripPivot.position, weaponLookPosition, blendAmount);
+      transform.rotation = Quaternion.Lerp(gripPivot.rotation, weaponLookRotation, blendAmount);
+    } else {
+      grip.localPosition = gripOffset;
+      transform.position = gripPivot.position;
+      transform.rotation = gripPivot.rotation;
+    }
+
   }
 }

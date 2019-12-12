@@ -20,7 +20,7 @@ public class IKControl : MonoBehaviour {
     animator = GetComponent<Animator>();
     helmet.SetParent(head);
     weapon = weaponPivot.GetComponent<WeaponControl>();
-    weapon.Init(rightShoulderAttach, rightHandAttach);
+    weapon.Init(animator.GetBoneTransform(HumanBodyBones.Chest), rightHandAttach);
 
   }
 
@@ -41,6 +41,7 @@ public class IKControl : MonoBehaviour {
 
     animator.SetLookAtWeight(blendAmount, blendAmount * 0.5f);
     animator.SetLookAtPosition(lookGoal.position);
+
     weapon.GripBlend = blendAmount;
     weapon.LookPos = lookGoal.position;
   }
