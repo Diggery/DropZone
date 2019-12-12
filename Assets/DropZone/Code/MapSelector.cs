@@ -25,11 +25,8 @@ public class MapSelector : MonoBehaviour {
     get { return isOpen; }
     set {
       isOpen = value;
-      animator.SetBool("Open", isOpen);
       line.enabled = isOpen;
-
       if (!confirmLabel) CreateLabel();
-
       if (isOpen) {
         Interpolator.Start(labelTrans);
       } else { 
@@ -42,15 +39,11 @@ public class MapSelector : MonoBehaviour {
   public MapSelector Init() {
     gameManager = GameManager.Instance;
     inputControl = gameManager.inputControl;
-    animator = GetComponent<Animator>();
-    Renderer shell = transform.Find("Ground/OuterShell").GetComponent<Renderer>();
-    Renderer background = transform.Find("Ground/Background").GetComponent<Renderer>();
-    Renderer tile = transform.Find("Ground/Tile").GetComponent<Renderer>();
+    Renderer frame = transform.Find("Frame").GetComponent<Renderer>();
+    Renderer shell = transform.Find("Shell").GetComponent<Renderer>();
     selectorMat = Instantiate(shell.material);
     shell.material = selectorMat;
-    background.material = selectorMat;
-    tile.material = selectorMat;
-    fader = transform.Find("TileControl");
+    frame.material = selectorMat;
 
     path = new NavMeshPath();
     line = transform.Find("Line").GetComponent<LineRenderer>();
@@ -64,8 +57,6 @@ public class MapSelector : MonoBehaviour {
   }
 
   void Update() {
-
-    selectorMat.color = Color.Lerp(Color.black, Color.clear, fader.localPosition.y);
 
     if (isOpen) {
       Vector3 viewPos = mainCamera.WorldToViewportPoint(transform.position + (Vector3.up * 2));

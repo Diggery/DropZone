@@ -1,6 +1,6 @@
 //Maya ASCII 2019 scene
 //Name: Squaddie_Idles.ma
-//Last modified: Wed, Dec 11, 2019 04:11:08 PM
+//Last modified: Wed, Dec 11, 2019 06:58:39 PM
 //Codeset: UTF-8
 requires "fbxmaya" "2019.2";
 file -rdi 1 -ns "Squaddie" -rfn "SquaddieRN" -op "v=0;" -typ "mayaAscii" "/Users/briancollins/Unity/DropZone/ArtSource/Squaddie/Squaddie.ma";
@@ -22,13 +22,13 @@ fileInfo "osv" "Mac OS X 10.14.6";
 createNode transform -s -n "persp";
 	rename -uid "ABF7CAC9-7042-CBE0-D916-39910278FA3A";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" -59.933816391578198 275.65517736525385 408.85075169331009 ;
-	setAttr ".r" -type "double3" -29.738352729577105 -12.999999999999901 4.0802704183093851e-16 ;
+	setAttr ".t" -type "double3" -86.674726890514449 261.26287747096569 180.27895638351907 ;
+	setAttr ".r" -type "double3" -40.538352729577447 -40.60000000000008 4.1889567678088488e-15 ;
 createNode camera -s -n "perspShape" -p "persp";
 	rename -uid "3D0D0238-014B-4FD1-30CB-E49DEC31D45C";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999986;
-	setAttr ".coi" 446.14494226850525;
+	setAttr ".coi" 271.86016769169811;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
@@ -124,7 +124,7 @@ createNode mesh -n "pPlaneShape1" -p "pPlane1";
 	setAttr ".cdvm[0]"  0 1 1;
 	setAttr ".ai_translator" -type "string" "polymesh";
 createNode fosterParent -n "Weapon_MkIIRNfosterParent1";
-	rename -uid "3D086398-634E-8BDB-3C5A-75AC111D603B";
+	rename -uid "32E8D846-B147-BD14-2710-0597816D8412";
 createNode parentConstraint -n "Weapon_MkII1_parentConstraint1" -p "Weapon_MkIIRNfosterParent1";
 	rename -uid "891931CE-AC43-223A-0C60-0194AC428CA2";
 	addAttr -dcb 0 -ci true -k true -sn "w0" -ln "Attach_RightHandW0" -dv 1 -min 0 
@@ -141,315 +141,306 @@ createNode parentConstraint -n "Weapon_MkII1_parentConstraint1" -p "Weapon_MkIIR
 	setAttr -k off ".sy";
 	setAttr -k off ".sz";
 	setAttr ".erp" yes;
-	setAttr ".lr" -type "double3" -160.62110153004258 123.45622288227973 180.9414292350821 ;
+	setAttr ".lr" -type "double3" -160.62110153004261 123.45622288227973 180.94142923508201 ;
 	setAttr ".rst" -type "double3" -37.851617463984155 90.102169824606804 -10.113837720582762 ;
 	setAttr ".rsrr" -type "double3" -279.28390905197301 -25.901963470933062 -12.387353205233294 ;
 	setAttr -k on ".w0";
 createNode lightLinker -s -n "lightLinker1";
-	rename -uid "F2643CD7-6E46-A5EA-D3C6-2FA355E5B2C0";
+	rename -uid "558FE605-104C-A68D-F7F8-778FD97F4207";
 	setAttr -s 8 ".lnk";
 	setAttr -s 8 ".slnk";
 createNode displayLayerManager -n "layerManager";
-	rename -uid "2FE1FEED-9540-2C96-7A40-B485BD5DAA8F";
+	rename -uid "A3CF3294-0549-8C29-6644-D58BFC1BCD27";
 	setAttr ".cdl" 1;
 	setAttr -s 2 ".dli[1]"  1;
 	setAttr -s 2 ".dli";
 createNode displayLayer -n "defaultLayer";
 	rename -uid "3AFC2083-B947-F7A2-A1CF-8784DD7FE6BE";
 createNode renderLayerManager -n "renderLayerManager";
-	rename -uid "A3ECAA08-C34E-0795-AD35-83A50B9324C7";
+	rename -uid "8E09C010-C34F-BFEF-1E6F-549F556978B3";
 createNode renderLayer -n "defaultRenderLayer";
 	rename -uid "4F4A93B8-5947-7084-81A2-88B3C2992DDC";
 	setAttr ".g" yes;
 createNode shapeEditorManager -n "shapeEditorManager";
-	rename -uid "9278C81B-F54B-4650-EAC0-FA97DB39D080";
+	rename -uid "F6592AD5-604B-E47E-573A-24901F53A81B";
 createNode poseInterpolatorManager -n "poseInterpolatorManager";
-	rename -uid "9168C2FD-694A-391E-40CF-7589895CC94F";
+	rename -uid "836B0610-C544-9069-E78E-3DA077425CFF";
 createNode reference -n "SquaddieRN";
 	rename -uid "92FD56F0-1847-D578-2DAF-D49FE59C6074";
-	setAttr -s 279 ".phl";
-	setAttr ".phl[1]" 0;
-	setAttr ".phl[2]" 0;
-	setAttr ".phl[3]" 0;
-	setAttr ".phl[4]" 0;
-	setAttr ".phl[5]" 0;
-	setAttr ".phl[6]" 0;
-	setAttr ".phl[7]" 0;
-	setAttr ".phl[8]" 0;
-	setAttr ".phl[9]" 0;
-	setAttr ".phl[10]" 0;
-	setAttr ".phl[11]" 0;
-	setAttr ".phl[12]" 0;
-	setAttr ".phl[13]" 0;
-	setAttr ".phl[14]" 0;
-	setAttr ".phl[15]" 0;
-	setAttr ".phl[16]" 0;
-	setAttr ".phl[17]" 0;
-	setAttr ".phl[18]" 0;
-	setAttr ".phl[19]" 0;
-	setAttr ".phl[20]" 0;
-	setAttr ".phl[21]" 0;
-	setAttr ".phl[22]" 0;
-	setAttr ".phl[23]" 0;
-	setAttr ".phl[24]" 0;
-	setAttr ".phl[25]" 0;
-	setAttr ".phl[26]" 0;
-	setAttr ".phl[27]" 0;
-	setAttr ".phl[28]" 0;
-	setAttr ".phl[29]" 0;
-	setAttr ".phl[30]" 0;
-	setAttr ".phl[31]" 0;
-	setAttr ".phl[32]" 0;
-	setAttr ".phl[33]" 0;
-	setAttr ".phl[34]" 0;
-	setAttr ".phl[35]" 0;
-	setAttr ".phl[36]" 0;
-	setAttr ".phl[37]" 0;
-	setAttr ".phl[38]" 0;
-	setAttr ".phl[39]" 0;
-	setAttr ".phl[40]" 0;
-	setAttr ".phl[41]" 0;
-	setAttr ".phl[42]" 0;
-	setAttr ".phl[43]" 0;
-	setAttr ".phl[44]" 0;
-	setAttr ".phl[45]" 0;
-	setAttr ".phl[46]" 0;
-	setAttr ".phl[47]" 0;
-	setAttr ".phl[48]" 0;
-	setAttr ".phl[49]" 0;
-	setAttr ".phl[50]" 0;
-	setAttr ".phl[51]" 0;
-	setAttr ".phl[52]" 0;
-	setAttr ".phl[53]" 0;
-	setAttr ".phl[54]" 0;
-	setAttr ".phl[55]" 0;
-	setAttr ".phl[56]" 0;
-	setAttr ".phl[57]" 0;
-	setAttr ".phl[58]" 0;
-	setAttr ".phl[59]" 0;
-	setAttr ".phl[60]" 0;
-	setAttr ".phl[61]" 0;
-	setAttr ".phl[62]" 0;
-	setAttr ".phl[63]" 0;
-	setAttr ".phl[64]" 0;
-	setAttr ".phl[65]" 0;
-	setAttr ".phl[66]" 0;
-	setAttr ".phl[67]" 0;
-	setAttr ".phl[68]" 0;
-	setAttr ".phl[69]" 0;
-	setAttr ".phl[70]" 0;
-	setAttr ".phl[71]" 0;
-	setAttr ".phl[72]" 0;
-	setAttr ".phl[73]" 0;
-	setAttr ".phl[74]" 0;
-	setAttr ".phl[75]" 0;
-	setAttr ".phl[76]" 0;
-	setAttr ".phl[77]" 0;
-	setAttr ".phl[78]" 0;
-	setAttr ".phl[79]" 0;
-	setAttr ".phl[80]" 0;
-	setAttr ".phl[81]" 0;
-	setAttr ".phl[82]" 0;
-	setAttr ".phl[83]" 0;
-	setAttr ".phl[84]" 0;
-	setAttr ".phl[85]" 0;
-	setAttr ".phl[86]" 0;
-	setAttr ".phl[87]" 0;
-	setAttr ".phl[88]" 0;
-	setAttr ".phl[89]" 0;
-	setAttr ".phl[90]" 0;
-	setAttr ".phl[91]" 0;
-	setAttr ".phl[92]" 0;
-	setAttr ".phl[93]" 0;
-	setAttr ".phl[94]" 0;
-	setAttr ".phl[95]" 0;
-	setAttr ".phl[96]" 0;
-	setAttr ".phl[97]" 0;
-	setAttr ".phl[98]" 0;
-	setAttr ".phl[99]" 0;
-	setAttr ".phl[100]" 0;
-	setAttr ".phl[101]" 0;
-	setAttr ".phl[102]" 0;
-	setAttr ".phl[103]" 0;
-	setAttr ".phl[104]" 0;
-	setAttr ".phl[105]" 0;
-	setAttr ".phl[106]" 0;
-	setAttr ".phl[107]" 0;
-	setAttr ".phl[108]" 0;
-	setAttr ".phl[109]" 0;
-	setAttr ".phl[110]" 0;
+	setAttr -s 290 ".phl";
 	setAttr ".phl[111]" 0;
-	setAttr ".phl[112]" 0;
-	setAttr ".phl[113]" 0;
-	setAttr ".phl[114]" 0;
-	setAttr ".phl[115]" 0;
-	setAttr ".phl[116]" 0;
-	setAttr ".phl[117]" 0;
-	setAttr ".phl[118]" 0;
-	setAttr ".phl[119]" 0;
-	setAttr ".phl[120]" 0;
-	setAttr ".phl[121]" 0;
-	setAttr ".phl[122]" 0;
-	setAttr ".phl[123]" 0;
-	setAttr ".phl[124]" 0;
-	setAttr ".phl[125]" 0;
-	setAttr ".phl[126]" 0;
-	setAttr ".phl[127]" 0;
-	setAttr ".phl[128]" 0;
-	setAttr ".phl[129]" 0;
-	setAttr ".phl[130]" 0;
-	setAttr ".phl[131]" 0;
-	setAttr ".phl[132]" 0;
-	setAttr ".phl[133]" 0;
-	setAttr ".phl[134]" 0;
-	setAttr ".phl[135]" 0;
-	setAttr ".phl[136]" 0;
-	setAttr ".phl[137]" 0;
-	setAttr ".phl[138]" 0;
-	setAttr ".phl[139]" 0;
-	setAttr ".phl[140]" 0;
-	setAttr ".phl[141]" 0;
-	setAttr ".phl[142]" 0;
-	setAttr ".phl[143]" 0;
-	setAttr ".phl[144]" 0;
-	setAttr ".phl[145]" 0;
-	setAttr ".phl[146]" 0;
-	setAttr ".phl[147]" 0;
-	setAttr ".phl[148]" 0;
-	setAttr ".phl[149]" 0;
-	setAttr ".phl[150]" 0;
-	setAttr ".phl[151]" 0;
-	setAttr ".phl[152]" 0;
-	setAttr ".phl[153]" 0;
-	setAttr ".phl[154]" 0;
-	setAttr ".phl[155]" 0;
-	setAttr ".phl[156]" 0;
-	setAttr ".phl[157]" 0;
-	setAttr ".phl[158]" 0;
-	setAttr ".phl[159]" 0;
-	setAttr ".phl[160]" 0;
-	setAttr ".phl[161]" 0;
-	setAttr ".phl[162]" 0;
-	setAttr ".phl[163]" 0;
-	setAttr ".phl[164]" 0;
-	setAttr ".phl[165]" 0;
-	setAttr ".phl[166]" 0;
-	setAttr ".phl[167]" 0;
-	setAttr ".phl[168]" 0;
-	setAttr ".phl[169]" 0;
-	setAttr ".phl[170]" 0;
-	setAttr ".phl[171]" 0;
-	setAttr ".phl[172]" 0;
-	setAttr ".phl[173]" 0;
-	setAttr ".phl[174]" 0;
-	setAttr ".phl[175]" 0;
-	setAttr ".phl[176]" 0;
-	setAttr ".phl[177]" 0;
-	setAttr ".phl[178]" 0;
-	setAttr ".phl[179]" 0;
-	setAttr ".phl[180]" 0;
-	setAttr ".phl[181]" 0;
-	setAttr ".phl[182]" 0;
-	setAttr ".phl[183]" 0;
-	setAttr ".phl[184]" 0;
-	setAttr ".phl[185]" 0;
-	setAttr ".phl[186]" 0;
-	setAttr ".phl[187]" 0;
-	setAttr ".phl[188]" 0;
-	setAttr ".phl[189]" 0;
-	setAttr ".phl[190]" 0;
-	setAttr ".phl[191]" 0;
-	setAttr ".phl[192]" 0;
-	setAttr ".phl[193]" 0;
-	setAttr ".phl[194]" 0;
-	setAttr ".phl[195]" 0;
-	setAttr ".phl[196]" 0;
-	setAttr ".phl[197]" 0;
-	setAttr ".phl[198]" 0;
-	setAttr ".phl[199]" 0;
-	setAttr ".phl[200]" 0;
-	setAttr ".phl[201]" 0;
-	setAttr ".phl[202]" 0;
-	setAttr ".phl[203]" 0;
-	setAttr ".phl[204]" 0;
-	setAttr ".phl[205]" 0;
-	setAttr ".phl[206]" 0;
-	setAttr ".phl[207]" 0;
-	setAttr ".phl[208]" 0;
-	setAttr ".phl[209]" 0;
-	setAttr ".phl[210]" 0;
-	setAttr ".phl[211]" 0;
-	setAttr ".phl[212]" 0;
-	setAttr ".phl[213]" 0;
-	setAttr ".phl[214]" 0;
-	setAttr ".phl[215]" 0;
-	setAttr ".phl[216]" 0;
-	setAttr ".phl[217]" 0;
-	setAttr ".phl[218]" 0;
-	setAttr ".phl[219]" 0;
-	setAttr ".phl[220]" 0;
-	setAttr ".phl[221]" 0;
-	setAttr ".phl[222]" 0;
-	setAttr ".phl[223]" 0;
-	setAttr ".phl[224]" 0;
-	setAttr ".phl[225]" 0;
-	setAttr ".phl[226]" 0;
-	setAttr ".phl[227]" 0;
-	setAttr ".phl[228]" 0;
-	setAttr ".phl[229]" 0;
-	setAttr ".phl[230]" 0;
-	setAttr ".phl[231]" 0;
-	setAttr ".phl[232]" 0;
-	setAttr ".phl[233]" 0;
-	setAttr ".phl[234]" 0;
-	setAttr ".phl[235]" 0;
-	setAttr ".phl[236]" 0;
-	setAttr ".phl[237]" 0;
-	setAttr ".phl[238]" 0;
-	setAttr ".phl[239]" 0;
-	setAttr ".phl[240]" 0;
-	setAttr ".phl[241]" 0;
-	setAttr ".phl[242]" 0;
-	setAttr ".phl[243]" 0;
-	setAttr ".phl[244]" 0;
-	setAttr ".phl[245]" 0;
-	setAttr ".phl[246]" 0;
-	setAttr ".phl[247]" 0;
-	setAttr ".phl[248]" 0;
-	setAttr ".phl[249]" 0;
-	setAttr ".phl[250]" 0;
-	setAttr ".phl[251]" 0;
-	setAttr ".phl[252]" 0;
-	setAttr ".phl[253]" 0;
-	setAttr ".phl[254]" 0;
-	setAttr ".phl[255]" 0;
-	setAttr ".phl[256]" 0;
-	setAttr ".phl[257]" 0;
-	setAttr ".phl[258]" 0;
-	setAttr ".phl[259]" 0;
-	setAttr ".phl[260]" 0;
-	setAttr ".phl[261]" 0;
-	setAttr ".phl[262]" 0;
-	setAttr ".phl[263]" 0;
-	setAttr ".phl[264]" 0;
-	setAttr ".phl[265]" 0;
-	setAttr ".phl[266]" 0;
-	setAttr ".phl[267]" 0;
-	setAttr ".phl[268]" 0;
-	setAttr ".phl[269]" 0;
-	setAttr ".phl[270]" 0;
-	setAttr ".phl[271]" 0;
-	setAttr ".phl[272]" 0;
-	setAttr ".phl[273]" 0;
-	setAttr ".phl[274]" 0;
-	setAttr ".phl[275]" 0;
-	setAttr ".phl[276]" 0;
-	setAttr ".phl[277]" 0;
-	setAttr ".phl[278]" 0;
-	setAttr ".phl[279]" 0;
+	setAttr ".phl[280]" 0;
+	setAttr ".phl[281]" 0;
+	setAttr ".phl[282]" 0;
+	setAttr ".phl[283]" 0;
+	setAttr ".phl[284]" 0;
+	setAttr ".phl[285]" 0;
+	setAttr ".phl[286]" 0;
+	setAttr ".phl[287]" 0;
+	setAttr ".phl[288]" 0;
+	setAttr ".phl[289]" 0;
+	setAttr ".phl[290]" 0;
+	setAttr ".phl[291]" 0;
+	setAttr ".phl[292]" 0;
+	setAttr ".phl[293]" 0;
+	setAttr ".phl[294]" 0;
+	setAttr ".phl[295]" 0;
+	setAttr ".phl[296]" 0;
+	setAttr ".phl[297]" 0;
+	setAttr ".phl[298]" 0;
+	setAttr ".phl[299]" 0;
+	setAttr ".phl[300]" 0;
+	setAttr ".phl[301]" 0;
+	setAttr ".phl[302]" 0;
+	setAttr ".phl[303]" 0;
+	setAttr ".phl[304]" 0;
+	setAttr ".phl[305]" 0;
+	setAttr ".phl[306]" 0;
+	setAttr ".phl[307]" 0;
+	setAttr ".phl[308]" 0;
+	setAttr ".phl[309]" 0;
+	setAttr ".phl[310]" 0;
+	setAttr ".phl[311]" 0;
+	setAttr ".phl[312]" 0;
+	setAttr ".phl[313]" 0;
+	setAttr ".phl[314]" 0;
+	setAttr ".phl[315]" 0;
+	setAttr ".phl[316]" 0;
+	setAttr ".phl[317]" 0;
+	setAttr ".phl[318]" 0;
+	setAttr ".phl[319]" 0;
+	setAttr ".phl[320]" 0;
+	setAttr ".phl[321]" 0;
+	setAttr ".phl[322]" 0;
+	setAttr ".phl[323]" 0;
+	setAttr ".phl[324]" 0;
+	setAttr ".phl[325]" 0;
+	setAttr ".phl[326]" 0;
+	setAttr ".phl[327]" 0;
+	setAttr ".phl[328]" 0;
+	setAttr ".phl[329]" 0;
+	setAttr ".phl[330]" 0;
+	setAttr ".phl[331]" 0;
+	setAttr ".phl[332]" 0;
+	setAttr ".phl[333]" 0;
+	setAttr ".phl[334]" 0;
+	setAttr ".phl[335]" 0;
+	setAttr ".phl[336]" 0;
+	setAttr ".phl[337]" 0;
+	setAttr ".phl[338]" 0;
+	setAttr ".phl[339]" 0;
+	setAttr ".phl[340]" 0;
+	setAttr ".phl[341]" 0;
+	setAttr ".phl[342]" 0;
+	setAttr ".phl[343]" 0;
+	setAttr ".phl[344]" 0;
+	setAttr ".phl[345]" 0;
+	setAttr ".phl[346]" 0;
+	setAttr ".phl[347]" 0;
+	setAttr ".phl[348]" 0;
+	setAttr ".phl[349]" 0;
+	setAttr ".phl[350]" 0;
+	setAttr ".phl[351]" 0;
+	setAttr ".phl[352]" 0;
+	setAttr ".phl[353]" 0;
+	setAttr ".phl[354]" 0;
+	setAttr ".phl[355]" 0;
+	setAttr ".phl[356]" 0;
+	setAttr ".phl[357]" 0;
+	setAttr ".phl[358]" 0;
+	setAttr ".phl[359]" 0;
+	setAttr ".phl[360]" 0;
+	setAttr ".phl[361]" 0;
+	setAttr ".phl[362]" 0;
+	setAttr ".phl[363]" 0;
+	setAttr ".phl[364]" 0;
+	setAttr ".phl[365]" 0;
+	setAttr ".phl[366]" 0;
+	setAttr ".phl[367]" 0;
+	setAttr ".phl[368]" 0;
+	setAttr ".phl[369]" 0;
+	setAttr ".phl[370]" 0;
+	setAttr ".phl[371]" 0;
+	setAttr ".phl[372]" 0;
+	setAttr ".phl[373]" 0;
+	setAttr ".phl[374]" 0;
+	setAttr ".phl[375]" 0;
+	setAttr ".phl[376]" 0;
+	setAttr ".phl[377]" 0;
+	setAttr ".phl[378]" 0;
+	setAttr ".phl[379]" 0;
+	setAttr ".phl[380]" 0;
+	setAttr ".phl[381]" 0;
+	setAttr ".phl[382]" 0;
+	setAttr ".phl[383]" 0;
+	setAttr ".phl[384]" 0;
+	setAttr ".phl[385]" 0;
+	setAttr ".phl[386]" 0;
+	setAttr ".phl[387]" 0;
+	setAttr ".phl[388]" 0;
+	setAttr ".phl[389]" 0;
+	setAttr ".phl[390]" 0;
+	setAttr ".phl[391]" 0;
+	setAttr ".phl[392]" 0;
+	setAttr ".phl[393]" 0;
+	setAttr ".phl[394]" 0;
+	setAttr ".phl[395]" 0;
+	setAttr ".phl[396]" 0;
+	setAttr ".phl[397]" 0;
+	setAttr ".phl[398]" 0;
+	setAttr ".phl[399]" 0;
+	setAttr ".phl[400]" 0;
+	setAttr ".phl[401]" 0;
+	setAttr ".phl[402]" 0;
+	setAttr ".phl[403]" 0;
+	setAttr ".phl[404]" 0;
+	setAttr ".phl[405]" 0;
+	setAttr ".phl[406]" 0;
+	setAttr ".phl[407]" 0;
+	setAttr ".phl[408]" 0;
+	setAttr ".phl[409]" 0;
+	setAttr ".phl[410]" 0;
+	setAttr ".phl[411]" 0;
+	setAttr ".phl[412]" 0;
+	setAttr ".phl[413]" 0;
+	setAttr ".phl[414]" 0;
+	setAttr ".phl[415]" 0;
+	setAttr ".phl[416]" 0;
+	setAttr ".phl[417]" 0;
+	setAttr ".phl[418]" 0;
+	setAttr ".phl[419]" 0;
+	setAttr ".phl[420]" 0;
+	setAttr ".phl[421]" 0;
+	setAttr ".phl[422]" 0;
+	setAttr ".phl[423]" 0;
+	setAttr ".phl[424]" 0;
+	setAttr ".phl[425]" 0;
+	setAttr ".phl[426]" 0;
+	setAttr ".phl[427]" 0;
+	setAttr ".phl[428]" 0;
+	setAttr ".phl[429]" 0;
+	setAttr ".phl[430]" 0;
+	setAttr ".phl[431]" 0;
+	setAttr ".phl[432]" 0;
+	setAttr ".phl[433]" 0;
+	setAttr ".phl[434]" 0;
+	setAttr ".phl[435]" 0;
+	setAttr ".phl[436]" 0;
+	setAttr ".phl[437]" 0;
+	setAttr ".phl[438]" 0;
+	setAttr ".phl[439]" 0;
+	setAttr ".phl[440]" 0;
+	setAttr ".phl[441]" 0;
+	setAttr ".phl[442]" 0;
+	setAttr ".phl[443]" 0;
+	setAttr ".phl[444]" 0;
+	setAttr ".phl[445]" 0;
+	setAttr ".phl[446]" 0;
+	setAttr ".phl[447]" 0;
+	setAttr ".phl[448]" 0;
+	setAttr ".phl[449]" 0;
+	setAttr ".phl[450]" 0;
+	setAttr ".phl[451]" 0;
+	setAttr ".phl[452]" 0;
+	setAttr ".phl[453]" 0;
+	setAttr ".phl[454]" 0;
+	setAttr ".phl[455]" 0;
+	setAttr ".phl[456]" 0;
+	setAttr ".phl[457]" 0;
+	setAttr ".phl[458]" 0;
+	setAttr ".phl[459]" 0;
+	setAttr ".phl[460]" 0;
+	setAttr ".phl[461]" 0;
+	setAttr ".phl[462]" 0;
+	setAttr ".phl[463]" 0;
+	setAttr ".phl[464]" 0;
+	setAttr ".phl[465]" 0;
+	setAttr ".phl[466]" 0;
+	setAttr ".phl[467]" 0;
+	setAttr ".phl[468]" 0;
+	setAttr ".phl[469]" 0;
+	setAttr ".phl[470]" 0;
+	setAttr ".phl[471]" 0;
+	setAttr ".phl[472]" 0;
+	setAttr ".phl[473]" 0;
+	setAttr ".phl[474]" 0;
+	setAttr ".phl[475]" 0;
+	setAttr ".phl[476]" 0;
+	setAttr ".phl[477]" 0;
+	setAttr ".phl[478]" 0;
+	setAttr ".phl[479]" 0;
+	setAttr ".phl[480]" 0;
+	setAttr ".phl[481]" 0;
+	setAttr ".phl[482]" 0;
+	setAttr ".phl[483]" 0;
+	setAttr ".phl[484]" 0;
+	setAttr ".phl[485]" 0;
+	setAttr ".phl[486]" 0;
+	setAttr ".phl[487]" 0;
+	setAttr ".phl[488]" 0;
+	setAttr ".phl[489]" 0;
+	setAttr ".phl[490]" 0;
+	setAttr ".phl[491]" 0;
+	setAttr ".phl[492]" 0;
+	setAttr ".phl[493]" 0;
+	setAttr ".phl[494]" 0;
+	setAttr ".phl[495]" 0;
+	setAttr ".phl[496]" 0;
+	setAttr ".phl[497]" 0;
+	setAttr ".phl[498]" 0;
+	setAttr ".phl[499]" 0;
+	setAttr ".phl[500]" 0;
+	setAttr ".phl[501]" 0;
+	setAttr ".phl[502]" 0;
+	setAttr ".phl[503]" 0;
+	setAttr ".phl[504]" 0;
+	setAttr ".phl[505]" 0;
+	setAttr ".phl[506]" 0;
+	setAttr ".phl[507]" 0;
+	setAttr ".phl[508]" 0;
+	setAttr ".phl[509]" 0;
+	setAttr ".phl[510]" 0;
+	setAttr ".phl[511]" 0;
+	setAttr ".phl[512]" 0;
+	setAttr ".phl[513]" 0;
+	setAttr ".phl[514]" 0;
+	setAttr ".phl[515]" 0;
+	setAttr ".phl[516]" 0;
+	setAttr ".phl[517]" 0;
+	setAttr ".phl[518]" 0;
+	setAttr ".phl[519]" 0;
+	setAttr ".phl[520]" 0;
+	setAttr ".phl[521]" 0;
+	setAttr ".phl[522]" 0;
+	setAttr ".phl[523]" 0;
+	setAttr ".phl[524]" 0;
+	setAttr ".phl[525]" 0;
+	setAttr ".phl[526]" 0;
+	setAttr ".phl[527]" 0;
+	setAttr ".phl[528]" 0;
+	setAttr ".phl[529]" 0;
+	setAttr ".phl[530]" 0;
+	setAttr ".phl[531]" 0;
+	setAttr ".phl[532]" 0;
+	setAttr ".phl[533]" 0;
+	setAttr ".phl[534]" 0;
+	setAttr ".phl[535]" 0;
+	setAttr ".phl[536]" 0;
+	setAttr ".phl[537]" 0;
+	setAttr ".phl[538]" 0;
+	setAttr ".phl[539]" 0;
+	setAttr ".phl[540]" 0;
+	setAttr ".phl[541]" 0;
+	setAttr ".phl[542]" 0;
+	setAttr ".phl[543]" 0;
+	setAttr ".phl[544]" 0;
+	setAttr ".phl[545]" 0;
+	setAttr ".phl[546]" 0;
+	setAttr ".phl[547]" 0;
+	setAttr ".phl[548]" 0;
 	setAttr ".ed" -type "dataReferenceEdits" 
 		"SquaddieRN"
-		"SquaddieRN" 20
+		"SquaddieRN" 68
 		2 "|Squaddie:SkeletonGroup|Squaddie:Attach_LeftElbow" "visibility" " 1"
 		2 "|Squaddie:SkeletonGroup|Squaddie:Attach_LeftElbow" "translate" " -type \"double3\" 53.29017251435669067 127.69338727291554392 -30.63161575113995028"
 		
@@ -482,7 +473,103 @@ createNode reference -n "SquaddieRN";
 		2 "|Squaddie:SkeletonGroup|Squaddie:Attach_RightElbow" "rotateZ" " -av"
 		2 "|Squaddie:SkeletonGroup|Squaddie:Attach_RightElbow" "scale" " -type \"double3\" 0.99999999999999978 1 1.00000000000000044"
 		
-		"SquaddieRN" 662
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightUpperArm_Control" 
+		"visibility" " -av 1"
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightUpperArm_Control" 
+		"translate" " -type \"double3\" 0 0 0"
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightUpperArm_Control" 
+		"translateX" " -av"
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightUpperArm_Control" 
+		"translateY" " -av"
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightUpperArm_Control" 
+		"translateZ" " -av"
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightUpperArm_Control" 
+		"rotate" " -type \"double3\" 0 0 0"
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightUpperArm_Control" 
+		"rotateX" " -av"
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightUpperArm_Control" 
+		"rotateY" " -av"
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightUpperArm_Control" 
+		"rotateZ" " -av"
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightUpperArm_Control" 
+		"scale" " -type \"double3\" 1 1 1"
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightUpperArm_Control" 
+		"scaleX" " -av"
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightUpperArm_Control" 
+		"scaleY" " -av"
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightUpperArm_Control" 
+		"scaleZ" " -av"
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftUpperArm_Control" 
+		"visibility" " -av 1"
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftUpperArm_Control" 
+		"translate" " -type \"double3\" 0 0 0"
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftUpperArm_Control" 
+		"translateX" " -av"
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftUpperArm_Control" 
+		"translateY" " -av"
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftUpperArm_Control" 
+		"translateZ" " -av"
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftUpperArm_Control" 
+		"rotate" " -type \"double3\" 0 0 0"
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftUpperArm_Control" 
+		"rotateX" " -av"
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftUpperArm_Control" 
+		"rotateY" " -av"
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftUpperArm_Control" 
+		"rotateZ" " -av"
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftUpperArm_Control" 
+		"scale" " -type \"double3\" 1 1 1"
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftUpperArm_Control" 
+		"scaleX" " -av"
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftUpperArm_Control" 
+		"scaleY" " -av"
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftUpperArm_Control" 
+		"scaleZ" " -av"
+		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightUpperArm_Control.translateX" 
+		"SquaddieRN.placeHolderList[51]" ""
+		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightUpperArm_Control.translateY" 
+		"SquaddieRN.placeHolderList[52]" ""
+		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightUpperArm_Control.translateZ" 
+		"SquaddieRN.placeHolderList[53]" ""
+		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightUpperArm_Control.visibility" 
+		"SquaddieRN.placeHolderList[54]" ""
+		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightUpperArm_Control.rotateX" 
+		"SquaddieRN.placeHolderList[55]" ""
+		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightUpperArm_Control.rotateY" 
+		"SquaddieRN.placeHolderList[56]" ""
+		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightUpperArm_Control.rotateZ" 
+		"SquaddieRN.placeHolderList[57]" ""
+		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightUpperArm_Control.scaleX" 
+		"SquaddieRN.placeHolderList[58]" ""
+		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightUpperArm_Control.scaleY" 
+		"SquaddieRN.placeHolderList[59]" ""
+		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightUpperArm_Control.scaleZ" 
+		"SquaddieRN.placeHolderList[60]" ""
+		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftUpperArm_Control.translateX" 
+		"SquaddieRN.placeHolderList[101]" ""
+		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftUpperArm_Control.translateY" 
+		"SquaddieRN.placeHolderList[102]" ""
+		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftUpperArm_Control.translateZ" 
+		"SquaddieRN.placeHolderList[103]" ""
+		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftUpperArm_Control.visibility" 
+		"SquaddieRN.placeHolderList[104]" ""
+		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftUpperArm_Control.rotateX" 
+		"SquaddieRN.placeHolderList[105]" ""
+		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftUpperArm_Control.rotateY" 
+		"SquaddieRN.placeHolderList[106]" ""
+		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftUpperArm_Control.rotateZ" 
+		"SquaddieRN.placeHolderList[107]" ""
+		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftUpperArm_Control.scaleX" 
+		"SquaddieRN.placeHolderList[108]" ""
+		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftUpperArm_Control.scaleY" 
+		"SquaddieRN.placeHolderList[109]" ""
+		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftUpperArm_Control.scaleZ" 
+		"SquaddieRN.placeHolderList[110]" ""
+		5 3 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftUpperArm_Control.message" 
+		"SquaddieRN.placeHolderList[111]" ""
+		5 3 "SquaddieRN" "|Squaddie:SkeletonGroup|Squaddie:Attach_RootMotion|Squaddie:Hips_Skel|Squaddie:Spine1_Skel|Squaddie:Spine2_Skel|Squaddie:LeftClav_Skel|Squaddie:LeftUpperArm_Skel|Squaddie:LeftUpperArm_Skel_pointConstraint1.message" 
+		"SquaddieRN.placeHolderList[280]" ""
+		"SquaddieRN" 625
 		2 "|Squaddie:Root_Control" "visibility" " -av 1"
 		2 "|Squaddie:Root_Control" "translate" " -type \"double3\" 0 0 0"
 		2 "|Squaddie:Root_Control" "translateX" " -av"
@@ -519,8 +606,7 @@ createNode reference -n "SquaddieRN";
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control" 
 		"visibility" " -av 1"
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control" 
-		"translate" " -type \"double3\" -3.20669938476270211 -2.8679753411996014 -4.43896495981174155"
-		
+		"translate" " -type \"double3\" 0 -2.28198729289345748 0"
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control" 
 		"translateX" " -av"
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control" 
@@ -528,8 +614,7 @@ createNode reference -n "SquaddieRN";
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control" 
 		"translateZ" " -av"
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control" 
-		"rotate" " -type \"double3\" 0.9701566303154423 -23.66400082821932926 -0.82861185651815239"
-		
+		"rotate" " -type \"double3\" 0 -21.16419414453651271 0"
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control" 
 		"rotateX" " -av"
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control" 
@@ -597,32 +682,6 @@ createNode reference -n "SquaddieRN";
 		"scaleY" " -av"
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control" 
 		"scaleZ" " -av"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightUpperArm_Control" 
-		"visibility" " -av 1"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightUpperArm_Control" 
-		"translate" " -type \"double3\" 0 0 0"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightUpperArm_Control" 
-		"translateX" " -av"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightUpperArm_Control" 
-		"translateY" " -av"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightUpperArm_Control" 
-		"translateZ" " -av"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightUpperArm_Control" 
-		"rotate" " -type \"double3\" 0 0 0"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightUpperArm_Control" 
-		"rotateX" " -av"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightUpperArm_Control" 
-		"rotateY" " -av"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightUpperArm_Control" 
-		"rotateZ" " -av"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightUpperArm_Control" 
-		"scale" " -type \"double3\" 1 1 1"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightUpperArm_Control" 
-		"scaleX" " -av"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightUpperArm_Control" 
-		"scaleY" " -av"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightUpperArm_Control" 
-		"scaleZ" " -av"
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightShoulder_Control" 
 		"visibility" " -av 1"
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightShoulder_Control" 
@@ -660,100 +719,72 @@ createNode reference -n "SquaddieRN";
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control" 
 		"translateZ" " -av"
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control" 
-		"rotate" " -type \"double3\" 0.05487940666106484 2.20374292914174896 0.7776298416117694"
-		
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control" 
-		"rotateX" " -av"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control" 
-		"rotateY" " -av"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control" 
-		"rotateZ" " -av"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control" 
-		"scale" " -type \"double3\" 1 1 1"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control" 
-		"scaleX" " -av"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control" 
-		"scaleY" " -av"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control" 
-		"scaleZ" " -av"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control|Squaddie:Head_Control" 
-		"visibility" " -av 1"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control|Squaddie:Head_Control" 
-		"translate" " -type \"double3\" 0 0 0"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control|Squaddie:Head_Control" 
-		"translateX" " -av"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control|Squaddie:Head_Control" 
-		"translateY" " -av"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control|Squaddie:Head_Control" 
-		"translateZ" " -av"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control|Squaddie:Head_Control" 
-		"rotate" " -type \"double3\" 0.36755809854703153 25.3575052817397868 0.87396865966046422"
-		
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control|Squaddie:Head_Control" 
-		"rotateX" " -av"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control|Squaddie:Head_Control" 
-		"rotateY" " -av"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control|Squaddie:Head_Control" 
-		"rotateZ" " -av"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control|Squaddie:Head_Control" 
-		"scale" " -type \"double3\" 1 1 1"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control|Squaddie:Head_Control" 
-		"scaleX" " -av"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control|Squaddie:Head_Control" 
-		"scaleY" " -av"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control|Squaddie:Head_Control" 
-		"scaleZ" " -av"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftShoulder_Control" 
-		"visibility" " -av 1"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftShoulder_Control" 
-		"translate" " -type \"double3\" 0 0 0"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftShoulder_Control" 
-		"translateX" " -av"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftShoulder_Control" 
-		"translateY" " -av"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftShoulder_Control" 
-		"translateZ" " -av"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftShoulder_Control" 
-		"rotate" " -type \"double3\" 0 -1.26987303212724489 0"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftShoulder_Control" 
-		"rotateX" " -av"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftShoulder_Control" 
-		"rotateY" " -av"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftShoulder_Control" 
-		"rotateZ" " -av"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftShoulder_Control" 
-		"scale" " -type \"double3\" 1 1 1"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftShoulder_Control" 
-		"scaleX" " -av"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftShoulder_Control" 
-		"scaleY" " -av"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftShoulder_Control" 
-		"scaleZ" " -av"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftUpperArm_Control" 
-		"visibility" " -av 1"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftUpperArm_Control" 
-		"translate" " -type \"double3\" 0 0 0"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftUpperArm_Control" 
-		"translateX" " -av"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftUpperArm_Control" 
-		"translateY" " -av"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftUpperArm_Control" 
-		"translateZ" " -av"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftUpperArm_Control" 
 		"rotate" " -type \"double3\" 0 0 0"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftUpperArm_Control" 
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control" 
 		"rotateX" " -av"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftUpperArm_Control" 
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control" 
 		"rotateY" " -av"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftUpperArm_Control" 
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control" 
 		"rotateZ" " -av"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftUpperArm_Control" 
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control" 
 		"scale" " -type \"double3\" 1 1 1"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftUpperArm_Control" 
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control" 
 		"scaleX" " -av"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftUpperArm_Control" 
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control" 
 		"scaleY" " -av"
-		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftUpperArm_Control" 
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control" 
+		"scaleZ" " -av"
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control|Squaddie:Head_Control" 
+		"visibility" " -av 1"
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control|Squaddie:Head_Control" 
+		"translate" " -type \"double3\" 0 0 0"
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control|Squaddie:Head_Control" 
+		"translateX" " -av"
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control|Squaddie:Head_Control" 
+		"translateY" " -av"
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control|Squaddie:Head_Control" 
+		"translateZ" " -av"
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control|Squaddie:Head_Control" 
+		"rotate" " -type \"double3\" 0 25.82829337843784145 0"
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control|Squaddie:Head_Control" 
+		"rotateX" " -av"
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control|Squaddie:Head_Control" 
+		"rotateY" " -av"
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control|Squaddie:Head_Control" 
+		"rotateZ" " -av"
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control|Squaddie:Head_Control" 
+		"scale" " -type \"double3\" 1 1 1"
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control|Squaddie:Head_Control" 
+		"scaleX" " -av"
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control|Squaddie:Head_Control" 
+		"scaleY" " -av"
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control|Squaddie:Head_Control" 
+		"scaleZ" " -av"
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftShoulder_Control" 
+		"visibility" " -av 1"
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftShoulder_Control" 
+		"translate" " -type \"double3\" 0 0 0"
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftShoulder_Control" 
+		"translateX" " -av"
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftShoulder_Control" 
+		"translateY" " -av"
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftShoulder_Control" 
+		"translateZ" " -av"
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftShoulder_Control" 
+		"rotate" " -type \"double3\" 0 0 0"
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftShoulder_Control" 
+		"rotateX" " -av"
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftShoulder_Control" 
+		"rotateY" " -av"
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftShoulder_Control" 
+		"rotateZ" " -av"
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftShoulder_Control" 
+		"scale" " -type \"double3\" 1 1 1"
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftShoulder_Control" 
+		"scaleX" " -av"
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftShoulder_Control" 
+		"scaleY" " -av"
+		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftShoulder_Control" 
 		"scaleZ" " -av"
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightElbow_Control" 
 		"visibility" " -av 1"
@@ -785,7 +816,7 @@ createNode reference -n "SquaddieRN";
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftElbow_Control" 
 		"visibility" " -av 1"
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftElbow_Control" 
-		"translate" " -type \"double3\" -20.17600629721663807 -1.44244410255272903 23.47321712275647343"
+		"translate" " -type \"double3\" -28.74839927796478634 -2.65777567923842417 24.14777136670582891"
 		
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftElbow_Control" 
 		"translateX" " -av"
@@ -864,7 +895,7 @@ createNode reference -n "SquaddieRN";
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightHand_Control" 
 		"visibility" " -av 1"
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightHand_Control" 
-		"translate" " -type \"double3\" 68.51337043065336729 4.82288227685556592 20.17173396634303018"
+		"translate" " -type \"double3\" 68.89619033600907017 2.21637769913791383 20.34060897158924419"
 		
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightHand_Control" 
 		"translateX" " -av"
@@ -873,7 +904,7 @@ createNode reference -n "SquaddieRN";
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightHand_Control" 
 		"translateZ" " -av"
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightHand_Control" 
-		"rotate" " -type \"double3\" 81.76933892144008098 43.06113562263823269 136.48020388801558056"
+		"rotate" " -type \"double3\" 85.93241826129788308 41.21535796355005488 146.33227223034930375"
 		
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightHand_Control" 
 		"rotateX" " -av"
@@ -920,7 +951,7 @@ createNode reference -n "SquaddieRN";
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftHand_Control" 
 		"visibility" " -av 1"
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftHand_Control" 
-		"translate" " -type \"double3\" -32.39868823099534012 -0.19098794975990785 7.48403029543723264"
+		"translate" " -type \"double3\" -31.29212167642699427 2.8752991387180562 5.18713491273241178"
 		
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftHand_Control" 
 		"translateX" " -av"
@@ -929,7 +960,7 @@ createNode reference -n "SquaddieRN";
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftHand_Control" 
 		"translateZ" " -av"
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftHand_Control" 
-		"rotate" " -type \"double3\" -67.76376659121112311 -19.00174386410234817 -99.16376528711131755"
+		"rotate" " -type \"double3\" -75.64836423565122914 -15.00039720349279904 -94.91424604781799701"
 		
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftHand_Control" 
 		"rotateX" " -av"
@@ -1027,7 +1058,7 @@ createNode reference -n "SquaddieRN";
 		"scaleZ" " -av"
 		2 "|Squaddie:Root_Control|Squaddie:RightFoot_Control" "visibility" " -av 1"
 		
-		2 "|Squaddie:Root_Control|Squaddie:RightFoot_Control" "translate" " -type \"double3\" -0.28218384127328022 4.92359345036683216 -17.30043684640825674"
+		2 "|Squaddie:Root_Control|Squaddie:RightFoot_Control" "translate" " -type \"double3\" -5.38890851279566618 0 -18.86260732539808771"
 		
 		2 "|Squaddie:Root_Control|Squaddie:RightFoot_Control" "translateX" " -av"
 		
@@ -1035,7 +1066,7 @@ createNode reference -n "SquaddieRN";
 		
 		2 "|Squaddie:Root_Control|Squaddie:RightFoot_Control" "translateZ" " -av"
 		
-		2 "|Squaddie:Root_Control|Squaddie:RightFoot_Control" "rotate" " -type \"double3\" 14.80881373048278249 -29.18384389581961003 0"
+		2 "|Squaddie:Root_Control|Squaddie:RightFoot_Control" "rotate" " -type \"double3\" 0 -21.62443473112444181 0"
 		
 		2 "|Squaddie:Root_Control|Squaddie:RightFoot_Control" "rotateX" " -av"
 		2 "|Squaddie:Root_Control|Squaddie:RightFoot_Control" "rotateY" " -av"
@@ -1179,7 +1210,7 @@ createNode reference -n "SquaddieRN";
 		2 "|Squaddie:GeoGroup|Squaddie:Head|Squaddie:HeadShape" "uvPivot" " -type \"double2\" 0.49930763244628906 0.50084253214299679"
 		
 		2 "|Squaddie:SkeletonGroup|Squaddie:Attach_RootMotion|Squaddie:Hips_Skel|Squaddie:Spine1_Skel|Squaddie:Spine2_Skel|Squaddie:LeftClav_Skel|Squaddie:LeftUpperArm_Skel" 
-		"translate" " -type \"double3\" 14.80627869732949442 5.03159809154987414 -0.44020728201320686"
+		"translate" " -type \"double3\" 14.91457674267715205 4.70347938627339524 -0.41150061501071128"
 		
 		2 "|Squaddie:SkeletonGroup|Squaddie:Attach_RootMotion|Squaddie:Hips_Skel|Squaddie:Spine1_Skel|Squaddie:Spine2_Skel|Squaddie:LeftClav_Skel|Squaddie:LeftUpperArm_Skel" 
 		"translateX" " -av"
@@ -1188,12 +1219,12 @@ createNode reference -n "SquaddieRN";
 		2 "|Squaddie:SkeletonGroup|Squaddie:Attach_RootMotion|Squaddie:Hips_Skel|Squaddie:Spine1_Skel|Squaddie:Spine2_Skel|Squaddie:LeftClav_Skel|Squaddie:LeftUpperArm_Skel" 
 		"translateZ" " -av"
 		2 "|Squaddie:SkeletonGroup|Squaddie:Attach_RootMotion|Squaddie:Hips_Skel|Squaddie:Spine1_Skel|Squaddie:Spine2_Skel|Squaddie:LeftClav_Skel|Squaddie:LeftUpperArm_Skel" 
-		"rotate" " -type \"double3\" 28.32084005045657094 12.88473742514220532 14.1539577121362683"
+		"rotate" " -type \"double3\" 30.20581291219327724 20.49063756627596788 9.55571618047597404"
 		
 		2 "|Squaddie:SkeletonGroup|Squaddie:Attach_RootMotion|Squaddie:Hips_Skel|Squaddie:Spine1_Skel|Squaddie:Spine2_Skel|Squaddie:LeftClav_Skel|Squaddie:LeftUpperArm_Skel|Squaddie:LeftLowerArm_Skel" 
-		"rotate" " -type \"double3\" 0 -75.47669517627203106 0"
+		"rotate" " -type \"double3\" 0 -83.26398047461415786 0"
 		2 "|Squaddie:SkeletonGroup|Squaddie:Attach_RootMotion|Squaddie:Hips_Skel|Squaddie:Spine1_Skel|Squaddie:Spine2_Skel|Squaddie:RightClav_Skel|Squaddie:RightUpperArm_Skel" 
-		"translate" " -type \"double3\" -14.9146 -4.70347648394237083 0.41150087150575132"
+		"translate" " -type \"double3\" -14.9146 -4.70347648394237972 0.41150087150569448"
 		
 		2 "|Squaddie:SkeletonGroup|Squaddie:Attach_RootMotion|Squaddie:Hips_Skel|Squaddie:Spine1_Skel|Squaddie:Spine2_Skel|Squaddie:RightClav_Skel|Squaddie:RightUpperArm_Skel" 
 		"translateX" " -av"
@@ -1202,13 +1233,13 @@ createNode reference -n "SquaddieRN";
 		2 "|Squaddie:SkeletonGroup|Squaddie:Attach_RootMotion|Squaddie:Hips_Skel|Squaddie:Spine1_Skel|Squaddie:Spine2_Skel|Squaddie:RightClav_Skel|Squaddie:RightUpperArm_Skel" 
 		"translateZ" " -av"
 		2 "|Squaddie:SkeletonGroup|Squaddie:Attach_RootMotion|Squaddie:Hips_Skel|Squaddie:Spine1_Skel|Squaddie:Spine2_Skel|Squaddie:RightClav_Skel|Squaddie:RightUpperArm_Skel" 
-		"rotate" " -type \"double3\" -54.36892587827906453 -42.27986019411808627 92.00526720242228862"
+		"rotate" " -type \"double3\" -54.90510057430682878 -42.80152360776516929 95.62394360599400045"
 		
 		2 "|Squaddie:SkeletonGroup|Squaddie:Attach_RootMotion|Squaddie:Hips_Skel|Squaddie:Spine1_Skel|Squaddie:Spine2_Skel|Squaddie:RightClav_Skel|Squaddie:RightUpperArm_Skel|Squaddie:RightLowerArm_Skel" 
-		"rotate" " -type \"double3\" -0.0022129517090774759 -57.85837970031627719 0.0019129242583141544"
+		"rotate" " -type \"double3\" -0.0019765433989842578 -51.67740353460246894 0.0017085677016892044"
 		
 		2 "|Squaddie:SkeletonGroup|Squaddie:Attach_RootMotion|Squaddie:Hips_Skel|Squaddie:LeftUpperLeg_Skel" 
-		"translate" " -type \"double3\" 19.81883811950683238 1.35854452727749608 -7.39106094254958634"
+		"translate" " -type \"double3\" 19.81883811950684304 1.3585445272774983 -7.39106094254958634"
 		
 		2 "|Squaddie:SkeletonGroup|Squaddie:Attach_RootMotion|Squaddie:Hips_Skel|Squaddie:LeftUpperLeg_Skel" 
 		"translateX" " -av"
@@ -1217,12 +1248,12 @@ createNode reference -n "SquaddieRN";
 		2 "|Squaddie:SkeletonGroup|Squaddie:Attach_RootMotion|Squaddie:Hips_Skel|Squaddie:LeftUpperLeg_Skel" 
 		"translateZ" " -av"
 		2 "|Squaddie:SkeletonGroup|Squaddie:Attach_RootMotion|Squaddie:Hips_Skel|Squaddie:LeftUpperLeg_Skel" 
-		"rotate" " -type \"double3\" -13.51084627121169568 8.16897329147048623 -18.14562047631726927"
+		"rotate" " -type \"double3\" -8.51190377086953376 4.54611957465434813 -14.24906114225369969"
 		
 		2 "|Squaddie:SkeletonGroup|Squaddie:Attach_RootMotion|Squaddie:Hips_Skel|Squaddie:LeftUpperLeg_Skel|Squaddie:LeftLowerLeg_Skel" 
-		"rotate" " -type \"double3\" 21.24736604335573631 0 0"
+		"rotate" " -type \"double3\" 17.98626800247041402 0 0"
 		2 "|Squaddie:SkeletonGroup|Squaddie:Attach_RootMotion|Squaddie:Hips_Skel|Squaddie:RightUpperLeg_Skel" 
-		"translate" " -type \"double3\" -19.81879997253417969 1.35854880205051609 -7.39109886124329307"
+		"translate" " -type \"double3\" -19.81879997253417969 1.35854880205052542 -7.39109886124330728"
 		
 		2 "|Squaddie:SkeletonGroup|Squaddie:Attach_RootMotion|Squaddie:Hips_Skel|Squaddie:RightUpperLeg_Skel" 
 		"translateX" " -av"
@@ -1231,568 +1262,546 @@ createNode reference -n "SquaddieRN";
 		2 "|Squaddie:SkeletonGroup|Squaddie:Attach_RootMotion|Squaddie:Hips_Skel|Squaddie:RightUpperLeg_Skel" 
 		"translateZ" " -av"
 		2 "|Squaddie:SkeletonGroup|Squaddie:Attach_RootMotion|Squaddie:Hips_Skel|Squaddie:RightUpperLeg_Skel" 
-		"rotate" " -type \"double3\" -15.61211330213311754 2.53323328515167301 -5.9964816742551017"
+		"rotate" " -type \"double3\" 3.11351691823907029 10.15967751311252698 -4.71841559492201945"
 		
 		2 "|Squaddie:SkeletonGroup|Squaddie:Attach_RootMotion|Squaddie:Hips_Skel|Squaddie:RightUpperLeg_Skel|Squaddie:RightLowerLeg_Skel" 
-		"rotate" " -type \"double3\" 39.35618679208212711 0 0"
-		5 4 "SquaddieRN" "|Squaddie:Root_Control.visibility" "SquaddieRN.placeHolderList[1]" 
+		"rotate" " -type \"double3\" 4.14999559198543011 0 0"
+		5 4 "SquaddieRN" "|Squaddie:Root_Control.visibility" "SquaddieRN.placeHolderList[281]" 
 		""
-		5 4 "SquaddieRN" "|Squaddie:Root_Control.translateX" "SquaddieRN.placeHolderList[2]" 
+		5 4 "SquaddieRN" "|Squaddie:Root_Control.translateX" "SquaddieRN.placeHolderList[282]" 
 		""
-		5 4 "SquaddieRN" "|Squaddie:Root_Control.translateY" "SquaddieRN.placeHolderList[3]" 
+		5 4 "SquaddieRN" "|Squaddie:Root_Control.translateY" "SquaddieRN.placeHolderList[283]" 
 		""
-		5 4 "SquaddieRN" "|Squaddie:Root_Control.translateZ" "SquaddieRN.placeHolderList[4]" 
+		5 4 "SquaddieRN" "|Squaddie:Root_Control.translateZ" "SquaddieRN.placeHolderList[284]" 
 		""
-		5 4 "SquaddieRN" "|Squaddie:Root_Control.rotateX" "SquaddieRN.placeHolderList[5]" 
+		5 4 "SquaddieRN" "|Squaddie:Root_Control.rotateX" "SquaddieRN.placeHolderList[285]" 
 		""
-		5 4 "SquaddieRN" "|Squaddie:Root_Control.rotateY" "SquaddieRN.placeHolderList[6]" 
+		5 4 "SquaddieRN" "|Squaddie:Root_Control.rotateY" "SquaddieRN.placeHolderList[286]" 
 		""
-		5 4 "SquaddieRN" "|Squaddie:Root_Control.rotateZ" "SquaddieRN.placeHolderList[7]" 
+		5 4 "SquaddieRN" "|Squaddie:Root_Control.rotateZ" "SquaddieRN.placeHolderList[287]" 
 		""
-		5 4 "SquaddieRN" "|Squaddie:Root_Control.scaleX" "SquaddieRN.placeHolderList[8]" 
+		5 4 "SquaddieRN" "|Squaddie:Root_Control.scaleX" "SquaddieRN.placeHolderList[288]" 
 		""
-		5 4 "SquaddieRN" "|Squaddie:Root_Control.scaleY" "SquaddieRN.placeHolderList[9]" 
+		5 4 "SquaddieRN" "|Squaddie:Root_Control.scaleY" "SquaddieRN.placeHolderList[289]" 
 		""
-		5 4 "SquaddieRN" "|Squaddie:Root_Control.scaleZ" "SquaddieRN.placeHolderList[10]" 
+		5 4 "SquaddieRN" "|Squaddie:Root_Control.scaleZ" "SquaddieRN.placeHolderList[290]" 
 		""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control.translateX" 
-		"SquaddieRN.placeHolderList[11]" ""
+		"SquaddieRN.placeHolderList[291]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control.translateY" 
-		"SquaddieRN.placeHolderList[12]" ""
+		"SquaddieRN.placeHolderList[292]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control.translateZ" 
-		"SquaddieRN.placeHolderList[13]" ""
+		"SquaddieRN.placeHolderList[293]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control.rotateX" 
-		"SquaddieRN.placeHolderList[14]" ""
+		"SquaddieRN.placeHolderList[294]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control.rotateY" 
-		"SquaddieRN.placeHolderList[15]" ""
+		"SquaddieRN.placeHolderList[295]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control.rotateZ" 
-		"SquaddieRN.placeHolderList[16]" ""
+		"SquaddieRN.placeHolderList[296]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control.scaleX" 
-		"SquaddieRN.placeHolderList[17]" ""
+		"SquaddieRN.placeHolderList[297]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control.scaleY" 
-		"SquaddieRN.placeHolderList[18]" ""
+		"SquaddieRN.placeHolderList[298]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control.scaleZ" 
-		"SquaddieRN.placeHolderList[19]" ""
+		"SquaddieRN.placeHolderList[299]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control.visibility" 
-		"SquaddieRN.placeHolderList[20]" ""
+		"SquaddieRN.placeHolderList[300]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control.translateX" 
-		"SquaddieRN.placeHolderList[21]" ""
+		"SquaddieRN.placeHolderList[301]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control.translateY" 
-		"SquaddieRN.placeHolderList[22]" ""
+		"SquaddieRN.placeHolderList[302]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control.translateZ" 
-		"SquaddieRN.placeHolderList[23]" ""
+		"SquaddieRN.placeHolderList[303]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control.rotateX" 
-		"SquaddieRN.placeHolderList[24]" ""
+		"SquaddieRN.placeHolderList[304]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control.rotateY" 
-		"SquaddieRN.placeHolderList[25]" ""
+		"SquaddieRN.placeHolderList[305]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control.rotateZ" 
-		"SquaddieRN.placeHolderList[26]" ""
+		"SquaddieRN.placeHolderList[306]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control.scaleX" 
-		"SquaddieRN.placeHolderList[27]" ""
+		"SquaddieRN.placeHolderList[307]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control.scaleY" 
-		"SquaddieRN.placeHolderList[28]" ""
+		"SquaddieRN.placeHolderList[308]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control.scaleZ" 
-		"SquaddieRN.placeHolderList[29]" ""
+		"SquaddieRN.placeHolderList[309]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control.visibility" 
-		"SquaddieRN.placeHolderList[30]" ""
+		"SquaddieRN.placeHolderList[310]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control.translateX" 
-		"SquaddieRN.placeHolderList[31]" ""
+		"SquaddieRN.placeHolderList[311]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control.translateY" 
-		"SquaddieRN.placeHolderList[32]" ""
+		"SquaddieRN.placeHolderList[312]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control.translateZ" 
-		"SquaddieRN.placeHolderList[33]" ""
+		"SquaddieRN.placeHolderList[313]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control.rotateX" 
-		"SquaddieRN.placeHolderList[34]" ""
+		"SquaddieRN.placeHolderList[314]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control.rotateY" 
-		"SquaddieRN.placeHolderList[35]" ""
+		"SquaddieRN.placeHolderList[315]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control.rotateZ" 
-		"SquaddieRN.placeHolderList[36]" ""
+		"SquaddieRN.placeHolderList[316]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control.scaleX" 
-		"SquaddieRN.placeHolderList[37]" ""
+		"SquaddieRN.placeHolderList[317]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control.scaleY" 
-		"SquaddieRN.placeHolderList[38]" ""
+		"SquaddieRN.placeHolderList[318]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control.scaleZ" 
-		"SquaddieRN.placeHolderList[39]" ""
+		"SquaddieRN.placeHolderList[319]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control.visibility" 
-		"SquaddieRN.placeHolderList[40]" ""
+		"SquaddieRN.placeHolderList[320]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control.translateX" 
-		"SquaddieRN.placeHolderList[41]" ""
+		"SquaddieRN.placeHolderList[321]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control.translateY" 
-		"SquaddieRN.placeHolderList[42]" ""
+		"SquaddieRN.placeHolderList[322]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control.translateZ" 
-		"SquaddieRN.placeHolderList[43]" ""
+		"SquaddieRN.placeHolderList[323]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control.rotateX" 
-		"SquaddieRN.placeHolderList[44]" ""
+		"SquaddieRN.placeHolderList[324]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control.rotateY" 
-		"SquaddieRN.placeHolderList[45]" ""
+		"SquaddieRN.placeHolderList[325]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control.rotateZ" 
-		"SquaddieRN.placeHolderList[46]" ""
+		"SquaddieRN.placeHolderList[326]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control.scaleX" 
-		"SquaddieRN.placeHolderList[47]" ""
+		"SquaddieRN.placeHolderList[327]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control.scaleY" 
-		"SquaddieRN.placeHolderList[48]" ""
+		"SquaddieRN.placeHolderList[328]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control.scaleZ" 
-		"SquaddieRN.placeHolderList[49]" ""
+		"SquaddieRN.placeHolderList[329]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control.visibility" 
-		"SquaddieRN.placeHolderList[50]" ""
-		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightUpperArm_Control.translateX" 
-		"SquaddieRN.placeHolderList[51]" ""
-		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightUpperArm_Control.translateY" 
-		"SquaddieRN.placeHolderList[52]" ""
-		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightUpperArm_Control.translateZ" 
-		"SquaddieRN.placeHolderList[53]" ""
-		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightUpperArm_Control.visibility" 
-		"SquaddieRN.placeHolderList[54]" ""
-		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightUpperArm_Control.rotateX" 
-		"SquaddieRN.placeHolderList[55]" ""
-		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightUpperArm_Control.rotateY" 
-		"SquaddieRN.placeHolderList[56]" ""
-		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightUpperArm_Control.rotateZ" 
-		"SquaddieRN.placeHolderList[57]" ""
-		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightUpperArm_Control.scaleX" 
-		"SquaddieRN.placeHolderList[58]" ""
-		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightUpperArm_Control.scaleY" 
-		"SquaddieRN.placeHolderList[59]" ""
-		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightUpperArm_Control.scaleZ" 
-		"SquaddieRN.placeHolderList[60]" ""
+		"SquaddieRN.placeHolderList[330]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightShoulder_Control.rotateX" 
-		"SquaddieRN.placeHolderList[61]" ""
+		"SquaddieRN.placeHolderList[331]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightShoulder_Control.rotateY" 
-		"SquaddieRN.placeHolderList[62]" ""
+		"SquaddieRN.placeHolderList[332]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightShoulder_Control.rotateZ" 
-		"SquaddieRN.placeHolderList[63]" ""
+		"SquaddieRN.placeHolderList[333]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightShoulder_Control.visibility" 
-		"SquaddieRN.placeHolderList[64]" ""
+		"SquaddieRN.placeHolderList[334]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightShoulder_Control.translateX" 
-		"SquaddieRN.placeHolderList[65]" ""
+		"SquaddieRN.placeHolderList[335]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightShoulder_Control.translateY" 
-		"SquaddieRN.placeHolderList[66]" ""
+		"SquaddieRN.placeHolderList[336]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightShoulder_Control.translateZ" 
-		"SquaddieRN.placeHolderList[67]" ""
+		"SquaddieRN.placeHolderList[337]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightShoulder_Control.scaleX" 
-		"SquaddieRN.placeHolderList[68]" ""
+		"SquaddieRN.placeHolderList[338]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightShoulder_Control.scaleY" 
-		"SquaddieRN.placeHolderList[69]" ""
+		"SquaddieRN.placeHolderList[339]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightShoulder_Control.scaleZ" 
-		"SquaddieRN.placeHolderList[70]" ""
+		"SquaddieRN.placeHolderList[340]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control.translateX" 
-		"SquaddieRN.placeHolderList[71]" ""
+		"SquaddieRN.placeHolderList[341]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control.translateY" 
-		"SquaddieRN.placeHolderList[72]" ""
+		"SquaddieRN.placeHolderList[342]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control.translateZ" 
-		"SquaddieRN.placeHolderList[73]" ""
+		"SquaddieRN.placeHolderList[343]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control.rotateX" 
-		"SquaddieRN.placeHolderList[74]" ""
+		"SquaddieRN.placeHolderList[344]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control.rotateY" 
-		"SquaddieRN.placeHolderList[75]" ""
+		"SquaddieRN.placeHolderList[345]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control.rotateZ" 
-		"SquaddieRN.placeHolderList[76]" ""
+		"SquaddieRN.placeHolderList[346]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control.scaleX" 
-		"SquaddieRN.placeHolderList[77]" ""
+		"SquaddieRN.placeHolderList[347]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control.scaleY" 
-		"SquaddieRN.placeHolderList[78]" ""
+		"SquaddieRN.placeHolderList[348]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control.scaleZ" 
-		"SquaddieRN.placeHolderList[79]" ""
+		"SquaddieRN.placeHolderList[349]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control.visibility" 
-		"SquaddieRN.placeHolderList[80]" ""
+		"SquaddieRN.placeHolderList[350]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control|Squaddie:Head_Control.translateX" 
-		"SquaddieRN.placeHolderList[81]" ""
+		"SquaddieRN.placeHolderList[351]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control|Squaddie:Head_Control.translateY" 
-		"SquaddieRN.placeHolderList[82]" ""
+		"SquaddieRN.placeHolderList[352]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control|Squaddie:Head_Control.translateZ" 
-		"SquaddieRN.placeHolderList[83]" ""
+		"SquaddieRN.placeHolderList[353]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control|Squaddie:Head_Control.rotateX" 
-		"SquaddieRN.placeHolderList[84]" ""
+		"SquaddieRN.placeHolderList[354]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control|Squaddie:Head_Control.rotateY" 
-		"SquaddieRN.placeHolderList[85]" ""
+		"SquaddieRN.placeHolderList[355]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control|Squaddie:Head_Control.rotateZ" 
-		"SquaddieRN.placeHolderList[86]" ""
+		"SquaddieRN.placeHolderList[356]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control|Squaddie:Head_Control.scaleX" 
-		"SquaddieRN.placeHolderList[87]" ""
+		"SquaddieRN.placeHolderList[357]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control|Squaddie:Head_Control.scaleY" 
-		"SquaddieRN.placeHolderList[88]" ""
+		"SquaddieRN.placeHolderList[358]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control|Squaddie:Head_Control.scaleZ" 
-		"SquaddieRN.placeHolderList[89]" ""
+		"SquaddieRN.placeHolderList[359]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control|Squaddie:Head_Control.visibility" 
-		"SquaddieRN.placeHolderList[90]" ""
+		"SquaddieRN.placeHolderList[360]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftShoulder_Control.rotateX" 
-		"SquaddieRN.placeHolderList[91]" ""
+		"SquaddieRN.placeHolderList[361]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftShoulder_Control.rotateY" 
-		"SquaddieRN.placeHolderList[92]" ""
+		"SquaddieRN.placeHolderList[362]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftShoulder_Control.rotateZ" 
-		"SquaddieRN.placeHolderList[93]" ""
+		"SquaddieRN.placeHolderList[363]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftShoulder_Control.visibility" 
-		"SquaddieRN.placeHolderList[94]" ""
+		"SquaddieRN.placeHolderList[364]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftShoulder_Control.translateX" 
-		"SquaddieRN.placeHolderList[95]" ""
+		"SquaddieRN.placeHolderList[365]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftShoulder_Control.translateY" 
-		"SquaddieRN.placeHolderList[96]" ""
+		"SquaddieRN.placeHolderList[366]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftShoulder_Control.translateZ" 
-		"SquaddieRN.placeHolderList[97]" ""
+		"SquaddieRN.placeHolderList[367]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftShoulder_Control.scaleX" 
-		"SquaddieRN.placeHolderList[98]" ""
+		"SquaddieRN.placeHolderList[368]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftShoulder_Control.scaleY" 
-		"SquaddieRN.placeHolderList[99]" ""
+		"SquaddieRN.placeHolderList[369]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftShoulder_Control.scaleZ" 
-		"SquaddieRN.placeHolderList[100]" ""
-		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftUpperArm_Control.translateX" 
-		"SquaddieRN.placeHolderList[101]" ""
-		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftUpperArm_Control.translateY" 
-		"SquaddieRN.placeHolderList[102]" ""
-		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftUpperArm_Control.translateZ" 
-		"SquaddieRN.placeHolderList[103]" ""
-		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftUpperArm_Control.visibility" 
-		"SquaddieRN.placeHolderList[104]" ""
-		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftUpperArm_Control.rotateX" 
-		"SquaddieRN.placeHolderList[105]" ""
-		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftUpperArm_Control.rotateY" 
-		"SquaddieRN.placeHolderList[106]" ""
-		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftUpperArm_Control.rotateZ" 
-		"SquaddieRN.placeHolderList[107]" ""
-		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftUpperArm_Control.scaleX" 
-		"SquaddieRN.placeHolderList[108]" ""
-		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftUpperArm_Control.scaleY" 
-		"SquaddieRN.placeHolderList[109]" ""
-		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftUpperArm_Control.scaleZ" 
-		"SquaddieRN.placeHolderList[110]" ""
+		"SquaddieRN.placeHolderList[370]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightElbow_Control.translateX" 
-		"SquaddieRN.placeHolderList[111]" ""
+		"SquaddieRN.placeHolderList[371]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightElbow_Control.translateY" 
-		"SquaddieRN.placeHolderList[112]" ""
+		"SquaddieRN.placeHolderList[372]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightElbow_Control.translateZ" 
-		"SquaddieRN.placeHolderList[113]" ""
+		"SquaddieRN.placeHolderList[373]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightElbow_Control.visibility" 
-		"SquaddieRN.placeHolderList[114]" ""
+		"SquaddieRN.placeHolderList[374]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightElbow_Control.rotateX" 
-		"SquaddieRN.placeHolderList[115]" ""
+		"SquaddieRN.placeHolderList[375]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightElbow_Control.rotateY" 
-		"SquaddieRN.placeHolderList[116]" ""
+		"SquaddieRN.placeHolderList[376]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightElbow_Control.rotateZ" 
-		"SquaddieRN.placeHolderList[117]" ""
+		"SquaddieRN.placeHolderList[377]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightElbow_Control.scaleX" 
-		"SquaddieRN.placeHolderList[118]" ""
+		"SquaddieRN.placeHolderList[378]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightElbow_Control.scaleY" 
-		"SquaddieRN.placeHolderList[119]" ""
+		"SquaddieRN.placeHolderList[379]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightElbow_Control.scaleZ" 
-		"SquaddieRN.placeHolderList[120]" ""
+		"SquaddieRN.placeHolderList[380]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftElbow_Control.translateX" 
-		"SquaddieRN.placeHolderList[121]" ""
+		"SquaddieRN.placeHolderList[381]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftElbow_Control.translateY" 
-		"SquaddieRN.placeHolderList[122]" ""
+		"SquaddieRN.placeHolderList[382]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftElbow_Control.translateZ" 
-		"SquaddieRN.placeHolderList[123]" ""
+		"SquaddieRN.placeHolderList[383]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftElbow_Control.visibility" 
-		"SquaddieRN.placeHolderList[124]" ""
+		"SquaddieRN.placeHolderList[384]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftElbow_Control.rotateX" 
-		"SquaddieRN.placeHolderList[125]" ""
+		"SquaddieRN.placeHolderList[385]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftElbow_Control.rotateY" 
-		"SquaddieRN.placeHolderList[126]" ""
+		"SquaddieRN.placeHolderList[386]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftElbow_Control.rotateZ" 
-		"SquaddieRN.placeHolderList[127]" ""
+		"SquaddieRN.placeHolderList[387]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftElbow_Control.scaleX" 
-		"SquaddieRN.placeHolderList[128]" ""
+		"SquaddieRN.placeHolderList[388]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftElbow_Control.scaleY" 
-		"SquaddieRN.placeHolderList[129]" ""
+		"SquaddieRN.placeHolderList[389]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftElbow_Control.scaleZ" 
-		"SquaddieRN.placeHolderList[130]" ""
+		"SquaddieRN.placeHolderList[390]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightArmTwist_Control.visibility" 
-		"SquaddieRN.placeHolderList[131]" ""
+		"SquaddieRN.placeHolderList[391]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightArmTwist_Control.translateX" 
-		"SquaddieRN.placeHolderList[132]" ""
+		"SquaddieRN.placeHolderList[392]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightArmTwist_Control.translateY" 
-		"SquaddieRN.placeHolderList[133]" ""
+		"SquaddieRN.placeHolderList[393]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightArmTwist_Control.translateZ" 
-		"SquaddieRN.placeHolderList[134]" ""
+		"SquaddieRN.placeHolderList[394]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightArmTwist_Control.rotateX" 
-		"SquaddieRN.placeHolderList[135]" ""
+		"SquaddieRN.placeHolderList[395]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightArmTwist_Control.rotateY" 
-		"SquaddieRN.placeHolderList[136]" ""
+		"SquaddieRN.placeHolderList[396]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightArmTwist_Control.rotateZ" 
-		"SquaddieRN.placeHolderList[137]" ""
+		"SquaddieRN.placeHolderList[397]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightArmTwist_Control.scaleX" 
-		"SquaddieRN.placeHolderList[138]" ""
+		"SquaddieRN.placeHolderList[398]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightArmTwist_Control.scaleY" 
-		"SquaddieRN.placeHolderList[139]" ""
+		"SquaddieRN.placeHolderList[399]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightArmTwist_Control.scaleZ" 
-		"SquaddieRN.placeHolderList[140]" ""
+		"SquaddieRN.placeHolderList[400]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftArmTwist_Control.visibility" 
-		"SquaddieRN.placeHolderList[141]" ""
+		"SquaddieRN.placeHolderList[401]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftArmTwist_Control.translateX" 
-		"SquaddieRN.placeHolderList[142]" ""
+		"SquaddieRN.placeHolderList[402]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftArmTwist_Control.translateY" 
-		"SquaddieRN.placeHolderList[143]" ""
+		"SquaddieRN.placeHolderList[403]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftArmTwist_Control.translateZ" 
-		"SquaddieRN.placeHolderList[144]" ""
+		"SquaddieRN.placeHolderList[404]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftArmTwist_Control.rotateX" 
-		"SquaddieRN.placeHolderList[145]" ""
+		"SquaddieRN.placeHolderList[405]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftArmTwist_Control.rotateY" 
-		"SquaddieRN.placeHolderList[146]" ""
+		"SquaddieRN.placeHolderList[406]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftArmTwist_Control.rotateZ" 
-		"SquaddieRN.placeHolderList[147]" ""
+		"SquaddieRN.placeHolderList[407]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftArmTwist_Control.scaleX" 
-		"SquaddieRN.placeHolderList[148]" ""
+		"SquaddieRN.placeHolderList[408]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftArmTwist_Control.scaleY" 
-		"SquaddieRN.placeHolderList[149]" ""
+		"SquaddieRN.placeHolderList[409]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftArmTwist_Control.scaleZ" 
-		"SquaddieRN.placeHolderList[150]" ""
+		"SquaddieRN.placeHolderList[410]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightHand_Control.rotateX" 
-		"SquaddieRN.placeHolderList[151]" ""
+		"SquaddieRN.placeHolderList[411]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightHand_Control.rotateY" 
-		"SquaddieRN.placeHolderList[152]" ""
+		"SquaddieRN.placeHolderList[412]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightHand_Control.rotateZ" 
-		"SquaddieRN.placeHolderList[153]" ""
+		"SquaddieRN.placeHolderList[413]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightHand_Control.visibility" 
-		"SquaddieRN.placeHolderList[154]" ""
+		"SquaddieRN.placeHolderList[414]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightHand_Control.translateX" 
-		"SquaddieRN.placeHolderList[155]" ""
+		"SquaddieRN.placeHolderList[415]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightHand_Control.translateY" 
-		"SquaddieRN.placeHolderList[156]" ""
+		"SquaddieRN.placeHolderList[416]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightHand_Control.translateZ" 
-		"SquaddieRN.placeHolderList[157]" ""
+		"SquaddieRN.placeHolderList[417]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightHand_Control.scaleX" 
-		"SquaddieRN.placeHolderList[158]" ""
+		"SquaddieRN.placeHolderList[418]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightHand_Control.scaleY" 
-		"SquaddieRN.placeHolderList[159]" ""
+		"SquaddieRN.placeHolderList[419]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightHand_Control.scaleZ" 
-		"SquaddieRN.placeHolderList[160]" ""
+		"SquaddieRN.placeHolderList[420]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightHand_Control|Squaddie:RightFinders_Control.Grip" 
-		"SquaddieRN.placeHolderList[161]" ""
+		"SquaddieRN.placeHolderList[421]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightHand_Control|Squaddie:RightFinders_Control.visibility" 
-		"SquaddieRN.placeHolderList[162]" ""
+		"SquaddieRN.placeHolderList[422]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightHand_Control|Squaddie:RightFinders_Control.translateX" 
-		"SquaddieRN.placeHolderList[163]" ""
+		"SquaddieRN.placeHolderList[423]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightHand_Control|Squaddie:RightFinders_Control.translateY" 
-		"SquaddieRN.placeHolderList[164]" ""
+		"SquaddieRN.placeHolderList[424]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightHand_Control|Squaddie:RightFinders_Control.translateZ" 
-		"SquaddieRN.placeHolderList[165]" ""
+		"SquaddieRN.placeHolderList[425]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightHand_Control|Squaddie:RightFinders_Control.rotateX" 
-		"SquaddieRN.placeHolderList[166]" ""
+		"SquaddieRN.placeHolderList[426]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightHand_Control|Squaddie:RightFinders_Control.rotateY" 
-		"SquaddieRN.placeHolderList[167]" ""
+		"SquaddieRN.placeHolderList[427]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightHand_Control|Squaddie:RightFinders_Control.rotateZ" 
-		"SquaddieRN.placeHolderList[168]" ""
+		"SquaddieRN.placeHolderList[428]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightHand_Control|Squaddie:RightFinders_Control.scaleX" 
-		"SquaddieRN.placeHolderList[169]" ""
+		"SquaddieRN.placeHolderList[429]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightHand_Control|Squaddie:RightFinders_Control.scaleY" 
-		"SquaddieRN.placeHolderList[170]" ""
+		"SquaddieRN.placeHolderList[430]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightHand_Control|Squaddie:RightFinders_Control.scaleZ" 
-		"SquaddieRN.placeHolderList[171]" ""
+		"SquaddieRN.placeHolderList[431]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftHand_Control.rotateX" 
-		"SquaddieRN.placeHolderList[172]" ""
+		"SquaddieRN.placeHolderList[432]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftHand_Control.rotateY" 
-		"SquaddieRN.placeHolderList[173]" ""
+		"SquaddieRN.placeHolderList[433]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftHand_Control.rotateZ" 
-		"SquaddieRN.placeHolderList[174]" ""
+		"SquaddieRN.placeHolderList[434]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftHand_Control.visibility" 
-		"SquaddieRN.placeHolderList[175]" ""
+		"SquaddieRN.placeHolderList[435]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftHand_Control.translateX" 
-		"SquaddieRN.placeHolderList[176]" ""
+		"SquaddieRN.placeHolderList[436]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftHand_Control.translateY" 
-		"SquaddieRN.placeHolderList[177]" ""
+		"SquaddieRN.placeHolderList[437]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftHand_Control.translateZ" 
-		"SquaddieRN.placeHolderList[178]" ""
+		"SquaddieRN.placeHolderList[438]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftHand_Control.scaleX" 
-		"SquaddieRN.placeHolderList[179]" ""
+		"SquaddieRN.placeHolderList[439]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftHand_Control.scaleY" 
-		"SquaddieRN.placeHolderList[180]" ""
+		"SquaddieRN.placeHolderList[440]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftHand_Control.scaleZ" 
-		"SquaddieRN.placeHolderList[181]" ""
+		"SquaddieRN.placeHolderList[441]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftHand_Control|Squaddie:LeftFingers_Control.Grip" 
-		"SquaddieRN.placeHolderList[182]" ""
+		"SquaddieRN.placeHolderList[442]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftHand_Control|Squaddie:LeftFingers_Control.visibility" 
-		"SquaddieRN.placeHolderList[183]" ""
+		"SquaddieRN.placeHolderList[443]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftHand_Control|Squaddie:LeftFingers_Control.translateX" 
-		"SquaddieRN.placeHolderList[184]" ""
+		"SquaddieRN.placeHolderList[444]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftHand_Control|Squaddie:LeftFingers_Control.translateY" 
-		"SquaddieRN.placeHolderList[185]" ""
+		"SquaddieRN.placeHolderList[445]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftHand_Control|Squaddie:LeftFingers_Control.translateZ" 
-		"SquaddieRN.placeHolderList[186]" ""
+		"SquaddieRN.placeHolderList[446]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftHand_Control|Squaddie:LeftFingers_Control.rotateX" 
-		"SquaddieRN.placeHolderList[187]" ""
+		"SquaddieRN.placeHolderList[447]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftHand_Control|Squaddie:LeftFingers_Control.rotateY" 
-		"SquaddieRN.placeHolderList[188]" ""
+		"SquaddieRN.placeHolderList[448]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftHand_Control|Squaddie:LeftFingers_Control.rotateZ" 
-		"SquaddieRN.placeHolderList[189]" ""
+		"SquaddieRN.placeHolderList[449]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftHand_Control|Squaddie:LeftFingers_Control.scaleX" 
-		"SquaddieRN.placeHolderList[190]" ""
+		"SquaddieRN.placeHolderList[450]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftHand_Control|Squaddie:LeftFingers_Control.scaleY" 
-		"SquaddieRN.placeHolderList[191]" ""
+		"SquaddieRN.placeHolderList[451]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftHand_Control|Squaddie:LeftFingers_Control.scaleZ" 
-		"SquaddieRN.placeHolderList[192]" ""
+		"SquaddieRN.placeHolderList[452]" ""
+		5 3 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftHand_Control|Squaddie:ikHandle3.message" 
+		"SquaddieRN.placeHolderList[453]" ""
+		5 3 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftHand_Control|Squaddie:ikHandle3|Squaddie:ikHandle3_poleVectorConstraint1.message" 
+		"SquaddieRN.placeHolderList[454]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:LeftHip_Control.translateX" 
-		"SquaddieRN.placeHolderList[193]" ""
+		"SquaddieRN.placeHolderList[455]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:LeftHip_Control.translateY" 
-		"SquaddieRN.placeHolderList[194]" ""
+		"SquaddieRN.placeHolderList[456]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:LeftHip_Control.translateZ" 
-		"SquaddieRN.placeHolderList[195]" ""
+		"SquaddieRN.placeHolderList[457]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:LeftHip_Control.visibility" 
-		"SquaddieRN.placeHolderList[196]" ""
+		"SquaddieRN.placeHolderList[458]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:LeftHip_Control.rotateX" 
-		"SquaddieRN.placeHolderList[197]" ""
+		"SquaddieRN.placeHolderList[459]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:LeftHip_Control.rotateY" 
-		"SquaddieRN.placeHolderList[198]" ""
+		"SquaddieRN.placeHolderList[460]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:LeftHip_Control.rotateZ" 
-		"SquaddieRN.placeHolderList[199]" ""
+		"SquaddieRN.placeHolderList[461]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:LeftHip_Control.scaleX" 
-		"SquaddieRN.placeHolderList[200]" ""
+		"SquaddieRN.placeHolderList[462]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:LeftHip_Control.scaleY" 
-		"SquaddieRN.placeHolderList[201]" ""
+		"SquaddieRN.placeHolderList[463]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:LeftHip_Control.scaleZ" 
-		"SquaddieRN.placeHolderList[202]" ""
+		"SquaddieRN.placeHolderList[464]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:RightHip_Control.translateX" 
-		"SquaddieRN.placeHolderList[203]" ""
+		"SquaddieRN.placeHolderList[465]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:RightHip_Control.translateY" 
-		"SquaddieRN.placeHolderList[204]" ""
+		"SquaddieRN.placeHolderList[466]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:RightHip_Control.translateZ" 
-		"SquaddieRN.placeHolderList[205]" ""
+		"SquaddieRN.placeHolderList[467]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:RightHip_Control.visibility" 
-		"SquaddieRN.placeHolderList[206]" ""
+		"SquaddieRN.placeHolderList[468]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:RightHip_Control.rotateX" 
-		"SquaddieRN.placeHolderList[207]" ""
+		"SquaddieRN.placeHolderList[469]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:RightHip_Control.rotateY" 
-		"SquaddieRN.placeHolderList[208]" ""
+		"SquaddieRN.placeHolderList[470]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:RightHip_Control.rotateZ" 
-		"SquaddieRN.placeHolderList[209]" ""
+		"SquaddieRN.placeHolderList[471]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:RightHip_Control.scaleX" 
-		"SquaddieRN.placeHolderList[210]" ""
+		"SquaddieRN.placeHolderList[472]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:RightHip_Control.scaleY" 
-		"SquaddieRN.placeHolderList[211]" ""
+		"SquaddieRN.placeHolderList[473]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:RightHip_Control.scaleZ" 
-		"SquaddieRN.placeHolderList[212]" ""
+		"SquaddieRN.placeHolderList[474]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RightFoot_Control.rotateX" 
-		"SquaddieRN.placeHolderList[213]" ""
+		"SquaddieRN.placeHolderList[475]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RightFoot_Control.rotateY" 
-		"SquaddieRN.placeHolderList[214]" ""
+		"SquaddieRN.placeHolderList[476]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RightFoot_Control.rotateZ" 
-		"SquaddieRN.placeHolderList[215]" ""
+		"SquaddieRN.placeHolderList[477]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RightFoot_Control.visibility" 
-		"SquaddieRN.placeHolderList[216]" ""
+		"SquaddieRN.placeHolderList[478]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RightFoot_Control.translateX" 
-		"SquaddieRN.placeHolderList[217]" ""
+		"SquaddieRN.placeHolderList[479]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RightFoot_Control.translateY" 
-		"SquaddieRN.placeHolderList[218]" ""
+		"SquaddieRN.placeHolderList[480]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RightFoot_Control.translateZ" 
-		"SquaddieRN.placeHolderList[219]" ""
+		"SquaddieRN.placeHolderList[481]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RightFoot_Control.scaleX" 
-		"SquaddieRN.placeHolderList[220]" ""
+		"SquaddieRN.placeHolderList[482]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RightFoot_Control.scaleY" 
-		"SquaddieRN.placeHolderList[221]" ""
+		"SquaddieRN.placeHolderList[483]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RightFoot_Control.scaleZ" 
-		"SquaddieRN.placeHolderList[222]" ""
+		"SquaddieRN.placeHolderList[484]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RightFoot_Control|Squaddie:RightToes_Control.rotateX" 
-		"SquaddieRN.placeHolderList[223]" ""
+		"SquaddieRN.placeHolderList[485]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RightFoot_Control|Squaddie:RightToes_Control.rotateY" 
-		"SquaddieRN.placeHolderList[224]" ""
+		"SquaddieRN.placeHolderList[486]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RightFoot_Control|Squaddie:RightToes_Control.rotateZ" 
-		"SquaddieRN.placeHolderList[225]" ""
+		"SquaddieRN.placeHolderList[487]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RightFoot_Control|Squaddie:RightToes_Control.visibility" 
-		"SquaddieRN.placeHolderList[226]" ""
+		"SquaddieRN.placeHolderList[488]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RightFoot_Control|Squaddie:RightToes_Control.translateX" 
-		"SquaddieRN.placeHolderList[227]" ""
+		"SquaddieRN.placeHolderList[489]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RightFoot_Control|Squaddie:RightToes_Control.translateY" 
-		"SquaddieRN.placeHolderList[228]" ""
+		"SquaddieRN.placeHolderList[490]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RightFoot_Control|Squaddie:RightToes_Control.translateZ" 
-		"SquaddieRN.placeHolderList[229]" ""
+		"SquaddieRN.placeHolderList[491]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RightFoot_Control|Squaddie:RightToes_Control.scaleX" 
-		"SquaddieRN.placeHolderList[230]" ""
+		"SquaddieRN.placeHolderList[492]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RightFoot_Control|Squaddie:RightToes_Control.scaleY" 
-		"SquaddieRN.placeHolderList[231]" ""
+		"SquaddieRN.placeHolderList[493]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RightFoot_Control|Squaddie:RightToes_Control.scaleZ" 
-		"SquaddieRN.placeHolderList[232]" ""
+		"SquaddieRN.placeHolderList[494]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RightFoot_Control|Squaddie:RightKnee_Control.translateX" 
-		"SquaddieRN.placeHolderList[233]" ""
+		"SquaddieRN.placeHolderList[495]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RightFoot_Control|Squaddie:RightKnee_Control.translateY" 
-		"SquaddieRN.placeHolderList[234]" ""
+		"SquaddieRN.placeHolderList[496]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RightFoot_Control|Squaddie:RightKnee_Control.translateZ" 
-		"SquaddieRN.placeHolderList[235]" ""
+		"SquaddieRN.placeHolderList[497]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RightFoot_Control|Squaddie:RightKnee_Control.visibility" 
-		"SquaddieRN.placeHolderList[236]" ""
+		"SquaddieRN.placeHolderList[498]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RightFoot_Control|Squaddie:RightKnee_Control.rotateX" 
-		"SquaddieRN.placeHolderList[237]" ""
+		"SquaddieRN.placeHolderList[499]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RightFoot_Control|Squaddie:RightKnee_Control.rotateY" 
-		"SquaddieRN.placeHolderList[238]" ""
+		"SquaddieRN.placeHolderList[500]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RightFoot_Control|Squaddie:RightKnee_Control.rotateZ" 
-		"SquaddieRN.placeHolderList[239]" ""
+		"SquaddieRN.placeHolderList[501]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RightFoot_Control|Squaddie:RightKnee_Control.scaleX" 
-		"SquaddieRN.placeHolderList[240]" ""
+		"SquaddieRN.placeHolderList[502]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RightFoot_Control|Squaddie:RightKnee_Control.scaleY" 
-		"SquaddieRN.placeHolderList[241]" ""
+		"SquaddieRN.placeHolderList[503]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:RightFoot_Control|Squaddie:RightKnee_Control.scaleZ" 
-		"SquaddieRN.placeHolderList[242]" ""
+		"SquaddieRN.placeHolderList[504]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:LeftFoot_Control.rotateX" 
-		"SquaddieRN.placeHolderList[243]" ""
+		"SquaddieRN.placeHolderList[505]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:LeftFoot_Control.rotateY" 
-		"SquaddieRN.placeHolderList[244]" ""
+		"SquaddieRN.placeHolderList[506]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:LeftFoot_Control.rotateZ" 
-		"SquaddieRN.placeHolderList[245]" ""
+		"SquaddieRN.placeHolderList[507]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:LeftFoot_Control.visibility" 
-		"SquaddieRN.placeHolderList[246]" ""
+		"SquaddieRN.placeHolderList[508]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:LeftFoot_Control.translateX" 
-		"SquaddieRN.placeHolderList[247]" ""
+		"SquaddieRN.placeHolderList[509]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:LeftFoot_Control.translateY" 
-		"SquaddieRN.placeHolderList[248]" ""
+		"SquaddieRN.placeHolderList[510]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:LeftFoot_Control.translateZ" 
-		"SquaddieRN.placeHolderList[249]" ""
+		"SquaddieRN.placeHolderList[511]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:LeftFoot_Control.scaleX" 
-		"SquaddieRN.placeHolderList[250]" ""
+		"SquaddieRN.placeHolderList[512]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:LeftFoot_Control.scaleY" 
-		"SquaddieRN.placeHolderList[251]" ""
+		"SquaddieRN.placeHolderList[513]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:LeftFoot_Control.scaleZ" 
-		"SquaddieRN.placeHolderList[252]" ""
+		"SquaddieRN.placeHolderList[514]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:LeftFoot_Control|Squaddie:LeftToes_Control.rotateX" 
-		"SquaddieRN.placeHolderList[253]" ""
+		"SquaddieRN.placeHolderList[515]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:LeftFoot_Control|Squaddie:LeftToes_Control.rotateY" 
-		"SquaddieRN.placeHolderList[254]" ""
+		"SquaddieRN.placeHolderList[516]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:LeftFoot_Control|Squaddie:LeftToes_Control.rotateZ" 
-		"SquaddieRN.placeHolderList[255]" ""
+		"SquaddieRN.placeHolderList[517]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:LeftFoot_Control|Squaddie:LeftToes_Control.visibility" 
-		"SquaddieRN.placeHolderList[256]" ""
+		"SquaddieRN.placeHolderList[518]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:LeftFoot_Control|Squaddie:LeftToes_Control.translateX" 
-		"SquaddieRN.placeHolderList[257]" ""
+		"SquaddieRN.placeHolderList[519]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:LeftFoot_Control|Squaddie:LeftToes_Control.translateY" 
-		"SquaddieRN.placeHolderList[258]" ""
+		"SquaddieRN.placeHolderList[520]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:LeftFoot_Control|Squaddie:LeftToes_Control.translateZ" 
-		"SquaddieRN.placeHolderList[259]" ""
+		"SquaddieRN.placeHolderList[521]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:LeftFoot_Control|Squaddie:LeftToes_Control.scaleX" 
-		"SquaddieRN.placeHolderList[260]" ""
+		"SquaddieRN.placeHolderList[522]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:LeftFoot_Control|Squaddie:LeftToes_Control.scaleY" 
-		"SquaddieRN.placeHolderList[261]" ""
+		"SquaddieRN.placeHolderList[523]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:LeftFoot_Control|Squaddie:LeftToes_Control.scaleZ" 
-		"SquaddieRN.placeHolderList[262]" ""
+		"SquaddieRN.placeHolderList[524]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:LeftFoot_Control|Squaddie:LeftKnee_Control.translateX" 
-		"SquaddieRN.placeHolderList[263]" ""
+		"SquaddieRN.placeHolderList[525]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:LeftFoot_Control|Squaddie:LeftKnee_Control.translateY" 
-		"SquaddieRN.placeHolderList[264]" ""
+		"SquaddieRN.placeHolderList[526]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:LeftFoot_Control|Squaddie:LeftKnee_Control.translateZ" 
-		"SquaddieRN.placeHolderList[265]" ""
+		"SquaddieRN.placeHolderList[527]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:LeftFoot_Control|Squaddie:LeftKnee_Control.visibility" 
-		"SquaddieRN.placeHolderList[266]" ""
+		"SquaddieRN.placeHolderList[528]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:LeftFoot_Control|Squaddie:LeftKnee_Control.rotateX" 
-		"SquaddieRN.placeHolderList[267]" ""
+		"SquaddieRN.placeHolderList[529]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:LeftFoot_Control|Squaddie:LeftKnee_Control.rotateY" 
-		"SquaddieRN.placeHolderList[268]" ""
+		"SquaddieRN.placeHolderList[530]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:LeftFoot_Control|Squaddie:LeftKnee_Control.rotateZ" 
-		"SquaddieRN.placeHolderList[269]" ""
+		"SquaddieRN.placeHolderList[531]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:LeftFoot_Control|Squaddie:LeftKnee_Control.scaleX" 
-		"SquaddieRN.placeHolderList[270]" ""
+		"SquaddieRN.placeHolderList[532]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:LeftFoot_Control|Squaddie:LeftKnee_Control.scaleY" 
-		"SquaddieRN.placeHolderList[271]" ""
+		"SquaddieRN.placeHolderList[533]" ""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control|Squaddie:LeftFoot_Control|Squaddie:LeftKnee_Control.scaleZ" 
-		"SquaddieRN.placeHolderList[272]" ""
+		"SquaddieRN.placeHolderList[534]" ""
+		5 3 "SquaddieRN" "|Squaddie:GeoGroup|Squaddie:Body|Squaddie:BodyShape.message" 
+		"SquaddieRN.placeHolderList[535]" ""
+		5 3 "SquaddieRN" "|Squaddie:SkeletonGroup|Squaddie:Attach_RootMotion|Squaddie:Hips_Skel|Squaddie:Spine1_Skel|Squaddie:Spine2_Skel|Squaddie:LeftClav_Skel.message" 
+		"SquaddieRN.placeHolderList[536]" ""
+		5 3 "SquaddieRN" "|Squaddie:SkeletonGroup|Squaddie:Attach_RootMotion|Squaddie:Hips_Skel|Squaddie:Spine1_Skel|Squaddie:Spine2_Skel|Squaddie:LeftClav_Skel|Squaddie:LeftUpperArm_Skel.message" 
+		"SquaddieRN.placeHolderList[537]" ""
+		5 3 "SquaddieRN" "|Squaddie:SkeletonGroup|Squaddie:Attach_RootMotion|Squaddie:Hips_Skel|Squaddie:Spine1_Skel|Squaddie:Spine2_Skel|Squaddie:LeftClav_Skel|Squaddie:LeftUpperArm_Skel|Squaddie:LeftLowerArm_Skel.message" 
+		"SquaddieRN.placeHolderList[538]" ""
 		5 3 "SquaddieRN" "|Squaddie:SkeletonGroup|Squaddie:Attach_RootMotion|Squaddie:Hips_Skel|Squaddie:Spine1_Skel|Squaddie:Spine2_Skel|Squaddie:RightClav_Skel|Squaddie:RightUpperArm_Skel|Squaddie:RightLowerArm_Skel|Squaddie:RightHand_Skel|Squaddie:Attach_RightHand.parentMatrix" 
-		"SquaddieRN.placeHolderList[273]" ""
+		"SquaddieRN.placeHolderList[539]" ""
 		5 3 "SquaddieRN" "|Squaddie:SkeletonGroup|Squaddie:Attach_RootMotion|Squaddie:Hips_Skel|Squaddie:Spine1_Skel|Squaddie:Spine2_Skel|Squaddie:RightClav_Skel|Squaddie:RightUpperArm_Skel|Squaddie:RightLowerArm_Skel|Squaddie:RightHand_Skel|Squaddie:Attach_RightHand.translate" 
-		"SquaddieRN.placeHolderList[274]" ""
+		"SquaddieRN.placeHolderList[540]" ""
 		5 3 "SquaddieRN" "|Squaddie:SkeletonGroup|Squaddie:Attach_RootMotion|Squaddie:Hips_Skel|Squaddie:Spine1_Skel|Squaddie:Spine2_Skel|Squaddie:RightClav_Skel|Squaddie:RightUpperArm_Skel|Squaddie:RightLowerArm_Skel|Squaddie:RightHand_Skel|Squaddie:Attach_RightHand.rotatePivot" 
-		"SquaddieRN.placeHolderList[275]" ""
+		"SquaddieRN.placeHolderList[541]" ""
 		5 3 "SquaddieRN" "|Squaddie:SkeletonGroup|Squaddie:Attach_RootMotion|Squaddie:Hips_Skel|Squaddie:Spine1_Skel|Squaddie:Spine2_Skel|Squaddie:RightClav_Skel|Squaddie:RightUpperArm_Skel|Squaddie:RightLowerArm_Skel|Squaddie:RightHand_Skel|Squaddie:Attach_RightHand.rotatePivotTranslate" 
-		"SquaddieRN.placeHolderList[276]" ""
+		"SquaddieRN.placeHolderList[542]" ""
 		5 3 "SquaddieRN" "|Squaddie:SkeletonGroup|Squaddie:Attach_RootMotion|Squaddie:Hips_Skel|Squaddie:Spine1_Skel|Squaddie:Spine2_Skel|Squaddie:RightClav_Skel|Squaddie:RightUpperArm_Skel|Squaddie:RightLowerArm_Skel|Squaddie:RightHand_Skel|Squaddie:Attach_RightHand.rotate" 
-		"SquaddieRN.placeHolderList[277]" ""
+		"SquaddieRN.placeHolderList[543]" ""
 		5 3 "SquaddieRN" "|Squaddie:SkeletonGroup|Squaddie:Attach_RootMotion|Squaddie:Hips_Skel|Squaddie:Spine1_Skel|Squaddie:Spine2_Skel|Squaddie:RightClav_Skel|Squaddie:RightUpperArm_Skel|Squaddie:RightLowerArm_Skel|Squaddie:RightHand_Skel|Squaddie:Attach_RightHand.rotateOrder" 
-		"SquaddieRN.placeHolderList[278]" ""
+		"SquaddieRN.placeHolderList[544]" ""
 		5 3 "SquaddieRN" "|Squaddie:SkeletonGroup|Squaddie:Attach_RootMotion|Squaddie:Hips_Skel|Squaddie:Spine1_Skel|Squaddie:Spine2_Skel|Squaddie:RightClav_Skel|Squaddie:RightUpperArm_Skel|Squaddie:RightLowerArm_Skel|Squaddie:RightHand_Skel|Squaddie:Attach_RightHand.scale" 
-		"SquaddieRN.placeHolderList[279]" "";
+		"SquaddieRN.placeHolderList[545]" ""
+		5 3 "SquaddieRN" "Squaddie:skinCluster1.message" "SquaddieRN.placeHolderList[546]" 
+		""
+		5 3 "SquaddieRN" "Squaddie:bindPose1.message" "SquaddieRN.placeHolderList[547]" 
+		""
+		5 3 "SquaddieRN" "Squaddie:Skeleton_Layer.message" "SquaddieRN.placeHolderList[548]" 
+		"";
 	setAttr ".ptag" -type "string" "";
 lockNode -l 1 ;
 createNode script -n "uiConfigurationScriptNode";
@@ -5160,13 +5169,61 @@ createNode animCurveTU -n "pointLight1_scaleY";
 	setAttr ".tan" 18;
 	setAttr ".wgt" no;
 	setAttr ".ktv[0]"  150 1;
+createNode nodeGraphEditorInfo -n "MayaNodeEditorSavedTabsInfo";
+	rename -uid "9FA00517-3F4B-BFBC-8F81-FC9053974392";
+	setAttr ".tgi[0].tn" -type "string" "Untitled_1";
+	setAttr ".tgi[0].vl" -type "double2" -586.95597687657312 -395.2524141435228 ;
+	setAttr ".tgi[0].vh" -type "double2" 949.31762358388505 377.36767480400334 ;
+	setAttr -s 14 ".tgi[0].ni";
+	setAttr ".tgi[0].ni[0].x" -301.42855834960938;
+	setAttr ".tgi[0].ni[0].y" -94.285713195800781;
+	setAttr ".tgi[0].ni[0].nvs" 18304;
+	setAttr ".tgi[0].ni[1].x" 771.4285888671875;
+	setAttr ".tgi[0].ni[1].y" 267.14285278320312;
+	setAttr ".tgi[0].ni[1].nvs" 18304;
+	setAttr ".tgi[0].ni[2].x" 771.4285888671875;
+	setAttr ".tgi[0].ni[2].y" 150;
+	setAttr ".tgi[0].ni[2].nvs" 18304;
+	setAttr ".tgi[0].ni[3].x" -301.42855834960938;
+	setAttr ".tgi[0].ni[3].y" 140;
+	setAttr ".tgi[0].ni[3].nvs" 18304;
+	setAttr ".tgi[0].ni[4].x" -978.5714111328125;
+	setAttr ".tgi[0].ni[4].y" -94.285713195800781;
+	setAttr ".tgi[0].ni[4].nvs" 18304;
+	setAttr ".tgi[0].ni[5].x" -301.42855834960938;
+	setAttr ".tgi[0].ni[5].y" 22.857143402099609;
+	setAttr ".tgi[0].ni[5].nvs" 18304;
+	setAttr ".tgi[0].ni[6].x" 94.285713195800781;
+	setAttr ".tgi[0].ni[6].y" 28.571428298950195;
+	setAttr ".tgi[0].ni[6].nvs" 18304;
+	setAttr ".tgi[0].ni[7].x" -608.5714111328125;
+	setAttr ".tgi[0].ni[7].y" -94.285713195800781;
+	setAttr ".tgi[0].ni[7].nvs" 18304;
+	setAttr ".tgi[0].ni[8].x" 771.4285888671875;
+	setAttr ".tgi[0].ni[8].y" -82.857139587402344;
+	setAttr ".tgi[0].ni[8].nvs" 18304;
+	setAttr ".tgi[0].ni[9].x" 401.42855834960938;
+	setAttr ".tgi[0].ni[9].y" 180;
+	setAttr ".tgi[0].ni[9].nvs" 18304;
+	setAttr ".tgi[0].ni[10].x" -978.5714111328125;
+	setAttr ".tgi[0].ni[10].y" 4.2857141494750977;
+	setAttr ".tgi[0].ni[10].nvs" 18304;
+	setAttr ".tgi[0].ni[11].x" -978.5714111328125;
+	setAttr ".tgi[0].ni[11].y" -192.85714721679688;
+	setAttr ".tgi[0].ni[11].nvs" 18304;
+	setAttr ".tgi[0].ni[12].x" 401.42855834960938;
+	setAttr ".tgi[0].ni[12].y" 62.857143402099609;
+	setAttr ".tgi[0].ni[12].nvs" 18304;
+	setAttr ".tgi[0].ni[13].x" 401.42855834960938;
+	setAttr ".tgi[0].ni[13].y" -111.42857360839844;
+	setAttr ".tgi[0].ni[13].nvs" 18304;
 select -ne :time1;
 	setAttr -av -k on ".cch";
 	setAttr -av -cb on ".ihi";
 	setAttr -av -k on ".nds";
 	setAttr -cb on ".bnm";
-	setAttr -k on ".o" 158;
-	setAttr -av -k on ".unw" 158;
+	setAttr -k on ".o" 1;
+	setAttr -av -k on ".unw" 1;
 	setAttr -av -k on ".etw";
 	setAttr -av -k on ".tps";
 	setAttr -av -k on ".tms";
@@ -5386,285 +5443,276 @@ select -ne :hardwareRenderGlobals;
 	setAttr -k on ".shml";
 	setAttr -k on ".hwel";
 select -ne :ikSystem;
-connectAttr "Root_Control_visibility.o" "SquaddieRN.phl[1]";
-connectAttr "Root_Control_translateX.o" "SquaddieRN.phl[2]";
-connectAttr "Root_Control_translateY.o" "SquaddieRN.phl[3]";
-connectAttr "Root_Control_translateZ.o" "SquaddieRN.phl[4]";
-connectAttr "Root_Control_rotateX.o" "SquaddieRN.phl[5]";
-connectAttr "Root_Control_rotateY.o" "SquaddieRN.phl[6]";
-connectAttr "Root_Control_rotateZ.o" "SquaddieRN.phl[7]";
-connectAttr "Root_Control_scaleX.o" "SquaddieRN.phl[8]";
-connectAttr "Root_Control_scaleY.o" "SquaddieRN.phl[9]";
-connectAttr "Root_Control_scaleZ.o" "SquaddieRN.phl[10]";
-connectAttr "RootMotion_Control_translateX.o" "SquaddieRN.phl[11]";
-connectAttr "RootMotion_Control_translateY.o" "SquaddieRN.phl[12]";
-connectAttr "RootMotion_Control_translateZ.o" "SquaddieRN.phl[13]";
-connectAttr "RootMotion_Control_rotateX.o" "SquaddieRN.phl[14]";
-connectAttr "RootMotion_Control_rotateY.o" "SquaddieRN.phl[15]";
-connectAttr "RootMotion_Control_rotateZ.o" "SquaddieRN.phl[16]";
-connectAttr "RootMotion_Control_scaleX.o" "SquaddieRN.phl[17]";
-connectAttr "RootMotion_Control_scaleY.o" "SquaddieRN.phl[18]";
-connectAttr "RootMotion_Control_scaleZ.o" "SquaddieRN.phl[19]";
-connectAttr "RootMotion_Control_visibility.o" "SquaddieRN.phl[20]";
-connectAttr "Hips_Control_translateX.o" "SquaddieRN.phl[21]";
-connectAttr "Hips_Control_translateY.o" "SquaddieRN.phl[22]";
-connectAttr "Hips_Control_translateZ.o" "SquaddieRN.phl[23]";
-connectAttr "Hips_Control_rotateX.o" "SquaddieRN.phl[24]";
-connectAttr "Hips_Control_rotateY.o" "SquaddieRN.phl[25]";
-connectAttr "Hips_Control_rotateZ.o" "SquaddieRN.phl[26]";
-connectAttr "Hips_Control_scaleX.o" "SquaddieRN.phl[27]";
-connectAttr "Hips_Control_scaleY.o" "SquaddieRN.phl[28]";
-connectAttr "Hips_Control_scaleZ.o" "SquaddieRN.phl[29]";
-connectAttr "Hips_Control_visibility.o" "SquaddieRN.phl[30]";
-connectAttr "Spine1_Control_translateX.o" "SquaddieRN.phl[31]";
-connectAttr "Spine1_Control_translateY.o" "SquaddieRN.phl[32]";
-connectAttr "Spine1_Control_translateZ.o" "SquaddieRN.phl[33]";
-connectAttr "Spine1_Control_rotateX.o" "SquaddieRN.phl[34]";
-connectAttr "Spine1_Control_rotateY.o" "SquaddieRN.phl[35]";
-connectAttr "Spine1_Control_rotateZ.o" "SquaddieRN.phl[36]";
-connectAttr "Spine1_Control_scaleX.o" "SquaddieRN.phl[37]";
-connectAttr "Spine1_Control_scaleY.o" "SquaddieRN.phl[38]";
-connectAttr "Spine1_Control_scaleZ.o" "SquaddieRN.phl[39]";
-connectAttr "Spine1_Control_visibility.o" "SquaddieRN.phl[40]";
-connectAttr "Spine2_Control_translateX.o" "SquaddieRN.phl[41]";
-connectAttr "Spine2_Control_translateY.o" "SquaddieRN.phl[42]";
-connectAttr "Spine2_Control_translateZ.o" "SquaddieRN.phl[43]";
-connectAttr "Spine2_Control_rotateX.o" "SquaddieRN.phl[44]";
-connectAttr "Spine2_Control_rotateY.o" "SquaddieRN.phl[45]";
-connectAttr "Spine2_Control_rotateZ.o" "SquaddieRN.phl[46]";
-connectAttr "Spine2_Control_scaleX.o" "SquaddieRN.phl[47]";
-connectAttr "Spine2_Control_scaleY.o" "SquaddieRN.phl[48]";
-connectAttr "Spine2_Control_scaleZ.o" "SquaddieRN.phl[49]";
-connectAttr "Spine2_Control_visibility.o" "SquaddieRN.phl[50]";
-connectAttr "RightUpperArm_Control_translateX.o" "SquaddieRN.phl[51]";
-connectAttr "RightUpperArm_Control_translateY.o" "SquaddieRN.phl[52]";
-connectAttr "RightUpperArm_Control_translateZ.o" "SquaddieRN.phl[53]";
-connectAttr "RightUpperArm_Control_visibility.o" "SquaddieRN.phl[54]";
-connectAttr "RightUpperArm_Control_rotateX.o" "SquaddieRN.phl[55]";
-connectAttr "RightUpperArm_Control_rotateY.o" "SquaddieRN.phl[56]";
-connectAttr "RightUpperArm_Control_rotateZ.o" "SquaddieRN.phl[57]";
-connectAttr "RightUpperArm_Control_scaleX.o" "SquaddieRN.phl[58]";
-connectAttr "RightUpperArm_Control_scaleY.o" "SquaddieRN.phl[59]";
-connectAttr "RightUpperArm_Control_scaleZ.o" "SquaddieRN.phl[60]";
-connectAttr "RightShoulder_Control_rotateX.o" "SquaddieRN.phl[61]";
-connectAttr "RightShoulder_Control_rotateY.o" "SquaddieRN.phl[62]";
-connectAttr "RightShoulder_Control_rotateZ.o" "SquaddieRN.phl[63]";
-connectAttr "RightShoulder_Control_visibility.o" "SquaddieRN.phl[64]";
-connectAttr "RightShoulder_Control_translateX.o" "SquaddieRN.phl[65]";
-connectAttr "RightShoulder_Control_translateY.o" "SquaddieRN.phl[66]";
-connectAttr "RightShoulder_Control_translateZ.o" "SquaddieRN.phl[67]";
-connectAttr "RightShoulder_Control_scaleX.o" "SquaddieRN.phl[68]";
-connectAttr "RightShoulder_Control_scaleY.o" "SquaddieRN.phl[69]";
-connectAttr "RightShoulder_Control_scaleZ.o" "SquaddieRN.phl[70]";
-connectAttr "Neck_Control_translateX.o" "SquaddieRN.phl[71]";
-connectAttr "Neck_Control_translateY.o" "SquaddieRN.phl[72]";
-connectAttr "Neck_Control_translateZ.o" "SquaddieRN.phl[73]";
-connectAttr "Neck_Control_rotateX.o" "SquaddieRN.phl[74]";
-connectAttr "Neck_Control_rotateY.o" "SquaddieRN.phl[75]";
-connectAttr "Neck_Control_rotateZ.o" "SquaddieRN.phl[76]";
-connectAttr "Neck_Control_scaleX.o" "SquaddieRN.phl[77]";
-connectAttr "Neck_Control_scaleY.o" "SquaddieRN.phl[78]";
-connectAttr "Neck_Control_scaleZ.o" "SquaddieRN.phl[79]";
-connectAttr "Neck_Control_visibility.o" "SquaddieRN.phl[80]";
-connectAttr "Head_Control_translateX.o" "SquaddieRN.phl[81]";
-connectAttr "Head_Control_translateY.o" "SquaddieRN.phl[82]";
-connectAttr "Head_Control_translateZ.o" "SquaddieRN.phl[83]";
-connectAttr "Head_Control_rotateX.o" "SquaddieRN.phl[84]";
-connectAttr "Head_Control_rotateY.o" "SquaddieRN.phl[85]";
-connectAttr "Head_Control_rotateZ.o" "SquaddieRN.phl[86]";
-connectAttr "Head_Control_scaleX.o" "SquaddieRN.phl[87]";
-connectAttr "Head_Control_scaleY.o" "SquaddieRN.phl[88]";
-connectAttr "Head_Control_scaleZ.o" "SquaddieRN.phl[89]";
-connectAttr "Head_Control_visibility.o" "SquaddieRN.phl[90]";
-connectAttr "LeftShoulder_Control_rotateX.o" "SquaddieRN.phl[91]";
-connectAttr "LeftShoulder_Control_rotateY.o" "SquaddieRN.phl[92]";
-connectAttr "LeftShoulder_Control_rotateZ.o" "SquaddieRN.phl[93]";
-connectAttr "LeftShoulder_Control_visibility.o" "SquaddieRN.phl[94]";
-connectAttr "LeftShoulder_Control_translateX.o" "SquaddieRN.phl[95]";
-connectAttr "LeftShoulder_Control_translateY.o" "SquaddieRN.phl[96]";
-connectAttr "LeftShoulder_Control_translateZ.o" "SquaddieRN.phl[97]";
-connectAttr "LeftShoulder_Control_scaleX.o" "SquaddieRN.phl[98]";
-connectAttr "LeftShoulder_Control_scaleY.o" "SquaddieRN.phl[99]";
-connectAttr "LeftShoulder_Control_scaleZ.o" "SquaddieRN.phl[100]";
-connectAttr "LeftUpperArm_Control_translateX.o" "SquaddieRN.phl[101]";
-connectAttr "LeftUpperArm_Control_translateY.o" "SquaddieRN.phl[102]";
-connectAttr "LeftUpperArm_Control_translateZ.o" "SquaddieRN.phl[103]";
-connectAttr "LeftUpperArm_Control_visibility.o" "SquaddieRN.phl[104]";
-connectAttr "LeftUpperArm_Control_rotateX.o" "SquaddieRN.phl[105]";
-connectAttr "LeftUpperArm_Control_rotateY.o" "SquaddieRN.phl[106]";
-connectAttr "LeftUpperArm_Control_rotateZ.o" "SquaddieRN.phl[107]";
-connectAttr "LeftUpperArm_Control_scaleX.o" "SquaddieRN.phl[108]";
-connectAttr "LeftUpperArm_Control_scaleY.o" "SquaddieRN.phl[109]";
-connectAttr "LeftUpperArm_Control_scaleZ.o" "SquaddieRN.phl[110]";
-connectAttr "RightElbow_Control_translateX.o" "SquaddieRN.phl[111]";
-connectAttr "RightElbow_Control_translateY.o" "SquaddieRN.phl[112]";
-connectAttr "RightElbow_Control_translateZ.o" "SquaddieRN.phl[113]";
-connectAttr "RightElbow_Control_visibility.o" "SquaddieRN.phl[114]";
-connectAttr "RightElbow_Control_rotateX.o" "SquaddieRN.phl[115]";
-connectAttr "RightElbow_Control_rotateY.o" "SquaddieRN.phl[116]";
-connectAttr "RightElbow_Control_rotateZ.o" "SquaddieRN.phl[117]";
-connectAttr "RightElbow_Control_scaleX.o" "SquaddieRN.phl[118]";
-connectAttr "RightElbow_Control_scaleY.o" "SquaddieRN.phl[119]";
-connectAttr "RightElbow_Control_scaleZ.o" "SquaddieRN.phl[120]";
-connectAttr "LeftElbow_Control_translateX.o" "SquaddieRN.phl[121]";
-connectAttr "LeftElbow_Control_translateY.o" "SquaddieRN.phl[122]";
-connectAttr "LeftElbow_Control_translateZ.o" "SquaddieRN.phl[123]";
-connectAttr "LeftElbow_Control_visibility.o" "SquaddieRN.phl[124]";
-connectAttr "LeftElbow_Control_rotateX.o" "SquaddieRN.phl[125]";
-connectAttr "LeftElbow_Control_rotateY.o" "SquaddieRN.phl[126]";
-connectAttr "LeftElbow_Control_rotateZ.o" "SquaddieRN.phl[127]";
-connectAttr "LeftElbow_Control_scaleX.o" "SquaddieRN.phl[128]";
-connectAttr "LeftElbow_Control_scaleY.o" "SquaddieRN.phl[129]";
-connectAttr "LeftElbow_Control_scaleZ.o" "SquaddieRN.phl[130]";
-connectAttr "RightArmTwist_Control_visibility.o" "SquaddieRN.phl[131]";
-connectAttr "RightArmTwist_Control_translateX.o" "SquaddieRN.phl[132]";
-connectAttr "RightArmTwist_Control_translateY.o" "SquaddieRN.phl[133]";
-connectAttr "RightArmTwist_Control_translateZ.o" "SquaddieRN.phl[134]";
-connectAttr "RightArmTwist_Control_rotateX.o" "SquaddieRN.phl[135]";
-connectAttr "RightArmTwist_Control_rotateY.o" "SquaddieRN.phl[136]";
-connectAttr "RightArmTwist_Control_rotateZ.o" "SquaddieRN.phl[137]";
-connectAttr "RightArmTwist_Control_scaleX.o" "SquaddieRN.phl[138]";
-connectAttr "RightArmTwist_Control_scaleY.o" "SquaddieRN.phl[139]";
-connectAttr "RightArmTwist_Control_scaleZ.o" "SquaddieRN.phl[140]";
-connectAttr "LeftArmTwist_Control_visibility.o" "SquaddieRN.phl[141]";
-connectAttr "LeftArmTwist_Control_translateX.o" "SquaddieRN.phl[142]";
-connectAttr "LeftArmTwist_Control_translateY.o" "SquaddieRN.phl[143]";
-connectAttr "LeftArmTwist_Control_translateZ.o" "SquaddieRN.phl[144]";
-connectAttr "LeftArmTwist_Control_rotateX.o" "SquaddieRN.phl[145]";
-connectAttr "LeftArmTwist_Control_rotateY.o" "SquaddieRN.phl[146]";
-connectAttr "LeftArmTwist_Control_rotateZ.o" "SquaddieRN.phl[147]";
-connectAttr "LeftArmTwist_Control_scaleX.o" "SquaddieRN.phl[148]";
-connectAttr "LeftArmTwist_Control_scaleY.o" "SquaddieRN.phl[149]";
-connectAttr "LeftArmTwist_Control_scaleZ.o" "SquaddieRN.phl[150]";
-connectAttr "RightHand_Control_rotateX.o" "SquaddieRN.phl[151]";
-connectAttr "RightHand_Control_rotateY.o" "SquaddieRN.phl[152]";
-connectAttr "RightHand_Control_rotateZ.o" "SquaddieRN.phl[153]";
-connectAttr "RightHand_Control_visibility.o" "SquaddieRN.phl[154]";
-connectAttr "RightHand_Control_translateX.o" "SquaddieRN.phl[155]";
-connectAttr "RightHand_Control_translateY.o" "SquaddieRN.phl[156]";
-connectAttr "RightHand_Control_translateZ.o" "SquaddieRN.phl[157]";
-connectAttr "RightHand_Control_scaleX.o" "SquaddieRN.phl[158]";
-connectAttr "RightHand_Control_scaleY.o" "SquaddieRN.phl[159]";
-connectAttr "RightHand_Control_scaleZ.o" "SquaddieRN.phl[160]";
-connectAttr "RightFinders_Control_Grip.o" "SquaddieRN.phl[161]";
-connectAttr "RightFinders_Control_visibility.o" "SquaddieRN.phl[162]";
-connectAttr "RightFinders_Control_translateX.o" "SquaddieRN.phl[163]";
-connectAttr "RightFinders_Control_translateY.o" "SquaddieRN.phl[164]";
-connectAttr "RightFinders_Control_translateZ.o" "SquaddieRN.phl[165]";
-connectAttr "RightFinders_Control_rotateX.o" "SquaddieRN.phl[166]";
-connectAttr "RightFinders_Control_rotateY.o" "SquaddieRN.phl[167]";
-connectAttr "RightFinders_Control_rotateZ.o" "SquaddieRN.phl[168]";
-connectAttr "RightFinders_Control_scaleX.o" "SquaddieRN.phl[169]";
-connectAttr "RightFinders_Control_scaleY.o" "SquaddieRN.phl[170]";
-connectAttr "RightFinders_Control_scaleZ.o" "SquaddieRN.phl[171]";
-connectAttr "LeftHand_Control_rotateX.o" "SquaddieRN.phl[172]";
-connectAttr "LeftHand_Control_rotateY.o" "SquaddieRN.phl[173]";
-connectAttr "LeftHand_Control_rotateZ.o" "SquaddieRN.phl[174]";
-connectAttr "LeftHand_Control_visibility.o" "SquaddieRN.phl[175]";
-connectAttr "LeftHand_Control_translateX.o" "SquaddieRN.phl[176]";
-connectAttr "LeftHand_Control_translateY.o" "SquaddieRN.phl[177]";
-connectAttr "LeftHand_Control_translateZ.o" "SquaddieRN.phl[178]";
-connectAttr "LeftHand_Control_scaleX.o" "SquaddieRN.phl[179]";
-connectAttr "LeftHand_Control_scaleY.o" "SquaddieRN.phl[180]";
-connectAttr "LeftHand_Control_scaleZ.o" "SquaddieRN.phl[181]";
-connectAttr "LeftFingers_Control_Grip.o" "SquaddieRN.phl[182]";
-connectAttr "LeftFingers_Control_visibility.o" "SquaddieRN.phl[183]";
-connectAttr "LeftFingers_Control_translateX.o" "SquaddieRN.phl[184]";
-connectAttr "LeftFingers_Control_translateY.o" "SquaddieRN.phl[185]";
-connectAttr "LeftFingers_Control_translateZ.o" "SquaddieRN.phl[186]";
-connectAttr "LeftFingers_Control_rotateX.o" "SquaddieRN.phl[187]";
-connectAttr "LeftFingers_Control_rotateY.o" "SquaddieRN.phl[188]";
-connectAttr "LeftFingers_Control_rotateZ.o" "SquaddieRN.phl[189]";
-connectAttr "LeftFingers_Control_scaleX.o" "SquaddieRN.phl[190]";
-connectAttr "LeftFingers_Control_scaleY.o" "SquaddieRN.phl[191]";
-connectAttr "LeftFingers_Control_scaleZ.o" "SquaddieRN.phl[192]";
-connectAttr "LeftHip_Control_translateX.o" "SquaddieRN.phl[193]";
-connectAttr "LeftHip_Control_translateY.o" "SquaddieRN.phl[194]";
-connectAttr "LeftHip_Control_translateZ.o" "SquaddieRN.phl[195]";
-connectAttr "LeftHip_Control_visibility.o" "SquaddieRN.phl[196]";
-connectAttr "LeftHip_Control_rotateX.o" "SquaddieRN.phl[197]";
-connectAttr "LeftHip_Control_rotateY.o" "SquaddieRN.phl[198]";
-connectAttr "LeftHip_Control_rotateZ.o" "SquaddieRN.phl[199]";
-connectAttr "LeftHip_Control_scaleX.o" "SquaddieRN.phl[200]";
-connectAttr "LeftHip_Control_scaleY.o" "SquaddieRN.phl[201]";
-connectAttr "LeftHip_Control_scaleZ.o" "SquaddieRN.phl[202]";
-connectAttr "RightHip_Control_translateX.o" "SquaddieRN.phl[203]";
-connectAttr "RightHip_Control_translateY.o" "SquaddieRN.phl[204]";
-connectAttr "RightHip_Control_translateZ.o" "SquaddieRN.phl[205]";
-connectAttr "RightHip_Control_visibility.o" "SquaddieRN.phl[206]";
-connectAttr "RightHip_Control_rotateX.o" "SquaddieRN.phl[207]";
-connectAttr "RightHip_Control_rotateY.o" "SquaddieRN.phl[208]";
-connectAttr "RightHip_Control_rotateZ.o" "SquaddieRN.phl[209]";
-connectAttr "RightHip_Control_scaleX.o" "SquaddieRN.phl[210]";
-connectAttr "RightHip_Control_scaleY.o" "SquaddieRN.phl[211]";
-connectAttr "RightHip_Control_scaleZ.o" "SquaddieRN.phl[212]";
-connectAttr "RightFoot_Control_rotateX.o" "SquaddieRN.phl[213]";
-connectAttr "RightFoot_Control_rotateY.o" "SquaddieRN.phl[214]";
-connectAttr "RightFoot_Control_rotateZ.o" "SquaddieRN.phl[215]";
-connectAttr "RightFoot_Control_visibility.o" "SquaddieRN.phl[216]";
-connectAttr "RightFoot_Control_translateX.o" "SquaddieRN.phl[217]";
-connectAttr "RightFoot_Control_translateY.o" "SquaddieRN.phl[218]";
-connectAttr "RightFoot_Control_translateZ.o" "SquaddieRN.phl[219]";
-connectAttr "RightFoot_Control_scaleX.o" "SquaddieRN.phl[220]";
-connectAttr "RightFoot_Control_scaleY.o" "SquaddieRN.phl[221]";
-connectAttr "RightFoot_Control_scaleZ.o" "SquaddieRN.phl[222]";
-connectAttr "RightToes_Control_rotateX.o" "SquaddieRN.phl[223]";
-connectAttr "RightToes_Control_rotateY.o" "SquaddieRN.phl[224]";
-connectAttr "RightToes_Control_rotateZ.o" "SquaddieRN.phl[225]";
-connectAttr "RightToes_Control_visibility.o" "SquaddieRN.phl[226]";
-connectAttr "RightToes_Control_translateX.o" "SquaddieRN.phl[227]";
-connectAttr "RightToes_Control_translateY.o" "SquaddieRN.phl[228]";
-connectAttr "RightToes_Control_translateZ.o" "SquaddieRN.phl[229]";
-connectAttr "RightToes_Control_scaleX.o" "SquaddieRN.phl[230]";
-connectAttr "RightToes_Control_scaleY.o" "SquaddieRN.phl[231]";
-connectAttr "RightToes_Control_scaleZ.o" "SquaddieRN.phl[232]";
-connectAttr "RightKnee_Control_translateX.o" "SquaddieRN.phl[233]";
-connectAttr "RightKnee_Control_translateY.o" "SquaddieRN.phl[234]";
-connectAttr "RightKnee_Control_translateZ.o" "SquaddieRN.phl[235]";
-connectAttr "RightKnee_Control_visibility.o" "SquaddieRN.phl[236]";
-connectAttr "RightKnee_Control_rotateX.o" "SquaddieRN.phl[237]";
-connectAttr "RightKnee_Control_rotateY.o" "SquaddieRN.phl[238]";
-connectAttr "RightKnee_Control_rotateZ.o" "SquaddieRN.phl[239]";
-connectAttr "RightKnee_Control_scaleX.o" "SquaddieRN.phl[240]";
-connectAttr "RightKnee_Control_scaleY.o" "SquaddieRN.phl[241]";
-connectAttr "RightKnee_Control_scaleZ.o" "SquaddieRN.phl[242]";
-connectAttr "LeftFoot_Control_rotateX.o" "SquaddieRN.phl[243]";
-connectAttr "LeftFoot_Control_rotateY.o" "SquaddieRN.phl[244]";
-connectAttr "LeftFoot_Control_rotateZ.o" "SquaddieRN.phl[245]";
-connectAttr "LeftFoot_Control_visibility.o" "SquaddieRN.phl[246]";
-connectAttr "LeftFoot_Control_translateX.o" "SquaddieRN.phl[247]";
-connectAttr "LeftFoot_Control_translateY.o" "SquaddieRN.phl[248]";
-connectAttr "LeftFoot_Control_translateZ.o" "SquaddieRN.phl[249]";
-connectAttr "LeftFoot_Control_scaleX.o" "SquaddieRN.phl[250]";
-connectAttr "LeftFoot_Control_scaleY.o" "SquaddieRN.phl[251]";
-connectAttr "LeftFoot_Control_scaleZ.o" "SquaddieRN.phl[252]";
-connectAttr "LeftToes_Control_rotateX.o" "SquaddieRN.phl[253]";
-connectAttr "LeftToes_Control_rotateY.o" "SquaddieRN.phl[254]";
-connectAttr "LeftToes_Control_rotateZ.o" "SquaddieRN.phl[255]";
-connectAttr "LeftToes_Control_visibility.o" "SquaddieRN.phl[256]";
-connectAttr "LeftToes_Control_translateX.o" "SquaddieRN.phl[257]";
-connectAttr "LeftToes_Control_translateY.o" "SquaddieRN.phl[258]";
-connectAttr "LeftToes_Control_translateZ.o" "SquaddieRN.phl[259]";
-connectAttr "LeftToes_Control_scaleX.o" "SquaddieRN.phl[260]";
-connectAttr "LeftToes_Control_scaleY.o" "SquaddieRN.phl[261]";
-connectAttr "LeftToes_Control_scaleZ.o" "SquaddieRN.phl[262]";
-connectAttr "LeftKnee_Control_translateX.o" "SquaddieRN.phl[263]";
-connectAttr "LeftKnee_Control_translateY.o" "SquaddieRN.phl[264]";
-connectAttr "LeftKnee_Control_translateZ.o" "SquaddieRN.phl[265]";
-connectAttr "LeftKnee_Control_visibility.o" "SquaddieRN.phl[266]";
-connectAttr "LeftKnee_Control_rotateX.o" "SquaddieRN.phl[267]";
-connectAttr "LeftKnee_Control_rotateY.o" "SquaddieRN.phl[268]";
-connectAttr "LeftKnee_Control_rotateZ.o" "SquaddieRN.phl[269]";
-connectAttr "LeftKnee_Control_scaleX.o" "SquaddieRN.phl[270]";
-connectAttr "LeftKnee_Control_scaleY.o" "SquaddieRN.phl[271]";
-connectAttr "LeftKnee_Control_scaleZ.o" "SquaddieRN.phl[272]";
-connectAttr "SquaddieRN.phl[273]" "Weapon_MkII1_parentConstraint1.tg[0].tpm";
-connectAttr "SquaddieRN.phl[274]" "Weapon_MkII1_parentConstraint1.tg[0].tt";
-connectAttr "SquaddieRN.phl[275]" "Weapon_MkII1_parentConstraint1.tg[0].trp";
-connectAttr "SquaddieRN.phl[276]" "Weapon_MkII1_parentConstraint1.tg[0].trt";
-connectAttr "SquaddieRN.phl[277]" "Weapon_MkII1_parentConstraint1.tg[0].tr";
-connectAttr "SquaddieRN.phl[278]" "Weapon_MkII1_parentConstraint1.tg[0].tro";
-connectAttr "SquaddieRN.phl[279]" "Weapon_MkII1_parentConstraint1.tg[0].ts";
+connectAttr "Root_Control_visibility.o" "SquaddieRN.phl[281]";
+connectAttr "Root_Control_translateX.o" "SquaddieRN.phl[282]";
+connectAttr "Root_Control_translateY.o" "SquaddieRN.phl[283]";
+connectAttr "Root_Control_translateZ.o" "SquaddieRN.phl[284]";
+connectAttr "Root_Control_rotateX.o" "SquaddieRN.phl[285]";
+connectAttr "Root_Control_rotateY.o" "SquaddieRN.phl[286]";
+connectAttr "Root_Control_rotateZ.o" "SquaddieRN.phl[287]";
+connectAttr "Root_Control_scaleX.o" "SquaddieRN.phl[288]";
+connectAttr "Root_Control_scaleY.o" "SquaddieRN.phl[289]";
+connectAttr "Root_Control_scaleZ.o" "SquaddieRN.phl[290]";
+connectAttr "RootMotion_Control_translateX.o" "SquaddieRN.phl[291]";
+connectAttr "RootMotion_Control_translateY.o" "SquaddieRN.phl[292]";
+connectAttr "RootMotion_Control_translateZ.o" "SquaddieRN.phl[293]";
+connectAttr "RootMotion_Control_rotateX.o" "SquaddieRN.phl[294]";
+connectAttr "RootMotion_Control_rotateY.o" "SquaddieRN.phl[295]";
+connectAttr "RootMotion_Control_rotateZ.o" "SquaddieRN.phl[296]";
+connectAttr "RootMotion_Control_scaleX.o" "SquaddieRN.phl[297]";
+connectAttr "RootMotion_Control_scaleY.o" "SquaddieRN.phl[298]";
+connectAttr "RootMotion_Control_scaleZ.o" "SquaddieRN.phl[299]";
+connectAttr "RootMotion_Control_visibility.o" "SquaddieRN.phl[300]";
+connectAttr "Hips_Control_translateX.o" "SquaddieRN.phl[301]";
+connectAttr "Hips_Control_translateY.o" "SquaddieRN.phl[302]";
+connectAttr "Hips_Control_translateZ.o" "SquaddieRN.phl[303]";
+connectAttr "Hips_Control_rotateX.o" "SquaddieRN.phl[304]";
+connectAttr "Hips_Control_rotateY.o" "SquaddieRN.phl[305]";
+connectAttr "Hips_Control_rotateZ.o" "SquaddieRN.phl[306]";
+connectAttr "Hips_Control_scaleX.o" "SquaddieRN.phl[307]";
+connectAttr "Hips_Control_scaleY.o" "SquaddieRN.phl[308]";
+connectAttr "Hips_Control_scaleZ.o" "SquaddieRN.phl[309]";
+connectAttr "Hips_Control_visibility.o" "SquaddieRN.phl[310]";
+connectAttr "Spine1_Control_translateX.o" "SquaddieRN.phl[311]";
+connectAttr "Spine1_Control_translateY.o" "SquaddieRN.phl[312]";
+connectAttr "Spine1_Control_translateZ.o" "SquaddieRN.phl[313]";
+connectAttr "Spine1_Control_rotateX.o" "SquaddieRN.phl[314]";
+connectAttr "Spine1_Control_rotateY.o" "SquaddieRN.phl[315]";
+connectAttr "Spine1_Control_rotateZ.o" "SquaddieRN.phl[316]";
+connectAttr "Spine1_Control_scaleX.o" "SquaddieRN.phl[317]";
+connectAttr "Spine1_Control_scaleY.o" "SquaddieRN.phl[318]";
+connectAttr "Spine1_Control_scaleZ.o" "SquaddieRN.phl[319]";
+connectAttr "Spine1_Control_visibility.o" "SquaddieRN.phl[320]";
+connectAttr "Spine2_Control_translateX.o" "SquaddieRN.phl[321]";
+connectAttr "Spine2_Control_translateY.o" "SquaddieRN.phl[322]";
+connectAttr "Spine2_Control_translateZ.o" "SquaddieRN.phl[323]";
+connectAttr "Spine2_Control_rotateX.o" "SquaddieRN.phl[324]";
+connectAttr "Spine2_Control_rotateY.o" "SquaddieRN.phl[325]";
+connectAttr "Spine2_Control_rotateZ.o" "SquaddieRN.phl[326]";
+connectAttr "Spine2_Control_scaleX.o" "SquaddieRN.phl[327]";
+connectAttr "Spine2_Control_scaleY.o" "SquaddieRN.phl[328]";
+connectAttr "Spine2_Control_scaleZ.o" "SquaddieRN.phl[329]";
+connectAttr "Spine2_Control_visibility.o" "SquaddieRN.phl[330]";
+connectAttr "RightShoulder_Control_rotateX.o" "SquaddieRN.phl[331]";
+connectAttr "RightShoulder_Control_rotateY.o" "SquaddieRN.phl[332]";
+connectAttr "RightShoulder_Control_rotateZ.o" "SquaddieRN.phl[333]";
+connectAttr "RightShoulder_Control_visibility.o" "SquaddieRN.phl[334]";
+connectAttr "RightShoulder_Control_translateX.o" "SquaddieRN.phl[335]";
+connectAttr "RightShoulder_Control_translateY.o" "SquaddieRN.phl[336]";
+connectAttr "RightShoulder_Control_translateZ.o" "SquaddieRN.phl[337]";
+connectAttr "RightShoulder_Control_scaleX.o" "SquaddieRN.phl[338]";
+connectAttr "RightShoulder_Control_scaleY.o" "SquaddieRN.phl[339]";
+connectAttr "RightShoulder_Control_scaleZ.o" "SquaddieRN.phl[340]";
+connectAttr "Neck_Control_translateX.o" "SquaddieRN.phl[341]";
+connectAttr "Neck_Control_translateY.o" "SquaddieRN.phl[342]";
+connectAttr "Neck_Control_translateZ.o" "SquaddieRN.phl[343]";
+connectAttr "Neck_Control_rotateX.o" "SquaddieRN.phl[344]";
+connectAttr "Neck_Control_rotateY.o" "SquaddieRN.phl[345]";
+connectAttr "Neck_Control_rotateZ.o" "SquaddieRN.phl[346]";
+connectAttr "Neck_Control_scaleX.o" "SquaddieRN.phl[347]";
+connectAttr "Neck_Control_scaleY.o" "SquaddieRN.phl[348]";
+connectAttr "Neck_Control_scaleZ.o" "SquaddieRN.phl[349]";
+connectAttr "Neck_Control_visibility.o" "SquaddieRN.phl[350]";
+connectAttr "Head_Control_translateX.o" "SquaddieRN.phl[351]";
+connectAttr "Head_Control_translateY.o" "SquaddieRN.phl[352]";
+connectAttr "Head_Control_translateZ.o" "SquaddieRN.phl[353]";
+connectAttr "Head_Control_rotateX.o" "SquaddieRN.phl[354]";
+connectAttr "Head_Control_rotateY.o" "SquaddieRN.phl[355]";
+connectAttr "Head_Control_rotateZ.o" "SquaddieRN.phl[356]";
+connectAttr "Head_Control_scaleX.o" "SquaddieRN.phl[357]";
+connectAttr "Head_Control_scaleY.o" "SquaddieRN.phl[358]";
+connectAttr "Head_Control_scaleZ.o" "SquaddieRN.phl[359]";
+connectAttr "Head_Control_visibility.o" "SquaddieRN.phl[360]";
+connectAttr "LeftShoulder_Control_rotateX.o" "SquaddieRN.phl[361]";
+connectAttr "LeftShoulder_Control_rotateY.o" "SquaddieRN.phl[362]";
+connectAttr "LeftShoulder_Control_rotateZ.o" "SquaddieRN.phl[363]";
+connectAttr "LeftShoulder_Control_visibility.o" "SquaddieRN.phl[364]";
+connectAttr "LeftShoulder_Control_translateX.o" "SquaddieRN.phl[365]";
+connectAttr "LeftShoulder_Control_translateY.o" "SquaddieRN.phl[366]";
+connectAttr "LeftShoulder_Control_translateZ.o" "SquaddieRN.phl[367]";
+connectAttr "LeftShoulder_Control_scaleX.o" "SquaddieRN.phl[368]";
+connectAttr "LeftShoulder_Control_scaleY.o" "SquaddieRN.phl[369]";
+connectAttr "LeftShoulder_Control_scaleZ.o" "SquaddieRN.phl[370]";
+connectAttr "RightElbow_Control_translateX.o" "SquaddieRN.phl[371]";
+connectAttr "RightElbow_Control_translateY.o" "SquaddieRN.phl[372]";
+connectAttr "RightElbow_Control_translateZ.o" "SquaddieRN.phl[373]";
+connectAttr "RightElbow_Control_visibility.o" "SquaddieRN.phl[374]";
+connectAttr "RightElbow_Control_rotateX.o" "SquaddieRN.phl[375]";
+connectAttr "RightElbow_Control_rotateY.o" "SquaddieRN.phl[376]";
+connectAttr "RightElbow_Control_rotateZ.o" "SquaddieRN.phl[377]";
+connectAttr "RightElbow_Control_scaleX.o" "SquaddieRN.phl[378]";
+connectAttr "RightElbow_Control_scaleY.o" "SquaddieRN.phl[379]";
+connectAttr "RightElbow_Control_scaleZ.o" "SquaddieRN.phl[380]";
+connectAttr "LeftElbow_Control_translateX.o" "SquaddieRN.phl[381]";
+connectAttr "LeftElbow_Control_translateY.o" "SquaddieRN.phl[382]";
+connectAttr "LeftElbow_Control_translateZ.o" "SquaddieRN.phl[383]";
+connectAttr "LeftElbow_Control_visibility.o" "SquaddieRN.phl[384]";
+connectAttr "LeftElbow_Control_rotateX.o" "SquaddieRN.phl[385]";
+connectAttr "LeftElbow_Control_rotateY.o" "SquaddieRN.phl[386]";
+connectAttr "LeftElbow_Control_rotateZ.o" "SquaddieRN.phl[387]";
+connectAttr "LeftElbow_Control_scaleX.o" "SquaddieRN.phl[388]";
+connectAttr "LeftElbow_Control_scaleY.o" "SquaddieRN.phl[389]";
+connectAttr "LeftElbow_Control_scaleZ.o" "SquaddieRN.phl[390]";
+connectAttr "RightArmTwist_Control_visibility.o" "SquaddieRN.phl[391]";
+connectAttr "RightArmTwist_Control_translateX.o" "SquaddieRN.phl[392]";
+connectAttr "RightArmTwist_Control_translateY.o" "SquaddieRN.phl[393]";
+connectAttr "RightArmTwist_Control_translateZ.o" "SquaddieRN.phl[394]";
+connectAttr "RightArmTwist_Control_rotateX.o" "SquaddieRN.phl[395]";
+connectAttr "RightArmTwist_Control_rotateY.o" "SquaddieRN.phl[396]";
+connectAttr "RightArmTwist_Control_rotateZ.o" "SquaddieRN.phl[397]";
+connectAttr "RightArmTwist_Control_scaleX.o" "SquaddieRN.phl[398]";
+connectAttr "RightArmTwist_Control_scaleY.o" "SquaddieRN.phl[399]";
+connectAttr "RightArmTwist_Control_scaleZ.o" "SquaddieRN.phl[400]";
+connectAttr "LeftArmTwist_Control_visibility.o" "SquaddieRN.phl[401]";
+connectAttr "LeftArmTwist_Control_translateX.o" "SquaddieRN.phl[402]";
+connectAttr "LeftArmTwist_Control_translateY.o" "SquaddieRN.phl[403]";
+connectAttr "LeftArmTwist_Control_translateZ.o" "SquaddieRN.phl[404]";
+connectAttr "LeftArmTwist_Control_rotateX.o" "SquaddieRN.phl[405]";
+connectAttr "LeftArmTwist_Control_rotateY.o" "SquaddieRN.phl[406]";
+connectAttr "LeftArmTwist_Control_rotateZ.o" "SquaddieRN.phl[407]";
+connectAttr "LeftArmTwist_Control_scaleX.o" "SquaddieRN.phl[408]";
+connectAttr "LeftArmTwist_Control_scaleY.o" "SquaddieRN.phl[409]";
+connectAttr "LeftArmTwist_Control_scaleZ.o" "SquaddieRN.phl[410]";
+connectAttr "RightHand_Control_rotateX.o" "SquaddieRN.phl[411]";
+connectAttr "RightHand_Control_rotateY.o" "SquaddieRN.phl[412]";
+connectAttr "RightHand_Control_rotateZ.o" "SquaddieRN.phl[413]";
+connectAttr "RightHand_Control_visibility.o" "SquaddieRN.phl[414]";
+connectAttr "RightHand_Control_translateX.o" "SquaddieRN.phl[415]";
+connectAttr "RightHand_Control_translateY.o" "SquaddieRN.phl[416]";
+connectAttr "RightHand_Control_translateZ.o" "SquaddieRN.phl[417]";
+connectAttr "RightHand_Control_scaleX.o" "SquaddieRN.phl[418]";
+connectAttr "RightHand_Control_scaleY.o" "SquaddieRN.phl[419]";
+connectAttr "RightHand_Control_scaleZ.o" "SquaddieRN.phl[420]";
+connectAttr "RightFinders_Control_Grip.o" "SquaddieRN.phl[421]";
+connectAttr "RightFinders_Control_visibility.o" "SquaddieRN.phl[422]";
+connectAttr "RightFinders_Control_translateX.o" "SquaddieRN.phl[423]";
+connectAttr "RightFinders_Control_translateY.o" "SquaddieRN.phl[424]";
+connectAttr "RightFinders_Control_translateZ.o" "SquaddieRN.phl[425]";
+connectAttr "RightFinders_Control_rotateX.o" "SquaddieRN.phl[426]";
+connectAttr "RightFinders_Control_rotateY.o" "SquaddieRN.phl[427]";
+connectAttr "RightFinders_Control_rotateZ.o" "SquaddieRN.phl[428]";
+connectAttr "RightFinders_Control_scaleX.o" "SquaddieRN.phl[429]";
+connectAttr "RightFinders_Control_scaleY.o" "SquaddieRN.phl[430]";
+connectAttr "RightFinders_Control_scaleZ.o" "SquaddieRN.phl[431]";
+connectAttr "LeftHand_Control_rotateX.o" "SquaddieRN.phl[432]";
+connectAttr "LeftHand_Control_rotateY.o" "SquaddieRN.phl[433]";
+connectAttr "LeftHand_Control_rotateZ.o" "SquaddieRN.phl[434]";
+connectAttr "LeftHand_Control_visibility.o" "SquaddieRN.phl[435]";
+connectAttr "LeftHand_Control_translateX.o" "SquaddieRN.phl[436]";
+connectAttr "LeftHand_Control_translateY.o" "SquaddieRN.phl[437]";
+connectAttr "LeftHand_Control_translateZ.o" "SquaddieRN.phl[438]";
+connectAttr "LeftHand_Control_scaleX.o" "SquaddieRN.phl[439]";
+connectAttr "LeftHand_Control_scaleY.o" "SquaddieRN.phl[440]";
+connectAttr "LeftHand_Control_scaleZ.o" "SquaddieRN.phl[441]";
+connectAttr "LeftFingers_Control_Grip.o" "SquaddieRN.phl[442]";
+connectAttr "LeftFingers_Control_visibility.o" "SquaddieRN.phl[443]";
+connectAttr "LeftFingers_Control_translateX.o" "SquaddieRN.phl[444]";
+connectAttr "LeftFingers_Control_translateY.o" "SquaddieRN.phl[445]";
+connectAttr "LeftFingers_Control_translateZ.o" "SquaddieRN.phl[446]";
+connectAttr "LeftFingers_Control_rotateX.o" "SquaddieRN.phl[447]";
+connectAttr "LeftFingers_Control_rotateY.o" "SquaddieRN.phl[448]";
+connectAttr "LeftFingers_Control_rotateZ.o" "SquaddieRN.phl[449]";
+connectAttr "LeftFingers_Control_scaleX.o" "SquaddieRN.phl[450]";
+connectAttr "LeftFingers_Control_scaleY.o" "SquaddieRN.phl[451]";
+connectAttr "LeftFingers_Control_scaleZ.o" "SquaddieRN.phl[452]";
+connectAttr "SquaddieRN.phl[453]" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[8].dn";
+connectAttr "SquaddieRN.phl[454]" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[13].dn"
+		;
+connectAttr "LeftHip_Control_translateX.o" "SquaddieRN.phl[455]";
+connectAttr "LeftHip_Control_translateY.o" "SquaddieRN.phl[456]";
+connectAttr "LeftHip_Control_translateZ.o" "SquaddieRN.phl[457]";
+connectAttr "LeftHip_Control_visibility.o" "SquaddieRN.phl[458]";
+connectAttr "LeftHip_Control_rotateX.o" "SquaddieRN.phl[459]";
+connectAttr "LeftHip_Control_rotateY.o" "SquaddieRN.phl[460]";
+connectAttr "LeftHip_Control_rotateZ.o" "SquaddieRN.phl[461]";
+connectAttr "LeftHip_Control_scaleX.o" "SquaddieRN.phl[462]";
+connectAttr "LeftHip_Control_scaleY.o" "SquaddieRN.phl[463]";
+connectAttr "LeftHip_Control_scaleZ.o" "SquaddieRN.phl[464]";
+connectAttr "RightHip_Control_translateX.o" "SquaddieRN.phl[465]";
+connectAttr "RightHip_Control_translateY.o" "SquaddieRN.phl[466]";
+connectAttr "RightHip_Control_translateZ.o" "SquaddieRN.phl[467]";
+connectAttr "RightHip_Control_visibility.o" "SquaddieRN.phl[468]";
+connectAttr "RightHip_Control_rotateX.o" "SquaddieRN.phl[469]";
+connectAttr "RightHip_Control_rotateY.o" "SquaddieRN.phl[470]";
+connectAttr "RightHip_Control_rotateZ.o" "SquaddieRN.phl[471]";
+connectAttr "RightHip_Control_scaleX.o" "SquaddieRN.phl[472]";
+connectAttr "RightHip_Control_scaleY.o" "SquaddieRN.phl[473]";
+connectAttr "RightHip_Control_scaleZ.o" "SquaddieRN.phl[474]";
+connectAttr "RightFoot_Control_rotateX.o" "SquaddieRN.phl[475]";
+connectAttr "RightFoot_Control_rotateY.o" "SquaddieRN.phl[476]";
+connectAttr "RightFoot_Control_rotateZ.o" "SquaddieRN.phl[477]";
+connectAttr "RightFoot_Control_visibility.o" "SquaddieRN.phl[478]";
+connectAttr "RightFoot_Control_translateX.o" "SquaddieRN.phl[479]";
+connectAttr "RightFoot_Control_translateY.o" "SquaddieRN.phl[480]";
+connectAttr "RightFoot_Control_translateZ.o" "SquaddieRN.phl[481]";
+connectAttr "RightFoot_Control_scaleX.o" "SquaddieRN.phl[482]";
+connectAttr "RightFoot_Control_scaleY.o" "SquaddieRN.phl[483]";
+connectAttr "RightFoot_Control_scaleZ.o" "SquaddieRN.phl[484]";
+connectAttr "RightToes_Control_rotateX.o" "SquaddieRN.phl[485]";
+connectAttr "RightToes_Control_rotateY.o" "SquaddieRN.phl[486]";
+connectAttr "RightToes_Control_rotateZ.o" "SquaddieRN.phl[487]";
+connectAttr "RightToes_Control_visibility.o" "SquaddieRN.phl[488]";
+connectAttr "RightToes_Control_translateX.o" "SquaddieRN.phl[489]";
+connectAttr "RightToes_Control_translateY.o" "SquaddieRN.phl[490]";
+connectAttr "RightToes_Control_translateZ.o" "SquaddieRN.phl[491]";
+connectAttr "RightToes_Control_scaleX.o" "SquaddieRN.phl[492]";
+connectAttr "RightToes_Control_scaleY.o" "SquaddieRN.phl[493]";
+connectAttr "RightToes_Control_scaleZ.o" "SquaddieRN.phl[494]";
+connectAttr "RightKnee_Control_translateX.o" "SquaddieRN.phl[495]";
+connectAttr "RightKnee_Control_translateY.o" "SquaddieRN.phl[496]";
+connectAttr "RightKnee_Control_translateZ.o" "SquaddieRN.phl[497]";
+connectAttr "RightKnee_Control_visibility.o" "SquaddieRN.phl[498]";
+connectAttr "RightKnee_Control_rotateX.o" "SquaddieRN.phl[499]";
+connectAttr "RightKnee_Control_rotateY.o" "SquaddieRN.phl[500]";
+connectAttr "RightKnee_Control_rotateZ.o" "SquaddieRN.phl[501]";
+connectAttr "RightKnee_Control_scaleX.o" "SquaddieRN.phl[502]";
+connectAttr "RightKnee_Control_scaleY.o" "SquaddieRN.phl[503]";
+connectAttr "RightKnee_Control_scaleZ.o" "SquaddieRN.phl[504]";
+connectAttr "LeftFoot_Control_rotateX.o" "SquaddieRN.phl[505]";
+connectAttr "LeftFoot_Control_rotateY.o" "SquaddieRN.phl[506]";
+connectAttr "LeftFoot_Control_rotateZ.o" "SquaddieRN.phl[507]";
+connectAttr "LeftFoot_Control_visibility.o" "SquaddieRN.phl[508]";
+connectAttr "LeftFoot_Control_translateX.o" "SquaddieRN.phl[509]";
+connectAttr "LeftFoot_Control_translateY.o" "SquaddieRN.phl[510]";
+connectAttr "LeftFoot_Control_translateZ.o" "SquaddieRN.phl[511]";
+connectAttr "LeftFoot_Control_scaleX.o" "SquaddieRN.phl[512]";
+connectAttr "LeftFoot_Control_scaleY.o" "SquaddieRN.phl[513]";
+connectAttr "LeftFoot_Control_scaleZ.o" "SquaddieRN.phl[514]";
+connectAttr "LeftToes_Control_rotateX.o" "SquaddieRN.phl[515]";
+connectAttr "LeftToes_Control_rotateY.o" "SquaddieRN.phl[516]";
+connectAttr "LeftToes_Control_rotateZ.o" "SquaddieRN.phl[517]";
+connectAttr "LeftToes_Control_visibility.o" "SquaddieRN.phl[518]";
+connectAttr "LeftToes_Control_translateX.o" "SquaddieRN.phl[519]";
+connectAttr "LeftToes_Control_translateY.o" "SquaddieRN.phl[520]";
+connectAttr "LeftToes_Control_translateZ.o" "SquaddieRN.phl[521]";
+connectAttr "LeftToes_Control_scaleX.o" "SquaddieRN.phl[522]";
+connectAttr "LeftToes_Control_scaleY.o" "SquaddieRN.phl[523]";
+connectAttr "LeftToes_Control_scaleZ.o" "SquaddieRN.phl[524]";
+connectAttr "LeftKnee_Control_translateX.o" "SquaddieRN.phl[525]";
+connectAttr "LeftKnee_Control_translateY.o" "SquaddieRN.phl[526]";
+connectAttr "LeftKnee_Control_translateZ.o" "SquaddieRN.phl[527]";
+connectAttr "LeftKnee_Control_visibility.o" "SquaddieRN.phl[528]";
+connectAttr "LeftKnee_Control_rotateX.o" "SquaddieRN.phl[529]";
+connectAttr "LeftKnee_Control_rotateY.o" "SquaddieRN.phl[530]";
+connectAttr "LeftKnee_Control_rotateZ.o" "SquaddieRN.phl[531]";
+connectAttr "LeftKnee_Control_scaleX.o" "SquaddieRN.phl[532]";
+connectAttr "LeftKnee_Control_scaleY.o" "SquaddieRN.phl[533]";
+connectAttr "LeftKnee_Control_scaleZ.o" "SquaddieRN.phl[534]";
+connectAttr "SquaddieRN.phl[535]" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[2].dn";
+connectAttr "SquaddieRN.phl[536]" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[5].dn";
+connectAttr "SquaddieRN.phl[537]" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[6].dn";
+connectAttr "SquaddieRN.phl[538]" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[1].dn";
+connectAttr "SquaddieRN.phl[539]" "Weapon_MkII1_parentConstraint1.tg[0].tpm";
+connectAttr "SquaddieRN.phl[540]" "Weapon_MkII1_parentConstraint1.tg[0].tt";
+connectAttr "SquaddieRN.phl[541]" "Weapon_MkII1_parentConstraint1.tg[0].trp";
+connectAttr "SquaddieRN.phl[542]" "Weapon_MkII1_parentConstraint1.tg[0].trt";
+connectAttr "SquaddieRN.phl[543]" "Weapon_MkII1_parentConstraint1.tg[0].tr";
+connectAttr "SquaddieRN.phl[544]" "Weapon_MkII1_parentConstraint1.tg[0].tro";
+connectAttr "SquaddieRN.phl[545]" "Weapon_MkII1_parentConstraint1.tg[0].ts";
+connectAttr "SquaddieRN.phl[546]" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[9].dn";
+connectAttr "SquaddieRN.phl[547]" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[12].dn"
+		;
+connectAttr "SquaddieRN.phl[548]" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[3].dn";
 connectAttr "Weapon_MkII1_blendParent1.o" "Weapon_MkIIRN.phl[1]";
 connectAttr "pairBlend1.otx" "Weapon_MkIIRN.phl[2]";
 connectAttr "pairBlend1.oty" "Weapon_MkIIRN.phl[3]";
@@ -5717,6 +5765,26 @@ relationship "shadowLink" ":lightLinker1" ":initialParticleSE.message" ":default
 relationship "shadowLink" ":lightLinker1" "lambert2SG.message" ":defaultLightSet.message";
 connectAttr "layerManager.dli[0]" "defaultLayer.id";
 connectAttr "renderLayerManager.rlmi[0]" "defaultRenderLayer.rlid";
+connectAttr "RightUpperArm_Control_translateX.o" "SquaddieRN.phl[51]";
+connectAttr "RightUpperArm_Control_translateY.o" "SquaddieRN.phl[52]";
+connectAttr "RightUpperArm_Control_translateZ.o" "SquaddieRN.phl[53]";
+connectAttr "RightUpperArm_Control_visibility.o" "SquaddieRN.phl[54]";
+connectAttr "RightUpperArm_Control_rotateX.o" "SquaddieRN.phl[55]";
+connectAttr "RightUpperArm_Control_rotateY.o" "SquaddieRN.phl[56]";
+connectAttr "RightUpperArm_Control_rotateZ.o" "SquaddieRN.phl[57]";
+connectAttr "RightUpperArm_Control_scaleX.o" "SquaddieRN.phl[58]";
+connectAttr "RightUpperArm_Control_scaleY.o" "SquaddieRN.phl[59]";
+connectAttr "RightUpperArm_Control_scaleZ.o" "SquaddieRN.phl[60]";
+connectAttr "LeftUpperArm_Control_translateX.o" "SquaddieRN.phl[101]";
+connectAttr "LeftUpperArm_Control_translateY.o" "SquaddieRN.phl[102]";
+connectAttr "LeftUpperArm_Control_translateZ.o" "SquaddieRN.phl[103]";
+connectAttr "LeftUpperArm_Control_visibility.o" "SquaddieRN.phl[104]";
+connectAttr "LeftUpperArm_Control_rotateX.o" "SquaddieRN.phl[105]";
+connectAttr "LeftUpperArm_Control_rotateY.o" "SquaddieRN.phl[106]";
+connectAttr "LeftUpperArm_Control_rotateZ.o" "SquaddieRN.phl[107]";
+connectAttr "LeftUpperArm_Control_scaleX.o" "SquaddieRN.phl[108]";
+connectAttr "LeftUpperArm_Control_scaleY.o" "SquaddieRN.phl[109]";
+connectAttr "LeftUpperArm_Control_scaleZ.o" "SquaddieRN.phl[110]";
 connectAttr "checker1.oc" "MatGround.c";
 connectAttr "MatGround.oc" "lambert2SG.ss";
 connectAttr "pPlaneShape1.iog" "lambert2SG.dsm" -na;
@@ -5740,6 +5808,14 @@ connectAttr "pairBlend1_inTranslateZ1.o" "pairBlend1.itz1";
 connectAttr "pairBlend1_inRotateX1.o" "pairBlend1.irx1";
 connectAttr "pairBlend1_inRotateY1.o" "pairBlend1.iry1";
 connectAttr "pairBlend1_inRotateZ1.o" "pairBlend1.irz1";
+connectAttr "SquaddieRN.phl[280]" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[0].dn";
+connectAttr "LeftUpperArm_Control_translateX.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[4].dn"
+		;
+connectAttr "SquaddieRN.phl[111]" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[7].dn";
+connectAttr "LeftUpperArm_Control_translateY.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[10].dn"
+		;
+connectAttr "LeftUpperArm_Control_translateZ.msg" "MayaNodeEditorSavedTabsInfo.tgi[0].ni[11].dn"
+		;
 connectAttr "lambert2SG.pa" ":renderPartition.st" -na;
 connectAttr "MatGround.msg" ":defaultShaderList1.s" -na;
 connectAttr "place2dTexture1.msg" ":defaultRenderUtilityList1.u" -na;

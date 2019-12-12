@@ -1,6 +1,6 @@
 //Maya ASCII 2019 scene
 //Name: Squaddie.ma
-//Last modified: Wed, Dec 11, 2019 04:06:00 PM
+//Last modified: Wed, Dec 11, 2019 06:58:04 PM
 //Codeset: UTF-8
 requires maya "2019";
 requires -nodeType "gameFbxExporter" "gameFbxExporter" "1.0";
@@ -162,29 +162,6 @@ createNode nurbsCurve -n "Spine2_ControlShape" -p "Spine2_Control";
 		-4.2920240148890766e-15 139.19259643554688 -43.123236415497175
 		-26.601554441546988 139.19259643554688 -32.104511785602163
 		;
-createNode transform -n "RightUpperArm_Control" -p "Spine2_Control";
-	rename -uid "8862F432-4248-863A-03F7-258EF15A4D0F";
-	setAttr ".rp" -type "double3" -25.33749961853027 151.75300598144531 -4.4674401283264151 ;
-	setAttr ".sp" -type "double3" -25.33749961853027 151.75300598144531 -4.4674401283264151 ;
-createNode nurbsCurve -n "RightUpperArm_ControlShape" -p "RightUpperArm_Control";
-	rename -uid "BE6E4366-7F4C-16EC-378B-ED9198311F7E";
-	setAttr -k off ".v";
-	setAttr ".cc" -type "nurbsCurve" 
-		3 8 2 no 3
-		13 -2 -1 0 1 2 3 4 5 6 7 8 9 10
-		11
-		-36.811026327120047 155.92902818543027 -24.619815162084446
-		-25.337499618530273 151.75300598144531 -32.967202215096002
-		-44.274537729062871 158.64552417884386 -24.619815162084461
-		-52.11851574562165 161.50049869510971 -4.4674401283264231
-		-44.274537729062878 158.64552417884386 15.684934905431621
-		-25.337499618530277 151.75300598144531 24.032321958443177
-		-36.811026327120075 155.92902818543027 15.684934905431628
-		-40.626474796022677 157.31773785848736 -4.4674401283264
-		-36.811026327120047 155.92902818543027 -24.619815162084446
-		-25.337499618530273 151.75300598144531 -32.967202215096002
-		-44.274537729062871 158.64552417884386 -24.619815162084461
-		;
 createNode transform -n "RightShoulder_Control" -p "Spine2_Control";
 	rename -uid "72825037-CE4C-8063-D822-E48E1D613AF2";
 	setAttr ".rp" -type "double3" -10.422900199890137 151.75300598144531 0.25400298833847046 ;
@@ -276,29 +253,6 @@ createNode nurbsCurve -n "LeftShoulder_ControlShape" -p "LeftShoulder_Control";
 		19.056596907259777 160.38649097311671 20.406377753875599
 		10.422913551330565 151.7528076171875 28.753764806887158
 		24.672794594715356 166.00268866057229 20.406377753875617
-		;
-createNode transform -n "LeftUpperArm_Control" -p "Spine2_Control";
-	rename -uid "A4265321-A04E-B6DA-66A5-D5A846DEF9A9";
-	setAttr ".rp" -type "double3" 25.337490081787106 151.7528076171875 -4.4674429893493652 ;
-	setAttr ".sp" -type "double3" 25.337490081787106 151.7528076171875 -4.4674429893493652 ;
-createNode nurbsCurve -n "LeftUpperArm_ControlShape" -p "LeftUpperArm_Control";
-	rename -uid "79A83DAB-8E4F-87ED-0FC3-EE95EE5FCBA9";
-	setAttr -k off ".v";
-	setAttr ".cc" -type "nurbsCurve" 
-		3 8 2 no 3
-		13 -2 -1 0 1 2 3 4 5 6 7 8 9 10
-		11
-		36.811016790376883 155.92882982117246 15.684932044408665
-		25.337490081787106 151.7528076171875 24.032319097420224
-		44.274528192319721 158.64532581458604 15.684932044408683
-		52.1185062088785 161.50030033085187 -4.4674429893493537
-		44.274528192319728 158.64532581458604 -24.619818023107399
-		25.337490081787116 151.7528076171875 -32.967205076118958
-		36.811016790376918 155.92882982117246 -24.61981802310741
-		40.626465259279527 157.31753949422955 -4.4674429893493786
-		36.811016790376883 155.92882982117246 15.684932044408665
-		25.337490081787106 151.7528076171875 24.032319097420224
-		44.274528192319721 158.64532581458604 15.684932044408683
 		;
 createNode transform -n "RightElbow_Control" -p "Spine2_Control";
 	rename -uid "FEA2FEA4-A746-621C-C161-2FA8F85DC93C";
@@ -6572,7 +6526,8 @@ createNode joint -n "LeftUpperArm_Skel" -p "LeftClav_Skel";
 	addAttr -ci true -sn "liw" -ln "lockInfluenceWeights" -min 0 -max 1 -at "bool";
 	setAttr ".uoc" 1;
 	setAttr ".oc" 4;
-	setAttr ".r" -type "double3" -0.76944026707115165 0.032153676776968551 4.7857415797663645 ;
+	setAttr ".t" -type "double3" 14.914576742677147 4.7034793862733828 -0.41150061501071128 ;
+	setAttr ".r" -type "double3" -0.76944026707116298 0.032153676776969009 4.7857415797663627 ;
 	setAttr ".mnrl" -type "double3" -360 -360 -360 ;
 	setAttr ".mxrl" -type "double3" 360 360 360 ;
 	setAttr ".jo" -type "double3" 124.99999999999999 5.0000000000000018 89.999999999999901 ;
@@ -6585,7 +6540,7 @@ createNode joint -n "LeftLowerArm_Skel" -p "LeftUpperArm_Skel";
 	setAttr ".uoc" 1;
 	setAttr ".oc" 5;
 	setAttr ".t" -type "double3" 0 0 32 ;
-	setAttr ".r" -type "double3" 0 7.853522949926976e-13 0 ;
+	setAttr ".r" -type "double3" 0 -3.0197554594783388e-13 0 ;
 	setAttr ".mnrl" -type "double3" -360 -360 -360 ;
 	setAttr ".mxrl" -type "double3" 360 360 360 ;
 	setAttr ".jo" -type "double3" 0 -20 0 ;
@@ -6800,7 +6755,7 @@ createNode orientConstraint -n "LeftHand_Skel_orientConstraint1" -p "LeftHand_Sk
 	setAttr -k off ".sy";
 	setAttr -k off ".sz";
 	setAttr ".erp" yes;
-	setAttr ".lr" -type "double3" -41.747947178475833 -40.948270639025921 47.91233870973398 ;
+	setAttr ".lr" -type "double3" -41.74794717847584 -40.948270639025949 47.91233870973398 ;
 	setAttr ".o" -type "double3" 8.4215905398521969 55.27356004989975 -27.290147080604424 ;
 	setAttr ".rsrr" -type "double3" 1.5902773407317584e-15 -6.3611093629270335e-15 1.5902773407317584e-15 ;
 	setAttr -k on ".w0";
@@ -6829,25 +6784,6 @@ createNode ikEffector -n "effector3" -p "LeftLowerArm_Skel";
 	rename -uid "F437698D-194F-4890-E474-5887EA3CAA07";
 	setAttr ".v" no;
 	setAttr ".hd" yes;
-createNode pointConstraint -n "LeftUpperArm_Skel_pointConstraint1" -p "LeftUpperArm_Skel";
-	rename -uid "16D09B28-7A46-EC76-9EBD-678B427AFDAA";
-	addAttr -dcb 0 -ci true -k true -sn "w0" -ln "LeftUpperArm_ControlW0" -dv 1 -min 
-		0 -at "double";
-	setAttr -k on ".nds";
-	setAttr -k off ".v";
-	setAttr -k off ".tx";
-	setAttr -k off ".ty";
-	setAttr -k off ".tz";
-	setAttr -k off ".rx";
-	setAttr -k off ".ry";
-	setAttr -k off ".rz";
-	setAttr -k off ".sx";
-	setAttr -k off ".sy";
-	setAttr -k off ".sz";
-	setAttr ".erp" yes;
-	setAttr ".o" -type "double3" -2.4858385039294717e-07 2.0872603556654212e-07 4.9215492275989092e-07 ;
-	setAttr ".rst" -type "double3" 14.914576742677147 4.7034793862733828 -0.41150061501071128 ;
-	setAttr -k on ".w0";
 createNode orientConstraint -n "LeftClav_Skel_orientConstraint1" -p "LeftClav_Skel";
 	rename -uid "A9518D0B-7548-ED1A-8FEB-E4BB2135FB37";
 	addAttr -dcb 0 -ci true -k true -sn "w0" -ln "LeftShoulder_ControlW0" -dv 1 -min 
@@ -6885,7 +6821,8 @@ createNode joint -n "RightUpperArm_Skel" -p "RightClav_Skel";
 	addAttr -ci true -sn "liw" -ln "lockInfluenceWeights" -min 0 -max 1 -at "bool";
 	setAttr ".uoc" 1;
 	setAttr ".oc" 4;
-	setAttr ".r" -type "double3" -0.00074291014732542698 3.1470534199506998e-08 0.0046154943311019362 ;
+	setAttr ".t" -type "double3" -14.9146 -4.7034764839423868 0.4115008715057229 ;
+	setAttr ".r" -type "double3" -0.00074291014732542817 3.1470534199506833e-08 0.0046154943311019353 ;
 	setAttr ".mnrl" -type "double3" -360 -360 -360 ;
 	setAttr ".mxrl" -type "double3" 360 360 360 ;
 	setAttr ".jo" -type "double3" 124.99999999999996 5.0000000000000133 89.999999999999886 ;
@@ -6899,7 +6836,7 @@ createNode joint -n "RightLowerArm_Skel" -p "RightUpperArm_Skel";
 	setAttr ".uoc" 1;
 	setAttr ".oc" 5;
 	setAttr ".t" -type "double3" -5.0626169922907138e-14 0.00043400449811770159 -32.000346110966362 ;
-	setAttr ".r" -type "double3" 2.0431933266176927e-17 2.6178128397918378e-13 -3.7368084001027492e-18 ;
+	setAttr ".r" -type "double3" -1.3588720780400741e-18 -3.5528175482950789e-14 1.1746389907045264e-18 ;
 	setAttr ".mnrl" -type "double3" -360 -360 -360 ;
 	setAttr ".mxrl" -type "double3" 360 360 360 ;
 	setAttr ".jo" -type "double3" 1.2074182731327368e-06 -19.999999999999975 -1.9322073295241805e-14 ;
@@ -7145,25 +7082,6 @@ createNode ikEffector -n "effector4" -p "RightLowerArm_Skel";
 	rename -uid "A46BCCD2-A640-F64A-9741-9FB7B6F4BB4F";
 	setAttr ".v" no;
 	setAttr ".hd" yes;
-createNode pointConstraint -n "RightUpperArm_Skel_pointConstraint1" -p "RightUpperArm_Skel";
-	rename -uid "5A6C4385-D14A-9706-44D7-FC95EF2C227F";
-	addAttr -dcb 0 -ci true -k true -sn "w0" -ln "RightUpperArm_ControlW0" -dv 1 -min 
-		0 -at "double";
-	setAttr -k on ".nds";
-	setAttr -k off ".v";
-	setAttr -k off ".tx";
-	setAttr -k off ".ty";
-	setAttr -k off ".tz";
-	setAttr -k off ".rx";
-	setAttr -k off ".ry";
-	setAttr -k off ".rz";
-	setAttr -k off ".sx";
-	setAttr -k off ".sy";
-	setAttr -k off ".sz";
-	setAttr ".erp" yes;
-	setAttr ".o" -type "double3" -3.8146972869412821e-07 6.4915540320953369e-07 5.9474997158304177e-06 ;
-	setAttr ".rst" -type "double3" -14.9146 -4.7034764839423868 0.4115008715057229 ;
-	setAttr -k on ".w0";
 createNode transform -n "Attach_RightShoulder" -p "RightUpperArm_Skel";
 	rename -uid "5F85AEDD-A140-01DA-6FC6-E48CCF3E9E81";
 	setAttr ".s" -type "double3" 0.99999999999999978 1.0000000000000002 1.0000000000000002 ;
@@ -7476,25 +7394,25 @@ createNode parentConstraint -n "Hips_Skel_parentConstraint1" -p "Hips_Skel";
 	setAttr ".rsrr" -type "double3" -6.3611093629270335e-15 0 0 ;
 	setAttr -k on ".w0";
 createNode lightLinker -s -n "lightLinker1";
-	rename -uid "4A0BEEE1-DA45-D006-ACD6-49A3599BB744";
+	rename -uid "06DDFC79-E943-BE85-244D-63873A7A898F";
 	setAttr -s 6 ".lnk";
 	setAttr -s 6 ".slnk";
 createNode displayLayerManager -n "layerManager";
-	rename -uid "66FB4976-4545-788A-EB12-D3B001D2ED6C";
+	rename -uid "4F070951-3546-71B7-D0AA-568FC8BF0577";
 	setAttr ".cdl" 3;
 	setAttr -s 4 ".dli[1:3]"  1 2 3;
 	setAttr -s 4 ".dli";
 createNode displayLayer -n "defaultLayer";
 	rename -uid "283C8D76-A342-998C-731F-A3AB9024D1F2";
 createNode renderLayerManager -n "renderLayerManager";
-	rename -uid "E389C16E-0E4D-4762-B8C4-83BC96C1706F";
+	rename -uid "1C79599B-7C49-BBA8-7BCD-64B24A6D9C91";
 createNode renderLayer -n "defaultRenderLayer";
 	rename -uid "6BB97606-2E4D-EBDC-66FC-AEA2A9E69C8B";
 	setAttr ".g" yes;
 createNode shapeEditorManager -n "shapeEditorManager";
-	rename -uid "F716EC87-9E4F-4A1E-1FB2-3C83947BDFBD";
+	rename -uid "8916C792-E746-B3AA-6D91-20908A99D560";
 createNode poseInterpolatorManager -n "poseInterpolatorManager";
-	rename -uid "2C1B4930-2543-C8B0-5FDE-9D95DB47C114";
+	rename -uid "C9AE482D-9949-1796-31FB-8595CAC2A523";
 createNode shadingEngine -n "lambert2SG";
 	rename -uid "F319B0CC-944F-80D3-D5F9-398431F8A238";
 	setAttr ".ihi" 0;
@@ -12024,8 +11942,8 @@ select -ne :time1;
 	setAttr -av -cb on ".ihi";
 	setAttr -av -k on ".nds";
 	setAttr -cb on ".bnm";
-	setAttr -k on ".o" 0;
-	setAttr -av -k on ".unw";
+	setAttr -k on ".o" 16;
+	setAttr -av -k on ".unw" 16;
 	setAttr -av -k on ".etw";
 	setAttr -av -k on ".tps";
 	setAttr -av -k on ".tms";
@@ -12433,9 +12351,6 @@ connectAttr "LeftClav_Skel_orientConstraint1.crx" "LeftClav_Skel.rx";
 connectAttr "LeftClav_Skel_orientConstraint1.cry" "LeftClav_Skel.ry";
 connectAttr "LeftClav_Skel_orientConstraint1.crz" "LeftClav_Skel.rz";
 connectAttr "Skeleton_Layer.di" "LeftClav_Skel.do";
-connectAttr "LeftUpperArm_Skel_pointConstraint1.ctx" "LeftUpperArm_Skel.tx";
-connectAttr "LeftUpperArm_Skel_pointConstraint1.cty" "LeftUpperArm_Skel.ty";
-connectAttr "LeftUpperArm_Skel_pointConstraint1.ctz" "LeftUpperArm_Skel.tz";
 connectAttr "LeftClav_Skel.s" "LeftUpperArm_Skel.is";
 connectAttr "Skeleton_Layer.di" "LeftUpperArm_Skel.do";
 connectAttr "LeftUpperArm_Skel.s" "LeftLowerArm_Skel.is";
@@ -12529,19 +12444,6 @@ connectAttr "Skeleton_Layer.di" "LeftLowerArmTwist_Skel.do";
 connectAttr "LeftHand_Skel.tx" "effector3.tx";
 connectAttr "LeftHand_Skel.ty" "effector3.ty";
 connectAttr "LeftHand_Skel.tz" "effector3.tz";
-connectAttr "LeftUpperArm_Skel.pim" "LeftUpperArm_Skel_pointConstraint1.cpim";
-connectAttr "LeftUpperArm_Skel.rp" "LeftUpperArm_Skel_pointConstraint1.crp";
-connectAttr "LeftUpperArm_Skel.rpt" "LeftUpperArm_Skel_pointConstraint1.crt";
-connectAttr "LeftUpperArm_Control.t" "LeftUpperArm_Skel_pointConstraint1.tg[0].tt"
-		;
-connectAttr "LeftUpperArm_Control.rp" "LeftUpperArm_Skel_pointConstraint1.tg[0].trp"
-		;
-connectAttr "LeftUpperArm_Control.rpt" "LeftUpperArm_Skel_pointConstraint1.tg[0].trt"
-		;
-connectAttr "LeftUpperArm_Control.pm" "LeftUpperArm_Skel_pointConstraint1.tg[0].tpm"
-		;
-connectAttr "LeftUpperArm_Skel_pointConstraint1.w0" "LeftUpperArm_Skel_pointConstraint1.tg[0].tw"
-		;
 connectAttr "LeftClav_Skel.ro" "LeftClav_Skel_orientConstraint1.cro";
 connectAttr "LeftClav_Skel.pim" "LeftClav_Skel_orientConstraint1.cpim";
 connectAttr "LeftClav_Skel.jo" "LeftClav_Skel_orientConstraint1.cjo";
@@ -12558,9 +12460,6 @@ connectAttr "RightClav_Skel_orientConstraint1.crx" "RightClav_Skel.rx";
 connectAttr "RightClav_Skel_orientConstraint1.cry" "RightClav_Skel.ry";
 connectAttr "RightClav_Skel_orientConstraint1.crz" "RightClav_Skel.rz";
 connectAttr "Skeleton_Layer.di" "RightClav_Skel.do";
-connectAttr "RightUpperArm_Skel_pointConstraint1.ctx" "RightUpperArm_Skel.tx";
-connectAttr "RightUpperArm_Skel_pointConstraint1.cty" "RightUpperArm_Skel.ty";
-connectAttr "RightUpperArm_Skel_pointConstraint1.ctz" "RightUpperArm_Skel.tz";
 connectAttr "RightClav_Skel.s" "RightUpperArm_Skel.is";
 connectAttr "Skeleton_Layer.di" "RightUpperArm_Skel.do";
 connectAttr "RightUpperArm_Skel.s" "RightLowerArm_Skel.is";
@@ -12654,19 +12553,6 @@ connectAttr "Skeleton_Layer.di" "RightLowerArmTwist_Skel.do";
 connectAttr "RightHand_Skel.tx" "effector4.tx";
 connectAttr "RightHand_Skel.ty" "effector4.ty";
 connectAttr "RightHand_Skel.tz" "effector4.tz";
-connectAttr "RightUpperArm_Skel.pim" "RightUpperArm_Skel_pointConstraint1.cpim";
-connectAttr "RightUpperArm_Skel.rp" "RightUpperArm_Skel_pointConstraint1.crp";
-connectAttr "RightUpperArm_Skel.rpt" "RightUpperArm_Skel_pointConstraint1.crt";
-connectAttr "RightUpperArm_Control.t" "RightUpperArm_Skel_pointConstraint1.tg[0].tt"
-		;
-connectAttr "RightUpperArm_Control.rp" "RightUpperArm_Skel_pointConstraint1.tg[0].trp"
-		;
-connectAttr "RightUpperArm_Control.rpt" "RightUpperArm_Skel_pointConstraint1.tg[0].trt"
-		;
-connectAttr "RightUpperArm_Control.pm" "RightUpperArm_Skel_pointConstraint1.tg[0].tpm"
-		;
-connectAttr "RightUpperArm_Skel_pointConstraint1.w0" "RightUpperArm_Skel_pointConstraint1.tg[0].tw"
-		;
 connectAttr "RightClav_Skel.ro" "RightClav_Skel_orientConstraint1.cro";
 connectAttr "RightClav_Skel.pim" "RightClav_Skel_orientConstraint1.cpim";
 connectAttr "RightClav_Skel.jo" "RightClav_Skel_orientConstraint1.cjo";
