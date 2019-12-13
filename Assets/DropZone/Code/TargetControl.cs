@@ -7,16 +7,26 @@ public class TargetControl : MonoBehaviour {
   float visualRange = 10;
   float SqrVisualRange { get; set; }
 
+  UnitControl unitControl;
+  Animator animator;
   public UnitControl CurrentTarget { get; set; }
 
   void Start() {
     SqrVisualRange = visualRange * visualRange;
-
+    unitControl = GetComponent<UnitControl>();
+    animator = GetComponent<Animator>();
   }
 
   void Update() {
-    if (!CurrentTarget)
+    if (!CurrentTarget) {
       CurrentTarget = ScanForTargets();
+      return;
+    }
+
+    Vector3 targetDir = transform.InverseTransformPoint(CurrentTarget.transform.position).normalized;
+    float angle = Vector3.Angle(targetDir, Vector3.forward) * Mathf.Sign(targetDir.x);
+    animator.SetFloat("TargetDirection", angle);
+
   }
 
   public UnitControl ScanForTargets() {

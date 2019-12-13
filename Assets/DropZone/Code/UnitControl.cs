@@ -24,7 +24,7 @@ public class UnitControl : MonoBehaviour {
   Dictionary<string, Transform> attachPoints = new Dictionary<string, Transform>();
 
   bool isMoving;
-  bool IsMoving {
+  public bool IsMoving {
     get {
       return isMoving;
     }
@@ -35,7 +35,7 @@ public class UnitControl : MonoBehaviour {
   }
 
   bool inCover = false;
-  bool InCover {
+  public bool InCover {
     get {
       return inCover;
     }
@@ -91,6 +91,8 @@ public class UnitControl : MonoBehaviour {
   }
 
   public void MoveTo(Vector3 movePos) {
+    animator.SetBool("LeftOpen", false);
+    animator.SetBool("RightOpen", false);
     navAgent.SetDestination(movePos);
     IsMoving = true;
   }
@@ -100,8 +102,15 @@ public class UnitControl : MonoBehaviour {
     Quaternion newOrientation = gameManager.mapControl.GetCoverOrientation(mapCell);
     pathComplete.Invoke();
     InCover = mapCell.HasCover;
+    if (InCover) {
+      animator.SetBool("LeftOpen", mapCell.CanPeekLeft);
+      animator.SetBool("RightOpen", mapCell.CanPeekRight);
+    }
     IsMoving = false;
     Debug.Log("Move Complete, in cover:  " + InCover);
+    Debug.Log("cell id:  " + mapCell.id);
+    Debug.Log("Cover North: " + mapCell.coverDirection[0] + ", West: " + mapCell.coverDirection[1] + ", South: " + mapCell.coverDirection[2] + ", East: " + mapCell.coverDirection[3]);
+    Debug.Log("Peek North: " + mapCell.peekDirection[0] + ", West: " + mapCell.peekDirection[2] + ", South: " + mapCell.peekDirection[2] + ", East: " + mapCell.peekDirection[3]);
     transform.rotation = newOrientation;
   }
 
