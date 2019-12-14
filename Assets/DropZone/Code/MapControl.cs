@@ -10,8 +10,6 @@ public class MapControl : MonoBehaviour {
   Vector2 mapSize;
   public MapData mapData;
 
-  MapSelector mapSelector;
-
   public static MapControl Instance { get; set; }
 
   void Awake() {
@@ -49,21 +47,29 @@ public class MapControl : MonoBehaviour {
     MapData.MapCell originCell = mapData.GetMapCell(origin);
     MapData.MapCell destinationCell = mapData.GetMapCell(destination);
     bool visible = Array.Exists(originCell.cellsVisible, element => element.Equals(destinationCell.id));
-    if (!visible && usePeeking && originCell.CanPeek) {
-      for (int i = 0; i < 4; i++) {
-        if (originCell.peekDirection[i]) {
-          MapData.MapCell coverPos = mapData.GetMapCell(originCell.mapPos + (Quaternion.AngleAxis(90 * i, Vector3.up) * Vector3.forward));
-          if (Array.Exists(originCell.cellsVisible, element => element.Equals(destinationCell.id))) {
-            visible = true;
-          }
+    if (!visible && usePeeking) visible = IsPositionPeekable(originCell, destinationCell);
+    return visible;
+  }
+  public bool IsPositionPeekable(Vector3 origin, Vector3 destination) {
+    MapData.MapCell originCell = mapData.GetMapCell(origin);
+    MapData.MapCell destinationCell = mapData.GetMapCell(destination);
+    return IsPositionPeekable(originCell, destinationCell);
+  }
+
+  public bool IsPositionPeekable(MapData.MapCell originCell, MapData.MapCell destinationCell) {
+    if (!originCell.CanPeek) return false;
+    bool visible = false;
+    for (int i = 0; i < 4; i++) {
+      if (originCell.peekDirection[i]) {
+        MapData.MapCell coverPos = mapData.GetMapCell(originCell.mapPos + (Quaternion.AngleAxis(90 * i, Vector3.up) * Vector3.forward));
+        Debug.Log("testing " + coverPos.mapPos);
+        if (Array.Exists(coverPos.cellsVisible, element => element.Equals(destinationCell.id))) {
+          visible = true;
         }
       }
     }
-
     return visible;
   }
-
-
 
   public float GetCoverHeading(MapData.MapCell mapCell) {
     float heading = 0;
@@ -79,7 +85,7 @@ public class MapControl : MonoBehaviour {
   }
 
   public Vector3 GetCellPos(Vector3 position) {
-    
+
     return mapData.GetMapCell(position).mapPos;
   }
 }

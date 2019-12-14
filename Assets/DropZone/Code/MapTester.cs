@@ -14,7 +14,7 @@ public class MapTester : MonoBehaviour {
     DrawVisibleCells(transform.position, mapControl.mapData);
   }
 
-  static void DrawVisibleCells(Vector3 firingPosition, MapData mapData) {
+  public static void DrawVisibleCells(Vector3 firingPosition, MapData mapData) {
     MapData.MapCell firingCell = mapData.GetMapCell(firingPosition);
 
     if (firingCell.HasCover) {

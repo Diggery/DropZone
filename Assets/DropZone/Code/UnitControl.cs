@@ -135,9 +135,7 @@ public class UnitControl : MonoBehaviour {
   }
 
   void LerpPoseTick(Vector4 amount) {
-    Debug.Log("Lerpsing to " + amount);
     transform.position = amount;
     transform.rotation = Quaternion.AngleAxis(amount.w, Vector3.up);
-
   }
 }
