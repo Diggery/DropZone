@@ -1,6 +1,6 @@
 //Maya ASCII 2019 scene
 //Name: Squaddie_Cover.ma
-//Last modified: Fri, Dec 13, 2019 03:42:55 PM
+//Last modified: Fri, Dec 13, 2019 08:26:18 PM
 //Codeset: UTF-8
 file -rdi 1 -ns "Squaddie" -rfn "SquaddieRN" -op "v=0;" -typ "mayaAscii" "/Users/briancollins/Unity/DropZone/ArtSource/Squaddie/Squaddie.ma";
 file -rdi 1 -ns "MkII" -rfn "MkIIRN" -op "v=0;" -typ "mayaAscii" "/Users/briancollins/Unity/DropZone/ArtSource/Weapons/MkII.ma";
@@ -137,7 +137,7 @@ createNode mesh -n "pCubeShape1" -p "pCube1";
 	setAttr ".cdvm[0]"  0 1 1;
 	setAttr ".ai_translator" -type "string" "polymesh";
 createNode fosterParent -n "MkIIRNfosterParent1";
-	rename -uid "27BCD3A0-6D48-BC17-B4A6-A5888793EE28";
+	rename -uid "79AF64B7-0745-5BEE-5D92-66AF6290DE0F";
 createNode parentConstraint -n "Weapon_MkII1_parentConstraint1" -p "MkIIRNfosterParent1";
 	rename -uid "A26D8F31-E54A-A9E4-2FC6-888819FFBBF5";
 	addAttr -dcb 0 -ci true -k true -sn "w0" -ln "Attach_RightHandW0" -dv 1 -min 0 
@@ -548,7 +548,7 @@ createNode reference -n "SquaddieRN";
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control" 
 		"visibility" " -av 1"
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control" 
-		"translate" " -type \"double3\" -6.55816005847902606 -11.56535503839823598 34.39229610281527982"
+		"translate" " -type \"double3\" -77.9840626894563087 -6.35860192579994177 17.19519751808588381"
 		
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control" 
 		"translateX" " -av"
@@ -557,7 +557,7 @@ createNode reference -n "SquaddieRN";
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control" 
 		"translateZ" " -av"
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control" 
-		"rotate" " -type \"double3\" -6.70046686359962695 -177.6740262674207429 21.14556959752756882"
+		"rotate" " -type \"double3\" 17.02906745931830201 -39.37132465178635243 -9.67891176244289753"
 		
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control" 
 		"rotateX" " -av"
@@ -664,7 +664,7 @@ createNode reference -n "SquaddieRN";
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control" 
 		"translateZ" " -av"
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control" 
-		"rotate" " -type \"double3\" -9.76767161334611878 28.28556741501513017 3.03581217865559871"
+		"rotate" " -type \"double3\" -1.71332195410395949 4.96149804731522348 0.53250394363380815"
 		
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control" 
 		"rotateX" " -av"
@@ -691,7 +691,7 @@ createNode reference -n "SquaddieRN";
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control|Squaddie:Head_Control" 
 		"translateZ" " -av"
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control|Squaddie:Head_Control" 
-		"rotate" " -type \"double3\" 23.83092863787107163 49.08072367749101517 27.57018637879465928"
+		"rotate" " -type \"double3\" 4.1801214084798799 35.97971921413357421 4.83601491444335974"
 		
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:Neck_Control|Squaddie:Head_Control" 
 		"rotateX" " -av"
@@ -840,7 +840,7 @@ createNode reference -n "SquaddieRN";
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightHand_Control" 
 		"visibility" " -av 1"
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightHand_Control" 
-		"translate" " -type \"double3\" 53.17997446960764307 2.86922127734494969 27.24309396807255368"
+		"translate" " -type \"double3\" 61.96989411260646818 21.20998987824787463 19.24776402164219036"
 		
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightHand_Control" 
 		"translateX" " -av"
@@ -849,7 +849,7 @@ createNode reference -n "SquaddieRN";
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightHand_Control" 
 		"translateZ" " -av"
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightHand_Control" 
-		"rotate" " -type \"double3\" 102.76946692148894158 49.9052413176644194 146.37706025062720983"
+		"rotate" " -type \"double3\" 600.71766509381870947 96.26581618399407603 697.82063871219156681"
 		
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:RightHand_Control" 
 		"rotateX" " -av"
@@ -901,7 +901,7 @@ createNode reference -n "SquaddieRN";
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftHand_Control" 
 		"visibility" " -av 1"
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftHand_Control" 
-		"translate" " -type \"double3\" -46.94754210534439665 -13.13992343225014459 15.61922384825766663"
+		"translate" " -type \"double3\" -52.01875362460972241 38.43129338998873834 42.00585742119817212"
 		
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftHand_Control" 
 		"translateX" " -av"
@@ -910,7 +910,7 @@ createNode reference -n "SquaddieRN";
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftHand_Control" 
 		"translateZ" " -av"
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftHand_Control" 
-		"rotate" " -type \"double3\" -49.74859668589004258 -39.12104607729758499 -131.66908887094524516"
+		"rotate" " -type \"double3\" -32.25684422786385852 -62.79601985734112901 -110.14849936836313304"
 		
 		2 "|Squaddie:Root_Control|Squaddie:RootMotion_Control|Squaddie:Hips_Control|Squaddie:Spine1_Control|Squaddie:Spine2_Control|Squaddie:LeftHand_Control" 
 		"rotateX" " -av"
@@ -1008,7 +1008,7 @@ createNode reference -n "SquaddieRN";
 		"scaleZ" " -av"
 		2 "|Squaddie:Root_Control|Squaddie:RightFoot_Control" "visibility" " -av 1"
 		
-		2 "|Squaddie:Root_Control|Squaddie:RightFoot_Control" "translate" " -type \"double3\" 49.46813381794360964 0 44.39628857872766332"
+		2 "|Squaddie:Root_Control|Squaddie:RightFoot_Control" "translate" " -type \"double3\" -61.27746251046779236 3.69801392324757883 -23.03575185273601633"
 		
 		2 "|Squaddie:Root_Control|Squaddie:RightFoot_Control" "translateX" " -av"
 		
@@ -1016,7 +1016,7 @@ createNode reference -n "SquaddieRN";
 		
 		2 "|Squaddie:Root_Control|Squaddie:RightFoot_Control" "translateZ" " -av"
 		
-		2 "|Squaddie:Root_Control|Squaddie:RightFoot_Control" "rotate" " -type \"double3\" 0 -200.20745991017616916 0"
+		2 "|Squaddie:Root_Control|Squaddie:RightFoot_Control" "rotate" " -type \"double3\" 12.38587021251590237 -68.13208657402117296 0"
 		
 		2 "|Squaddie:Root_Control|Squaddie:RightFoot_Control" "rotateX" " -av"
 		2 "|Squaddie:Root_Control|Squaddie:RightFoot_Control" "rotateY" " -av"
@@ -1080,12 +1080,12 @@ createNode reference -n "SquaddieRN";
 		"scaleZ" " -av"
 		2 "|Squaddie:Root_Control|Squaddie:LeftFoot_Control" "visibility" " -av 1"
 		
-		2 "|Squaddie:Root_Control|Squaddie:LeftFoot_Control" "translate" " -type \"double3\" -53.83339314496853945 0 13.66418863736922162"
+		2 "|Squaddie:Root_Control|Squaddie:LeftFoot_Control" "translate" " -type \"double3\" -84.01022269625337913 0 51.67392996190369558"
 		
 		2 "|Squaddie:Root_Control|Squaddie:LeftFoot_Control" "translateX" " -av"
 		2 "|Squaddie:Root_Control|Squaddie:LeftFoot_Control" "translateY" " -av"
 		2 "|Squaddie:Root_Control|Squaddie:LeftFoot_Control" "translateZ" " -av"
-		2 "|Squaddie:Root_Control|Squaddie:LeftFoot_Control" "rotate" " -type \"double3\" 0 -150.06670799028890428 0"
+		2 "|Squaddie:Root_Control|Squaddie:LeftFoot_Control" "rotate" " -type \"double3\" 0 -26.70324080606909689 0"
 		
 		2 "|Squaddie:Root_Control|Squaddie:LeftFoot_Control" "rotateX" " -av"
 		2 "|Squaddie:Root_Control|Squaddie:LeftFoot_Control" "rotateY" " -av"
@@ -1163,10 +1163,10 @@ createNode reference -n "SquaddieRN";
 		2 "|Squaddie:SkeletonGroup|Squaddie:Attach_RootMotion|Squaddie:Hips_Skel|Squaddie:Spine1_Skel|Squaddie:Spine2_Skel|Squaddie:LeftClav_Skel|Squaddie:LeftUpperArm_Skel" 
 		"translateZ" " -av"
 		2 "|Squaddie:SkeletonGroup|Squaddie:Attach_RootMotion|Squaddie:Hips_Skel|Squaddie:Spine1_Skel|Squaddie:Spine2_Skel|Squaddie:LeftClav_Skel|Squaddie:LeftUpperArm_Skel" 
-		"rotate" " -type \"double3\" 39.7758654966338483 -20.32195986643379726 14.41089689187026401"
+		"rotate" " -type \"double3\" -43.31395011307964893 -66.34481468652512604 36.64472598428874051"
 		
 		2 "|Squaddie:SkeletonGroup|Squaddie:Attach_RootMotion|Squaddie:Hips_Skel|Squaddie:Spine1_Skel|Squaddie:Spine2_Skel|Squaddie:LeftClav_Skel|Squaddie:LeftUpperArm_Skel|Squaddie:LeftLowerArm_Skel" 
-		"rotate" " -type \"double3\" 0 -35.24681184266967193 0"
+		"rotate" " -type \"double3\" 0 -37.50523172604238908 0"
 		2 "|Squaddie:SkeletonGroup|Squaddie:Attach_RootMotion|Squaddie:Hips_Skel|Squaddie:Spine1_Skel|Squaddie:Spine2_Skel|Squaddie:RightClav_Skel|Squaddie:RightUpperArm_Skel" 
 		"translate" " -type \"double3\" -14.91460000000001429 -4.70347648394240281 0.41150087150569448"
 		
@@ -1177,13 +1177,13 @@ createNode reference -n "SquaddieRN";
 		2 "|Squaddie:SkeletonGroup|Squaddie:Attach_RootMotion|Squaddie:Hips_Skel|Squaddie:Spine1_Skel|Squaddie:Spine2_Skel|Squaddie:RightClav_Skel|Squaddie:RightUpperArm_Skel" 
 		"translateZ" " -av"
 		2 "|Squaddie:SkeletonGroup|Squaddie:Attach_RootMotion|Squaddie:Hips_Skel|Squaddie:Spine1_Skel|Squaddie:Spine2_Skel|Squaddie:RightClav_Skel|Squaddie:RightUpperArm_Skel" 
-		"rotate" " -type \"double3\" 27.63708192807022712 -37.95908957734206268 13.85390484290632962"
+		"rotate" " -type \"double3\" 39.44819779138718729 -45.17693932448462846 6.99389098943830234"
 		
 		2 "|Squaddie:SkeletonGroup|Squaddie:Attach_RootMotion|Squaddie:Hips_Skel|Squaddie:Spine1_Skel|Squaddie:Spine2_Skel|Squaddie:RightClav_Skel|Squaddie:RightUpperArm_Skel|Squaddie:RightLowerArm_Skel" 
-		"rotate" " -type \"double3\" -0.0020099848066494419 -52.55174058157393802 0.0017374751919396675"
+		"rotate" " -type \"double3\" -0.0034284218189899402 -89.63726165477937968 0.0029636034254056959"
 		
 		2 "|Squaddie:SkeletonGroup|Squaddie:Attach_RootMotion|Squaddie:Hips_Skel|Squaddie:LeftUpperLeg_Skel" 
-		"translate" " -type \"double3\" 19.81883811950683594 1.35854452727748942 -7.39106094254960055"
+		"translate" " -type \"double3\" 19.81883811950682883 1.35854452727748765 -7.39106094254961477"
 		
 		2 "|Squaddie:SkeletonGroup|Squaddie:Attach_RootMotion|Squaddie:Hips_Skel|Squaddie:LeftUpperLeg_Skel" 
 		"translateX" " -av"
@@ -1192,12 +1192,12 @@ createNode reference -n "SquaddieRN";
 		2 "|Squaddie:SkeletonGroup|Squaddie:Attach_RootMotion|Squaddie:Hips_Skel|Squaddie:LeftUpperLeg_Skel" 
 		"translateZ" " -av"
 		2 "|Squaddie:SkeletonGroup|Squaddie:Attach_RootMotion|Squaddie:Hips_Skel|Squaddie:LeftUpperLeg_Skel" 
-		"rotate" " -type \"double3\" -58.80499592159431899 19.20385109947117641 -25.45900450611964771"
+		"rotate" " -type \"double3\" -47.79527776049670251 9.12967449157613231 -17.18172252804879108"
 		
 		2 "|Squaddie:SkeletonGroup|Squaddie:Attach_RootMotion|Squaddie:Hips_Skel|Squaddie:LeftUpperLeg_Skel|Squaddie:LeftLowerLeg_Skel" 
-		"rotate" " -type \"double3\" 53.40297361680613619 0 0"
+		"rotate" " -type \"double3\" 37.50105893462369266 0 0"
 		2 "|Squaddie:SkeletonGroup|Squaddie:Attach_RootMotion|Squaddie:Hips_Skel|Squaddie:RightUpperLeg_Skel" 
-		"translate" " -type \"double3\" -19.81879997253417969 1.35854880205052986 -7.39109886124330728"
+		"translate" " -type \"double3\" -19.81879997253418679 1.35854880205052098 -7.39109886124330728"
 		
 		2 "|Squaddie:SkeletonGroup|Squaddie:Attach_RootMotion|Squaddie:Hips_Skel|Squaddie:RightUpperLeg_Skel" 
 		"translateX" " -av"
@@ -1206,10 +1206,10 @@ createNode reference -n "SquaddieRN";
 		2 "|Squaddie:SkeletonGroup|Squaddie:Attach_RootMotion|Squaddie:Hips_Skel|Squaddie:RightUpperLeg_Skel" 
 		"translateZ" " -av"
 		2 "|Squaddie:SkeletonGroup|Squaddie:Attach_RootMotion|Squaddie:Hips_Skel|Squaddie:RightUpperLeg_Skel" 
-		"rotate" " -type \"double3\" 0.044286806378483173 -3.80828776410549397 -28.05892341480456054"
+		"rotate" " -type \"double3\" 5.64432171388675474 8.45337548146425632 -32.91642457384492815"
 		
 		2 "|Squaddie:SkeletonGroup|Squaddie:Attach_RootMotion|Squaddie:Hips_Skel|Squaddie:RightUpperLeg_Skel|Squaddie:RightLowerLeg_Skel" 
-		"rotate" " -type \"double3\" 20.3240409838426892 0 0"
+		"rotate" " -type \"double3\" 0.08862065002489905 0 0"
 		5 4 "SquaddieRN" "|Squaddie:Root_Control.visibility" "SquaddieRN.placeHolderList[110]" 
 		""
 		5 4 "SquaddieRN" "|Squaddie:Root_Control.translateX" "SquaddieRN.placeHolderList[111]" 
@@ -5840,8 +5840,8 @@ select -ne :time1;
 	setAttr -av -cb on ".ihi";
 	setAttr -av -k on ".nds";
 	setAttr -cb on ".bnm";
-	setAttr -k on ".o" 250;
-	setAttr -av -k on ".unw" 250;
+	setAttr -k on ".o" 206;
+	setAttr -av -k on ".unw" 206;
 	setAttr -av -k on ".etw";
 	setAttr -av -k on ".tps";
 	setAttr -av -k on ".tms";
