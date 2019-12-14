@@ -63,13 +63,19 @@ public class MapControl : MonoBehaviour {
     return visible;
   }
 
-  public Quaternion GetCoverOrientation(MapData.MapCell mapCell) {
-    int heading = 0;
+
+
+  public float GetCoverHeading(MapData.MapCell mapCell) {
+    float heading = 0;
     if (mapCell.coverDirection[0]) heading = 0;
     if (mapCell.coverDirection[1]) heading = 90;
     if (mapCell.coverDirection[2]) heading = 180;
     if (mapCell.coverDirection[3]) heading = -90;
-    return Quaternion.AngleAxis(heading, Vector3.up);
+    return heading;
+  }
+
+  public Quaternion GetCoverOrientation(MapData.MapCell mapCell) {
+    return Quaternion.AngleAxis(GetCoverHeading(mapCell), Vector3.up);
   }
 
   public Vector3 GetCellPos(Vector3 position) {
