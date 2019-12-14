@@ -15,6 +15,24 @@ ModelImporter:
   - first:
       74: 4521577582709078898
     second: Idle_Center
+  - first:
+      74: 7976562283393091017
+    second: Peek_Left_In
+  - first:
+      74: 6385208573674695884
+    second: Peek_Left_Idle
+  - first:
+      74: -2999668659726563300
+    second: Peek_Left_Out
+  - first:
+      74: 7094789566263959399
+    second: Peek_Right_In
+  - first:
+      74: 8097280456075244969
+    second: Peek_Right_Idle
+  - first:
+      74: 5559579941676684360
+    second: Peek_Right_Out
   externalObjects: {}
   materials:
     importMaterials: 1
