@@ -9,12 +9,15 @@ public class TargetControl : MonoBehaviour {
 
   UnitControl unitControl;
   Animator animator;
+  MapControl mapControl;
+
   public UnitControl CurrentTarget { get; set; }
 
   void Start() {
     SqrVisualRange = visualRange * visualRange;
     unitControl = GetComponent<UnitControl>();
     animator = GetComponent<Animator>();
+    mapControl = GameManager.Instance.mapControl;
   }
 
   void Update() {
@@ -27,6 +30,11 @@ public class TargetControl : MonoBehaviour {
     float angle = Vector3.Angle(targetDir, Vector3.forward) * Mathf.Sign(targetDir.x);
     animator.SetFloat("TargetDirection", angle);
 
+    bool enemyVisible = mapControl.IsPositionVisible(transform.position, CurrentTarget.transform.position);
+    bool enemyPeekable = mapControl.IsPositionPeekable(transform.position, CurrentTarget.transform.position);
+    animator.SetBool("UsePeeking", !enemyVisible && enemyPeekable);
+
+    MapTester.DrawVisibleCells(transform.position, mapControl.mapData);
   }
 
   public UnitControl ScanForTargets() {

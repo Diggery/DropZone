@@ -13,6 +13,7 @@ public class UnitControl : MonoBehaviour {
   UnitIK unitIK;
 
   TargetControl targetControl;
+  Interpolator.LerpVector LerpToPose = new Interpolator.LerpVector();
 
   public bool HasTarget {
     get { return targetControl.CurrentTarget; }
@@ -82,6 +83,8 @@ public class UnitControl : MonoBehaviour {
     unitIK = GetComponent<UnitIK>().Init();
     targetControl = gameObject.AddComponent<TargetControl>();
     gameObject.GetComponent<CharacterSetup>().Init();
+    LerpToPose.onTickVector = LerpPoseTick;
+    LerpToPose.duration = 0.5f;
   }
 
   void Update() {
@@ -99,19 +102,25 @@ public class UnitControl : MonoBehaviour {
 
   public void MoveComplete() {
     MapData.MapCell mapCell = gameManager.GetMapCell(transform.position);
-    Quaternion newOrientation = gameManager.mapControl.GetCoverOrientation(mapCell);
+
     pathComplete.Invoke();
     InCover = mapCell.HasCover;
     if (InCover) {
       animator.SetBool("LeftOpen", mapCell.CanPeekLeft);
       animator.SetBool("RightOpen", mapCell.CanPeekRight);
     }
+
     IsMoving = false;
-    Debug.Log("Move Complete, in cover:  " + InCover);
-    Debug.Log("cell id:  " + mapCell.id);
-    Debug.Log("Cover North: " + mapCell.coverDirection[0] + ", West: " + mapCell.coverDirection[1] + ", South: " + mapCell.coverDirection[2] + ", East: " + mapCell.coverDirection[3]);
-    Debug.Log("Peek North: " + mapCell.peekDirection[0] + ", West: " + mapCell.peekDirection[2] + ", South: " + mapCell.peekDirection[2] + ", East: " + mapCell.peekDirection[3]);
-    transform.rotation = newOrientation;
+
+    Vector4 startValue = transform.position;
+    float currentHeading = Vector3.Angle(transform.forward, Vector3.forward) * Mathf.Sign(transform.forward.x);
+    startValue.w = currentHeading;
+    LerpToPose.startValue = startValue;
+    Vector4 endValue = mapCell.mapPos;
+    endValue.y = startValue.y;
+    endValue.w = gameManager.mapControl.GetCoverHeading(mapCell);
+    LerpToPose.endValue = endValue;
+    Interpolator.Start(LerpToPose);
   }
 
   public bool EquipMainWeapon(Weapon weapon) {
@@ -123,5 +132,10 @@ public class UnitControl : MonoBehaviour {
   public void SetAttachPoint(string name, Transform point) {
     if (!attachPoints.ContainsKey(name))
       attachPoints.Add(name, point);
+  }
+
+  void LerpPoseTick(Vector4 amount) {
+    transform.position = amount;
+    transform.rotation = Quaternion.AngleAxis(amount.w, Vector3.up);
   }
 }
