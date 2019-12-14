@@ -27,6 +27,27 @@ public class MapData : ScriptableObject {
     public bool CanPeek {
       get { return peekDirection[0] || peekDirection[1] || peekDirection[2] || peekDirection[3]; }
     }
+
+    public bool CanPeekLeft {
+      get {
+        Debug.Log(coverDirection[0] + ", " + peekDirection[3]);
+        if (coverDirection[0]) return peekDirection[3];
+        if (coverDirection[1]) return peekDirection[0];
+        if (coverDirection[2]) return peekDirection[1];
+        if (coverDirection[3]) return peekDirection[2];
+        Debug.Log("No Cover");
+        return false;
+      }
+    }
+    public bool CanPeekRight {
+      get {
+        if (coverDirection[0]) return peekDirection[1];
+        if (coverDirection[1]) return peekDirection[2];
+        if (coverDirection[2]) return peekDirection[3];
+        if (coverDirection[3]) return peekDirection[0];
+        return false;
+      }
+    }
   }
        
   [SerializeField]
