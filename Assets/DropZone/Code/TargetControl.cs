@@ -11,6 +11,8 @@ public class TargetControl : MonoBehaviour {
   Animator animator;
   MapControl mapControl;
 
+  float targetMemory = 1.0f;
+
   public UnitControl CurrentTarget { get; set; }
 
   void Start() {
@@ -27,24 +29,38 @@ public class TargetControl : MonoBehaviour {
     }
 
     Vector3 targetDir = transform.InverseTransformPoint(CurrentTarget.transform.position).normalized;
-    float angle = Vector3.Angle(targetDir, Vector3.forward) * Mathf.Sign(targetDir.x);
-    animator.SetFloat("TargetDirection", angle);
-
+    float angleToTarget = Vector3.Angle(targetDir, Vector3.forward) * Mathf.Sign(targetDir.x);
+    animator.SetFloat("TargetDirection", angleToTarget);
     bool enemyVisible = mapControl.IsPositionVisible(transform.position, CurrentTarget.transform.position);
     bool enemyPeekable = mapControl.IsPositionPeekable(transform.position, CurrentTarget.transform.position);
-    animator.SetBool("UsePeeking", !enemyVisible && enemyPeekable);
+
+    animator.SetBool("IsAiming", enemyVisible);
+
+    if (unitControl.InCover) {
+      animator.SetBool("UsePeeking", !enemyVisible && enemyPeekable);
+    }
+
+
+    if (enemyVisible || enemyPeekable) {
+      targetMemory = 1;
+    } else {
+      targetMemory -= Time.deltaTime;
+      if (targetMemory < 0) {
+        CurrentTarget = null;
+      }
+    }
 
     MapTester.DrawVisibleCells(transform.position, mapControl.mapData);
   }
 
   public UnitControl ScanForTargets() {
-    if (showDebug)Debug.Log("Scanning...");
+    if (showDebug) Debug.Log("Scanning...");
 
     GameObject[] possibleTargets = GameObject.FindGameObjectsWithTag("Enemy");
     LayerMask terrainMask = LayerMask.GetMask("Terrain");
     float closestDistance = Mathf.Infinity;
     UnitControl closestTarget = null;
-    if (showDebug)Debug.Log("Looking through " + possibleTargets.Length + " targets");
+    if (showDebug) Debug.Log("Looking through " + possibleTargets.Length + " targets");
 
     foreach (GameObject target in possibleTargets) {
 
@@ -57,11 +73,11 @@ public class TargetControl : MonoBehaviour {
       float targetDistance = (target.transform.position - transform.position).sqrMagnitude;
 
       if (targetDistance > SqrVisualRange) {
-        if (showDebug)Debug.Log("targets is outside of visual range");
+        if (showDebug) Debug.Log("targets is outside of visual range");
         continue;
       }
 
-      if (closestTarget && closestDistance < targetDistance)continue;
+      if (closestTarget && closestDistance < targetDistance) continue;
 
       Ray ray = new Ray(
         transform.position + (Vector3.up * 1.25f),

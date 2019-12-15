@@ -62,7 +62,6 @@ public class MapControl : MonoBehaviour {
     for (int i = 0; i < 4; i++) {
       if (originCell.peekDirection[i]) {
         MapData.MapCell coverPos = mapData.GetMapCell(originCell.mapPos + (Quaternion.AngleAxis(90 * i, Vector3.up) * Vector3.forward));
-        Debug.Log("testing " + coverPos.mapPos);
         if (Array.Exists(coverPos.cellsVisible, element => element.Equals(destinationCell.id))) {
           visible = true;
         }

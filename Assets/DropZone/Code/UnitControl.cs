@@ -19,7 +19,11 @@ public class UnitControl : MonoBehaviour {
     get { return targetControl.CurrentTarget; }
   }
   public Vector3 CurrentTargetPos {
-    get { return targetControl.CurrentTarget.transform.position; }
+    get { return targetControl.CurrentTarget.TargetPoint; }
+  }
+
+  public Vector3 TargetPoint {
+    get { return transform.position + (Vector3.up * 1.25f); }
   }
 
   Dictionary<string, Transform> attachPoints = new Dictionary<string, Transform>();
@@ -32,6 +36,18 @@ public class UnitControl : MonoBehaviour {
     set {
       isMoving = value;
       animator.SetBool("IsMoving", isMoving);
+    }
+  }
+
+  bool inMovingState;
+  public bool InMovingState {
+    get {
+      return isMoving;
+    }
+    set {
+      inMovingState = value;
+      navAgent.updatePosition = inMovingState;
+      navAgent.updateRotation = inMovingState;
     }
   }
 
@@ -72,7 +88,7 @@ public class UnitControl : MonoBehaviour {
   }
 
   void Start() {
-    if (autoInit)Init();
+    if (autoInit) Init();
   }
 
   public void Init() {
@@ -84,6 +100,7 @@ public class UnitControl : MonoBehaviour {
     targetControl = gameObject.AddComponent<TargetControl>();
     gameObject.GetComponent<CharacterSetup>().Init();
     LerpToPose.onTickVector = LerpPoseTick;
+    LerpToPose.onFinish = LerpPoseFinished;
     LerpToPose.duration = 0.5f;
   }
 
@@ -101,6 +118,7 @@ public class UnitControl : MonoBehaviour {
   }
 
   public void MoveComplete() {
+
     MapData.MapCell mapCell = gameManager.GetMapCell(transform.position);
 
     pathComplete.Invoke();
@@ -111,6 +129,8 @@ public class UnitControl : MonoBehaviour {
     }
 
     IsMoving = false;
+    navAgent.updatePosition = false;
+    navAgent.updateRotation = false;
 
     Vector4 startValue = transform.position;
     float currentHeading = Vector3.Angle(transform.forward, Vector3.forward) * Mathf.Sign(transform.forward.x);
@@ -137,5 +157,9 @@ public class UnitControl : MonoBehaviour {
   void LerpPoseTick(Vector4 amount) {
     transform.position = amount;
     transform.rotation = Quaternion.AngleAxis(amount.w, Vector3.up);
+  }
+
+  void LerpPoseFinished(bool reverse) {
+    Debug.Log("Lerp finished");
   }
 }
