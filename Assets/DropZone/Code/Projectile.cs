@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Projectile : MonoBehaviour {
 
-  UnitControl owner;
+  TargetControl owner;
   Rigidbody rbody;
   CapsuleCollider collider;
 
@@ -13,7 +13,7 @@ public class Projectile : MonoBehaviour {
   DamageInfo bulletDamage;
 
 
-  public void Init(UnitControl owner, Vector3 targetDir, float range, DamageInfo damage) {
+  public void Init(TargetControl owner, Vector3 targetDir, float range, DamageInfo damage) {
     this.owner = owner;
     bulletDamage = damage;
     rbody = GetComponent<Rigidbody>();
@@ -74,6 +74,9 @@ public class Projectile : MonoBehaviour {
           bulletDamage,
           SendMessageOptions.DontRequireReceiver
       );
+      owner.TargetHit();
+    } else {
+      owner.TargetMiss();
     }
   }
 }

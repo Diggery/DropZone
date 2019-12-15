@@ -126,7 +126,7 @@ public class Weapon : MonoBehaviour {
     aimingDirection = Quaternion.AngleAxis(hOffset, Vector3.up) * aimingDirection;
 
     DamageInfo damageInfo = new DamageInfo(1, DamageType.Puncture, owner);
-    projectile.GetComponent<Projectile>().Init(owner, aimingDirection, range, damageInfo);
+    projectile.GetComponent<Projectile>().Init(targetControl, aimingDirection, range, damageInfo);
 
   }
 
