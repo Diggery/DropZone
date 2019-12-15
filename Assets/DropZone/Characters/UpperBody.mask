@@ -1,0 +1,131 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: UpperBody
+  m_Mask: 00000000010000000100000000000000000000000100000001000000010000000100000000000000000000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Squaddie:GeoGroup
+    m_Weight: 0
+  - m_Path: Squaddie:GeoGroup/Squaddie:Body
+    m_Weight: 1
+  - m_Path: Squaddie:GeoGroup/Squaddie:Head
+    m_Weight: 1
+  - m_Path: Squaddie:SkeletonGroup
+    m_Weight: 0
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion
+    m_Weight: 0
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel
+    m_Weight: 0
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:LeftUpperLeg_Skel
+    m_Weight: 0
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:LeftUpperLeg_Skel/Squaddie:LeftLowerLeg_Skel
+    m_Weight: 1
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:LeftUpperLeg_Skel/Squaddie:LeftLowerLeg_Skel/Squaddie:LeftFoot_Skel
+    m_Weight: 1
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:LeftUpperLeg_Skel/Squaddie:LeftLowerLeg_Skel/Squaddie:LeftFoot_Skel/Squaddie:LeftToes_Skel
+    m_Weight: 1
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:RightUpperLeg_Skel
+    m_Weight: 0
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:RightUpperLeg_Skel/Squaddie:RightLowerLeg_Skel
+    m_Weight: 1
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:RightUpperLeg_Skel/Squaddie:RightLowerLeg_Skel/Squaddie:RightFoot_Skel
+    m_Weight: 1
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:RightUpperLeg_Skel/Squaddie:RightLowerLeg_Skel/Squaddie:RightFoot_Skel/Squaddie:RightToes_Skel
+    m_Weight: 1
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:Spine1_Skel
+    m_Weight: 1
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:Spine1_Skel/Squaddie:Spine2_Skel
+    m_Weight: 1
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:Spine1_Skel/Squaddie:Spine2_Skel/Squaddie:LeftClav_Skel
+    m_Weight: 1
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:Spine1_Skel/Squaddie:Spine2_Skel/Squaddie:LeftClav_Skel/Squaddie:LeftUpperArm_Skel
+    m_Weight: 1
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:Spine1_Skel/Squaddie:Spine2_Skel/Squaddie:LeftClav_Skel/Squaddie:LeftUpperArm_Skel/Squaddie:LeftLowerArm_Skel
+    m_Weight: 1
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:Spine1_Skel/Squaddie:Spine2_Skel/Squaddie:LeftClav_Skel/Squaddie:LeftUpperArm_Skel/Squaddie:LeftLowerArm_Skel/Squaddie:LeftHand_Skel
+    m_Weight: 1
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:Spine1_Skel/Squaddie:Spine2_Skel/Squaddie:LeftClav_Skel/Squaddie:LeftUpperArm_Skel/Squaddie:LeftLowerArm_Skel/Squaddie:LeftHand_Skel/Squaddie:Attach_LeftHand
+    m_Weight: 1
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:Spine1_Skel/Squaddie:Spine2_Skel/Squaddie:LeftClav_Skel/Squaddie:LeftUpperArm_Skel/Squaddie:LeftLowerArm_Skel/Squaddie:LeftHand_Skel/Squaddie:LeftFinger1_1_Skel
+    m_Weight: 1
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:Spine1_Skel/Squaddie:Spine2_Skel/Squaddie:LeftClav_Skel/Squaddie:LeftUpperArm_Skel/Squaddie:LeftLowerArm_Skel/Squaddie:LeftHand_Skel/Squaddie:LeftFinger1_1_Skel/Squaddie:LeftFinger1_2_Skel
+    m_Weight: 1
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:Spine1_Skel/Squaddie:Spine2_Skel/Squaddie:LeftClav_Skel/Squaddie:LeftUpperArm_Skel/Squaddie:LeftLowerArm_Skel/Squaddie:LeftHand_Skel/Squaddie:LeftFinger1_1_Skel/Squaddie:LeftFinger1_2_Skel/Squaddie:LeftFinger1_3_Skel
+    m_Weight: 1
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:Spine1_Skel/Squaddie:Spine2_Skel/Squaddie:LeftClav_Skel/Squaddie:LeftUpperArm_Skel/Squaddie:LeftLowerArm_Skel/Squaddie:LeftHand_Skel/Squaddie:LeftFinger2_1_Skel
+    m_Weight: 1
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:Spine1_Skel/Squaddie:Spine2_Skel/Squaddie:LeftClav_Skel/Squaddie:LeftUpperArm_Skel/Squaddie:LeftLowerArm_Skel/Squaddie:LeftHand_Skel/Squaddie:LeftFinger2_1_Skel/Squaddie:LeftFinger2_2_Skel
+    m_Weight: 1
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:Spine1_Skel/Squaddie:Spine2_Skel/Squaddie:LeftClav_Skel/Squaddie:LeftUpperArm_Skel/Squaddie:LeftLowerArm_Skel/Squaddie:LeftHand_Skel/Squaddie:LeftFinger2_1_Skel/Squaddie:LeftFinger2_2_Skel/Squaddie:LeftFinger2_3_Skel
+    m_Weight: 1
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:Spine1_Skel/Squaddie:Spine2_Skel/Squaddie:LeftClav_Skel/Squaddie:LeftUpperArm_Skel/Squaddie:LeftLowerArm_Skel/Squaddie:LeftHand_Skel/Squaddie:LeftFinger3_1_Skel
+    m_Weight: 1
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:Spine1_Skel/Squaddie:Spine2_Skel/Squaddie:LeftClav_Skel/Squaddie:LeftUpperArm_Skel/Squaddie:LeftLowerArm_Skel/Squaddie:LeftHand_Skel/Squaddie:LeftFinger3_1_Skel/Squaddie:LeftFinger3_2_Skel
+    m_Weight: 1
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:Spine1_Skel/Squaddie:Spine2_Skel/Squaddie:LeftClav_Skel/Squaddie:LeftUpperArm_Skel/Squaddie:LeftLowerArm_Skel/Squaddie:LeftHand_Skel/Squaddie:LeftFinger3_1_Skel/Squaddie:LeftFinger3_2_Skel/Squaddie:LeftFinger3_3_Skel
+    m_Weight: 1
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:Spine1_Skel/Squaddie:Spine2_Skel/Squaddie:LeftClav_Skel/Squaddie:LeftUpperArm_Skel/Squaddie:LeftLowerArm_Skel/Squaddie:LeftHand_Skel/Squaddie:LeftFinger4_1_Skel
+    m_Weight: 1
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:Spine1_Skel/Squaddie:Spine2_Skel/Squaddie:LeftClav_Skel/Squaddie:LeftUpperArm_Skel/Squaddie:LeftLowerArm_Skel/Squaddie:LeftHand_Skel/Squaddie:LeftFinger4_1_Skel/Squaddie:LeftFinger4_2_Skel
+    m_Weight: 1
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:Spine1_Skel/Squaddie:Spine2_Skel/Squaddie:LeftClav_Skel/Squaddie:LeftUpperArm_Skel/Squaddie:LeftLowerArm_Skel/Squaddie:LeftHand_Skel/Squaddie:LeftFinger4_1_Skel/Squaddie:LeftFinger4_2_Skel/Squaddie:LeftFinger4_3_Skel
+    m_Weight: 1
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:Spine1_Skel/Squaddie:Spine2_Skel/Squaddie:LeftClav_Skel/Squaddie:LeftUpperArm_Skel/Squaddie:LeftLowerArm_Skel/Squaddie:LeftHand_Skel/Squaddie:LeftThumb_1_Skel
+    m_Weight: 1
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:Spine1_Skel/Squaddie:Spine2_Skel/Squaddie:LeftClav_Skel/Squaddie:LeftUpperArm_Skel/Squaddie:LeftLowerArm_Skel/Squaddie:LeftHand_Skel/Squaddie:LeftThumb_1_Skel/Squaddie:LeftThumb_2_Skel
+    m_Weight: 1
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:Spine1_Skel/Squaddie:Spine2_Skel/Squaddie:LeftClav_Skel/Squaddie:LeftUpperArm_Skel/Squaddie:LeftLowerArm_Skel/Squaddie:LeftLowerArmTwist_Skel
+    m_Weight: 1
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:Spine1_Skel/Squaddie:Spine2_Skel/Squaddie:Neck_Skell
+    m_Weight: 1
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:Spine1_Skel/Squaddie:Spine2_Skel/Squaddie:Neck_Skell/Squaddie:Head_Skel
+    m_Weight: 1
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:Spine1_Skel/Squaddie:Spine2_Skel/Squaddie:RightClav_Skel
+    m_Weight: 1
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:Spine1_Skel/Squaddie:Spine2_Skel/Squaddie:RightClav_Skel/Squaddie:RightUpperArm_Skel
+    m_Weight: 1
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:Spine1_Skel/Squaddie:Spine2_Skel/Squaddie:RightClav_Skel/Squaddie:RightUpperArm_Skel/Squaddie:Attach_RightShoulder
+    m_Weight: 1
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:Spine1_Skel/Squaddie:Spine2_Skel/Squaddie:RightClav_Skel/Squaddie:RightUpperArm_Skel/Squaddie:RightLowerArm_Skel
+    m_Weight: 1
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:Spine1_Skel/Squaddie:Spine2_Skel/Squaddie:RightClav_Skel/Squaddie:RightUpperArm_Skel/Squaddie:RightLowerArm_Skel/Squaddie:RightHand_Skel
+    m_Weight: 1
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:Spine1_Skel/Squaddie:Spine2_Skel/Squaddie:RightClav_Skel/Squaddie:RightUpperArm_Skel/Squaddie:RightLowerArm_Skel/Squaddie:RightHand_Skel/Squaddie:Attach_RightHand
+    m_Weight: 1
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:Spine1_Skel/Squaddie:Spine2_Skel/Squaddie:RightClav_Skel/Squaddie:RightUpperArm_Skel/Squaddie:RightLowerArm_Skel/Squaddie:RightHand_Skel/Squaddie:RightFinger1_1_Skel
+    m_Weight: 1
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:Spine1_Skel/Squaddie:Spine2_Skel/Squaddie:RightClav_Skel/Squaddie:RightUpperArm_Skel/Squaddie:RightLowerArm_Skel/Squaddie:RightHand_Skel/Squaddie:RightFinger1_1_Skel/Squaddie:RightFinger1_2_Skel
+    m_Weight: 1
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:Spine1_Skel/Squaddie:Spine2_Skel/Squaddie:RightClav_Skel/Squaddie:RightUpperArm_Skel/Squaddie:RightLowerArm_Skel/Squaddie:RightHand_Skel/Squaddie:RightFinger1_1_Skel/Squaddie:RightFinger1_2_Skel/Squaddie:RightFinger1_3_Skel
+    m_Weight: 1
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:Spine1_Skel/Squaddie:Spine2_Skel/Squaddie:RightClav_Skel/Squaddie:RightUpperArm_Skel/Squaddie:RightLowerArm_Skel/Squaddie:RightHand_Skel/Squaddie:RightFinger2_1_Skel
+    m_Weight: 1
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:Spine1_Skel/Squaddie:Spine2_Skel/Squaddie:RightClav_Skel/Squaddie:RightUpperArm_Skel/Squaddie:RightLowerArm_Skel/Squaddie:RightHand_Skel/Squaddie:RightFinger2_1_Skel/Squaddie:RightFinger2_2_Skel
+    m_Weight: 1
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:Spine1_Skel/Squaddie:Spine2_Skel/Squaddie:RightClav_Skel/Squaddie:RightUpperArm_Skel/Squaddie:RightLowerArm_Skel/Squaddie:RightHand_Skel/Squaddie:RightFinger2_1_Skel/Squaddie:RightFinger2_2_Skel/Squaddie:RightFinger2_3_Skel
+    m_Weight: 1
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:Spine1_Skel/Squaddie:Spine2_Skel/Squaddie:RightClav_Skel/Squaddie:RightUpperArm_Skel/Squaddie:RightLowerArm_Skel/Squaddie:RightHand_Skel/Squaddie:RightFinger3_1_Skel
+    m_Weight: 1
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:Spine1_Skel/Squaddie:Spine2_Skel/Squaddie:RightClav_Skel/Squaddie:RightUpperArm_Skel/Squaddie:RightLowerArm_Skel/Squaddie:RightHand_Skel/Squaddie:RightFinger3_1_Skel/Squaddie:RightFinger3_2_Skel
+    m_Weight: 1
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:Spine1_Skel/Squaddie:Spine2_Skel/Squaddie:RightClav_Skel/Squaddie:RightUpperArm_Skel/Squaddie:RightLowerArm_Skel/Squaddie:RightHand_Skel/Squaddie:RightFinger3_1_Skel/Squaddie:RightFinger3_2_Skel/Squaddie:RightFinger3_3_Skel
+    m_Weight: 1
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:Spine1_Skel/Squaddie:Spine2_Skel/Squaddie:RightClav_Skel/Squaddie:RightUpperArm_Skel/Squaddie:RightLowerArm_Skel/Squaddie:RightHand_Skel/Squaddie:RightFinger4_1_Skel
+    m_Weight: 1
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:Spine1_Skel/Squaddie:Spine2_Skel/Squaddie:RightClav_Skel/Squaddie:RightUpperArm_Skel/Squaddie:RightLowerArm_Skel/Squaddie:RightHand_Skel/Squaddie:RightFinger4_1_Skel/Squaddie:RightFinger4_2_Skel
+    m_Weight: 1
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:Spine1_Skel/Squaddie:Spine2_Skel/Squaddie:RightClav_Skel/Squaddie:RightUpperArm_Skel/Squaddie:RightLowerArm_Skel/Squaddie:RightHand_Skel/Squaddie:RightFinger4_1_Skel/Squaddie:RightFinger4_2_Skel/Squaddie:RightFinger4_3_Skel
+    m_Weight: 1
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:Spine1_Skel/Squaddie:Spine2_Skel/Squaddie:RightClav_Skel/Squaddie:RightUpperArm_Skel/Squaddie:RightLowerArm_Skel/Squaddie:RightHand_Skel/Squaddie:RightThumb_1_Skel
+    m_Weight: 1
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:Spine1_Skel/Squaddie:Spine2_Skel/Squaddie:RightClav_Skel/Squaddie:RightUpperArm_Skel/Squaddie:RightLowerArm_Skel/Squaddie:RightHand_Skel/Squaddie:RightThumb_1_Skel/Squaddie:RightThumb_2_Skel
+    m_Weight: 1
+  - m_Path: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion/Squaddie:Hips_Skel/Squaddie:Spine1_Skel/Squaddie:Spine2_Skel/Squaddie:RightClav_Skel/Squaddie:RightUpperArm_Skel/Squaddie:RightLowerArm_Skel/Squaddie:RightLowerArmTwist_Skel
+    m_Weight: 1

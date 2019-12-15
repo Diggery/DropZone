@@ -14,14 +14,14 @@ public class Weapon : MonoBehaviour {
   bool readyToFire = false;
   int roundsInMagazine = 0;
   float fireRateTimer = 0;
-  float fireRate = 0.15f;
+  float fireRate = 0.1f;
   int burstCount = 3;
   int burstAmount = 3;
-  float burstCooldown = 1.0f;
+  float burstCooldown = 0.5f;
   float burstCooldownTimer = 1.0f;
   bool reloading = false;
   float reloadTimer = 1.0f;
-  float reloadTime = 1.0f;
+  float reloadTime = 2.0f;
 
   float range = 10;
   float verticalSpread = 10;
@@ -48,6 +48,7 @@ public class Weapon : MonoBehaviour {
   }
 
   Vector3 lookPos = Vector3.zero;
+  Vector3 kickBack = Vector3.zero;
   public Vector3 LookPos {
     set { lookPos = value; }
   }
@@ -67,12 +68,14 @@ public class Weapon : MonoBehaviour {
   }
 
   void Update() {
-
+    if (kickBack.sqrMagnitude > Mathf.Epsilon) {
+      kickBack = Vector3.Lerp(kickBack, Vector3.zero, Time.deltaTime * 8);
+    }
     if (blendAmount > 0) {
       Vector3 weaponLookPosition = stockPivot.TransformPoint(shoulderOffset);
       Quaternion weaponLookRotation = Quaternion.LookRotation((lookPos - transform.position).normalized);
       grip.localPosition = Vector3.Lerp(gripOffset, stockOffset, blendAmount);
-      transform.position = Vector3.Lerp(gripPivot.position, weaponLookPosition, blendAmount);
+      transform.position = Vector3.Lerp(gripPivot.position, weaponLookPosition + kickBack, blendAmount);
       transform.rotation = Quaternion.Lerp(gripPivot.rotation, weaponLookRotation, blendAmount);
     } else {
       grip.localPosition = gripOffset;
@@ -82,7 +85,10 @@ public class Weapon : MonoBehaviour {
 
     if (fireRateTimer > 0) fireRateTimer -= Time.deltaTime;
     if (burstCooldownTimer > 0) burstCooldownTimer -= Time.deltaTime;
-    if (reloadTimer > 0) reloadTimer -= Time.deltaTime;
+    if (reloadTimer > 0) {
+      reloadTimer -= Time.deltaTime;
+      if (reloadTimer < 0) Reload(15);
+    }
 
     if (weaponFlash && weaponFlash.enabled) {
       weaponFlash.intensity = Mathf.Lerp(weaponFlash.intensity, 0.0f, Time.deltaTime * 8);
@@ -97,7 +103,7 @@ public class Weapon : MonoBehaviour {
     if (burstCooldownTimer > 0) return;
     if (reloadTimer > 0) return;
     if (roundsInMagazine <= 0) {
-      Reload(10);
+      EjectMagazine();
       return;
     }
 
@@ -128,6 +134,8 @@ public class Weapon : MonoBehaviour {
     DamageInfo damageInfo = new DamageInfo(1, DamageType.Puncture, owner);
     projectile.GetComponent<Projectile>().Init(targetControl, aimingDirection, range, damageInfo);
 
+    kickBack = muzzle.forward * -0.1f + (Vector3.up * Random.Range(-0.02f, 0.02f));
+
   }
 
   public virtual void Stowed() {
@@ -156,8 +164,6 @@ public class Weapon : MonoBehaviour {
   }
 
   public void Reload(int magazineSize, bool instant = false) {
-    if (!instant) EjectMagazine();
-    reloadTimer = instant ? -1 : 1.0f;
     roundsInMagazine = magazineSize;
     magazine.GetComponent<Renderer>().enabled = true;
     Debug.Log("Reloaded");
@@ -165,10 +171,7 @@ public class Weapon : MonoBehaviour {
 
   public void EjectMagazine() {
 
-    GameObject oldMag = Instantiate(magazine.gameObject,
-                                    magazine.position,
-                                    magazine.rotation);
-
+    var oldMag = Instantiate(magazine.gameObject, magazine.position, magazine.rotation);
     oldMag.AddComponent<BoxCollider>();
     Rigidbody oldMagRB = oldMag.AddComponent<Rigidbody>();
     oldMagRB.isKinematic = false;
@@ -181,6 +184,8 @@ public class Weapon : MonoBehaviour {
     //  return;
     //}
     //magazines--;
+
+    reloadTimer = reloadTime;
 
     owner.Reload();
     Debug.Log("Ejecting Magazine");

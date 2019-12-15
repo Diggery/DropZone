@@ -11,43 +11,43 @@ public class DamageInfo {
     bool isMissile;
     bool isDirectional;
 
-    public DamageInfo(float _amount) {
-        damageAmount = _amount;
+    public DamageInfo(float amount) {
+        damageAmount = amount;
         type = DamageType.Other;
         position = Vector3.zero;
         attacker = null;
         isDirectional = false;
     }
-    public DamageInfo(float _amount, DamageType _type) {
-        damageAmount = _amount;
-        type = _type;
+    public DamageInfo(float amount, DamageType type) {
+        damageAmount = amount;
+        this.type = type;
         position = Vector3.zero;
         attacker = null;
         isDirectional = false;
     }
 
-    public DamageInfo(float _amount, DamageType _type, Vector3 _position) {
-        damageAmount = _amount;
-        type = _type;
-        position = _position;
+    public DamageInfo(float amount, DamageType type, Vector3 position) {
+        damageAmount = amount;
+        this.type = type;
+        this.position = position;
         attacker = null;
         isDirectional = true;
     }
 
-    public DamageInfo(float _amount, DamageType _type, UnitControl _attacker) {
-        damageAmount = _amount;
-        type = _type;
-        position = _attacker.transform.position;
-        attacker = _attacker;
+    public DamageInfo(float amount, DamageType type, UnitControl attacker) {
+        damageAmount = amount;
+        this.type = type;
+        position = attacker.transform.position;
+        this.attacker = attacker;
         isDirectional = true;
     }
 
-    public void AddAttacker(UnitControl _attacker) {
-        attacker = _attacker;
+    public void AddAttacker(UnitControl attacker) {
+        this.attacker = attacker;
     }
 
-    public void AddHitTarget(Transform _hitTarget) {
-        hitTarget = _hitTarget;
+    public void AddHitTarget(Transform hitTarget) {
+        this.hitTarget = hitTarget;
     }
 
     public bool IsDirectional() {
