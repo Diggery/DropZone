@@ -11,9 +11,10 @@ public class TargetControl : MonoBehaviour {
   Animator animator;
   MapControl mapControl;
 
+  public Weapon EquippedWeapon { get; set; }
+  public UnitControl CurrentTarget { get; set; }
   float targetMemory = 1.0f;
 
-  public UnitControl CurrentTarget { get; set; }
 
   void Start() {
     SqrVisualRange = visualRange * visualRange;
@@ -48,6 +49,10 @@ public class TargetControl : MonoBehaviour {
       if (targetMemory < 0) {
         CurrentTarget = null;
       }
+    }
+
+    if (enemyVisible) {
+      EquippedWeapon.Attack(CurrentTarget);
     }
 
     MapTester.DrawVisibleCells(transform.position, mapControl.mapData);
@@ -98,5 +103,13 @@ public class TargetControl : MonoBehaviour {
       }
     }
     return closestTarget;
+  }
+
+  public void TargetHit() {
+
+  }
+
+  public void TargetMiss() {
+
   }
 }

@@ -22,3 +22,6 @@ MonoBehaviour:
   - name: ConfirmLabel
     prefab: {fileID: 1293592583902851971, guid: 893ad1ac1d9078049ac68c29f6496831,
       type: 3}
+  - name: Projectile
+    prefab: {fileID: 7832279655553799380, guid: a6ee631c2f3ebca4ea73f05d103ae2cf,
+      type: 3}

@@ -5,22 +5,27 @@ using UnityEngine;
 public class Weapon : MonoBehaviour {
 
   UnitControl owner;
+  TargetControl targetControl;
   Transform grip;
   Transform muzzle;
   Transform magazine;
-  Light muzzleLight;
+  Light weaponFlash;
 
   bool readyToFire = false;
   int roundsInMagazine = 0;
   float fireRateTimer = 0;
-  float fireRate = 0.5f;
+  float fireRate = 0.15f;
   int burstCount = 3;
   int burstAmount = 3;
   float burstCooldown = 1.0f;
   float burstCooldownTimer = 1.0f;
+  bool reloading = false;
+  float reloadTimer = 1.0f;
+  float reloadTime = 1.0f;
 
   float range = 10;
-  float spread = 10;
+  float verticalSpread = 10;
+  float horizontalSpread = 10;
 
   public bool IsTwoHanded;
   public Vector3 gripOffset = Vector3.zero;
@@ -33,6 +38,8 @@ public class Weapon : MonoBehaviour {
   public Transform rightGrip;
   public Transform leftGrip;
 
+  public bool IsEquipped { get; set; }
+
   float blendAmount;
   public float GripBlend {
     set {
@@ -44,7 +51,9 @@ public class Weapon : MonoBehaviour {
   public Vector3 LookPos {
     set { lookPos = value; }
   }
-  public void Init(Transform stockPivot, Transform gripPivot) {
+  public void Init(UnitControl owner, Transform stockPivot, Transform gripPivot) {
+    this.owner = owner;
+    targetControl = owner.gameObject.GetComponent<TargetControl>();
 
     grip = transform.GetChild(0);
 
@@ -53,7 +62,8 @@ public class Weapon : MonoBehaviour {
 
     muzzle = grip.Find("Muzzle");
     magazine = grip.Find("Magazine");
-    muzzleLight = muzzle.GetComponent<Light>();
+    weaponFlash = muzzle.GetComponent<Light>();
+    Reload(10, true);
   }
 
   void Update() {
@@ -69,75 +79,110 @@ public class Weapon : MonoBehaviour {
       transform.position = gripPivot.position;
       transform.rotation = gripPivot.rotation;
     }
+
+    if (fireRateTimer > 0) fireRateTimer -= Time.deltaTime;
+    if (burstCooldownTimer > 0) burstCooldownTimer -= Time.deltaTime;
+    if (reloadTimer > 0) reloadTimer -= Time.deltaTime;
+
+    if (weaponFlash && weaponFlash.enabled) {
+      weaponFlash.intensity = Mathf.Lerp(weaponFlash.intensity, 0.0f, Time.deltaTime * 8);
+      if (weaponFlash.intensity < 0.05f)
+        weaponFlash.enabled = false;
+    }
   }
 
-  public void Equip(UnitControl owner) {
-    this.owner = owner;
-  }
-
-  public void Fire() {
-    if (!readyToFire) return;
+  public void Attack(UnitControl target) {
+    // if (!readyToFire) return;
     if (fireRateTimer > 0) return;
     if (burstCooldownTimer > 0) return;
-    if (roundsInMagazine <= 0) return;
-
-    roundsInMagazine--;
-
-    burstCount--;
-    roundsInMagazine--;
-
-   // GameObject trailEffect = Instantiate(bulletTrail, muzzle.position, transform.rotation) as GameObject;
-    muzzleLight.intensity = 1;
-
-    Quaternion directionOffset = Quaternion.AngleAxis((Random.value - 0.5f) * shotSpread, Vector3.up);
-    Vector3 direction = muzzle.forward;
-    Ray trajectory = new Ray(muzzle.position, direction);
-
-    if (Physics.Raycast(trajectory, out RaycastHit hit, range)) {
-      distanceToTarget = Vector3.Distance(hit.point, muzzle.position);
-      hitLocation = hit.point;
-
-      Vector3 incomingVec = hit.point - muzzle.position;
-      Vector3 reflectVec = Vector3.Reflect(incomingVec, hit.normal);
-
-      UnitControl.DamageInfo damageInfo = GetDamageInfo(hit.distance, hit.point);
-
-      string targetTag = hit.transform.root.tag;
-      if (targetTag.Equals("Enemy") || targetTag.Equals("Player")) {
-
-        if (targetTag.Equals(transform.tag)) {
-          targeting.TargetMiss();
-        } else {
-          targeting.TargetHit();
-          UnitControl targetControl = hit.transform.root.GetComponent<UnitControl>();
-          float armorPenetrationRangeBonus = Mathf.Clamp01((1 - (hit.distance / range)) / 2.0f);
-          float armorPenetrationChance = ((Random.value + armorPiercing) / 2.0f) + armorPenetrationRangeBonus;
-          if (armorPenetrationChance > targetControl.GetArmorRating()) {
-            targetControl.TakeDamage(damageInfo);
-          } else {
-            targetControl.HitDeflected(damageInfo);
-          }
-
-        }
-      } else {
-        targeting.TargetMiss();
-        hit.transform.SendMessageUpwards("TakeDamage", damageInfo, SendMessageOptions.DontRequireReceiver);
-      }
-
-    } else {
-      distanceToTarget = range * 1.25f;
-      hitLocation = trajectory.GetPoint(range);
-      targeting.TargetMiss();
+    if (reloadTimer > 0) return;
+    if (roundsInMagazine <= 0) {
+      Reload(10);
+      return;
     }
 
-    trailEffect.transform.localScale = new Vector3(1.0f, 1.0f, distanceToTarget);
-    Vector3 upVector = (transform.position - Camera.main.transform.position).normalized;
-    trailEffect.transform.LookAt(hitLocation, upVector);
-    targeting.PlayFireAnim();
+    burstCount--;
+    if (burstCount <= 0) {
+      burstCount = burstAmount;
+      burstCooldownTimer = burstCooldown;
+    }
+    roundsInMagazine--;
+    fireRateTimer = fireRate;
+
+    weaponFlash.enabled = true;
+    weaponFlash.intensity = 5;
+
+    GameObject projectile = Instantiate(
+        GameManager.Instance.GetPrefab("Projectile"),
+        muzzle.position,
+        muzzle.rotation
+    ) as GameObject;
+
+    Vector3 aimingDirection = muzzle.forward;
+
+    float vOffset = Random.Range(-verticalSpread, verticalSpread);
+    aimingDirection = Quaternion.AngleAxis(vOffset, Vector3.right) * aimingDirection;
+    float hOffset = Random.Range(-horizontalSpread, horizontalSpread);
+    aimingDirection = Quaternion.AngleAxis(hOffset, Vector3.up) * aimingDirection;
+
+    DamageInfo damageInfo = new DamageInfo(1, DamageType.Puncture, owner);
+    projectile.GetComponent<Projectile>().Init(owner, aimingDirection, range, damageInfo);
 
   }
 
-  void Reload(bool instant = false) {
+  public virtual void Stowed() {
+    IsEquipped = false;
+  }
 
+  public virtual void Drawn() {
+    IsEquipped = true;
+  }
+
+  public virtual void Drop() {
+    IsEquipped = false;
+    owner = null;
+    transform.SetParent(null);
+    Rigidbody rb = GetComponent<Rigidbody>();
+    rb.isKinematic = false;
+    Vector3 torque = new Vector3(
+        Random.Range(-1.0f, 1.0f),
+        Random.Range(-1.0f, 1.0f),
+        Random.Range(-1.0f, 1.0f)
+    );
+    rb.AddTorque(torque * 10, ForceMode.VelocityChange);
+    GetComponent<BoxCollider>().enabled = true;
+    Debug.Log("Dropping " + gameObject.name);
+
+  }
+
+  public void Reload(int magazineSize, bool instant = false) {
+    if (!instant) EjectMagazine();
+    reloadTimer = instant ? -1 : 1.0f;
+    roundsInMagazine = magazineSize;
+    magazine.GetComponent<Renderer>().enabled = true;
+    Debug.Log("Reloaded");
+  }
+
+  public void EjectMagazine() {
+
+    GameObject oldMag = Instantiate(magazine.gameObject,
+                                    magazine.position,
+                                    magazine.rotation);
+
+    oldMag.AddComponent<BoxCollider>();
+    Rigidbody oldMagRB = oldMag.AddComponent<Rigidbody>();
+    oldMagRB.isKinematic = false;
+    oldMagRB.AddRelativeForce(-Vector3.up, ForceMode.Impulse);
+    oldMagRB.AddRelativeTorque(Vector3.forward, ForceMode.Impulse);
+
+    magazine.GetComponent<Renderer>().enabled = false;
+
+    //if (magazines == 0) {
+    //  return;
+    //}
+    //magazines--;
+
+    owner.Reload();
+    Debug.Log("Ejecting Magazine");
   }
 }

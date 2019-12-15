@@ -144,14 +144,25 @@ public class UnitControl : MonoBehaviour {
   }
 
   public bool EquipMainWeapon(Weapon weapon) {
-    weapon.Init(animator.GetBoneTransform(HumanBodyBones.Chest), attachPoints["RightHand"]);
+    weapon.Init(this, animator.GetBoneTransform(HumanBodyBones.Chest), attachPoints["RightHand"]);
     unitIK.EquippedWeapon = weapon;
+    targetControl.EquippedWeapon = weapon;
     return true;
   }
 
   public void SetAttachPoint(string name, Transform point) {
     if (!attachPoints.ContainsKey(name))
       attachPoints.Add(name, point);
+  }
+
+  public void TakeDamage(DamageInfo info) {
+
+  }
+
+
+
+  public void Reload() {
+    animator.SetTrigger("Reload");
   }
 
   void LerpPoseTick(Vector4 amount) {
