@@ -44,6 +44,8 @@ void Start() {
   }
 
   void Update() {
+
+
     if (!CurrentTarget) {
       CurrentTarget = ScanForTargets();
       return;
@@ -71,9 +73,9 @@ void Start() {
       }
     }
 
-    if (readyTimer > 0) readyTimer -= Time.deltaTime;
+    ReadyToFire = EquippedWeapon.IsReady && (readyTimer < 0) && (enemyVisible || enemyPeekable);
 
-    ReadyToFire = EquippedWeapon.IsReady && (readyTimer < 0);
+    if (readyTimer > 0) readyTimer -= Time.deltaTime;
 
     if (ReadyToFire && IsAiming) {
       if (LineOfSightBlocked) readyTimer = 1;
@@ -108,21 +110,14 @@ void Start() {
 
       if (closestTarget && closestDistance < targetDistance) continue;
 
-      Ray ray = new Ray(
-        transform.position + (Vector3.up * 1.25f),
-        (target.transform.position - transform.position).normalized
-      );
-      if (!Physics.Linecast(transform.position + (Vector3.up * 1.25f), target.transform.position + (Vector3.up * 1.25f), out RaycastHit hit, terrainMask)) {
+      bool enemyVisible = mapControl.IsPositionVisible(transform.position, target.transform.position) || 
+        mapControl.IsPositionPeekable(transform.position, target.transform.position);
+
+      if (enemyVisible) {
         closestTarget = targetControl;
         closestDistance = targetDistance;
         if (showDebug) {
           Debug.DrawLine(transform.position + (Vector3.up * 1.25f), target.transform.position + (Vector3.up * 1.25f), Color.green);
-
-        }
-      } else {
-        if (showDebug) {
-          Debug.Log("targets is blocked by " + hit.transform.name);
-          Debug.DrawLine(transform.position + (Vector3.up * 1.25f), target.transform.position + (Vector3.up * 1.25f), Color.red);
         }
       }
     }

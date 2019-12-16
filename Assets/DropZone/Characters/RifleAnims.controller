@@ -768,9 +768,9 @@ AnimatorState:
   m_Transitions:
   - {fileID: -7073226284212556845}
   - {fileID: -5681395967508473967}
-  - {fileID: -2744599368474100068}
   - {fileID: 6675575283209893896}
   - {fileID: -7904620834214872205}
+  - {fileID: -2744599368474100068}
   - {fileID: 4273342213208594551}
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}

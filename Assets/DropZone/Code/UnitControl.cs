@@ -21,7 +21,6 @@ public class UnitControl : MonoBehaviour {
   public Vector3 CurrentTargetPos {
     get { return targetControl.CurrentTarget.TargetPoint; }
   }
-
   public Vector3 TargetPoint {
     get { return transform.position + (Vector3.up * 1.25f); }
   }
@@ -46,8 +45,7 @@ public class UnitControl : MonoBehaviour {
     }
     set {
       inMovingState = value;
-      navAgent.updatePosition = inMovingState;
-      navAgent.updateRotation = inMovingState;
+      navAgent.isStopped = !value;
     }
   }
 
@@ -129,8 +127,6 @@ public class UnitControl : MonoBehaviour {
     }
 
     IsMoving = false;
-    navAgent.updatePosition = false;
-    navAgent.updateRotation = false;
 
     Vector4 startValue = transform.position;
     float currentHeading = Vector3.Angle(transform.forward, Vector3.forward) * Mathf.Sign(transform.forward.x);

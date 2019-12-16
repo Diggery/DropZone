@@ -58,12 +58,6 @@ public class SkeletonControl : MonoBehaviour {
         public Transform rightHand;
         public Transform leftHand;
 
-        public CombotPart leftArmPart;
-        public CombotPart rightArmPart;
-        public CombotPart leftLegPart;
-        public CombotPart rightLegPart;
-        public CombotPart headPart;
-        public CombotPart torsoPart;
         public List<JointData> joints = new List<JointData>();
     }
 
@@ -71,53 +65,17 @@ public class SkeletonControl : MonoBehaviour {
     Transform rightHand;
     Transform leftHand;
 
-    CombotPart leftArmPart;
-    CombotPart rightArmPart;
-    CombotPart leftLegPart;
-    CombotPart rightLegPart;
-    CombotPart headPart;
-    CombotPart torsoPart;
 
     UnitControl unitControl;
     Animator animator;
     GameManager gameManager;
 
-    public bool HasDamage { 
-        get {
-            bool hasDamage =
-                leftArmPart.HasDamage ||
-                rightArmPart.HasDamage ||
-                leftLegPart.HasDamage ||
-                rightLegPart.HasDamage ||
-                headPart.HasDamage ||
-                torsoPart.HasDamage; 
-            return hasDamage;
-        } 
-    }
 
     public void SetUp(SkeletonData setUpData) {
 
         root = setUpData.rootTransform;
         rightHand = setUpData.rightHand;
         leftHand = setUpData.leftHand;
-
-        leftArmPart = setUpData.leftArmPart;
-        leftArmPart.Skeleton = this;
-
-        rightArmPart = setUpData.rightArmPart;
-        rightArmPart.Skeleton = this;
-
-        leftLegPart = setUpData.leftLegPart;
-        leftLegPart.Skeleton = this;
-
-        rightLegPart = setUpData.rightLegPart;
-        rightLegPart.Skeleton = this;
-
-        headPart = setUpData.headPart;
-        headPart.Skeleton = this;
-
-        torsoPart = setUpData.torsoPart;
-        torsoPart.Skeleton = this;
 
         foreach (JointData joint in setUpData.joints) {
             SetUpJoint(joint, setUpData.layerName);
@@ -239,16 +197,7 @@ public class SkeletonControl : MonoBehaviour {
         );
     }
 
-    public void RepairDamage() {
-        List<DamageEntry> entries = new List<DamageEntry>();
-        entries.AddRange(leftArmPart.GetDamage());
-        entries.AddRange(rightArmPart.GetDamage());
-        entries.AddRange(leftLegPart.GetDamage());
-        entries.AddRange(rightLegPart.GetDamage());
-        entries.AddRange(headPart.GetDamage());
-        entries.AddRange(torsoPart.GetDamage());
-        entries[Random.Range(0, entries.Count)].Remove();
-    }
+
 
     public void DropWeapons() {
         if (rightHand)
@@ -266,77 +215,11 @@ public class SkeletonControl : MonoBehaviour {
             }
     }
 
-    public CombotPart GetPart(string partName) {
 
-        if (partName.Contains("Arm")) {
-            if (partName.Contains("Left")) {
-                return leftArmPart;
-            } else {
-                return rightArmPart;
-            }
 
-        } else if (partName.Contains("Head")) {
-            return headPart;
-        } else if (partName.Contains("Leg")) {
-            if (partName.Contains("Left")) {
-                return leftLegPart;
-            } else {
-                return rightLegPart;
-            }
-        } else if (
-            partName.Contains("Hips") ||
-            partName.Contains("Torso")) {
-            return torsoPart;
-        }
-        return null;
-    }
 
-    public float HitPart(string partName, DamageInfo info) {
-        CombotPart part = GetPart(partName);
 
-        if (part != null)
-            return part.AbsorbDamage(info);
-        return info.damageAmount;
-    }
 
-    public void EjectPart(string partName) {
-        if (EjectPart(GetPart(partName))) {
-            Debug.Log("Ejecting " + partName);
-        } else {
-            Debug.Log("Can't eject " + partName);
-        }
-    }
-    public bool EjectPart(CombotPart part) {
-        if (part == null) {
-            return false;
-        }
-        Instantiate(
-            gameManager.GetPrefab("Explosion"),
-            part.transform.position,
-            part.transform.rotation,
-            part.transform.parent
-        );
-        Instantiate(
-            gameManager.GetPrefab("Explosion"),
-            part.transform.position,
-            part.transform.rotation,
-            part.transform
-        );
-
-        part.transform.SetParent(null);
-        Rigidbody[] rbs = part.transform.GetComponentsInChildren<Rigidbody>();
-        foreach (Rigidbody rb in rbs) {
-            rb.useGravity = true;
-            rb.isKinematic = false;
-        }
-        Destroy(part.GetComponent<CharacterJoint>());
-        part.GetComponent<Rigidbody>().AddForce(Vector3.up * 10, ForceMode.Acceleration);
-        if (part.PartType == CombotPart.Type.Legs || part.PartType == CombotPart.Type.Head) {
-            unitControl.Die(Vector3.zero);
-        }
-        animator.Rebind();
-        return true;
-    }
 
     public void DisableColliders() {
         if (!root)
