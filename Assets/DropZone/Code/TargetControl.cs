@@ -10,17 +10,37 @@ public class TargetControl : MonoBehaviour {
   UnitControl unitControl;
   Animator animator;
   MapControl mapControl;
+  LayerMask terrainMask;
 
-  public Weapon EquippedWeapon { get; set; }
   public UnitControl CurrentTarget { get; set; }
   float targetMemory = 1.0f;
 
+  public Weapon EquippedWeapon { get; set; }
+  public bool IsAiming { get; set; }
 
-  void Start() {
+  bool readyToFire;
+  public bool ReadyToFire {
+    get { return readyToFire; }
+    set {
+      readyToFire = value;
+      animator.SetBool("ReadyToFire", readyToFire);
+    }
+  }
+
+  public bool LineOfSightBlocked {
+    get { 
+      return Physics.Linecast(EquippedWeapon.MuzzlePos, CurrentTarget.TargetPoint, terrainMask); 
+    }
+  }
+
+  float readyTimer = 1;
+
+void Start() {
     SqrVisualRange = visualRange * visualRange;
     unitControl = GetComponent<UnitControl>();
     animator = GetComponent<Animator>();
     mapControl = GameManager.Instance.mapControl;
+    terrainMask = LayerMask.GetMask("Terrain");
   }
 
   void Update() {
@@ -35,7 +55,7 @@ public class TargetControl : MonoBehaviour {
     bool enemyVisible = mapControl.IsPositionVisible(transform.position, CurrentTarget.transform.position);
     bool enemyPeekable = mapControl.IsPositionPeekable(transform.position, CurrentTarget.transform.position);
 
-    animator.SetBool("IsAiming", enemyVisible);
+    animator.SetBool("EnemyVisible", enemyVisible);
 
     if (unitControl.InCover) {
       animator.SetBool("UsePeeking", !enemyVisible && enemyPeekable);
@@ -51,7 +71,12 @@ public class TargetControl : MonoBehaviour {
       }
     }
 
-    if (enemyVisible) {
+    if (readyTimer > 0) readyTimer -= Time.deltaTime;
+
+    ReadyToFire = EquippedWeapon.IsReady && (readyTimer < 0);
+
+    if (ReadyToFire && IsAiming) {
+      if (LineOfSightBlocked) readyTimer = 1;
       EquippedWeapon.Attack(CurrentTarget);
     }
 
@@ -62,7 +87,6 @@ public class TargetControl : MonoBehaviour {
     if (showDebug) Debug.Log("Scanning...");
 
     GameObject[] possibleTargets = GameObject.FindGameObjectsWithTag("Enemy");
-    LayerMask terrainMask = LayerMask.GetMask("Terrain");
     float closestDistance = Mathf.Infinity;
     UnitControl closestTarget = null;
     if (showDebug) Debug.Log("Looking through " + possibleTargets.Length + " targets");

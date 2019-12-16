@@ -10,8 +10,8 @@ public class Weapon : MonoBehaviour {
   Transform muzzle;
   Transform magazine;
   Light weaponFlash;
+  Effect muzzleEffect;
 
-  bool readyToFire = false;
   int roundsInMagazine = 0;
   float fireRateTimer = 0;
   float fireRate = 0.1f;
@@ -19,7 +19,6 @@ public class Weapon : MonoBehaviour {
   int burstAmount = 3;
   float burstCooldown = 0.5f;
   float burstCooldownTimer = 1.0f;
-  bool reloading = false;
   float reloadTimer = 1.0f;
   float reloadTime = 2.0f;
 
@@ -52,6 +51,15 @@ public class Weapon : MonoBehaviour {
   public Vector3 LookPos {
     set { lookPos = value; }
   }
+
+  public bool IsReady {
+    get { return (reloadTimer <= 0); }
+  }
+
+  public Vector3 MuzzlePos {
+    get { return muzzle.position; }
+  }
+
   public void Init(UnitControl owner, Transform stockPivot, Transform gripPivot) {
     this.owner = owner;
     targetControl = owner.gameObject.GetComponent<TargetControl>();
@@ -64,6 +72,7 @@ public class Weapon : MonoBehaviour {
     muzzle = grip.Find("Muzzle");
     magazine = grip.Find("Magazine");
     weaponFlash = muzzle.GetComponent<Light>();
+    muzzleEffect = Instantiate(GameManager.Instance.GetPrefab("MuzzleFlash"), muzzle).GetComponent<Effect>();
     Reload(10, true);
   }
 
@@ -98,7 +107,7 @@ public class Weapon : MonoBehaviour {
   }
 
   public void Attack(UnitControl target) {
-    // if (!readyToFire) return;
+
     if (fireRateTimer > 0) return;
     if (burstCooldownTimer > 0) return;
     if (reloadTimer > 0) return;
@@ -117,6 +126,7 @@ public class Weapon : MonoBehaviour {
 
     weaponFlash.enabled = true;
     weaponFlash.intensity = 5;
+    muzzleEffect.Play();
 
     GameObject projectile = Instantiate(
         GameManager.Instance.GetPrefab("Projectile"),
@@ -166,7 +176,6 @@ public class Weapon : MonoBehaviour {
   public void Reload(int magazineSize, bool instant = false) {
     roundsInMagazine = magazineSize;
     magazine.GetComponent<Renderer>().enabled = true;
-    Debug.Log("Reloaded");
   }
 
   public void EjectMagazine() {
@@ -188,6 +197,5 @@ public class Weapon : MonoBehaviour {
     reloadTimer = reloadTime;
 
     owner.Reload();
-    Debug.Log("Ejecting Magazine");
   }
 }

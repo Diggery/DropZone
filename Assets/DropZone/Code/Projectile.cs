@@ -32,9 +32,9 @@ public class Projectile : MonoBehaviour {
   }
 
   void OnCollisionEnter(Collision collisionInfo) {
-    //Instantiate(projectileHitPrefab,
-    //    collisionInfo.contacts[0].point,
-    //    Quaternion.LookRotation(collisionInfo.contacts[0].normal));
+    Instantiate(GameManager.Instance.GetPrefab("ProjectileHit"),
+        collisionInfo.contacts[0].point,
+        Quaternion.LookRotation(collisionInfo.contacts[0].normal));
 
     bulletDamage.AddHitTarget(collisionInfo.transform);
 

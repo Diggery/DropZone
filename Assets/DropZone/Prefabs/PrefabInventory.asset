@@ -25,3 +25,7 @@ MonoBehaviour:
   - name: Projectile
     prefab: {fileID: 1464471762638104610, guid: d4ba8b5a09015499f96b98625a23b69d,
       type: 3}
+  - name: MuzzleFlash
+    prefab: {fileID: 1321868334860546, guid: b1232a62f92454a18a189896bd1c58bf, type: 3}
+  - name: ProjectileHit
+    prefab: {fileID: 1380275821872642, guid: afd78b1aadabb43ad9229e10b5cbcb10, type: 3}
