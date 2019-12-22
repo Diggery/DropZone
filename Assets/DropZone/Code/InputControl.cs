@@ -127,7 +127,6 @@ public class InputControl : MonoBehaviour {
 
 
   public void SelectUnit(UnitControl selected) {
-    Debug.Log("Selecting " + selected.name);
     if (!selected) return;
 
     if (!selected.tag.Equals("Player")) return;

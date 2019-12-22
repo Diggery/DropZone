@@ -22,7 +22,15 @@ public class UnitControl : MonoBehaviour {
     get { return targetControl.CurrentTarget.TargetPoint; }
   }
   public Vector3 TargetPoint {
-    get { return transform.position + (Vector3.up * 1.25f); }
+    get { return attachPoints["TargetPoint"].position; }
+    //get { return transform.position + (Vector3.up * 1.25f); }
+  }
+
+  List<string> enemies = new List<string>();
+  public List<string> Enemies {
+    get {
+      return enemies;
+    }
   }
 
   Dictionary<string, Transform> attachPoints = new Dictionary<string, Transform>();
@@ -49,7 +57,6 @@ public class UnitControl : MonoBehaviour {
       if (inMovingState) {
         navAgent.SetDestination(moveDestination.Value);
         moveDestination = null;
-        Debug.Log("Starting move");
       }
     }
   }
@@ -69,7 +76,6 @@ public class UnitControl : MonoBehaviour {
   public bool IsSelected {
     get { return isSelected; }
     set {
-      Debug.Log(gameObject.name + " is Selected");
       isSelected = value;
     }
   }
@@ -79,7 +85,6 @@ public class UnitControl : MonoBehaviour {
 
   public bool IsPathComplete {
     get {
-      Debug.Log(Vector3.Distance(navAgent.destination, navAgent.transform.position) <= navAgent.stoppingDistance);
       return Vector3.Distance(navAgent.destination, navAgent.transform.position) <= navAgent.stoppingDistance;
     }
   }
@@ -91,10 +96,10 @@ public class UnitControl : MonoBehaviour {
   Vector3? moveDestination;
 
   void Start() {
-    if (autoInit) Init();
+    if (autoInit)Init();
   }
 
-  public void Init() {
+  public UnitControl Init() {
     gameManager = GameManager.Instance;
     navAgent = GetComponent<NavMeshAgent>();
     navAgent.avoidancePriority = Random.Range(0, 100);
@@ -105,11 +110,11 @@ public class UnitControl : MonoBehaviour {
     LerpToPose.onTickVector = LerpPoseTick;
     LerpToPose.onFinish = LerpPoseFinished;
     LerpToPose.duration = 0.5f;
+    return this;
   }
 
   void Update() {
     if (moveDestination == null && InMovingState && IsPathComplete) {
-      Debug.Log("Move Complete");
       MoveComplete();
     }
   }
@@ -117,8 +122,7 @@ public class UnitControl : MonoBehaviour {
   public void MoveTo(Vector3 movePos) {
     animator.SetBool("LeftOpen", false);
     animator.SetBool("RightOpen", false);
-    Debug.Log("Moving");
-        moveDestination = movePos;
+    moveDestination = movePos;
 
     IsMoving = true;
   }
@@ -163,8 +167,6 @@ public class UnitControl : MonoBehaviour {
 
   }
 
-
-
   public void Reload() {
     animator.SetTrigger("Reload");
   }
@@ -175,6 +177,5 @@ public class UnitControl : MonoBehaviour {
   }
 
   void LerpPoseFinished(bool reverse) {
-    Debug.Log("Move in position");
   }
 }

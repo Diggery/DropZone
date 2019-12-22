@@ -39,6 +39,11 @@ public class UnitBrain : MonoBehaviour {
     mapControl = MapControl.Instance;
     SqrVisualRange = visualRange * visualRange;
     unitControl.pathComplete.AddListener(MoveComplete);
+
+    gameObject.AddComponent<UnitStateIdle>();
+    gameObject.AddComponent<UnitStateMoving>();
+    gameObject.AddComponent<UnitStateAttacking>();
+
     StartCoroutine(GatherStates());
   }
 
@@ -75,52 +80,6 @@ public class UnitBrain : MonoBehaviour {
 
   void MoveComplete() {
     State = "Idle";
-
-  }
-
-  public UnitControl ScanForTargets() {
-
-    GameObject[] possibleTargets = GameObject.FindGameObjectsWithTag("Player");
-    LayerMask terrainMask = LayerMask.GetMask("Terrain");
-    float closestDistance = Mathf.Infinity;
-    UnitControl closestTarget = null;
-
-    foreach (GameObject target in possibleTargets) {
-
-      UnitControl targetControl = target.GetComponent<UnitControl>();
-      if (!targetControl || targetControl.IsDestroyed) {
-        Debug.Log("targets has no control, or is destyroyed");
-        continue;
-      }
-
-      float targetDistance = (target.transform.position - transform.position).sqrMagnitude;
-
-      if (targetDistance > SqrVisualRange) {
-        if (showDebug) Debug.Log("targets is outside of visual range");
-        continue;
-      }
-
-      if (closestTarget && closestDistance < targetDistance) continue;
-
-      Ray ray = new Ray(
-          transform.position + (Vector3.up * 1.25f),
-          (target.transform.position - transform.position).normalized
-      ) ;
-      if (!Physics.Linecast(transform.position + (Vector3.up * 1.25f), target.transform.position + (Vector3.up * 1.25f), out RaycastHit hit, terrainMask)) { 
-        closestTarget = targetControl;
-        closestDistance = targetDistance;
-        if (showDebug) {
-          Debug.DrawLine(transform.position + (Vector3.up * 1.25f), target.transform.position + (Vector3.up * 1.25f), Color.green);
-
-        }
-      } else {
-        if (showDebug) {
-          Debug.Log("targets is blocked by " + hit.transform.name);
-          Debug.DrawLine(transform.position + (Vector3.up * 1.25f), target.transform.position + (Vector3.up * 1.25f), Color.red);
-        }
-      }
-    }
-    return closestTarget;
   }
 
   public void AttackTarget(UnitControl enemy) {
@@ -172,7 +131,6 @@ public class UnitBrain : MonoBehaviour {
     //}
 
     safePos = scoredCells.OrderBy(element => element.Value).First().Key.mapPos;
-   // Debug.DrawLine(safePos + (Vector3.up * 2), safePos, Color.white);
 
     return true;
   }

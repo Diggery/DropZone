@@ -431,8 +431,8 @@ GameObject:
   - component: {fileID: 4562056298278499858}
   - component: {fileID: -3793784317955512393}
   m_Layer: 0
-  m_Name: Squaddie
-  m_TagString: Player
+  m_Name: BadGuy
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1876,7 +1876,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d707a15f5a5cd40d0a8d29f4ed628f3b, type: 2}
+  - {fileID: 2100000, guid: 4cbf63f0fd64d494fb1ac442065e074b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

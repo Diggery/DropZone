@@ -38,7 +38,6 @@ public class MapSelector : MonoBehaviour {
     }
   }
 
-
   public MapSelector Init() {
     gameManager = GameManager.Instance;
     inputControl = gameManager.inputControl;
