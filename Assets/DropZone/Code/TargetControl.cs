@@ -73,7 +73,7 @@ void Start() {
       }
     }
 
-    ReadyToFire = EquippedWeapon.IsReady && (readyTimer < 0) && (enemyVisible || enemyPeekable);
+    ReadyToFire = !unitControl.IsMoving && EquippedWeapon.IsReady && (readyTimer < 0) && (enemyVisible || enemyPeekable);
 
     if (readyTimer > 0) readyTimer -= Time.deltaTime;
 

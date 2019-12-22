@@ -80,14 +80,13 @@ public class MapSelector : MonoBehaviour {
     }
 
     IsOpen = true;
-
-    NavMesh.CalculatePath(transform.position, inputControl.SelectedUnit.transform.position, NavMesh.AllAreas, path);
+    NavMeshAgent navAgent = inputControl.SelectedUnit.GetComponent<NavMeshAgent>();
+    navAgent.CalculatePath(transform.position, path);
 
     line.positionCount = path.corners.Length;
     Vector3[] pathCorners = path.corners;
     for (int i = 0; i < pathCorners.Length; i++) pathCorners[i] += Vector3.up * 0.1f;
     line.SetPositions(pathCorners);
-
   }
 
   void CreateLabel() {

@@ -35,6 +35,7 @@ public class UnitControl : MonoBehaviour {
     set {
       isMoving = value;
       animator.SetBool("IsMoving", isMoving);
+      navAgent.isStopped = !value;
     }
   }
 
@@ -45,7 +46,11 @@ public class UnitControl : MonoBehaviour {
     }
     set {
       inMovingState = value;
-      navAgent.isStopped = !value;
+      if (inMovingState) {
+        navAgent.SetDestination(moveDestination.Value);
+        moveDestination = null;
+        Debug.Log("Starting move");
+      }
     }
   }
 
@@ -74,16 +79,16 @@ public class UnitControl : MonoBehaviour {
 
   public bool IsPathComplete {
     get {
-      if (Vector3.Distance(navAgent.destination, navAgent.transform.position) <= navAgent.stoppingDistance) {
-        return (!navAgent.hasPath || navAgent.velocity.sqrMagnitude == 0f);
-      }
-      return false;
+      Debug.Log(Vector3.Distance(navAgent.destination, navAgent.transform.position) <= navAgent.stoppingDistance);
+      return Vector3.Distance(navAgent.destination, navAgent.transform.position) <= navAgent.stoppingDistance;
     }
   }
 
   public bool IsDestroyed {
     get { return false; }
   }
+
+  Vector3? moveDestination;
 
   void Start() {
     if (autoInit) Init();
@@ -103,7 +108,8 @@ public class UnitControl : MonoBehaviour {
   }
 
   void Update() {
-    if (IsMoving && IsPathComplete) {
+    if (moveDestination == null && InMovingState && IsPathComplete) {
+      Debug.Log("Move Complete");
       MoveComplete();
     }
   }
@@ -111,7 +117,9 @@ public class UnitControl : MonoBehaviour {
   public void MoveTo(Vector3 movePos) {
     animator.SetBool("LeftOpen", false);
     animator.SetBool("RightOpen", false);
-    navAgent.SetDestination(movePos);
+    Debug.Log("Moving");
+        moveDestination = movePos;
+
     IsMoving = true;
   }
 
@@ -167,6 +175,6 @@ public class UnitControl : MonoBehaviour {
   }
 
   void LerpPoseFinished(bool reverse) {
-    Debug.Log("Lerp finished");
+    Debug.Log("Move in position");
   }
 }

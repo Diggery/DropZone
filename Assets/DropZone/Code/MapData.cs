@@ -30,7 +30,6 @@ public class MapData : ScriptableObject {
 
     public bool CanPeekLeft {
       get {
-        Debug.Log(coverDirection[0] + ", " + peekDirection[3]);
         if (coverDirection[0]) return peekDirection[3];
         if (coverDirection[1]) return peekDirection[0];
         if (coverDirection[2]) return peekDirection[1];
