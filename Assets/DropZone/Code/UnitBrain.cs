@@ -30,7 +30,7 @@ public class UnitBrain : MonoBehaviour {
   MapControl mapControl;
   public UnitControl CurrentTarget { get; set; }
 
-  float visualRange = 10;
+  float visualRange = 15;
   float SqrVisualRange { get; set; }
   public bool showDebug;
 

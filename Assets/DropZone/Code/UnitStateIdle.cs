@@ -21,7 +21,6 @@ public class UnitStateIdle : UnitState {
     if (closestEnemy) {
    //   if (Random.value > 0.5f) {
         brain.MoveToSafeSpot(closestEnemy);
-        Debug.Log("Moving to safe spot");
    //   } else {
       //  brain.AttackTarget(closestEnemy);
    //   }

@@ -38,7 +38,7 @@ public class Projectile : MonoBehaviour {
 
     bulletDamage.AddHitTarget(collisionInfo.transform);
 
-    if (collisionInfo.transform.root.tag.Equals("Unit")) {
+    if (collisionInfo.transform.root.name.Contains("Unit")) {
       collisionInfo.transform.root.SendMessage(
         "TakeDamage",
         bulletDamage,

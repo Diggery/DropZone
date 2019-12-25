@@ -6,6 +6,15 @@ using UnityEngine.Events;
 
 public class UnitControl : MonoBehaviour {
 
+  string unitType;
+  public string UnitType {
+    get { return unitType; }
+    set {
+      unitType = value;
+      gameObject.name = "Unit-" + unitType;
+    }
+  }
+
   GameManager gameManager;
   public bool autoInit;
   NavMeshAgent navAgent;
@@ -23,7 +32,6 @@ public class UnitControl : MonoBehaviour {
   }
   public Vector3 TargetPoint {
     get { return attachPoints["TargetPoint"].position; }
-    //get { return transform.position + (Vector3.up * 1.25f); }
   }
 
   List<string> enemies = new List<string>();
@@ -89,17 +97,20 @@ public class UnitControl : MonoBehaviour {
     }
   }
 
-  public bool IsDestroyed {
-    get { return false; }
+  float maxHits = 5;
+  float hits = 5;
+  public bool IsDead {
+    get { return hits < 0; }
   }
 
   Vector3? moveDestination;
 
   void Start() {
-    if (autoInit)Init();
+    if (autoInit)Init(gameObject.name);
   }
 
-  public UnitControl Init() {
+  public UnitControl Init(string unitType) {
+    UnitType = unitType;
     gameManager = GameManager.Instance;
     navAgent = GetComponent<NavMeshAgent>();
     navAgent.avoidancePriority = Random.Range(0, 100);
@@ -110,6 +121,8 @@ public class UnitControl : MonoBehaviour {
     LerpToPose.onTickVector = LerpPoseTick;
     LerpToPose.onFinish = LerpPoseFinished;
     LerpToPose.duration = 0.5f;
+    SkeletonConfig skelConfig = GetComponent<SkeletonConfig>();
+    if (skelConfig)skelConfig.Init();
     return this;
   }
 
@@ -164,7 +177,17 @@ public class UnitControl : MonoBehaviour {
   }
 
   public void TakeDamage(DamageInfo info) {
+    Debug.Log("OUCH: " + info.damageAmount + " points of damage");
+    hits -= info.damageAmount;
+    if (hits < 0) {
+      Die(info);
+    }
+  }
 
+  void Die(DamageInfo info) {
+    hits = -1;
+    SkeletonControl skeleton = GetComponent<SkeletonControl>();
+    skeleton.SwitchToRagdoll(info.GetDamageDirection(transform));
   }
 
   public void Reload() {
@@ -176,6 +199,5 @@ public class UnitControl : MonoBehaviour {
     transform.rotation = Quaternion.AngleAxis(amount.w, Vector3.up);
   }
 
-  void LerpPoseFinished(bool reverse) {
-  }
+  void LerpPoseFinished(bool reverse) { }
 }

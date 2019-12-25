@@ -57,7 +57,7 @@ public class MapData : ScriptableObject {
   private Vector3 origin;
   public Vector3 Origin { get => origin; set => origin = value; }
 
-  public int maxVisualRange = 5;
+  public int maxVisualRange = 15;
   public float SqrRange {
     get {
       return maxVisualRange * maxVisualRange;

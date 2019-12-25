@@ -8,8 +8,7 @@ public class PlayerSpawn : MonoBehaviour
     GameManager manager = GameManager.Instance;
     CharacterInventory.CharacterEntry entry = manager.characterInventory.GetCharacter(gameObject.name);
     GameObject character = Instantiate(entry.prefab, transform.position, transform.rotation);
-    character.name = gameObject.name;
-    UnitControl unitControl = character.GetComponent<UnitControl>().Init();
+    UnitControl unitControl = character.GetComponent<UnitControl>().Init(gameObject.name);
     unitControl.Enemies.Add("Enemy");
     Destroy(gameObject);
   }

@@ -10,6 +10,7 @@ public class CharacterSetup : MonoBehaviour {
 
   public void Init() {
     GameManager manager = GameManager.Instance;
+    UnitControl unitControl = gameObject.GetComponent<UnitControl>();
 
     Animator animator = GetComponent<Animator>();
     foreach (Transform group in transform) {
@@ -23,12 +24,11 @@ public class CharacterSetup : MonoBehaviour {
       }
     }
 
-    CharacterInventory.CharacterEntry entry = manager.characterInventory.GetCharacter(gameObject.name);
-
+    CharacterInventory.CharacterEntry entry = manager.characterInventory.GetCharacter(unitControl.UnitType);
+    
     GameObject mainWeaponPrefab = manager.weaponInventory.GetPrefab(entry.mainWeapon);
     Weapon mainWeapon = Instantiate(mainWeaponPrefab, transform.position, transform.rotation).GetComponent<Weapon>();
 
-    UnitControl unitControl = GetComponent<UnitControl>();
     unitControl.SetAttachPoint("RightHand", rightHandAttach);
     unitControl.SetAttachPoint("LeftHand", leftHandAttach);
     unitControl.SetAttachPoint("TargetPoint", targetPoint);

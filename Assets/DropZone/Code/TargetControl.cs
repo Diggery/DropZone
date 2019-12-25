@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TargetControl : MonoBehaviour {
   public bool showDebug;
-  float visualRange = 10;
+  float visualRange = 15;
   float SqrVisualRange { get; set; }
 
   UnitControl unitControl;
@@ -45,7 +45,8 @@ public class TargetControl : MonoBehaviour {
 
   void Update() {
 
-    if (!CurrentTarget) {
+    if (!CurrentTarget || CurrentTarget.IsDead) {
+      ReadyToFire = false;
       CurrentTarget = ScanForTargets();
       return;
     }
@@ -57,7 +58,7 @@ public class TargetControl : MonoBehaviour {
     bool enemyVisible = mapControl.IsPositionVisible(transform.position, CurrentTarget.transform.position);
     bool enemyPeekable = mapControl.IsPositionPeekable(transform.position, CurrentTarget.transform.position);
 
-    animator.SetBool("EnemyVisible", enemyVisible);
+    animator.SetBool("HasTarget", enemyVisible);
 
     if (unitControl.InCover) {
       animator.SetBool("UsePeeking", !enemyVisible && enemyPeekable);
@@ -99,10 +100,10 @@ public class TargetControl : MonoBehaviour {
     foreach (GameObject target in possibleTargets) {
 
       UnitControl targetControl = target.GetComponent<UnitControl>();
-      if (!targetControl || targetControl.IsDestroyed) {
-        Debug.Log("targets has no control, or is destyroyed");
+      if (!targetControl || targetControl.IsDead) {
         continue;
       }
+      
       Debug.DrawLine(targetControl.TargetPoint + (Vector3.up * 2), targetControl.TargetPoint, Color.blue);
 
       float targetDistance = (targetControl.TargetPoint - transform.position).sqrMagnitude;
@@ -125,7 +126,6 @@ public class TargetControl : MonoBehaviour {
         }
       }
     }
-    if (closestTarget) Debug.Log("Found " + closestTarget.name);
     return closestTarget;
   }
 

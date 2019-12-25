@@ -34,4 +34,13 @@ public class MapTester : MonoBehaviour {
       Debug.DrawLine(mapData.mapCells[cellId].mapPos + Vector3.up, mapData.mapCells[cellId].mapPos, Color.green);
     }
   }
+
+  public static void DrawAllCells(MapData mapData) {
+    foreach (var cell in mapData.mapCells) {
+      Color lineColor = new Color(1,1,1,0.1f);
+      if (cell.isCollision)lineColor = Color.red;
+      if (cell.HasCover)lineColor = Color.green;
+      Debug.DrawLine(cell.mapPos + Vector3.up, cell.mapPos, lineColor, 10);
+    }
+  }
 }

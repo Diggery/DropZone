@@ -41,9 +41,9 @@ public class Spawner : MonoBehaviour {
 
     GameObject prefab = gameManager.characterInventory.GetCharacter(unitName).prefab;
     GameObject newUnit = GameObject.Instantiate(prefab, pos, rot);
-    newUnit.name = unitName;
     newUnit.AddComponent<UnitBrain>();
-    UnitControl unitControl = newUnit.GetComponent<UnitControl>().Init();
+    UnitControl unitControl = newUnit.GetComponent<UnitControl>().Init(unitName);
+
     unitControl.Enemies.Add("Player");
     spawnQueue--;
     amountSpawned++;

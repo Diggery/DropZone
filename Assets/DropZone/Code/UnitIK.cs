@@ -18,14 +18,15 @@ public class UnitIK : MonoBehaviour {
     unitControl = GetComponent<UnitControl>();
     return this;
   }
-  
+
   private void OnAnimatorIK(int layerIndex) {
-    if (!weapon) return;
-    if (!unitControl.HasTarget) return;
+    if (!weapon)return;
+    blendAmount = animator.GetFloat("IKBlend");
+    weapon.GripBlend = blendAmount;
+
+    if (!unitControl.HasTarget)return;
 
     lookPosition = unitControl.CurrentTargetPos;
-
-    blendAmount = animator.GetFloat("IKBlend");
 
     animator.SetIKPositionWeight(AvatarIKGoal.RightHand, blendAmount);
     animator.SetIKRotationWeight(AvatarIKGoal.RightHand, blendAmount);
