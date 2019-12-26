@@ -106,6 +106,9 @@ public class InputControl : MonoBehaviour {
     if (Input.GetKey(KeyCode.S)) CameraControl.Move(Vector3.back);
     if (Input.GetKey(KeyCode.D)) CameraControl.Move(Vector3.right);
 
+    if (Input.GetKey(KeyCode.Z) && SelectedUnit) SelectedUnit.Die();
+    if (Input.GetKey(KeyCode.X) && SelectedUnit) SelectedUnit.Revive();
+
     float scrollAmount = Input.GetAxis("Mouse ScrollWheel");
     if (scrollAmount != 0) {
       CameraControl.Zoom(scrollAmount);

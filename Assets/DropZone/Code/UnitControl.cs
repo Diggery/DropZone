@@ -184,10 +184,16 @@ public class UnitControl : MonoBehaviour {
     }
   }
 
-  void Die(DamageInfo info) {
+  public void Die(DamageInfo info = null) {
     hits = -1;
     SkeletonControl skeleton = GetComponent<SkeletonControl>();
-    skeleton.SwitchToRagdoll(info.GetDamageDirection(transform));
+    Vector3 direction = info == null ? Vector3.up : info.GetDamageDirection(transform);
+    skeleton.SwitchToRagdoll(direction);
+  }
+
+  public void Revive() {
+    SkeletonControl skeleton = GetComponent<SkeletonControl>();
+    skeleton.SwitchToAnimator();
   }
 
   public void Reload() {

@@ -36,6 +36,7 @@ public class SkeletonControl : MonoBehaviour {
     public Transform connectedTo;
     public ColliderData collision;
     public CharacterJointConfig joint;
+    public Quaternion storedRotation;
     public JointData(Transform transform, Transform connectedTo) {
       this.connectedTo = connectedTo;
       this.transform = transform;
@@ -54,6 +55,7 @@ public class SkeletonControl : MonoBehaviour {
     public string layerName;
     public Transform rootTransform;
     public Vector3 rootForward;
+    public Vector3 rootStoredPosition;
 
     public List<JointData> joints = new List<JointData>();
   }
@@ -62,16 +64,17 @@ public class SkeletonControl : MonoBehaviour {
   UnitControl unitControl;
   Animator animator;
   GameManager gameManager;
+  float switchingToAnimator = -1;
+  float switchingToAnimatorTime = 0.5f;
 
-  Dictionary<string, Quaternion> bodyPose = new Dictionary<string, Quaternion>();
+  SkeletonData skeletonData;
 
-  public void SetUp(SkeletonData setUpData) {
+  public void SetUp(SkeletonData skeleton) {
+    this.skeletonData = skeleton;
+    root = skeletonData.rootTransform;
 
-    root = setUpData.rootTransform;
-
-    foreach (JointData joint in setUpData.joints) {
-      bodyPose.Add(joint.transform.name, Quaternion.identity);
-      SetUpJoint(joint, setUpData.layerName);
+    foreach (JointData joint in skeletonData.joints) {
+      SetUpJoint(joint, skeletonData.layerName);
     }
 
     unitControl = GetComponent<UnitControl>();
@@ -113,6 +116,19 @@ public class SkeletonControl : MonoBehaviour {
         capsuleZCollider.center = data.collision.center;
         capsuleZCollider.height = data.collision.height;
         break;
+    }
+  }
+
+  private void LateUpdate() {
+    if (switchingToAnimator > 0) {
+      switchingToAnimator -= Time.deltaTime;
+
+      float amount = 1 - (switchingToAnimator / switchingToAnimatorTime);
+      skeletonData.rootTransform.position = Vector3.Lerp(skeletonData.rootStoredPosition, skeletonData.rootTransform.position, amount);
+      foreach (JointData joint in skeletonData.joints) {
+        Quaternion rotation = Quaternion.Lerp(joint.storedRotation, joint.transform.rotation, amount);
+        joint.transform.rotation = rotation;
+      }
     }
   }
 
@@ -170,12 +186,33 @@ public class SkeletonControl : MonoBehaviour {
   }
 
   public void SwitchToAnimator() {
-    
+    Vector3 newRootPos = skeletonData.rootTransform.position;
+    Vector3 newTransformPos = transform.position;
+    newTransformPos.x = newRootPos.x;
+    newTransformPos.z = newRootPos.z;
+    transform.position = newTransformPos;
+    skeletonData.rootTransform.localPosition = new Vector3 (0, skeletonData.rootTransform.localPosition.y, 0);
+
+    skeletonData.rootStoredPosition = skeletonData.rootTransform.position;
+    foreach (JointData joint in skeletonData.joints) {
+      joint.storedRotation = joint.transform.rotation;
+    }
+    switchingToAnimator = switchingToAnimatorTime;
+    animator.enabled = true;
+
+    float forwardDotUp = Vector3.Dot(Vector3.up, skeletonData.rootTransform.up);
+    animator.SetTrigger((forwardDotUp > 0) ? "StandUp_Front" : "StandUp_Back");
+    DisableColliders();
+    Rigidbody[] rigidbodies = root.GetComponentsInChildren<Rigidbody>();
+    foreach (Rigidbody currentRigidbody in rigidbodies) {
+      currentRigidbody.useGravity = false;
+      currentRigidbody.isKinematic = true;
+    }
   }
 
   public void SwitchToRagdoll(Vector3 direction, Transform hitTarget) {
 
-    GetComponent<Animator>().enabled = false;
+    animator.enabled = false;
     Transform forceTarget = root;
     EnableColliders();
     Rigidbody[] rigidbodies = root.GetComponentsInChildren<Rigidbody>();
@@ -196,7 +233,7 @@ public class SkeletonControl : MonoBehaviour {
   }
 
   public void DisableColliders() {
-    if (!root) Debug.Log("Need a root object");
+    if (!root)Debug.Log("Need a root object");
     Collider[] colliders = root.GetComponentsInChildren<Collider>();
     foreach (Collider currentCollider in colliders) {
       currentCollider.enabled = false;
@@ -204,7 +241,7 @@ public class SkeletonControl : MonoBehaviour {
   }
 
   public void EnableColliders() {
-    if (!root) Debug.Log("Need a root object");    
+    if (!root)Debug.Log("Need a root object");
     Collider[] colliders = root.GetComponentsInChildren<Collider>();
     foreach (Collider currentCollider in colliders) {
       currentCollider.enabled = true;
