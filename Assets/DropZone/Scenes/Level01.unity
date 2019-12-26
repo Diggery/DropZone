@@ -2420,6 +2420,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe533a211ee342340a0d314d6e162033, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useFreeRotation: 0
+  cameraRotateStops: 8
   goalPos: {x: 0, y: 0, z: 0}
   goalRot: {x: 0, y: 0, z: 0, w: 1}
 --- !u!4 &2060225518

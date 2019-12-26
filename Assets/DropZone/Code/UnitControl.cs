@@ -63,7 +63,7 @@ public class UnitControl : MonoBehaviour {
     set {
       inMovingState = value;
       if (inMovingState) {
-        navAgent.SetDestination(moveDestination.Value);
+        if (moveDestination != null) navAgent.SetDestination(moveDestination.Value);
         moveDestination = null;
       }
     }
@@ -133,9 +133,15 @@ public class UnitControl : MonoBehaviour {
   }
 
   public void MoveTo(Vector3 movePos) {
+    Debug.Log("Moving to " + movePos);
     animator.SetBool("LeftOpen", false);
     animator.SetBool("RightOpen", false);
-    moveDestination = movePos;
+
+    if (inMovingState) {
+      navAgent.SetDestination(movePos);
+    } else {
+      moveDestination = movePos;
+    }
 
     IsMoving = true;
   }

@@ -98,8 +98,12 @@ public class InputControl : MonoBehaviour {
       mouseRightInProgress = false;
     }
 
-    if (Input.GetKey(KeyCode.Q)) CameraControl.Rotate(1);
-    if (Input.GetKey(KeyCode.E)) CameraControl.Rotate(-1);
+    if (Input.GetKeyDown(KeyCode.Q)) CameraControl.RotateDown(1);
+    if (Input.GetKey(KeyCode.Q)) CameraControl.FreeRotate(1);
+    if (Input.GetKeyUp(KeyCode.Q)) CameraControl.RotateUp(1);
+    if (Input.GetKeyDown(KeyCode.E)) CameraControl.RotateDown(-1);
+    if (Input.GetKey(KeyCode.E)) CameraControl.FreeRotate(-1);
+    if (Input.GetKeyUp(KeyCode.E)) CameraControl.RotateUp(-1);
 
     if (Input.GetKey(KeyCode.W)) CameraControl.Move(Vector3.forward);
     if (Input.GetKey(KeyCode.A)) CameraControl.Move(Vector3.left);

@@ -7,10 +7,14 @@ public class CameraControl : MonoBehaviour {
   float cameraMoveSpeed = 0.5f;
   float cameraScrollSpeed = 5.0f;
   float cameraRotateSpeed = 1.5f;
+  public bool useFreeRotation = false;
+  public int cameraRotateStops = 8;
+  int cameraRotateStop = 0;
+
   float cameraDrift = 8;
 
-  public Vector3 goalPos = Vector3.zero;
-  public Quaternion goalRot = Quaternion.identity;
+  Vector3 goalPos = Vector3.zero;
+  Quaternion goalRot = Quaternion.identity;
 
   Transform cameraTransform;
   Vector3 zoomOffset = Vector3.zero;
@@ -43,8 +47,18 @@ public class CameraControl : MonoBehaviour {
     goalPos += amount * cameraScrollSpeed;
   }
 
-  public void Rotate(float direction) {
-    goalRot = goalRot * Quaternion.AngleAxis(direction * cameraRotateSpeed, Vector3.up);
+  public void RotateDown(float direction) { }
+
+  public void FreeRotate(float direction) {
+    if (useFreeRotation)
+      goalRot = goalRot * Quaternion.AngleAxis(direction * cameraRotateSpeed, Vector3.up);
+  }
+
+  public void RotateUp(float direction) {
+    if (useFreeRotation)return;
+    cameraRotateStop = Mathf.FloorToInt(cameraRotateStop + Mathf.Sign(direction)) % cameraRotateStops;
+    int stop = cameraRotateStop * (360 / cameraRotateStops);
+    goalRot = Quaternion.AngleAxis(stop, Vector3.up);
   }
 
   public void Zoom(float amount) {
