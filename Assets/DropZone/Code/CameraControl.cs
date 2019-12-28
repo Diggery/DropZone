@@ -34,9 +34,9 @@ public class CameraControl : MonoBehaviour {
   }
 
   void Update() {
-    transform.position = Vector3.Lerp(transform.position, goalPos, Time.deltaTime * cameraDrift);
-    transform.rotation = Quaternion.Lerp(transform.rotation, goalRot, Time.deltaTime * cameraDrift);
-    cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, zoomGoal, Time.deltaTime * cameraDrift);
+    transform.position = Vector3.Lerp(transform.position, goalPos, GameTime.DeltaTime * cameraDrift);
+    transform.rotation = Quaternion.Lerp(transform.rotation, goalRot, GameTime.DeltaTime * cameraDrift);
+    cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, zoomGoal, GameTime.DeltaTime * cameraDrift);
   }
 
   public void Move(Vector3 direction) {

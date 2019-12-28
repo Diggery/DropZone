@@ -350,6 +350,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panelTrans:
     duration: 1.5
+    useGameTime: 1
     curve:
       serializedVersion: 2
       m_Curve:
@@ -405,6 +406,7 @@ MonoBehaviour:
     endValue: 1
   labelTrans:
     duration: 0.25
+    useGameTime: 1
     curve:
       serializedVersion: 2
       m_Curve:

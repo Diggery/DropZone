@@ -124,6 +124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flash:
     duration: 1.5
+    useGameTime: 1
     curve:
       serializedVersion: 2
       m_Curve:

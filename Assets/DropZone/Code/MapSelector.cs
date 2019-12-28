@@ -29,11 +29,13 @@ public class MapSelector : MonoBehaviour {
     set {
       isOpen = value;
       line.enabled = isOpen;
-      if (!confirmLabel) CreateLabel();
+      if (!confirmLabel)CreateLabel();
       if (isOpen) {
         Interpolator.Start(labelTrans);
+        GameTime.Setting = GameTime.TimeSetting.SlowMo;
       } else {
         Interpolator.Reverse(labelTrans);
+        GameTime.Setting = GameTime.TimeSetting.Normal;
       }
     }
   }
@@ -84,7 +86,7 @@ public class MapSelector : MonoBehaviour {
 
     line.positionCount = path.corners.Length;
     Vector3[] pathCorners = path.corners;
-    for (int i = 0; i < pathCorners.Length; i++) pathCorners[i] += Vector3.up * 0.1f;
+    for (int i = 0; i < pathCorners.Length; i++)pathCorners[i] += Vector3.up * 0.1f;
     line.SetPositions(pathCorners);
   }
 
@@ -100,7 +102,7 @@ public class MapSelector : MonoBehaviour {
   }
 
   void OnLabelLerp(float amount) {
-    if (!confirmLabel.gameObject.activeSelf) confirmLabel.gameObject.SetActive(true);
+    if (!confirmLabel.gameObject.activeSelf)confirmLabel.gameObject.SetActive(true);
     confirmLabel.localScale = Vector2.Lerp(Vector2.zero, Vector2.one, amount);
     frame.localPosition = Vector3.Lerp(Vector3.up * -2, Vector3.up * 0.95f, amount);
   }

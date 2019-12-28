@@ -191,7 +191,15 @@ public class SkeletonControl : MonoBehaviour {
     newTransformPos.x = newRootPos.x;
     newTransformPos.z = newRootPos.z;
     transform.position = newTransformPos;
+
+    Vector3 rootHeadingDirection = -skeletonData.rootTransform.forward;
+    rootHeadingDirection.y = 0;
+    rootHeadingDirection.Normalize();
+    float angle = Vector3.Angle(transform.forward, rootHeadingDirection) * Mathf.Sign(Vector3.Dot(transform.right, rootHeadingDirection));
+    Debug.Log("Heading offset: " + angle);
+
     skeletonData.rootTransform.localPosition = new Vector3 (0, skeletonData.rootTransform.localPosition.y, 0);
+
 
     skeletonData.rootStoredPosition = skeletonData.rootTransform.position;
     foreach (JointData joint in skeletonData.joints) {
@@ -225,7 +233,6 @@ public class SkeletonControl : MonoBehaviour {
       currentRigidbody.isKinematic = false;
     }
 
-    Debug.Log("Adding force to " + forceTarget.name);
     forceTarget.GetComponent<Rigidbody>().AddForce(
       (direction * -5) + (Vector3.up * 10),
       ForceMode.VelocityChange

@@ -31,7 +31,9 @@ public class GameManager : MonoBehaviour {
 
   void Start() {
     gameObject.AddComponent<InputControl>();
+    gameObject.AddComponent<GameTime>().Init();
     SceneManager.LoadScene("UILayout", LoadSceneMode.Additive);
+
 
     MapTester.DrawAllCells(mapControl.mapData);
   }
