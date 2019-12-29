@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class UnitState : MonoBehaviour {
 
   protected UnitControl unitControl;
+  protected TargetControl targetControl;
   protected Animator animator;
   protected UnitBrain brain;
   protected NavMeshAgent navAgent;
@@ -29,6 +30,7 @@ public class UnitState : MonoBehaviour {
 
   public virtual void StateInit() {
     unitControl = GetComponent<UnitControl>();
+    targetControl = GetComponent<TargetControl>();
     animator = GetComponent<Animator>();
     brain = GetComponent<UnitBrain>();
     navAgent = GetComponent<NavMeshAgent>();
@@ -38,14 +40,14 @@ public class UnitState : MonoBehaviour {
 
   public virtual void StateEnter() {
     isActive = true;
-    Debug.Log(gameObject.name + "------>  Entering " + stateName + " state.");
+   // Debug.Log(gameObject.name + "------>  Entering " + stateName + " state.");
   }
 
   public virtual void StateUpdate() { }
 
   public virtual void StateExit() {
     isActive = false;
-    Debug.Log(gameObject.name + "------>  Exiting " + stateName + " state.");
+   // Debug.Log(gameObject.name + "------>  Exiting " + stateName + " state.");
   }
 
 private void OnCollisionEnter(Collision other) {

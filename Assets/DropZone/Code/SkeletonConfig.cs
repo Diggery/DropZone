@@ -1,17 +1,16 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
 
 public class SkeletonConfig : MonoBehaviour {
-	
-    protected SkeletonControl.SkeletonData setUpData = new SkeletonControl.SkeletonData();
 
-    public virtual SkeletonControl Init() {
+  protected SkeletonControl.SkeletonData setUpData = new SkeletonControl.SkeletonData();
 
-        SkeletonControl skeletonControl = gameObject.AddComponent<SkeletonControl>();
+  public virtual SkeletonControl Init() {
 
-		skeletonControl.SetUp(setUpData);
+    SkeletonControl skeletonControl = gameObject.AddComponent<SkeletonControl>();
 
-        Destroy (this);
-        return skeletonControl;
-    }
+    skeletonControl.SetUp(setUpData);
+    Destroy(this);
+    return skeletonControl;
+  }
 }

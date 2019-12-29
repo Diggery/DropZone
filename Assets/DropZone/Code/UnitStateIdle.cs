@@ -17,13 +17,13 @@ public class UnitStateIdle : UnitState {
 
   public override void StateUpdate() {
     base.StateUpdate();
-    UnitControl closestEnemy = brain.ScanForTargets();
+    UnitControl closestEnemy = targetControl.ScanForTargets();
     if (closestEnemy) {
-      if (Random.value > 0.5f) {
+   //   if (Random.value > 0.5f) {
         brain.MoveToSafeSpot(closestEnemy);
-      } else {
-        brain.AttackTarget(closestEnemy);
-      }
+   //   } else {
+      //  brain.AttackTarget(closestEnemy);
+   //   }
     }
   }
 

@@ -6,13 +6,25 @@ using UnityEngine.Events;
 
 public class UnitControl : MonoBehaviour {
 
+  string unitType;
+  public string UnitType {
+    get { return unitType; }
+    set {
+      unitType = value;
+      gameObject.name = "Unit-" + unitType;
+    }
+  }
+
   GameManager gameManager;
   public bool autoInit;
   NavMeshAgent navAgent;
   Animator animator;
   UnitIK unitIK;
-
   TargetControl targetControl;
+  public Weapon EquippedWeapon {
+    get; set;
+  }
+
   Interpolator.LerpVector LerpToPose = new Interpolator.LerpVector();
 
   public bool HasTarget {
@@ -22,7 +34,14 @@ public class UnitControl : MonoBehaviour {
     get { return targetControl.CurrentTarget.TargetPoint; }
   }
   public Vector3 TargetPoint {
-    get { return transform.position + (Vector3.up * 1.25f); }
+    get { return attachPoints["TargetPoint"].position; }
+  }
+
+  List<string> enemies = new List<string>();
+  public List<string> Enemies {
+    get {
+      return enemies;
+    }
   }
 
   Dictionary<string, Transform> attachPoints = new Dictionary<string, Transform>();
@@ -35,6 +54,7 @@ public class UnitControl : MonoBehaviour {
     set {
       isMoving = value;
       animator.SetBool("IsMoving", isMoving);
+      navAgent.isStopped = !value;
     }
   }
 
@@ -45,7 +65,10 @@ public class UnitControl : MonoBehaviour {
     }
     set {
       inMovingState = value;
-      navAgent.isStopped = !value;
+      if (inMovingState) {
+        if (moveDestination != null) navAgent.SetDestination(moveDestination.Value);
+        moveDestination = null;
+      }
     }
   }
 
@@ -64,7 +87,6 @@ public class UnitControl : MonoBehaviour {
   public bool IsSelected {
     get { return isSelected; }
     set {
-      Debug.Log(gameObject.name + " is Selected");
       isSelected = value;
     }
   }
@@ -74,22 +96,28 @@ public class UnitControl : MonoBehaviour {
 
   public bool IsPathComplete {
     get {
-      if (Vector3.Distance(navAgent.destination, navAgent.transform.position) <= navAgent.stoppingDistance) {
-        return (!navAgent.hasPath || navAgent.velocity.sqrMagnitude == 0f);
-      }
-      return false;
+      return navAgent.hasPath && Vector3.Distance(navAgent.destination, navAgent.transform.position) <= navAgent.stoppingDistance;
     }
   }
 
-  public bool IsDestroyed {
-    get { return false; }
+  public NavMeshPath CurrentPath {
+    get { return navAgent.path; } 
   }
+
+  float maxHits = 5;
+  float hits = 5;
+  public bool IsDead {
+    get { return hits < 0; }
+  }
+
+  Vector3? moveDestination;
 
   void Start() {
-    if (autoInit) Init();
+    if (autoInit)Init(gameObject.name);
   }
 
-  public void Init() {
+  public UnitControl Init(string unitType) {
+    UnitType = unitType;
     gameManager = GameManager.Instance;
     navAgent = GetComponent<NavMeshAgent>();
     navAgent.avoidancePriority = Random.Range(0, 100);
@@ -100,18 +128,28 @@ public class UnitControl : MonoBehaviour {
     LerpToPose.onTickVector = LerpPoseTick;
     LerpToPose.onFinish = LerpPoseFinished;
     LerpToPose.duration = 0.5f;
+    SkeletonConfig skelConfig = GetComponent<SkeletonConfig>();
+    if (skelConfig)skelConfig.Init();
+    return this;
   }
 
   void Update() {
-    if (IsMoving && IsPathComplete) {
+    if (moveDestination == null && InMovingState && IsPathComplete) {
       MoveComplete();
     }
   }
 
   public void MoveTo(Vector3 movePos) {
+    Debug.Log("Moving to " + movePos);
     animator.SetBool("LeftOpen", false);
     animator.SetBool("RightOpen", false);
-    navAgent.SetDestination(movePos);
+
+    if (inMovingState) {
+      navAgent.SetDestination(movePos);
+    } else {
+      moveDestination = movePos;
+    }
+
     IsMoving = true;
   }
 
@@ -141,8 +179,7 @@ public class UnitControl : MonoBehaviour {
 
   public bool EquipMainWeapon(Weapon weapon) {
     weapon.Init(this, animator.GetBoneTransform(HumanBodyBones.Chest), attachPoints["RightHand"]);
-    unitIK.EquippedWeapon = weapon;
-    targetControl.EquippedWeapon = weapon;
+    EquippedWeapon = weapon;
     return true;
   }
 
@@ -152,10 +189,28 @@ public class UnitControl : MonoBehaviour {
   }
 
   public void TakeDamage(DamageInfo info) {
-
+    Debug.Log("OUCH: " + info.damageAmount + " points of damage");
+    hits -= info.damageAmount;
+    if (hits < 0) {
+      Incapacitate(info);
+    }
   }
 
+  public void Incapacitate(DamageInfo info = null) {
+    hits = -1;
+    SkeletonControl skeleton = GetComponent<SkeletonControl>();
+    Vector3 direction = info == null ? Vector3.up : info.GetDamageDirection(transform);
+    skeleton.SwitchToRagdoll(direction);
+    navAgent.isStopped = true;
+    if (EquippedWeapon) EquippedWeapon.Drop();
+  }
 
+  public void Revive() {
+    SkeletonControl skeleton = GetComponent<SkeletonControl>();
+    skeleton.SwitchToAnimator();
+    navAgent.isStopped = false;
+
+  }
 
   public void Reload() {
     animator.SetTrigger("Reload");
@@ -166,7 +221,5 @@ public class UnitControl : MonoBehaviour {
     transform.rotation = Quaternion.AngleAxis(amount.w, Vector3.up);
   }
 
-  void LerpPoseFinished(bool reverse) {
-    Debug.Log("Lerp finished");
-  }
+  void LerpPoseFinished(bool reverse) { }
 }

@@ -81,6 +81,15 @@ ModelImporter:
   - first:
       74: -6710584169379693557
     second: Cover_Exit
+  - first:
+      74: 4280432449885507688
+    second: ExitCover
+  - first:
+      74: -6087241809863167137
+    second: EnterCover (1)
+  - first:
+      74: -4688941436563618727
+    second: ReloadCover
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -1036,11 +1045,40 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Cover_Exit
-      takeName: Cover_Exit
+      name: ReloadCover
+      takeName: ReloadCover
       internalID: 0
-      firstFrame: 345
-      lastFrame: 355
+      firstFrame: 340
+      lastFrame: 360
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ExitCover
+      takeName: ExitCover
+      internalID: 0
+      firstFrame: 360
+      lastFrame: 370
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

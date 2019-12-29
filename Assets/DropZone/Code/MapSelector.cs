@@ -11,7 +11,7 @@ public class MapSelector : MonoBehaviour {
   GameManager gameManager;
   Renderer panel;
   NavMeshPath path;
-  LineRenderer line;
+  LineRenderer newPathLine;
   RectTransform confirmLabel;
   Transform frame;
   Camera mainCamera;
@@ -28,16 +28,17 @@ public class MapSelector : MonoBehaviour {
     get { return isOpen; }
     set {
       isOpen = value;
-      line.enabled = isOpen;
+      newPathLine.enabled = isOpen;
       if (!confirmLabel) CreateLabel();
       if (isOpen) {
         Interpolator.Start(labelTrans);
+        GameTime.Setting = GameTime.TimeSetting.SlowMo;
       } else {
         Interpolator.Reverse(labelTrans);
+        GameTime.Setting = GameTime.TimeSetting.Normal;
       }
     }
   }
-
 
   public MapSelector Init() {
     gameManager = GameManager.Instance;
@@ -45,7 +46,7 @@ public class MapSelector : MonoBehaviour {
     panel = transform.Find("CoverPanel").GetComponent<Renderer>();
     frame = transform.Find("Frame");
     path = new NavMeshPath();
-    line = transform.Find("Line").GetComponent<LineRenderer>();
+    newPathLine = transform.Find("NewPathLine").GetComponent<LineRenderer>();
 
     mainCamera = Camera.main;
 
@@ -80,14 +81,13 @@ public class MapSelector : MonoBehaviour {
     }
 
     IsOpen = true;
+    NavMeshAgent navAgent = inputControl.SelectedUnit.GetComponent<NavMeshAgent>();
+    navAgent.CalculatePath(transform.position, path);
 
-    NavMesh.CalculatePath(transform.position, inputControl.SelectedUnit.transform.position, NavMesh.AllAreas, path);
-
-    line.positionCount = path.corners.Length;
+    newPathLine.positionCount = path.corners.Length;
     Vector3[] pathCorners = path.corners;
-    for (int i = 0; i < pathCorners.Length; i++) pathCorners[i] += Vector3.up * 0.1f;
-    line.SetPositions(pathCorners);
-
+    for (int i = 0; i < pathCorners.Length; i++)pathCorners[i] += Vector3.up * 0.1f;
+    newPathLine.SetPositions(pathCorners);
   }
 
   void CreateLabel() {
@@ -102,7 +102,7 @@ public class MapSelector : MonoBehaviour {
   }
 
   void OnLabelLerp(float amount) {
-    if (!confirmLabel.gameObject.activeSelf) confirmLabel.gameObject.SetActive(true);
+    if (!confirmLabel.gameObject.activeSelf)confirmLabel.gameObject.SetActive(true);
     confirmLabel.localScale = Vector2.Lerp(Vector2.zero, Vector2.one, amount);
     frame.localPosition = Vector3.Lerp(Vector3.up * -2, Vector3.up * 0.95f, amount);
   }

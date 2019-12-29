@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TargetControl : MonoBehaviour {
   public bool showDebug;
-  float visualRange = 10;
+  float visualRange = 15;
   float SqrVisualRange { get; set; }
 
   UnitControl unitControl;
@@ -15,7 +15,6 @@ public class TargetControl : MonoBehaviour {
   public UnitControl CurrentTarget { get; set; }
   float targetMemory = 1.0f;
 
-  public Weapon EquippedWeapon { get; set; }
   public bool IsAiming { get; set; }
 
   bool readyToFire;
@@ -28,14 +27,14 @@ public class TargetControl : MonoBehaviour {
   }
 
   public bool LineOfSightBlocked {
-    get { 
-      return Physics.Linecast(EquippedWeapon.MuzzlePos, CurrentTarget.TargetPoint, terrainMask); 
+    get {
+      return Physics.Linecast(unitControl.EquippedWeapon.MuzzlePos, CurrentTarget.TargetPoint, terrainMask);
     }
   }
 
   float readyTimer = 1;
 
-void Start() {
+  void Start() {
     SqrVisualRange = visualRange * visualRange;
     unitControl = GetComponent<UnitControl>();
     animator = GetComponent<Animator>();
@@ -45,8 +44,8 @@ void Start() {
 
   void Update() {
 
-
-    if (!CurrentTarget) {
+    if (!CurrentTarget || CurrentTarget.IsDead) {
+      ReadyToFire = false;
       CurrentTarget = ScanForTargets();
       return;
     }
@@ -54,15 +53,15 @@ void Start() {
     Vector3 targetDir = transform.InverseTransformPoint(CurrentTarget.transform.position).normalized;
     float angleToTarget = Vector3.Angle(targetDir, Vector3.forward) * Mathf.Sign(targetDir.x);
     animator.SetFloat("TargetDirection", angleToTarget);
+
     bool enemyVisible = mapControl.IsPositionVisible(transform.position, CurrentTarget.transform.position);
     bool enemyPeekable = mapControl.IsPositionPeekable(transform.position, CurrentTarget.transform.position);
 
-    animator.SetBool("EnemyVisible", enemyVisible);
+    animator.SetBool("HasTarget", enemyVisible);
 
     if (unitControl.InCover) {
       animator.SetBool("UsePeeking", !enemyVisible && enemyPeekable);
     }
-
 
     if (enemyVisible || enemyPeekable) {
       targetMemory = 1;
@@ -73,51 +72,56 @@ void Start() {
       }
     }
 
-    ReadyToFire = EquippedWeapon.IsReady && (readyTimer < 0) && (enemyVisible || enemyPeekable);
+    ReadyToFire = !unitControl.IsMoving && unitControl.EquippedWeapon.IsReady && (readyTimer < 0) && (enemyVisible || enemyPeekable);
 
-    if (readyTimer > 0) readyTimer -= Time.deltaTime;
+    if (readyTimer > 0)readyTimer -= Time.deltaTime;
 
     if (ReadyToFire && IsAiming) {
-      if (LineOfSightBlocked) readyTimer = 1;
-      EquippedWeapon.Attack(CurrentTarget);
+      if (LineOfSightBlocked)readyTimer = 1;
+      unitControl.EquippedWeapon.Attack(CurrentTarget);
     }
 
-    MapTester.DrawVisibleCells(transform.position, mapControl.mapData);
+    //MapTester.DrawVisibleCells(transform.position, mapControl.mapData);
   }
 
   public UnitControl ScanForTargets() {
-    if (showDebug) Debug.Log("Scanning...");
+    if (showDebug)Debug.Log("Scanning...");
+    List<GameObject> possibleTargets = new List<GameObject>();
 
-    GameObject[] possibleTargets = GameObject.FindGameObjectsWithTag("Enemy");
+    foreach (var enemyType in unitControl.Enemies) {
+      possibleTargets.AddRange(GameObject.FindGameObjectsWithTag(enemyType));
+    }
+
     float closestDistance = Mathf.Infinity;
     UnitControl closestTarget = null;
-    if (showDebug) Debug.Log("Looking through " + possibleTargets.Length + " targets");
+    if (showDebug) Debug.Log("Looking through " + possibleTargets.Count + " targets");
 
     foreach (GameObject target in possibleTargets) {
 
       UnitControl targetControl = target.GetComponent<UnitControl>();
-      if (!targetControl || targetControl.IsDestroyed) {
-        Debug.Log("targets has no control, or is destyroyed");
+      if (!targetControl || targetControl.IsDead) {
         continue;
       }
+      
+      Debug.DrawLine(targetControl.TargetPoint + (Vector3.up * 2), targetControl.TargetPoint, Color.blue);
 
-      float targetDistance = (target.transform.position - transform.position).sqrMagnitude;
+      float targetDistance = (targetControl.TargetPoint - transform.position).sqrMagnitude;
 
       if (targetDistance > SqrVisualRange) {
-        if (showDebug) Debug.Log("targets is outside of visual range");
+        if (showDebug)Debug.Log("targets is outside of visual range");
         continue;
       }
 
-      if (closestTarget && closestDistance < targetDistance) continue;
+      if (closestTarget && closestDistance < targetDistance)continue;
 
-      bool enemyVisible = mapControl.IsPositionVisible(transform.position, target.transform.position) || 
-        mapControl.IsPositionPeekable(transform.position, target.transform.position);
+      bool enemyVisible = mapControl.IsPositionVisible(transform.position, targetControl.TargetPoint) ||
+        mapControl.IsPositionPeekable(transform.position, targetControl.TargetPoint);
 
       if (enemyVisible) {
         closestTarget = targetControl;
         closestDistance = targetDistance;
         if (showDebug) {
-          Debug.DrawLine(transform.position + (Vector3.up * 1.25f), target.transform.position + (Vector3.up * 1.25f), Color.green);
+          Debug.DrawLine(transform.position + (Vector3.up * 1.25f), targetControl.TargetPoint + (Vector3.up * 1.25f), Color.green);
         }
       }
     }

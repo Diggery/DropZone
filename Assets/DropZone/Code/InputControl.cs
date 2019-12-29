@@ -98,13 +98,20 @@ public class InputControl : MonoBehaviour {
       mouseRightInProgress = false;
     }
 
-    if (Input.GetKey(KeyCode.Q)) CameraControl.Rotate(1);
-    if (Input.GetKey(KeyCode.E)) CameraControl.Rotate(-1);
+    if (Input.GetKeyDown(KeyCode.Q)) CameraControl.RotateDown(1);
+    if (Input.GetKey(KeyCode.Q)) CameraControl.FreeRotate(1);
+    if (Input.GetKeyUp(KeyCode.Q)) CameraControl.RotateUp(1);
+    if (Input.GetKeyDown(KeyCode.E)) CameraControl.RotateDown(-1);
+    if (Input.GetKey(KeyCode.E)) CameraControl.FreeRotate(-1);
+    if (Input.GetKeyUp(KeyCode.E)) CameraControl.RotateUp(-1);
 
     if (Input.GetKey(KeyCode.W)) CameraControl.Move(Vector3.forward);
     if (Input.GetKey(KeyCode.A)) CameraControl.Move(Vector3.left);
     if (Input.GetKey(KeyCode.S)) CameraControl.Move(Vector3.back);
     if (Input.GetKey(KeyCode.D)) CameraControl.Move(Vector3.right);
+
+    if (Input.GetKey(KeyCode.Z) && SelectedUnit) SelectedUnit.Incapacitate();
+    if (Input.GetKey(KeyCode.X) && SelectedUnit) SelectedUnit.Revive();
 
     float scrollAmount = Input.GetAxis("Mouse ScrollWheel");
     if (scrollAmount != 0) {
@@ -127,7 +134,6 @@ public class InputControl : MonoBehaviour {
 
 
   public void SelectUnit(UnitControl selected) {
-    Debug.Log("Selecting " + selected.name);
     if (!selected) return;
 
     if (!selected.tag.Equals("Player")) return;
@@ -142,7 +148,7 @@ public class InputControl : MonoBehaviour {
 
     mapSelector.IsOpen = false;
     unitSelector.IsOpen = true;
-    unitSelector.SelectedUnit = selected.transform;
+    unitSelector.SelectedUnit = selected;
     selectedUnit = selected;
     selected.IsSelected = true;
   }
@@ -150,7 +156,6 @@ public class InputControl : MonoBehaviour {
   public void DeselectUnit() {
 
   }
-
 
   public void MoveSelectedUnit(Vector3 mapPos) {
     if (!selectedUnit) return;

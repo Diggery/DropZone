@@ -13,6 +13,7 @@ public class Interpolator : MonoBehaviour{
         }
 
         public float duration = 1.0f;
+        public bool useGameTime = false;
         public OnTick onTick;
         public OnTickVector onTickVector;
         public OnFinish onFinish;
@@ -79,6 +80,8 @@ public class Interpolator : MonoBehaviour{
     OnFinish onFinish;
     float timer = 0.0f;
 
+    bool useGameTime = false;
+
     bool isFloat = true;
     float startFloat = 0.0f;
     float endFloat = 1.0f;
@@ -140,6 +143,7 @@ public class Interpolator : MonoBehaviour{
         interpolator.endVector = data.EndVector;
 
         interpolator.duration = data.duration;
+        interpolator.useGameTime = data.useGameTime;
         interpolator.onTick = data.onTick;
         interpolator.onTickVector = data.onTickVector;
         interpolator.onFinish = data.onFinish;
@@ -175,7 +179,7 @@ public class Interpolator : MonoBehaviour{
     }
 
     private void Update() {
-        timer += Time.deltaTime / (reversed ? -duration : duration);
+        timer += (useGameTime ? GameTime.DeltaTime : Time.deltaTime) / (reversed ? -duration : duration);
 
         if (isFloat && onTick != null) {
             onTick.Invoke(GetFloat(timer));

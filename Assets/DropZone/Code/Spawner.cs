@@ -6,11 +6,15 @@ public class Spawner : MonoBehaviour {
 
   GameManager gameManager;
   int amountSpawned = 0;
-  int spawnLimit = 20;
   int spawnQueue = 0;
   float coolDownTime = 1;
-  float coolDownTimer = 1;
-  private bool readyToSpawn = true;
+  float coolDownTimer = 3;
+  bool readyToSpawn = true;
+
+  public int spawnLimit = 5;
+  public string unitType;
+
+  public bool autoFill = false;
 
   private void Awake() {
     gameManager = GameManager.Instance;
@@ -24,8 +28,8 @@ public class Spawner : MonoBehaviour {
       }
     }
 
-    if (readyToSpawn && (spawnQueue > 0) && (amountSpawned < spawnLimit)) {
-      CreateUnit("Human", transform.position, transform.rotation);
+    if (readyToSpawn && (autoFill || spawnQueue > 0) && (amountSpawned < spawnLimit)) {
+      CreateUnit(unitType, transform.position, transform.rotation);
     }
   }
 
@@ -37,7 +41,10 @@ public class Spawner : MonoBehaviour {
 
     GameObject prefab = gameManager.characterInventory.GetCharacter(unitName).prefab;
     GameObject newUnit = GameObject.Instantiate(prefab, pos, rot);
-    newUnit.GetComponent<UnitControl>().Init();
+    newUnit.AddComponent<UnitBrain>();
+    UnitControl unitControl = newUnit.GetComponent<UnitControl>().Init(unitName);
+
+    unitControl.Enemies.Add("Player");
     spawnQueue--;
     amountSpawned++;
     readyToSpawn = false;
