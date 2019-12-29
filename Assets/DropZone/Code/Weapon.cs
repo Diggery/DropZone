@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Weapon : MonoBehaviour {
 
@@ -34,6 +35,7 @@ public class Weapon : MonoBehaviour {
 
   Transform stockPivot;
   Transform gripPivot;
+  SphereCollider pickUpCollision;
 
   public Transform rightGrip;
   public Transform leftGrip;
@@ -77,6 +79,10 @@ public class Weapon : MonoBehaviour {
     magazine = grip.Find("Magazine");
     weaponFlash = muzzle.GetComponent<Light>();
     muzzleEffect = Instantiate(GameManager.Instance.GetPrefab("MuzzleFlash"), muzzle).GetComponent<Effect>();
+    pickUpCollision = transform.Find("PickUp").GetComponent<SphereCollider>();
+    pickUpCollision.enabled = false;
+    InputRelay uiInput = pickUpCollision.gameObject.AddComponent<InputRelay>();
+    uiInput.onClick.AddListener(OnClick);
     Reload(10, true);
   }
 
@@ -173,6 +179,7 @@ public class Weapon : MonoBehaviour {
     );
     rbody.AddTorque(torque * 10, ForceMode.VelocityChange);
     GetComponent<BoxCollider>().enabled = true;
+    pickUpCollision.enabled = true;
     Debug.Log("Dropping " + gameObject.name);
   }
 
@@ -181,6 +188,7 @@ public class Weapon : MonoBehaviour {
 
     rbody.isKinematic = true;
     GetComponent<BoxCollider>().enabled = false;
+    pickUpCollision.enabled = false;
 
   }
 
@@ -208,5 +216,9 @@ public class Weapon : MonoBehaviour {
     reloadTimer = reloadTime;
 
     owner.Reload();
+  }
+
+  void OnClick(PointerEventData eventData) {
+    Debug.Log("Pick me UP");
   }
 }

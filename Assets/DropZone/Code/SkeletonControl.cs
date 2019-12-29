@@ -66,7 +66,7 @@ public class SkeletonControl : MonoBehaviour {
   Animator animator;
   GameManager gameManager;
   float switchingToAnimator = -1;
-  float switchingToAnimatorTime = 0.5f;
+  float switchingToAnimatorTime = 0.25f;
 
   SkeletonData skeletonData;
 
@@ -192,15 +192,15 @@ public class SkeletonControl : MonoBehaviour {
     newTransformPos.x = newRootPos.x;
     newTransformPos.z = newRootPos.z;
     transform.position = newTransformPos;
-
-    Vector3 rootHeadingDirection = -skeletonData.rootTransform.forward;
-    rootHeadingDirection.y = 0;
-    rootHeadingDirection.Normalize();
-    float angle = Vector3.Angle(transform.forward, rootHeadingDirection) * Mathf.Sign(Vector3.Dot(transform.right, rootHeadingDirection));
-    Debug.Log("Heading offset: " + angle);
-
     skeletonData.rootTransform.localPosition = new Vector3 (0, skeletonData.rootTransform.localPosition.y, 0);
 
+
+    Quaternion oldRot = skeletonData.rootTransform.rotation;
+    Vector3 headingDir = skeletonData.rootTransform.right;
+    headingDir.y = 0;
+    headingDir.Normalize();
+    transform.rotation = Quaternion.LookRotation(headingDir) * Quaternion.AngleAxis(-90, Vector3.up);
+    skeletonData.rootTransform.rotation = oldRot;
 
     skeletonData.rootStoredPosition = skeletonData.rootTransform.position;
     foreach (JointData joint in skeletonData.joints) {
