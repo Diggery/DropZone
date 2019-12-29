@@ -110,7 +110,7 @@ public class InputControl : MonoBehaviour {
     if (Input.GetKey(KeyCode.S)) CameraControl.Move(Vector3.back);
     if (Input.GetKey(KeyCode.D)) CameraControl.Move(Vector3.right);
 
-    if (Input.GetKey(KeyCode.Z) && SelectedUnit) SelectedUnit.Die();
+    if (Input.GetKey(KeyCode.Z) && SelectedUnit) SelectedUnit.Incapacitate();
     if (Input.GetKey(KeyCode.X) && SelectedUnit) SelectedUnit.Revive();
 
     float scrollAmount = Input.GetAxis("Mouse ScrollWheel");
@@ -148,7 +148,7 @@ public class InputControl : MonoBehaviour {
 
     mapSelector.IsOpen = false;
     unitSelector.IsOpen = true;
-    unitSelector.SelectedUnit = selected.transform;
+    unitSelector.SelectedUnit = selected;
     selectedUnit = selected;
     selected.IsSelected = true;
   }
@@ -156,7 +156,6 @@ public class InputControl : MonoBehaviour {
   public void DeselectUnit() {
 
   }
-
 
   public void MoveSelectedUnit(Vector3 mapPos) {
     if (!selectedUnit) return;

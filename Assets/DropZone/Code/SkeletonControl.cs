@@ -33,6 +33,7 @@ public class SkeletonControl : MonoBehaviour {
   public class JointData {
     public Transform transform;
     public string name;
+    public float mass = 1.0f;
     public Transform connectedTo;
     public ColliderData collision;
     public CharacterJointConfig joint;
@@ -138,7 +139,7 @@ public class SkeletonControl : MonoBehaviour {
 
   void SetUpJoint(JointData data, string layerName) {
     Rigidbody newRB = data.transform.gameObject.AddComponent<Rigidbody>();
-    newRB.mass = 3.00f;
+    newRB.mass = data.mass;
     newRB.useGravity = false;
     newRB.isKinematic = true;
     newRB.drag = 0.1f;

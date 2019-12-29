@@ -20,8 +20,11 @@ public class UnitControl : MonoBehaviour {
   NavMeshAgent navAgent;
   Animator animator;
   UnitIK unitIK;
-
   TargetControl targetControl;
+  public Weapon EquippedWeapon {
+    get; set;
+  }
+
   Interpolator.LerpVector LerpToPose = new Interpolator.LerpVector();
 
   public bool HasTarget {
@@ -93,8 +96,12 @@ public class UnitControl : MonoBehaviour {
 
   public bool IsPathComplete {
     get {
-      return Vector3.Distance(navAgent.destination, navAgent.transform.position) <= navAgent.stoppingDistance;
+      return navAgent.hasPath && Vector3.Distance(navAgent.destination, navAgent.transform.position) <= navAgent.stoppingDistance;
     }
+  }
+
+  public NavMeshPath CurrentPath {
+    get { return navAgent.path; } 
   }
 
   float maxHits = 5;
@@ -172,8 +179,7 @@ public class UnitControl : MonoBehaviour {
 
   public bool EquipMainWeapon(Weapon weapon) {
     weapon.Init(this, animator.GetBoneTransform(HumanBodyBones.Chest), attachPoints["RightHand"]);
-    unitIK.EquippedWeapon = weapon;
-    targetControl.EquippedWeapon = weapon;
+    EquippedWeapon = weapon;
     return true;
   }
 
@@ -186,20 +192,24 @@ public class UnitControl : MonoBehaviour {
     Debug.Log("OUCH: " + info.damageAmount + " points of damage");
     hits -= info.damageAmount;
     if (hits < 0) {
-      Die(info);
+      Incapacitate(info);
     }
   }
 
-  public void Die(DamageInfo info = null) {
+  public void Incapacitate(DamageInfo info = null) {
     hits = -1;
     SkeletonControl skeleton = GetComponent<SkeletonControl>();
     Vector3 direction = info == null ? Vector3.up : info.GetDamageDirection(transform);
     skeleton.SwitchToRagdoll(direction);
+    navAgent.isStopped = true;
+    if (EquippedWeapon) EquippedWeapon.Drop();
   }
 
   public void Revive() {
     SkeletonControl skeleton = GetComponent<SkeletonControl>();
     skeleton.SwitchToAnimator();
+    navAgent.isStopped = false;
+
   }
 
   public void Reload() {

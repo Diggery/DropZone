@@ -11,7 +11,7 @@ public class MapSelector : MonoBehaviour {
   GameManager gameManager;
   Renderer panel;
   NavMeshPath path;
-  LineRenderer line;
+  LineRenderer newPathLine;
   RectTransform confirmLabel;
   Transform frame;
   Camera mainCamera;
@@ -28,8 +28,8 @@ public class MapSelector : MonoBehaviour {
     get { return isOpen; }
     set {
       isOpen = value;
-      line.enabled = isOpen;
-      if (!confirmLabel)CreateLabel();
+      newPathLine.enabled = isOpen;
+      if (!confirmLabel) CreateLabel();
       if (isOpen) {
         Interpolator.Start(labelTrans);
         GameTime.Setting = GameTime.TimeSetting.SlowMo;
@@ -46,7 +46,7 @@ public class MapSelector : MonoBehaviour {
     panel = transform.Find("CoverPanel").GetComponent<Renderer>();
     frame = transform.Find("Frame");
     path = new NavMeshPath();
-    line = transform.Find("Line").GetComponent<LineRenderer>();
+    newPathLine = transform.Find("NewPathLine").GetComponent<LineRenderer>();
 
     mainCamera = Camera.main;
 
@@ -84,10 +84,10 @@ public class MapSelector : MonoBehaviour {
     NavMeshAgent navAgent = inputControl.SelectedUnit.GetComponent<NavMeshAgent>();
     navAgent.CalculatePath(transform.position, path);
 
-    line.positionCount = path.corners.Length;
+    newPathLine.positionCount = path.corners.Length;
     Vector3[] pathCorners = path.corners;
     for (int i = 0; i < pathCorners.Length; i++)pathCorners[i] += Vector3.up * 0.1f;
-    line.SetPositions(pathCorners);
+    newPathLine.SetPositions(pathCorners);
   }
 
   void CreateLabel() {

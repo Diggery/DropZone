@@ -6,10 +6,7 @@ public class UnitIK : MonoBehaviour {
 
   UnitControl unitControl;
   Animator animator;
-  Weapon weapon;
-  public Weapon EquippedWeapon {
-    set { weapon = value; }
-  }
+
   Vector3 lookPosition;
   float blendAmount;
 
@@ -20,9 +17,9 @@ public class UnitIK : MonoBehaviour {
   }
 
   private void OnAnimatorIK(int layerIndex) {
-    if (!weapon)return;
+    if (!unitControl.EquippedWeapon)return;
     blendAmount = animator.GetFloat("IKBlend");
-    weapon.GripBlend = blendAmount;
+    unitControl.EquippedWeapon.GripBlend = blendAmount;
 
     if (!unitControl.HasTarget)return;
 
@@ -30,20 +27,20 @@ public class UnitIK : MonoBehaviour {
 
     animator.SetIKPositionWeight(AvatarIKGoal.RightHand, blendAmount);
     animator.SetIKRotationWeight(AvatarIKGoal.RightHand, blendAmount);
-    animator.SetIKPosition(AvatarIKGoal.RightHand, weapon.rightGrip.position);
-    animator.SetIKRotation(AvatarIKGoal.RightHand, weapon.rightGrip.rotation);
+    animator.SetIKPosition(AvatarIKGoal.RightHand, unitControl.EquippedWeapon.rightGrip.position);
+    animator.SetIKRotation(AvatarIKGoal.RightHand, unitControl.EquippedWeapon.rightGrip.rotation);
 
-    if (weapon.IsTwoHanded) {
+    if (unitControl.EquippedWeapon.IsTwoHanded) {
       animator.SetIKPositionWeight(AvatarIKGoal.LeftHand, blendAmount);
       animator.SetIKRotationWeight(AvatarIKGoal.LeftHand, blendAmount);
-      animator.SetIKPosition(AvatarIKGoal.LeftHand, weapon.leftGrip.position);
-      animator.SetIKRotation(AvatarIKGoal.LeftHand, weapon.leftGrip.rotation);
+      animator.SetIKPosition(AvatarIKGoal.LeftHand, unitControl.EquippedWeapon.leftGrip.position);
+      animator.SetIKRotation(AvatarIKGoal.LeftHand, unitControl.EquippedWeapon.leftGrip.rotation);
     }
 
     animator.SetLookAtWeight(blendAmount, blendAmount * 0.5f);
     animator.SetLookAtPosition(lookPosition);
 
-    weapon.GripBlend = blendAmount;
-    weapon.LookPos = lookPosition;
+    unitControl.EquippedWeapon.GripBlend = blendAmount;
+    unitControl.EquippedWeapon.LookPos = lookPosition;
   }
 }

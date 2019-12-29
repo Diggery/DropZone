@@ -11,6 +11,7 @@ public class Weapon : MonoBehaviour {
   Transform magazine;
   Light weaponFlash;
   Effect muzzleEffect;
+  Rigidbody rbody;
 
   int roundsInMagazine = 0;
   float fireRateTimer = 0;
@@ -62,6 +63,9 @@ public class Weapon : MonoBehaviour {
 
   public void Init(UnitControl owner, Transform stockPivot, Transform gripPivot) {
     this.owner = owner;
+    rbody = GetComponent<Rigidbody>();
+    rbody.isKinematic = true;
+    GetComponent<BoxCollider>().enabled = false;
     targetControl = owner.gameObject.GetComponent<TargetControl>();
 
     grip = transform.GetChild(0);
@@ -77,6 +81,8 @@ public class Weapon : MonoBehaviour {
   }
 
   void Update() {
+    if (!owner) return;
+
     if (kickBack.sqrMagnitude > Mathf.Epsilon) {
       kickBack = Vector3.Lerp(kickBack, Vector3.zero, Time.deltaTime * 8);
     }
@@ -92,11 +98,11 @@ public class Weapon : MonoBehaviour {
       transform.rotation = gripPivot.rotation;
     }
 
-    if (fireRateTimer > 0) fireRateTimer -= Time.deltaTime;
-    if (burstCooldownTimer > 0) burstCooldownTimer -= Time.deltaTime;
+    if (fireRateTimer > 0)fireRateTimer -= Time.deltaTime;
+    if (burstCooldownTimer > 0)burstCooldownTimer -= Time.deltaTime;
     if (reloadTimer > 0) {
       reloadTimer -= Time.deltaTime;
-      if (reloadTimer < 0) Reload(15);
+      if (reloadTimer < 0)Reload(15);
     }
 
     if (weaponFlash && weaponFlash.enabled) {
@@ -108,9 +114,9 @@ public class Weapon : MonoBehaviour {
 
   public void Attack(UnitControl target) {
 
-    if (fireRateTimer > 0) return;
-    if (burstCooldownTimer > 0) return;
-    if (reloadTimer > 0) return;
+    if (fireRateTimer > 0)return;
+    if (burstCooldownTimer > 0)return;
+    if (reloadTimer > 0)return;
     if (roundsInMagazine <= 0) {
       EjectMagazine();
       return;
@@ -129,10 +135,10 @@ public class Weapon : MonoBehaviour {
     muzzleEffect.Play();
 
     GameObject projectile = Instantiate(
-        GameManager.Instance.GetPrefab("Projectile"),
-        muzzle.position,
-        muzzle.rotation
-    ) as GameObject;
+      GameManager.Instance.GetPrefab("Projectile"),
+      muzzle.position,
+      muzzle.rotation
+    )as GameObject;
 
     Vector3 aimingDirection = muzzle.forward;
 
@@ -141,7 +147,7 @@ public class Weapon : MonoBehaviour {
     float hOffset = Random.Range(-horizontalSpread, horizontalSpread);
     aimingDirection = Quaternion.AngleAxis(hOffset, Vector3.up) * aimingDirection;
 
-    DamageInfo damageInfo = new DamageInfo(1, DamageType.Puncture, owner);
+    DamageInfo damageInfo = new DamageInfo(5, DamageType.Puncture, owner);
     projectile.GetComponent<Projectile>().Init(targetControl, aimingDirection, range, damageInfo);
 
     kickBack = muzzle.forward * -0.1f + (Vector3.up * Random.Range(-0.02f, 0.02f));
@@ -159,17 +165,22 @@ public class Weapon : MonoBehaviour {
   public virtual void Drop() {
     IsEquipped = false;
     owner = null;
-    transform.SetParent(null);
-    Rigidbody rb = GetComponent<Rigidbody>();
-    rb.isKinematic = false;
+    rbody.isKinematic = false;
     Vector3 torque = new Vector3(
-        Random.Range(-1.0f, 1.0f),
-        Random.Range(-1.0f, 1.0f),
-        Random.Range(-1.0f, 1.0f)
+      Random.Range(-1.0f, 1.0f),
+      Random.Range(-1.0f, 1.0f),
+      Random.Range(-1.0f, 1.0f)
     );
-    rb.AddTorque(torque * 10, ForceMode.VelocityChange);
+    rbody.AddTorque(torque * 10, ForceMode.VelocityChange);
     GetComponent<BoxCollider>().enabled = true;
     Debug.Log("Dropping " + gameObject.name);
+  }
+
+  public virtual void PickUp(UnitControl newOwner) {
+    this.owner = newOwner;
+
+    rbody.isKinematic = true;
+    GetComponent<BoxCollider>().enabled = false;
 
   }
 

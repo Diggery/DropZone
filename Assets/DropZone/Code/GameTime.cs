@@ -40,7 +40,7 @@ public class GameTime : MonoBehaviour {
           Instance.timeScaleGoal = 1.0f;
           break;
         case TimeSetting.SlowMo:
-          Instance.timeScaleGoal = 0.1f;
+          Instance.timeScaleGoal = 0.05f;
           break;
         case TimeSetting.Stopped:
           Instance.timeScaleGoal = 0.0f;

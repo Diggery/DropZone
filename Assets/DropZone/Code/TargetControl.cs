@@ -15,7 +15,6 @@ public class TargetControl : MonoBehaviour {
   public UnitControl CurrentTarget { get; set; }
   float targetMemory = 1.0f;
 
-  public Weapon EquippedWeapon { get; set; }
   public bool IsAiming { get; set; }
 
   bool readyToFire;
@@ -29,7 +28,7 @@ public class TargetControl : MonoBehaviour {
 
   public bool LineOfSightBlocked {
     get {
-      return Physics.Linecast(EquippedWeapon.MuzzlePos, CurrentTarget.TargetPoint, terrainMask);
+      return Physics.Linecast(unitControl.EquippedWeapon.MuzzlePos, CurrentTarget.TargetPoint, terrainMask);
     }
   }
 
@@ -73,13 +72,13 @@ public class TargetControl : MonoBehaviour {
       }
     }
 
-    ReadyToFire = !unitControl.IsMoving && EquippedWeapon.IsReady && (readyTimer < 0) && (enemyVisible || enemyPeekable);
+    ReadyToFire = !unitControl.IsMoving && unitControl.EquippedWeapon.IsReady && (readyTimer < 0) && (enemyVisible || enemyPeekable);
 
     if (readyTimer > 0)readyTimer -= Time.deltaTime;
 
     if (ReadyToFire && IsAiming) {
       if (LineOfSightBlocked)readyTimer = 1;
-      EquippedWeapon.Attack(CurrentTarget);
+      unitControl.EquippedWeapon.Attack(CurrentTarget);
     }
 
     //MapTester.DrawVisibleCells(transform.position, mapControl.mapData);
