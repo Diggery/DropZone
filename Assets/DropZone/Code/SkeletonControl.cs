@@ -175,7 +175,7 @@ public class SkeletonControl : MonoBehaviour {
 
     data.transform.gameObject.layer = LayerMask.NameToLayer(layerName);
 
-    DisableColliders();
+    //DisableColliders();
   }
 
   public void SwitchToRagdoll() {

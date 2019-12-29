@@ -123,7 +123,7 @@ public class UnitControl : MonoBehaviour {
     navAgent.avoidancePriority = Random.Range(0, 100);
     animator = GetComponent<Animator>();
     unitIK = GetComponent<UnitIK>().Init();
-    targetControl = gameObject.AddComponent<TargetControl>();
+    targetControl = gameObject.AddComponent<TargetControl>().Init();
     gameObject.GetComponent<CharacterSetup>().Init();
     LerpToPose.onTickVector = LerpPoseTick;
     LerpToPose.onFinish = LerpPoseFinished;
@@ -137,6 +137,7 @@ public class UnitControl : MonoBehaviour {
     if (moveDestination == null && InMovingState && IsPathComplete) {
       MoveComplete();
     }
+    if (!IsDead) targetControl.Process();
   }
 
   public void MoveTo(Vector3 movePos) {

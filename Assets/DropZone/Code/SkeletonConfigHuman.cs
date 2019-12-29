@@ -14,8 +14,8 @@ public class SkeletonConfigHuman : SkeletonConfig {
     Transform hipsTransform = animator.GetBoneTransform(HumanBodyBones.Hips);
     SkeletonControl.JointData hips = new SkeletonControl.JointData(hipsTransform);
     hips.collision.type = SkeletonControl.ColliderType.Box;
-    hips.collision.center = new Vector3(0.0f, -0.1f, 0.15f);
-    hips.collision.size = new Vector3(0.40f, 0.125f, 0.25f);
+    hips.collision.center = new Vector3(0.0f, -0.1f, 0.075f);
+    hips.collision.size = new Vector3(0.40f, 0.2f, 0.30f);
     hips.joint.axis = new Vector3(-1.0f, 0.0f, 0.0f);
     hips.joint.swingAxis = new Vector3(0.0f, 1.0f, 0.0f);
     hips.mass = 20;
@@ -25,7 +25,7 @@ public class SkeletonConfigHuman : SkeletonConfig {
     SkeletonControl.JointData torso = new SkeletonControl.JointData(torsoTransform, hipsTransform);
     torso.collision.type = SkeletonControl.ColliderType.Box;
     torso.collision.center = new Vector3(0.0f, -0.025f, 0.06f);
-    torso.collision.size = new Vector3(0.35f, 0.125f, 0.25f);
+    torso.collision.size = new Vector3(0.35f, 0.2f, 0.35f);
     torso.joint.axis = new Vector3(1.0f, 0.0f, 0.0f);
     torso.joint.swingAxis = new Vector3(0.0f, -1.0f, 0.0f);
     torso.mass = 20;

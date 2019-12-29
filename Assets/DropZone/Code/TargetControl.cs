@@ -34,15 +34,16 @@ public class TargetControl : MonoBehaviour {
 
   float readyTimer = 1;
 
-  void Start() {
+  public TargetControl Init() {
     SqrVisualRange = visualRange * visualRange;
     unitControl = GetComponent<UnitControl>();
     animator = GetComponent<Animator>();
     mapControl = GameManager.Instance.mapControl;
     terrainMask = LayerMask.GetMask("Terrain");
+    return this; 
   }
 
-  void Update() {
+  public void Process() {
 
     if (!CurrentTarget || CurrentTarget.IsDead) {
       ReadyToFire = false;

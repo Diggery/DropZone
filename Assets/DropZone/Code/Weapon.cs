@@ -25,8 +25,8 @@ public class Weapon : MonoBehaviour {
   float reloadTime = 2.0f;
 
   float range = 10;
-  float verticalSpread = 10;
-  float horizontalSpread = 10;
+  float verticalSpread = 5;
+  float horizontalSpread = 5;
 
   public bool IsTwoHanded;
   public Vector3 gripOffset = Vector3.zero;
