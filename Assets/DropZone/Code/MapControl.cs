@@ -48,9 +48,6 @@ public class MapControl : MonoBehaviour {
     MapData.MapCell destinationCell = mapData.GetMapCell(destination);
     bool visible = Array.Exists(originCell.cellsVisible, element => element.Equals(destinationCell.id));
     if (!visible && usePeeking) visible = IsPositionPeekable(originCell, destinationCell);
-
-        Debug.DrawLine(originCell.mapPos, destinationCell.mapPos, visible ? Color.green : Color.red);
-
     return visible;
   }
   public bool IsPositionPeekable(Vector3 origin, Vector3 destination) {
@@ -70,7 +67,6 @@ public class MapControl : MonoBehaviour {
         }
       }
     }
-    Debug.DrawLine(originCell.mapPos, destinationCell.mapPos, visible ? Color.green : Color.red);
     return visible;
   }
 

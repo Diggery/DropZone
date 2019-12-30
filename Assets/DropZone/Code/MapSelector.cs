@@ -27,22 +27,26 @@ public class MapSelector : MonoBehaviour {
   public bool IsOpen {
     get { return isOpen; }
     set {
+      bool wasOpen = isOpen;
       isOpen = value;
       newPathLine.enabled = isOpen;
-      if (!confirmLabel) CreateLabel();
-      if (isOpen) {
+
+      if (isOpen && !wasOpen) {
         Interpolator.Start(labelTrans);
-        GameTime.Setting = GameTime.TimeSetting.SlowMo;
-      } else {
+        GameTime.AutoPause("OpenMapSelector", GameTime.TimeSetting.SlowMo);
+      }
+      if (!isOpen && wasOpen) {
         Interpolator.Reverse(labelTrans);
-        GameTime.Setting = GameTime.TimeSetting.Normal;
+        GameTime.AutoPause("OpenMapSelector", GameTime.TimeSetting.Normal);
       }
     }
   }
 
-  public MapSelector Init() {
+  public MapSelector Init(InputControl inputControl) {
     gameManager = GameManager.Instance;
-    inputControl = gameManager.inputControl;
+    CreateLabel();
+
+    this.inputControl = inputControl;
     panel = transform.Find("CoverPanel").GetComponent<Renderer>();
     frame = transform.Find("Frame");
     path = new NavMeshPath();
@@ -53,6 +57,8 @@ public class MapSelector : MonoBehaviour {
     labelTrans.onTick = OnLabelLerp;
     labelTrans.onFinish = OnLabelFinish;
     panelTrans.onTick = OnPanelLerp;
+    IsOpen = true;
+    IsOpen = false;
     return this;
   }
 

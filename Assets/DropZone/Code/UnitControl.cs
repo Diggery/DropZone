@@ -141,7 +141,6 @@ public class UnitControl : MonoBehaviour {
   }
 
   public void MoveTo(Vector3 movePos) {
-    Debug.Log("Moving to " + movePos);
     animator.SetBool("LeftOpen", false);
     animator.SetBool("RightOpen", false);
 
@@ -152,6 +151,10 @@ public class UnitControl : MonoBehaviour {
     }
 
     IsMoving = true;
+  }
+
+  public void SetStats(float hits, float visualRange, float speed) {
+
   }
 
   public void MoveComplete() {
@@ -197,20 +200,24 @@ public class UnitControl : MonoBehaviour {
     }
   }
 
+  public void TakeHealing(float amount) {
+    Debug.Log("NICE: " + amount + " points of healing");
+    hits = Mathf.Min(maxHits, hits + amount);
+  }
+
   public void Incapacitate(DamageInfo info = null) {
     hits = -1;
     SkeletonControl skeleton = GetComponent<SkeletonControl>();
     Vector3 direction = info == null ? Vector3.up : info.GetDamageDirection(transform);
     skeleton.SwitchToRagdoll(direction);
-    navAgent.isStopped = true;
+    navAgent.enabled = false;
     if (EquippedWeapon) EquippedWeapon.Drop();
   }
 
   public void Revive() {
     SkeletonControl skeleton = GetComponent<SkeletonControl>();
     skeleton.SwitchToAnimator();
-    navAgent.isStopped = false;
-
+    navAgent.enabled = true;
   }
 
   public void Reload() {

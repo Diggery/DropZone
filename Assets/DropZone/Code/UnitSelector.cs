@@ -8,13 +8,12 @@ public class UnitSelector : MonoBehaviour {
 
   LineRenderer pathLine;
 
-  public UnitControl SelectedUnit { get; set; }
+  InputControl inputControl;
 
   public bool IsOpen {
     get { return isOpen; }
     set {
       isOpen = value;
-
       Interpolator.Start(flash);
       gameObject.SetActive(isOpen);
     }
@@ -25,7 +24,8 @@ public class UnitSelector : MonoBehaviour {
   [ColorUsage(true, true)]
   public Color flashColor;
 
-  public void Init() {
+  public void Init(InputControl inputControl) {
+    this.inputControl = inputControl;
     tile = transform.Find("Quad").GetComponent<Renderer>();
     IsOpen = false;
     flash.onTick = OnFlashLerp;
@@ -34,9 +34,9 @@ public class UnitSelector : MonoBehaviour {
   }
 
   void Update() {
-    transform.position = SelectedUnit.transform.position;
-    if (!SelectedUnit.IsPathComplete) {
-      Vector3[] path = SelectedUnit.CurrentPath.corners;
+    transform.position = inputControl.SelectedUnit.transform.position;
+    if (!inputControl.SelectedUnit.IsPathComplete) {
+      Vector3[] path = inputControl.SelectedUnit.CurrentPath.corners;
       for (int i = 0; i < path.Length; i++) path[i].y += 0.05f;
       pathLine.positionCount = path.Length;
       pathLine.SetPositions(path);

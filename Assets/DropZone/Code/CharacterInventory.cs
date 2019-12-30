@@ -10,6 +10,10 @@ public class CharacterInventory : ScriptableObject {
     public GameObject prefab;
     public string mainWeapon;
     public string sideArm;
+
+    public float speed;
+    public float visualRange;
+    public float hits;
   }
 
   public List<CharacterEntry> characters = new List<CharacterEntry>();

@@ -39,10 +39,11 @@ public class Spawner : MonoBehaviour {
  
   GameObject CreateUnit(string unitName, Vector3 pos, Quaternion rot) {
 
-    GameObject prefab = gameManager.characterInventory.GetCharacter(unitName).prefab;
-    GameObject newUnit = GameObject.Instantiate(prefab, pos, rot);
-    newUnit.AddComponent<UnitBrain>();
-    UnitControl unitControl = newUnit.GetComponent<UnitControl>().Init(unitName);
+    CharacterEntry entry = gameManager.GetCharacter(unitName);
+    GameObject newUnit = GameObject.Instantiate(entry.prefab, pos, rot);
+    newUnit.AddComponent<AIBrain>();
+    UnitControl unitControl = newUnit.GetComponent<UnitControl>().Init(entry.characterName);
+    unitControl.SetStats(entry.hits, entry.visualRange, entry.speed);
 
     unitControl.Enemies.Add("Player");
     spawnQueue--;

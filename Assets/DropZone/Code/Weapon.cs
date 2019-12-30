@@ -104,11 +104,11 @@ public class Weapon : MonoBehaviour {
       transform.rotation = gripPivot.rotation;
     }
 
-    if (fireRateTimer > 0)fireRateTimer -= Time.deltaTime;
-    if (burstCooldownTimer > 0)burstCooldownTimer -= Time.deltaTime;
+    if (fireRateTimer > 0) fireRateTimer -= Time.deltaTime;
+    if (burstCooldownTimer > 0) burstCooldownTimer -= Time.deltaTime;
     if (reloadTimer > 0) {
       reloadTimer -= Time.deltaTime;
-      if (reloadTimer < 0)Reload(15);
+      if (reloadTimer < 0) Reload(15);
     }
 
     if (weaponFlash && weaponFlash.enabled) {
@@ -120,9 +120,9 @@ public class Weapon : MonoBehaviour {
 
   public void Attack(UnitControl target) {
 
-    if (fireRateTimer > 0)return;
-    if (burstCooldownTimer > 0)return;
-    if (reloadTimer > 0)return;
+    if (fireRateTimer > 0) return;
+    if (burstCooldownTimer > 0) return;
+    if (reloadTimer > 0) return;
     if (roundsInMagazine <= 0) {
       EjectMagazine();
       return;
@@ -144,7 +144,7 @@ public class Weapon : MonoBehaviour {
       GameManager.Instance.GetPrefab("Projectile"),
       muzzle.position,
       muzzle.rotation
-    )as GameObject;
+    ) as GameObject;
 
     Vector3 aimingDirection = muzzle.forward;
 
@@ -177,9 +177,13 @@ public class Weapon : MonoBehaviour {
       Random.Range(-1.0f, 1.0f),
       Random.Range(-1.0f, 1.0f)
     );
+    Vector3 force = new Vector3( Random.Range(-1.0f, 1.0f), 1.0f, Random.Range(-1.0f, 1.0f));
     rbody.AddTorque(torque * 10, ForceMode.VelocityChange);
+    rbody.AddForce(force, ForceMode.VelocityChange);
     GetComponent<BoxCollider>().enabled = true;
     pickUpCollision.enabled = true;
+    grip.localPosition = Vector3.zero;
+
     Debug.Log("Dropping " + gameObject.name);
   }
 

@@ -9,7 +9,7 @@ public class CharacterSetup : MonoBehaviour {
   public Transform targetPoint;
 
   public void Init() {
-    GameManager manager = GameManager.Instance;
+    GameManager gameManager = GameManager.Instance;
     UnitControl unitControl = gameObject.GetComponent<UnitControl>();
 
     Animator animator = GetComponent<Animator>();
@@ -24,16 +24,16 @@ public class CharacterSetup : MonoBehaviour {
       }
     }
 
-    CharacterInventory.CharacterEntry entry = manager.characterInventory.GetCharacter(unitControl.UnitType);
+    CharacterEntry entry = gameManager.GetCharacter(unitControl.UnitType);
     
-    GameObject mainWeaponPrefab = manager.weaponInventory.GetPrefab(entry.mainWeapon);
+    GameObject mainWeaponPrefab = gameManager.weaponInventory.GetPrefab(entry.mainWeapon);
     Weapon mainWeapon = Instantiate(mainWeaponPrefab, transform.position, transform.rotation).GetComponent<Weapon>();
 
     unitControl.SetAttachPoint("RightHand", rightHandAttach);
     unitControl.SetAttachPoint("LeftHand", leftHandAttach);
     unitControl.SetAttachPoint("TargetPoint", targetPoint);
     unitControl.EquipMainWeapon(mainWeapon);
-
+    unitControl.SetStats(entry.hits, entry.visualRange, entry.speed);
     Destroy(this);
   }
 }

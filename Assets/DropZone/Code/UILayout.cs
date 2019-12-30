@@ -12,6 +12,10 @@ public class UILayout : MonoBehaviour {
   void Start() {
     gameManager = GameManager.Instance;
     gameManager.SetUI(this);
+
+    GameTime.AutoPauseConfig("SelectUnit", true);
+    GameTime.AutoPauseConfig("OpenMapSelector", true);
+    
   }
 
   void Update() {
