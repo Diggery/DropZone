@@ -4,7 +4,15 @@ using UnityEngine;
 
 public class TargetControl : MonoBehaviour {
   public bool showDebug;
-  float visualRange = 25;
+
+  float visualRange = 1.0f;
+  public float VisualRange {
+    get { return visualRange; }
+    set {
+      visualRange = value;
+      SqrVisualRange = value * value;
+    }
+  }
   float SqrVisualRange { get; set; }
 
   UnitControl unitControl;
@@ -35,12 +43,12 @@ public class TargetControl : MonoBehaviour {
   float readyTimer = 1;
 
   public TargetControl Init() {
-    SqrVisualRange = visualRange * visualRange;
+    SqrVisualRange = VisualRange * VisualRange;
     unitControl = GetComponent<UnitControl>();
     animator = GetComponent<Animator>();
     mapControl = GameManager.Instance.mapControl;
     terrainMask = LayerMask.GetMask("Terrain");
-    return this; 
+    return this;
   }
 
   public void Process() {
@@ -77,17 +85,17 @@ public class TargetControl : MonoBehaviour {
 
     ReadyToFire = !unitControl.IsMoving && unitControl.EquippedWeapon.IsReady && (readyTimer < 0) && (enemyVisible || enemyPeekable);
 
-    if (readyTimer > 0)readyTimer -= Time.deltaTime;
+    if (readyTimer > 0) readyTimer -= Time.deltaTime;
 
     if (ReadyToFire && IsAiming) {
-      if (LineOfSightBlocked)readyTimer = 1;
+      if (LineOfSightBlocked) readyTimer = 1;
       unitControl.EquippedWeapon.Attack(CurrentTarget);
     }
 
   }
 
   public UnitControl ScanForTargets() {
-    if (showDebug)Debug.Log("Scanning...");
+    if (showDebug) Debug.Log("Scanning...");
     List<GameObject> possibleTargets = new List<GameObject>();
 
     foreach (var enemyType in unitControl.Enemies) {
@@ -111,7 +119,7 @@ public class TargetControl : MonoBehaviour {
         if (showDebug) Debug.Log("targets is outside of visual range");
         Debug.DrawLine(enemyTarget.TargetPoint, unitControl.TargetPoint, Color.gray);
         continue;
-      } 
+      }
 
       if (closestTarget && closestDistance < targetDistance) continue;
 
@@ -121,7 +129,7 @@ public class TargetControl : MonoBehaviour {
       if (enemyVisible) {
         closestTarget = enemyTarget;
         closestDistance = targetDistance;
-      } 
+      }
     }
     return closestTarget;
   }

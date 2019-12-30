@@ -154,7 +154,7 @@ public class UnitControl : MonoBehaviour {
   }
 
   public void SetStats(float hits, float visualRange, float speed) {
-
+    targetControl.VisualRange = visualRange;
   }
 
   public void MoveComplete() {
