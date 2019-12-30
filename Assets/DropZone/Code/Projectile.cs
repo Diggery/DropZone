@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour {
 
-  TargetControl owner;
+  UnitTargeting owner;
   Rigidbody rbody;
   CapsuleCollider coll;
 
@@ -12,7 +12,7 @@ public class Projectile : MonoBehaviour {
   float lifeTime = 5.0f;
   DamageInfo bulletDamage;
 
-  public void Init(TargetControl owner, Vector3 targetDir, float range, DamageInfo damage) {
+  public void Init(UnitTargeting owner, Vector3 targetDir, float range, DamageInfo damage) {
     this.owner = owner;
     bulletDamage = damage;
     rbody = GetComponent<Rigidbody>();

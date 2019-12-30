@@ -24,8 +24,11 @@ public class CharacterSetup : MonoBehaviour {
       }
     }
 
+    Transform selector = transform.Find("SelectorCollision");
+    selector.SetParent(animator.GetBoneTransform(HumanBodyBones.Chest));
+
     CharacterEntry entry = gameManager.GetCharacter(unitControl.UnitType);
-    
+
     GameObject mainWeaponPrefab = gameManager.weaponInventory.GetPrefab(entry.mainWeapon);
     Weapon mainWeapon = Instantiate(mainWeaponPrefab, transform.position, transform.rotation).GetComponent<Weapon>();
 
@@ -34,6 +37,7 @@ public class CharacterSetup : MonoBehaviour {
     unitControl.SetAttachPoint("TargetPoint", targetPoint);
     unitControl.EquipMainWeapon(mainWeapon);
     unitControl.SetStats(entry.hits, entry.visualRange, entry.speed);
+
     Destroy(this);
   }
 }

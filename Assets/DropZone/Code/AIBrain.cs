@@ -30,14 +30,14 @@ public class AIBrain : MonoBehaviour {
   MapControl mapControl;
   public UnitControl CurrentTarget { get; set; }
 
-  float visualRange = 15;
-  float SqrVisualRange { get; set; }
+  UnitTargeting targeting { get; set; }
+
   public bool showDebug;
 
-  void Start() {
+  public AIBrain Init() {
     unitControl = GetComponent<UnitControl>();
+    targeting = GetComponent<UnitTargeting>();
     mapControl = MapControl.Instance;
-    SqrVisualRange = visualRange * visualRange;
     unitControl.pathComplete.AddListener(MoveComplete);
 
     gameObject.AddComponent<AIStateIdle>();
@@ -45,6 +45,7 @@ public class AIBrain : MonoBehaviour {
     gameObject.AddComponent<AIStateAttacking>();
 
     StartCoroutine(GatherStates());
+    return this;
   }
 
   IEnumerator GatherStates() {
@@ -70,7 +71,7 @@ public class AIBrain : MonoBehaviour {
   }
 
   public void MoveToSafeSpot(UnitControl closestEnenmy) {
-    if (FindSafePos(transform.position, visualRange, gameObject.tag, out Vector3 safePos)) {
+    if (mapControl.FindSafePos(transform.position, targeting.VisualRange, unitControl, targeting.VisualRange, out Vector3 safePos)) {
       MoveTo(safePos);
     } else {
       Debug.Log("Can't Find a safe space");
@@ -85,46 +86,5 @@ public class AIBrain : MonoBehaviour {
   public void AttackTarget(UnitControl enemy) {
     CurrentTarget = enemy;
     State = "Attacking";
-  }
-
-  public bool FindSafePos(Vector3 searchPos, float searchRange, string tag, out Vector3 safePos) {
-    GameObject[] targets;
-
-    if (tag.Equals("Player")) {
-      targets = GameObject.FindGameObjectsWithTag("Enemy");
-    } else if (tag.Equals("Enemy")) {
-      targets = GameObject.FindGameObjectsWithTag("Player");
-    } else {
-      safePos = searchPos;
-      return false;
-    }
-
-    List<MapData.MapCell> cellsInRange = mapControl.mapData.GetMapArea(searchPos, Mathf.RoundToInt(searchRange));
-
-    Dictionary<MapData.MapCell, float> scoredCells = new Dictionary<MapData.MapCell, float>();
-
-    foreach (MapData.MapCell cell in cellsInRange) {
-      bool isVisible = false;
-      float cellScore = Mathf.Infinity;
-
-      foreach (GameObject target in targets) {
-        if (mapControl.IsPositionVisible(target.transform.position, cell.mapPos, true)) {
-          isVisible = true;
-        }
-        float distanceFromSearch = (cell.mapPos - searchPos).sqrMagnitude + Random.Range(0, SqrVisualRange);
-        float distanceFromTarget = Mathf.Max(SqrVisualRange - (cell.mapPos - target.transform.position).sqrMagnitude, 0);
-        cellScore = Mathf.Min(cellScore, distanceFromSearch + distanceFromTarget);
-      }
-      scoredCells.Add(cell, (isVisible || cell.isCollision) ? Mathf.Infinity : cellScore);
-    }
-
-    if (scoredCells.Count < 1) {
-      safePos = searchPos;
-      return false;
-    }
-
-    safePos = scoredCells.OrderBy(element => element.Value).First().Key.mapPos;
-
-    return true;
   }
 }

@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class Weapon : MonoBehaviour {
 
   UnitControl owner;
-  TargetControl targetControl;
+  UnitTargeting targetControl;
   Transform grip;
   Transform muzzle;
   Transform magazine;
@@ -68,7 +68,7 @@ public class Weapon : MonoBehaviour {
     rbody = GetComponent<Rigidbody>();
     rbody.isKinematic = true;
     GetComponent<BoxCollider>().enabled = false;
-    targetControl = owner.gameObject.GetComponent<TargetControl>();
+    targetControl = owner.gameObject.GetComponent<UnitTargeting>();
 
     grip = transform.GetChild(0);
 
@@ -153,7 +153,7 @@ public class Weapon : MonoBehaviour {
     float hOffset = Random.Range(-horizontalSpread, horizontalSpread);
     aimingDirection = Quaternion.AngleAxis(hOffset, Vector3.up) * aimingDirection;
 
-    DamageInfo damageInfo = new DamageInfo(5, DamageType.Puncture, owner);
+    DamageInfo damageInfo = new DamageInfo(4.5f, DamageType.Puncture, owner);
     projectile.GetComponent<Projectile>().Init(targetControl, aimingDirection, range, damageInfo);
 
     kickBack = muzzle.forward * -0.1f + (Vector3.up * Random.Range(-0.02f, 0.02f));

@@ -13,6 +13,7 @@ public class Spawner : MonoBehaviour {
 
   public int spawnLimit = 5;
   public string unitType;
+  public string teamTag = "Enemy";
 
   public bool autoFill = false;
 
@@ -36,14 +37,17 @@ public class Spawner : MonoBehaviour {
   public void RequestSpawn(int amount) {
     spawnQueue += amount;
   }
- 
+
   GameObject CreateUnit(string unitName, Vector3 pos, Quaternion rot) {
 
     CharacterEntry entry = gameManager.GetCharacter(unitName);
     GameObject newUnit = GameObject.Instantiate(entry.prefab, pos, rot);
-    newUnit.AddComponent<AIBrain>();
+    newUnit.tag = teamTag;
+
     UnitControl unitControl = newUnit.GetComponent<UnitControl>().Init(entry.characterName);
-    unitControl.SetStats(entry.hits, entry.visualRange, entry.speed);
+
+    AIBrain brain = newUnit.AddComponent<AIBrain>().Init();
+    //brain.FindSafePos(transform.position, 10, );
 
     unitControl.Enemies.Add("Player");
     spawnQueue--;

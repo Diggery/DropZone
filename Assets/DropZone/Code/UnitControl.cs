@@ -20,7 +20,7 @@ public class UnitControl : MonoBehaviour {
   NavMeshAgent navAgent;
   Animator animator;
   UnitIK unitIK;
-  TargetControl targetControl;
+  UnitTargeting targetControl;
   public Weapon EquippedWeapon {
     get; set;
   }
@@ -123,13 +123,13 @@ public class UnitControl : MonoBehaviour {
     navAgent.avoidancePriority = Random.Range(0, 100);
     animator = GetComponent<Animator>();
     unitIK = GetComponent<UnitIK>().Init();
-    targetControl = gameObject.AddComponent<TargetControl>().Init();
+    targetControl = gameObject.AddComponent<UnitTargeting>().Init();
     gameObject.GetComponent<CharacterSetup>().Init();
     LerpToPose.onTickVector = LerpPoseTick;
     LerpToPose.onFinish = LerpPoseFinished;
     LerpToPose.duration = 0.5f;
     SkeletonConfig skelConfig = GetComponent<SkeletonConfig>();
-    if (skelConfig)skelConfig.Init();
+    if (skelConfig) skelConfig.Init();
     return this;
   }
 
@@ -178,7 +178,7 @@ public class UnitControl : MonoBehaviour {
     endValue.y = startValue.y;
     endValue.w = gameManager.mapControl.GetCoverHeading(mapCell);
     LerpToPose.endValue = endValue;
-    Interpolator.Start(LerpToPose);
+    Interpolator.Start(LerpToPose, gameObject.name + " is moving to cover");
   }
 
   public bool EquipMainWeapon(Weapon weapon) {

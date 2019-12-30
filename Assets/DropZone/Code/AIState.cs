@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class AIState : MonoBehaviour {
 
   protected UnitControl unitControl;
-  protected TargetControl targetControl;
+  protected UnitTargeting targetControl;
   protected Animator animator;
   protected AIBrain brain;
   protected NavMeshAgent navAgent;
@@ -30,7 +30,7 @@ public class AIState : MonoBehaviour {
 
   public virtual void StateInit() {
     unitControl = GetComponent<UnitControl>();
-    targetControl = GetComponent<TargetControl>();
+    targetControl = GetComponent<UnitTargeting>();
     animator = GetComponent<Animator>();
     brain = GetComponent<AIBrain>();
     navAgent = GetComponent<NavMeshAgent>();

@@ -1746,6 +1746,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnLimit: 5
   unitType: BadGuy
+  teamTag: Enemy
   autoFill: 1
 --- !u!23 &1503562061
 MeshRenderer:
@@ -2365,7 +2366,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2138931012
 MonoBehaviour:
   m_ObjectHideFlags: 0

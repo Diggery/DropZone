@@ -32,11 +32,11 @@ public class MapSelector : MonoBehaviour {
       newPathLine.enabled = isOpen;
 
       if (isOpen && !wasOpen) {
-        Interpolator.Start(labelTrans);
+        Interpolator.Start(labelTrans, "MapSelectorOpen");
         GameTime.AutoPause("OpenMapSelector", GameTime.TimeSetting.SlowMo);
       }
       if (!isOpen && wasOpen) {
-        Interpolator.Reverse(labelTrans);
+        Interpolator.Reverse(labelTrans, "MapSelectorClose");
         GameTime.AutoPause("OpenMapSelector", GameTime.TimeSetting.Normal);
       }
     }
@@ -56,7 +56,11 @@ public class MapSelector : MonoBehaviour {
 
     labelTrans.onTick = OnLabelLerp;
     labelTrans.onFinish = OnLabelFinish;
+    labelTrans.container = gameObject;
+
     panelTrans.onTick = OnPanelLerp;
+    panelTrans.container = gameObject;
+
     IsOpen = true;
     IsOpen = false;
     return this;
@@ -80,7 +84,7 @@ public class MapSelector : MonoBehaviour {
     transform.rotation = newOrientation;
 
     if (mapCell.HasCover) {
-      Interpolator.Start(panelTrans);
+      Interpolator.Start(panelTrans, "MapSelectorPanelOpen");
       panel.enabled = true;
     } else {
       panel.enabled = false;
