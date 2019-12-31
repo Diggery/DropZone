@@ -159,7 +159,7 @@ public class UnitControl : MonoBehaviour {
 
   public void MoveComplete() {
 
-    MapData.MapCell mapCell = gameManager.GetMapCell(transform.position);
+    MapData.MapCell mapCell = gameManager.GetMapCell(navAgent.destination);
 
     pathComplete.Invoke();
     InCover = mapCell.HasCover;
