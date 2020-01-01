@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 43b7e89533a684117884232f1f1c7ad4
 ModelImporter:
-  serializedVersion: 26
+  serializedVersion: 19300
   internalIDToNameTable:
   - first:
       74: -3868409228936331223
@@ -9,9 +9,21 @@ ModelImporter:
   - first:
       74: -8537470460466704901
     second: StandUp_Front
+  - first:
+      74: 9179320512041422903
+    second: Hit_Front
+  - first:
+      74: -5098050899778099307
+    second: Hit_Right
+  - first:
+      74: -5821521628176874248
+    second: Hit_Left
+  - first:
+      74: 2523982293011531270
+    second: Hit_Back
   externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -75,7 +87,6 @@ ModelImporter:
     normalSmoothingSource: 0
   referencedClips: []
   importAnimation: 1
-  copyAvatar: 1
   humanDescription:
     serializedVersion: 3
     human:
@@ -786,8 +797,10 @@ ModelImporter:
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 2add808b9edcf2c42818a697c08410ca,
     type: 3}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1
+  avatarSetup: 2
   additionalBone: 0
   userData: 
   assetBundleName: 

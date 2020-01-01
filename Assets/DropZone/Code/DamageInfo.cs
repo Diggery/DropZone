@@ -65,26 +65,9 @@ public class DamageInfo {
 
     public int GetOrthagonalDirection(Transform victim) {
         Vector3 incomingDir = (position - victim.position).normalized;
-        float angle = Vector3.Angle(incomingDir, victim.forward * Mathf.Sign(Vector3.Dot(incomingDir, victim.right)));
+        float angle = Vector3.Angle(incomingDir, victim.forward) * Mathf.Sign(Vector3.Dot(incomingDir, victim.right));
         return Mathf.RoundToInt(angle / 90);
     }
-
-    public string GetOrthagonalDirectionName(Transform victim) {
-        Vector3 incomingDir = (position - victim.position).normalized;
-        float angle = Vector3.Angle(incomingDir, victim.forward * Mathf.Sign(Vector3.Dot(incomingDir, victim.right)));
-        int direction = Mathf.RoundToInt(angle / 90); 
-
-        if (direction == 0) {
-            return "Forward";
-        } else if (direction == 1) {
-            return "Right";
-        } else if (direction == -1) {
-            return "Left";
-        } else {
-            return "Back";
-        }
-    }
-
   public bool IsMissile { get; set; }
 }
 

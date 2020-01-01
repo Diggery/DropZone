@@ -142,11 +142,13 @@ public class UnitControl : MonoBehaviour {
     // suprise timer for ducking incoming fire
     if (surpiseCoolDown > 0) {
       surpiseCoolDown -= Time.deltaTime;
-      // dive if we are close and still suprised
-      LayerMask terrainMask = LayerMask.GetMask("Terrain");
-      bool wayIsClear = !Physics.Linecast(transform.position + Vector3.up, navAgent.destination + Vector3.up, terrainMask);
+      if (IsMoving) {
+        // dive if we are close and still suprised
+        LayerMask terrainMask = LayerMask.GetMask("Terrain");
+        bool wayIsClear = !IsDead && !Physics.Linecast(transform.position + Vector3.up, navAgent.destination + Vector3.up, terrainMask);
 
-      if (wayIsClear && IsMoving && (DistanceToDesitination < 2.0f && DistanceToDesitination > 1.5f)) animator.SetTrigger("Dive");
+        if (wayIsClear && IsMoving && (DistanceToDesitination < 2.5f && DistanceToDesitination > 2.0f)) animator.SetTrigger("Dive");
+      }
     }
 
     //check for if we are done moving
@@ -223,6 +225,8 @@ public class UnitControl : MonoBehaviour {
     if (hits < 0) {
       Incapacitate(info);
     }
+    animator.SetInteger("AttackDirection", info.GetOrthagonalDirection(transform));
+    animator.SetTrigger("Hit");
   }
 
   public void TakeHealing(float amount) {

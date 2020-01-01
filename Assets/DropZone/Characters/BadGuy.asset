@@ -18,4 +18,4 @@ MonoBehaviour:
   sideArm: Mac10
   speed: 3.5
   visualRange: 20
-  hits: 5
+  hits: 10
