@@ -13,7 +13,7 @@ public class BehaviorMoving : StateMachineBehaviour {
   }
 
   override public void OnStateMachineExit(Animator animator, int stateMachinePathHash) {
+    Debug.Log("Exiting StateMachine");
     unitControl.InMovingState = false;
-
   }
 }

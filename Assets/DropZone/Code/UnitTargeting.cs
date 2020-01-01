@@ -57,7 +57,7 @@ public class UnitTargeting : MonoBehaviour {
     if (!CurrentTarget || CurrentTarget.IsDead) {
       ReadyToFire = false;
       CurrentTarget = ScanForTargets();
-      animator.SetBool("HasTarget", false);
+      animator.SetBool("TargetVisible", false);
       animator.SetBool("PeekLeft", false);
       animator.SetBool("PeekRight", false);
       return;
@@ -73,7 +73,7 @@ public class UnitTargeting : MonoBehaviour {
     bool canPeekEnemyLeft = mapControl.IsPositionPeekableLeft(transform.position, CurrentTarget.transform.position);
     bool canPeekEnemyRight = mapControl.IsPositionPeekableRight(transform.position, CurrentTarget.transform.position);
 
-    animator.SetBool("HasTarget", enemyVisible);
+    animator.SetBool("TargetVisible", enemyVisible);
     animator.SetBool("PeekLeft", unitControl.InCover && !enemyVisible && canPeekEnemyLeft);
     animator.SetBool("PeekRight", unitControl.InCover && !enemyVisible && canPeekEnemyRight);
 

@@ -153,7 +153,7 @@ public class Weapon : MonoBehaviour {
     float hOffset = Random.Range(-horizontalSpread, horizontalSpread);
     aimingDirection = Quaternion.AngleAxis(hOffset, Vector3.up) * aimingDirection;
 
-    DamageInfo damageInfo = new DamageInfo(4.5f, DamageType.Puncture, owner);
+    DamageInfo damageInfo = new DamageInfo(0.5f, DamageType.Puncture, owner);
     projectile.GetComponent<Projectile>().Init(targetControl, aimingDirection, range, damageInfo);
 
     kickBack = muzzle.forward * -0.1f + (Vector3.up * Random.Range(-0.02f, 0.02f));

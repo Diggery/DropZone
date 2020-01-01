@@ -61,8 +61,13 @@ public class UnitControl : MonoBehaviour {
     set {
       inMovingState = value;
       if (inMovingState) {
-        if (moveDestination != null) navAgent.SetDestination(moveDestination.Value);
+        Debug.Log("Entering Moving State");
+
+        navAgent.SetDestination(moveDestination.Value);
         moveDestination = null;
+      } else {
+        Debug.Log("Exiting Moving State");
+
       }
     }
   }

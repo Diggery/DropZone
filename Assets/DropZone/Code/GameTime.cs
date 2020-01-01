@@ -58,7 +58,7 @@ public class GameTime : MonoBehaviour {
         timeScaleGoal = 1.0f;
         break;
       case TimeSetting.SlowMo:
-       timeScaleGoal = 0.025f;
+       timeScaleGoal = 0.05f;
         break;
       case TimeSetting.Stopped:
         timeScaleGoal = 0.0f;
