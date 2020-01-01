@@ -21,6 +21,7 @@ public class UnitControl : MonoBehaviour {
   Animator animator;
   UnitIK unitIK;
   UnitTargeting targetControl;
+
   public Weapon EquippedWeapon {
     get; set;
   }
@@ -40,6 +41,8 @@ public class UnitControl : MonoBehaviour {
   public List<string> Enemies { get; } = new List<string>();
 
   Dictionary<string, Transform> attachPoints = new Dictionary<string, Transform>();
+
+  float surpiseCoolDown = 1.0f;
 
   bool isMoving;
   public bool IsMoving {
@@ -94,8 +97,12 @@ public class UnitControl : MonoBehaviour {
     }
   }
 
+  public float DistanceToDesitination {
+    get { return Vector3.Distance(navAgent.destination, navAgent.transform.position); }
+  }
+
   public NavMeshPath CurrentPath {
-    get { return navAgent.path; } 
+    get { return navAgent.path; }
   }
 
   float maxHits = 5;
@@ -110,7 +117,7 @@ public class UnitControl : MonoBehaviour {
   }
 
   void Start() {
-    if (autoInit)Init(gameObject.name);
+    if (autoInit) Init(gameObject.name);
   }
 
   public UnitControl Init(string unitType) {
@@ -131,9 +138,21 @@ public class UnitControl : MonoBehaviour {
   }
 
   void Update() {
-    if (moveDestination == null && InMovingState && IsPathComplete) {
-      MoveComplete();
+
+    // suprise timer for ducking incoming fire
+    if (surpiseCoolDown > 0) {
+      surpiseCoolDown -= Time.deltaTime;
+      // dive if we are close and still suprised
+      LayerMask terrainMask = LayerMask.GetMask("Terrain");
+      bool wayIsClear = !Physics.Linecast(transform.position + Vector3.up, navAgent.destination + Vector3.up, terrainMask);
+
+      if (wayIsClear && IsMoving && (DistanceToDesitination < 2.0f && DistanceToDesitination > 1.5f)) animator.SetTrigger("Dive");
     }
+
+    //check for if we are done moving
+    if (moveDestination == null && InMovingState && IsPathComplete) MoveComplete();
+
+    // dont target anything if we are incapacitated
     if (!IsDead) targetControl.Process();
   }
 
@@ -150,8 +169,10 @@ public class UnitControl : MonoBehaviour {
     IsMoving = true;
   }
 
-  public void SetStats(float hits, float visualRange, float speed) {
+  public void SetStats(float hitpoints, float visualRange, float speed) {
     targetControl.VisualRange = visualRange;
+    maxHits = hitpoints;
+    hits = hitpoints;
   }
 
   public void MoveComplete() {
@@ -187,6 +208,13 @@ public class UnitControl : MonoBehaviour {
   public void SetAttachPoint(string name, Transform point) {
     if (!attachPoints.ContainsKey(name))
       attachPoints.Add(name, point);
+  }
+
+  public void AttackedBy(UnitControl attacker) {
+    if (surpiseCoolDown < 0) {
+      animator.SetTrigger("UnderFire");
+      surpiseCoolDown = 1.0f;
+    }
   }
 
   public void TakeDamage(DamageInfo info) {
@@ -240,6 +268,6 @@ public class UnitControl : MonoBehaviour {
       default:
         Debug.Log("Don't know what to do with a " + eventName + " event");
         break;
-    } 
+    }
   }
 }

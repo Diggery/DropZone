@@ -20,7 +20,7 @@ public class AIStateIdle : AIState {
     UnitControl closestEnemy = targetControl.ScanForTargets();
     if (closestEnemy) {
    //   if (Random.value > 0.5f) {
-        brain.MoveToSafeSpot(closestEnemy);
+       // brain.MoveToSafeSpot(closestEnemy);
    //   } else {
       //  brain.AttackTarget(closestEnemy);
    //   }

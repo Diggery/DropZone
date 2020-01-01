@@ -17,5 +17,5 @@ MonoBehaviour:
   mainWeapon: MkII
   sideArm: Mac10
   speed: 3.5
-  visualRange: 25
-  hits: 5
+  visualRange: 10
+  hits: 20
