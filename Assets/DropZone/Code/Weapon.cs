@@ -21,8 +21,7 @@ public class Weapon : MonoBehaviour {
   int burstAmount = 3;
   float burstCooldown = 0.5f;
   float burstCooldownTimer = 1.0f;
-  float reloadTimer = 1.0f;
-  float reloadTime = 2.0f;
+  bool reloading = false;
 
   float range = 10;
   float verticalSpread = 5;
@@ -56,7 +55,7 @@ public class Weapon : MonoBehaviour {
   }
 
   public bool IsReady {
-    get { return (reloadTimer <= 0); }
+    get { return !reloading; }
   }
 
   public Vector3 MuzzlePos {
@@ -83,7 +82,7 @@ public class Weapon : MonoBehaviour {
     pickUpCollision.enabled = false;
     InputRelay uiInput = pickUpCollision.gameObject.AddComponent<InputRelay>();
     uiInput.onClick.AddListener(OnClick);
-    Reload(10, true);
+    Reloaded(10, true);
   }
 
   void Update() {
@@ -106,10 +105,7 @@ public class Weapon : MonoBehaviour {
 
     if (fireRateTimer > 0) fireRateTimer -= Time.deltaTime;
     if (burstCooldownTimer > 0) burstCooldownTimer -= Time.deltaTime;
-    if (reloadTimer > 0) {
-      reloadTimer -= Time.deltaTime;
-      if (reloadTimer < 0) Reload(15);
-    }
+
 
     if (weaponFlash && weaponFlash.enabled) {
       weaponFlash.intensity = Mathf.Lerp(weaponFlash.intensity, 0.0f, Time.deltaTime * 8);
@@ -122,7 +118,7 @@ public class Weapon : MonoBehaviour {
 
     if (fireRateTimer > 0) return;
     if (burstCooldownTimer > 0) return;
-    if (reloadTimer > 0) return;
+    if (reloading) return;
     if (roundsInMagazine <= 0) {
       EjectMagazine();
       return;
@@ -196,7 +192,8 @@ public class Weapon : MonoBehaviour {
 
   }
 
-  public void Reload(int magazineSize, bool instant = false) {
+  public void Reloaded(int magazineSize, bool instant = false) {
+    reloading = false;
     roundsInMagazine = magazineSize;
     magazine.GetComponent<Renderer>().enabled = true;
   }
@@ -216,8 +213,7 @@ public class Weapon : MonoBehaviour {
     //  return;
     //}
     //magazines--;
-
-    reloadTimer = reloadTime;
+    reloading = true;
 
     owner.Reload();
   }

@@ -86,7 +86,11 @@ public class UnitTargeting : MonoBehaviour {
       }
     }
 
-    ReadyToFire = !unitControl.IsMoving && unitControl.EquippedWeapon.IsReady && (readyTimer < 0) && (enemyVisible || canPeekEnemyLeft || canPeekEnemyRight);
+    ReadyToFire =
+      (readyTimer < 0) &&
+      !unitControl.MoveQueued &&
+      unitControl.EquippedWeapon.IsReady &&
+      (enemyVisible || canPeekEnemyLeft || canPeekEnemyRight);
 
     if (readyTimer > 0) readyTimer -= Time.deltaTime;
 

@@ -105,6 +105,9 @@ public class UnitControl : MonoBehaviour {
   }
 
   Vector3? moveDestination;
+  public bool MoveQueued {
+    get { return moveDestination != null; }
+  }
 
   void Start() {
     if (autoInit)Init(gameObject.name);
@@ -218,10 +221,25 @@ public class UnitControl : MonoBehaviour {
     animator.SetTrigger("Reload");
   }
 
+  public void ReloadComplete() {
+    EquippedWeapon.Reloaded(15);
+  }
+
   void LerpPoseTick(Vector4 amount) {
     transform.position = amount;
     transform.rotation = Quaternion.AngleAxis(amount.w, Vector3.up);
   }
 
   void LerpPoseFinished(bool reverse) { }
+
+  public void AnimEvent(string eventName) {
+    switch (eventName) {
+      case "ReloadComplete":
+        ReloadComplete();
+        break;
+      default:
+        Debug.Log("Don't know what to do with a " + eventName + " event");
+        break;
+    } 
+  }
 }
