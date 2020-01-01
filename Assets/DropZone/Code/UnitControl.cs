@@ -37,12 +37,7 @@ public class UnitControl : MonoBehaviour {
     get { return attachPoints["TargetPoint"].position; }
   }
 
-  List<string> enemies = new List<string>();
-  public List<string> Enemies {
-    get {
-      return enemies;
-    }
-  }
+  public List<string> Enemies { get; } = new List<string>();
 
   Dictionary<string, Transform> attachPoints = new Dictionary<string, Transform>();
 
@@ -83,13 +78,7 @@ public class UnitControl : MonoBehaviour {
     }
   }
 
-  bool isSelected = false;
-  public bool IsSelected {
-    get { return isSelected; }
-    set {
-      isSelected = value;
-    }
-  }
+  public bool IsSelected { get; set; } = false;
 
   [HideInInspector]
   public UnityEvent pathComplete = new UnityEvent();

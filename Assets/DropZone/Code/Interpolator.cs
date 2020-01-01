@@ -6,11 +6,7 @@ public class Interpolator : MonoBehaviour {
 
   [System.Serializable]
   public class LerpData {
-    bool isFloat = true;
-    public bool IsFloat {
-      get { return isFloat; }
-      set { isFloat = value; }
-    }
+    public bool IsFloat { get; set; } = true;
 
     public float duration = 1.0f;
     public bool useGameTime = false;

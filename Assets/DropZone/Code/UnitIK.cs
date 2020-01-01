@@ -17,11 +17,11 @@ public class UnitIK : MonoBehaviour {
   }
 
   private void OnAnimatorIK(int layerIndex) {
-    if (!unitControl.EquippedWeapon)return;
+    if (!unitControl.EquippedWeapon) return;
     blendAmount = animator.GetFloat("IKBlend");
     unitControl.EquippedWeapon.GripBlend = blendAmount;
 
-    if (!unitControl.HasTarget)return;
+    if (!unitControl.HasTarget) return;
 
     lookPosition = unitControl.CurrentTargetPos;
 

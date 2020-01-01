@@ -8,8 +8,7 @@ public class DamageInfo {
     public Vector3 position;
     public UnitControl attacker;
     public Transform hitTarget;
-    bool isMissile;
-    bool isDirectional;
+  bool isDirectional;
 
     public DamageInfo(float amount) {
         damageAmount = amount;
@@ -86,13 +85,6 @@ public class DamageInfo {
         }
     }
 
-    public bool IsMissile {
-        get {
-            return isMissile;
-        } 
-        set { 
-            isMissile = value;
-        }
-    }
+  public bool IsMissile { get; set; }
 }
 
