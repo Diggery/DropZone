@@ -64,14 +64,9 @@ public class UnitControl : MonoBehaviour {
     set {
       inMovingState = value;
       if (inMovingState) {
-        Debug.Log("Entering Moving State");
-
         navAgent.SetDestination(moveDestination.Value);
         moveDestination = null;
-      } else {
-        Debug.Log("Exiting Moving State");
-
-      }
+      } 
     }
   }
 
@@ -225,8 +220,10 @@ public class UnitControl : MonoBehaviour {
     if (hits < 0) {
       Incapacitate(info);
     }
-    animator.SetInteger("AttackDirection", info.GetOrthagonalDirection(transform));
-    animator.SetTrigger("Hit");
+    if (!IsMoving) {
+      animator.SetInteger("AttackDirection", info.GetOrthagonalDirection(transform));
+      animator.SetTrigger("Hit");
+    }
   }
 
   public void TakeHealing(float amount) {
