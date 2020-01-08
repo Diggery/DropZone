@@ -64,7 +64,7 @@ public class UnitTargeting : MonoBehaviour {
       return;
     }
 
-    if (transform.tag.Equals("Player")) Debug.DrawLine(CurrentTarget.TargetPoint, unitControl.TargetPoint, Color.green);
+    if (!transform.tag.Equals("Player")) Debug.DrawLine(CurrentTarget.TargetPoint, unitControl.TargetPoint, Color.green);
 
     Vector3 targetDir = transform.InverseTransformPoint(CurrentTarget.transform.position).normalized;
     float angleToTarget = Vector3.Angle(targetDir, Vector3.forward) * Mathf.Sign(targetDir.x);

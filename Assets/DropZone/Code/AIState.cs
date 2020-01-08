@@ -40,18 +40,19 @@ public class AIState : MonoBehaviour {
 
   public virtual void StateEnter() {
     isActive = true;
-   // Debug.Log(gameObject.name + "------>  Entering " + stateName + " state.");
   }
 
   public virtual void StateUpdate() { }
 
   public virtual void StateExit() {
     isActive = false;
-   // Debug.Log(gameObject.name + "------>  Exiting " + stateName + " state.");
   }
 
-private void OnCollisionEnter(Collision other) {
+  private void OnCollisionEnter(Collision other) {
     UnitControl control = other.gameObject.GetComponent<UnitControl>();
+  }
+
+  public virtual void OnAttacked(UnitControl attacker) {
   }
 
   protected virtual void CollidedWithEnemy(UnitControl other) { }
