@@ -17,19 +17,17 @@ public class AIStateIdle : AIState {
 
   public override void StateUpdate() {
     base.StateUpdate();
-    UnitControl closestEnemy = targetControl.ScanForTargets();
-    if (closestEnemy) {
-   //   if (Random.value > 0.5f) {
-       // brain.MoveToSafeSpot(closestEnemy);
-   //   } else {
-      //  brain.AttackTarget(closestEnemy);
-   //   }
+    if (targetControl.CurrentTarget) {
+
     }
   }
 
   public override void StateExit() {
     base.StateExit();
+  }
 
+  public override void OnAttacked(UnitControl attacker) {
+    base.OnAttacked(attacker);
   }
 
   protected override void CollidedWithEnemy(UnitControl enemy) {

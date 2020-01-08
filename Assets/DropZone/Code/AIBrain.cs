@@ -29,8 +29,10 @@ public class AIBrain : MonoBehaviour {
   UnitControl unitControl;
   MapControl mapControl;
   public UnitControl CurrentTarget { get; set; }
-
   UnitTargeting targeting { get; set; }
+
+  float scanTimer = -1;
+  float scanInterval = 1.0f;
 
   public bool showDebug;
 
@@ -60,9 +62,17 @@ public class AIBrain : MonoBehaviour {
 
   void Update() {
     if (isBrainDead) return;
-    
+
     if (CurrentState)
       CurrentState.StateUpdate();
+
+    if (CurrentState && CurrentState.StateName.Equals("Idle") && scanTimer > 0) {
+      scanTimer -= Time.deltaTime;
+      if (scanTimer < 0) {
+        CurrentTarget = targeting.ScanForTargets();
+        scanTimer = scanInterval;
+      }
+    }
   }
 
   public void MoveTo(Vector3 mapPos) {

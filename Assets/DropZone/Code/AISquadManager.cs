@@ -2,7 +2,7 @@
 using UnityEngine;
 using System.IO;
 
-public class Spawner : MonoBehaviour {
+public class AISquadManager : MonoBehaviour {
 
   GameManager gameManager;
   int amountSpawned = 0;
