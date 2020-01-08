@@ -8,6 +8,7 @@ public class CharacterEntry : ScriptableObject {
 
     public string characterName;
     public GameObject prefab;
+    public GameObject head;
     public string mainWeapon;
     public string sideArm;
 
