@@ -48,7 +48,7 @@ public class CharacterSetup : MonoBehaviour {
     unitControl.SetAttachPoint("RightHand", rightHandAttach);
     unitControl.SetAttachPoint("LeftHand", leftHandAttach);
     unitControl.SetAttachPoint("TargetPoint", targetPoint);
-    unitControl.EquipMainWeapon(mainWeapon);
+    unitControl.EquipWeapon(mainWeapon);
     unitControl.SetStats(entry.hits, entry.visualRange, entry.speed);
 
     Destroy(this);

@@ -196,7 +196,7 @@ public class UnitControl : MonoBehaviour {
     Interpolator.Start(LerpToPose, gameObject.name + " is moving to cover");
   }
 
-  public bool EquipMainWeapon(Weapon weapon) {
+  public bool EquipWeapon(Weapon weapon) {
     weapon.Init(this, animator.GetBoneTransform(HumanBodyBones.Chest), attachPoints["RightHand"]);
     EquippedWeapon = weapon;
     return true;

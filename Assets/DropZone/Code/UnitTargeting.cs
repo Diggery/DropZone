@@ -21,6 +21,7 @@ public class UnitTargeting : MonoBehaviour {
   LayerMask terrainMask;
 
   public UnitControl CurrentTarget { get; set; }
+  public UnitControl SecondaryTarget { get; set; }
   float targetMemory = 1.0f;
 
   public bool IsAiming { get; set; }
