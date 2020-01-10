@@ -16,3 +16,6 @@ MonoBehaviour:
   - name: MkII
     prefab: {fileID: 6643333174344509921, guid: 2c7b604629a1835469125d148909c5b7,
       type: 3}
+  - name: Sidewinder
+    prefab: {fileID: 6643333174344509921, guid: 43b0d387c88ea4eac9d105223a4ac76e,
+      type: 3}

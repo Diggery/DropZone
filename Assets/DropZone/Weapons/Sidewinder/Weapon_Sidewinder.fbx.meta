@@ -1,20 +1,8 @@
 fileFormatVersion: 2
-guid: 069ef87b76706487298389685b8e547e
+guid: bd3aeaae0d8564a74a2840fbf7b6eff5
 ModelImporter:
   serializedVersion: 19300
-  internalIDToNameTable:
-  - first:
-      74: 5522812681064789136
-    second: Run
-  - first:
-      74: -5328894918516266462
-    second: Chase
-  - first:
-      74: 842709594850891462
-    second: Creep
-  - first:
-      74: 2667949614841947897
-    second: Walk
+  internalIDToNameTable: []
   externalObjects: {}
   materials:
     materialImportMode: 1

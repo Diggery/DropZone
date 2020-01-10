@@ -16,7 +16,7 @@ MonoBehaviour:
   prefab: {fileID: 1506360018236373272, guid: 11917e493b9b1f7448b1c059744fbf0b, type: 3}
   head: {fileID: 2367827139437705270, guid: 639c505e78dad4d14a9250706bc6e24c, type: 3}
   mainWeapon: MkII
-  sideArm: Mac10
+  sideArm: Sidewinder
   speed: 3.5
   visualRange: 20
   hits: 10

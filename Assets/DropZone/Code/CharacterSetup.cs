@@ -6,6 +6,9 @@ public class CharacterSetup : MonoBehaviour {
 
   public Transform rightHandAttach;
   public Transform leftHandAttach;
+  public Transform backpackAttach;
+  public Transform leftHipAttach;
+  public Transform rightHipAttach;
   public Transform targetPoint;
 
   public void Init() {
@@ -45,10 +48,18 @@ public class CharacterSetup : MonoBehaviour {
     GameObject mainWeaponPrefab = gameManager.weaponInventory.GetPrefab(entry.mainWeapon);
     Weapon mainWeapon = Instantiate(mainWeaponPrefab, transform.position, transform.rotation).GetComponent<Weapon>();
 
+    GameObject sideArmPrefab = gameManager.weaponInventory.GetPrefab(entry.sideArm);
+    Weapon sideArm = Instantiate(sideArmPrefab, transform.position, transform.rotation).GetComponent<Weapon>();
+
     unitControl.SetAttachPoint("RightHand", rightHandAttach);
     unitControl.SetAttachPoint("LeftHand", leftHandAttach);
+    unitControl.SetAttachPoint("Backpack", backpackAttach);
+    unitControl.SetAttachPoint("LeftHip", leftHipAttach);
+    unitControl.SetAttachPoint("RightHip", rightHipAttach);
     unitControl.SetAttachPoint("TargetPoint", targetPoint);
-    unitControl.EquipWeapon(mainWeapon);
+
+    unitControl.AddWeapon(mainWeapon);
+    unitControl.AddWeapon(sideArm);
     unitControl.SetStats(entry.hits, entry.visualRange, entry.speed);
 
     Destroy(this);

@@ -21,7 +21,10 @@ public class GameManager : MonoBehaviour {
     }
   }
 
-  public List<UnitControl> units = new List<UnitControl>();
+  List<UnitControl> units = new List<UnitControl>();
+  public List<UnitControl> Units {
+    get { return units; }
+  }
 
 
   void Awake() {

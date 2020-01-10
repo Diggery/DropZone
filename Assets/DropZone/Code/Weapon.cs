@@ -7,6 +7,7 @@ public class Weapon : MonoBehaviour {
 
   UnitControl owner;
   UnitTargeting unitTargeting;
+  Transform stow;
   Transform grip;
   Transform muzzle;
   Transform magazine;
@@ -27,7 +28,7 @@ public class Weapon : MonoBehaviour {
   float verticalSpread = 5;
   float horizontalSpread = 5;
 
-  public bool IsTwoHanded;
+  public bool IsMainWeapon;
   public Vector3 gripOffset = Vector3.zero;
   public Vector3 stockOffset = Vector3.zero;
   public Vector3 shoulderOffset = Vector3.zero;
@@ -62,7 +63,7 @@ public class Weapon : MonoBehaviour {
     get { return muzzle.position; }
   }
 
-  public void Init(UnitControl owner, Transform stockPivot, Transform gripPivot) {
+  public void Init(UnitControl owner, Transform stockPivot, Transform gripAttach, Transform stowAttach) {
     this.owner = owner;
     rbody = GetComponent<Rigidbody>();
     rbody.isKinematic = true;
@@ -72,7 +73,8 @@ public class Weapon : MonoBehaviour {
     grip = transform.GetChild(0);
 
     this.stockPivot = stockPivot;
-    this.gripPivot = gripPivot;
+    this.gripPivot = gripAttach;
+    this.stow = stowAttach;
 
     muzzle = grip.Find("Muzzle");
     magazine = grip.Find("Magazine");
@@ -91,6 +93,21 @@ public class Weapon : MonoBehaviour {
     if (kickBack.sqrMagnitude > Mathf.Epsilon) {
       kickBack = Vector3.Lerp(kickBack, Vector3.zero, Time.deltaTime * 8);
     }
+
+    if (fireRateTimer > 0) fireRateTimer -= Time.deltaTime;
+    if (burstCooldownTimer > 0) burstCooldownTimer -= Time.deltaTime;
+    if (weaponFlash && weaponFlash.enabled) {
+      weaponFlash.intensity = Mathf.Lerp(weaponFlash.intensity, 0.0f, Time.deltaTime * 8);
+      if (weaponFlash.intensity < 0.05f)
+        weaponFlash.enabled = false;
+    }
+
+    if (owner && !IsEquipped) {
+      transform.position = stow.position;
+      transform.rotation = stow.rotation;
+      return;
+    }
+
     if (blendAmount > 0) {
       Vector3 weaponLookPosition = stockPivot.TransformPoint(shoulderOffset);
       Quaternion weaponLookRotation = Quaternion.LookRotation((lookPos - transform.position).normalized);
@@ -103,15 +120,7 @@ public class Weapon : MonoBehaviour {
       transform.rotation = gripPivot.rotation;
     }
 
-    if (fireRateTimer > 0) fireRateTimer -= Time.deltaTime;
-    if (burstCooldownTimer > 0) burstCooldownTimer -= Time.deltaTime;
 
-
-    if (weaponFlash && weaponFlash.enabled) {
-      weaponFlash.intensity = Mathf.Lerp(weaponFlash.intensity, 0.0f, Time.deltaTime * 8);
-      if (weaponFlash.intensity < 0.05f)
-        weaponFlash.enabled = false;
-    }
   }
 
   public void Attack(UnitControl target) {
@@ -158,11 +167,13 @@ public class Weapon : MonoBehaviour {
 
   }
 
-  public virtual void Stowed() {
+  public virtual void Stow() {
+    if (IsEquipped) owner.EquippedWeapon = null;
     IsEquipped = false;
   }
 
-  public virtual void Drawn() {
+  public virtual void Equip() {
+    owner.EquippedWeapon = this;
     IsEquipped = true;
   }
 
@@ -211,10 +222,6 @@ public class Weapon : MonoBehaviour {
 
     magazine.GetComponent<Renderer>().enabled = false;
 
-    //if (magazines == 0) {
-    //  return;
-    //}
-    //magazines--;
     reloading = true;
 
     owner.Reload();
