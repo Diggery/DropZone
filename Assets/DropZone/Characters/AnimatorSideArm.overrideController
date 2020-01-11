@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: AnimatorSideArm
+  m_Controller: {fileID: 9100000, guid: 076c27784313041cead2b93129dd4029, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 5522812681064789136, guid: f740687e6fd7849cea53d148e7646fb1,
+      type: 3}
+    m_OverrideClip: {fileID: 5522812681064789136, guid: 069ef87b76706487298389685b8e547e,
+      type: 3}
+  - m_OriginalClip: {fileID: 941180117272279947, guid: f740687e6fd7849cea53d148e7646fb1,
+      type: 3}
+    m_OverrideClip: {fileID: 5522812681064789136, guid: 069ef87b76706487298389685b8e547e,
+      type: 3}

@@ -19,9 +19,7 @@ public class CharacterSetup : MonoBehaviour {
     CharacterEntry entry = gameManager.GetCharacter(unitControl.UnitType);
 
     Transform head = null;
-    if (entry.head) {
-      head = Instantiate(entry.head).transform;
-    }
+    if (entry.head) head = Instantiate(entry.head).transform;
 
     foreach (Transform group in transform) {
       if (group.name.Contains("GeoGroup")) {
@@ -40,7 +38,7 @@ public class CharacterSetup : MonoBehaviour {
 
     head.SetParent(animator.GetBoneTransform(HumanBodyBones.Head));
     head.localPosition = Vector3.zero;
-    head.localRotation = Quaternion.identity;
+    head.localRotation = Quaternion.Euler(85, 0, 0);
 
     Transform selector = transform.Find("SelectorCollision");
     selector.SetParent(animator.GetBoneTransform(HumanBodyBones.Chest));
@@ -60,6 +58,7 @@ public class CharacterSetup : MonoBehaviour {
 
     unitControl.AddWeapon(mainWeapon);
     unitControl.AddWeapon(sideArm);
+
     unitControl.SetStats(entry.hits, entry.visualRange, entry.speed);
 
     Destroy(this);

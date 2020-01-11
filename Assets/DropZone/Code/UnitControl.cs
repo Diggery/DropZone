@@ -19,8 +19,13 @@ public class UnitControl : MonoBehaviour {
   public bool autoInit;
   NavMeshAgent navAgent;
   Animator animator;
+  public RuntimeAnimatorController mainWeaponController;
+  public RuntimeAnimatorController sideArmController;
+
   UnitIK unitIK;
   UnitTargeting targetControl;
+
+
 
   public Weapon EquippedWeapon { get; set; }
   public Weapon MainWeapon { get; set; }
@@ -127,6 +132,7 @@ public class UnitControl : MonoBehaviour {
     LerpToPose.onTickVector = LerpPoseTick;
     LerpToPose.onFinish = LerpPoseFinished;
     LerpToPose.duration = 0.5f;
+
     SkeletonConfig skelConfig = GetComponent<SkeletonConfig>();
     if (skelConfig) skelConfig.Init();
     return this;
@@ -218,12 +224,15 @@ public class UnitControl : MonoBehaviour {
     if (!MainWeapon || MainWeapon == EquippedWeapon) return;
     if (EquippedWeapon) EquippedWeapon.Stow();
     MainWeapon.Equip();
+    animator.runtimeAnimatorController = mainWeaponController;
+
   }
 
   public void DrawSideArm() {
     if (!SideArm || SideArm == EquippedWeapon) return;
     if (EquippedWeapon) EquippedWeapon.Stow();
-    SideArm.Equip(); 
+    SideArm.Equip();
+    animator.runtimeAnimatorController = sideArmController;
   }
 
   public void SetAttachPoint(string name, Transform point) {

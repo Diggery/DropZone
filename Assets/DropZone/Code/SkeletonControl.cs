@@ -32,7 +32,7 @@ public class SkeletonControl : MonoBehaviour {
 
   public class JointData {
     public Transform transform;
-    public string name;
+    public string jointName;
     public float mass = 1.0f;
     public Transform connectedTo;
     public ColliderData collision;
@@ -41,12 +41,14 @@ public class SkeletonControl : MonoBehaviour {
     public JointData(Transform transform, Transform connectedTo) {
       this.connectedTo = connectedTo;
       this.transform = transform;
+      this.jointName = transform.name;
       this.collision = new ColliderData();
       this.joint = new CharacterJointConfig();
     }
     public JointData(Transform transform) {
       this.connectedTo = null;
       this.transform = transform;
+      this.jointName = transform.name;
       this.collision = new ColliderData();
       this.joint = new CharacterJointConfig();
     }
@@ -75,6 +77,7 @@ public class SkeletonControl : MonoBehaviour {
     root = skeletonData.rootTransform;
 
     foreach (JointData joint in skeletonData.joints) {
+      if (!joint.transform) Debug.Log("No transform for " + joint.jointName);
       SetUpJoint(joint, skeletonData.layerName);
     }
 
