@@ -1,0 +1,1847 @@
+fileFormatVersion: 2
+guid: 19c6962bc42f1488db97e2a9215b2974
+ModelImporter:
+  serializedVersion: 19300
+  internalIDToNameTable:
+  - first:
+      74: -7048926194565022006
+    second: EnterCover
+  - first:
+      74: 2272780317932910971
+    second: Idle_Left
+  - first:
+      74: -246241558254032804
+    second: Idle_Right
+  - first:
+      74: 4521577582709078898
+    second: Idle_Center
+  - first:
+      74: -4729556307406218854
+    second: Aim_ForwardLeft_In
+  - first:
+      74: 4187593560275544628
+    second: Aim_ForwardLeft_Idle
+  - first:
+      74: 2546274169761153236
+    second: Aim_ForwardLeft_Out
+  - first:
+      74: 3460374585142819801
+    second: Aim_ForwardRight_In
+  - first:
+      74: -720318381656556144
+    second: Aim_ForwardRight_Idle
+  - first:
+      74: 8506900077668817890
+    second: Aim_ForwardRight_Out
+  - first:
+      74: -6778946909593201888
+    second: Aim_Left_In
+  - first:
+      74: 2056178471774397927
+    second: Aim_Left_Idle
+  - first:
+      74: 7563037990304797839
+    second: Aim_Left_Out
+  - first:
+      74: 4652378837577825741
+    second: Aim_Right_In
+  - first:
+      74: -906948314908353446
+    second: Aim_Right_Idle
+  - first:
+      74: -4532094069850877808
+    second: Aim_Right_Out
+  - first:
+      74: -8166618734177088062
+    second: Aim_Back_In
+  - first:
+      74: -3476056232311497256
+    second: Aim_Back_Idle
+  - first:
+      74: -4997228069060601927
+    second: Aim_Back_Out
+  - first:
+      74: -4688941436563618727
+    second: ReloadCover
+  - first:
+      74: 4280432449885507688
+    second: ExitCover
+  externalObjects: {}
+  materials:
+    materialImportMode: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: EnterCover
+      takeName: EnterCover
+      internalID: 0
+      firstFrame: 10
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Idle_Left
+      takeName: Idle_Left
+      internalID: 0
+      firstFrame: 40
+      lastFrame: 60
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Idle_Right
+      takeName: Idle_Right
+      internalID: 0
+      firstFrame: 70
+      lastFrame: 90
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Idle_Center
+      takeName: Idle_Center
+      internalID: 0
+      firstFrame: 110
+      lastFrame: 130
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Aim_ForwardLeft_In
+      takeName: Aim_ForwardLeft_In
+      internalID: 0
+      firstFrame: 140
+      lastFrame: 155
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves:
+      - name: IKBlend
+        curve:
+          serializedVersion: 2
+          curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          preInfinity: 3
+          postInfinity: 3
+          rotationOrder: 4
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Aim_ForwardLeft_Idle
+      takeName: Aim_ForwardLeft_Idle
+      internalID: 0
+      firstFrame: 155
+      lastFrame: 170
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves:
+      - name: IKBlend
+        curve:
+          serializedVersion: 2
+          curve:
+          - serializedVersion: 3
+            time: 0
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          preInfinity: 3
+          postInfinity: 3
+          rotationOrder: 4
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Aim_ForwardLeft_Out
+      takeName: Aim_ForwardLeft_Out
+      internalID: 0
+      firstFrame: 170
+      lastFrame: 185
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves:
+      - name: IKBlend
+        curve:
+          serializedVersion: 2
+          curve:
+          - serializedVersion: 3
+            time: 0
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          preInfinity: 3
+          postInfinity: 3
+          rotationOrder: 4
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Aim_ForwardRight_In
+      takeName: Aim_ForwardRight_In
+      internalID: 0
+      firstFrame: 195
+      lastFrame: 210
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves:
+      - name: IKBlend
+        curve:
+          serializedVersion: 2
+          curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          preInfinity: 3
+          postInfinity: 3
+          rotationOrder: 4
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Aim_ForwardRight_Idle
+      takeName: Aim_ForwardRight_Idle
+      internalID: 0
+      firstFrame: 210
+      lastFrame: 225
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves:
+      - name: IKBlend
+        curve:
+          serializedVersion: 2
+          curve:
+          - serializedVersion: 3
+            time: 0
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          preInfinity: 3
+          postInfinity: 3
+          rotationOrder: 4
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Aim_ForwardRight_Out
+      takeName: Aim_ForwardRight_Out
+      internalID: 0
+      firstFrame: 225
+      lastFrame: 240
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves:
+      - name: IKBlend
+        curve:
+          serializedVersion: 2
+          curve:
+          - serializedVersion: 3
+            time: 0
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          preInfinity: 3
+          postInfinity: 3
+          rotationOrder: 4
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Aim_Left_In
+      takeName: Aim_Left_In
+      internalID: 0
+      firstFrame: 250
+      lastFrame: 260
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves:
+      - name: IKBlend
+        curve:
+          serializedVersion: 2
+          curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          preInfinity: 3
+          postInfinity: 3
+          rotationOrder: 4
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Aim_Left_Idle
+      takeName: Aim_Left_Idle
+      internalID: 0
+      firstFrame: 260
+      lastFrame: 270
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves:
+      - name: IKBlend
+        curve:
+          serializedVersion: 2
+          curve:
+          - serializedVersion: 3
+            time: -0.0041666627
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.99583334
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          preInfinity: 3
+          postInfinity: 3
+          rotationOrder: 4
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Aim_Left_Out
+      takeName: Aim_Left_Out
+      internalID: 0
+      firstFrame: 270
+      lastFrame: 280
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves:
+      - name: IKBlend
+        curve:
+          serializedVersion: 2
+          curve:
+          - serializedVersion: 3
+            time: 0
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          preInfinity: 3
+          postInfinity: 3
+          rotationOrder: 4
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Aim_Right_In
+      takeName: Aim_Right_In
+      internalID: 0
+      firstFrame: 280
+      lastFrame: 290
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves:
+      - name: IKBlend
+        curve:
+          serializedVersion: 2
+          curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          preInfinity: 3
+          postInfinity: 3
+          rotationOrder: 4
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Aim_Right_Idle
+      takeName: Aim_Right_Idle
+      internalID: 0
+      firstFrame: 290
+      lastFrame: 300
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves:
+      - name: IKBlend
+        curve:
+          serializedVersion: 2
+          curve:
+          - serializedVersion: 3
+            time: 0
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          preInfinity: 3
+          postInfinity: 3
+          rotationOrder: 4
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Aim_Right_Out
+      takeName: Aim_Right_Out
+      internalID: 0
+      firstFrame: 300
+      lastFrame: 310
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves:
+      - name: IKBlend
+        curve:
+          serializedVersion: 2
+          curve:
+          - serializedVersion: 3
+            time: 0
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          preInfinity: 3
+          postInfinity: 3
+          rotationOrder: 4
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Aim_Back_In
+      takeName: Aim_Back_In
+      internalID: 0
+      firstFrame: 310
+      lastFrame: 320
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves:
+      - name: IKBlend
+        curve:
+          serializedVersion: 2
+          curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          preInfinity: 3
+          postInfinity: 3
+          rotationOrder: 4
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Aim_Back_Idle
+      takeName: Aim_Back_Idle
+      internalID: 0
+      firstFrame: 320
+      lastFrame: 330
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves:
+      - name: Curve
+        curve:
+          serializedVersion: 2
+          curve:
+          - serializedVersion: 3
+            time: 0
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          preInfinity: 3
+          postInfinity: 3
+          rotationOrder: 4
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Aim_Back_Out
+      takeName: Aim_Back_Out
+      internalID: 0
+      firstFrame: 330
+      lastFrame: 340
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves:
+      - name: IKBlend
+        curve:
+          serializedVersion: 2
+          curve:
+          - serializedVersion: 3
+            time: 0
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          preInfinity: 3
+          postInfinity: 3
+          rotationOrder: 4
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ReloadCover
+      takeName: ReloadCover
+      internalID: 0
+      firstFrame: 340
+      lastFrame: 360
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ExitCover
+      takeName: ExitCover
+      internalID: 0
+      firstFrame: 360
+      lastFrame: 370
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human:
+    - boneName: Squaddie:Hips_Skel
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Squaddie:LeftUpperLeg_Skel
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Squaddie:RightUpperLeg_Skel
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Squaddie:LeftLowerLeg_Skel
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Squaddie:RightLowerLeg_Skel
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Squaddie:LeftFoot_Skel
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Squaddie:RightFoot_Skel
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Squaddie:Spine1_Skel
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Squaddie:Spine2_Skel
+      humanName: Chest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Squaddie:Neck_Skell
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Squaddie:LeftClav_Skel
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Squaddie:RightClav_Skel
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Squaddie:LeftUpperArm_Skel
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Squaddie:RightUpperArm_Skel
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Squaddie:LeftLowerArm_Skel
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Squaddie:RightLowerArm_Skel
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Squaddie:LeftHand_Skel
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Squaddie:RightHand_Skel
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Squaddie:LeftToes_Skel
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Squaddie:RightToes_Skel
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Squaddie:LeftThumb_1_Skel
+      humanName: Left Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Squaddie:LeftThumb_2_Skel
+      humanName: Left Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Squaddie:LeftFinger1_1_Skel
+      humanName: Left Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Squaddie:LeftFinger1_2_Skel
+      humanName: Left Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Squaddie:LeftFinger1_3_Skel
+      humanName: Left Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Squaddie:LeftFinger2_1_Skel
+      humanName: Left Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Squaddie:LeftFinger2_2_Skel
+      humanName: Left Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Squaddie:LeftFinger2_3_Skel
+      humanName: Left Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Squaddie:LeftFinger3_1_Skel
+      humanName: Left Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Squaddie:LeftFinger3_2_Skel
+      humanName: Left Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Squaddie:LeftFinger3_3_Skel
+      humanName: Left Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Squaddie:LeftFinger4_1_Skel
+      humanName: Left Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Squaddie:LeftFinger4_2_Skel
+      humanName: Left Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Squaddie:LeftFinger4_3_Skel
+      humanName: Left Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Squaddie:RightThumb_1_Skel
+      humanName: Right Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Squaddie:RightThumb_2_Skel
+      humanName: Right Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Squaddie:RightFinger1_1_Skel
+      humanName: Right Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Squaddie:RightFinger1_2_Skel
+      humanName: Right Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Squaddie:RightFinger1_3_Skel
+      humanName: Right Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Squaddie:RightFinger2_1_Skel
+      humanName: Right Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Squaddie:RightFinger2_2_Skel
+      humanName: Right Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Squaddie:RightFinger2_3_Skel
+      humanName: Right Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Squaddie:RightFinger3_1_Skel
+      humanName: Right Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Squaddie:RightFinger3_2_Skel
+      humanName: Right Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Squaddie:RightFinger3_3_Skel
+      humanName: Right Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Squaddie:RightFinger4_1_Skel
+      humanName: Right Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Squaddie:RightFinger4_2_Skel
+      humanName: Right Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Squaddie:RightFinger4_3_Skel
+      humanName: Right Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Squaddie:Head_Skel
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: Squaddie(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Squaddie:GeoGroup
+      parentName: Squaddie(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Squaddie:Body
+      parentName: Squaddie:GeoGroup
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Squaddie:Head
+      parentName: Squaddie:GeoGroup
+      position: {x: 0.018107614, y: 1.6846278, z: 0.018677475}
+      rotation: {x: 0.015385467, y: 0.024477584, z: 0.014747454, w: 0.9994732}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Squaddie:SkeletonGroup
+      parentName: Squaddie(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Squaddie:Attach_RootMotion
+      parentName: Squaddie:SkeletonGroup
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Squaddie:Hips_Skel
+      parentName: Squaddie:Attach_RootMotion
+      position: {x: 4.085091e-10, y: 0.97685283, z: -0.036950078}
+      rotation: {x: -0.7372773, y: 0.000000017382638, z: 0.000000015651537, w: 0.6755902}
+      scale: {x: 1, y: 1.0000002, z: 1.0000004}
+    - name: Squaddie:Attach_RightHip
+      parentName: Squaddie:Hips_Skel
+      position: {x: 0.28809342, y: -0.03723789, z: 0.19878694}
+      rotation: {x: 0.9820365, y: -0.1345988, z: 0.0034792735, w: -0.13219497}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Squaddie:Attach_LeftHip
+      parentName: Squaddie:Hips_Skel
+      position: {x: -0.28491807, y: -0.03723789, z: 0.19878694}
+      rotation: {x: 0.9820365, y: -0.1345988, z: 0.0034792735, w: -0.13219497}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Squaddie:Spine1_Skel
+      parentName: Squaddie:Hips_Skel
+      position: {x: -2.652768e-10, y: -2.2323813e-11, z: 0.20743898}
+      rotation: {x: 0.043619365, y: -0.0000000022396662, z: -9.778489e-11, w: 0.99904823}
+      scale: {x: 1.0000001, y: 1.0000006, z: 1.0000006}
+    - name: Squaddie:Spine2_Skel
+      parentName: Squaddie:Spine1_Skel
+      position: {x: -0.000000001504605, y: -4.7347865e-10, z: 0.17645457}
+      rotation: {x: 0.043619365, y: -0.0000000024693985, z: -0.000000023197428, w: 0.9990483}
+      scale: {x: 1.0000001, y: 1, z: 1.0000001}
+    - name: Squaddie:Attach_Backpack
+      parentName: Squaddie:Spine2_Skel
+      position: {x: 0.18820213, y: 0.19910377, z: 0.15008652}
+      rotation: {x: 0.94516146, y: 0.32350937, z: 0.021060241, w: -0.039597936}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Squaddie:Neck_Skell
+      parentName: Squaddie:Spine2_Skel
+      position: {x: 8.881784e-18, y: -0.025939729, z: 0.22842762}
+      rotation: {x: -0, y: -0, z: 6.453171e-16, w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: Squaddie:Head_Skel
+      parentName: Squaddie:Neck_Skell
+      position: {x: 1.7763568e-17, y: -0.016298505, z: 0.10246264}
+      rotation: {x: 4.6672017e-24, y: 0.000000007232416, z: -8.153478e-10, w: 1}
+      scale: {x: 1.0000002, y: 1.0000002, z: 0.99999994}
+    - name: Squaddie:LeftClav_Skel
+      parentName: Squaddie:Spine2_Skel
+      position: {x: -0.10422913, y: -0.046403587, z: 0.13014163}
+      rotation: {x: -0, y: -0, z: 6.453171e-16, w: 1}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: Squaddie:LeftUpperArm_Skel
+      parentName: Squaddie:LeftClav_Skel
+      position: {x: -0.14914577, y: 0.047034793, z: -0.004115006}
+      rotation: {x: 0.49214083, y: -0.5345202, z: -0.4629127, w: 0.50773764}
+      scale: {x: 1, y: 0.9999997, z: 1.0000005}
+    - name: Squaddie:LeftLowerArm_Skel
+      parentName: Squaddie:LeftUpperArm_Skel
+      position: {x: -0, y: 0, z: 0.32}
+      rotation: {x: -0.022566278, y: 0.03439854, z: 0.003979115, w: 0.99914545}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: Squaddie:LeftHand_Skel
+      parentName: Squaddie:LeftLowerArm_Skel
+      position: {x: -0, y: 0, z: 0.26999998}
+      rotation: {x: -0.00000005984671, y: 0.1253671, z: -0.000000108210266, w: 0.9921105}
+      scale: {x: 1, y: 1.0000008, z: 1}
+    - name: Squaddie:Attach_LeftHand
+      parentName: Squaddie:LeftHand_Skel
+      position: {x: -0.0008502221, y: -0.026283855, z: 0.0711314}
+      rotation: {x: 0.12278781, y: -0.12278781, z: -0.6963643, w: 0.6963643}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Squaddie:LeftFinger1_1_Skel
+      parentName: Squaddie:LeftHand_Skel
+      position: {x: -0.00062701653, y: 0.011270044, z: 0.14645213}
+      rotation: {x: 0.021030534, y: -0.16500147, z: 0.004017954, w: 0.9860609}
+      scale: {x: 1.0000001, y: 1, z: 1.0000001}
+    - name: Squaddie:LeftFinger1_2_Skel
+      parentName: Squaddie:LeftFinger1_1_Skel
+      position: {x: -0, y: 0, z: 0.044999998}
+      rotation: {x: 0.026177006, y: -0.00000005960463, z: -0.00000004703178, w: 0.9996574}
+      scale: {x: 1.0000004, y: 1.0000005, z: 0.9999998}
+    - name: Squaddie:LeftFinger1_3_Skel
+      parentName: Squaddie:LeftFinger1_2_Skel
+      position: {x: -0, y: 0, z: 0.035}
+      rotation: {x: 0.000000005587934, y: 0.00000014807068, z: -0.0000000378823, w: 1}
+      scale: {x: 1.0000004, y: 1.0000002, z: 1.0000005}
+    - name: Squaddie:LeftFinger2_1_Skel
+      parentName: Squaddie:LeftHand_Skel
+      position: {x: -0.03441423, y: 0.013756281, z: 0.13938527}
+      rotation: {x: 0.02463003, y: -0.15615532, z: 0.0054408535, w: 0.98741037}
+      scale: {x: 0.9999996, y: 0.99999994, z: 0.9999998}
+    - name: Squaddie:LeftFinger2_2_Skel
+      parentName: Squaddie:LeftFinger2_1_Skel
+      position: {x: -0, y: 0, z: 0.044999998}
+      rotation: {x: 0.026176954, y: -0.00000005960463, z: 0.00000006612389, w: 0.9996574}
+      scale: {x: 1.0000006, y: 1.0000004, z: 1.0000001}
+    - name: Squaddie:LeftFinger2_3_Skel
+      parentName: Squaddie:LeftFinger2_2_Skel
+      position: {x: -0, y: 0, z: 0.038}
+      rotation: {x: -0.000000013038513, y: -0.16883367, z: -0.00000008055938, w: 0.9856446}
+      scale: {x: 1.0000007, y: 1.0000005, z: 1.0000005}
+    - name: Squaddie:LeftFinger3_1_Skel
+      parentName: Squaddie:LeftHand_Skel
+      position: {x: -0.06785891, y: 0.0056113214, z: 0.1231433}
+      rotation: {x: 0.020461548, y: -0.16180006, z: 0.006073229, w: 0.98659277}
+      scale: {x: 0.9999998, y: 0.99999994, z: 1}
+    - name: Squaddie:LeftFinger3_2_Skel
+      parentName: Squaddie:LeftFinger3_1_Skel
+      position: {x: -0, y: 0, z: 0.043}
+      rotation: {x: 0.00000004470347, y: 0.004833935, z: 0.00000011920925, w: 0.9999883}
+      scale: {x: 1.0000005, y: 1.0000005, z: 1.0000002}
+    - name: Squaddie:LeftFinger3_3_Skel
+      parentName: Squaddie:LeftFinger3_2_Skel
+      position: {x: -0, y: 0, z: 0.032}
+      rotation: {x: -0.00000014561144, y: -0.16883366, z: -0.00000011065567, w: 0.98564464}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
+    - name: Squaddie:LeftFinger4_1_Skel
+      parentName: Squaddie:LeftHand_Skel
+      position: {x: -0.09058366, y: -0.003948767, z: 0.10221751}
+      rotation: {x: 0.0013453249, y: -0.17993212, z: 0.0062092002, w: 0.9836585}
+      scale: {x: 0.99999994, y: 0.99999994, z: 1}
+    - name: Squaddie:LeftFinger4_2_Skel
+      parentName: Squaddie:LeftFinger4_1_Skel
+      position: {x: -0, y: 0, z: 0.043}
+      rotation: {x: 0.02617694, y: -0.000000014901159, z: 0.00000012107192, w: 0.99965733}
+      scale: {x: 1, y: 1.0000001, z: 1}
+    - name: Squaddie:LeftFinger4_3_Skel
+      parentName: Squaddie:LeftFinger4_2_Skel
+      position: {x: -0, y: 0, z: 0.032}
+      rotation: {x: -0.000000013038513, y: -0.16883372, z: -0.00000004749744, w: 0.9856446}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1.0000001}
+    - name: Squaddie:LeftThumb_1_Skel
+      parentName: Squaddie:LeftHand_Skel
+      position: {x: 0.027163079, y: -0.013510208, z: 0.05347762}
+      rotation: {x: -0.15314332, y: -0.11561688, z: 0.14917105, w: 0.9700144}
+      scale: {x: 0.9999998, y: 0.9999998, z: 1}
+    - name: Squaddie:LeftThumb_2_Skel
+      parentName: Squaddie:LeftThumb_1_Skel
+      position: {x: 0.034286685, y: -0.028446708, z: 0.037946317}
+      rotation: {x: 0.026176982, y: 0.000000029802319, z: 0.000000025145706, w: 0.99965733}
+      scale: {x: 1.0000001, y: 1.0000002, z: 0.9999997}
+    - name: Squaddie:LeftLowerArmTwist_Skel
+      parentName: Squaddie:LeftLowerArm_Skel
+      position: {x: -0, y: 0, z: 0.14999999}
+      rotation: {x: -0.0000000063227104, y: 0.12536716, z: -0.00000006851048, w: 0.9921105}
+      scale: {x: 0.9999998, y: 1, z: 0.9999998}
+    - name: Squaddie:RightClav_Skel
+      parentName: Squaddie:Spine2_Skel
+      position: {x: 0.104229, y: -0.046403427, z: 0.13014355}
+      rotation: {x: 1, y: -2.4216738e-15, z: 1.1102229e-16, w: 6.617444e-24}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: Squaddie:RightUpperArm_Skel
+      parentName: Squaddie:RightClav_Skel
+      position: {x: 0.149146, y: -0.047034763, z: 0.0041150087}
+      rotation: {x: 0.4921371, y: -0.53451693, z: -0.46291652, w: 0.50774115}
+      scale: {x: 0.99999946, y: 1.0000002, z: 1.0000004}
+    - name: Squaddie:RightLowerArm_Skel
+      parentName: Squaddie:RightUpperArm_Skel
+      position: {x: 5.062617e-16, y: 0.000004340045, z: -0.32000345}
+      rotation: {x: -0.022553561, y: 0.034396317, z: 0.0039793546, w: 0.99914587}
+      scale: {x: 1.0000005, y: 1.0000004, z: 0.9999998}
+    - name: Squaddie:RightHand_Skel
+      parentName: Squaddie:RightLowerArm_Skel
+      position: {x: -0.0000013853881, y: -0.0000045381244, z: -0.26999608}
+      rotation: {x: -0.00000006640831, y: 0.12536703, z: 0.000000037432958, w: 0.9921105}
+      scale: {x: 1, y: 0.9999997, z: 1}
+    - name: Squaddie:Attach_RightHand
+      parentName: Squaddie:RightHand_Skel
+      position: {x: -0.012208977, y: 0.018092064, z: -0.07884054}
+      rotation: {x: 0.6986417, y: -0.694882, z: 0.106168136, w: -0.1332939}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Squaddie:RightFinger1_1_Skel
+      parentName: Squaddie:RightHand_Skel
+      position: {x: 0.00062706886, y: -0.0112692, z: -0.14645304}
+      rotation: {x: 0.021036297, y: -0.16500312, z: 0.0040183803, w: 0.98606056}
+      scale: {x: 1.0000004, y: 1.0000002, z: 1.0000005}
+    - name: Squaddie:RightFinger1_2_Skel
+      parentName: Squaddie:RightFinger1_1_Skel
+      position: {x: 0.0000007823335, y: -0.00000023088927, z: -0.045000017}
+      rotation: {x: 0.026176857, y: -0.00000007450579, z: 0.00000011641529, w: 0.99965733}
+      scale: {x: 0.99999994, y: 1.0000001, z: 1}
+    - name: Squaddie:RightFinger1_3_Skel
+      parentName: Squaddie:RightFinger1_2_Skel
+      position: {x: -0.0000010023723, y: -0.000002045984, z: -0.03499759}
+      rotation: {x: 0.000000106170745, y: -0.000000030889176, z: -0.00000004111502,
+        w: 1}
+      scale: {x: 0.9999998, y: 1, z: 1.0000001}
+    - name: Squaddie:RightFinger2_1_Skel
+      parentName: Squaddie:RightHand_Skel
+      position: {x: 0.034415063, y: -0.0137546295, z: -0.13938648}
+      rotation: {x: 0.024604157, y: -0.15614437, z: 0.0054374216, w: 0.98741275}
+      scale: {x: 1.0000004, y: 1.0000001, z: 1.0000004}
+    - name: Squaddie:RightFinger2_2_Skel
+      parentName: Squaddie:RightFinger2_1_Skel
+      position: {x: 0.00000091570655, y: 0.0000029245364, z: -0.045003228}
+      rotation: {x: 0.026177002, y: -0.00000007450579, z: -0.000000019557769, w: 0.99965733}
+      scale: {x: 0.99999994, y: 1.0000001, z: 1}
+    - name: Squaddie:RightFinger2_3_Skel
+      parentName: Squaddie:RightFinger2_2_Skel
+      position: {x: -0.0000007409488, y: -0.0000034642258, z: -0.03799598}
+      rotation: {x: 0.000000108033404, y: 0.16883363, z: -0.00000008475035, w: -0.98564464}
+      scale: {x: 1.0000002, y: 1.0000005, z: 1}
+    - name: Squaddie:RightFinger3_1_Skel
+      parentName: Squaddie:RightHand_Skel
+      position: {x: 0.06785859, y: -0.005613622, z: -0.12314276}
+      rotation: {x: 0.0204344, y: -0.1617897, z: 0.006070203, w: 0.98659503}
+      scale: {x: 1.0000002, y: 1.0000001, z: 1.0000001}
+    - name: Squaddie:RightFinger3_2_Skel
+      parentName: Squaddie:RightFinger3_1_Skel
+      position: {x: 0.00000050776396, y: 0.0000030709075, z: -0.043002784}
+      rotation: {x: 0.000000014901158, y: 0.0048339805, z: 0.000000023283059, w: 0.9999883}
+      scale: {x: 1.0000001, y: 1.0000002, z: 1}
+    - name: Squaddie:RightFinger3_3_Skel
+      parentName: Squaddie:RightFinger3_2_Skel
+      position: {x: -0.00000032920678, y: 0.00000019588454, z: -0.031999003}
+      rotation: {x: -0.00000008580567, y: 0.16883351, z: 0.00000002374379, w: -0.9856446}
+      scale: {x: 1.0000002, y: 1.0000001, z: 1}
+    - name: Squaddie:RightFinger4_1_Skel
+      parentName: Squaddie:RightHand_Skel
+      position: {x: 0.09058533, y: 0.003952592, z: -0.10222001}
+      rotation: {x: 0.0013747342, y: -0.17994422, z: 0.006211241, w: 0.9836563}
+      scale: {x: 1.0000002, y: 1.0000001, z: 1.0000001}
+    - name: Squaddie:RightFinger4_2_Skel
+      parentName: Squaddie:RightFinger4_1_Skel
+      position: {x: -0.0000001732896, y: -0.0000026407147, z: -0.042997234}
+      rotation: {x: 0.026176888, y: 0.000000014901159, z: 0.00000002235174, w: 0.9996574}
+      scale: {x: 1.0000001, y: 1.0000004, z: 1}
+    - name: Squaddie:RightFinger4_3_Skel
+      parentName: Squaddie:RightFinger4_2_Skel
+      position: {x: 0.00000022373948, y: 0.0000030737929, z: -0.03200303}
+      rotation: {x: 0.00000005401669, y: 0.16883378, z: 0.00000004144384, w: -0.9856446}
+      scale: {x: 0.99999994, y: 0.9999997, z: 0.9999998}
+    - name: Squaddie:RightThumb_1_Skel
+      parentName: Squaddie:RightHand_Skel
+      position: {x: -0.027163532, y: 0.01350832, z: -0.05347753}
+      rotation: {x: -0.15314715, y: -0.11561449, z: 0.14917272, w: 0.97001386}
+      scale: {x: 1.0000002, y: 1.0000004, z: 1.0000002}
+    - name: Squaddie:RightThumb_2_Skel
+      parentName: Squaddie:RightThumb_1_Skel
+      position: {x: -0.034286343, y: 0.02844794, z: -0.037946872}
+      rotation: {x: 0.026176974, y: -0.000000044703484, z: -0.0000000013969839, w: 0.9996574}
+      scale: {x: 0.99999994, y: 0.9999997, z: 0.99999994}
+    - name: Squaddie:RightLowerArmTwist_Skel
+      parentName: Squaddie:RightLowerArm_Skel
+      position: {x: -0.0000016944099, y: -0.0000060343946, z: -0.14999525}
+      rotation: {x: -0.000000016358277, y: 0.12536713, z: -0.000000074790144, w: 0.99211043}
+      scale: {x: 0.99999994, y: 1.0000004, z: 1.0000001}
+    - name: Squaddie:LeftUpperLeg_Skel
+      parentName: Squaddie:Hips_Skel
+      position: {x: -0.19818838, y: 0.013585445, z: -0.07391061}
+      rotation: {x: 0.99939084, y: -0.000000029409744, z: 0.0000000050751425, w: -0.034899503}
+      scale: {x: 1, y: 1.0000001, z: 1.0000004}
+    - name: Squaddie:LeftLowerLeg_Skel
+      parentName: Squaddie:LeftUpperLeg_Skel
+      position: {x: -0, y: -1.4876988e-16, z: 0.42}
+      rotation: {x: 0.08715581, y: -0.0000000040351535, z: -0.0000000055528098, w: 0.9961947}
+      scale: {x: 1, y: 1.0000002, z: 1.0000001}
+    - name: Squaddie:LeftFoot_Skel
+      parentName: Squaddie:LeftLowerLeg_Skel
+      position: {x: -0, y: 1.7763568e-17, z: 0.38}
+      rotation: {x: -0.5372997, y: -8.4304697e-10, z: 0.000000005980634, w: 0.8433915}
+      scale: {x: 1.0000001, y: 1.0000002, z: 0.99999994}
+    - name: Squaddie:LeftToes_Skel
+      parentName: Squaddie:LeftFoot_Skel
+      position: {x: -0, y: 4.4408918e-17, z: 0.14999999}
+      rotation: {x: -0.28401536, y: 0.0000000049220605, z: -0.0000000037462304, w: 0.95881975}
+      scale: {x: 1, y: 0.99999994, z: 1.0000002}
+    - name: Squaddie:RightUpperLeg_Skel
+      parentName: Squaddie:Hips_Skel
+      position: {x: 0.19818799, y: 0.013585487, z: -0.07391099}
+      rotation: {x: 0.034899503, y: 0.000000007698999, z: -0.000000022911529, w: 0.99939084}
+      scale: {x: 1.0000001, y: 1.0000005, z: 1.0000004}
+    - name: Squaddie:RightLowerLeg_Skel
+      parentName: Squaddie:RightUpperLeg_Skel
+      position: {x: -3.5527136e-17, y: 0.000000010144151, z: -0.41999996}
+      rotation: {x: 0.087155685, y: -0.000000006273668, z: 0.000000035448576, w: 0.9961947}
+      scale: {x: 1, y: 1.0000002, z: 1.0000001}
+    - name: Squaddie:RightFoot_Skel
+      parentName: Squaddie:RightLowerLeg_Skel
+      position: {x: 3.5527136e-17, y: 0.00000009232215, z: -0.37999943}
+      rotation: {x: 0.5372996, y: -0.000000021502563, z: 0.000000041428038, w: -0.8433914}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Squaddie:RightToes_Skel
+      parentName: Squaddie:RightFoot_Skel
+      position: {x: -3.5527136e-17, y: 0.00000018340971, z: -0.1500002}
+      rotation: {x: -0.2840153, y: -0.0000000010612009, z: -0.000000003365706, w: 0.95881975}
+      scale: {x: 1.0000001, y: 1, z: 1}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 2add808b9edcf2c42818a697c08410ca,
+    type: 3}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 3
+  humanoidOversampling: 1
+  avatarSetup: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

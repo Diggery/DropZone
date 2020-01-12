@@ -12,6 +12,7 @@ public class SkeletonConfigHuman : SkeletonConfig {
     Animator animator = GetComponent<Animator>();
 
     Transform hipsTransform = animator.GetBoneTransform(HumanBodyBones.Hips);
+    if (!hipsTransform) Debug.Log("There are no hips");
     SkeletonControl.JointData hips = new SkeletonControl.JointData(hipsTransform);
     hips.collision.type = SkeletonControl.ColliderType.Box;
     hips.collision.center = new Vector3(0.0f, -0.1f, 0.075f);

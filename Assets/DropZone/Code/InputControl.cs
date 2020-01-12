@@ -115,8 +115,8 @@ public class InputControl : MonoBehaviour {
     if (Input.GetKey(KeyCode.S)) CameraControl.Move(Vector3.back);
     if (Input.GetKey(KeyCode.D)) CameraControl.Move(Vector3.right);
 
-    if (Input.GetKeyUp(KeyCode.Z) && SelectedUnit) SelectedUnit.Incapacitate();
-    if (Input.GetKeyUp(KeyCode.X) && SelectedUnit) SelectedUnit.Revive();
+    if (Input.GetKeyUp(KeyCode.Z) && SelectedUnit) SelectedUnit.DrawMainWeapon();
+    if (Input.GetKeyUp(KeyCode.X) && SelectedUnit) SelectedUnit.DrawSideArm();
 
     if (Input.GetKeyUp(KeyCode.Space)) GameTime.TogglePause();
 
@@ -142,7 +142,7 @@ public class InputControl : MonoBehaviour {
 
   public void SelectUnit(UnitControl selected) {
 
-    foreach (UnitControl unit in gameManager.units) {
+    foreach (UnitControl unit in gameManager.Units) {
       if (unit != selected) unit.IsSelected = false;
     }
 
@@ -155,8 +155,8 @@ public class InputControl : MonoBehaviour {
 
     if (!selected.tag.Equals("Player")) return;
 
-    if (!gameManager.units.Contains(selected)) {
-      gameManager.units.Add(selected);
+    if (!gameManager.Units.Contains(selected)) {
+      gameManager.Units.Add(selected);
     }
 
     if (SelectedUnit != selected) GameTime.AutoPause("SelectUnit", GameTime.TimeSetting.SlowMo);

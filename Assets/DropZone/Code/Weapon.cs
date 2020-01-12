@@ -4,9 +4,11 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class Weapon : MonoBehaviour {
+  public bool IsMainWeapon;
 
   UnitControl owner;
   UnitTargeting unitTargeting;
+  Transform stow;
   Transform grip;
   Transform muzzle;
   Transform magazine;
@@ -14,20 +16,20 @@ public class Weapon : MonoBehaviour {
   Effect muzzleEffect;
   Rigidbody rbody;
 
+
+  public Vector2 spread = new Vector2(5, 5); 
+  public float fireRate = 0.1f;
+  public int burstCount = 3;
+  public float burstCooldown = 0.5f;
+
   int roundsInMagazine = 0;
   float fireRateTimer = 0;
-  float fireRate = 0.1f;
-  int burstCount = 3;
   int burstAmount = 3;
-  float burstCooldown = 0.5f;
   float burstCooldownTimer = 1.0f;
   bool reloading = false;
 
   float range = 10;
-  float verticalSpread = 5;
-  float horizontalSpread = 5;
 
-  public bool IsTwoHanded;
   public Vector3 gripOffset = Vector3.zero;
   public Vector3 stockOffset = Vector3.zero;
   public Vector3 shoulderOffset = Vector3.zero;
@@ -62,7 +64,7 @@ public class Weapon : MonoBehaviour {
     get { return muzzle.position; }
   }
 
-  public void Init(UnitControl owner, Transform stockPivot, Transform gripPivot) {
+  public void Init(UnitControl owner, Transform stockPivot, Transform gripAttach, Transform stowAttach) {
     this.owner = owner;
     rbody = GetComponent<Rigidbody>();
     rbody.isKinematic = true;
@@ -72,7 +74,8 @@ public class Weapon : MonoBehaviour {
     grip = transform.GetChild(0);
 
     this.stockPivot = stockPivot;
-    this.gripPivot = gripPivot;
+    this.gripPivot = gripAttach;
+    this.stow = stowAttach;
 
     muzzle = grip.Find("Muzzle");
     magazine = grip.Find("Magazine");
@@ -91,6 +94,21 @@ public class Weapon : MonoBehaviour {
     if (kickBack.sqrMagnitude > Mathf.Epsilon) {
       kickBack = Vector3.Lerp(kickBack, Vector3.zero, Time.deltaTime * 8);
     }
+
+    if (fireRateTimer > 0) fireRateTimer -= Time.deltaTime;
+    if (burstCooldownTimer > 0) burstCooldownTimer -= Time.deltaTime;
+    if (weaponFlash && weaponFlash.enabled) {
+      weaponFlash.intensity = Mathf.Lerp(weaponFlash.intensity, 0.0f, Time.deltaTime * 8);
+      if (weaponFlash.intensity < 0.05f)
+        weaponFlash.enabled = false;
+    }
+
+    if (owner && !IsEquipped) {
+      transform.position = stow.position;
+      transform.rotation = stow.rotation;
+      return;
+    }
+
     if (blendAmount > 0) {
       Vector3 weaponLookPosition = stockPivot.TransformPoint(shoulderOffset);
       Quaternion weaponLookRotation = Quaternion.LookRotation((lookPos - transform.position).normalized);
@@ -103,15 +121,7 @@ public class Weapon : MonoBehaviour {
       transform.rotation = gripPivot.rotation;
     }
 
-    if (fireRateTimer > 0) fireRateTimer -= Time.deltaTime;
-    if (burstCooldownTimer > 0) burstCooldownTimer -= Time.deltaTime;
 
-
-    if (weaponFlash && weaponFlash.enabled) {
-      weaponFlash.intensity = Mathf.Lerp(weaponFlash.intensity, 0.0f, Time.deltaTime * 8);
-      if (weaponFlash.intensity < 0.05f)
-        weaponFlash.enabled = false;
-    }
   }
 
   public void Attack(UnitControl target) {
@@ -119,7 +129,7 @@ public class Weapon : MonoBehaviour {
     if (fireRateTimer > 0) return;
     if (burstCooldownTimer > 0) return;
     if (reloading) return;
-    if (roundsInMagazine <= 0) {
+    if (IsMainWeapon && roundsInMagazine <= 0) {
       EjectMagazine();
       return;
     }
@@ -144,9 +154,9 @@ public class Weapon : MonoBehaviour {
 
     Vector3 aimingDirection = muzzle.forward;
 
-    float vOffset = Random.Range(-verticalSpread, verticalSpread);
+    float vOffset = Random.Range(-spread.x, spread.y);
     aimingDirection = Quaternion.AngleAxis(vOffset, Vector3.right) * aimingDirection;
-    float hOffset = Random.Range(-horizontalSpread, horizontalSpread);
+    float hOffset = Random.Range(-spread.x, spread.y);
     aimingDirection = Quaternion.AngleAxis(hOffset, Vector3.up) * aimingDirection;
 
     DamageInfo damageInfo = new DamageInfo(0.5f, DamageType.Puncture, owner);
@@ -158,11 +168,13 @@ public class Weapon : MonoBehaviour {
 
   }
 
-  public virtual void Stowed() {
+  public virtual void Stow() {
+    if (IsEquipped) owner.EquippedWeapon = null;
     IsEquipped = false;
   }
 
-  public virtual void Drawn() {
+  public virtual void Equip() {
+    owner.EquippedWeapon = this;
     IsEquipped = true;
   }
 
@@ -211,10 +223,6 @@ public class Weapon : MonoBehaviour {
 
     magazine.GetComponent<Renderer>().enabled = false;
 
-    //if (magazines == 0) {
-    //  return;
-    //}
-    //magazines--;
     reloading = true;
 
     owner.Reload();

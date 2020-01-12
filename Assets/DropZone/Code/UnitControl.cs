@@ -19,12 +19,17 @@ public class UnitControl : MonoBehaviour {
   public bool autoInit;
   NavMeshAgent navAgent;
   Animator animator;
+  public RuntimeAnimatorController mainWeaponController;
+  public RuntimeAnimatorController sideArmController;
+
   UnitIK unitIK;
   UnitTargeting targetControl;
 
-  public Weapon EquippedWeapon {
-    get; set;
-  }
+
+
+  public Weapon EquippedWeapon { get; set; }
+  public Weapon MainWeapon { get; set; }
+  public Weapon SideArm { get; set; }
 
   Interpolator.LerpVector LerpToPose = new Interpolator.LerpVector();
 
@@ -66,7 +71,7 @@ public class UnitControl : MonoBehaviour {
       if (inMovingState) {
         navAgent.SetDestination(moveDestination.Value);
         moveDestination = null;
-      } 
+      }
     }
   }
 
@@ -127,6 +132,7 @@ public class UnitControl : MonoBehaviour {
     LerpToPose.onTickVector = LerpPoseTick;
     LerpToPose.onFinish = LerpPoseFinished;
     LerpToPose.duration = 0.5f;
+
     SkeletonConfig skelConfig = GetComponent<SkeletonConfig>();
     if (skelConfig) skelConfig.Init();
     return this;
@@ -173,7 +179,7 @@ public class UnitControl : MonoBehaviour {
   }
 
   public void MoveComplete() {
-
+    Debug.Log("Move Complete");
     MapData.MapCell mapCell = gameManager.GetMapCell(navAgent.destination);
 
     pathComplete.Invoke();
@@ -196,10 +202,37 @@ public class UnitControl : MonoBehaviour {
     Interpolator.Start(LerpToPose, gameObject.name + " is moving to cover");
   }
 
-  public bool EquipWeapon(Weapon weapon) {
-    weapon.Init(this, animator.GetBoneTransform(HumanBodyBones.Chest), attachPoints["RightHand"]);
-    EquippedWeapon = weapon;
-    return true;
+  public void AddWeapon(Weapon weapon) {
+    if (weapon.IsMainWeapon) {
+      if (MainWeapon != null) MainWeapon.Drop();
+      MainWeapon = weapon;
+      weapon.Init(this, animator.GetBoneTransform(HumanBodyBones.Chest), attachPoints["RightHand"], attachPoints["Backpack"]);
+      weapon.Equip();
+    } else {
+      if (SideArm != null) SideArm.Drop();
+      SideArm = weapon;
+      weapon.Init(this, animator.GetBoneTransform(HumanBodyBones.Chest), attachPoints["RightHand"], attachPoints["LeftHip"]);
+      if (!EquippedWeapon) {
+        weapon.Equip();
+      } else {
+        weapon.Stow();
+      }
+    }
+  }
+
+  public void DrawMainWeapon() {
+    if (!MainWeapon || MainWeapon == EquippedWeapon) return;
+    if (EquippedWeapon) EquippedWeapon.Stow();
+    MainWeapon.Equip();
+    animator.runtimeAnimatorController = mainWeaponController;
+
+  }
+
+  public void DrawSideArm() {
+    if (!SideArm || SideArm == EquippedWeapon) return;
+    if (EquippedWeapon) EquippedWeapon.Stow();
+    SideArm.Equip();
+    animator.runtimeAnimatorController = sideArmController;
   }
 
   public void SetAttachPoint(string name, Transform point) {
@@ -237,7 +270,10 @@ public class UnitControl : MonoBehaviour {
     Vector3 direction = info == null ? Vector3.up : info.GetDamageDirection(transform);
     skeleton.SwitchToRagdoll(direction);
     navAgent.enabled = false;
-    if (EquippedWeapon) EquippedWeapon.Drop();
+    if (EquippedWeapon) {
+      EquippedWeapon.Drop();
+      EquippedWeapon = null;
+    }
   }
 
   public void Revive() {
