@@ -179,7 +179,7 @@ public class UnitControl : MonoBehaviour {
   }
 
   public void MoveComplete() {
-
+    Debug.Log("Move Complete");
     MapData.MapCell mapCell = gameManager.GetMapCell(navAgent.destination);
 
     pathComplete.Invoke();

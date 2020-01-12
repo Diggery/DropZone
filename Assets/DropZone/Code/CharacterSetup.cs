@@ -43,12 +43,6 @@ public class CharacterSetup : MonoBehaviour {
     Transform selector = transform.Find("SelectorCollision");
     selector.SetParent(animator.GetBoneTransform(HumanBodyBones.Chest));
 
-    GameObject mainWeaponPrefab = gameManager.weaponInventory.GetPrefab(entry.mainWeapon);
-    Weapon mainWeapon = Instantiate(mainWeaponPrefab, transform.position, transform.rotation).GetComponent<Weapon>();
-
-    GameObject sideArmPrefab = gameManager.weaponInventory.GetPrefab(entry.sideArm);
-    Weapon sideArm = Instantiate(sideArmPrefab, transform.position, transform.rotation).GetComponent<Weapon>();
-
     unitControl.SetAttachPoint("RightHand", rightHandAttach);
     unitControl.SetAttachPoint("LeftHand", leftHandAttach);
     unitControl.SetAttachPoint("Backpack", backpackAttach);
@@ -56,8 +50,19 @@ public class CharacterSetup : MonoBehaviour {
     unitControl.SetAttachPoint("RightHip", rightHipAttach);
     unitControl.SetAttachPoint("TargetPoint", targetPoint);
 
-    unitControl.AddWeapon(mainWeapon);
-    unitControl.AddWeapon(sideArm);
+    if (!string.IsNullOrEmpty(entry.mainWeapon)) {
+      Debug.Log("Adding " + entry.mainWeapon + " for " + gameObject.name);
+      GameObject mainWeaponPrefab = gameManager.weaponInventory.GetPrefab(entry.mainWeapon);
+      Weapon mainWeapon = Instantiate(mainWeaponPrefab, transform.position, transform.rotation).GetComponent<Weapon>();
+      unitControl.AddWeapon(mainWeapon);
+    }
+
+    if (!string.IsNullOrEmpty(entry.sideArm)) {
+      Debug.Log("Adding " + entry.sideArm + " for " + gameObject.name);
+      GameObject sideArmPrefab = gameManager.weaponInventory.GetPrefab(entry.sideArm);
+      Weapon sideArm = Instantiate(sideArmPrefab, transform.position, transform.rotation).GetComponent<Weapon>();
+      unitControl.AddWeapon(sideArm);
+    }
 
     unitControl.SetStats(entry.hits, entry.visualRange, entry.speed);
 

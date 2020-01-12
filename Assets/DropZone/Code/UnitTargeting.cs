@@ -90,6 +90,7 @@ public class UnitTargeting : MonoBehaviour {
     ReadyToFire =
       (readyTimer < 0) &&
       !unitControl.MoveQueued &&
+      unitControl.EquippedWeapon &&
       unitControl.EquippedWeapon.IsReady &&
       (enemyVisible || canPeekEnemyLeft || canPeekEnemyRight);
 

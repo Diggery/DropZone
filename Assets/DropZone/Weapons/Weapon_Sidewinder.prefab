@@ -121,10 +121,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60a517985a18e384f910ad1bb1305bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spread: {x: 5, y: 5}
+  fireRate: 0.25
+  burstCount: 3
+  burstCooldown: 2
   IsMainWeapon: 0
   gripOffset: {x: 0, y: 0, z: 0}
-  stockOffset: {x: 0, y: -0.1, z: 0.267}
-  shoulderOffset: {x: 0.22, y: -0.13, z: 0.13}
+  stockOffset: {x: 0, y: 0, z: 0.28}
+  shoulderOffset: {x: 0.4, y: -0.35, z: 0.25}
   rightGrip: {fileID: 6643333173586278341}
   leftGrip: {fileID: 0}
 --- !u!54 &244416335342566275

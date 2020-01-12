@@ -2634,8 +2634,8 @@ AnimatorState:
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
-  - {fileID: 4859410238636178168}
   - {fileID: -2639818857266651481}
+  - {fileID: 4859410238636178168}
   - {fileID: -8060415369530741163}
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}

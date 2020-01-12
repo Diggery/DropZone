@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class Weapon : MonoBehaviour {
+  public bool IsMainWeapon;
 
   UnitControl owner;
   UnitTargeting unitTargeting;
@@ -15,20 +16,20 @@ public class Weapon : MonoBehaviour {
   Effect muzzleEffect;
   Rigidbody rbody;
 
+
+  public Vector2 spread = new Vector2(5, 5); 
+  public float fireRate = 0.1f;
+  public int burstCount = 3;
+  public float burstCooldown = 0.5f;
+
   int roundsInMagazine = 0;
   float fireRateTimer = 0;
-  float fireRate = 0.1f;
-  int burstCount = 3;
   int burstAmount = 3;
-  float burstCooldown = 0.5f;
   float burstCooldownTimer = 1.0f;
   bool reloading = false;
 
   float range = 10;
-  float verticalSpread = 5;
-  float horizontalSpread = 5;
 
-  public bool IsMainWeapon;
   public Vector3 gripOffset = Vector3.zero;
   public Vector3 stockOffset = Vector3.zero;
   public Vector3 shoulderOffset = Vector3.zero;
@@ -128,7 +129,7 @@ public class Weapon : MonoBehaviour {
     if (fireRateTimer > 0) return;
     if (burstCooldownTimer > 0) return;
     if (reloading) return;
-    if (roundsInMagazine <= 0) {
+    if (IsMainWeapon && roundsInMagazine <= 0) {
       EjectMagazine();
       return;
     }
@@ -153,9 +154,9 @@ public class Weapon : MonoBehaviour {
 
     Vector3 aimingDirection = muzzle.forward;
 
-    float vOffset = Random.Range(-verticalSpread, verticalSpread);
+    float vOffset = Random.Range(-spread.x, spread.y);
     aimingDirection = Quaternion.AngleAxis(vOffset, Vector3.right) * aimingDirection;
-    float hOffset = Random.Range(-horizontalSpread, horizontalSpread);
+    float hOffset = Random.Range(-spread.x, spread.y);
     aimingDirection = Quaternion.AngleAxis(hOffset, Vector3.up) * aimingDirection;
 
     DamageInfo damageInfo = new DamageInfo(0.5f, DamageType.Puncture, owner);
