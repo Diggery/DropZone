@@ -56,4 +56,21 @@ public class AISquadManager : MonoBehaviour {
     coolDownTimer = coolDownTime;
     return newUnit;
   }
+
+  void OnDrawGizmos() {
+    Gizmos.color = Color.yellow;
+    Gizmos.DrawCube(transform.position, Vector3.one);
+
+    Gizmos.color = Color.red;
+
+    if (transform.childCount > 1) {
+      for (int i = 0; i <= transform.childCount; i++) {
+        if (i < transform.childCount) Gizmos.DrawSphere(transform.GetChild(i).position, 0.5f);
+
+        Vector3 start = (i == 0) ? transform.position : transform.GetChild(i - 1).position;
+        Vector3 end = (i < transform.childCount) ? transform.GetChild(i).position : transform.position;
+        Gizmos.DrawLine(start, end);
+      }
+    }
+  }
 }
