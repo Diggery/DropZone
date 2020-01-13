@@ -26,7 +26,6 @@ public class Weapon : MonoBehaviour {
   float fireRateTimer = 0;
   int burstAmount = 3;
   float burstCooldownTimer = 1.0f;
-  bool reloading = false;
 
   float range = 10;
 
@@ -41,7 +40,9 @@ public class Weapon : MonoBehaviour {
   public Transform rightGrip;
   public Transform leftGrip;
 
+  public bool Reloading { get; set; }
   public bool IsEquipped { get; set; }
+  public bool Disabled { get; set; }
 
   float blendAmount;
   public float GripBlend {
@@ -57,7 +58,7 @@ public class Weapon : MonoBehaviour {
   }
 
   public bool IsReady {
-    get { return !reloading; }
+    get { return !Reloading && !Disabled; }
   }
 
   public Vector3 MuzzlePos {
@@ -128,7 +129,7 @@ public class Weapon : MonoBehaviour {
 
     if (fireRateTimer > 0) return;
     if (burstCooldownTimer > 0) return;
-    if (reloading) return;
+    if (Reloading) return;
     if (IsMainWeapon && roundsInMagazine <= 0) {
       EjectMagazine();
       return;
@@ -176,6 +177,7 @@ public class Weapon : MonoBehaviour {
   public virtual void Equip() {
     owner.EquippedWeapon = this;
     IsEquipped = true;
+    Disabled = false;
   }
 
   public virtual void Drop() {
@@ -207,7 +209,7 @@ public class Weapon : MonoBehaviour {
   }
 
   public void Reloaded(int magazineSize, bool instant = false) {
-    reloading = false;
+    Reloading = false;
     roundsInMagazine = magazineSize;
     magazine.GetComponent<Renderer>().enabled = true;
   }
@@ -223,7 +225,7 @@ public class Weapon : MonoBehaviour {
 
     magazine.GetComponent<Renderer>().enabled = false;
 
-    reloading = true;
+    Reloading = true;
 
     owner.Reload();
   }

@@ -25,11 +25,12 @@ public class UnitControl : MonoBehaviour {
   UnitIK unitIK;
   UnitTargeting targetControl;
 
-
-
   public Weapon EquippedWeapon { get; set; }
   public Weapon MainWeapon { get; set; }
   public Weapon SideArm { get; set; }
+
+  bool switchingToSideArm = false;
+  bool switchingToMainWeapon = false;
 
   Interpolator.LerpVector LerpToPose = new Interpolator.LerpVector();
 
@@ -221,18 +222,19 @@ public class UnitControl : MonoBehaviour {
   }
 
   public void DrawMainWeapon() {
+    if (switchingToMainWeapon || switchingToSideArm) return;
     if (!MainWeapon || MainWeapon == EquippedWeapon) return;
-    if (EquippedWeapon) EquippedWeapon.Stow();
-    MainWeapon.Equip();
-    animator.runtimeAnimatorController = mainWeaponController;
-
+    if (EquippedWeapon) EquippedWeapon.Disabled = true;
+    Reload();
+    switchingToMainWeapon = true;
   }
 
   public void DrawSideArm() {
+    if (switchingToMainWeapon || switchingToSideArm) return;
     if (!SideArm || SideArm == EquippedWeapon) return;
-    if (EquippedWeapon) EquippedWeapon.Stow();
-    SideArm.Equip();
-    animator.runtimeAnimatorController = sideArmController;
+    if (EquippedWeapon) EquippedWeapon.Disabled = true;
+    Reload();
+    switchingToSideArm = true;
   }
 
   public void SetAttachPoint(string name, Transform point) {
@@ -287,6 +289,19 @@ public class UnitControl : MonoBehaviour {
   }
 
   public void ReloadComplete() {
+    if (switchingToMainWeapon || switchingToSideArm) { 
+      if (EquippedWeapon) EquippedWeapon.Stow();
+      if (switchingToMainWeapon) {
+        MainWeapon.Equip();
+        animator.runtimeAnimatorController = mainWeaponController;
+      }
+      if (switchingToSideArm) {
+        SideArm.Equip();
+        animator.runtimeAnimatorController = sideArmController;
+      }
+      switchingToMainWeapon = switchingToSideArm = false;
+      return;
+    }
     EquippedWeapon.Reloaded(15);
   }
 
