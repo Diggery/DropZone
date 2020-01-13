@@ -12,6 +12,7 @@ public class AIState : MonoBehaviour {
   protected NavMeshAgent navAgent;
   protected Rigidbody rbody;
   protected bool isActive = false;
+  protected float timeInState = 0;
   public bool IsActive {
     get { return IsActive; }
     set { IsActive = value; }
@@ -39,10 +40,14 @@ public class AIState : MonoBehaviour {
   }
 
   public virtual void StateEnter() {
+    Debug.Log(gameObject.name + " is entering " + StateName + " state.");
     isActive = true;
+    timeInState = 0;
   }
 
-  public virtual void StateUpdate() { }
+  public virtual void StateUpdate() {
+    timeInState += Time.deltaTime;
+  }
 
   public virtual void StateExit() {
     isActive = false;

@@ -47,8 +47,11 @@ public class AISquadManager : MonoBehaviour {
     UnitControl unitControl = newUnit.GetComponent<UnitControl>().Init(entry.characterName);
 
     AIBrain brain = newUnit.AddComponent<AIBrain>().Init();
-    //brain.FindSafePos(transform.position, 10, );
-
+    if (transform.childCount > 0) {
+      List<Vector3> patrolRoute = new List<Vector3>();
+      for(int i = 0; i < transform.childCount; i++)  patrolRoute.Add(transform.GetChild(i).position);
+      brain.AddPatrolRoute(patrolRoute);
+    }
     unitControl.Enemies.Add("Player");
     spawnQueue--;
     amountSpawned++;

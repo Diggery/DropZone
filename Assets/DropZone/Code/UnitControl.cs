@@ -92,6 +92,9 @@ public class UnitControl : MonoBehaviour {
   [HideInInspector]
   public UnityEvent pathComplete = new UnityEvent();
 
+  public class AttackAlert : UnityEvent<UnitControl> { }
+  public AttackAlert attackAlert = new AttackAlert();
+
   public bool IsPathComplete {
     get {
       return navAgent.hasPath && Vector3.Distance(navAgent.destination, navAgent.transform.position) <= navAgent.stoppingDistance;
@@ -106,7 +109,8 @@ public class UnitControl : MonoBehaviour {
     get { return navAgent.path; }
   }
 
-  float maxHits = 5;
+  public float MoveSpeed { get; set; }
+  public float MaxHits { get; set; }
   float hits = 5;
   public bool IsDead {
     get { return hits < 0; }
@@ -175,8 +179,10 @@ public class UnitControl : MonoBehaviour {
 
   public void SetStats(float hitpoints, float visualRange, float speed) {
     targetControl.VisualRange = visualRange;
-    maxHits = hitpoints;
+    MaxHits = hitpoints;
     hits = hitpoints;
+    MoveSpeed = speed;
+    navAgent.speed = MoveSpeed;
   }
 
   public void MoveComplete() {
@@ -247,6 +253,7 @@ public class UnitControl : MonoBehaviour {
       animator.SetTrigger("UnderFire");
       surpiseCoolDown = 1.0f;
     }
+    attackAlert.Invoke(attacker);
   }
 
   public void TakeDamage(DamageInfo info) {
@@ -263,7 +270,7 @@ public class UnitControl : MonoBehaviour {
 
   public void TakeHealing(float amount) {
     Debug.Log("NICE: " + amount + " points of healing");
-    hits = Mathf.Min(maxHits, hits + amount);
+    hits = Mathf.Min(MaxHits, hits + amount);
   }
 
   public void Incapacitate(DamageInfo info = null) {
@@ -289,7 +296,7 @@ public class UnitControl : MonoBehaviour {
   }
 
   public void ReloadComplete() {
-    if (switchingToMainWeapon || switchingToSideArm) { 
+    if (switchingToMainWeapon || switchingToSideArm) {
       if (EquippedWeapon) EquippedWeapon.Stow();
       if (switchingToMainWeapon) {
         MainWeapon.Equip();

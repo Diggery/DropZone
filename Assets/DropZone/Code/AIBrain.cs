@@ -35,16 +35,26 @@ public class AIBrain : MonoBehaviour {
   float scanInterval = 1.0f;
 
   public bool showDebug;
+  Queue<Vector3> patrolRoute = new Queue<Vector3>();
+
+  public bool HasPatrol {
+    get { return patrolRoute.Count > 0; }
+  }
+  public Vector3 NextWaypoint {
+    get { return patrolRoute.Peek(); }
+  }
 
   public AIBrain Init() {
     unitControl = GetComponent<UnitControl>();
     targeting = GetComponent<UnitTargeting>();
     mapControl = MapControl.Instance;
     unitControl.pathComplete.AddListener(MoveComplete);
+    unitControl.attackAlert.AddListener(AttackAlert);
 
     gameObject.AddComponent<AIStateIdle>();
     gameObject.AddComponent<AIStateMoving>();
     gameObject.AddComponent<AIStateAttacking>();
+    gameObject.AddComponent<AIStatePatrolling>();
 
     StartCoroutine(GatherStates());
     return this;
@@ -76,7 +86,7 @@ public class AIBrain : MonoBehaviour {
   }
 
   public void MoveTo(Vector3 mapPos) {
-    State = "Moving";
+    if (State != "Patrolling") State = "Moving";
     unitControl.MoveTo(mapPos);
   }
 
@@ -96,5 +106,24 @@ public class AIBrain : MonoBehaviour {
   public void AttackTarget(UnitControl enemy) {
     CurrentTarget = enemy;
     State = "Attacking";
+  }
+
+  public void AttackAlert(UnitControl attacker) {
+    State = "Idle";
+    MoveToSafeSpot(attacker);
+  }
+
+  public void AddPatrolRoute(List<Vector3> route) {
+    patrolRoute.Clear();
+    foreach (Vector3 point in route) patrolRoute.Enqueue(point);
+  }
+  public void AdvanceWaypoints() {
+    Vector3 lastWaypoint = patrolRoute.Dequeue();
+    patrolRoute.Enqueue(lastWaypoint);
+    MoveTo(NextWaypoint);
+  }
+
+  public void FollowPatrolRoute() {
+    State = "Patrolling";
   }
 }
