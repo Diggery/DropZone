@@ -1,8 +1,8 @@
-﻿using UnityEngine;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 public class MapControl : MonoBehaviour {
 
@@ -21,8 +21,7 @@ public class MapControl : MonoBehaviour {
     }
   }
 
-  void Start() {
-  }
+  void Start() { }
 
   public Vector2 GetMapSize() {
     Vector3 lowerLeftPos = lowerLeftMarker.transform.position;
@@ -98,13 +97,65 @@ public class MapControl : MonoBehaviour {
     return visible;
   }
 
-    public bool FindSafePos(Vector3 searchPos, float searchRange, UnitControl searcher, float visualRange, out Vector3 safePos) {
+  public bool FindCover(Vector3 searchPos, float searchRange, UnitControl searcher, float visualRange, out Vector3 safePos) {
 
-    List<GameObject> possibleTargets = new List<GameObject>();
+    List<GameObject> possibleTargets = GetTargets(searcher);
 
-    foreach (var enemyType in searcher.Enemies) {
-      possibleTargets.AddRange(GameObject.FindGameObjectsWithTag(enemyType));
+    if (possibleTargets.Count < 1) {
+      safePos = searchPos;
+      return false;
     }
+        float sqrVisualRange = visualRange * visualRange;
+        List<MapData.MapCell> cellsInRange = mapData.GetMapArea(searchPos, Mathf.RoundToInt(searchRange));
+    Dictionary<MapData.MapCell, float> scoredCells = new Dictionary<MapData.MapCell, float>();
+
+    foreach (MapData.MapCell cell in cellsInRange) {
+
+      if (!cell.HasCover || cell.isCollision) continue;
+      bool isVisible = false;
+      float cellScore = Mathf.Infinity;
+
+      foreach (GameObject target in possibleTargets) {
+        if (IsPositionVisible(target.transform.position, cell.mapPos, true)) {
+          isVisible = true;
+        }
+        float distanceFromSearch = (cell.mapPos - searchPos).sqrMagnitude + UnityEngine.Random.Range(0, sqrVisualRange);
+        float distanceFromTarget = Mathf.Max(sqrVisualRange - (cell.mapPos - target.transform.position).sqrMagnitude, 0);
+        bool goodFiringPosition = IsPositionPeekable(cell.mapPos, target.transform.position);
+        cellScore = Mathf.Min(cellScore, (distanceFromSearch));
+        if (!goodFiringPosition) cellScore += 1000;
+      }
+      scoredCells.Add(cell, (isVisible) ? Mathf.Infinity : cellScore);
+    }
+
+    if (scoredCells.Count < 1) {
+      safePos = searchPos;
+      return false;
+    }
+
+    var sortedCells = scoredCells.ToList();
+    sortedCells.Sort((pair1,pair2) => pair1.Value.CompareTo(pair2.Value));
+    safePos = sortedCells[0].Key.mapPos;
+
+    if (Vector3.Distance(safePos, searcher.transform.position) < 1.0f) {
+      safePos = searchPos;
+      return false;
+    }
+    for (int i = 0; i < sortedCells.Count; i++) {
+      Debug.Log(" i = " + i);
+      Color color = Color.clear;
+      if (i==0) color = new Color(0,1,0,1);
+      if (i==1) color = new Color(1,1,0,1);
+      if (i==2) color = new Color(1,0.5f,0,1);
+      if (i==3) color = new Color(1,0,0,1);
+      Debug.DrawLine(sortedCells[i].Key.mapPos, sortedCells[i].Key.mapPos + (Vector3.up * 3), color, 100);
+    }
+    return true;
+  }
+
+  public bool FindSafePos(Vector3 searchPos, float searchRange, UnitControl searcher, float visualRange, out Vector3 safePos) {
+
+    List<GameObject> possibleTargets = GetTargets(searcher);
 
     if (possibleTargets.Count < 1) {
       safePos = searchPos;
@@ -120,16 +171,17 @@ public class MapControl : MonoBehaviour {
     foreach (MapData.MapCell cell in cellsInRange) {
       bool isVisible = false;
       float cellScore = Mathf.Infinity;
+      if (cell.isCollision) continue;
 
       foreach (GameObject target in possibleTargets) {
-        if (IsPositionVisible(target.transform.position, cell.mapPos, true)) {
-          isVisible = true;
-        }
+        if (IsPositionVisible(target.transform.position, cell.mapPos, true)) continue;
+
         float distanceFromSearch = (cell.mapPos - searchPos).sqrMagnitude + UnityEngine.Random.Range(0, sqrVisualRange);
         float distanceFromTarget = Mathf.Max(sqrVisualRange - (cell.mapPos - target.transform.position).sqrMagnitude, 0);
-        cellScore = Mathf.Min(cellScore, distanceFromSearch + distanceFromTarget);
+
+        cellScore = Mathf.Min(cellScore, (distanceFromSearch + distanceFromTarget) - (cell.HasCover ? 100 : 0));
       }
-      scoredCells.Add(cell, (isVisible || cell.isCollision) ? Mathf.Infinity : cellScore);
+      scoredCells.Add(cell, cellScore);
     }
 
     if (scoredCells.Count < 1) {
@@ -158,5 +210,11 @@ public class MapControl : MonoBehaviour {
   public Vector3 GetCellPos(Vector3 position) {
 
     return mapData.GetMapCell(position).mapPos;
+  }
+
+  List<GameObject> GetTargets(UnitControl searcher) {
+    List<GameObject> possibleTargets = new List<GameObject>();
+    foreach (var enemyType in searcher.Enemies) possibleTargets.AddRange(GameObject.FindGameObjectsWithTag(enemyType));
+    return possibleTargets;
   }
 }

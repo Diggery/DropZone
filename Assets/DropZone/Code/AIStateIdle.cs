@@ -28,6 +28,7 @@ public class AIStateIdle : AIState {
 
   public override void OnAttacked(UnitControl attacker) {
     base.OnAttacked(attacker);
+    brain.MoveToSafeSpot(attacker);
   }
 
   protected override void CollidedWithEnemy(UnitControl enemy) {

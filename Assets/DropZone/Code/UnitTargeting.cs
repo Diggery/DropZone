@@ -91,6 +91,7 @@ public class UnitTargeting : MonoBehaviour {
       (readyTimer < 0) &&
       !unitControl.MoveQueued &&
       unitControl.EquippedWeapon &&
+      (!unitControl.IsMoving || !unitControl.EquippedWeapon.IsMainWeapon) &&
       unitControl.EquippedWeapon.IsReady &&
       (enemyVisible || canPeekEnemyLeft || canPeekEnemyRight);
 

@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 public class AIBrain : MonoBehaviour {
   public bool isBrainDead = false;
-  Dictionary<string, AIState> states = new Dictionary<string, AIState>();
+  public AISquadManager SquadManager { get; set; }
   public AIState CurrentState { get; set; }
   public string State {
     get {
@@ -25,6 +25,8 @@ public class AIBrain : MonoBehaviour {
       }
     }
   }
+
+  Dictionary<string, AIState> states = new Dictionary<string, AIState>();
 
   UnitControl unitControl;
   MapControl mapControl;
@@ -92,10 +94,18 @@ public class AIBrain : MonoBehaviour {
 
   public void MoveToSafeSpot(UnitControl closestEnenmy) {
     if (mapControl.FindSafePos(transform.position, targeting.VisualRange, unitControl, targeting.VisualRange, out Vector3 safePos)) {
+      State = "Idle";
       MoveTo(safePos);
     } else {
       Debug.Log("Can't Find a safe space");
       AttackTarget(closestEnenmy);
+    }
+  }
+
+  public void TakeCover() {
+    State = "Idle";
+    if (mapControl.FindCover(transform.position, targeting.VisualRange, unitControl, targeting.VisualRange, out Vector3 safePos)) {
+      MoveTo(safePos);
     }
   }
 
@@ -109,8 +119,8 @@ public class AIBrain : MonoBehaviour {
   }
 
   public void AttackAlert(UnitControl attacker) {
-    State = "Idle";
-    MoveToSafeSpot(attacker);
+    SquadManager.UnitAttacked(this);
+    CurrentState.OnAttacked(attacker);
   }
 
   public void AddPatrolRoute(List<Vector3> route) {

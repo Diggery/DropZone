@@ -26,7 +26,12 @@ public class AIStatePatrolling : AIState {
     base.StateExit();
     animator.SetFloat("MoveSpeed", 1);
     navAgent.speed = unitControl.MoveSpeed;
+  }
 
+  public override void OnAttacked(UnitControl attacker) {
+    base.OnAttacked(attacker);
+    brain.MoveToSafeSpot(attacker);
+    Debug.Log("Yikes!  I got attacked");
   }
 
 }

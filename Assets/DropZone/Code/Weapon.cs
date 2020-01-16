@@ -22,6 +22,7 @@ public class Weapon : MonoBehaviour {
   public int burstCount = 3;
   public float burstCooldown = 0.5f;
 
+  int magazineSize = 15;
   int roundsInMagazine = 0;
   float fireRateTimer = 0;
   int burstAmount = 3;
@@ -86,7 +87,7 @@ public class Weapon : MonoBehaviour {
     pickUpCollision.enabled = false;
     InputRelay uiInput = pickUpCollision.gameObject.AddComponent<InputRelay>();
     uiInput.onClick.AddListener(OnClick);
-    Reloaded(10, true);
+    Reloaded(true);
   }
 
   void Update() {
@@ -208,7 +209,7 @@ public class Weapon : MonoBehaviour {
 
   }
 
-  public void Reloaded(int magazineSize, bool instant = false) {
+  public void Reloaded(bool instant = false) {
     Reloading = false;
     roundsInMagazine = magazineSize;
     magazine.GetComponent<Renderer>().enabled = true;

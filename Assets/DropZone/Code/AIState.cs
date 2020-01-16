@@ -58,6 +58,7 @@ public class AIState : MonoBehaviour {
   }
 
   public virtual void OnAttacked(UnitControl attacker) {
+
   }
 
   protected virtual void CollidedWithEnemy(UnitControl other) { }

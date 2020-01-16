@@ -151,9 +151,9 @@ public class UnitControl : MonoBehaviour {
       if (IsMoving) {
         // dive if we are close and still suprised
         LayerMask terrainMask = LayerMask.GetMask("Terrain");
-        bool wayIsClear = !IsDead && !Physics.Linecast(transform.position + Vector3.up, navAgent.destination + Vector3.up, terrainMask);
 
-        if (wayIsClear && IsMoving && (DistanceToDesitination < 2.5f && DistanceToDesitination > 2.0f)) animator.SetTrigger("Dive");
+        //bool wayIsClear = !IsDead && !Physics.Linecast(transform.position + Vector3.up, navAgent.destination + Vector3.up, terrainMask);
+        //if (wayIsClear && IsMoving && (DistanceToDesitination < 2.5f && DistanceToDesitination > 2.0f)) animator.SetTrigger("Dive");
       }
     }
 
@@ -215,12 +215,14 @@ public class UnitControl : MonoBehaviour {
       MainWeapon = weapon;
       weapon.Init(this, animator.GetBoneTransform(HumanBodyBones.Chest), attachPoints["RightHand"], attachPoints["Backpack"]);
       weapon.Equip();
+      animator.runtimeAnimatorController = mainWeaponController;
     } else {
       if (SideArm != null) SideArm.Drop();
       SideArm = weapon;
       weapon.Init(this, animator.GetBoneTransform(HumanBodyBones.Chest), attachPoints["RightHand"], attachPoints["LeftHip"]);
       if (!EquippedWeapon) {
         weapon.Equip();
+        animator.runtimeAnimatorController = sideArmController;
       } else {
         weapon.Stow();
       }
@@ -309,7 +311,7 @@ public class UnitControl : MonoBehaviour {
       switchingToMainWeapon = switchingToSideArm = false;
       return;
     }
-    EquippedWeapon.Reloaded(15);
+    EquippedWeapon.Reloaded();
   }
 
   void LerpPoseTick(Vector4 amount) {

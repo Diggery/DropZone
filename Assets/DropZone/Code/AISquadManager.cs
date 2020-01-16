@@ -10,12 +10,12 @@ public class AISquadManager : MonoBehaviour {
   float coolDownTime = 1;
   float coolDownTimer = 3;
   bool readyToSpawn = true;
-
   public int spawnLimit = 5;
   public string unitType;
   public string teamTag = "Enemy";
-
   public bool autoFill = false;
+  List<AIBrain> units = new List<AIBrain>();
+  public UnitControl SquadTarget { get; set; }
 
   private void Awake() {
     gameManager = GameManager.Instance;
@@ -30,7 +30,12 @@ public class AISquadManager : MonoBehaviour {
     }
 
     if (readyToSpawn && (autoFill || spawnQueue > 0) && (amountSpawned < spawnLimit)) {
-      CreateUnit(unitType, transform.position, transform.rotation);
+      AIBrain newUnit = CreateUnit(unitType, transform.position, transform.rotation);
+      units.Add(newUnit);
+    }
+
+    if (Input.GetKeyDown(KeyCode.V)) {
+      units[0].TakeCover();
     }
   }
 
@@ -38,7 +43,7 @@ public class AISquadManager : MonoBehaviour {
     spawnQueue += amount;
   }
 
-  GameObject CreateUnit(string unitName, Vector3 pos, Quaternion rot) {
+  AIBrain CreateUnit(string unitName, Vector3 pos, Quaternion rot) {
 
     CharacterEntry entry = gameManager.GetCharacter(unitName);
     GameObject newUnit = GameObject.Instantiate(entry.prefab, pos, rot);
@@ -47,6 +52,7 @@ public class AISquadManager : MonoBehaviour {
     UnitControl unitControl = newUnit.GetComponent<UnitControl>().Init(entry.characterName);
 
     AIBrain brain = newUnit.AddComponent<AIBrain>().Init();
+    brain.SquadManager = this;
     if (transform.childCount > 0) {
       List<Vector3> patrolRoute = new List<Vector3>();
       for(int i = 0; i < transform.childCount; i++)  patrolRoute.Add(transform.GetChild(i).position);
@@ -57,7 +63,11 @@ public class AISquadManager : MonoBehaviour {
     amountSpawned++;
     readyToSpawn = false;
     coolDownTimer = coolDownTime;
-    return newUnit;
+    return brain;
+  }
+
+  public void UnitAttacked(AIBrain victim) {
+
   }
 
   void OnDrawGizmos() {
@@ -68,6 +78,7 @@ public class AISquadManager : MonoBehaviour {
 
     if (transform.childCount > 1) {
       for (int i = 0; i <= transform.childCount; i++) {
+
         if (i < transform.childCount) Gizmos.DrawSphere(transform.GetChild(i).position, 0.5f);
 
         Vector3 start = (i == 0) ? transform.position : transform.GetChild(i - 1).position;

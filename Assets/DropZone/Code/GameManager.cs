@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour {
     gameObject.AddComponent<GameTime>().Init();
 
     SceneManager.LoadScene("UILayout", LoadSceneMode.Additive);
-    MapTester.DrawAllCells(mapControl.mapData);
+  //  MapTester.DrawAllCells(mapControl.mapData);
   }
 
   public GameObject GetPrefab(string name) {
