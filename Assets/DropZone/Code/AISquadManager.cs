@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
 using System.IO;
+using UnityEngine;
 
 public class AISquadManager : MonoBehaviour {
 
@@ -55,7 +55,7 @@ public class AISquadManager : MonoBehaviour {
     brain.SquadManager = this;
     if (transform.childCount > 0) {
       List<Vector3> patrolRoute = new List<Vector3>();
-      for(int i = 0; i < transform.childCount; i++)  patrolRoute.Add(transform.GetChild(i).position);
+      for (int i = 0; i < transform.childCount; i++) patrolRoute.Add(transform.GetChild(i).position);
       brain.AddPatrolRoute(patrolRoute);
     }
     unitControl.Enemies.Add("Player");
@@ -66,7 +66,11 @@ public class AISquadManager : MonoBehaviour {
     return brain;
   }
 
-  public void UnitAttacked(AIBrain victim) {
+  public void UnitAttacked(UnitControl attacker, AIBrain victim) {
+
+  }
+
+  public void EnemySpotted(UnitControl attacker, AIBrain victim) {
 
   }
 

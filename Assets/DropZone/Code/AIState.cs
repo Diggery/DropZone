@@ -6,7 +6,8 @@ using UnityEngine.AI;
 public class AIState : MonoBehaviour {
 
   protected UnitControl unitControl;
-  protected UnitTargeting targetControl;
+  protected MapControl mapControl;
+  protected UnitTargeting targeting;
   protected Animator animator;
   protected AIBrain brain;
   protected NavMeshAgent navAgent;
@@ -31,7 +32,8 @@ public class AIState : MonoBehaviour {
 
   public virtual void StateInit() {
     unitControl = GetComponent<UnitControl>();
-    targetControl = GetComponent<UnitTargeting>();
+    mapControl = MapControl.Instance;
+    targeting = GetComponent<UnitTargeting>();
     animator = GetComponent<Animator>();
     brain = GetComponent<AIBrain>();
     navAgent = GetComponent<NavMeshAgent>();
@@ -58,6 +60,10 @@ public class AIState : MonoBehaviour {
   }
 
   public virtual void OnAttacked(UnitControl attacker) {
+
+  }
+
+  public virtual void OnEnemySpotted(UnitControl attacker) {
 
   }
 

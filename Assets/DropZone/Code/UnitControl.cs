@@ -92,8 +92,9 @@ public class UnitControl : MonoBehaviour {
   [HideInInspector]
   public UnityEvent pathComplete = new UnityEvent();
 
-  public class AttackAlert : UnityEvent<UnitControl> { }
-  public AttackAlert attackAlert = new AttackAlert();
+  public class enemyAlert : UnityEvent<UnitControl> { }
+  public enemyAlert attackedAlert = new enemyAlert();
+  public enemyAlert enemySpottedAlert = new enemyAlert();
 
   public bool IsPathComplete {
     get {
@@ -255,7 +256,7 @@ public class UnitControl : MonoBehaviour {
       animator.SetTrigger("UnderFire");
       surpiseCoolDown = 1.0f;
     }
-    attackAlert.Invoke(attacker);
+    attackedAlert.Invoke(attacker);
   }
 
   public void TakeDamage(DamageInfo info) {

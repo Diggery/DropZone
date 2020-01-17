@@ -50,8 +50,9 @@ public class AIBrain : MonoBehaviour {
     unitControl = GetComponent<UnitControl>();
     targeting = GetComponent<UnitTargeting>();
     mapControl = MapControl.Instance;
-    unitControl.pathComplete.AddListener(MoveComplete);
-    unitControl.attackAlert.AddListener(AttackAlert);
+    unitControl.pathComplete.AddListener(OnMoveComplete);
+    unitControl.attackedAlert.AddListener(OnAttacked);
+    unitControl.enemySpottedAlert.AddListener(OnEnemySpotted);
 
     gameObject.AddComponent<AIStateIdle>();
     gameObject.AddComponent<AIStateMoving>();
@@ -92,15 +93,37 @@ public class AIBrain : MonoBehaviour {
     unitControl.MoveTo(mapPos);
   }
 
-  public void MoveToSafeSpot(UnitControl closestEnenmy) {
-    if (mapControl.FindSafePos(transform.position, targeting.VisualRange, unitControl, targeting.VisualRange, out Vector3 safePos)) {
+  public bool MoveToSafeSpot() {
+    bool hasPosition = mapControl.FindSafePos(transform.position, targeting.VisualRange, unitControl, targeting.VisualRange, out Vector3 safePos);
+    if (hasPosition) {
       State = "Idle";
       MoveTo(safePos);
-    } else {
-      Debug.Log("Can't Find a safe space");
-      AttackTarget(closestEnenmy);
+      return true;
     }
+    return false;
   }
+
+  public bool MoveToCover() {
+    bool hasPosition = mapControl.FindSafePos(transform.position, targeting.VisualRange, unitControl, targeting.VisualRange, out Vector3 safePos);
+    if (hasPosition) {
+      State = "Idle";
+      MoveTo(safePos);
+      return true;
+    }
+    return false;
+  }
+
+  public bool MoveToFiringPosition(UnitControl enemy) {
+    bool hasPosition = mapControl.FindFiringPosition(transform.position, targeting.VisualRange, unitControl, enemy, out Vector3 position);
+    if (hasPosition) {
+      State = "Idle";
+      MoveTo(position);
+      return true;
+    }
+    return false;
+  }
+
+  
 
   public void TakeCover() {
     State = "Idle";
@@ -109,7 +132,7 @@ public class AIBrain : MonoBehaviour {
     }
   }
 
-  void MoveComplete() {
+  void OnMoveComplete() {
     State = "Idle";
   }
 
@@ -118,9 +141,14 @@ public class AIBrain : MonoBehaviour {
     State = "Attacking";
   }
 
-  public void AttackAlert(UnitControl attacker) {
-    SquadManager.UnitAttacked(this);
-    CurrentState.OnAttacked(attacker);
+  public void OnAttacked(UnitControl enemy) {
+    CurrentState.OnAttacked(enemy);
+    SquadManager.UnitAttacked(enemy, this);
+  }
+
+  public void OnEnemySpotted(UnitControl enemy) {
+    CurrentState.OnEnemySpotted(enemy);
+    SquadManager.EnemySpotted(enemy, this);
   }
 
   public void AddPatrolRoute(List<Vector3> route) {

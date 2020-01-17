@@ -10,7 +10,7 @@ public class UnitTargeting : MonoBehaviour {
     get { return visualRange; }
     set {
       visualRange = value;
-      SqrVisualRange = value * value;
+      SqrVisualRange = visualRange * visualRange;
     }
   }
   float SqrVisualRange { get; set; }
@@ -21,6 +21,9 @@ public class UnitTargeting : MonoBehaviour {
   LayerMask terrainMask;
 
   public UnitControl CurrentTarget { get; set; }
+  public bool TargetVisible {
+    get { return mapControl.IsPositionVisible(transform.position, CurrentTarget.transform.position); }
+  }
   public UnitControl SecondaryTarget { get; set; }
   float targetMemory = 1.0f;
 
@@ -58,6 +61,7 @@ public class UnitTargeting : MonoBehaviour {
     if (!CurrentTarget || CurrentTarget.IsDead) {
       ReadyToFire = false;
       CurrentTarget = ScanForTargets();
+      if (CurrentTarget) unitControl.enemySpottedAlert.Invoke(CurrentTarget);
       animator.SetBool("TargetVisible", false);
       animator.SetBool("PeekLeft", false);
       animator.SetBool("PeekRight", false);
@@ -70,7 +74,7 @@ public class UnitTargeting : MonoBehaviour {
     float angleToTarget = Vector3.Angle(targetDir, Vector3.forward) * Mathf.Sign(targetDir.x);
     animator.SetFloat("TargetDirection", angleToTarget);
 
-    bool enemyVisible = mapControl.IsPositionVisible(transform.position, CurrentTarget.transform.position);
+    bool enemyVisible = TargetVisible;
     bool canPeekEnemyLeft = mapControl.IsPositionPeekableLeft(transform.position, CurrentTarget.transform.position);
     bool canPeekEnemyRight = mapControl.IsPositionPeekableRight(transform.position, CurrentTarget.transform.position);
 

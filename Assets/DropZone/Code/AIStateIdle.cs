@@ -17,9 +17,26 @@ public class AIStateIdle : AIState {
 
   public override void StateUpdate() {
     base.StateUpdate();
-    if (!targetControl.CurrentTarget && brain.HasPatrol && timeInState > 2.0f) {
+
+    if (timeInState < 2.0f) return;
+
+
+    if (targeting.CurrentTarget) {
+      if (targeting.TargetVisible) {
+
+      } else {
+        bool foundPosition = brain.MoveToFiringPosition(targeting.CurrentTarget);
+        if (!foundPosition) {
+          brain.MoveToSafeSpot();
+        }
+      }
+    }
+
+    if (!targeting.CurrentTarget && brain.HasPatrol && timeInState > 5.0f) {
       brain.FollowPatrolRoute();
     }
+
+
   }
 
   public override void StateExit() {
@@ -28,7 +45,7 @@ public class AIStateIdle : AIState {
 
   public override void OnAttacked(UnitControl attacker) {
     base.OnAttacked(attacker);
-    brain.MoveToSafeSpot(attacker);
+    brain.MoveToSafeSpot();
   }
 
   protected override void CollidedWithEnemy(UnitControl enemy) {
