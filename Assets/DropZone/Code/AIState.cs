@@ -56,16 +56,12 @@ public class AIState : MonoBehaviour {
   }
 
   private void OnCollisionEnter(Collision other) {
-    UnitControl control = other.gameObject.GetComponent<UnitControl>();
   }
 
-  public virtual void OnAttacked(UnitControl attacker) {
+  public virtual void OnAttacked(UnitControl attacker) { }
 
-  }
-
-  public virtual void OnEnemySpotted(UnitControl attacker) {
-
-  }
+  public virtual void OnEnemySpotted(UnitControl attacker) { }
+  public virtual void OnMoveComplete() { }
 
   protected virtual void CollidedWithEnemy(UnitControl other) { }
 

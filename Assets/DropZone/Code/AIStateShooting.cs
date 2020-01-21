@@ -3,22 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class AIStateAttacking : AIState {
-
+public class AIStateShooting : AIState {
+  
+  float timeSinceSeeingTarget = 0.0f;
   public override void StateInit() {
     base.StateInit();
-    stateName = "Attacking";
-    AttackNearbyTargets = true;
-    TurnTowardsTarget = true;
+    stateName = "Shooting";
+    timeSinceSeeingTarget = 0;
+
   }
 
   public override void StateEnter() {
     base.StateEnter();
-    unitControl.MoveTo(targeting.CurrentTarget.transform.position);
   }
 
   public override void StateUpdate() {
     base.StateUpdate();
+    if (!targeting.CurrentTarget) brain.State = "Idle";
+    if (timeSinceSeeingTarget > 10) brain.State = "Searching";
   }
 
   public override void StateExit() {

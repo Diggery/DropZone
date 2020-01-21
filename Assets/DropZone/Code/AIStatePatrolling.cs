@@ -20,7 +20,9 @@ public class AIStatePatrolling : AIState {
 
   public override void StateUpdate() {
     base.StateUpdate();
-    if ((transform.position - brain.NextWaypoint).magnitude < 1) brain.AdvanceWaypoints();
+    if (Vector3.Distance(transform.position, brain.NextWaypoint) < 1) {
+      brain.AdvanceWaypoints();
+    }
   }
 
   public override void StateExit() {
@@ -35,11 +37,13 @@ public class AIStatePatrolling : AIState {
     base.OnAttacked(attacker);
     if (!targeting.CurrentTarget) targeting.CurrentTarget = attacker;
     brain.MoveToCover();
+    brain.State = "Shooting";
     Debug.Log("Yikes!  I got attacked");
   }
 
   public override void OnEnemySpotted(UnitControl attacker) {
     base.OnEnemySpotted(attacker);
+    brain.State = "Shooting";
     brain.MoveToFiringPosition(attacker.transform.position);
   }
 }

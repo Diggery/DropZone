@@ -14,6 +14,7 @@ public class AIBrain : MonoBehaviour {
     }
 
     set {
+      Debug.Log("Setting state to " + value);
       if (CurrentState && value.Equals(CurrentState.StateName)) return;
 
       if (states.ContainsKey(value)) {
@@ -52,8 +53,9 @@ public class AIBrain : MonoBehaviour {
     unitControl.enemySpottedAlert.AddListener(OnEnemySpotted);
 
     gameObject.AddComponent<AIStateIdle>();
-    gameObject.AddComponent<AIStateMoving>();
-    gameObject.AddComponent<AIStateAttacking>();
+    gameObject.AddComponent<AIStateShooting>();
+    gameObject.AddComponent<AIStateSearching>();
+    gameObject.AddComponent<AIStateMelee>();
     gameObject.AddComponent<AIStatePatrolling>();
 
     StartCoroutine(GatherStates());
@@ -76,19 +78,17 @@ public class AIBrain : MonoBehaviour {
     if (CurrentState)
       CurrentState.StateUpdate();
 
-    if (targeting.CurrentTarget && targeting.TargetVisible) 
+    if (targeting.CurrentTarget && targeting.TargetVisible)
       LastKnownPosition = targeting.CurrentTarget.transform.position;
   }
 
   public void MoveTo(Vector3 mapPos) {
-    if (State != "Patrolling") State = "Moving";
     unitControl.MoveTo(mapPos);
   }
 
   public bool MoveToSafeSpot() {
     bool hasPosition = mapControl.FindSafePos(transform.position, targeting.VisualRange, unitControl, targeting.VisualRange, out Vector3 safePos);
     if (hasPosition) {
-      State = "Idle";
       MoveTo(safePos);
       return true;
     }
@@ -98,7 +98,6 @@ public class AIBrain : MonoBehaviour {
   public bool MoveToCover() {
     bool hasPosition = mapControl.FindSafePos(transform.position, targeting.VisualRange, unitControl, targeting.VisualRange, out Vector3 safePos);
     if (hasPosition) {
-      State = "Idle";
       MoveTo(safePos);
       return true;
     }
@@ -108,24 +107,21 @@ public class AIBrain : MonoBehaviour {
   public bool MoveToFiringPosition(Vector3 targetPosition) {
     bool hasPosition = mapControl.FindFiringPosition(transform.position, targeting.VisualRange, unitControl, targetPosition, out Vector3 position);
     if (hasPosition) {
-      State = "Idle";
       MoveTo(position);
       return true;
     }
     return false;
   }
 
-  
-
   public void TakeCover() {
-    State = "Idle";
     if (mapControl.FindCover(transform.position, targeting.VisualRange, unitControl, targeting.VisualRange, out Vector3 safePos)) {
       MoveTo(safePos);
     }
   }
 
   void OnMoveComplete() {
-    State = "Idle";
+    CurrentState.OnMoveComplete();
+    Debug.Log("MoveComplete");
   }
 
   public void AttackTarget(UnitControl enemy) {

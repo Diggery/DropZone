@@ -5,17 +5,14 @@ using UnityEngine.AI;
 
 public class AIStateIdle : AIState {
 
-  float timeSinceSeeingTarget = 0.0f;
   public override void StateInit() {
     base.StateInit();
     stateName = "Idle";
-    AttackNearbyTargets = true;
-    TurnTowardsTarget = true;
+
   }
 
   public override void StateEnter() {
     base.StateEnter();
-    timeSinceSeeingTarget = 0;
   }
 
   public override void StateUpdate() {
@@ -25,18 +22,8 @@ public class AIStateIdle : AIState {
 
     if (targeting.CurrentTarget) {
       if (targeting.TargetVisible) {
-        Debug.Log("I can see him");
-        timeSinceSeeingTarget = 0;
-      } else {
-        timeSinceSeeingTarget += Time.deltaTime;
-
-        if (timeSinceSeeingTarget > 10) {
-          bool foundPosition = brain.MoveToFiringPosition(brain.LastKnownPosition);
-          if (!foundPosition) {
-            brain.MoveToSafeSpot();
-          }
-        }
-      }
+        brain.State = "Shooting";
+      } 
     }
 
     if (!targeting.CurrentTarget && brain.HasPatrol && timeInState > 5.0f) {
