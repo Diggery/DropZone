@@ -112,9 +112,9 @@ public class UnitControl : MonoBehaviour {
 
   public float MoveSpeed { get; set; }
   public float MaxHits { get; set; }
-  float hits = 5;
+  public float Hits { get; set; }
   public bool IsDead {
-    get { return hits < 0; }
+    get { return Hits < 0; }
   }
 
   Vector3? moveDestination;
@@ -182,7 +182,7 @@ public class UnitControl : MonoBehaviour {
   public void SetStats(float hitpoints, float visualRange, float speed) {
     targetControl.VisualRange = visualRange;
     MaxHits = hitpoints;
-    hits = hitpoints;
+    Hits = hitpoints;
     MoveSpeed = speed;
     navAgent.speed = MoveSpeed;
   }
@@ -264,11 +264,11 @@ public class UnitControl : MonoBehaviour {
 
   public void TakeDamage(DamageInfo info) {
     Debug.Log("OUCH: " + info.damageAmount + " points of damage");
-    hits -= info.damageAmount;
-    if (hits < 0) {
+    Hits -= info.damageAmount;
+    if (Hits < 0) {
       Incapacitate(info);
     }
-    if (!IsMoving) {
+    if (!IsMoving && !InCover) {
       animator.SetInteger("AttackDirection", info.GetOrthagonalDirection(transform));
       animator.SetTrigger("Hit");
     }
@@ -276,11 +276,11 @@ public class UnitControl : MonoBehaviour {
 
   public void TakeHealing(float amount) {
     Debug.Log("NICE: " + amount + " points of healing");
-    hits = Mathf.Min(MaxHits, hits + amount);
+    Hits = Mathf.Min(MaxHits, Hits + amount);
   }
 
   public void Incapacitate(DamageInfo info = null) {
-    hits = -1;
+    Hits = -1;
     SkeletonControl skeleton = GetComponent<SkeletonControl>();
     Vector3 direction = info == null ? Vector3.up : info.GetDamageDirection(transform);
     skeleton.SwitchToRagdoll(direction);

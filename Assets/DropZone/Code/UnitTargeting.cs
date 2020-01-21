@@ -20,7 +20,14 @@ public class UnitTargeting : MonoBehaviour {
   MapControl mapControl;
   LayerMask terrainMask;
 
-  public UnitControl CurrentTarget { get; set; }
+  UnitControl currentTarget;
+  public UnitControl CurrentTarget {
+    get { return currentTarget; }
+    set {
+      if (currentTarget && !value) Debug.Log("Clearing target");
+      currentTarget = value;
+    }
+  }
   public bool TargetVisible {
     get { return mapControl.IsPositionVisible(transform.position, CurrentTarget.transform.position, true); }
   }
@@ -28,6 +35,7 @@ public class UnitTargeting : MonoBehaviour {
   float targetMemory = 1.0f;
 
   public bool IsAiming { get; set; }
+  public bool CheckEnemy { get; set; }
 
   bool readyToFire;
   public bool ReadyToFire {
@@ -61,7 +69,7 @@ public class UnitTargeting : MonoBehaviour {
       if (gameObject.tag.Equals("Enemy")) {
         if (CurrentTarget) Debug.Log("Current Target = " + CurrentTarget);
       }
-      ReadyToFire = false; 
+      ReadyToFire = false;
       CurrentTarget = ScanForTargets();
       if (CurrentTarget) unitControl.enemySpottedAlert.Invoke(CurrentTarget);
       animator.SetBool("TargetVisible", false);
@@ -84,22 +92,22 @@ public class UnitTargeting : MonoBehaviour {
     animator.SetBool("PeekLeft", unitControl.InCover && !enemyVisible && canPeekEnemyLeft);
     animator.SetBool("PeekRight", unitControl.InCover && !enemyVisible && canPeekEnemyRight);
 
-    if (enemyVisible || canPeekEnemyLeft || canPeekEnemyRight) {
-      targetMemory = 15;
-    } else {
-      targetMemory -= Time.deltaTime;
-      if (targetMemory < 0) {
-        CurrentTarget = null;
-      }
-    }
+    // if (enemyVisible || canPeekEnemyLeft || canPeekEnemyRight) {
+    //   targetMemory = 25;
+    // } else {
+    //   targetMemory -= Time.deltaTime;
+    //   if (targetMemory < 0) {
+    //     CurrentTarget = null;
+    //   }
+    // }
 
     ReadyToFire =
-      (readyTimer < 0) &&
-      !unitControl.MoveQueued &&
-      unitControl.EquippedWeapon &&
-      (!unitControl.IsMoving || !unitControl.EquippedWeapon.IsMainWeapon) &&
-      unitControl.EquippedWeapon.IsReady &&
-      (enemyVisible || canPeekEnemyLeft || canPeekEnemyRight);
+      ((readyTimer < 0) &&
+        !unitControl.MoveQueued &&
+        unitControl.EquippedWeapon &&
+        (!unitControl.IsMoving || !unitControl.EquippedWeapon.IsMainWeapon) &&
+        unitControl.EquippedWeapon.IsReady &&
+        (enemyVisible || canPeekEnemyLeft || canPeekEnemyRight || CheckEnemy));
 
     if (readyTimer > 0) readyTimer -= Time.deltaTime;
 

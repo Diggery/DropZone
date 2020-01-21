@@ -22,10 +22,12 @@ public class AIStateSearching : AIState {
   }
 
   void Search() {
-    if (Vector3.Distance(transform.position, brain.LastKnownPosition) < 5) {
+    if (Vector3.Distance(transform.position, brain.LastKnownPosition) < 3) {
       brain.State = "Idle";
       return;
     }
+
+    Debug.Log(gameObject.name + " is looking somewhere else");
     bool foundPosition = brain.MoveToFiringPosition(brain.LastKnownPosition);
     if (!foundPosition) {
       brain.MoveToSafeSpot();

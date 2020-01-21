@@ -26,11 +26,9 @@ public class AIStateIdle : AIState {
       } 
     }
 
-    if (!targeting.CurrentTarget && brain.HasPatrol && timeInState > 5.0f) {
+    if (!targeting.CurrentTarget && brain.HasPatrol && timeInState > 10.0f) {
       brain.FollowPatrolRoute();
     }
-
-
   }
 
   public override void StateExit() {

@@ -69,7 +69,7 @@ public class AIBrain : MonoBehaviour {
       state.StateInit();
       states.Add(state.StateName, state);
     }
-    State = "Idle";
+    State = HasPatrol ? "Patrolling" : "Idle";
   }
 
   void Update() {
@@ -87,7 +87,11 @@ public class AIBrain : MonoBehaviour {
   }
 
   public bool MoveToSafeSpot() {
-    bool hasPosition = mapControl.FindSafePos(transform.position, targeting.VisualRange, unitControl, targeting.VisualRange, out Vector3 safePos);
+    return MoveToSafeSpot(transform.position);
+  }
+
+  public bool MoveToSafeSpot(Vector3 position) {
+    bool hasPosition = mapControl.FindSafePos(position, targeting.VisualRange, unitControl, targeting.VisualRange, out Vector3 safePos);
     if (hasPosition) {
       MoveTo(safePos);
       return true;
@@ -132,6 +136,9 @@ public class AIBrain : MonoBehaviour {
   public void OnAttacked(UnitControl enemy) {
     CurrentState.OnAttacked(enemy);
     SquadManager.UnitAttacked(enemy, this);
+    if (SquadManager && unitControl.Hits < 5 && (State == "Shooting" || State == "Searching")) {
+      MoveToSafeSpot(SquadManager.transform.position);
+    }
   }
 
   public void OnEnemySpotted(UnitControl enemy) {
@@ -142,9 +149,8 @@ public class AIBrain : MonoBehaviour {
   public void AddPatrolRoute(List<Vector3> route) {
     patrolRoute.Clear();
     foreach (Vector3 point in route) patrolRoute.Enqueue(point);
-
-    State = "Patrolling";
   }
+
   public void AdvanceWaypoints() {
     Vector3 lastWaypoint = patrolRoute.Dequeue();
     patrolRoute.Enqueue(lastWaypoint);
