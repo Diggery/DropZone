@@ -98,7 +98,7 @@ public class UnitControl : MonoBehaviour {
 
   public bool IsPathComplete {
     get {
-      return navAgent.hasPath && Vector3.Distance(navAgent.destination, navAgent.transform.position) <= navAgent.stoppingDistance;
+      return !IsPatrolling && navAgent.hasPath && Vector3.Distance(navAgent.destination, navAgent.transform.position) <= navAgent.stoppingDistance;
     }
   }
 
@@ -121,6 +121,7 @@ public class UnitControl : MonoBehaviour {
   public bool MoveQueued {
     get { return moveDestination != null; }
   }
+  public bool IsPatrolling { get; set; }
 
   void Start() {
     if (autoInit) Init(gameObject.name);
@@ -187,7 +188,9 @@ public class UnitControl : MonoBehaviour {
   }
 
   public void MoveComplete() {
-    Debug.Log("Move Complete");
+    animator.ResetTrigger("UnderFire");
+    animator.ResetTrigger("Dive");
+
     MapData.MapCell mapCell = gameManager.GetMapCell(navAgent.destination);
 
     pathComplete.Invoke();

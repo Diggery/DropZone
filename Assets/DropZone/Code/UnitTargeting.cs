@@ -22,7 +22,7 @@ public class UnitTargeting : MonoBehaviour {
 
   public UnitControl CurrentTarget { get; set; }
   public bool TargetVisible {
-    get { return mapControl.IsPositionVisible(transform.position, CurrentTarget.transform.position); }
+    get { return mapControl.IsPositionVisible(transform.position, CurrentTarget.transform.position, true); }
   }
   public UnitControl SecondaryTarget { get; set; }
   float targetMemory = 1.0f;
@@ -56,10 +56,12 @@ public class UnitTargeting : MonoBehaviour {
   }
 
   public void Process() {
-    // if (gameObject.tag.Equals("Player")) MapTester.DrawVisibleCells(transform.position, mapControl.mapData);
 
     if (!CurrentTarget || CurrentTarget.IsDead) {
-      ReadyToFire = false;
+      if (gameObject.tag.Equals("Enemy")) {
+        if (CurrentTarget) Debug.Log("Current Target = " + CurrentTarget);
+      }
+      ReadyToFire = false; 
       CurrentTarget = ScanForTargets();
       if (CurrentTarget) unitControl.enemySpottedAlert.Invoke(CurrentTarget);
       animator.SetBool("TargetVisible", false);
@@ -68,7 +70,7 @@ public class UnitTargeting : MonoBehaviour {
       return;
     }
 
-    if (!transform.tag.Equals("Player")) Debug.DrawLine(CurrentTarget.TargetPoint, unitControl.TargetPoint, Color.green);
+    if (gameObject.tag.Equals("Enemy")) Debug.DrawLine(CurrentTarget.TargetPoint, unitControl.TargetPoint, Color.red);
 
     Vector3 targetDir = transform.InverseTransformPoint(CurrentTarget.transform.position).normalized;
     float angleToTarget = Vector3.Angle(targetDir, Vector3.forward) * Mathf.Sign(targetDir.x);
@@ -83,7 +85,7 @@ public class UnitTargeting : MonoBehaviour {
     animator.SetBool("PeekRight", unitControl.InCover && !enemyVisible && canPeekEnemyRight);
 
     if (enemyVisible || canPeekEnemyLeft || canPeekEnemyRight) {
-      targetMemory = 1;
+      targetMemory = 15;
     } else {
       targetMemory -= Time.deltaTime;
       if (targetMemory < 0) {

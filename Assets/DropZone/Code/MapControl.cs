@@ -89,7 +89,6 @@ public class MapControl : MonoBehaviour {
     MapData.MapCell coverPos = mapData.GetMapCell((side < 0) ? originCell.GetPeekLeftPos : originCell.GetPeekRightPos);
 
     Color lineColor = (side < 0) ? Color.magenta : Color.red;
-    Debug.DrawLine(coverPos.mapPos, coverPos.mapPos + (Vector3.up * 4), lineColor);
 
     if (Array.Exists(coverPos.cellsVisible, element => element.Equals(destinationCell.id))) {
       visible = true;
@@ -191,11 +190,8 @@ public class MapControl : MonoBehaviour {
     return true;
   }
 
-  public bool FindFiringPosition(Vector3 searchPos, float searchRange, UnitControl searcher, UnitControl target, out Vector3 safePos) {
-    if (target.IsDead) {
-      safePos = searchPos;
-      return false;
-    }
+  public bool FindFiringPosition(Vector3 searchPos, float searchRange, UnitControl searcher, Vector3 targetPosition, out Vector3 safePos) {
+
     List<MapData.MapCell> cellsInRange = mapData.GetMapArea(searchPos, Mathf.RoundToInt(searchRange));
     float sqrVisualRange = searchRange * searchRange;
     Dictionary<MapData.MapCell, float> scoredCells = new Dictionary<MapData.MapCell, float>();
@@ -203,8 +199,8 @@ public class MapControl : MonoBehaviour {
     foreach (MapData.MapCell cell in cellsInRange) {
       float cellScore = Mathf.Infinity;
       if (cell.isCollision) continue;
-      if (!IsPositionPeekable(cell.mapPos, target.transform.position)) continue;
-      if (IsPositionVisible(target.transform.position, cell.mapPos, true)) continue;
+      if (!IsPositionPeekable(cell.mapPos, targetPosition)) continue;
+      if (IsPositionVisible(targetPosition, cell.mapPos, true)) continue;
 
       float distanceFromSearch = (cell.mapPos - searchPos).sqrMagnitude + UnityEngine.Random.Range(0, sqrVisualRange);
 

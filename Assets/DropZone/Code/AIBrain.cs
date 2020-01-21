@@ -30,11 +30,8 @@ public class AIBrain : MonoBehaviour {
 
   UnitControl unitControl;
   MapControl mapControl;
-  public UnitControl CurrentTarget { get; set; }
   UnitTargeting targeting { get; set; }
-
-  float scanTimer = -1;
-  float scanInterval = 1.0f;
+  public Vector3 LastKnownPosition { get; set; }
 
   public bool showDebug;
   Queue<Vector3> patrolRoute = new Queue<Vector3>();
@@ -79,13 +76,8 @@ public class AIBrain : MonoBehaviour {
     if (CurrentState)
       CurrentState.StateUpdate();
 
-    if (CurrentState && CurrentState.StateName.Equals("Idle") && scanTimer > 0) {
-      scanTimer -= Time.deltaTime;
-      if (scanTimer < 0) {
-        CurrentTarget = targeting.ScanForTargets();
-        scanTimer = scanInterval;
-      }
-    }
+    if (targeting.CurrentTarget && targeting.TargetVisible) 
+      LastKnownPosition = targeting.CurrentTarget.transform.position;
   }
 
   public void MoveTo(Vector3 mapPos) {
@@ -113,8 +105,8 @@ public class AIBrain : MonoBehaviour {
     return false;
   }
 
-  public bool MoveToFiringPosition(UnitControl enemy) {
-    bool hasPosition = mapControl.FindFiringPosition(transform.position, targeting.VisualRange, unitControl, enemy, out Vector3 position);
+  public bool MoveToFiringPosition(Vector3 targetPosition) {
+    bool hasPosition = mapControl.FindFiringPosition(transform.position, targeting.VisualRange, unitControl, targetPosition, out Vector3 position);
     if (hasPosition) {
       State = "Idle";
       MoveTo(position);
@@ -137,7 +129,7 @@ public class AIBrain : MonoBehaviour {
   }
 
   public void AttackTarget(UnitControl enemy) {
-    CurrentTarget = enemy;
+    targeting.CurrentTarget = enemy;
     State = "Attacking";
   }
 
@@ -154,6 +146,8 @@ public class AIBrain : MonoBehaviour {
   public void AddPatrolRoute(List<Vector3> route) {
     patrolRoute.Clear();
     foreach (Vector3 point in route) patrolRoute.Enqueue(point);
+
+    State = "Patrolling";
   }
   public void AdvanceWaypoints() {
     Vector3 lastWaypoint = patrolRoute.Dequeue();

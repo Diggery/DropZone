@@ -14,7 +14,7 @@ public class AIStateAttacking : AIState {
 
   public override void StateEnter() {
     base.StateEnter();
-    unitControl.MoveTo(brain.CurrentTarget.transform.position);
+    unitControl.MoveTo(targeting.CurrentTarget.transform.position);
   }
 
   public override void StateUpdate() {

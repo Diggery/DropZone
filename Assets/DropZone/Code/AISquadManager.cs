@@ -15,7 +15,6 @@ public class AISquadManager : MonoBehaviour {
   public string teamTag = "Enemy";
   public bool autoFill = false;
   List<AIBrain> units = new List<AIBrain>();
-  public UnitControl SquadTarget { get; set; }
 
   private void Awake() {
     gameManager = GameManager.Instance;
@@ -78,15 +77,18 @@ public class AISquadManager : MonoBehaviour {
     Gizmos.color = Color.yellow;
     Gizmos.DrawCube(transform.position, Vector3.one);
 
+    Gizmos.color = Color.gray;
+
+    Gizmos.DrawLine(transform.position, transform.GetChild(0).position);
+
     Gizmos.color = Color.red;
 
     if (transform.childCount > 1) {
-      for (int i = 0; i <= transform.childCount; i++) {
-
+      for (int i = 0; i < transform.childCount; i++) {
         if (i < transform.childCount) Gizmos.DrawSphere(transform.GetChild(i).position, 0.5f);
 
-        Vector3 start = (i == 0) ? transform.position : transform.GetChild(i - 1).position;
-        Vector3 end = (i < transform.childCount) ? transform.GetChild(i).position : transform.position;
+        Vector3 start = transform.GetChild(i).position;
+        Vector3 end = transform.GetChild((i + 1)% transform.childCount).position;
         Gizmos.DrawLine(start, end);
       }
     }
