@@ -44,6 +44,8 @@ public class UnitControl : MonoBehaviour {
     get { return attachPoints["TargetPoint"].position; }
   }
 
+  public Vector3 OccupyingPosition { get; set; }
+
   public List<string> Enemies { get; } = new List<string>();
 
   Dictionary<string, Transform> attachPoints = new Dictionary<string, Transform>();
@@ -139,6 +141,7 @@ public class UnitControl : MonoBehaviour {
     LerpToPose.onTickVector = LerpPoseTick;
     LerpToPose.onFinish = LerpPoseFinished;
     LerpToPose.duration = 0.5f;
+    OccupyingPosition = transform.position;
 
     SkeletonConfig skelConfig = GetComponent<SkeletonConfig>();
     if (skelConfig) skelConfig.Init();
@@ -167,6 +170,8 @@ public class UnitControl : MonoBehaviour {
   }
 
   public void MoveTo(Vector3 movePos) {
+
+    movePos = gameManager.mapControl.GetCellPos(movePos);
     animator.SetBool("LeftOpen", false);
     animator.SetBool("RightOpen", false);
 
@@ -176,6 +181,7 @@ public class UnitControl : MonoBehaviour {
       moveDestination = movePos;
     }
 
+    OccupyingPosition = movePos;
     IsMoving = true;
   }
 
@@ -208,7 +214,7 @@ public class UnitControl : MonoBehaviour {
     LerpToPose.startValue = startValue;
     Vector4 endValue = mapCell.mapPos;
     endValue.y = startValue.y;
-    endValue.w = gameManager.mapControl.GetCoverHeading(mapCell);
+    endValue.w = InCover ? gameManager.mapControl.GetCoverHeading(mapCell) : currentHeading;
     LerpToPose.endValue = endValue;
     Interpolator.Start(LerpToPose, gameObject.name + " is moving to cover");
   }

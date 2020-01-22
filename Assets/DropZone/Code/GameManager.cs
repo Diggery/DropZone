@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour {
     }
   }
 
+  public HashSet<string> UnitTypes = new HashSet<string>();
+
   List<UnitControl> units = new List<UnitControl>();
   public List<UnitControl> Units {
     get { return units; }

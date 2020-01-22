@@ -9,6 +9,8 @@ public class PlayerSpawn : MonoBehaviour {
     GameObject character = Instantiate(entry.prefab, transform.position, transform.rotation);
     UnitControl unitControl = character.GetComponent<UnitControl>().Init(entry.characterName);
     unitControl.Enemies.Add("Enemy");
+    character.tag = "Player";
+    gameManager.UnitTypes.Add("Player");
     Destroy(gameObject);
   }
 }

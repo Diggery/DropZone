@@ -29,7 +29,10 @@ public class UnitTargeting : MonoBehaviour {
     }
   }
   public bool TargetVisible {
-    get { return mapControl.IsPositionVisible(transform.position, CurrentTarget.transform.position, true); }
+    get { 
+      if (!CurrentTarget) return false;
+      return mapControl.PositionIsVisible(transform.position, CurrentTarget.transform.position, true); 
+      }
   }
   public UnitControl SecondaryTarget { get; set; }
   float targetMemory = 1.0f;
@@ -147,7 +150,7 @@ public class UnitTargeting : MonoBehaviour {
 
       if (closestTarget && closestDistance < targetDistance) continue;
 
-      bool enemyVisible = mapControl.IsPositionVisible(transform.position, enemyTarget.TargetPoint) ||
+      bool enemyVisible = mapControl.PositionIsVisible(transform.position, enemyTarget.TargetPoint) ||
         mapControl.IsPositionPeekable(transform.position, enemyTarget.TargetPoint);
 
       if (enemyVisible) {

@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class MapControl : MonoBehaviour {
 
+  GameManager gameManager;
   public Transform lowerLeftMarker;
   public Transform upperRightMarker;
   Vector2 mapSize;
@@ -21,7 +22,9 @@ public class MapControl : MonoBehaviour {
     }
   }
 
-  void Start() { }
+  void Start() { 
+    gameManager = GameManager.Instance;
+  }
 
   public Vector2 GetMapSize() {
     Vector3 lowerLeftPos = lowerLeftMarker.transform.position;
@@ -43,7 +46,7 @@ public class MapControl : MonoBehaviour {
     return lowerLeftMarker.transform.position;
   }
 
-  public bool IsPositionVisible(Vector3 origin, Vector3 destination, bool usePeeking = false) {
+  public bool PositionIsVisible(Vector3 origin, Vector3 destination, bool usePeeking = false) {
     MapData.MapCell originCell = mapData.GetMapCell(origin);
     MapData.MapCell destinationCell = mapData.GetMapCell(destination);
     bool visible = Array.Exists(originCell.cellsVisible, element => element.Equals(destinationCell.id));
@@ -112,11 +115,13 @@ public class MapControl : MonoBehaviour {
 
       if (!cell.HasCover) continue;
       if (cell.isCollision) continue;
+      if (CellIsOccupied(cell)) continue;
+
       bool isVisible = false;
       float cellScore = Mathf.Infinity;
 
       foreach (GameObject target in possibleTargets) {
-        if (IsPositionVisible(target.transform.position, cell.mapPos, true)) {
+        if (PositionIsVisible(target.transform.position, cell.mapPos, true)) {
           isVisible = true;
         }
         float distanceFromSearch = (cell.mapPos - searchPos).sqrMagnitude + UnityEngine.Random.Range(0, sqrVisualRange);
@@ -156,18 +161,17 @@ public class MapControl : MonoBehaviour {
     }
 
     float sqrVisualRange = visualRange * visualRange;
-
     List<MapData.MapCell> cellsInRange = mapData.GetMapArea(searchPos, Mathf.RoundToInt(searchRange));
-
     Dictionary<MapData.MapCell, float> scoredCells = new Dictionary<MapData.MapCell, float>();
 
     foreach (MapData.MapCell cell in cellsInRange) {
       bool isVisible = false;
       float cellScore = Mathf.Infinity;
       if (cell.isCollision) continue;
+      if (CellIsOccupied(cell)) continue;
 
       foreach (GameObject target in possibleTargets) {
-        if (IsPositionVisible(target.transform.position, cell.mapPos, true)) isVisible = true;
+        if (PositionIsVisible(target.transform.position, cell.mapPos, true)) isVisible = true;
 
         float distanceFromSearch = (cell.mapPos - searchPos).sqrMagnitude + UnityEngine.Random.Range(0, sqrVisualRange);
         float distanceFromTarget = Mathf.Max(sqrVisualRange - (cell.mapPos - target.transform.position).sqrMagnitude, 0);
@@ -200,9 +204,10 @@ public class MapControl : MonoBehaviour {
       float cellScore = Mathf.Infinity;
       if (cell.isCollision) continue;
       if (!IsPositionPeekable(cell.mapPos, targetPosition)) continue;
-      if (IsPositionVisible(targetPosition, cell.mapPos, true)) continue;
+      if (PositionIsVisible(targetPosition, cell.mapPos, true)) continue;
+      if (CellIsOccupied(cell)) continue;
 
-      float distanceFromSearch = (cell.mapPos - searchPos).sqrMagnitude + UnityEngine.Random.Range(0, sqrVisualRange);
+      float distanceFromSearch = (cell.mapPos - searchPos).sqrMagnitude;
 
       cellScore = Mathf.Min(cellScore, distanceFromSearch);
       scoredCells.Add(cell, cellScore);
@@ -234,7 +239,6 @@ public class MapControl : MonoBehaviour {
   }
 
   public Vector3 GetCellPos(Vector3 position) {
-
     return mapData.GetMapCell(position).mapPos;
   }
 
@@ -242,5 +246,19 @@ public class MapControl : MonoBehaviour {
     List<GameObject> possibleTargets = new List<GameObject>();
     foreach (var enemyType in searcher.Enemies) possibleTargets.AddRange(GameObject.FindGameObjectsWithTag(enemyType));
     return possibleTargets;
+  }
+
+  bool CellIsOccupied(MapData.MapCell cell) {
+    List<GameObject> allUnits = new List<GameObject>();
+    foreach (var type in gameManager.UnitTypes) allUnits.AddRange(GameObject.FindGameObjectsWithTag(type));
+    bool isOccupied = false;
+    foreach (var unitObj in allUnits) {
+      UnitControl unit = unitObj.GetComponent<UnitControl>();
+      if (Vector3.Distance(cell.mapPos, unit.OccupyingPosition) < 0.75) {
+        isOccupied = true;
+        Debug.Log(cell.id + " is occupied");
+      }
+    }
+    return isOccupied;
   }
 }

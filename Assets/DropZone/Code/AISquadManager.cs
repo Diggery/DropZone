@@ -47,7 +47,8 @@ public class AISquadManager : MonoBehaviour {
     CharacterEntry entry = gameManager.GetCharacter(unitName);
     GameObject newUnit = GameObject.Instantiate(entry.prefab, pos, rot);
     newUnit.tag = teamTag;
-
+    gameManager.UnitTypes.Add(teamTag);
+    
     UnitControl unitControl = newUnit.GetComponent<UnitControl>().Init(entry.characterName);
 
     AIBrain brain = newUnit.AddComponent<AIBrain>().Init();
