@@ -254,6 +254,7 @@ public class MapControl : MonoBehaviour {
     bool isOccupied = false;
     foreach (var unitObj in allUnits) {
       UnitControl unit = unitObj.GetComponent<UnitControl>();
+      if (unit.IsDead) continue;
       if (Vector3.Distance(cell.mapPos, unit.OccupyingPosition) < 0.75) {
         isOccupied = true;
         Debug.Log(cell.id + " is occupied");

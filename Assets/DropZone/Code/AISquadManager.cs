@@ -16,6 +16,8 @@ public class AISquadManager : MonoBehaviour {
   public bool autoFill = false;
   List<AIBrain> units = new List<AIBrain>();
 
+  public AISpawnPoint[] spawnPositions;
+
   private void Awake() {
     gameManager = GameManager.Instance;
   }
@@ -29,13 +31,17 @@ public class AISquadManager : MonoBehaviour {
     }
 
     if (readyToSpawn && (autoFill || spawnQueue > 0) && (amountSpawned < spawnLimit)) {
-      AIBrain newUnit = CreateUnit(unitType, transform.position, transform.rotation);
+      Vector3 position;
+      if (spawnPositions.Length > 0) {
+        position = spawnPositions[Random.Range(0, spawnPositions.Length)].position;
+      } else {
+        position = transform.position;
+      }
+
+      AIBrain newUnit = CreateUnit(unitType, position, transform.rotation);
       units.Add(newUnit);
     }
 
-    if (Input.GetKeyDown(KeyCode.V)) {
-      units[0].TakeCover();
-    }
   }
 
   public void RequestSpawn(int amount) {
@@ -75,11 +81,14 @@ public class AISquadManager : MonoBehaviour {
   }
 
   void OnDrawGizmos() {
+    Gizmos.color = Color.green;
+    foreach(AISpawnPoint point in spawnPositions)
+      Gizmos.DrawLine(transform.position, point.position);
+
     Gizmos.color = Color.yellow;
     Gizmos.DrawCube(transform.position, Vector3.one);
 
     Gizmos.color = Color.gray;
-
     Gizmos.DrawLine(transform.position, transform.GetChild(0).position);
 
     Gizmos.color = Color.red;

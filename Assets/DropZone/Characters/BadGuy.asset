@@ -19,4 +19,4 @@ MonoBehaviour:
   sideArm: 
   speed: 3.5
   visualRange: 20
-  hits: 10
+  hits: 6

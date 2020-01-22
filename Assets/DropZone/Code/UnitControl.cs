@@ -11,7 +11,7 @@ public class UnitControl : MonoBehaviour {
     get { return unitType; }
     set {
       unitType = value;
-      gameObject.name = "Unit-" + unitType;
+      gameObject.name = "Unit-" + unitType + "_" + Random.value;
     }
   }
 

@@ -31,7 +31,7 @@ public class UnitTargeting : MonoBehaviour {
   public bool TargetVisible {
     get { 
       if (!CurrentTarget) return false;
-      return mapControl.PositionIsVisible(transform.position, CurrentTarget.transform.position, true); 
+      return mapControl.PositionIsVisible(transform.position, CurrentTarget.TargetPoint, true); 
       }
   }
   public UnitControl SecondaryTarget { get; set; }
@@ -69,9 +69,7 @@ public class UnitTargeting : MonoBehaviour {
   public void Process() {
 
     if (!CurrentTarget || CurrentTarget.IsDead) {
-      if (gameObject.tag.Equals("Enemy")) {
-        if (CurrentTarget) Debug.Log("Current Target = " + CurrentTarget);
-      }
+
       ReadyToFire = false;
       CurrentTarget = ScanForTargets();
       if (CurrentTarget) unitControl.enemySpottedAlert.Invoke(CurrentTarget);

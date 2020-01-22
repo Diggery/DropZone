@@ -14,7 +14,6 @@ public class AIBrain : MonoBehaviour {
     }
 
     set {
-      Debug.Log("Setting state to " + value);
       if (CurrentState && value.Equals(CurrentState.StateName)) return;
 
       if (states.ContainsKey(value)) {
@@ -125,7 +124,6 @@ public class AIBrain : MonoBehaviour {
 
   void OnMoveComplete() {
     CurrentState.OnMoveComplete();
-    Debug.Log("MoveComplete");
   }
 
   public void AttackTarget(UnitControl enemy) {

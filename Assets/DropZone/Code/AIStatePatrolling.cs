@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AIStatePatrolling : AIState {
+
+  float stoppingDistance;
   public override void StateInit() {
     base.StateInit();
     stateName = "Patrolling";
     AttackNearbyTargets = true;
     TurnTowardsTarget = true;
+    stoppingDistance = navAgent.stoppingDistance;
   }
 
   public override void StateEnter() {
@@ -15,6 +18,7 @@ public class AIStatePatrolling : AIState {
     animator.SetFloat("MoveSpeed", 0);
     brain.MoveTo(brain.NextWaypoint);
     navAgent.speed = 1.0f;
+    navAgent.stoppingDistance = 0.25f;
     unitControl.IsPatrolling = true;
   }
 
@@ -29,6 +33,8 @@ public class AIStatePatrolling : AIState {
     base.StateExit();
     animator.SetFloat("MoveSpeed", 1);
     navAgent.speed = unitControl.MoveSpeed;
+    navAgent.stoppingDistance = stoppingDistance;
+
     unitControl.IsPatrolling = false;
 
   }

@@ -2,17 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AISpawnPoint : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+public class AISpawnPoint : MonoBehaviour {
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+  public Vector3 position {
+    get { return transform.position; }
+  }
+
+  void Start() {
+
+  }
+
+  void Update() {
+
+  }
+
+  void OnDrawGizmos() {
+    Gizmos.color = Color.green;
+    Gizmos.DrawSphere(transform.position, 1);
+  }
 }
