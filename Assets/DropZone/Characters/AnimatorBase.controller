@@ -556,7 +556,7 @@ AnimatorStateTransition:
     m_EventTreshold: 0
   - m_ConditionMode: 4
     m_ConditionEvent: TargetDirection
-    m_EventTreshold: 1
+    m_EventTreshold: 0.1
   - m_ConditionMode: 3
     m_ConditionEvent: TargetDirection
     m_EventTreshold: -75

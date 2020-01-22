@@ -257,7 +257,7 @@ public class MapControl : MonoBehaviour {
       if (unit.IsDead) continue;
       if (Vector3.Distance(cell.mapPos, unit.OccupyingPosition) < 0.75) {
         isOccupied = true;
-        Debug.Log(cell.id + " is occupied");
+        Debug.Log(cell.id + " is occupied by " + unit.name);
       }
     }
     return isOccupied;

@@ -21,7 +21,7 @@ public class AIStateShooting : AIState {
 
   public override void StateUpdate() {
     base.StateUpdate();
-    if (!targeting.CurrentTarget) brain.State = "Idle";
+    if (!targeting.CurrentTarget) brain.GivingUp();
     if (targeting.TargetVisible) {
       timeSinceSeeingTarget = 0;
     } else {

@@ -69,7 +69,6 @@ public class UnitTargeting : MonoBehaviour {
   public void Process() {
 
     if (!CurrentTarget || CurrentTarget.IsDead) {
-
       ReadyToFire = false;
       CurrentTarget = ScanForTargets();
       if (CurrentTarget) unitControl.enemySpottedAlert.Invoke(CurrentTarget);
@@ -77,6 +76,11 @@ public class UnitTargeting : MonoBehaviour {
       animator.SetBool("PeekLeft", false);
       animator.SetBool("PeekRight", false);
       return;
+    }
+
+    if (!TargetVisible) {
+      UnitControl newTarget = ScanForTargets();
+      if (newTarget) CurrentTarget = newTarget;
     }
 
     if (gameObject.tag.Equals("Enemy")) Debug.DrawLine(CurrentTarget.TargetPoint, unitControl.TargetPoint, Color.red);

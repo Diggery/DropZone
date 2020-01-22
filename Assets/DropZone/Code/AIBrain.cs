@@ -50,6 +50,7 @@ public class AIBrain : MonoBehaviour {
     unitControl.pathComplete.AddListener(OnMoveComplete);
     unitControl.attackedAlert.AddListener(OnAttacked);
     unitControl.enemySpottedAlert.AddListener(OnEnemySpotted);
+    unitControl.damageTaken.AddListener(OnDamageTaken);
 
     gameObject.AddComponent<AIStateIdle>();
     gameObject.AddComponent<AIStateShooting>();
@@ -139,6 +140,10 @@ public class AIBrain : MonoBehaviour {
     }
   }
 
+  public void OnDamageTaken(UnitControl enemy) {
+    if (SquadManager) SquadManager.UnitInjured(enemy, this);
+  }
+
   public void OnEnemySpotted(UnitControl enemy) {
     CurrentState.OnEnemySpotted(enemy);
     SquadManager.EnemySpotted(enemy, this);
@@ -157,5 +162,10 @@ public class AIBrain : MonoBehaviour {
 
   public void FollowPatrolRoute() {
     State = "Patrolling";
+  }
+
+  public void GivingUp() {
+    State = "Idle";
+    if (SquadManager) SquadManager.UnitNeedOrders(this);
   }
 }

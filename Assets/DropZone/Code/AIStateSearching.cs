@@ -23,13 +23,13 @@ public class AIStateSearching : AIState {
 
   void Search() {
     if (Vector3.Distance(transform.position, brain.LastKnownPosition) < 3) {
-      brain.State = "Idle";
+      brain.GivingUp();
       return;
     }
 
-    Debug.Log(gameObject.name + " is looking somewhere else");
     bool foundPosition = brain.MoveToFiringPosition(brain.LastKnownPosition);
     if (!foundPosition) {
+      brain.GivingUp();
       brain.MoveToSafeSpot();
     }
   }

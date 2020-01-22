@@ -97,6 +97,7 @@ public class UnitControl : MonoBehaviour {
   public class enemyAlert : UnityEvent<UnitControl> { }
   public enemyAlert attackedAlert = new enemyAlert();
   public enemyAlert enemySpottedAlert = new enemyAlert();
+  public enemyAlert damageTaken = new enemyAlert();
 
   public bool IsPathComplete {
     get {
@@ -278,6 +279,7 @@ public class UnitControl : MonoBehaviour {
       animator.SetInteger("AttackDirection", info.GetOrthagonalDirection(transform));
       animator.SetTrigger("Hit");
     }
+    damageTaken.Invoke(info.attacker);
   }
 
   public void TakeHealing(float amount) {
