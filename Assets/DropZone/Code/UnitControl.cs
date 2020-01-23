@@ -116,9 +116,15 @@ public class UnitControl : MonoBehaviour {
 
   public float MoveSpeed { get; set; }
   public float MaxHits { get; set; }
-  public float Hits { get; set; }
+
+  float hitpoints = 10;
+
+  public bool IsInjured {
+    get { return hitpoints < 3; }
+  }
+
   public bool IsDead {
-    get { return Hits < 0; }
+    get { return hitpoints < 0; }
   }
 
   Vector3? moveDestination;
@@ -171,11 +177,11 @@ public class UnitControl : MonoBehaviour {
     if (!IsDead) targetControl.Process();
   }
 
-  public void SetStats(float hitpoints, float visualRange, float speed) {
+  public void SetStats(float maxHits, float visualRange, float speed) {
     targetControl.VisualRange = visualRange;
-    MaxHits = hitpoints;
-    Hits = hitpoints;
-    MoveSpeed = speed;
+    this.MaxHits = maxHits;
+    this.hitpoints = maxHits;
+    this.MoveSpeed = speed;
     navAgent.speed = MoveSpeed;
   }
 
@@ -202,10 +208,6 @@ public class UnitControl : MonoBehaviour {
     MapData.MapCell mapCell = gameManager.GetMapCell(navAgent.destination);
 
     InCover = mapCell.HasCover;
-    if (InCover) {
-      animator.SetBool("LeftOpen", mapCell.CanPeekLeft);
-      animator.SetBool("RightOpen", mapCell.CanPeekRight);
-    }
 
     IsMoving = false;
 
@@ -273,8 +275,8 @@ public class UnitControl : MonoBehaviour {
 
   public void TakeDamage(DamageInfo info) {
     Debug.Log("OUCH: " + info.damageAmount + " points of damage");
-    Hits -= info.damageAmount;
-    if (Hits < 0) {
+     hitpoints -= info.damageAmount;
+    if (hitpoints < 0) {
       Incapacitate(info);
     }
     if (!IsMoving && !InCover) {
@@ -286,11 +288,11 @@ public class UnitControl : MonoBehaviour {
 
   public void TakeHealing(float amount) {
     Debug.Log("NICE: " + amount + " points of healing");
-    Hits = Mathf.Min(MaxHits, Hits + amount);
+    hitpoints = Mathf.Min(MaxHits, hitpoints + amount);
   }
 
   public void Incapacitate(DamageInfo info = null) {
-    Hits = -1;
+    hitpoints = -1;
     SkeletonControl skeleton = GetComponent<SkeletonControl>();
     Vector3 direction = info == null ? Vector3.up : info.GetDamageDirection(transform);
     skeleton.SwitchToRagdoll(direction);

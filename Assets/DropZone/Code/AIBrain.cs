@@ -34,6 +34,8 @@ public class AIBrain : MonoBehaviour {
     }
   }
 
+  float alertCooldown = 1;
+
   Dictionary<string, AIState> states = new Dictionary<string, AIState>();
 
   UnitControl unitControl;
@@ -89,6 +91,9 @@ public class AIBrain : MonoBehaviour {
 
     if (targeting.CurrentTarget && targeting.TargetVisible)
       LastKnownPosition = targeting.CurrentTarget.transform.position;
+
+    if (alertCooldown > 0) 
+      alertCooldown -= Time.deltaTime;
   }
 
   public void MoveTo(Vector3 mapPos) {
@@ -100,6 +105,7 @@ public class AIBrain : MonoBehaviour {
   }
 
   public bool MoveToSafeSpot(Vector3 position) {
+    Debug.Log(" is moving to safe spot");
     bool hasPosition = mapControl.FindSafePos(position, targeting.VisualRange, unitControl, targeting.VisualRange, out Vector3 safePos);
     if (hasPosition) {
       MoveTo(safePos);
@@ -144,7 +150,7 @@ public class AIBrain : MonoBehaviour {
   public void OnAttacked(UnitControl enemy) {
     CurrentState.OnAttacked(enemy);
     SquadManager.UnitAttacked(enemy, this);
-    if (SquadManager && unitControl.Hits < 5 && (State == "Shooting" || State == "Searching")) {
+    if (alertCooldown < 0 && SquadManager && unitControl.IsInjured && (State == "Shooting" || State == "Searching")) {
       MoveToSafeSpot(SquadManager.transform.position);
     }
   }

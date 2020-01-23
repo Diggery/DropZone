@@ -129,7 +129,6 @@ public class UnitTargeting : MonoBehaviour {
       if (LineOfSightBlocked) readyTimer = 1;
       unitControl.EquippedWeapon.Attack(CurrentTarget);
     }
-
   }
 
   public UnitControl ScanForTargets() {

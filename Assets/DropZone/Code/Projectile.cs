@@ -36,19 +36,21 @@ public class Projectile : MonoBehaviour {
         collisionInfo.contacts[0].point,
         Quaternion.LookRotation(collisionInfo.contacts[0].normal));
 
-    bulletDamage.AddHitTarget(collisionInfo.transform);
-
-    if (collisionInfo.transform.root.name.Contains("Unit")) {
-      collisionInfo.transform.root.SendMessage(
-        "TakeDamage",
-        bulletDamage,
-        SendMessageOptions.DontRequireReceiver
-      );
-      owner.TargetHit();
-    } else {
+     bulletDamage.AddHitTarget(collisionInfo.transform);
+    Transform target = collisionInfo.transform.root;
+     if (target.name.Contains("Unit")) {
+       UnitControl unit = target.GetComponent<UnitControl>();
+       unit.TakeDamage(bulletDamage);
+      // collisionInfo.transform.root.SendMessage(
+      //   "TakeDamage",
+      //   bulletDamage,
+      //   SendMessageOptions.DontRequireReceiver
+      // );
+       owner.TargetHit();
+     } else {
       owner.TargetMiss();
-    }
-    lifeTime = 0.1f;
+     }
+     lifeTime = 0.1f;
 
   }
 }
