@@ -40,15 +40,6 @@ public class UnitTargeting : MonoBehaviour {
   public bool IsAiming { get; set; }
   public bool CheckEnemy { get; set; }
 
-  bool readyToFire;
-  public bool ReadyToFire {
-    get { return readyToFire; }
-    set {
-      readyToFire = value;
-      animator.SetBool("ReadyToFire", readyToFire);
-    }
-  }
-
   public bool LineOfSightBlocked {
     get {
       return Physics.Linecast(unitControl.EquippedWeapon.MuzzlePos, CurrentTarget.TargetPoint, terrainMask);
@@ -69,12 +60,13 @@ public class UnitTargeting : MonoBehaviour {
   public void Process() {
 
     if (!CurrentTarget || CurrentTarget.IsDead) {
-      ReadyToFire = false;
       CurrentTarget = ScanForTargets();
       if (CurrentTarget) unitControl.enemySpottedAlert.Invoke(CurrentTarget);
+
       animator.SetBool("TargetVisible", false);
       animator.SetBool("PeekLeft", false);
       animator.SetBool("PeekRight", false);
+      animator.SetBool("ReadyToFire", false);
       return;
     }
 
@@ -83,19 +75,33 @@ public class UnitTargeting : MonoBehaviour {
       if (newTarget) CurrentTarget = newTarget;
     }
 
-   // if (gameObject.tag.Equals("Player")) Debug.DrawLine(CurrentTarget.TargetPoint, unitControl.TargetPoint, Color.red);
+
+    if (gameObject.tag.Equals("Player")) MapTester.DrawVisibleCells(transform.position, mapControl.mapData);
+
+    // if (gameObject.tag.Equals("Player")) Debug.DrawLine(CurrentTarget.TargetPoint, unitControl.TargetPoint, Color.red);
 
     Vector3 targetDir = transform.InverseTransformPoint(CurrentTarget.transform.position).normalized;
     float angleToTarget = Vector3.Angle(targetDir, Vector3.forward) * Mathf.Sign(targetDir.x);
-    animator.SetFloat("TargetDirection", angleToTarget);
 
     bool enemyVisible = TargetVisible;
-    bool canPeekEnemyLeft = mapControl.IsPositionPeekableLeft(transform.position, CurrentTarget.transform.position);
-    bool canPeekEnemyRight = mapControl.IsPositionPeekableRight(transform.position, CurrentTarget.transform.position);
+
+    bool leftPeekable = mapControl.IsPositionPeekableLeft(transform.position, CurrentTarget.TargetPoint);
+    bool rightPeekable = mapControl.IsPositionPeekableRight(transform.position, CurrentTarget.TargetPoint);
+
+    bool peekLeft = (leftPeekable && (angleToTarget <= 0 && angleToTarget >= -75)) ||
+      ((leftPeekable && !rightPeekable) && Mathf.Abs(angleToTarget) <= 45);
+
+    bool peekRight = (rightPeekable && (angleToTarget >= 0 && angleToTarget <= 75)) ||
+      ((rightPeekable && !leftPeekable) && Mathf.Abs(angleToTarget) <= 45);
+
+
     if (enemyVisible) Debug.DrawLine(unitControl.TargetPoint, CurrentTarget.TargetPoint, Color.white);
+
+    animator.SetFloat("TargetDirection", angleToTarget);
     animator.SetBool("TargetVisible", enemyVisible);
-    animator.SetBool("PeekLeft", unitControl.InCover && canPeekEnemyLeft);
-    animator.SetBool("PeekRight", unitControl.InCover && canPeekEnemyRight);
+    animator.SetBool("PeekLeft", peekLeft);
+    animator.SetBool("PeekRight", peekRight);
+
 
     // if (enemyVisible || canPeekEnemyLeft || canPeekEnemyRight) {
     //   targetMemory = 25;
@@ -106,17 +112,20 @@ public class UnitTargeting : MonoBehaviour {
     //   }
     // }
 
-    ReadyToFire =
+    bool readyToFire =
       ((readyTimer < 0) &&
         !unitControl.MoveQueued &&
         unitControl.EquippedWeapon &&
         (!unitControl.IsMoving || !unitControl.EquippedWeapon.IsMainWeapon) &&
         unitControl.EquippedWeapon.IsReady &&
-        (enemyVisible || canPeekEnemyLeft || canPeekEnemyRight || CheckEnemy));
+        (enemyVisible || CheckEnemy));
+
+    animator.SetBool("ReadyToFire", readyToFire);
+
 
     if (readyTimer > 0) readyTimer -= Time.deltaTime;
 
-    if (ReadyToFire && IsAiming) {
+    if (readyToFire && IsAiming) {
       if (LineOfSightBlocked) readyTimer = 1;
       unitControl.EquippedWeapon.Attack(CurrentTarget);
     }

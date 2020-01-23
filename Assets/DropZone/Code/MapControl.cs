@@ -97,7 +97,7 @@ public class MapControl : MonoBehaviour {
     
     Color lineColor = (side < 0) ? Color.green : Color.blue;
 
-    Debug.DrawLine(coverPos.mapPos + Vector3.up, destinationCell.mapPos + Vector3.up, (visible ? lineColor : Color.red));
+    //Debug.DrawLine(coverPos.mapPos + Vector3.up, destinationCell.mapPos + Vector3.up, (visible ? lineColor : Color.red));
     return visible;
   }
 
