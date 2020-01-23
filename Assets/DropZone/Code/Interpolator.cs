@@ -89,6 +89,7 @@ public class Interpolator : MonoBehaviour {
   float duration = 1.0f;
   AnimationCurve curve;
   bool reversed = false;
+  bool done = false;
 
   public bool Reversed {
     get {
@@ -181,10 +182,14 @@ public class Interpolator : MonoBehaviour {
   }
 
   public void Cancel() {
+    done = true;
+    Debug.Log("Stopping interpolation");
     Destroy(gameObject);
   }
 
   private void Update() {
+    if (done) return;
+
     timer += (useGameTime ? GameTime.DeltaTime : Time.deltaTime) / (reversed ? -duration : duration);
 
     if (isFloat && onTick != null) {

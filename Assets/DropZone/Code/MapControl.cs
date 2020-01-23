@@ -91,11 +91,13 @@ public class MapControl : MonoBehaviour {
     bool visible = false;
     MapData.MapCell coverPos = mapData.GetMapCell((side < 0) ? originCell.GetPeekLeftPos : originCell.GetPeekRightPos);
 
-    Color lineColor = (side < 0) ? Color.magenta : Color.red;
-
     if (Array.Exists(coverPos.cellsVisible, element => element.Equals(destinationCell.id))) {
       visible = true;
     }
+    
+    Color lineColor = (side < 0) ? Color.green : Color.blue;
+
+    Debug.DrawLine(coverPos.mapPos + Vector3.up, destinationCell.mapPos + Vector3.up, (visible ? lineColor : Color.red));
     return visible;
   }
 

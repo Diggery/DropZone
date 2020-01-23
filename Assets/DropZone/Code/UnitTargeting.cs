@@ -83,7 +83,7 @@ public class UnitTargeting : MonoBehaviour {
       if (newTarget) CurrentTarget = newTarget;
     }
 
-    if (gameObject.tag.Equals("Enemy")) Debug.DrawLine(CurrentTarget.TargetPoint, unitControl.TargetPoint, Color.red);
+   // if (gameObject.tag.Equals("Player")) Debug.DrawLine(CurrentTarget.TargetPoint, unitControl.TargetPoint, Color.red);
 
     Vector3 targetDir = transform.InverseTransformPoint(CurrentTarget.transform.position).normalized;
     float angleToTarget = Vector3.Angle(targetDir, Vector3.forward) * Mathf.Sign(targetDir.x);
@@ -94,8 +94,8 @@ public class UnitTargeting : MonoBehaviour {
     bool canPeekEnemyRight = mapControl.IsPositionPeekableRight(transform.position, CurrentTarget.transform.position);
 
     animator.SetBool("TargetVisible", enemyVisible);
-    animator.SetBool("PeekLeft", unitControl.InCover && !enemyVisible && canPeekEnemyLeft);
-    animator.SetBool("PeekRight", unitControl.InCover && !enemyVisible && canPeekEnemyRight);
+    animator.SetBool("PeekLeft", unitControl.InCover && canPeekEnemyLeft);
+    animator.SetBool("PeekRight", unitControl.InCover && canPeekEnemyRight);
 
     // if (enemyVisible || canPeekEnemyLeft || canPeekEnemyRight) {
     //   targetMemory = 25;
@@ -146,7 +146,7 @@ public class UnitTargeting : MonoBehaviour {
 
       if (targetDistance > SqrVisualRange) {
         if (showDebug) Debug.Log("targets is outside of visual range");
-        Debug.DrawLine(enemyTarget.TargetPoint, unitControl.TargetPoint, Color.gray);
+       // Debug.DrawLine(enemyTarget.TargetPoint, unitControl.TargetPoint, Color.gray);
         continue;
       }
 

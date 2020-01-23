@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class AISpawnPoint : MonoBehaviour {
 
+  public int reserveAmount = 0;
+
   public Vector3 position {
     get { return transform.position; }
   }

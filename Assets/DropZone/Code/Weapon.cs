@@ -21,6 +21,7 @@ public class Weapon : MonoBehaviour {
   public float fireRate = 0.1f;
   public int burstCount = 3;
   public float burstCooldown = 0.5f;
+  public float damage = 1f;
 
   int magazineSize = 15;
   int roundsInMagazine = 0;
@@ -161,7 +162,7 @@ public class Weapon : MonoBehaviour {
     float hOffset = Random.Range(-spread.x, spread.y);
     aimingDirection = Quaternion.AngleAxis(hOffset, Vector3.up) * aimingDirection;
 
-    DamageInfo damageInfo = new DamageInfo(0.5f, DamageType.Puncture, owner);
+    DamageInfo damageInfo = new DamageInfo(damage, DamageType.Puncture, owner);
     projectile.GetComponent<Projectile>().Init(unitTargeting, aimingDirection, range, damageInfo);
 
     kickBack = muzzle.forward * -0.1f + (Vector3.up * Random.Range(-0.02f, 0.02f));

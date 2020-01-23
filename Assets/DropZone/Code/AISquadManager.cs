@@ -79,11 +79,11 @@ public class AISquadManager : MonoBehaviour {
   public void EnemySpotted(UnitControl attacker, AIBrain victim) { }
   public void UnitAttacked(UnitControl attacker, AIBrain victim) { }
   public void UnitInjured(UnitControl attacker, AIBrain victim) {
-    Debug.Log("unti injured");
     if (spawnReservesPosition && !spawnReservesOut) StartCoroutine(SpawnReserves(attacker.transform.position));
   }
   public void UnitNeedOrders(AIBrain unit) {
     if (reserves.Contains(unit)) {
+      unit.State = "Retreating";
       unit.MoveTo(spawnReservesPosition.position);
       Debug.Log("Sending " + unit.name + " back to the reserves");
     }

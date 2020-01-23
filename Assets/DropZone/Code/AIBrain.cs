@@ -7,7 +7,15 @@ using UnityEngine.AI;
 public class AIBrain : MonoBehaviour {
   public bool isBrainDead = false;
   public AISquadManager SquadManager { get; set; }
-  public AIState CurrentState { get; set; }
+
+  AIState currentState;
+  public AIState CurrentState {
+    get {
+      if (!currentState) Debug.Log(gameObject.name + " has no state");
+      return currentState;
+    }
+    set { currentState = value; }
+  }
   public string State {
     get {
       return CurrentState.StateName;
@@ -57,6 +65,7 @@ public class AIBrain : MonoBehaviour {
     gameObject.AddComponent<AIStateSearching>();
     gameObject.AddComponent<AIStateMelee>();
     gameObject.AddComponent<AIStatePatrolling>();
+    gameObject.AddComponent<AIStateRetreating>();
 
     StartCoroutine(GatherStates());
     return this;
@@ -168,4 +177,5 @@ public class AIBrain : MonoBehaviour {
     State = "Idle";
     if (SquadManager) SquadManager.UnitNeedOrders(this);
   }
+
 }

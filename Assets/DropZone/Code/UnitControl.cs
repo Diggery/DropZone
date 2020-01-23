@@ -33,6 +33,7 @@ public class UnitControl : MonoBehaviour {
   bool switchingToMainWeapon = false;
 
   Interpolator.LerpVector LerpToPose = new Interpolator.LerpVector();
+  Interpolator currentInterpolation;
 
   public bool HasTarget {
     get { return targetControl.CurrentTarget; }
@@ -170,6 +171,14 @@ public class UnitControl : MonoBehaviour {
     if (!IsDead) targetControl.Process();
   }
 
+  public void SetStats(float hitpoints, float visualRange, float speed) {
+    targetControl.VisualRange = visualRange;
+    MaxHits = hitpoints;
+    Hits = hitpoints;
+    MoveSpeed = speed;
+    navAgent.speed = MoveSpeed;
+  }
+
   public void MoveTo(Vector3 movePos) {
 
     movePos = gameManager.mapControl.GetCellPos(movePos);
@@ -186,21 +195,12 @@ public class UnitControl : MonoBehaviour {
     IsMoving = true;
   }
 
-  public void SetStats(float hitpoints, float visualRange, float speed) {
-    targetControl.VisualRange = visualRange;
-    MaxHits = hitpoints;
-    Hits = hitpoints;
-    MoveSpeed = speed;
-    navAgent.speed = MoveSpeed;
-  }
-
   public void MoveComplete() {
     animator.ResetTrigger("UnderFire");
     animator.ResetTrigger("Dive");
 
     MapData.MapCell mapCell = gameManager.GetMapCell(navAgent.destination);
 
-    pathComplete.Invoke();
     InCover = mapCell.HasCover;
     if (InCover) {
       animator.SetBool("LeftOpen", mapCell.CanPeekLeft);
@@ -217,7 +217,9 @@ public class UnitControl : MonoBehaviour {
     endValue.y = startValue.y;
     endValue.w = InCover ? gameManager.mapControl.GetCoverHeading(mapCell) : currentHeading;
     LerpToPose.endValue = endValue;
-    Interpolator.Start(LerpToPose, gameObject.name + " is moving to cover");
+    currentInterpolation = Interpolator.Start(LerpToPose, gameObject.name + " is moving to cover");
+
+    pathComplete.Invoke();
   }
 
   public void AddWeapon(Weapon weapon) {
@@ -342,5 +344,13 @@ public class UnitControl : MonoBehaviour {
         Debug.Log("Don't know what to do with a " + eventName + " event");
         break;
     }
+  }
+
+  public void Remove() {
+    Debug.Log("Removing Unit");
+    if (currentInterpolation) currentInterpolation.Cancel();
+    if (MainWeapon) Destroy(MainWeapon.gameObject);
+    if (SideArm) Destroy(SideArm.gameObject);
+    Destroy(gameObject);
   }
 }

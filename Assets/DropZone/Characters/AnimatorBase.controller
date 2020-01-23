@@ -554,15 +554,15 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: TargetVisible
     m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: LeftOpen
+    m_EventTreshold: 0
   - m_ConditionMode: 4
     m_ConditionEvent: TargetDirection
     m_EventTreshold: 0.1
   - m_ConditionMode: 3
     m_ConditionEvent: TargetDirection
     m_EventTreshold: -75
-  - m_ConditionMode: 1
-    m_ConditionEvent: LeftOpen
-    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1997034511251348365}
   m_Solo: 0
@@ -710,15 +710,15 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: TargetVisible
     m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: RightOpen
+    m_EventTreshold: 0
   - m_ConditionMode: 3
     m_ConditionEvent: TargetDirection
     m_EventTreshold: 0
   - m_ConditionMode: 4
     m_ConditionEvent: TargetDirection
     m_EventTreshold: 75
-  - m_ConditionMode: 1
-    m_ConditionEvent: RightOpen
-    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8971343310364704655}
   m_Solo: 0
