@@ -128,7 +128,6 @@ public class Weapon : MonoBehaviour {
   }
 
   public void Attack(UnitControl target) {
-
     if (fireRateTimer > 0) return;
     if (burstCooldownTimer > 0) return;
     if (Reloading) return;

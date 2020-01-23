@@ -95,6 +95,7 @@ public class AISquadManager : MonoBehaviour {
       Debug.Log("Spawning reserve");
       AIBrain newUnit = CreateUnit(unitType, spawnReservesPosition.position, transform.rotation);
       reserves.Add(newUnit);
+    
       newUnit.MoveTo(target);
       yield return new WaitForSeconds(0.5f);
     }

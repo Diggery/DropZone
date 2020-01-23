@@ -196,7 +196,7 @@ public class MapControl : MonoBehaviour {
     return true;
   }
 
-  public bool FindFiringPosition(Vector3 searchPos, float searchRange, UnitControl searcher, Vector3 targetPosition, out Vector3 safePos) {
+  public bool FindFiringPosition(Vector3 searchPos, float searchRange, UnitControl searcher, Vector3 targetPosition, bool requireCover, out Vector3 safePos) {
 
     List<MapData.MapCell> cellsInRange = mapData.GetMapArea(searchPos, Mathf.RoundToInt(searchRange));
     float sqrVisualRange = searchRange * searchRange;

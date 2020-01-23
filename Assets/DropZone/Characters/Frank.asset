@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0151848e28039548b70a31e986eb702, type: 3}
-  m_Name: CaptainSmith
+  m_Name: Frank
   m_EditorClassIdentifier: 
-  characterName: Captain Smith
+  characterName: Frank
   prefab: {fileID: 1506360018236373272, guid: 11917e493b9b1f7448b1c059744fbf0b, type: 3}
   head: {fileID: 8882101271248726818, guid: 84c7989250c704491a077c2c0069fecb, type: 3}
   mainWeapon: MkII

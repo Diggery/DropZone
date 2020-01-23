@@ -92,7 +92,7 @@ public class UnitTargeting : MonoBehaviour {
     bool enemyVisible = TargetVisible;
     bool canPeekEnemyLeft = mapControl.IsPositionPeekableLeft(transform.position, CurrentTarget.transform.position);
     bool canPeekEnemyRight = mapControl.IsPositionPeekableRight(transform.position, CurrentTarget.transform.position);
-
+    if (enemyVisible) Debug.DrawLine(unitControl.TargetPoint, CurrentTarget.TargetPoint, Color.white);
     animator.SetBool("TargetVisible", enemyVisible);
     animator.SetBool("PeekLeft", unitControl.InCover && canPeekEnemyLeft);
     animator.SetBool("PeekRight", unitControl.InCover && canPeekEnemyRight);

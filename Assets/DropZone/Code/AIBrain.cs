@@ -118,7 +118,7 @@ public class AIBrain : MonoBehaviour {
   }
 
   public bool MoveToFiringPosition(Vector3 targetPosition) {
-    bool hasPosition = mapControl.FindFiringPosition(transform.position, targeting.VisualRange, unitControl, targetPosition, out Vector3 position);
+    bool hasPosition = mapControl.FindFiringPosition(transform.position, targeting.VisualRange, unitControl, targetPosition, false, out Vector3 position);
     if (hasPosition) {
       MoveTo(position);
       return true;
