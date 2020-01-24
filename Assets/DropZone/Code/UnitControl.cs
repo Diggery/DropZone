@@ -188,8 +188,7 @@ public class UnitControl : MonoBehaviour {
   public void MoveTo(Vector3 movePos) {
 
     movePos = gameManager.mapControl.GetCellPos(movePos);
-    animator.SetBool("LeftOpen", false);
-    animator.SetBool("RightOpen", false);
+
 
     if (inMovingState) {
       navAgent.SetDestination(movePos);
@@ -274,7 +273,6 @@ public class UnitControl : MonoBehaviour {
   }
 
   public void TakeDamage(DamageInfo info) {
-    Debug.Log("OUCH: " + info.damageAmount + " points of damage");
      hitpoints -= info.damageAmount;
     if (hitpoints < 0) {
       Incapacitate(info);
@@ -301,6 +299,11 @@ public class UnitControl : MonoBehaviour {
       EquippedWeapon.Drop();
       EquippedWeapon = null;
     }
+  }
+
+  public void OutOfAmmo() {
+    Debug.Log(gameObject.name + " is oput of ammo");
+    if (SideArm) DrawSideArm();
   }
 
   public void Revive() {

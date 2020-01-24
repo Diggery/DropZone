@@ -16,13 +16,13 @@ public class Weapon : MonoBehaviour {
   Effect muzzleEffect;
   Rigidbody rbody;
 
-
-  public Vector2 spread = new Vector2(5, 5); 
+  public Vector2 spread = new Vector2(5, 5);
   public float fireRate = 0.1f;
   public int burstCount = 3;
   public float burstCooldown = 0.5f;
   public float damage = 1f;
 
+  int magazines = 1;
   int magazineSize = 15;
   int roundsInMagazine = 0;
   float fireRateTimer = 0;
@@ -124,7 +124,6 @@ public class Weapon : MonoBehaviour {
       transform.rotation = gripPivot.rotation;
     }
 
-
   }
 
   public void Attack(UnitControl target) {
@@ -190,14 +189,12 @@ public class Weapon : MonoBehaviour {
       Random.Range(-1.0f, 1.0f),
       Random.Range(-1.0f, 1.0f)
     );
-    Vector3 force = new Vector3( Random.Range(-1.0f, 1.0f), 1.0f, Random.Range(-1.0f, 1.0f));
+    Vector3 force = new Vector3(Random.Range(-1.0f, 1.0f), 1.0f, Random.Range(-1.0f, 1.0f));
     rbody.AddTorque(torque * 10, ForceMode.VelocityChange);
     rbody.AddForce(force, ForceMode.VelocityChange);
     GetComponent<BoxCollider>().enabled = true;
     pickUpCollision.enabled = true;
     grip.localPosition = Vector3.zero;
-
-    Debug.Log("Dropping " + gameObject.name);
   }
 
   public virtual void PickUp(UnitControl newOwner) {
@@ -212,6 +209,7 @@ public class Weapon : MonoBehaviour {
   public void Reloaded(bool instant = false) {
     Reloading = false;
     roundsInMagazine = magazineSize;
+    magazines--;
     magazine.GetComponent<Renderer>().enabled = true;
   }
 
@@ -225,10 +223,14 @@ public class Weapon : MonoBehaviour {
     oldMagRB.AddRelativeTorque(Vector3.forward, ForceMode.Impulse);
 
     magazine.GetComponent<Renderer>().enabled = false;
-
     Reloading = true;
 
-    owner.Reload();
+    if (IsMainWeapon && magazines <= 0) {
+      owner.OutOfAmmo();
+    } else {
+      owner.Reload();
+    }
+
   }
 
   void OnClick(PointerEventData eventData) {

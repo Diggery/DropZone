@@ -105,7 +105,6 @@ public class AIBrain : MonoBehaviour {
   }
 
   public bool MoveToSafeSpot(Vector3 position) {
-    Debug.Log(" is moving to safe spot");
     bool hasPosition = mapControl.FindSafePos(position, targeting.VisualRange, unitControl, targeting.VisualRange, out Vector3 safePos);
     if (hasPosition) {
       MoveTo(safePos);
