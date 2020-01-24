@@ -83,8 +83,7 @@ public class AISquadManager : MonoBehaviour {
   }
   public void UnitNeedOrders(AIBrain unit) {
     if (reserves.Contains(unit)) {
-      unit.State = "Retreating";
-      unit.MoveTo(spawnReservesPosition.position);
+      unit.Leave(spawnReservesPosition.position);
       Debug.Log("Sending " + unit.name + " back to the reserves");
     }
   }
@@ -99,6 +98,8 @@ public class AISquadManager : MonoBehaviour {
       newUnit.MoveTo(target);
       yield return new WaitForSeconds(0.5f);
     }
+
+    foreach (var unit in reserves) unit.State = "Searching";
   }
 
   void OnDrawGizmos() {

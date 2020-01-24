@@ -29,7 +29,6 @@ public class AIStateSearching : AIState {
 
     bool foundPosition = brain.MoveToFiringPosition(brain.LastKnownPosition);
     if (!foundPosition) {
-      brain.GivingUp();
       brain.MoveToSafeSpot();
     }
   }
@@ -40,6 +39,24 @@ public class AIStateSearching : AIState {
 
   public override void OnMoveComplete() {
     base.OnMoveComplete();
+  }
+
+  public override void OnEnemySpotted(UnitControl attacker) {
+    base.OnEnemySpotted(attacker);
+    float choice = Random.value + brain.AggressionFactor;
+
+
+
+    if (choice < 0.25f) {
+      brain.MoveToSafeSpot();
+    } else if (choice > 0.25f && choice < 0.5f) {
+      bool success = brain.MoveToFiringPosition((attacker.transform.position - transform.position).normalized * 10);
+      if (!success) brain.State = "Shooting";
+    } else if (choice > 0.5f && choice < 0.75f) {
+      brain.State = "Shooting";
+    } else {
+      brain.MoveTo((attacker.transform.position - transform.position).normalized * 10);
+    }
   }
 
   protected override void CollidedWithEnemy(UnitControl enemy) {

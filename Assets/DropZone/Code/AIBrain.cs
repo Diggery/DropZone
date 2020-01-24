@@ -36,6 +36,9 @@ public class AIBrain : MonoBehaviour {
 
   float alertCooldown = 1;
 
+  bool isLeaving = false;
+  public bool IsLeaving { get => isLeaving; }
+
   Dictionary<string, AIState> states = new Dictionary<string, AIState>();
 
   UnitControl unitControl;
@@ -52,6 +55,12 @@ public class AIBrain : MonoBehaviour {
   public Vector3 NextWaypoint {
     get { return patrolRoute.Peek(); }
   }
+
+  float aggressionFactor = 0;
+  public float AggressionFactor {
+    get { return aggressionFactor; }
+  }
+
 
   public AIBrain Init() {
     unitControl = GetComponent<UnitControl>();
@@ -92,7 +101,7 @@ public class AIBrain : MonoBehaviour {
     if (targeting.CurrentTarget && targeting.TargetVisible)
       LastKnownPosition = targeting.CurrentTarget.transform.position;
 
-    if (alertCooldown > 0) 
+    if (alertCooldown > 0)
       alertCooldown -= Time.deltaTime;
   }
 
@@ -150,9 +159,6 @@ public class AIBrain : MonoBehaviour {
   public void OnAttacked(UnitControl enemy) {
     CurrentState.OnAttacked(enemy);
     SquadManager.UnitAttacked(enemy, this);
-    if (alertCooldown < 0 && SquadManager && unitControl.IsInjured && (State == "Shooting" || State == "Searching")) {
-      MoveToSafeSpot(SquadManager.transform.position);
-    }
   }
 
   public void OnDamageTaken(UnitControl enemy) {
@@ -182,6 +188,12 @@ public class AIBrain : MonoBehaviour {
   public void GivingUp() {
     State = "Idle";
     if (SquadManager) SquadManager.UnitNeedOrders(this);
+  }
+
+  public void Leave(Vector3 pos) {
+    State = "Retreating";
+    isLeaving = true;
+    MoveTo(pos);
   }
 
 }

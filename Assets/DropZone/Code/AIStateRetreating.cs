@@ -5,10 +5,10 @@ using UnityEngine.AI;
 
 public class AIStateRetreating : AIState {
 
+
   public override void StateInit() {
     base.StateInit();
     stateName = "Retreating";
-
   }
 
   public override void StateEnter() {
@@ -24,7 +24,9 @@ public class AIStateRetreating : AIState {
   }
 
   public override void OnMoveComplete() {
-    unitControl.Remove();
+    base.OnMoveComplete();
+    if (brain.IsLeaving) unitControl.Remove();
+    brain.State = "Idle";
   }
 
   protected override void CollidedWithEnemy(UnitControl enemy) {
