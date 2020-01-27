@@ -126,12 +126,12 @@ public class MapControl : MonoBehaviour {
         if (PositionIsVisible(target.transform.position, cell.mapPos, true)) {
           isVisible = true;
         }
-        float distanceFromSearch = (cell.mapPos - searchPos).sqrMagnitude + UnityEngine.Random.Range(0, sqrVisualRange);
+        float distanceFromSearch = (cell.mapPos - searchPos).sqrMagnitude;
         float distanceFromTarget = Mathf.Max(sqrVisualRange - (cell.mapPos - target.transform.position).sqrMagnitude, 0);
         bool goodFiringPosition = IsPositionPeekable(cell.mapPos, target.transform.position);
 
         cellScore = Mathf.Min(cellScore, distanceFromSearch);
-        if (!goodFiringPosition) cellScore += 1000;
+        if (!goodFiringPosition) cellScore -= 1000;
       }
 
       scoredCells.Add(cell, (isVisible) ? Mathf.Infinity : cellScore);
