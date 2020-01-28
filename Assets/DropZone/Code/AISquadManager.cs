@@ -128,4 +128,12 @@ public class AISquadManager : MonoBehaviour {
       }
     }
   }
+  public Vector3 FindExit(AIBrain unit) {
+    if (reserves.Contains(unit)) {
+      return spawnReservesPosition.position;
+    } else {
+      int selector = Random.Range(0, spawnPositions.Length);
+      return spawnPositions[selector].position;
+    }
+  }
 }

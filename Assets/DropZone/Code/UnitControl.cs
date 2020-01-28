@@ -99,6 +99,7 @@ public class UnitControl : MonoBehaviour {
   public enemyAlert attackedAlert = new enemyAlert();
   public enemyAlert enemySpottedAlert = new enemyAlert();
   public enemyAlert damageTaken = new enemyAlert();
+  public enemyAlert outOfAmmo = new enemyAlert();
 
   public bool IsPathComplete {
     get {
@@ -179,6 +180,7 @@ public class UnitControl : MonoBehaviour {
 
   public void SetStats(float maxHits, float visualRange, float speed) {
     targetControl.VisualRange = visualRange;
+    targetControl.MeleeRange = 1.75f;
     this.MaxHits = maxHits;
     this.hitpoints = maxHits;
     this.MoveSpeed = speed;
@@ -304,6 +306,7 @@ public class UnitControl : MonoBehaviour {
 
   public void OutOfAmmo() {
     Debug.Log(gameObject.name + " is oput of ammo");
+    outOfAmmo.Invoke(this);
     if (SideArm) DrawSideArm();
   }
 

@@ -37,7 +37,10 @@ public class AIBrain : MonoBehaviour {
   float alertCooldown = 1;
 
   bool isLeaving = false;
-  public bool IsLeaving { get => isLeaving; }
+  public bool IsLeaving {
+    get => isLeaving;
+    set { isLeaving = value; }
+  }
 
   Dictionary<string, AIState> states = new Dictionary<string, AIState>();
 
@@ -61,7 +64,6 @@ public class AIBrain : MonoBehaviour {
     get { return aggressionFactor; }
   }
 
-
   public AIBrain Init() {
     unitControl = GetComponent<UnitControl>();
     targeting = GetComponent<UnitTargeting>();
@@ -70,6 +72,7 @@ public class AIBrain : MonoBehaviour {
     unitControl.attackedAlert.AddListener(OnAttacked);
     unitControl.enemySpottedAlert.AddListener(OnEnemySpotted);
     unitControl.damageTaken.AddListener(OnDamageTaken);
+    unitControl.outOfAmmo.AddListener(OnOutOfAmmo);
 
     gameObject.AddComponent<AIStateIdle>();
     gameObject.AddComponent<AIStateShooting>();
@@ -169,6 +172,10 @@ public class AIBrain : MonoBehaviour {
     SquadManager.EnemySpotted(enemy, this);
   }
 
+  public void OnOutOfAmmo(UnitControl unit) {
+    CurrentState.OnOutOfAmmo(unit);
+  }
+
   public void AddPatrolRoute(List<Vector3> route) {
     patrolRoute.Clear();
     foreach (Vector3 point in route) patrolRoute.Enqueue(point);
@@ -189,6 +196,9 @@ public class AIBrain : MonoBehaviour {
     if (SquadManager) SquadManager.UnitNeedOrders(this);
   }
 
+  public void Leave() {
+    if (SquadManager) Leave(SquadManager.FindExit(this));
+  }
   public void Leave(Vector3 pos) {
     State = "Retreating";
     isLeaving = true;

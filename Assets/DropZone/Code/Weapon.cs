@@ -20,7 +20,7 @@ public class Weapon : MonoBehaviour {
   public float fireRate = 0.1f;
   public int burstCount = 3;
   public float burstCooldown = 0.5f;
-  public float damage = 1f;
+  public float damage = 0.0f;
 
   int magazines = 1;
   int magazineSize = 15;
@@ -28,7 +28,6 @@ public class Weapon : MonoBehaviour {
   float fireRateTimer = 0;
   int burstAmount = 3;
   float burstCooldownTimer = 1.0f;
-
   float range = 10;
 
   public Vector3 gripOffset = Vector3.zero;

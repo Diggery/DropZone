@@ -15,6 +15,25 @@ public class UnitTargeting : MonoBehaviour {
   }
   float SqrVisualRange { get; set; }
 
+  float meleeRange = 1.75f;
+  public float MeleeRange {
+    get { return meleeRange; }
+    set {
+      meleeRange = value;
+      SqrMeleeRange = meleeRange * meleeRange;
+    }
+  }
+  float SqrMeleeRange { get; set; }
+  bool inMeleeRange = false;
+  bool InMeleeRange {
+    get { return inMeleeRange;}
+    set {
+      Debug.Log("InMeleerange: " + value);
+      if (value && !inMeleeRange) animator.SetTrigger("UseMelee");
+      inMeleeRange = value;
+      animator.SetBool("InMeleeRange", inMeleeRange);
+    }
+  }
   UnitControl unitControl;
   Animator animator;
   MapControl mapControl;
@@ -29,10 +48,10 @@ public class UnitTargeting : MonoBehaviour {
     }
   }
   public bool TargetVisible {
-    get { 
+    get {
       if (!CurrentTarget) return false;
-      return mapControl.PositionIsVisible(transform.position, CurrentTarget.TargetPoint, true); 
-      }
+      return mapControl.PositionIsVisible(transform.position, CurrentTarget.TargetPoint, true);
+    }
   }
   public UnitControl SecondaryTarget { get; set; }
   float targetMemory = 1.0f;
@@ -49,7 +68,6 @@ public class UnitTargeting : MonoBehaviour {
   float readyTimer = 1;
 
   public UnitTargeting Init() {
-    SqrVisualRange = VisualRange * VisualRange;
     unitControl = GetComponent<UnitControl>();
     animator = GetComponent<Animator>();
     mapControl = GameManager.Instance.mapControl;
@@ -69,12 +87,12 @@ public class UnitTargeting : MonoBehaviour {
       animator.SetBool("ReadyToFire", false);
       return;
     }
-
-    if (!TargetVisible) {
-      UnitControl newTarget = ScanForTargets();
-      if (newTarget) CurrentTarget = newTarget;
-    }
-
+    bool targetVisible = TargetVisible;
+    UnitControl bestTarget = ScanForTargets();
+    if ((!targetVisible && bestTarget)) CurrentTarget = bestTarget;
+    if (bestTarget && ((CurrentTarget.transform.position - unitControl.TargetPoint).sqrMagnitude < SqrVisualRange * 0.5f)) {
+      CurrentTarget = bestTarget;
+    } 
 
     if (gameObject.tag.Equals("Player")) MapTester.DrawVisibleCells(transform.position, mapControl.mapData);
 
@@ -82,8 +100,6 @@ public class UnitTargeting : MonoBehaviour {
 
     Vector3 targetDir = transform.InverseTransformPoint(CurrentTarget.transform.position).normalized;
     float angleToTarget = Vector3.Angle(targetDir, Vector3.forward) * Mathf.Sign(targetDir.x);
-
-    bool enemyVisible = TargetVisible;
 
     bool leftPeekable = mapControl.IsPositionPeekableLeft(transform.position, CurrentTarget.TargetPoint);
     bool rightPeekable = mapControl.IsPositionPeekableRight(transform.position, CurrentTarget.TargetPoint);
@@ -94,23 +110,14 @@ public class UnitTargeting : MonoBehaviour {
     bool peekRight = (rightPeekable && (angleToTarget >= 0 && angleToTarget <= 75)) ||
       ((rightPeekable && !leftPeekable) && Mathf.Abs(angleToTarget) <= 45);
 
-
-    if (enemyVisible) Debug.DrawLine(unitControl.TargetPoint, CurrentTarget.TargetPoint, Color.white);
+    InMeleeRange = (CurrentTarget.transform.position - unitControl.TargetPoint).sqrMagnitude < SqrMeleeRange;
+    Debug.Log("target range: " + (CurrentTarget.transform.position - unitControl.TargetPoint).sqrMagnitude + " threshold: " + SqrMeleeRange);
+    if (targetVisible) Debug.DrawLine(unitControl.TargetPoint, CurrentTarget.TargetPoint, Color.white);
 
     animator.SetFloat("TargetDirection", angleToTarget);
-    animator.SetBool("TargetVisible", enemyVisible);
+    animator.SetBool("TargetVisible", targetVisible);
     animator.SetBool("PeekLeft", peekLeft);
     animator.SetBool("PeekRight", peekRight);
-
-
-    // if (enemyVisible || canPeekEnemyLeft || canPeekEnemyRight) {
-    //   targetMemory = 25;
-    // } else {
-    //   targetMemory -= Time.deltaTime;
-    //   if (targetMemory < 0) {
-    //     CurrentTarget = null;
-    //   }
-    // }
 
     bool readyToFire =
       ((readyTimer < 0) &&
@@ -118,10 +125,10 @@ public class UnitTargeting : MonoBehaviour {
         unitControl.EquippedWeapon &&
         (!unitControl.IsMoving || !unitControl.EquippedWeapon.IsMainWeapon) &&
         unitControl.EquippedWeapon.IsReady &&
-        (enemyVisible || CheckEnemy));
+        (targetVisible || CheckEnemy)) &&
+        !InMeleeRange;
 
     animator.SetBool("ReadyToFire", readyToFire);
-
 
     if (readyTimer > 0) readyTimer -= Time.deltaTime;
 
@@ -154,7 +161,7 @@ public class UnitTargeting : MonoBehaviour {
 
       if (targetDistance > SqrVisualRange) {
         if (showDebug) Debug.Log("targets is outside of visual range");
-       // Debug.DrawLine(enemyTarget.TargetPoint, unitControl.TargetPoint, Color.gray);
+        // Debug.DrawLine(enemyTarget.TargetPoint, unitControl.TargetPoint, Color.gray);
         continue;
       }
 

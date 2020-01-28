@@ -55,13 +55,13 @@ public class AIState : MonoBehaviour {
     isActive = false;
   }
 
-  private void OnCollisionEnter(Collision other) {
-  }
-
+  private void OnCollisionEnter(Collision other) {}
   public virtual void OnAttacked(UnitControl attacker) { }
-
   public virtual void OnEnemySpotted(UnitControl attacker) { }
   public virtual void OnMoveComplete() { }
+  public virtual void OnOutOfAmmo(UnitControl me) { 
+   brain.Leave();
+  }
 
   protected virtual void CollidedWithEnemy(UnitControl other) { }
 
