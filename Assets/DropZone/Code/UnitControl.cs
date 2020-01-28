@@ -95,14 +95,17 @@ public class UnitControl : MonoBehaviour {
   [HideInInspector]
   public UnityEvent pathComplete = new UnityEvent();
 
-  public class enemyAlert : UnityEvent<UnitControl> { }
-  public enemyAlert attackedAlert = new enemyAlert();
-  public enemyAlert enemySpottedAlert = new enemyAlert();
-  public enemyAlert damageTaken = new enemyAlert();
+  public class EnemyAlert : UnityEvent<UnitControl> { }
+  public EnemyAlert attackedAlert = new EnemyAlert();
+  public EnemyAlert enemySpottedAlert = new EnemyAlert();
+  public EnemyAlert damageTaken = new EnemyAlert();
+
+  public class NeedEquipment : UnityEvent<HelperDrone.DroneTask, UnitControl> { }
+  public NeedEquipment needsEquipment = new NeedEquipment();
 
   public bool IsPathComplete {
     get {
-      return !IsPatrolling && navAgent.hasPath && Vector3.Distance(navAgent.destination, navAgent.transform.position) <= navAgent.stoppingDistance;
+      return !IsPatrolling && navAgent.hasPath && Vector3.Distance(navAgent.destination, transform.position) <= navAgent.stoppingDistance;
     }
   }
 
@@ -191,6 +194,7 @@ public class UnitControl : MonoBehaviour {
 
     movePos = gameManager.mapControl.GetCellPos(movePos);
 
+    if (Vector3.Distance(transform.position, movePos) < 0.5f) return;
 
     if (inMovingState) {
       navAgent.SetDestination(movePos);
@@ -204,8 +208,7 @@ public class UnitControl : MonoBehaviour {
 
   public void MoveComplete() {
 
-
-    MapData.MapCell mapCell = gameManager.GetMapCell(navAgent.destination);
+    MapData.MapCell mapCell = gameManager.mapControl.GetMapCell(navAgent.destination);
 
     InCover = mapCell.HasCover;
 
@@ -303,8 +306,10 @@ public class UnitControl : MonoBehaviour {
   }
 
   public void OutOfAmmo() {
-    Debug.Log(gameObject.name + " is oput of ammo");
+    Debug.Log(gameObject.name + " is out of ammo");
     if (SideArm) DrawSideArm();
+    HelperDrone.DroneTask task = new HelperDrone.DroneTask("Ammo", transform.position, this);
+    needsEquipment.Invoke(task, this);
   }
 
   public void Revive() {

@@ -24,7 +24,6 @@ public class UnitTargeting : MonoBehaviour {
   public UnitControl CurrentTarget {
     get { return currentTarget; }
     set {
-      if (currentTarget && !value) Debug.Log("Clearing target");
       currentTarget = value;
     }
   }
