@@ -46,16 +46,20 @@ public class MapControl : MonoBehaviour {
     return lowerLeftMarker.transform.position;
   }
 
+  public MapData.MapCell GetMapCell(Vector3 position) {
+    return mapData.GetMapCell(position);
+  }
+
   public bool PositionIsVisible(Vector3 origin, Vector3 destination, bool usePeeking = false) {
-    MapData.MapCell originCell = mapData.GetMapCell(origin);
-    MapData.MapCell destinationCell = mapData.GetMapCell(destination);
+    MapData.MapCell originCell = GetMapCell(origin);
+    MapData.MapCell destinationCell = GetMapCell(destination);
     bool visible = Array.Exists(originCell.cellsVisible, element => element.Equals(destinationCell.id));
     if (!visible && usePeeking) visible = IsPositionPeekable(originCell, destinationCell);
     return visible;
   }
   public bool IsPositionPeekable(Vector3 origin, Vector3 destination) {
-    MapData.MapCell originCell = mapData.GetMapCell(origin);
-    MapData.MapCell destinationCell = mapData.GetMapCell(destination);
+    MapData.MapCell originCell = GetMapCell(origin);
+    MapData.MapCell destinationCell = GetMapCell(destination);
     return IsPositionPeekable(originCell, destinationCell);
   }
 
@@ -64,7 +68,7 @@ public class MapControl : MonoBehaviour {
     bool visible = false;
     for (int i = 0; i < 4; i++) {
       if (originCell.peekDirection[i]) {
-        MapData.MapCell coverPos = mapData.GetMapCell(originCell.mapPos + (Quaternion.AngleAxis(90 * i, Vector3.up) * Vector3.forward));
+        MapData.MapCell coverPos = GetMapCell(originCell.mapPos + (Quaternion.AngleAxis(90 * i, Vector3.up) * Vector3.forward));
         if (Array.Exists(coverPos.cellsVisible, element => element.Equals(destinationCell.id))) {
           visible = true;
         }
@@ -74,22 +78,22 @@ public class MapControl : MonoBehaviour {
   }
 
   public bool IsPositionPeekableLeft(Vector3 origin, Vector3 destination) {
-    MapData.MapCell originCell = mapData.GetMapCell(origin);
-    MapData.MapCell destinationCell = mapData.GetMapCell(destination);
+    MapData.MapCell originCell = GetMapCell(origin);
+    MapData.MapCell destinationCell = GetMapCell(destination);
     if (!originCell.CanPeekLeft) return false;
     return IsPositionPeekable(originCell, destinationCell, -1);
   }
 
   public bool IsPositionPeekableRight(Vector3 origin, Vector3 destination) {
-    MapData.MapCell originCell = mapData.GetMapCell(origin);
-    MapData.MapCell destinationCell = mapData.GetMapCell(destination);
+    MapData.MapCell originCell = GetMapCell(origin);
+    MapData.MapCell destinationCell = GetMapCell(destination);
     if (!originCell.CanPeekRight) return false;
     return IsPositionPeekable(originCell, destinationCell, 1);
   }
 
   bool IsPositionPeekable(MapData.MapCell originCell, MapData.MapCell destinationCell, int side) {
     bool visible = false;
-    MapData.MapCell coverPos = mapData.GetMapCell((side < 0) ? originCell.GetPeekLeftPos : originCell.GetPeekRightPos);
+    MapData.MapCell coverPos = GetMapCell((side < 0) ? originCell.GetPeekLeftPos : originCell.GetPeekRightPos);
 
     if (Array.Exists(coverPos.cellsVisible, element => element.Equals(destinationCell.id))) {
       visible = true;
@@ -241,7 +245,7 @@ public class MapControl : MonoBehaviour {
   }
 
   public Vector3 GetCellPos(Vector3 position) {
-    return mapData.GetMapCell(position).mapPos;
+    return GetMapCell(position).mapPos;
   }
 
   List<GameObject> GetTargets(UnitControl searcher) {

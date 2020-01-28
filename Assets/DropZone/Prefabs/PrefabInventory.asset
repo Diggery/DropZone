@@ -29,3 +29,6 @@ MonoBehaviour:
     prefab: {fileID: 1321868334860546, guid: b1232a62f92454a18a189896bd1c58bf, type: 3}
   - name: ProjectileHit
     prefab: {fileID: 1380275821872642, guid: afd78b1aadabb43ad9229e10b5cbcb10, type: 3}
+  - name: Magazine
+    prefab: {fileID: 6618121922184000934, guid: 86aa6e3bcba261146af9e4ba5dfc6c44,
+      type: 3}

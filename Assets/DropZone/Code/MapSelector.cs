@@ -79,7 +79,7 @@ public class MapSelector : MonoBehaviour {
 
     transform.position = mapPos;
 
-    MapData.MapCell mapCell = gameManager.GetMapCell(transform.position);
+    MapData.MapCell mapCell = gameManager.mapControl.GetMapCell(transform.position);
     Quaternion newOrientation = gameManager.mapControl.GetCoverOrientation(mapCell);
     transform.rotation = newOrientation;
 

@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour {
   public InputControl inputControl;
   public UILayout uiLayout;
   public CharacterEntry[] characters;
+  public PlayerManager playerManager;
 
   public static GameManager Instance { get; private set; }
 
@@ -35,9 +36,8 @@ public class GameManager : MonoBehaviour {
 
   void Start() {
     gameObject.AddComponent<GameTime>().Init();
-
+    playerManager = gameObject.AddComponent<PlayerManager>().Init();
     SceneManager.LoadScene("UILayout", LoadSceneMode.Additive);
-  //  MapTester.DrawAllCells(mapControl.mapData);
   }
 
   public GameObject GetPrefab(string name) {
@@ -60,10 +60,13 @@ public class GameManager : MonoBehaviour {
     return characterEntry;
   }
 
-  public MapData.MapCell GetMapCell(Vector3 mapPos) {
-    return mapControl.mapData.GetMapCell(mapPos);
+  public void AddPlayer(UnitControl player) {
+    UnitTypes.Add("Player");
+    playerManager.Add(player);
   }
-
+  public void AddDrone(HelperDrone drone) {
+    playerManager.Add(drone);
+  }
   public void SetUI(UILayout newUI) {
     uiLayout = newUI;
     inputControl = gameObject.AddComponent<InputControl>().Init();
