@@ -279,7 +279,7 @@ public class UnitControl : MonoBehaviour {
   }
 
   public void TakeDamage(DamageInfo info) {
-     hitpoints -= info.damageAmount;
+    hitpoints -= info.damageAmount;
     if (hitpoints < 0) {
       Incapacitate(info);
     }
@@ -304,6 +304,25 @@ public class UnitControl : MonoBehaviour {
     if (EquippedWeapon) {
       EquippedWeapon.Drop();
       EquippedWeapon = null;
+    }
+  }
+
+  public void AddEquipment(Equipment.Type equipmentType) {
+    switch (equipmentType) {
+      case Equipment.Type.Ammo:
+        if (MainWeapon) {
+          MainWeapon.magazines++;
+          DrawMainWeapon();
+        }
+        break;
+      case Equipment.Type.MedKit:
+
+        break;
+      case Equipment.Type.SmokeGrendes:
+        break;
+      default:
+        Debug.Log("Don't know what to do with " + equipmentType);
+        break;
     }
   }
 

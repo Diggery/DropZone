@@ -28,7 +28,6 @@ public class UnitTargeting : MonoBehaviour {
   bool InMeleeRange {
     get { return inMeleeRange;}
     set {
-      Debug.Log("InMeleerange: " + value);
       if (value && !inMeleeRange) animator.SetTrigger("UseMelee");
       inMeleeRange = value;
       animator.SetBool("InMeleeRange", inMeleeRange);
@@ -110,7 +109,6 @@ public class UnitTargeting : MonoBehaviour {
       ((rightPeekable && !leftPeekable) && Mathf.Abs(angleToTarget) <= 45);
 
     InMeleeRange = (CurrentTarget.transform.position - unitControl.TargetPoint).sqrMagnitude < SqrMeleeRange;
-    Debug.Log("target range: " + (CurrentTarget.transform.position - unitControl.TargetPoint).sqrMagnitude + " threshold: " + SqrMeleeRange);
     if (targetVisible) Debug.DrawLine(unitControl.TargetPoint, CurrentTarget.TargetPoint, Color.white);
 
     animator.SetFloat("TargetDirection", angleToTarget);

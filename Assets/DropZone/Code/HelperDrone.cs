@@ -8,23 +8,22 @@ public class HelperDrone : MonoBehaviour {
   public class DroneTask {
     public static implicit operator bool(DroneTask value) { return value != null; }
 
-    public enum Type { Ammo, MedKit, SmokeGrendes }
 
-    public Type taskType;
+    public Equipment.Type taskType;
     public Vector3 pos;
     public UnitControl target;
     public DroneTask(string type, Vector3 position, UnitControl recepient = null) {
 
       switch (type) {
         case "Ammo":
-          taskType = Type.Ammo;
+          taskType = Equipment.Type.Ammo;
           break;
         case "MedKit":
-          taskType = Type.MedKit;
+          taskType = Equipment.Type.MedKit;
 
           break;
         case "SmokeGrenades":
-          taskType = Type.SmokeGrendes;
+          taskType = Equipment.Type.SmokeGrendes;
           break;
         default:
           Debug.Log("Don't have any " + type + " to give");
@@ -121,18 +120,18 @@ public class HelperDrone : MonoBehaviour {
     IsMoving = false;
   }
 
-  void LaunchEquipment(DroneTask.Type type) {
+  void LaunchEquipment(Equipment.Type type) {
     Debug.Log("Delivering " + type);
     string equipmentType = "";
     switch (type) {
-      case DroneTask.Type.Ammo:
+      case Equipment.Type.Ammo:
         equipmentType = "Magazine";
         break;
-      case DroneTask.Type.MedKit:
+      case Equipment.Type.MedKit:
         equipmentType = "Medkit";
 
         break;
-      case DroneTask.Type.SmokeGrendes:
+      case Equipment.Type.SmokeGrendes:
         equipmentType = "SmokeGrendes";
         break;
       default:
@@ -140,6 +139,7 @@ public class HelperDrone : MonoBehaviour {
         break;
     }
     GameObject equipment = Instantiate(gameManager.GetPrefab(equipmentType), launchPoint.position, Quaternion.identity);
+    equipment.GetComponent<Equipment>().Init(currentTask.target);
     Vector3 force = Utils.CalculateBestTrajectory(launchPoint.position, currentTask.target.transform.position, 1);
     Rigidbody rbody = equipment.GetComponent<Rigidbody>();
     rbody.AddForce(force, ForceMode.VelocityChange);

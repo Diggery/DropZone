@@ -54,6 +54,7 @@ public class CharacterSetup : MonoBehaviour {
       Debug.Log("Adding " + entry.mainWeapon + " for " + gameObject.name);
       GameObject mainWeaponPrefab = gameManager.weaponInventory.GetPrefab(entry.mainWeapon);
       Weapon mainWeapon = Instantiate(mainWeaponPrefab, transform.position, transform.rotation).GetComponent<Weapon>();
+      mainWeapon.magazines = 1;
       unitControl.AddWeapon(mainWeapon);
     }
 

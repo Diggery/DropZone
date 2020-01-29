@@ -22,7 +22,7 @@ public class Weapon : MonoBehaviour {
   public float burstCooldown = 0.5f;
   public float damage = 0.0f;
 
-  int magazines = 1;
+  public int magazines { get; set; }
   int magazineSize = 15;
   int roundsInMagazine = 0;
   float fireRateTimer = 0;
