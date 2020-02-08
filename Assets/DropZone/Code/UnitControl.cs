@@ -179,6 +179,8 @@ public class UnitControl : MonoBehaviour {
 
     // dont target anything if we are incapacitated
     if (!IsDead) targetControl.Process();
+
+    if (animator) animator.SetFloat("Random", Random.value);
   }
 
   public void SetStats(float maxHits, float visualRange, float speed) {

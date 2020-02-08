@@ -28,7 +28,8 @@ public class UnitTargeting : MonoBehaviour {
   bool InMeleeRange {
     get { return inMeleeRange;}
     set {
-      if (value && !inMeleeRange) animator.SetTrigger("UseMelee");
+      Debug.Log("InMeleerange: " + value);
+      if (value && !inMeleeRange && !unitControl.IsMoving) animator.SetTrigger("UseMelee");
       inMeleeRange = value;
       animator.SetBool("InMeleeRange", inMeleeRange);
     }
