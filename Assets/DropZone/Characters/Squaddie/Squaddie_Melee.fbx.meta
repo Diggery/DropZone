@@ -15,6 +15,12 @@ ModelImporter:
   - first:
       74: 3473604911283501338
     second: Melee_Attack1_2
+  - first:
+      74: -788451423535526391
+    second: Melee_Attack2_1
+  - first:
+      74: 8384352609459833809
+    second: Melee_Attack2_2
   externalObjects: {}
   materials:
     materialImportMode: 1
