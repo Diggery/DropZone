@@ -97,7 +97,6 @@ public class HelperDrone : MonoBehaviour {
   }
 
   void NextTask() {
-    Debug.Log("Starting Task");
     if (taskQueue.Count <= 0) {
       currentTask = null;
       MoveTo(homePos);
@@ -121,7 +120,6 @@ public class HelperDrone : MonoBehaviour {
   }
 
   void LaunchEquipment(Equipment.Type type) {
-    Debug.Log("Delivering " + type);
     string equipmentType = "";
     switch (type) {
       case Equipment.Type.Ammo:

@@ -126,7 +126,7 @@ MonoBehaviour:
   fireRate: 0.25
   burstCount: 3
   burstCooldown: 2
-  damage: 0
+  damage: 1
   gripOffset: {x: 0, y: 0, z: 0}
   stockOffset: {x: 0, y: 0, z: 0.28}
   shoulderOffset: {x: 0.4, y: -0.35, z: 0.25}

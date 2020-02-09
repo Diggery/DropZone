@@ -87,6 +87,8 @@ public class UnitControl : MonoBehaviour {
     set {
       inCover = value;
       animator.SetBool("InCover", inCover);
+      navAgent.avoidancePriority = 
+        inCover ? Random.Range(0, 75) : 100;
     }
   }
 
@@ -145,7 +147,7 @@ public class UnitControl : MonoBehaviour {
     UnitType = unitType;
     gameManager = GameManager.Instance;
     navAgent = GetComponent<NavMeshAgent>();
-    navAgent.avoidancePriority = Random.Range(0, 100);
+    navAgent.avoidancePriority = Random.Range(0, 50);
     animator = GetComponent<Animator>();
     unitIK = GetComponent<UnitIK>().Init();
     targetControl = gameObject.AddComponent<UnitTargeting>().Init();

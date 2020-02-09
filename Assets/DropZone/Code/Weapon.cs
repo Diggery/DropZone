@@ -20,7 +20,7 @@ public class Weapon : MonoBehaviour {
   public float fireRate = 0.1f;
   public int burstCount = 3;
   public float burstCooldown = 0.5f;
-  public float damage = 0.0f;
+  public float damage = 1.0f;
 
   public int magazines { get; set; }
   int magazineSize = 15;
@@ -43,7 +43,15 @@ public class Weapon : MonoBehaviour {
 
   public bool Reloading { get; set; }
   public bool IsEquipped { get; set; }
-  public bool Disabled { get; set; }
+
+  bool disabled;
+  public bool Disabled {
+    get { return disabled; }
+    set {
+      Debug.Log(this.name + " is " + (value ? " disabled" : " enabled"));
+      disabled = value;
+    }
+  }
 
   float blendAmount;
   public float GripBlend {

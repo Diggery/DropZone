@@ -35,7 +35,6 @@ public class Equipment : MonoBehaviour {
   }
 
   private void OnCollisionEnter(Collision other) {
-    Debug.Log("Hit Ground");
     rbody.isKinematic = true;
     startPos = transform.position;
     Interpolator.Start(moveToOwner);

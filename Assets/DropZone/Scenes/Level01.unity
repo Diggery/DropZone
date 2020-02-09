@@ -920,6 +920,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HelperDrone
       objectReference: {fileID: 0}
+    - target: {fileID: 6115252760846384807, guid: c34664207ba1fbd42a9820f81e3232a4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7099612708121562292, guid: c34664207ba1fbd42a9820f81e3232a4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1960,7 +1965,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f4c01b66d11c1e46be5aaef7e780e96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnLimit: 3
+  spawnLimit: 5
   spawnReserves: 2
   unitType: BadGuy
   teamTag: Enemy
