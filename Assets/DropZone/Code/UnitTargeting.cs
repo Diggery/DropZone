@@ -26,7 +26,7 @@ public class UnitTargeting : MonoBehaviour {
   float SqrMeleeRange { get; set; }
   bool inMeleeRange = false;
   bool InMeleeRange {
-    get { return inMeleeRange;}
+    get { return inMeleeRange; }
     set {
       if (value && !inMeleeRange && !unitControl.IsMoving) animator.SetTrigger("UseMelee");
       inMeleeRange = value;
@@ -55,7 +55,13 @@ public class UnitTargeting : MonoBehaviour {
   float targetMemory = 1.0f;
 
   public bool IsAiming { get; set; }
-  public bool CheckEnemy { get; set; }
+  public bool CheckOnTarget {
+    get {
+      return checkOnTargetDuration > 0 && mapControl.IsPositionPeekableEitherWay(CurrentTarget.TargetPoint, unitControl.TargetPoint);
+    }
+  }
+  public float checkOnTargetCoolDown = 5;
+  public float checkOnTargetDuration = 5;
 
   public bool LineOfSightBlocked {
     get {
@@ -63,7 +69,7 @@ public class UnitTargeting : MonoBehaviour {
     }
   }
 
-  float readyTimer = 1;
+  float targetIsBlockedTimer = 1;
 
   public UnitTargeting Init() {
     unitControl = GetComponent<UnitControl>();
@@ -90,11 +96,27 @@ public class UnitTargeting : MonoBehaviour {
     if ((!targetVisible && bestTarget)) CurrentTarget = bestTarget;
     if (bestTarget && ((CurrentTarget.transform.position - unitControl.TargetPoint).sqrMagnitude < SqrVisualRange * 0.5f)) {
       CurrentTarget = bestTarget;
-    } 
+    }
 
-    if (gameObject.tag.Equals("Player")) MapTester.DrawVisibleCells(transform.position, mapControl.mapData);
-
+    //if (gameObject.tag.Equals("Player")) MapTester.DrawVisibleCells(transform.position, mapControl.mapData);
     // if (gameObject.tag.Equals("Player")) Debug.DrawLine(CurrentTarget.TargetPoint, unitControl.TargetPoint, Color.red);
+    //if (gameObject.tag.Equals("Player") && mapControl.IsPositionPeekableEitherWay(CurrentTarget.TargetPoint, unitControl.TargetPoint)) 
+    //  Debug.DrawLine(CurrentTarget.TargetPoint, unitControl.TargetPoint, Color.magenta);
+
+    if (!targetVisible) {
+      checkOnTargetCoolDown -= Time.deltaTime;
+      if (checkOnTargetCoolDown < 0 && checkOnTargetDuration < 0) {
+        checkOnTargetDuration = (Random.value * 0.5f) * 2.0f;
+        Debug.Log(gameObject.name + " is Checking");
+      }
+      if (checkOnTargetDuration > 0) {
+        checkOnTargetDuration -= Time.deltaTime;
+      }
+    } else {
+      checkOnTargetCoolDown = 1 + Random.value;
+      checkOnTargetDuration = -1;
+    }
+
 
     Vector3 targetDir = transform.InverseTransformPoint(CurrentTarget.transform.position).normalized;
     float angleToTarget = Vector3.Angle(targetDir, Vector3.forward) * Mathf.Sign(targetDir.x);
@@ -109,7 +131,7 @@ public class UnitTargeting : MonoBehaviour {
       ((rightPeekable && !leftPeekable) && Mathf.Abs(angleToTarget) <= 65);
 
     InMeleeRange = (CurrentTarget.transform.position - unitControl.TargetPoint).sqrMagnitude < SqrMeleeRange;
-    if (targetVisible) Debug.DrawLine(unitControl.TargetPoint, CurrentTarget.TargetPoint, Color.white);
+    //if (targetVisible) Debug.DrawLine(unitControl.TargetPoint, CurrentTarget.TargetPoint, Color.white);
 
     animator.SetFloat("TargetDirection", angleToTarget);
     animator.SetBool("TargetVisible", targetVisible);
@@ -117,20 +139,23 @@ public class UnitTargeting : MonoBehaviour {
     animator.SetBool("PeekRight", peekRight);
 
     bool readyToFire =
-      ((readyTimer < 0) &&
+      ((targetIsBlockedTimer < 0) &&
         !unitControl.MoveQueued &&
         unitControl.EquippedWeapon &&
         (!unitControl.IsMoving || !unitControl.EquippedWeapon.IsMainWeapon) &&
         unitControl.EquippedWeapon.IsReady &&
-        (targetVisible || CheckEnemy)) &&
+        (targetVisible || CheckOnTarget)) &&
         !InMeleeRange;
 
     animator.SetBool("ReadyToFire", readyToFire);
 
-    if (readyTimer > 0) readyTimer -= Time.deltaTime;
+    if (targetIsBlockedTimer > 0) targetIsBlockedTimer -= Time.deltaTime;
 
     if (readyToFire && IsAiming) {
-      if (LineOfSightBlocked) readyTimer = 1;
+      if (LineOfSightBlocked) {
+        targetIsBlockedTimer = 1;
+        return;
+      }
       unitControl.EquippedWeapon.Attack(CurrentTarget);
     }
   }
