@@ -240,16 +240,16 @@ public class UnitControl : MonoBehaviour {
       case Weapon.WeaponType.Main:
         if (MainWeapon != null) MainWeapon.Drop();
         MainWeapon = (RangedWeapon)weapon;
-        MainWeapon.Init(this, attachPoints["Backpack"]);
-        MainWeapon.SetGrips(animator.GetBoneTransform(HumanBodyBones.Chest), attachPoints["RightHand"]);
+        MainWeapon.Init(this, attachPoints["Backpack"], attachPoints["RightHand"]);
+        MainWeapon.SetStockAttach(animator.GetBoneTransform(HumanBodyBones.Chest));
         MainWeapon.Equip();
         animator.runtimeAnimatorController = mainWeaponController;
         break;
       case Weapon.WeaponType.SideArm:
         if (SideArm != null) SideArm.Drop();
         SideArm = (RangedWeapon)weapon;
-        SideArm.Init(this, attachPoints["LeftHip"]);
-        SideArm.SetGrips(animator.GetBoneTransform(HumanBodyBones.Chest), attachPoints["RightHand"]);
+        SideArm.Init(this, attachPoints["LeftHip"], attachPoints["RightHand"]);
+        SideArm.SetStockAttach(animator.GetBoneTransform(HumanBodyBones.Chest));
         if (!EquippedWeapon) {
           SideArm.Equip();
           animator.runtimeAnimatorController = sideArmController;
@@ -259,7 +259,8 @@ public class UnitControl : MonoBehaviour {
         break;
       case Weapon.WeaponType.Melee:
         Melee = (MeleeWeapon)weapon;
-        Melee.Init(this, attachPoints["RightHip"]);
+        Melee.Init(this, attachPoints["RightHip"], attachPoints["RightHand"]);
+        Melee.Stow();
         break;
     }
   }
@@ -278,6 +279,15 @@ public class UnitControl : MonoBehaviour {
     if (EquippedWeapon) EquippedWeapon.Disabled = true;
     Reload();
     switchingToSideArm = true;
+  }
+  public void DrawMelee() {
+    if (!Melee) {
+      Debug.Log(gameObject.name + " doesn't have emelee weapon!");
+      return;
+    }
+    if (EquippedWeapon) EquippedWeapon.Disabled = true;
+    EquippedWeapon.Stow();
+    Melee.Equip();
   }
 
   public void SetAttachPoint(string name, Transform point) {
@@ -387,6 +397,9 @@ public class UnitControl : MonoBehaviour {
     switch (eventName) {
       case "ReloadComplete":
         ReloadComplete();
+        break;
+      case "EquipMelee":
+        DrawMelee();
         break;
       case "MeleeAttack":
         targeting.MeleeAttack();

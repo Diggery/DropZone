@@ -27,8 +27,7 @@ public class RangedWeapon : Weapon {
   public Vector3 stockOffset = Vector3.zero;
   public Vector3 shoulderOffset = Vector3.zero;
 
-  Transform stockPivot;
-  Transform gripPivot;
+  Transform stockAttach;
 
   public Transform rightGrip;
   public Transform leftGrip;
@@ -65,8 +64,8 @@ public class RangedWeapon : Weapon {
     get { return muzzle.position; }
   }
 
-  public override void Init(UnitControl owner, Transform stowAttach) {
-    base.Init(owner, stowAttach);
+  public override void Init(UnitControl owner, Transform stowAttach, Transform gripAttach) {
+    base.Init(owner, stowAttach, gripAttach);
     grip = transform.GetChild(0);
 
     muzzle = grip.Find("Muzzle");
@@ -76,11 +75,8 @@ public class RangedWeapon : Weapon {
     Reloaded(true);
   }
 
-  public void SetGrips(Transform stockPivot, Transform gripAttach) {
-    grip = transform.GetChild(0);
-
-    this.stockPivot = stockPivot;
-    this.gripPivot = gripAttach;
+  public void SetStockAttach(Transform stockAttach) {
+    this.stockAttach = stockAttach;
   }
 
   void Update() {
@@ -97,20 +93,20 @@ public class RangedWeapon : Weapon {
         weaponFlash.enabled = false;
     }
     if (owner && !IsEquipped) {
-      transform.position = stow.position;
-      transform.rotation = stow.rotation;
+      transform.position = stowAttach.position;
+      transform.rotation = stowAttach.rotation;
       return;
     }
     if (blendAmount > 0) {
-      Vector3 weaponLookPosition = stockPivot.TransformPoint(shoulderOffset);
+      Vector3 weaponLookPosition = stockAttach.TransformPoint(shoulderOffset);
       Quaternion weaponLookRotation = Quaternion.LookRotation((lookPos - transform.position).normalized);
       grip.localPosition = Vector3.Lerp(gripOffset, stockOffset, blendAmount);
-      transform.position = Vector3.Lerp(gripPivot.position, weaponLookPosition + kickBack, blendAmount);
-      transform.rotation = Quaternion.Lerp(gripPivot.rotation, weaponLookRotation, blendAmount);
+      transform.position = Vector3.Lerp(gripAttach.position, weaponLookPosition + kickBack, blendAmount);
+      transform.rotation = Quaternion.Lerp(gripAttach.rotation, weaponLookRotation, blendAmount);
     } else {
       grip.localPosition = gripOffset;
-      transform.position = gripPivot.position;
-      transform.rotation = gripPivot.rotation;
+      transform.position = gripAttach.position;
+      transform.rotation = gripAttach.rotation;
     }
   }
   public void Attack(UnitControl target) {
@@ -157,7 +153,6 @@ public class RangedWeapon : Weapon {
   }
 
   public override void Stow() {
-    if (IsEquipped) owner.EquippedWeapon = null;
     base.Stow();
   }
 

@@ -35,7 +35,10 @@ public class UnitTargeting : MonoBehaviour {
         return;
       }
       if (value && !inMeleeRange) animator.SetTrigger("UseMelee");
-      if (!value && inMeleeRange) unitControl.MoveComplete();
+      if (!value && inMeleeRange) {
+        unitControl.Melee.Stow();
+        unitControl.MoveComplete();
+      }
       inMeleeRange = value;
       animator.SetBool("InMeleeRange", inMeleeRange);
     }
@@ -205,7 +208,8 @@ public class UnitTargeting : MonoBehaviour {
   }
 
   public void MeleeAttack() {
-
+    DamageInfo damageInfo = new DamageInfo(unitControl.Melee.damage, DamageType.Puncture, unitControl);
+    CurrentTarget.TakeDamage(damageInfo);
   }
 
   public void TargetHit() {

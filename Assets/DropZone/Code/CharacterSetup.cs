@@ -65,6 +65,12 @@ public class CharacterSetup : MonoBehaviour {
       unitControl.AddWeapon(sideArm);
     }
 
+    string meleeWeapon = string.IsNullOrEmpty(entry.melee) ? "CombatKnife" : entry.melee;
+    Debug.Log("Adding " + meleeWeapon + " for " + gameObject.name);
+    GameObject meleePrefab = gameManager.weaponInventory.GetPrefab(meleeWeapon);
+    MeleeWeapon melee = Instantiate(meleePrefab, transform.position, transform.rotation).GetComponent<MeleeWeapon>();
+    unitControl.AddWeapon(melee);
+
     unitControl.SetStats(entry.hits, entry.visualRange, entry.speed);
 
     Destroy(this);

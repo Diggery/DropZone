@@ -9,7 +9,9 @@ public class Weapon : MonoBehaviour {
 
   protected UnitControl owner;
   protected UnitTargeting unitTargeting;
-  protected Transform stow;
+  protected Transform stowAttach;
+  protected Transform gripAttach;
+
   protected Rigidbody rbody;
 
   public float damage = 1.0f;
@@ -23,14 +25,15 @@ public class Weapon : MonoBehaviour {
     get { return true; }
   }
 
-  public virtual void Init(UnitControl owner, Transform stowAttach) {
+  public virtual void Init(UnitControl owner, Transform stowAttach, Transform gripAttach) {
     this.owner = owner;
     rbody = GetComponent<Rigidbody>();
     rbody.isKinematic = true;
     GetComponent<BoxCollider>().enabled = false;
     unitTargeting = owner.gameObject.GetComponent<UnitTargeting>();
 
-    this.stow = stowAttach;
+    this.stowAttach = stowAttach;
+    this.gripAttach = gripAttach;
 
     pickUpCollision = transform.Find("PickUp").GetComponent<SphereCollider>();
     pickUpCollision.enabled = false;
