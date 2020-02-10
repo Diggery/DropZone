@@ -23,7 +23,7 @@ public class UnitControl : MonoBehaviour {
   public RuntimeAnimatorController sideArmController;
 
   UnitIK unitIK;
-  UnitTargeting targetControl;
+  UnitTargeting targeting;
 
   public Weapon EquippedWeapon { get; set; }
   public Weapon MainWeapon { get; set; }
@@ -36,10 +36,10 @@ public class UnitControl : MonoBehaviour {
   Interpolator currentInterpolation;
 
   public bool HasTarget {
-    get { return targetControl.CurrentTarget; }
+    get { return targeting.CurrentTarget; }
   }
   public Vector3 CurrentTargetPos {
-    get { return targetControl.CurrentTarget.TargetPoint; }
+    get { return targeting.CurrentTarget.TargetPoint; }
   }
   public Vector3 TargetPoint {
     get { return attachPoints["TargetPoint"].position; }
@@ -150,7 +150,7 @@ public class UnitControl : MonoBehaviour {
     navAgent.avoidancePriority = Random.Range(0, 50);
     animator = GetComponent<Animator>();
     unitIK = GetComponent<UnitIK>().Init();
-    targetControl = gameObject.AddComponent<UnitTargeting>().Init();
+    targeting = gameObject.AddComponent<UnitTargeting>().Init();
     gameObject.GetComponent<CharacterSetup>().Init();
     LerpToPose.onTickVector = LerpPoseTick;
     LerpToPose.onFinish = LerpPoseFinished;
@@ -180,14 +180,14 @@ public class UnitControl : MonoBehaviour {
     if (moveDestination == null && InMovingState && IsPathComplete) MoveComplete();
 
     // dont target anything if we are incapacitated
-    if (!IsDead) targetControl.Process();
+    if (!IsDead) targeting.Process();
 
     if (animator) animator.SetFloat("Random", Random.value);
   }
 
   public void SetStats(float maxHits, float visualRange, float speed) {
-    targetControl.VisualRange = visualRange;
-    targetControl.MeleeRange = 1.75f;
+    targeting.VisualRange = visualRange;
+    targeting.MeleeRange = 1.75f;
     this.MaxHits = maxHits;
     this.hitpoints = maxHits;
     this.MoveSpeed = speed;
@@ -377,11 +377,16 @@ public class UnitControl : MonoBehaviour {
       case "ReloadComplete":
         ReloadComplete();
         break;
+      case "MeleeAttack":
+        targeting.MeleeAttack();
+        break;
       default:
         Debug.Log("Don't know what to do with a " + eventName + " event");
         break;
     }
   }
+
+
 
   public void Remove() {
     Debug.Log("Removing Unit");

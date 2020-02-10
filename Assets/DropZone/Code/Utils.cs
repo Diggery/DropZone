@@ -35,4 +35,5 @@ static public class Utils {
     float vel = Mathf.Sqrt(dist * Physics.gravity.magnitude);
     return vel * dir.normalized;  // returns Vector3 velocity
   }
+
 }

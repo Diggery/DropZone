@@ -26,9 +26,16 @@ public class UnitTargeting : MonoBehaviour {
   float SqrMeleeRange { get; set; }
   bool inMeleeRange = false;
   bool InMeleeRange {
-    get { return inMeleeRange; }
+    get { 
+      return inMeleeRange; 
+    }
     set {
-      if (value && !inMeleeRange && !unitControl.IsMoving) animator.SetTrigger("UseMelee");
+      if (unitControl.IsMoving) {
+        inMeleeRange = false;
+        return;
+      }
+      if (value && !inMeleeRange) animator.SetTrigger("UseMelee");
+      if (!value && inMeleeRange) unitControl.MoveComplete();
       inMeleeRange = value;
       animator.SetBool("InMeleeRange", inMeleeRange);
     }
@@ -89,6 +96,7 @@ public class UnitTargeting : MonoBehaviour {
       animator.SetBool("PeekLeft", false);
       animator.SetBool("PeekRight", false);
       animator.SetBool("ReadyToFire", false);
+      InMeleeRange = false;
       return;
     }
     bool targetVisible = TargetVisible;
@@ -107,7 +115,6 @@ public class UnitTargeting : MonoBehaviour {
       checkOnTargetCoolDown -= Time.deltaTime;
       if (checkOnTargetCoolDown < 0 && checkOnTargetDuration < 0) {
         checkOnTargetDuration = (Random.value * 0.5f) * 2.0f;
-        Debug.Log(gameObject.name + " is Checking");
       }
       if (checkOnTargetDuration > 0) {
         checkOnTargetDuration -= Time.deltaTime;
@@ -130,8 +137,11 @@ public class UnitTargeting : MonoBehaviour {
     bool peekRight = (rightPeekable && (angleToTarget >= 0 && angleToTarget <= 75)) ||
       ((rightPeekable && !leftPeekable) && Mathf.Abs(angleToTarget) <= 65);
 
-    InMeleeRange = (CurrentTarget.transform.position - unitControl.TargetPoint).sqrMagnitude < SqrMeleeRange;
-    //if (targetVisible) Debug.DrawLine(unitControl.TargetPoint, CurrentTarget.TargetPoint, Color.white);
+    InMeleeRange = targetVisible && (CurrentTarget.transform.position - unitControl.TargetPoint).sqrMagnitude < SqrMeleeRange;
+    if (InMeleeRange) {
+      transform.rotation = 
+        Quaternion.Lerp(transform.rotation, Quaternion.AngleAxis(angleToTarget, Vector3.up), Time.deltaTime * 8);
+    }
 
     animator.SetFloat("TargetDirection", angleToTarget);
     animator.SetBool("TargetVisible", targetVisible);
@@ -198,6 +208,10 @@ public class UnitTargeting : MonoBehaviour {
       }
     }
     return closestTarget;
+  }
+
+  public void MeleeAttack() {
+
   }
 
   public void TargetHit() {
