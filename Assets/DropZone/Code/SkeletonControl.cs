@@ -155,7 +155,7 @@ public class SkeletonControl : MonoBehaviour {
     newRB.useGravity = false;
     newRB.isKinematic = true;
     newRB.drag = 0.1f;
-    newRB.angularDrag = 3f;
+    newRB.angularDrag = 10f;
 
     AddCollider(data.transform, data);
 

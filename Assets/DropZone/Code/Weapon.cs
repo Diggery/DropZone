@@ -75,6 +75,6 @@ public class Weapon : MonoBehaviour {
   }
 
   void OnClick(PointerEventData eventData) {
-    Debug.Log("Pick me UP");
+    Debug.Log("Pick me UP " + gameObject.name);
   }
 }

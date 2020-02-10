@@ -36,4 +36,10 @@ static public class Utils {
     return vel * dir.normalized;  // returns Vector3 velocity
   }
 
+  static public float HeadingToTarget(Vector3 origin, Vector3 position) {
+    Vector3 targetDir = position - origin;
+    float heading = Vector3.Angle(targetDir, Vector3.forward) * Mathf.Sign(targetDir.x);
+    return heading;
+  }
+
 }

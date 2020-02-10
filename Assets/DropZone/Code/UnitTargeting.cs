@@ -136,8 +136,9 @@ public class UnitTargeting : MonoBehaviour {
 
     InMeleeRange = targetVisible && (CurrentTarget.transform.position - unitControl.TargetPoint).sqrMagnitude < SqrMeleeRange;
     if (InMeleeRange) {
+      float headingAngle = Utils.HeadingToTarget(unitControl.TargetPoint, CurrentTarget.TargetPoint);
       transform.rotation = 
-        Quaternion.Lerp(transform.rotation, Quaternion.AngleAxis(angleToTarget, Vector3.up), Time.deltaTime * 8);
+        Quaternion.Lerp(transform.rotation, Quaternion.AngleAxis(headingAngle, Vector3.up), Time.deltaTime * 8);
     }
 
     animator.SetFloat("TargetDirection", angleToTarget);
