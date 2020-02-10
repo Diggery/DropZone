@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2882863259058695450}
   - component: {fileID: 6150503545225926444}
+  - component: {fileID: 4417223562796999181}
   - component: {fileID: 461182492032052181}
   m_Layer: 0
-  m_Name: Ripper
+  m_Name: Weapon_Ripper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40,6 +41,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2187242008922365705}
   m_Mesh: {fileID: -5008388024820719439, guid: 30376fdf3d27a44b79acb868934cd7d8, type: 3}
+--- !u!114 &4417223562796999181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2187242008922365705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3852a8b57103d0144b3f9f83789172ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 2
+  damage: 1
+  range: 10
 --- !u!23 &461182492032052181
 MeshRenderer:
   m_ObjectHideFlags: 0

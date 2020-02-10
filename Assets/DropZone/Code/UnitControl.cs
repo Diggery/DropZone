@@ -25,9 +25,10 @@ public class UnitControl : MonoBehaviour {
   UnitIK unitIK;
   UnitTargeting targeting;
 
-  public Weapon EquippedWeapon { get; set; }
-  public Weapon MainWeapon { get; set; }
-  public Weapon SideArm { get; set; }
+  public RangedWeapon EquippedWeapon { get; set; }
+  public RangedWeapon MainWeapon { get; set; }
+  public RangedWeapon SideArm { get; set; }
+  public MeleeWeapon Melee { get; set; }
 
   bool switchingToSideArm = false;
   bool switchingToMainWeapon = false;
@@ -234,22 +235,32 @@ public class UnitControl : MonoBehaviour {
   }
 
   public void AddWeapon(Weapon weapon) {
-    if (weapon.IsMainWeapon) {
-      if (MainWeapon != null) MainWeapon.Drop();
-      MainWeapon = weapon;
-      weapon.Init(this, animator.GetBoneTransform(HumanBodyBones.Chest), attachPoints["RightHand"], attachPoints["Backpack"]);
-      weapon.Equip();
-      animator.runtimeAnimatorController = mainWeaponController;
-    } else {
-      if (SideArm != null) SideArm.Drop();
-      SideArm = weapon;
-      weapon.Init(this, animator.GetBoneTransform(HumanBodyBones.Chest), attachPoints["RightHand"], attachPoints["LeftHip"]);
-      if (!EquippedWeapon) {
-        weapon.Equip();
-        animator.runtimeAnimatorController = sideArmController;
-      } else {
-        weapon.Stow();
-      }
+
+    switch (weapon.type) {
+      case Weapon.WeaponType.Main:
+        if (MainWeapon != null) MainWeapon.Drop();
+        MainWeapon = (RangedWeapon)weapon;
+        MainWeapon.Init(this, attachPoints["Backpack"]);
+        MainWeapon.SetGrips(animator.GetBoneTransform(HumanBodyBones.Chest), attachPoints["RightHand"]);
+        MainWeapon.Equip();
+        animator.runtimeAnimatorController = mainWeaponController;
+        break;
+      case Weapon.WeaponType.SideArm:
+        if (SideArm != null) SideArm.Drop();
+        SideArm = (RangedWeapon)weapon;
+        SideArm.Init(this, attachPoints["LeftHip"]);
+        SideArm.SetGrips(animator.GetBoneTransform(HumanBodyBones.Chest), attachPoints["RightHand"]);
+        if (!EquippedWeapon) {
+          SideArm.Equip();
+          animator.runtimeAnimatorController = sideArmController;
+        } else {
+          SideArm.Stow();
+        }
+        break;
+      case Weapon.WeaponType.Melee:
+        Melee = (MeleeWeapon)weapon;
+        Melee.Init(this, attachPoints["RightHip"]);
+        break;
     }
   }
 

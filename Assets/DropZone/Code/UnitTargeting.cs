@@ -45,13 +45,7 @@ public class UnitTargeting : MonoBehaviour {
   MapControl mapControl;
   LayerMask terrainMask;
 
-  UnitControl currentTarget;
-  public UnitControl CurrentTarget {
-    get { return currentTarget; }
-    set {
-      currentTarget = value;
-    }
-  }
+  public UnitControl CurrentTarget { get; set; }
   public bool TargetVisible {
     get {
       if (!CurrentTarget) return false;
@@ -152,7 +146,7 @@ public class UnitTargeting : MonoBehaviour {
       ((targetIsBlockedTimer < 0) &&
         !unitControl.MoveQueued &&
         unitControl.EquippedWeapon &&
-        (!unitControl.IsMoving || !unitControl.EquippedWeapon.IsMainWeapon) &&
+        (!unitControl.IsMoving || unitControl.EquippedWeapon.type != Weapon.WeaponType.Main) &&
         unitControl.EquippedWeapon.IsReady &&
         (targetVisible || CheckOnTarget)) &&
         !InMeleeRange;

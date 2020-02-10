@@ -70,6 +70,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6643333174344509920}
   - component: {fileID: 6643333174344509923}
+  - component: {fileID: -5024800913128101830}
   - component: {fileID: 244416335342566275}
   - component: {fileID: 8230003934524899716}
   m_Layer: 0
@@ -107,12 +108,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60a517985a18e384f910ad1bb1305bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsMainWeapon: 1
+  type: 0
+  damage: 0
+  range: 10
+--- !u!114 &-5024800913128101830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6643333174344509921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5040c396fb79a24bb279cfdbbce1d94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  damage: 1
+  range: 10
   spread: {x: 5, y: 5}
   fireRate: 0.1
   burstCount: 3
   burstCooldown: 0.5
-  damage: 0
   gripOffset: {x: 0, y: 0, z: 0}
   stockOffset: {x: 0, y: -0.1, z: 0.267}
   shoulderOffset: {x: 0.22, y: -0.13, z: 0.13}

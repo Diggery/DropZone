@@ -30,7 +30,7 @@ public class UnitIK : MonoBehaviour {
     animator.SetIKPosition(AvatarIKGoal.RightHand, unitControl.EquippedWeapon.rightGrip.position);
     animator.SetIKRotation(AvatarIKGoal.RightHand, unitControl.EquippedWeapon.rightGrip.rotation);
 
-    if (unitControl.EquippedWeapon.IsMainWeapon) {
+    if (unitControl.EquippedWeapon.type == Weapon.WeaponType.Main) {
       animator.SetIKPositionWeight(AvatarIKGoal.LeftHand, blendAmount);
       animator.SetIKRotationWeight(AvatarIKGoal.LeftHand, blendAmount);
       animator.SetIKPosition(AvatarIKGoal.LeftHand, unitControl.EquippedWeapon.leftGrip.position);

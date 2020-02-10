@@ -53,15 +53,15 @@ public class CharacterSetup : MonoBehaviour {
     if (!string.IsNullOrEmpty(entry.mainWeapon)) {
       Debug.Log("Adding " + entry.mainWeapon + " for " + gameObject.name);
       GameObject mainWeaponPrefab = gameManager.weaponInventory.GetPrefab(entry.mainWeapon);
-      Weapon mainWeapon = Instantiate(mainWeaponPrefab, transform.position, transform.rotation).GetComponent<Weapon>();
-      mainWeapon.magazines = 5;
+      RangedWeapon mainWeapon = Instantiate(mainWeaponPrefab, transform.position, transform.rotation).GetComponent<RangedWeapon>();
+      mainWeapon.magazines = 1;
       unitControl.AddWeapon(mainWeapon);
     }
 
     if (!string.IsNullOrEmpty(entry.sideArm)) {
       Debug.Log("Adding " + entry.sideArm + " for " + gameObject.name);
       GameObject sideArmPrefab = gameManager.weaponInventory.GetPrefab(entry.sideArm);
-      Weapon sideArm = Instantiate(sideArmPrefab, transform.position, transform.rotation).GetComponent<Weapon>();
+      RangedWeapon sideArm = Instantiate(sideArmPrefab, transform.position, transform.rotation).GetComponent<RangedWeapon>();
       unitControl.AddWeapon(sideArm);
     }
 
