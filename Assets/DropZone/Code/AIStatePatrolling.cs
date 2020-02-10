@@ -42,6 +42,12 @@ public class AIStatePatrolling : AIState {
   public override void OnAttacked(UnitControl attacker) {
     base.OnAttacked(attacker);
     if (!targeting.CurrentTarget) targeting.CurrentTarget = attacker;
+
+    if (brain.MeleeOnly) {
+      brain.State = "Melee";
+      return;
+    }
+    if (!targeting.CurrentTarget) targeting.CurrentTarget = attacker;
     brain.MoveToCover();
     brain.State = "Shooting";
     Debug.Log("Yikes!  I got attacked");
@@ -49,6 +55,12 @@ public class AIStatePatrolling : AIState {
 
   public override void OnEnemySpotted(UnitControl attacker) {
     base.OnEnemySpotted(attacker);
+    if (!targeting.CurrentTarget) targeting.CurrentTarget = attacker;
+
+    if (brain.MeleeOnly) {
+      brain.State = "Melee";
+      return;
+    }
     brain.State = "Shooting";
     brain.MoveToFiringPosition(attacker.transform.position);
   }

@@ -1877,6 +1877,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a9a1670d02edd466ba3480c167a7af41, type: 2}
   - {fileID: 11400000, guid: ef39a2c6230664ea09bbde29627e4a26, type: 2}
   - {fileID: 11400000, guid: 200ac16b34b24da42ae3620b7e8119ca, type: 2}
+  - {fileID: 11400000, guid: 42fc17303711eb24d8c2d72b633bbc92, type: 2}
   playerManager: {fileID: 0}
 --- !u!114 &1231308509
 MonoBehaviour:
@@ -1967,7 +1968,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnLimit: 1
   spawnReserves: 2
-  unitType: BadGuy
+  unitType: Mutant
   teamTag: Enemy
   autoFill: 1
   spawnPositions:

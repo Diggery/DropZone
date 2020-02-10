@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0151848e28039548b70a31e986eb702, type: 3}
+  m_Name: Mutant
+  m_EditorClassIdentifier: 
+  characterName: Mutant
+  prefab: {fileID: 1506360018236373272, guid: 11917e493b9b1f7448b1c059744fbf0b, type: 3}
+  head: {fileID: 8882101271248726818, guid: 84c7989250c704491a077c2c0069fecb, type: 3}
+  mainWeapon: 
+  sideArm: 
+  melee: Ripper
+  speed: 3.5
+  visualRange: 10
+  hits: 5

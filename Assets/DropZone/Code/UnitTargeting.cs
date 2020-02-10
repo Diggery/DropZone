@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class UnitTargeting : MonoBehaviour {
   public bool showDebug;
+  UnitControl unitControl;
+  Animator animator;
+  MapControl mapControl;
+  LayerMask terrainMask;
 
   float visualRange = 1.0f;
   public float VisualRange {
@@ -24,29 +28,34 @@ public class UnitTargeting : MonoBehaviour {
     }
   }
   float SqrMeleeRange { get; set; }
-  bool inMeleeRange = false;
-  bool InMeleeRange {
-    get { 
-      return inMeleeRange; 
+
+  public bool InMeleeRange {
+    get {
+      if (!CurrentTarget) return false;
+      return (CurrentTarget.TargetPoint - unitControl.TargetPoint).sqrMagnitude < SqrMeleeRange; 
+    }
+  }
+
+  bool inMelee = false;
+  bool InMelee {
+    get {
+      return inMelee;
     }
     set {
       if (unitControl.IsMoving) {
-        inMeleeRange = false;
+        inMelee = false;
         return;
       }
-      if (value && !inMeleeRange) animator.SetTrigger("UseMelee");
-      if (!value && inMeleeRange) {
+      if (value && !inMelee) animator.SetTrigger("UseMelee");
+      if (!value && inMelee) {
         unitControl.Melee.Stow();
         unitControl.MoveComplete();
       }
-      inMeleeRange = value;
-      animator.SetBool("InMeleeRange", inMeleeRange);
+      inMelee = value;
+      animator.SetBool("InMeleeRange", inMelee);
     }
   }
-  UnitControl unitControl;
-  Animator animator;
-  MapControl mapControl;
-  LayerMask terrainMask;
+
 
   public UnitControl CurrentTarget { get; set; }
   public bool TargetVisible {
@@ -56,7 +65,6 @@ public class UnitTargeting : MonoBehaviour {
     }
   }
   public UnitControl SecondaryTarget { get; set; }
-  float targetMemory = 1.0f;
 
   public bool IsAiming { get; set; }
   public bool CheckOnTarget {
@@ -93,7 +101,7 @@ public class UnitTargeting : MonoBehaviour {
       animator.SetBool("PeekLeft", false);
       animator.SetBool("PeekRight", false);
       animator.SetBool("ReadyToFire", false);
-      InMeleeRange = false;
+      InMelee = false;
       return;
     }
     bool targetVisible = TargetVisible;
@@ -134,10 +142,10 @@ public class UnitTargeting : MonoBehaviour {
     bool peekRight = (rightPeekable && (angleToTarget >= 0 && angleToTarget <= 75)) ||
       ((rightPeekable && !leftPeekable) && Mathf.Abs(angleToTarget) <= 65);
 
-    InMeleeRange = targetVisible && (CurrentTarget.transform.position - unitControl.TargetPoint).sqrMagnitude < SqrMeleeRange;
-    if (InMeleeRange) {
+    InMelee = targetVisible && InMeleeRange;
+    if (InMelee) {
       float headingAngle = Utils.HeadingToTarget(unitControl.TargetPoint, CurrentTarget.TargetPoint);
-      transform.rotation = 
+      transform.rotation =
         Quaternion.Lerp(transform.rotation, Quaternion.AngleAxis(headingAngle, Vector3.up), Time.deltaTime * 8);
     }
 
@@ -153,7 +161,7 @@ public class UnitTargeting : MonoBehaviour {
         (!unitControl.IsMoving || unitControl.EquippedWeapon.type != Weapon.WeaponType.Main) &&
         unitControl.EquippedWeapon.IsReady &&
         (targetVisible || CheckOnTarget)) &&
-        !InMeleeRange;
+        !InMelee;
 
     animator.SetBool("ReadyToFire", readyToFire);
 

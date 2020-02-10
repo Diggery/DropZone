@@ -88,10 +88,11 @@ public class UnitControl : MonoBehaviour {
     set {
       inCover = value;
       animator.SetBool("InCover", inCover);
-      navAgent.avoidancePriority = 
+      navAgent.avoidancePriority =
         inCover ? Random.Range(0, 75) : 100;
     }
   }
+  public bool IgnoreCover { get; set; }
 
   public bool IsSelected { get; set; } = false;
 
@@ -214,10 +215,13 @@ public class UnitControl : MonoBehaviour {
   }
 
   public void MoveComplete() {
+    MoveComplete(navAgent.destination);
+  }
+  public void MoveComplete(Vector3 EndPos) {
 
-    MapData.MapCell mapCell = gameManager.mapControl.GetMapCell(navAgent.destination);
+    MapData.MapCell mapCell = gameManager.mapControl.GetMapCell(EndPos);
 
-    InCover = mapCell.HasCover;
+    InCover = mapCell.HasCover && !IgnoreCover;
 
     IsMoving = false;
 
