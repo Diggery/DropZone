@@ -22,7 +22,7 @@ public class AIStateIdle : AIState {
 
     if (targeting.CurrentTarget) {
       if (targeting.TargetVisible) {
-        brain.State = "Shooting";
+        brain.State = brain.MeleeOnly ? "Melee" : "Shooting";
       } 
     }
 
@@ -37,11 +37,19 @@ public class AIStateIdle : AIState {
 
   public override void OnAttacked(UnitControl attacker) {
     base.OnAttacked(attacker);
+    if (brain.MeleeOnly) {
+      brain.State = "Melee";
+      return;
+    }
     if (!targeting.CurrentTarget) brain.MoveToSafeSpot();
   }
 
   public override void OnEnemySpotted(UnitControl attacker) {
     base.OnEnemySpotted(attacker);
+    if (brain.MeleeOnly) {
+      brain.State = "Melee";
+      return;
+    }
     brain.MoveToFiringPosition(attacker.transform.position);
   }
 

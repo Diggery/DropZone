@@ -53,16 +53,23 @@ public class CharacterSetup : MonoBehaviour {
     if (!string.IsNullOrEmpty(entry.mainWeapon)) {
       Debug.Log("Adding " + entry.mainWeapon + " for " + gameObject.name);
       GameObject mainWeaponPrefab = gameManager.weaponInventory.GetPrefab(entry.mainWeapon);
-      Weapon mainWeapon = Instantiate(mainWeaponPrefab, transform.position, transform.rotation).GetComponent<Weapon>();
+      RangedWeapon mainWeapon = Instantiate(mainWeaponPrefab, transform.position, transform.rotation).GetComponent<RangedWeapon>();
+      mainWeapon.magazines = 1;
       unitControl.AddWeapon(mainWeapon);
     }
 
     if (!string.IsNullOrEmpty(entry.sideArm)) {
       Debug.Log("Adding " + entry.sideArm + " for " + gameObject.name);
       GameObject sideArmPrefab = gameManager.weaponInventory.GetPrefab(entry.sideArm);
-      Weapon sideArm = Instantiate(sideArmPrefab, transform.position, transform.rotation).GetComponent<Weapon>();
+      RangedWeapon sideArm = Instantiate(sideArmPrefab, transform.position, transform.rotation).GetComponent<RangedWeapon>();
       unitControl.AddWeapon(sideArm);
     }
+
+    string meleeWeapon = string.IsNullOrEmpty(entry.melee) ? "CombatKnife" : entry.melee;
+    Debug.Log("Adding " + meleeWeapon + " for " + gameObject.name);
+    GameObject meleePrefab = gameManager.weaponInventory.GetPrefab(meleeWeapon);
+    MeleeWeapon melee = Instantiate(meleePrefab, transform.position, transform.rotation).GetComponent<MeleeWeapon>();
+    unitControl.AddWeapon(melee);
 
     unitControl.SetStats(entry.hits, entry.visualRange, entry.speed);
 

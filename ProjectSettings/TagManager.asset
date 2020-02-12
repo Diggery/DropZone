@@ -21,8 +21,8 @@ TagManager:
   - Terrain
   - PostVolume
   - Skeleton
-  - 
-  - 
+  - TerrainOnly
+  - Projectile
   - 
   - 
   - 

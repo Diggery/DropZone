@@ -23,11 +23,12 @@ public class UnitControl : MonoBehaviour {
   public RuntimeAnimatorController sideArmController;
 
   UnitIK unitIK;
-  UnitTargeting targetControl;
+  UnitTargeting targeting;
 
-  public Weapon EquippedWeapon { get; set; }
-  public Weapon MainWeapon { get; set; }
-  public Weapon SideArm { get; set; }
+  public RangedWeapon EquippedWeapon { get; set; }
+  public RangedWeapon MainWeapon { get; set; }
+  public RangedWeapon SideArm { get; set; }
+  public MeleeWeapon Melee { get; set; }
 
   bool switchingToSideArm = false;
   bool switchingToMainWeapon = false;
@@ -36,10 +37,10 @@ public class UnitControl : MonoBehaviour {
   Interpolator currentInterpolation;
 
   public bool HasTarget {
-    get { return targetControl.CurrentTarget; }
+    get { return targeting.CurrentTarget; }
   }
   public Vector3 CurrentTargetPos {
-    get { return targetControl.CurrentTarget.TargetPoint; }
+    get { return targeting.CurrentTarget.TargetPoint; }
   }
   public Vector3 TargetPoint {
     get { return attachPoints["TargetPoint"].position; }
@@ -87,8 +88,11 @@ public class UnitControl : MonoBehaviour {
     set {
       inCover = value;
       animator.SetBool("InCover", inCover);
+      navAgent.avoidancePriority =
+        inCover ? Random.Range(0, 75) : 100;
     }
   }
+  public bool IgnoreCover { get; set; }
 
   public bool IsSelected { get; set; } = false;
 
@@ -145,10 +149,10 @@ public class UnitControl : MonoBehaviour {
     UnitType = unitType;
     gameManager = GameManager.Instance;
     navAgent = GetComponent<NavMeshAgent>();
-    navAgent.avoidancePriority = Random.Range(0, 100);
+    navAgent.avoidancePriority = Random.Range(0, 50);
     animator = GetComponent<Animator>();
     unitIK = GetComponent<UnitIK>().Init();
-    targetControl = gameObject.AddComponent<UnitTargeting>().Init();
+    targeting = gameObject.AddComponent<UnitTargeting>().Init();
     gameObject.GetComponent<CharacterSetup>().Init();
     LerpToPose.onTickVector = LerpPoseTick;
     LerpToPose.onFinish = LerpPoseFinished;
@@ -178,14 +182,14 @@ public class UnitControl : MonoBehaviour {
     if (moveDestination == null && InMovingState && IsPathComplete) MoveComplete();
 
     // dont target anything if we are incapacitated
-    if (!IsDead) targetControl.Process();
+    if (!IsDead) targeting.Process();
 
     if (animator) animator.SetFloat("Random", Random.value);
   }
 
   public void SetStats(float maxHits, float visualRange, float speed) {
-    targetControl.VisualRange = visualRange;
-    targetControl.MeleeRange = 1.75f;
+    targeting.VisualRange = visualRange;
+    targeting.MeleeRange = 1.75f;
     this.MaxHits = maxHits;
     this.hitpoints = maxHits;
     this.MoveSpeed = speed;
@@ -211,10 +215,13 @@ public class UnitControl : MonoBehaviour {
   }
 
   public void MoveComplete() {
+    MoveComplete(navAgent.destination);
+  }
+  public void MoveComplete(Vector3 EndPos) {
 
-    MapData.MapCell mapCell = gameManager.mapControl.GetMapCell(navAgent.destination);
+    MapData.MapCell mapCell = gameManager.mapControl.GetMapCell(EndPos);
 
-    InCover = mapCell.HasCover;
+    InCover = mapCell.HasCover && !IgnoreCover;
 
     IsMoving = false;
 
@@ -232,22 +239,33 @@ public class UnitControl : MonoBehaviour {
   }
 
   public void AddWeapon(Weapon weapon) {
-    if (weapon.IsMainWeapon) {
-      if (MainWeapon != null) MainWeapon.Drop();
-      MainWeapon = weapon;
-      weapon.Init(this, animator.GetBoneTransform(HumanBodyBones.Chest), attachPoints["RightHand"], attachPoints["Backpack"]);
-      weapon.Equip();
-      animator.runtimeAnimatorController = mainWeaponController;
-    } else {
-      if (SideArm != null) SideArm.Drop();
-      SideArm = weapon;
-      weapon.Init(this, animator.GetBoneTransform(HumanBodyBones.Chest), attachPoints["RightHand"], attachPoints["LeftHip"]);
-      if (!EquippedWeapon) {
-        weapon.Equip();
-        animator.runtimeAnimatorController = sideArmController;
-      } else {
-        weapon.Stow();
-      }
+
+    switch (weapon.type) {
+      case Weapon.WeaponType.Main:
+        if (MainWeapon != null) MainWeapon.Drop();
+        MainWeapon = (RangedWeapon)weapon;
+        MainWeapon.Init(this, attachPoints["Backpack"], attachPoints["RightHand"]);
+        MainWeapon.SetStockAttach(animator.GetBoneTransform(HumanBodyBones.Chest));
+        MainWeapon.Equip();
+        animator.runtimeAnimatorController = mainWeaponController;
+        break;
+      case Weapon.WeaponType.SideArm:
+        if (SideArm != null) SideArm.Drop();
+        SideArm = (RangedWeapon)weapon;
+        SideArm.Init(this, attachPoints["LeftHip"], attachPoints["RightHand"]);
+        SideArm.SetStockAttach(animator.GetBoneTransform(HumanBodyBones.Chest));
+        if (!EquippedWeapon) {
+          SideArm.Equip();
+          animator.runtimeAnimatorController = sideArmController;
+        } else {
+          SideArm.Stow();
+        }
+        break;
+      case Weapon.WeaponType.Melee:
+        Melee = (MeleeWeapon)weapon;
+        Melee.Init(this, attachPoints["RightHip"], attachPoints["RightHand"]);
+        Melee.Stow();
+        break;
     }
   }
 
@@ -266,6 +284,15 @@ public class UnitControl : MonoBehaviour {
     Reload();
     switchingToSideArm = true;
   }
+  public void DrawMelee() {
+    if (!Melee) {
+      Debug.Log(gameObject.name + " doesn't have emelee weapon!");
+      return;
+    }
+    if (EquippedWeapon) EquippedWeapon.Disabled = true;
+    EquippedWeapon.Stow();
+    Melee.Equip();
+  }
 
   public void SetAttachPoint(string name, Transform point) {
     if (!attachPoints.ContainsKey(name))
@@ -281,7 +308,7 @@ public class UnitControl : MonoBehaviour {
   }
 
   public void TakeDamage(DamageInfo info) {
-     hitpoints -= info.damageAmount;
+    hitpoints -= info.damageAmount;
     if (hitpoints < 0) {
       Incapacitate(info);
     }
@@ -306,6 +333,25 @@ public class UnitControl : MonoBehaviour {
     if (EquippedWeapon) {
       EquippedWeapon.Drop();
       EquippedWeapon = null;
+    }
+  }
+
+  public void AddEquipment(Equipment.Type equipmentType) {
+    switch (equipmentType) {
+      case Equipment.Type.Ammo:
+        if (MainWeapon) {
+          MainWeapon.magazines++;
+          DrawMainWeapon();
+        }
+        break;
+      case Equipment.Type.MedKit:
+
+        break;
+      case Equipment.Type.SmokeGrendes:
+        break;
+      default:
+        Debug.Log("Don't know what to do with " + equipmentType);
+        break;
     }
   }
 
@@ -356,11 +402,19 @@ public class UnitControl : MonoBehaviour {
       case "ReloadComplete":
         ReloadComplete();
         break;
+      case "EquipMelee":
+        DrawMelee();
+        break;
+      case "MeleeAttack":
+        targeting.MeleeAttack();
+        break;
       default:
         Debug.Log("Don't know what to do with a " + eventName + " event");
         break;
     }
   }
+
+
 
   public void Remove() {
     Debug.Log("Removing Unit");

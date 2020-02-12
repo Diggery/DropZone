@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class UnitTargeting : MonoBehaviour {
   public bool showDebug;
+  UnitControl unitControl;
+  Animator animator;
+  MapControl mapControl;
+  LayerMask terrainMask;
 
   float visualRange = 1.0f;
   public float VisualRange {
@@ -24,28 +28,36 @@ public class UnitTargeting : MonoBehaviour {
     }
   }
   float SqrMeleeRange { get; set; }
-  bool inMeleeRange = false;
-  bool InMeleeRange {
-    get { return inMeleeRange;}
-    set {
-      Debug.Log("InMeleerange: " + value);
-      if (value && !inMeleeRange && !unitControl.IsMoving) animator.SetTrigger("UseMelee");
-      inMeleeRange = value;
-      animator.SetBool("InMeleeRange", inMeleeRange);
-    }
-  }
-  UnitControl unitControl;
-  Animator animator;
-  MapControl mapControl;
-  LayerMask terrainMask;
 
-  UnitControl currentTarget;
-  public UnitControl CurrentTarget {
-    get { return currentTarget; }
-    set {
-      currentTarget = value;
+  public bool InMeleeRange {
+    get {
+      if (!CurrentTarget) return false;
+      return (CurrentTarget.TargetPoint - unitControl.TargetPoint).sqrMagnitude < SqrMeleeRange; 
     }
   }
+
+  bool inMelee = false;
+  bool InMelee {
+    get {
+      return inMelee;
+    }
+    set {
+      if (unitControl.IsMoving) {
+        inMelee = false;
+        return;
+      }
+      if (value && !inMelee) animator.SetTrigger("UseMelee");
+      if (!value && inMelee) {
+        unitControl.Melee.Stow();
+        unitControl.MoveComplete();
+      }
+      inMelee = value;
+      animator.SetBool("InMeleeRange", inMelee);
+    }
+  }
+
+
+  public UnitControl CurrentTarget { get; set; }
   public bool TargetVisible {
     get {
       if (!CurrentTarget) return false;
@@ -53,10 +65,15 @@ public class UnitTargeting : MonoBehaviour {
     }
   }
   public UnitControl SecondaryTarget { get; set; }
-  float targetMemory = 1.0f;
 
   public bool IsAiming { get; set; }
-  public bool CheckEnemy { get; set; }
+  public bool CheckOnTarget {
+    get {
+      return checkOnTargetDuration > 0 && mapControl.IsPositionPeekableEitherWay(CurrentTarget.TargetPoint, unitControl.TargetPoint);
+    }
+  }
+  public float checkOnTargetCoolDown = 5;
+  public float checkOnTargetDuration = 5;
 
   public bool LineOfSightBlocked {
     get {
@@ -64,7 +81,7 @@ public class UnitTargeting : MonoBehaviour {
     }
   }
 
-  float readyTimer = 1;
+  float targetIsBlockedTimer = 1;
 
   public UnitTargeting Init() {
     unitControl = GetComponent<UnitControl>();
@@ -84,6 +101,7 @@ public class UnitTargeting : MonoBehaviour {
       animator.SetBool("PeekLeft", false);
       animator.SetBool("PeekRight", false);
       animator.SetBool("ReadyToFire", false);
+      InMelee = false;
       return;
     }
     bool targetVisible = TargetVisible;
@@ -91,11 +109,26 @@ public class UnitTargeting : MonoBehaviour {
     if ((!targetVisible && bestTarget)) CurrentTarget = bestTarget;
     if (bestTarget && ((CurrentTarget.transform.position - unitControl.TargetPoint).sqrMagnitude < SqrVisualRange * 0.5f)) {
       CurrentTarget = bestTarget;
-    } 
+    }
 
-    if (gameObject.tag.Equals("Player")) MapTester.DrawVisibleCells(transform.position, mapControl.mapData);
-
+    //if (gameObject.tag.Equals("Player")) MapTester.DrawVisibleCells(transform.position, mapControl.mapData);
     // if (gameObject.tag.Equals("Player")) Debug.DrawLine(CurrentTarget.TargetPoint, unitControl.TargetPoint, Color.red);
+    //if (gameObject.tag.Equals("Player") && mapControl.IsPositionPeekableEitherWay(CurrentTarget.TargetPoint, unitControl.TargetPoint)) 
+    //  Debug.DrawLine(CurrentTarget.TargetPoint, unitControl.TargetPoint, Color.magenta);
+
+    if (!targetVisible) {
+      checkOnTargetCoolDown -= Time.deltaTime;
+      if (checkOnTargetCoolDown < 0 && checkOnTargetDuration < 0) {
+        checkOnTargetDuration = (Random.value * 0.5f) * 2.0f;
+      }
+      if (checkOnTargetDuration > 0) {
+        checkOnTargetDuration -= Time.deltaTime;
+      }
+    } else {
+      checkOnTargetCoolDown = 1 + Random.value;
+      checkOnTargetDuration = -1;
+    }
+
 
     Vector3 targetDir = transform.InverseTransformPoint(CurrentTarget.transform.position).normalized;
     float angleToTarget = Vector3.Angle(targetDir, Vector3.forward) * Mathf.Sign(targetDir.x);
@@ -104,13 +137,17 @@ public class UnitTargeting : MonoBehaviour {
     bool rightPeekable = mapControl.IsPositionPeekableRight(transform.position, CurrentTarget.TargetPoint);
 
     bool peekLeft = (leftPeekable && (angleToTarget <= 0 && angleToTarget >= -75)) ||
-      ((leftPeekable && !rightPeekable) && Mathf.Abs(angleToTarget) <= 45);
+      ((leftPeekable && !rightPeekable) && Mathf.Abs(angleToTarget) <= 65);
 
     bool peekRight = (rightPeekable && (angleToTarget >= 0 && angleToTarget <= 75)) ||
-      ((rightPeekable && !leftPeekable) && Mathf.Abs(angleToTarget) <= 45);
+      ((rightPeekable && !leftPeekable) && Mathf.Abs(angleToTarget) <= 65);
 
-    InMeleeRange = (CurrentTarget.transform.position - unitControl.TargetPoint).sqrMagnitude < SqrMeleeRange;
-    if (targetVisible) Debug.DrawLine(unitControl.TargetPoint, CurrentTarget.TargetPoint, Color.white);
+    InMelee = targetVisible && InMeleeRange;
+    if (InMelee) {
+      float headingAngle = Utils.HeadingToTarget(unitControl.TargetPoint, CurrentTarget.TargetPoint);
+      transform.rotation =
+        Quaternion.Lerp(transform.rotation, Quaternion.AngleAxis(headingAngle, Vector3.up), Time.deltaTime * 8);
+    }
 
     animator.SetFloat("TargetDirection", angleToTarget);
     animator.SetBool("TargetVisible", targetVisible);
@@ -118,20 +155,23 @@ public class UnitTargeting : MonoBehaviour {
     animator.SetBool("PeekRight", peekRight);
 
     bool readyToFire =
-      ((readyTimer < 0) &&
+      ((targetIsBlockedTimer < 0) &&
         !unitControl.MoveQueued &&
         unitControl.EquippedWeapon &&
-        (!unitControl.IsMoving || !unitControl.EquippedWeapon.IsMainWeapon) &&
+        (!unitControl.IsMoving || unitControl.EquippedWeapon.type != Weapon.WeaponType.Main) &&
         unitControl.EquippedWeapon.IsReady &&
-        (targetVisible || CheckEnemy)) &&
-        !InMeleeRange;
+        (targetVisible || CheckOnTarget)) &&
+        !InMelee;
 
     animator.SetBool("ReadyToFire", readyToFire);
 
-    if (readyTimer > 0) readyTimer -= Time.deltaTime;
+    if (targetIsBlockedTimer > 0) targetIsBlockedTimer -= Time.deltaTime;
 
     if (readyToFire && IsAiming) {
-      if (LineOfSightBlocked) readyTimer = 1;
+      if (LineOfSightBlocked) {
+        targetIsBlockedTimer = 1;
+        return;
+      }
       unitControl.EquippedWeapon.Attack(CurrentTarget);
     }
   }
@@ -174,6 +214,11 @@ public class UnitTargeting : MonoBehaviour {
       }
     }
     return closestTarget;
+  }
+
+  public void MeleeAttack() {
+    DamageInfo damageInfo = new DamageInfo(unitControl.Melee.damage, DamageType.Puncture, unitControl);
+    CurrentTarget.TakeDamage(damageInfo);
   }
 
   public void TargetHit() {

@@ -19,3 +19,9 @@ MonoBehaviour:
   - name: Sidewinder
     prefab: {fileID: 6643333174344509921, guid: 43b0d387c88ea4eac9d105223a4ac76e,
       type: 3}
+  - name: CombatKnife
+    prefab: {fileID: 2187242008922365705, guid: 52c7035af59468140ada1445206cb731,
+      type: 3}
+  - name: Ripper
+    prefab: {fileID: 2187242008922365705, guid: 99236d201904a494e97d26239d2af620,
+      type: 3}

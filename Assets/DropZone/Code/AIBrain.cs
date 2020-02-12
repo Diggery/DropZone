@@ -42,6 +42,10 @@ public class AIBrain : MonoBehaviour {
     set { isLeaving = value; }
   }
 
+  public bool MeleeOnly {
+    get { return !unitControl.MainWeapon && !unitControl.SideArm; }
+  }
+
   Dictionary<string, AIState> states = new Dictionary<string, AIState>();
 
   UnitControl unitControl;
@@ -73,7 +77,7 @@ public class AIBrain : MonoBehaviour {
     unitControl.enemySpottedAlert.AddListener(OnEnemySpotted);
     unitControl.damageTaken.AddListener(OnDamageTaken);
     unitControl.outOfAmmo.AddListener(OnOutOfAmmo);
-
+    unitControl.IgnoreCover = MeleeOnly;
     gameObject.AddComponent<AIStateIdle>();
     gameObject.AddComponent<AIStateShooting>();
     gameObject.AddComponent<AIStateSearching>();

@@ -10,6 +10,7 @@ public class SkeletonConfigHuman : SkeletonConfig {
     setUpData.layerName = "Skeleton";
 
     Animator animator = GetComponent<Animator>();
+    Vector4 nonLimbLimits = new Vector4(-25, 25, 25, 25);
 
     Transform hipsTransform = animator.GetBoneTransform(HumanBodyBones.Hips);
     if (!hipsTransform) Debug.Log("There are no hips");
@@ -23,7 +24,7 @@ public class SkeletonConfigHuman : SkeletonConfig {
     setUpData.joints.Add(hips);
 
     Transform torsoTransform = animator.GetBoneTransform(HumanBodyBones.Chest);
-    SkeletonControl.JointData torso = new SkeletonControl.JointData(torsoTransform, hipsTransform);
+    SkeletonControl.JointData torso = new SkeletonControl.JointData(torsoTransform, hipsTransform, nonLimbLimits);
     torso.collision.type = SkeletonControl.ColliderType.Box;
     torso.collision.center = new Vector3(0.0f, -0.025f, 0.06f);
     torso.collision.size = new Vector3(0.35f, 0.2f, 0.35f);
@@ -33,7 +34,7 @@ public class SkeletonConfigHuman : SkeletonConfig {
     setUpData.joints.Add(torso);
 
     Transform headTransform = animator.GetBoneTransform(HumanBodyBones.Head);
-    SkeletonControl.JointData head = new SkeletonControl.JointData(headTransform, torsoTransform);
+    SkeletonControl.JointData head = new SkeletonControl.JointData(headTransform, torsoTransform, nonLimbLimits);
     head.collision.type = SkeletonControl.ColliderType.CapsuleZ;
     head.collision.center = new Vector3(0.0f, 0.0f, 0.0625f);
     head.collision.radius = 0.125f;

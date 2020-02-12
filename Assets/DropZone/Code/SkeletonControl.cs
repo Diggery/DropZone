@@ -18,6 +18,12 @@ public class SkeletonControl : MonoBehaviour {
       swing1Limit = 40.0f;
       swing2Limit = 40.0f;
     }
+    public CharacterJointConfig(Vector4 limits) {
+      lowTwistLimit = limits.x;
+      highTwistLimit = limits.y;
+      swing1Limit = limits.z;
+      swing2Limit = limits.w;
+    }
   }
 
   public enum ColliderType { CapsuleX, CapsuleY, CapsuleZ, Box, Sphere }
@@ -51,6 +57,13 @@ public class SkeletonControl : MonoBehaviour {
       this.jointName = transform.name;
       this.collision = new ColliderData();
       this.joint = new CharacterJointConfig();
+    }
+    public JointData(Transform transform, Transform connectedTo, Vector4 limits) {
+      this.connectedTo = connectedTo;
+      this.transform = transform;
+      this.jointName = transform.name;
+      this.collision = new ColliderData();
+      this.joint = new CharacterJointConfig(limits);
     }
   }
 
@@ -136,17 +149,13 @@ public class SkeletonControl : MonoBehaviour {
     }
   }
 
-  void SetUpJoint(JointData data) {
-    SetUpJoint(data, "Skeleton");
-  }
-
   void SetUpJoint(JointData data, string layerName) {
     Rigidbody newRB = data.transform.gameObject.AddComponent<Rigidbody>();
     newRB.mass = data.mass;
     newRB.useGravity = false;
     newRB.isKinematic = true;
     newRB.drag = 0.1f;
-    newRB.angularDrag = 3f;
+    newRB.angularDrag = 10f;
 
     AddCollider(data.transform, data);
 
