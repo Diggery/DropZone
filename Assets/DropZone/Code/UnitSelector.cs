@@ -34,7 +34,7 @@ public class UnitSelector : MonoBehaviour {
   }
 
   void Update() {
-    transform.position = inputControl.SelectedUnit.transform.position;
+    transform.position = inputControl.SelectedUnit.transform.position + (Vector3.up * 0.1f);
     if (!inputControl.SelectedUnit.IsPathComplete) {
       Vector3[] path = inputControl.SelectedUnit.CurrentPath.corners;
       for (int i = 0; i < path.Length; i++) path[i].y += 0.05f;

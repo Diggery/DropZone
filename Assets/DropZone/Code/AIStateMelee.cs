@@ -14,12 +14,12 @@ public class AIStateMelee : AIState {
 
   public override void StateEnter() {
     base.StateEnter();
-    unitControl.MoveTo(targeting.CurrentTarget.TargetPoint);
+   // unitControl.MoveTo(targeting.CurrentTarget.TargetPoint);
   }
 
   public override void StateUpdate() {
     base.StateUpdate();
-    if (targeting.InMeleeRange) navAgent.isStopped = true;
+    if (Vector3.Distance(transform.position, targeting.CurrentTarget.TargetPoint) < 1.0f) navAgent.isStopped = true;
   }
 
   public override void StateExit() {

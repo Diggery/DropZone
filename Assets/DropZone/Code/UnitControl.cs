@@ -243,7 +243,7 @@ public class UnitControl : MonoBehaviour {
     switch (weapon.type) {
       case Weapon.WeaponType.Main:
         if (MainWeapon != null) MainWeapon.Drop();
-        MainWeapon = (RangedWeapon)weapon;
+        MainWeapon = (RangedWeapon) weapon;
         MainWeapon.Init(this, attachPoints["Backpack"], attachPoints["RightHand"]);
         MainWeapon.SetStockAttach(animator.GetBoneTransform(HumanBodyBones.Chest));
         MainWeapon.Equip();
@@ -251,7 +251,7 @@ public class UnitControl : MonoBehaviour {
         break;
       case Weapon.WeaponType.SideArm:
         if (SideArm != null) SideArm.Drop();
-        SideArm = (RangedWeapon)weapon;
+        SideArm = (RangedWeapon) weapon;
         SideArm.Init(this, attachPoints["LeftHip"], attachPoints["RightHand"]);
         SideArm.SetStockAttach(animator.GetBoneTransform(HumanBodyBones.Chest));
         if (!EquippedWeapon) {
@@ -262,7 +262,7 @@ public class UnitControl : MonoBehaviour {
         }
         break;
       case Weapon.WeaponType.Melee:
-        Melee = (MeleeWeapon)weapon;
+        Melee = (MeleeWeapon) weapon;
         Melee.Init(this, attachPoints["RightHip"], attachPoints["RightHand"]);
         Melee.Stow();
         break;
@@ -289,8 +289,11 @@ public class UnitControl : MonoBehaviour {
       Debug.Log(gameObject.name + " doesn't have emelee weapon!");
       return;
     }
-    if (EquippedWeapon) EquippedWeapon.Disabled = true;
-    EquippedWeapon.Stow();
+    if (EquippedWeapon) {
+      EquippedWeapon.Disabled = true;
+      EquippedWeapon.Stow();
+    }
+
     Melee.Equip();
   }
 
@@ -413,8 +416,6 @@ public class UnitControl : MonoBehaviour {
         break;
     }
   }
-
-
 
   public void Remove() {
     Debug.Log("Removing Unit");

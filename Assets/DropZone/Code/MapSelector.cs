@@ -77,7 +77,7 @@ public class MapSelector : MonoBehaviour {
 
   public void SelectMapPos(Vector3 mapPos) {
 
-    transform.position = mapPos;
+    transform.position = mapPos + (Vector3.up * 0.1f);
 
     MapData.MapCell mapCell = gameManager.mapControl.GetMapCell(transform.position);
     Quaternion newOrientation = gameManager.mapControl.GetCoverOrientation(mapCell);
