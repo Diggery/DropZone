@@ -103,9 +103,48 @@ ModelImporter:
     optimizeGameObjects: 0
     motionNodeName: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion
     rigImportErrors: 
-    rigImportWarnings: 
+    rigImportWarnings: "Copied Avatar Rig Configuration mis-match. Bone length in
+      copied configuration does not match position in animation file:\n\t'Squaddie:LeftUpperLeg_Skel'
+      : position error = 100.141373 mm\n\t'Squaddie:Spine1_Skel' : position error
+      = 264.698608 mm\n\t'Squaddie:Spine2_Skel' : position error = 225.516556 mm\n\t'Squaddie:Neck_Skell'
+      : position error = 275.033020 mm\n\t'Squaddie:Head_Skel' : position error =
+      144.356339 mm\n\t'Squaddie:RightClav_Skel' : position error = 175.712662 mm\n\t'Squaddie:LeftClav_Skel'
+      : position error = 175.710434 mm\n"
     animationImportErrors: 
-    animationImportWarnings: 
+    animationImportWarnings: "\nClip 'Idle_Center' has import animation warnings
+      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'Squaddie:Spine2_Skel' has translation animation
+      that will be discarded.\n\nClip 'Aim_ForwardLeft_In' has import animation warnings
+      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'Squaddie:Spine1_Skel' has translation animation
+      that will be discarded.\n\nClip 'Aim_ForwardLeft_Out' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'Squaddie:Spine1_Skel' has
+      translation animation that will be discarded.\n\nClip 'Aim_Left_In' has import
+      animation warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'Squaddie:Spine1_Skel' has
+      translation animation that will be discarded.\n\t'Squaddie:Spine2_Skel' has
+      translation animation that will be discarded.\n\nClip 'Aim_Left_Out' has import
+      animation warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'Squaddie:Spine1_Skel' has
+      translation animation that will be discarded.\n\t'Squaddie:Spine2_Skel' has
+      translation animation that will be discarded.\n\nClip 'Aim_Back_In' has import
+      animation warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'Squaddie:Spine1_Skel' has
+      translation animation that will be discarded.\n\t'Squaddie:Spine2_Skel' has
+      translation animation that will be discarded.\n\nClip 'Aim_Back_Out' has import
+      animation warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'Squaddie:Spine1_Skel' has
+      translation animation that will be discarded.\n\t'Squaddie:Spine2_Skel' has
+      translation animation that will be discarded.\n\nClip 'ReloadCover' has import
+      animation warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'Squaddie:Spine1_Skel' has
+      translation animation that will be discarded.\n\t'Squaddie:Spine2_Skel' has
+      translation animation that will be discarded.\n\nClip 'ExitCover' has import
+      animation warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'Squaddie:Spine1_Skel' has
+      translation animation that will be discarded.\n\t'Squaddie:Spine2_Skel' has
+      translation animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -1560,8 +1599,8 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: Squaddie:Head
       parentName: Squaddie:GeoGroup
-      position: {x: -0, y: 0, z: 0.043168563}
-      rotation: {x: 2.220446e-16, y: -0, z: -0, w: 1}
+      position: {x: -0, y: -0.009090568, z: 0.027281644}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Squaddie:SkeletonGroup
       parentName: Squaddie(Clone)
@@ -1576,153 +1615,103 @@ ModelImporter:
     - name: Squaddie:Hips_Skel
       parentName: Squaddie:Attach_RootMotion
       position: {x: -0, y: 1.0088217, z: -0.036950078}
-      rotation: {x: -0.7372773, y: -0, z: -0, w: 0.6755902}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Squaddie:Attach_RightHip
+      parentName: Squaddie:Hips_Skel
+      position: {x: 0.2945543, y: 0.18961038, z: 0.009565439}
+      rotation: {x: 0.8488425, y: 0.027990945, z: -0.041504823, w: 0.5262701}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Squaddie:Attach_LeftHip
+      parentName: Squaddie:Hips_Skel
+      position: {x: -0.29994446, y: 0.21041812, z: 0.0032716307}
+      rotation: {x: 0.8454653, y: -0.07244047, z: 0.045167938, w: 0.52716285}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Squaddie:RightUpperLeg_Skel
+      parentName: Squaddie:Hips_Skel
+      position: {x: 0.19818799, y: -0.07481379, z: -0.0070920237}
+      rotation: {x: -0.7132502, y: -5.0202367e-16, z: -4.795179e-16, w: 0.7009095}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Squaddie:RightLowerLeg_Skel
+      parentName: Squaddie:RightUpperLeg_Skel
+      position: {x: -3.5527136e-17, y: 0.000000010144151, z: -0.41999996}
+      rotation: {x: 0.087155014, y: 2.4309782e-16, z: 6.785848e-16, w: 0.9961948}
+      scale: {x: 1, y: 0.99999994, z: 0.99999994}
+    - name: Squaddie:RightFoot_Skel
+      parentName: Squaddie:RightLowerLeg_Skel
+      position: {x: 3.5527136e-17, y: 0.00000009232215, z: -0.37999943}
+      rotation: {x: 0.5372997, y: -5.373594e-16, z: -2.3365115e-16, w: -0.8433915}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Squaddie:RightToes_Skel
+      parentName: Squaddie:RightFoot_Skel
+      position: {x: -3.5527136e-17, y: 0.00000018340971, z: -0.1500002}
+      rotation: {x: -0.2840153, y: -2.3174575e-16, z: -7.35006e-16, w: 0.95881975}
+      scale: {x: 1, y: 1.0000001, z: 1.0000001}
+    - name: Squaddie:LeftUpperLeg_Skel
+      parentName: Squaddie:Hips_Skel
+      position: {x: -0.19818838, y: -0.07481341, z: -0.0070920144}
+      rotation: {x: 0.70090955, y: -0.00008790983, z: 0.00007575035, w: 0.71325016}
+      scale: {x: 1, y: 1.0000001, z: 1.0000001}
+    - name: Squaddie:LeftLowerLeg_Skel
+      parentName: Squaddie:LeftUpperLeg_Skel
+      position: {x: -0, y: -1.4876988e-16, z: 0.42}
+      rotation: {x: 0.08715493, y: 3.6379792e-12, z: 2.1827875e-11, w: 0.9961948}
+      scale: {x: 1, y: 1.0000001, z: 1.0000001}
+    - name: Squaddie:LeftFoot_Skel
+      parentName: Squaddie:LeftLowerLeg_Skel
+      position: {x: -0, y: 1.7763568e-17, z: 0.38}
+      rotation: {x: -0.53729963, y: -1.235619e-11, z: 9.854102e-12, w: 0.8433915}
+      scale: {x: 1, y: 1, z: 0.9999999}
+    - name: Squaddie:LeftToes_Skel
+      parentName: Squaddie:LeftFoot_Skel
+      position: {x: -0, y: 4.4408918e-17, z: 0.14999999}
+      rotation: {x: -0.2840153, y: 3.2559216e-11, z: 6.8125106e-13, w: 0.9588198}
       scale: {x: 1, y: 1, z: 1}
     - name: Squaddie:Spine1_Skel
       parentName: Squaddie:Hips_Skel
-      position: {x: -0, y: -2.6645352e-17, z: 0.20743898}
-      rotation: {x: 0.043619365, y: -0, z: -0, w: 0.99904823}
-      scale: {x: 1, y: 1.0000004, z: 1.0000004}
+      position: {x: -0, y: 0.2066496, z: 0.00000007687908}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
     - name: Squaddie:Spine2_Skel
       parentName: Squaddie:Spine1_Skel
-      position: {x: -0, y: 1.7763568e-17, z: 0.17645457}
-      rotation: {x: 0.043619365, y: -0, z: -0, w: 0.9990483}
-      scale: {x: 1, y: 1.0000004, z: 1.0000004}
+      position: {x: -0, y: 0.17645457, z: 0}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Squaddie:Attach_Backpack
+      parentName: Squaddie:Spine2_Skel
+      position: {x: 0.16213106, y: 0.19910377, z: -0.26492035}
+      rotation: {x: 0.6698565, y: 0.18211605, z: -0.17264695, w: 0.6987983}
+      scale: {x: 1, y: 1, z: 1}
     - name: Squaddie:Neck_Skell
       parentName: Squaddie:Spine2_Skel
-      position: {x: -0, y: -0.025939729, z: 0.22842762}
+      position: {x: -0, y: 0.2106128, z: 0.03695}
       rotation: {x: -0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 0.99999994, z: 0.99999994}
+      scale: {x: 1, y: 1, z: 1}
     - name: Squaddie:Head_Skel
       parentName: Squaddie:Neck_Skell
-      position: {x: -0, y: -0.0162985, z: 0.10246271}
-      rotation: {x: -0, y: -0, z: -0, w: 1}
+      position: {x: -0, y: 0.1062465, z: 0}
+      rotation: {x: -0.6755902, y: -0, z: -0, w: 0.7372773}
       scale: {x: 1, y: 1, z: 1}
-    - name: Squaddie:LeftClav_Skel
-      parentName: Squaddie:Spine2_Skel
-      position: {x: -0.10422913, y: -0.046403587, z: 0.13014163}
-      rotation: {x: -0, y: 1.048992e-15, z: -9.174701e-17, w: 1}
-      scale: {x: 1, y: 0.99999994, z: 0.99999994}
-    - name: Squaddie:LeftUpperArm_Skel
-      parentName: Squaddie:LeftClav_Skel
-      position: {x: -0.14914577, y: 0.047034793, z: -0.004115006}
-      rotation: {x: 0.4921407, y: -0.53452015, z: -0.4629127, w: 0.50773764}
-      scale: {x: 1.0000006, y: 1.0000002, z: 1.0000005}
-    - name: Squaddie:LeftLowerArm_Skel
-      parentName: Squaddie:LeftUpperArm_Skel
-      position: {x: -0, y: 0, z: 0.32}
-      rotation: {x: -0.02256603, y: 0.03439828, z: 0.003979101, w: 0.9991455}
-      scale: {x: 1.0000004, y: 1.0000001, z: 1.0000005}
-    - name: Squaddie:LeftHand_Skel
-      parentName: Squaddie:LeftLowerArm_Skel
-      position: {x: -0, y: 0, z: 0.26999998}
-      rotation: {x: 0.000000020760018, y: 0.12536716, z: 0.000000056596946, w: 0.9921105}
-      scale: {x: 1.0000002, y: 1.0000002, z: 1}
-    - name: Squaddie:Attach_LeftHand
-      parentName: Squaddie:LeftHand_Skel
-      position: {x: -0.0008502221, y: -0.026283855, z: 0.0711314}
-      rotation: {x: 0.12278781, y: -0.12278781, z: -0.6963643, w: 0.6963643}
-      scale: {x: 1, y: 1, z: 1}
-    - name: Squaddie:LeftFinger1_1_Skel
-      parentName: Squaddie:LeftHand_Skel
-      position: {x: -0.00062701653, y: 0.011270044, z: 0.14645213}
-      rotation: {x: 0.021029277, y: -0.16500098, z: 0.0040176082, w: 0.98606104}
-      scale: {x: 1, y: 1, z: 1.0000002}
-    - name: Squaddie:LeftFinger1_2_Skel
-      parentName: Squaddie:LeftFinger1_1_Skel
-      position: {x: -0, y: 0, z: 0.044999998}
-      rotation: {x: 0.02617689, y: -0.000000014901158, z: 0.000000057741985, w: 0.9996574}
-      scale: {x: 1.0000004, y: 1.0000001, z: 1.0000004}
-    - name: Squaddie:LeftFinger1_3_Skel
-      parentName: Squaddie:LeftFinger1_2_Skel
-      position: {x: -0, y: 0, z: 0.035}
-      rotation: {x: -0, y: -0, z: -5.828669e-16, w: 1}
-      scale: {x: 1.0000006, y: 0.9999999, z: 1.0000004}
-    - name: Squaddie:LeftFinger2_1_Skel
-      parentName: Squaddie:LeftHand_Skel
-      position: {x: -0.03441423, y: 0.013756281, z: 0.13938527}
-      rotation: {x: 0.02462828, y: -0.15615512, z: 0.005440658, w: 0.9874104}
-      scale: {x: 0.99999994, y: 1, z: 1.0000002}
-    - name: Squaddie:LeftFinger2_2_Skel
-      parentName: Squaddie:LeftFinger2_1_Skel
-      position: {x: -0, y: 0, z: 0.044999998}
-      rotation: {x: 0.026176976, y: -0.000000059604616, z: -0.000000080093706, w: 0.99965733}
-      scale: {x: 1.0000001, y: 1, z: 0.9999999}
-    - name: Squaddie:LeftFinger2_3_Skel
-      parentName: Squaddie:LeftFinger2_2_Skel
-      position: {x: -0, y: 0, z: 0.038}
-      rotation: {x: 0.000000014901156, y: -0.16883372, z: 0.000000045169127, w: 0.9856446}
-      scale: {x: 1.0000004, y: 1.0000002, z: 1.0000001}
-    - name: Squaddie:LeftFinger3_1_Skel
-      parentName: Squaddie:LeftHand_Skel
-      position: {x: -0.06785891, y: 0.0056113214, z: 0.1231433}
-      rotation: {x: 0.020460023, y: -0.16179962, z: 0.006072957, w: 0.9865928}
-      scale: {x: 1.0000004, y: 0.9999998, z: 1.0000004}
-    - name: Squaddie:LeftFinger3_2_Skel
-      parentName: Squaddie:LeftFinger3_1_Skel
-      position: {x: -0, y: 0, z: 0.043}
-      rotation: {x: -0.000000022351735, y: 0.004833935, z: 0.000000023283055, w: 0.9999884}
-      scale: {x: 1.0000005, y: 1.0000002, z: 1.000001}
-    - name: Squaddie:LeftFinger3_3_Skel
-      parentName: Squaddie:LeftFinger3_2_Skel
-      position: {x: -0, y: 0, z: 0.032}
-      rotation: {x: -0.0000000041766306, y: -0.1688337, z: -0.000000015567048, w: 0.98564464}
-      scale: {x: 1.0000011, y: 1.0000002, z: 1.0000008}
-    - name: Squaddie:LeftFinger4_1_Skel
-      parentName: Squaddie:LeftHand_Skel
-      position: {x: -0.09058366, y: -0.003948767, z: 0.10221751}
-      rotation: {x: 0.0013458013, y: -0.17993234, z: 0.0062090084, w: 0.98365855}
-      scale: {x: 1.0000005, y: 0.99999994, z: 1.000001}
-    - name: Squaddie:LeftFinger4_2_Skel
-      parentName: Squaddie:LeftFinger4_1_Skel
-      position: {x: -0, y: 0, z: 0.043}
-      rotation: {x: 0.026176857, y: 0.000000029802308, z: 0.00000002607702, w: 0.9996574}
-      scale: {x: 1.0000007, y: 1.0000005, z: 1.0000007}
-    - name: Squaddie:LeftFinger4_3_Skel
-      parentName: Squaddie:LeftFinger4_2_Skel
-      position: {x: -0, y: 0, z: 0.032}
-      rotation: {x: 0.000000048428756, y: -0.1688338, z: 0.000000015832478, w: 0.9856446}
-      scale: {x: 1.0000006, y: 1, z: 1.0000007}
-    - name: Squaddie:LeftThumb_1_Skel
-      parentName: Squaddie:LeftHand_Skel
-      position: {x: 0.027163079, y: -0.013510208, z: 0.05347762}
-      rotation: {x: -0.15314303, y: -0.1156172, z: 0.1491704, w: 0.97001445}
-      scale: {x: 0.9999999, y: 0.9999998, z: 1.0000001}
-    - name: Squaddie:LeftThumb_2_Skel
-      parentName: Squaddie:LeftThumb_1_Skel
-      position: {x: 0.034286685, y: -0.028446708, z: 0.037946317}
-      rotation: {x: 0.026176943, y: 0.000000029802315, z: 0.000000022817398, w: 0.9996574}
-      scale: {x: 1, y: 1, z: 1.0000002}
-    - name: Squaddie:LeftLowerArmTwist_Skel
-      parentName: Squaddie:LeftLowerArm_Skel
-      position: {x: -0, y: 0, z: 0.14999999}
-      rotation: {x: 0.000000020760018, y: 0.12536716, z: 0.000000056596946, w: 0.9921105}
-      scale: {x: 1.0000002, y: 1.0000002, z: 1}
     - name: Squaddie:RightClav_Skel
       parentName: Squaddie:Spine2_Skel
-      position: {x: 0.104229, y: -0.046403427, z: 0.13014355}
-      rotation: {x: 1, y: -0, z: -0, w: 0}
-      scale: {x: 1, y: 0.99999994, z: 0.99999994}
+      position: {x: 0.104229, y: 0.125604, z: 0.03949003}
+      rotation: {x: 0.7372773, y: -0, z: -0, w: 0.6755902}
+      scale: {x: 1, y: 1, z: 1}
     - name: Squaddie:RightUpperArm_Skel
       parentName: Squaddie:RightClav_Skel
       position: {x: 0.149146, y: -0.047034763, z: 0.0041150087}
-      rotation: {x: -0.49213716, y: 0.53451705, z: 0.4629164, w: -0.5077411}
-      scale: {x: 1.0000007, y: 1.0000014, z: 1.0000005}
-    - name: Squaddie:Attach_RightShoulder
-      parentName: Squaddie:RightUpperArm_Skel
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
+      rotation: {x: 0.49215886, y: -0.5344973, z: -0.46293673, w: 0.5077224}
+      scale: {x: 1.0000001, y: 1.0000002, z: 1.0000002}
     - name: Squaddie:RightLowerArm_Skel
       parentName: Squaddie:RightUpperArm_Skel
       position: {x: 5.062617e-16, y: 0.000004340045, z: -0.32000345}
-      rotation: {x: 0.022553423, y: -0.034396283, z: -0.003979205, w: -0.9991458}
-      scale: {x: 1.0000002, y: 1.0000007, z: 1.0000007}
+      rotation: {x: -0.022553934, y: 0.034393933, z: 0.0039793546, w: 0.999146}
+      scale: {x: 1.0000004, y: 1.000001, z: 1.0000005}
     - name: Squaddie:RightHand_Skel
       parentName: Squaddie:RightLowerArm_Skel
       position: {x: -0.0000013853881, y: -0.0000045381244, z: -0.26999608}
-      rotation: {x: 0.000000026858508, y: 0.12536705, z: 0.00000010215481, w: 0.9921105}
-      scale: {x: 0.99999994, y: 1.0000005, z: 0.9999996}
+      rotation: {x: 0.000000057818767, y: 0.12536708, z: 0.000000013988878, w: 0.99211043}
+      scale: {x: 0.99999994, y: 0.9999998, z: 0.9999998}
     - name: Squaddie:Attach_RightHand
       parentName: Squaddie:RightHand_Skel
       position: {x: -0.012208977, y: 0.018092064, z: -0.07884054}
@@ -1731,118 +1720,178 @@ ModelImporter:
     - name: Squaddie:RightFinger1_1_Skel
       parentName: Squaddie:RightHand_Skel
       position: {x: 0.00062706886, y: -0.0112692, z: -0.14645304}
-      rotation: {x: 0.021034928, y: -0.16500229, z: 0.004018289, w: 0.9860606}
-      scale: {x: 1.0000002, y: 1.0000006, z: 1.0000004}
+      rotation: {x: 0.02103384, y: -0.16500193, z: 0.0040182066, w: 0.9860608}
+      scale: {x: 1.0000004, y: 1.0000005, z: 1.0000001}
     - name: Squaddie:RightFinger1_2_Skel
       parentName: Squaddie:RightFinger1_1_Skel
       position: {x: 0.0000007823335, y: -0.00000023088927, z: -0.045000017}
-      rotation: {x: 0.026176943, y: -0.00000005960463, z: -0.00000002374872, w: 0.99965733}
-      scale: {x: 0.9999996, y: 0.9999996, z: 0.9999997}
+      rotation: {x: 0.026176918, y: 0.000000014901159, z: -0.00000006053596, w: 0.99965733}
+      scale: {x: 0.9999997, y: 0.9999997, z: 1}
     - name: Squaddie:RightFinger1_3_Skel
       parentName: Squaddie:RightFinger1_2_Skel
       position: {x: -0.0000010023723, y: -0.000002045984, z: -0.03499759}
-      rotation: {x: -0.0000000018626447, y: -0, z: 7.7715596e-16, w: 1}
-      scale: {x: 0.9999998, y: 1, z: 0.9999999}
+      rotation: {x: -0, y: -0, z: 1.6653344e-16, w: 1}
+      scale: {x: 0.99999994, y: 1, z: 0.9999998}
     - name: Squaddie:RightFinger2_1_Skel
       parentName: Squaddie:RightHand_Skel
       position: {x: 0.034415063, y: -0.0137546295, z: -0.13938648}
-      rotation: {x: 0.02460268, y: -0.15614413, z: 0.0054372675, w: 0.9874129}
-      scale: {x: 1.0000008, y: 1.0000014, z: 1.0000013}
+      rotation: {x: 0.024602802, y: -0.15614416, z: 0.005437335, w: 0.98741287}
+      scale: {x: 1.0000004, y: 1.0000006, z: 1.0000002}
     - name: Squaddie:RightFinger2_2_Skel
       parentName: Squaddie:RightFinger2_1_Skel
       position: {x: 0.00000091570655, y: 0.0000029245364, z: -0.045003228}
-      rotation: {x: 0.026177019, y: -0.00000008940696, z: -0.00000004097819, w: 0.9996574}
-      scale: {x: 1.0000001, y: 0.99999994, z: 0.99999994}
+      rotation: {x: 0.026176844, y: -0, z: -0.000000009313226, w: 0.9996574}
+      scale: {x: 0.99999994, y: 1, z: 1.0000001}
     - name: Squaddie:RightFinger2_3_Skel
       parentName: Squaddie:RightFinger2_2_Skel
       position: {x: -0.0000007409488, y: -0.0000034642258, z: -0.03799598}
-      rotation: {x: 0.000000014901158, y: 0.16883373, z: 0.000000027474009, w: -0.9856446}
-      scale: {x: 1.0000002, y: 1.0000006, z: 1.0000004}
+      rotation: {x: -0.00000010617076, y: 0.16883378, z: -0.0000000069849184, w: -0.9856446}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1}
     - name: Squaddie:RightFinger3_1_Skel
       parentName: Squaddie:RightHand_Skel
       position: {x: 0.06785859, y: -0.005613622, z: -0.12314276}
-      rotation: {x: 0.020433078, y: -0.16178913, z: 0.006070023, w: 0.98659515}
-      scale: {x: 1.0000007, y: 1.0000012, z: 1.0000007}
+      rotation: {x: 0.020434441, y: -0.1617896, z: 0.006070259, w: 0.98659503}
+      scale: {x: 1.0000005, y: 1.0000002, z: 1}
     - name: Squaddie:RightFinger3_2_Skel
       parentName: Squaddie:RightFinger3_1_Skel
       position: {x: 0.00000050776396, y: 0.0000030709075, z: -0.043002784}
-      rotation: {x: -0, y: 0.0048339963, z: 0.00000004749745, w: 0.9999884}
-      scale: {x: 0.99999964, y: 1, z: 1.0000004}
+      rotation: {x: 0.000000029802322, y: 0.0048341453, z: 0.000000013969839, w: 0.9999884}
+      scale: {x: 0.99999994, y: 1.0000004, z: 1.0000002}
     - name: Squaddie:RightFinger3_3_Skel
       parentName: Squaddie:RightFinger3_2_Skel
       position: {x: -0.00000032920678, y: 0.00000019588454, z: -0.031999003}
-      rotation: {x: 1.261777e-10, y: 0.16883361, z: 0.00000009152075, w: -0.9856446}
-      scale: {x: 1.0000014, y: 1.0000014, z: 1.0000005}
+      rotation: {x: 0.000000016717445, y: 0.16883373, z: 0.00000002371991, w: -0.98564464}
+      scale: {x: 1.0000002, y: 1.0000005, z: 1.0000001}
     - name: Squaddie:RightFinger4_1_Skel
       parentName: Squaddie:RightHand_Skel
       position: {x: 0.09058533, y: 0.003952592, z: -0.10222001}
-      rotation: {x: 0.0013759768, y: -0.179945, z: 0.0062112967, w: 0.9836561}
-      scale: {x: 1.0000006, y: 1.0000011, z: 1.0000007}
+      rotation: {x: 0.0013748524, y: -0.17994444, z: 0.006211251, w: 0.9836563}
+      scale: {x: 1.0000004, y: 1.0000004, z: 1.0000001}
     - name: Squaddie:RightFinger4_2_Skel
       parentName: Squaddie:RightFinger4_1_Skel
       position: {x: -0.0000001732896, y: -0.0000026407147, z: -0.042997234}
-      rotation: {x: 0.02617682, y: 0.000000044703473, z: 0.000000018626448, w: 0.99965733}
-      scale: {x: 1.0000004, y: 1.0000007, z: 1.0000005}
+      rotation: {x: 0.026176937, y: 0.00000010430813, z: -0.00000006519258, w: 0.9996574}
+      scale: {x: 1, y: 1, z: 0.9999998}
     - name: Squaddie:RightFinger4_3_Skel
       parentName: Squaddie:RightFinger4_2_Skel
       position: {x: 0.00000022373948, y: 0.0000030737929, z: -0.03200303}
-      rotation: {x: -0.0000000912696, y: 0.1688337, z: 0.00000013411044, w: -0.9856446}
-      scale: {x: 0.99999994, y: 1.0000001, z: 1.0000001}
+      rotation: {x: -0.00000009872019, y: 0.1688338, z: -0.00000011175871, w: -0.9856446}
+      scale: {x: 1.0000001, y: 1.0000004, z: 1}
     - name: Squaddie:RightThumb_1_Skel
       parentName: Squaddie:RightHand_Skel
       position: {x: -0.027163532, y: 0.01350832, z: -0.05347753}
-      rotation: {x: -0.15314755, y: -0.115614414, z: 0.14917305, w: 0.9700137}
-      scale: {x: 1.0000001, y: 1, z: 1.0000002}
+      rotation: {x: -0.14611974, y: -0.11839572, z: 0.1583079, w: 0.9693143}
+      scale: {x: 1.0000004, y: 1.0000005, z: 1.0000001}
     - name: Squaddie:RightThumb_2_Skel
       parentName: Squaddie:RightThumb_1_Skel
       position: {x: -0.034286343, y: 0.02844794, z: -0.037946872}
-      rotation: {x: 0.026176974, y: -0.000000029802319, z: -0.00000005681067, w: 0.9996574}
-      scale: {x: 0.9999997, y: 1.0000004, z: 0.9999996}
+      rotation: {x: 0.026176918, y: 0.000000014901159, z: -0.00000006053596, w: 0.99965733}
+      scale: {x: 0.9999997, y: 0.9999997, z: 1}
     - name: Squaddie:RightLowerArmTwist_Skel
       parentName: Squaddie:RightLowerArm_Skel
       position: {x: -0.0000016944099, y: -0.0000060343946, z: -0.14999525}
-      rotation: {x: 0.000000026858508, y: 0.12536705, z: 0.00000010215481, w: 0.9921105}
-      scale: {x: 0.99999994, y: 1.0000005, z: 0.9999996}
-    - name: Squaddie:LeftUpperLeg_Skel
-      parentName: Squaddie:Hips_Skel
-      position: {x: -0.19818838, y: 0.013585445, z: -0.07391061}
-      rotation: {x: 0.99939084, y: -6.97329e-14, z: 1.3305826e-12, w: -0.034899503}
-      scale: {x: 1, y: 1.0000004, z: 1.0000004}
-    - name: Squaddie:LeftLowerLeg_Skel
-      parentName: Squaddie:LeftUpperLeg_Skel
-      position: {x: -0, y: -1.4876988e-16, z: 0.42}
-      rotation: {x: 0.08715581, y: -1.2555132e-13, z: 1.1405226e-11, w: 0.9961947}
-      scale: {x: 1, y: 1.0000004, z: 1.0000004}
-    - name: Squaddie:LeftFoot_Skel
-      parentName: Squaddie:LeftLowerLeg_Skel
-      position: {x: -0, y: 1.7763568e-17, z: 0.38}
-      rotation: {x: -0.53729975, y: 1.3655808e-11, z: -6.45917e-12, w: 0.8433914}
-      scale: {x: 1, y: 1, z: 0.9999998}
-    - name: Squaddie:LeftToes_Skel
-      parentName: Squaddie:LeftFoot_Skel
-      position: {x: -0, y: 4.4408918e-17, z: 0.14999999}
-      rotation: {x: -0.28401536, y: 7.835224e-12, z: -1.2956511e-11, w: 0.9588198}
-      scale: {x: 1, y: 1.0000002, z: 1.0000002}
-    - name: Squaddie:RightUpperLeg_Skel
-      parentName: Squaddie:Hips_Skel
-      position: {x: 0.19818799, y: 0.013585487, z: -0.07391099}
-      rotation: {x: 0.034899503, y: 1.3256264e-17, z: 6.947312e-19, w: 0.99939084}
-      scale: {x: 1, y: 1.0000001, z: 1.0000001}
-    - name: Squaddie:RightLowerLeg_Skel
-      parentName: Squaddie:RightUpperLeg_Skel
-      position: {x: -3.5527136e-17, y: 0.000000010144151, z: -0.41999996}
-      rotation: {x: 0.08715581, y: -1.6124723e-17, z: 4.482704e-19, w: 0.9961947}
-      scale: {x: 1, y: 0.9999998, z: 0.9999998}
-    - name: Squaddie:RightFoot_Skel
-      parentName: Squaddie:RightLowerLeg_Skel
-      position: {x: 3.5527136e-17, y: 0.00000009232215, z: -0.37999943}
-      rotation: {x: 0.5372997, y: -3.92153e-17, z: 6.201225e-17, w: -0.84339136}
-      scale: {x: 1, y: 1.0000004, z: 1.0000004}
-    - name: Squaddie:RightToes_Skel
-      parentName: Squaddie:RightFoot_Skel
-      position: {x: -3.5527136e-17, y: 0.00000018340971, z: -0.1500002}
-      rotation: {x: -0.28401533, y: -7.280042e-17, z: 1.2479492e-17, w: 0.95881975}
+      rotation: {x: 0.000000057818767, y: 0.12536708, z: 0.000000013988878, w: 0.99211043}
+      scale: {x: 0.99999994, y: 0.9999998, z: 0.9999998}
+    - name: Squaddie:LeftClav_Skel
+      parentName: Squaddie:Spine2_Skel
+      position: {x: -0.10422913, y: 0.12560207, z: 0.039490025}
+      rotation: {x: -0.6755902, y: -0, z: -0, w: 0.7372773}
       scale: {x: 1, y: 1, z: 1}
+    - name: Squaddie:LeftUpperArm_Skel
+      parentName: Squaddie:LeftClav_Skel
+      position: {x: -0.14914577, y: 0.047034793, z: -0.004115006}
+      rotation: {x: 0.51418126, y: -0.5136901, z: -0.4834586, w: 0.48786053}
+      scale: {x: 1.0000002, y: 1, z: 1}
+    - name: Squaddie:LeftLowerArm_Skel
+      parentName: Squaddie:LeftUpperArm_Skel
+      position: {x: -0, y: 0, z: 0.32}
+      rotation: {x: -0.022870703, y: 0.031892832, z: 0.004032701, w: 0.99922144}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1}
+    - name: Squaddie:LeftHand_Skel
+      parentName: Squaddie:LeftLowerArm_Skel
+      position: {x: -0, y: 0, z: 0.26999998}
+      rotation: {x: -0.00000005517774, y: 0.12536709, z: -0.000000024904795, w: 0.9921105}
+      scale: {x: 1.0000002, y: 0.9999999, z: 1.0000001}
+    - name: Squaddie:Attach_LeftHand
+      parentName: Squaddie:LeftHand_Skel
+      position: {x: -0.0008502221, y: -0.026283855, z: 0.0711314}
+      rotation: {x: 0.12278781, y: -0.12278781, z: -0.6963643, w: 0.6963643}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Squaddie:LeftFinger1_1_Skel
+      parentName: Squaddie:LeftHand_Skel
+      position: {x: -0.00062701653, y: 0.011270044, z: 0.14645213}
+      rotation: {x: 0.022725444, y: -0.13441588, z: 0.01302147, w: 0.9905788}
+      scale: {x: 1.0000001, y: 1, z: 1.0000002}
+    - name: Squaddie:LeftFinger1_2_Skel
+      parentName: Squaddie:LeftFinger1_1_Skel
+      position: {x: -0, y: 0, z: 0.044999998}
+      rotation: {x: 0.0261769, y: 0.000000044703484, z: -0.00000013038516, w: 0.9996574}
+      scale: {x: 1.0000001, y: 1, z: 1}
+    - name: Squaddie:LeftFinger1_3_Skel
+      parentName: Squaddie:LeftFinger1_2_Skel
+      position: {x: -0, y: 0, z: 0.035}
+      rotation: {x: -0, y: -0, z: -5.773159e-15, w: 1}
+      scale: {x: 1.0000004, y: 1, z: 1.0000002}
+    - name: Squaddie:LeftFinger2_1_Skel
+      parentName: Squaddie:LeftHand_Skel
+      position: {x: -0.03441423, y: 0.013756281, z: 0.13938527}
+      rotation: {x: 0.02462896, y: -0.15615517, z: 0.0054405937, w: 0.9874104}
+      scale: {x: 1, y: 1.0000001, z: 1.0000002}
+    - name: Squaddie:LeftFinger2_2_Skel
+      parentName: Squaddie:LeftFinger2_1_Skel
+      position: {x: -0, y: 0, z: 0.044999998}
+      rotation: {x: 0.026176773, y: -0.00000004470348, z: -0.000000015832482, w: 0.99965733}
+      scale: {x: 0.9999998, y: 1, z: 0.99999994}
+    - name: Squaddie:LeftFinger2_3_Skel
+      parentName: Squaddie:LeftFinger2_2_Skel
+      position: {x: -0, y: 0, z: 0.038}
+      rotation: {x: 0.00000013224779, y: -0.16883373, z: 0.000000034924593, w: 0.9856446}
+      scale: {x: 1.0000004, y: 1.0000001, z: 1.0000005}
+    - name: Squaddie:LeftFinger3_1_Skel
+      parentName: Squaddie:LeftHand_Skel
+      position: {x: -0.06785891, y: 0.0056113214, z: 0.1231433}
+      rotation: {x: 0.020461036, y: -0.16179995, z: 0.0060731815, w: 0.98659277}
+      scale: {x: 1.0000002, y: 0.9999999, z: 1.0000002}
+    - name: Squaddie:LeftFinger3_2_Skel
+      parentName: Squaddie:LeftFinger3_1_Skel
+      position: {x: -0, y: 0, z: 0.043}
+      rotation: {x: 0.00000007450579, y: 0.0048340997, z: 0.00000005029141, w: 0.9999883}
+      scale: {x: 1.0000001, y: 1.0000002, z: 1.0000002}
+    - name: Squaddie:LeftFinger3_3_Skel
+      parentName: Squaddie:LeftFinger3_2_Skel
+      position: {x: -0, y: 0, z: 0.032}
+      rotation: {x: -0.00000005192737, y: -0.16883375, z: -0.000000040967148, w: 0.9856446}
+      scale: {x: 1.0000005, y: 1, z: 1.0000005}
+    - name: Squaddie:LeftFinger4_1_Skel
+      parentName: Squaddie:LeftHand_Skel
+      position: {x: -0.09058366, y: -0.003948767, z: 0.10221751}
+      rotation: {x: 0.0013458107, y: -0.17993252, z: 0.006209129, w: 0.9836585}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1.0000006}
+    - name: Squaddie:LeftFinger4_2_Skel
+      parentName: Squaddie:LeftFinger4_1_Skel
+      position: {x: -0, y: 0, z: 0.043}
+      rotation: {x: 0.026176946, y: -0.000000029802315, z: 0.00000009499488, w: 0.99965733}
+      scale: {x: 1.0000002, y: 1.0000001, z: 1.0000001}
+    - name: Squaddie:LeftFinger4_3_Skel
+      parentName: Squaddie:LeftFinger4_2_Skel
+      position: {x: -0, y: 0, z: 0.032}
+      rotation: {x: 0.000000042840828, y: -0.16883378, z: -0.000000049360086, w: 0.9856445}
+      scale: {x: 1.0000004, y: 1.0000002, z: 1.0000005}
+    - name: Squaddie:LeftThumb_1_Skel
+      parentName: Squaddie:LeftHand_Skel
+      position: {x: 0.027163079, y: -0.013510208, z: 0.05347762}
+      rotation: {x: -0.17726777, y: -0.11133524, z: 0.1666628, w: 0.96353734}
+      scale: {x: 0.9999998, y: 1.0000001, z: 0.9999999}
+    - name: Squaddie:LeftThumb_2_Skel
+      parentName: Squaddie:LeftThumb_1_Skel
+      position: {x: 0.034286685, y: -0.028446708, z: 0.037946317}
+      rotation: {x: 0.026176965, y: -0.00000007450579, z: -0.000000027008348, w: 0.99965733}
+      scale: {x: 1.0000001, y: 1, z: 1.0000001}
+    - name: Squaddie:LeftLowerArmTwist_Skel
+      parentName: Squaddie:LeftLowerArm_Skel
+      position: {x: -0, y: 0, z: 0.14999999}
+      rotation: {x: -0.00000005517774, y: 0.12536709, z: -0.000000024904795, w: 0.9921105}
+      scale: {x: 1.0000002, y: 0.9999999, z: 1.0000001}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -1855,7 +1904,7 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 2add808b9edcf2c42818a697c08410ca,
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: d07a91875640240c7b325a69d423fc52,
     type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3

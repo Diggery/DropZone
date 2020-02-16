@@ -151,7 +151,7 @@ public class UnitControl : MonoBehaviour {
     navAgent = GetComponent<NavMeshAgent>();
     navAgent.avoidancePriority = Random.Range(0, 50);
     animator = GetComponent<Animator>();
-    unitIK = GetComponent<UnitIK>().Init();
+    unitIK = gameObject.AddComponent<UnitIK>().Init();
     targeting = gameObject.AddComponent<UnitTargeting>().Init();
     gameObject.GetComponent<CharacterSetup>().Init();
     LerpToPose.onTickVector = LerpPoseTick;

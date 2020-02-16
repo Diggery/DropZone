@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Joe
   m_EditorClassIdentifier: 
   characterName: Joe
-  prefab: {fileID: 1506360018236373272, guid: 11917e493b9b1f7448b1c059744fbf0b, type: 3}
+  prefab: {fileID: 644674535348583326, guid: 6e4c45c4753d14401994dc217e4520aa, type: 3}
   head: {fileID: 8882101271248726818, guid: 84c7989250c704491a077c2c0069fecb, type: 3}
   mainWeapon: MkII
   sideArm: Sidewinder
+  melee: 
   speed: 3.5
   visualRange: 20
   hits: 10
