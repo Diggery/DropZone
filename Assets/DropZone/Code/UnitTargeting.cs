@@ -119,16 +119,16 @@ public class UnitTargeting : MonoBehaviour {
     if (!targetVisible) {
       checkOnTargetCoolDown -= Time.deltaTime;
       if (checkOnTargetCoolDown < 0 && checkOnTargetDuration < 0) {
-        checkOnTargetDuration = (Random.value * 0.5f) * 2.0f;
+        checkOnTargetDuration = (Random.value * 3f) * 2.0f;
       }
       if (checkOnTargetDuration > 0) {
         checkOnTargetDuration -= Time.deltaTime;
       }
     } else {
-      checkOnTargetCoolDown = 1 + Random.value;
+      checkOnTargetCoolDown = (Random.value * 5f) + 3;
       checkOnTargetDuration = -1;
     }
-
+    bool shouldCheck = CheckOnTarget;
 
     Vector3 targetDir = transform.InverseTransformPoint(CurrentTarget.transform.position).normalized;
     float angleToTarget = Vector3.Angle(targetDir, Vector3.forward) * Mathf.Sign(targetDir.x);
@@ -137,10 +137,12 @@ public class UnitTargeting : MonoBehaviour {
     bool rightPeekable = mapControl.IsPositionPeekableRight(transform.position, CurrentTarget.TargetPoint);
 
     bool peekLeft = (leftPeekable && (angleToTarget <= 0 && angleToTarget >= -75)) ||
-      ((leftPeekable && !rightPeekable) && Mathf.Abs(angleToTarget) <= 65);
+      (leftPeekable && Mathf.Abs(angleToTarget) <= 65) ||
+      shouldCheck && mapControl.LeftIsOpen(transform.position) && Mathf.Abs(angleToTarget) <= 65;
 
     bool peekRight = (rightPeekable && (angleToTarget >= 0 && angleToTarget <= 75)) ||
-      ((rightPeekable && !leftPeekable) && Mathf.Abs(angleToTarget) <= 65);
+      (rightPeekable && Mathf.Abs(angleToTarget) <= 65) ||
+      shouldCheck && mapControl.RightIsOpen(transform.position) && Mathf.Abs(angleToTarget) <= 65;
 
     InMelee = targetVisible && InMeleeRange;
     if (InMelee) {
@@ -153,14 +155,13 @@ public class UnitTargeting : MonoBehaviour {
     animator.SetBool("TargetVisible", targetVisible);
     animator.SetBool("PeekLeft", peekLeft);
     animator.SetBool("PeekRight", peekRight);
-
     bool readyToFire =
       ((targetIsBlockedTimer < 0) &&
         !unitControl.MoveQueued &&
         unitControl.EquippedWeapon &&
         (!unitControl.IsMoving || unitControl.EquippedWeapon.type != Weapon.WeaponType.Main) &&
         unitControl.EquippedWeapon.IsReady &&
-        (targetVisible || CheckOnTarget)) &&
+        (targetVisible || shouldCheck)) &&
         !InMelee;
 
     animator.SetBool("ReadyToFire", readyToFire);

@@ -62,7 +62,7 @@ public class UnitControl : MonoBehaviour {
     set {
       isMoving = value;
       animator.SetBool("IsMoving", isMoving);
-      navAgent.isStopped = !value;
+      if (navAgent.isActiveAndEnabled) navAgent.isStopped = !value;
     }
   }
 

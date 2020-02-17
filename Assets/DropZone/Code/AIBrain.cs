@@ -11,7 +11,6 @@ public class AIBrain : MonoBehaviour {
   AIState currentState;
   public AIState CurrentState {
     get {
-      if (!currentState) Debug.Log(gameObject.name + " has no state");
       return currentState;
     }
     set { currentState = value; }
@@ -82,7 +81,6 @@ public class AIBrain : MonoBehaviour {
     gameObject.AddComponent<AIStateShooting>();
     gameObject.AddComponent<AIStateSearching>();
     gameObject.AddComponent<AIStateMelee>();
-    gameObject.AddComponent<AIStatePatrolling>();
     gameObject.AddComponent<AIStateRetreating>();
 
     StartCoroutine(GatherStates());
@@ -96,7 +94,7 @@ public class AIBrain : MonoBehaviour {
       state.StateInit();
       states.Add(state.StateName, state);
     }
-    State = HasPatrol ? "Patrolling" : "Idle";
+    State = "Idle";
   }
 
   void Update() {
@@ -121,6 +119,8 @@ public class AIBrain : MonoBehaviour {
   }
 
   public bool MoveToSafeSpot(Vector3 position) {
+    Debug.Log(gameObject.name + " is moving to safe spot");
+
     bool hasPosition = mapControl.FindSafePos(position, targeting.VisualRange, unitControl, targeting.VisualRange, out Vector3 safePos);
     if (hasPosition) {
       MoveTo(safePos);
@@ -130,15 +130,19 @@ public class AIBrain : MonoBehaviour {
   }
 
   public bool MoveToCover() {
+    Debug.Log(gameObject.name + " is moving to cover");
     bool hasPosition = mapControl.FindSafePos(transform.position, targeting.VisualRange, unitControl, targeting.VisualRange, out Vector3 safePos);
     if (hasPosition) {
       MoveTo(safePos);
       return true;
     }
     return false;
+
   }
 
   public bool MoveToFiringPosition(Vector3 targetPosition) {
+    Debug.Log(gameObject.name + " is moving to firing position");
+
     bool hasPosition = mapControl.FindFiringPosition(transform.position, targeting.VisualRange, unitControl, targetPosition, false, out Vector3 position);
     if (hasPosition) {
       MoveTo(position);

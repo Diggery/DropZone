@@ -5,19 +5,36 @@ using UnityEngine.AI;
 
 public class AIStateIdle : AIState {
 
+  float stoppingDistance;
   public override void StateInit() {
     base.StateInit();
     stateName = "Idle";
-
+    AttackNearbyTargets = true;
+    TurnTowardsTarget = true;
+    stoppingDistance = navAgent.stoppingDistance;
   }
 
   public override void StateEnter() {
     base.StateEnter();
+
+    if (brain.HasPatrol) {
+      animator.SetFloat("MoveSpeed", 0);
+      brain.MoveTo(brain.NextWaypoint);
+      navAgent.speed = 1.0f;
+      navAgent.stoppingDistance = 0.25f;
+      unitControl.IsPatrolling = true;
+    }
+
   }
 
   public override void StateUpdate() {
     base.StateUpdate();
 
+    if (brain.HasPatrol) {
+      if (Vector3.Distance(transform.position, brain.NextWaypoint) < 1) {
+        brain.AdvanceWaypoints();
+      }
+    }
     if (timeInState < 2.0f) return; //do do anything if we just got here
 
     if (targeting.CurrentTarget) {
@@ -26,13 +43,24 @@ public class AIStateIdle : AIState {
       } 
     }
 
-    if (!targeting.CurrentTarget && brain.HasPatrol && timeInState > 10.0f) {
-      brain.FollowPatrolRoute();
+    if (unitControl.IsPatrolling) {
+      if (Vector3.Distance(transform.position, brain.NextWaypoint) < 1) {
+        brain.AdvanceWaypoints();
+      }
+    } else {
+      if (brain.HasPatrol && !targeting.CurrentTarget && timeInState > 10.0f) {
+        brain.FollowPatrolRoute();
+      }
     }
   }
 
   public override void StateExit() {
     base.StateExit();
+    animator.SetFloat("MoveSpeed", 1);
+    navAgent.speed = unitControl.MoveSpeed;
+    navAgent.stoppingDistance = stoppingDistance;
+
+    unitControl.IsPatrolling = false;
   }
 
   public override void OnAttacked(UnitControl attacker) {
@@ -41,7 +69,10 @@ public class AIStateIdle : AIState {
       brain.State = "Melee";
       return;
     }
-    if (!targeting.CurrentTarget) brain.MoveToSafeSpot();
+    if (!targeting.CurrentTarget) targeting.CurrentTarget = attacker;
+
+    brain.MoveToCover();
+    brain.State = "Shooting";
   }
 
   public override void OnEnemySpotted(UnitControl attacker) {
@@ -50,7 +81,8 @@ public class AIStateIdle : AIState {
       brain.State = "Melee";
       return;
     }
-    brain.MoveToFiringPosition(attacker.transform.position);
+    brain.MoveToFiringPosition(attacker.TargetPoint);
+    brain.State = "Shooting";
   }
 
   protected override void CollidedWithEnemy(UnitControl enemy) {

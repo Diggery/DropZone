@@ -50,6 +50,15 @@ public class MapControl : MonoBehaviour {
     return mapData.GetMapCell(position);
   }
 
+  public bool LeftIsOpen(Vector3 coverPos) {
+    MapData.MapCell mapCell = GetMapCell(coverPos);
+    return mapCell.HasCover && mapCell.CanPeekLeft;
+  }
+  public bool RightIsOpen(Vector3 coverPos) {
+    MapData.MapCell mapCell = GetMapCell(coverPos);
+    return mapCell.HasCover && mapCell.CanPeekRight;
+  }
+
   public bool PositionIsVisible(
     Vector3 origin,
     Vector3 destination,

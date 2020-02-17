@@ -38,7 +38,6 @@ public class RangedWeapon : Weapon {
   public bool Disabled {
     get { return disabled; }
     set {
-      Debug.Log(this.name + " is " + (value ? " disabled" : " enabled"));
       disabled = value;
     }
   }
