@@ -285,6 +285,7 @@ public class UnitControl : MonoBehaviour {
     animator.SetTrigger("SwitchWeapon");
     switchingToSideArm = true;
   }
+
   public void DrawMelee() {
     if (!Melee) {
       Debug.Log(gameObject.name + " doesn't have emelee weapon!");
@@ -412,6 +413,7 @@ public class UnitControl : MonoBehaviour {
           animator.runtimeAnimatorController = sideArmController;
         }
         switchingToMainWeapon = switchingToSideArm = false;
+        if (EquippedWeapon) EquippedWeapon.Reloaded();
         break;
       default:
         Debug.Log("Don't know what to do with a " + eventName + " event");

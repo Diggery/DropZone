@@ -71,7 +71,7 @@ public class RangedWeapon : Weapon {
     magazine = grip.Find("Magazine");
     weaponFlash = muzzle.GetComponent<Light>();
     muzzleEffect = Instantiate(GameManager.Instance.GetPrefab("MuzzleFlash"), muzzle).GetComponent<Effect>();
-    Reloaded(true);
+    Reloaded();
   }
 
   public void SetStockAttach(Transform stockAttach) {
@@ -165,7 +165,7 @@ public class RangedWeapon : Weapon {
     base.Drop();
     grip.localPosition = Vector3.zero;
   }
-  public void Reloaded(bool instant = false) {
+  public void Reloaded() {
     Reloading = false;
     roundsInMagazine = magazineSize;
     magazines--;
