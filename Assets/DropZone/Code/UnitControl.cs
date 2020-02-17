@@ -205,7 +205,7 @@ public class UnitControl : MonoBehaviour {
     if (Vector3.Distance(transform.position, movePos) < 0.5f) return;
 
     if (inMovingState) {
-      navAgent.SetDestination(movePos);
+      if (navAgent.isActiveAndEnabled) navAgent.SetDestination(movePos);
     } else {
       moveDestination = movePos;
     }
@@ -270,6 +270,7 @@ public class UnitControl : MonoBehaviour {
   }
 
   public void DrawMainWeapon() {
+    Debug.Log("Drawing Main Weapon");
     if (switchingToMainWeapon || switchingToSideArm) return;
     if (!MainWeapon || MainWeapon == EquippedWeapon) return;
     if (EquippedWeapon) EquippedWeapon.Disabled = true;
@@ -377,9 +378,12 @@ public class UnitControl : MonoBehaviour {
   }
 
   public void ReloadComplete() {
+    Debug.Log("Reload Complete:  " + switchingToMainWeapon);
     if (switchingToMainWeapon || switchingToSideArm) {
       if (EquippedWeapon) EquippedWeapon.Stow();
       if (switchingToMainWeapon) {
+        Debug.Log(gameObject.name + " Switching to main weapon");
+
         MainWeapon.Equip();
         animator.runtimeAnimatorController = mainWeaponController;
       }

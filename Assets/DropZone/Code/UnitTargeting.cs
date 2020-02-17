@@ -9,6 +9,8 @@ public class UnitTargeting : MonoBehaviour {
   MapControl mapControl;
   LayerMask terrainMask;
 
+  float timeToCheck = 7;
+
   float visualRange = 1.0f;
   public float VisualRange {
     get { return visualRange; }
@@ -119,13 +121,13 @@ public class UnitTargeting : MonoBehaviour {
     if (!targetVisible) {
       checkOnTargetCoolDown -= Time.deltaTime;
       if (checkOnTargetCoolDown < 0 && checkOnTargetDuration < 0) {
-        checkOnTargetDuration = (Random.value * 3f) * 2.0f;
+        checkOnTargetDuration = (Random.value * timeToCheck) + timeToCheck;
       }
       if (checkOnTargetDuration > 0) {
         checkOnTargetDuration -= Time.deltaTime;
       }
     } else {
-      checkOnTargetCoolDown = (Random.value * 5f) + 3;
+      checkOnTargetCoolDown = (Random.value * timeToCheck) + timeToCheck;
       checkOnTargetDuration = -1;
     }
     bool shouldCheck = CheckOnTarget;
