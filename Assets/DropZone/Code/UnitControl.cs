@@ -274,7 +274,7 @@ public class UnitControl : MonoBehaviour {
     if (switchingToMainWeapon || switchingToSideArm) return;
     if (!MainWeapon || MainWeapon == EquippedWeapon) return;
     if (EquippedWeapon) EquippedWeapon.Disabled = true;
-    Reload();
+    animator.SetTrigger("SwitchWeapon");
     switchingToMainWeapon = true;
   }
 
@@ -282,7 +282,7 @@ public class UnitControl : MonoBehaviour {
     if (switchingToMainWeapon || switchingToSideArm) return;
     if (!SideArm || SideArm == EquippedWeapon) return;
     if (EquippedWeapon) EquippedWeapon.Disabled = true;
-    Reload();
+    animator.SetTrigger("SwitchWeapon");
     switchingToSideArm = true;
   }
   public void DrawMelee() {
@@ -378,22 +378,6 @@ public class UnitControl : MonoBehaviour {
   }
 
   public void ReloadComplete() {
-    Debug.Log("Reload Complete:  " + switchingToMainWeapon);
-    if (switchingToMainWeapon || switchingToSideArm) {
-      if (EquippedWeapon) EquippedWeapon.Stow();
-      if (switchingToMainWeapon) {
-        Debug.Log(gameObject.name + " Switching to main weapon");
-
-        MainWeapon.Equip();
-        animator.runtimeAnimatorController = mainWeaponController;
-      }
-      if (switchingToSideArm) {
-        SideArm.Equip();
-        animator.runtimeAnimatorController = sideArmController;
-      }
-      switchingToMainWeapon = switchingToSideArm = false;
-      return;
-    }
     EquippedWeapon.Reloaded();
   }
 
@@ -414,6 +398,20 @@ public class UnitControl : MonoBehaviour {
         break;
       case "MeleeAttack":
         targeting.MeleeAttack();
+        break;
+      case "StowWeapon":
+        if (EquippedWeapon) EquippedWeapon.Stow();
+        break;
+      case "DrawWeapon":
+        if (switchingToMainWeapon) {
+          MainWeapon.Equip();
+          animator.runtimeAnimatorController = mainWeaponController;
+        }
+        if (switchingToSideArm) {
+          SideArm.Equip();
+          animator.runtimeAnimatorController = sideArmController;
+        }
+        switchingToMainWeapon = switchingToSideArm = false;
         break;
       default:
         Debug.Log("Don't know what to do with a " + eventName + " event");
