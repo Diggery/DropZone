@@ -90,6 +90,12 @@ ModelImporter:
   - first:
       74: -4688941436563618727
     second: ReloadCover
+  - first:
+      74: 3529159646764862248
+    second: SwitchWeapons
+  - first:
+      74: 2796803331931657308
+    second: SwitchWeapon_Cover
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -103,48 +109,9 @@ ModelImporter:
     optimizeGameObjects: 0
     motionNodeName: Squaddie:SkeletonGroup/Squaddie:Attach_RootMotion
     rigImportErrors: 
-    rigImportWarnings: "Copied Avatar Rig Configuration mis-match. Bone length in
-      copied configuration does not match position in animation file:\n\t'Squaddie:LeftUpperLeg_Skel'
-      : position error = 100.141373 mm\n\t'Squaddie:Spine1_Skel' : position error
-      = 264.698608 mm\n\t'Squaddie:Spine2_Skel' : position error = 225.516556 mm\n\t'Squaddie:Neck_Skell'
-      : position error = 275.033020 mm\n\t'Squaddie:Head_Skel' : position error =
-      144.356339 mm\n\t'Squaddie:RightClav_Skel' : position error = 175.712662 mm\n\t'Squaddie:LeftClav_Skel'
-      : position error = 175.710434 mm\n"
+    rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'Idle_Center' has import animation warnings
-      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'Squaddie:Spine2_Skel' has translation animation
-      that will be discarded.\n\nClip 'Aim_ForwardLeft_In' has import animation warnings
-      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'Squaddie:Spine1_Skel' has translation animation
-      that will be discarded.\n\nClip 'Aim_ForwardLeft_Out' has import animation
-      warnings that might lower retargeting quality:\nNote: Activate translation
-      DOF on avatar to improve retargeting quality.\n\t'Squaddie:Spine1_Skel' has
-      translation animation that will be discarded.\n\nClip 'Aim_Left_In' has import
-      animation warnings that might lower retargeting quality:\nNote: Activate translation
-      DOF on avatar to improve retargeting quality.\n\t'Squaddie:Spine1_Skel' has
-      translation animation that will be discarded.\n\t'Squaddie:Spine2_Skel' has
-      translation animation that will be discarded.\n\nClip 'Aim_Left_Out' has import
-      animation warnings that might lower retargeting quality:\nNote: Activate translation
-      DOF on avatar to improve retargeting quality.\n\t'Squaddie:Spine1_Skel' has
-      translation animation that will be discarded.\n\t'Squaddie:Spine2_Skel' has
-      translation animation that will be discarded.\n\nClip 'Aim_Back_In' has import
-      animation warnings that might lower retargeting quality:\nNote: Activate translation
-      DOF on avatar to improve retargeting quality.\n\t'Squaddie:Spine1_Skel' has
-      translation animation that will be discarded.\n\t'Squaddie:Spine2_Skel' has
-      translation animation that will be discarded.\n\nClip 'Aim_Back_Out' has import
-      animation warnings that might lower retargeting quality:\nNote: Activate translation
-      DOF on avatar to improve retargeting quality.\n\t'Squaddie:Spine1_Skel' has
-      translation animation that will be discarded.\n\t'Squaddie:Spine2_Skel' has
-      translation animation that will be discarded.\n\nClip 'ReloadCover' has import
-      animation warnings that might lower retargeting quality:\nNote: Activate translation
-      DOF on avatar to improve retargeting quality.\n\t'Squaddie:Spine1_Skel' has
-      translation animation that will be discarded.\n\t'Squaddie:Spine2_Skel' has
-      translation animation that will be discarded.\n\nClip 'ExitCover' has import
-      animation warnings that might lower retargeting quality:\nNote: Activate translation
-      DOF on avatar to improve retargeting quality.\n\t'Squaddie:Spine1_Skel' has
-      translation animation that will be discarded.\n\t'Squaddie:Spine2_Skel' has
-      translation animation that will be discarded.\n"
+    animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -1148,6 +1115,49 @@ ModelImporter:
       maskType: 3
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: SwitchWeapon_Cover
+      takeName: SwitchWeapon_Cover
+      internalID: 0
+      firstFrame: 380
+      lastFrame: 405
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.39473772
+        functionName: AnimEvent
+        data: StowWeapon
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.7473676
+        functionName: AnimEvent
+        data: DrawWeapon
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 380
     isReadable: 0
   meshes:
     lODScreenPercentages: []
