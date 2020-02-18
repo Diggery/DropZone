@@ -92,7 +92,6 @@ public class UnitControl : MonoBehaviour {
         inCover ? Random.Range(0, 75) : 100;
     }
   }
-  public bool IgnoreCover { get; set; }
 
   public bool IsSelected { get; set; } = false;
 
@@ -104,6 +103,7 @@ public class UnitControl : MonoBehaviour {
   public EnemyAlert enemySpottedAlert = new EnemyAlert();
   public EnemyAlert damageTaken = new EnemyAlert();
   public EnemyAlert outOfAmmo = new EnemyAlert();
+  public EnemyAlert knockedOut = new EnemyAlert();
 
   public class NeedEquipment : UnityEvent<HelperDrone.DroneTask, UnitControl> { }
   public NeedEquipment needsEquipment = new NeedEquipment();
@@ -127,13 +127,14 @@ public class UnitControl : MonoBehaviour {
 
   float hitpoints = 10;
 
+  public bool IgnoreCover { get; set; }
+  public bool Reckless { get; set; }
+
   public bool IsInjured {
     get { return hitpoints < 3; }
   }
 
-  public bool IsDead {
-    get { return hitpoints < 0; }
-  }
+  public bool IsDead { get; set; }
 
   Vector3? moveDestination;
   public bool MoveQueued {
@@ -313,6 +314,7 @@ public class UnitControl : MonoBehaviour {
   }
 
   public void TakeDamage(DamageInfo info) {
+    targeting.TakeCover = true;
     hitpoints -= info.damageAmount;
     if (hitpoints < 0) {
       Incapacitate(info);
@@ -330,6 +332,11 @@ public class UnitControl : MonoBehaviour {
   }
 
   public void Incapacitate(DamageInfo info = null) {
+    if (IsDead) return;
+    IsDead = true;
+    UnitControl attacker = info != null ? info.attacker : null;
+    knockedOut.Invoke(attacker);
+
     hitpoints = -1;
     SkeletonControl skeleton = GetComponent<SkeletonControl>();
     Vector3 direction = info == null ? Vector3.up : info.GetDamageDirection(transform);
@@ -369,6 +376,9 @@ public class UnitControl : MonoBehaviour {
   }
 
   public void Revive() {
+    if (!IsDead) return;
+    IsDead = false;
+    hitpoints = 1;
     SkeletonControl skeleton = GetComponent<SkeletonControl>();
     skeleton.SwitchToAnimator();
     navAgent.enabled = true;

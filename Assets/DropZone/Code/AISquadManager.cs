@@ -6,9 +6,8 @@ using UnityEngine;
 public class AISquadManager : MonoBehaviour {
 
   GameManager gameManager;
-  int amountSpawned = 0;
   int spawnQueue = 0;
-  float coolDownTime = 1;
+  float coolDownTime = 3;
   float coolDownTimer = 3;
   bool readyToSpawn = true;
   public int spawnLimit = 5;
@@ -35,7 +34,7 @@ public class AISquadManager : MonoBehaviour {
       }
     }
 
-    if (readyToSpawn && (autoFill || spawnQueue > 0) && (amountSpawned < spawnLimit)) {
+    if (readyToSpawn && (autoFill || spawnQueue > 0) && (units.Count < spawnLimit)) {
       Vector3 position;
       if (spawnPositions.Length > 0) {
         position = spawnPositions[Random.Range(0, spawnPositions.Length)].position;
@@ -71,7 +70,6 @@ public class AISquadManager : MonoBehaviour {
 
     unitControl.Enemies.Add("Player");
     spawnQueue--;
-    amountSpawned++;
     readyToSpawn = false;
     coolDownTimer = coolDownTime;
     return brain;
@@ -81,6 +79,11 @@ public class AISquadManager : MonoBehaviour {
   public void UnitInjured(UnitControl attacker, AIBrain victim) {
     if (spawnReservesPosition && !spawnReservesOut) StartCoroutine(SpawnReserves(attacker.transform.position));
   }
+
+  public void UnitDead(AIBrain victim) {
+    if (units.Contains(victim)) units.Remove(victim);
+  }
+
   public void UnitNeedOrders(AIBrain unit) {
     if (reserves.Contains(unit)) {
       unit.Leave(spawnReservesPosition.position);
@@ -94,7 +97,7 @@ public class AISquadManager : MonoBehaviour {
       Debug.Log("Spawning reserve");
       AIBrain newUnit = CreateUnit(unitType, spawnReservesPosition.position, transform.rotation);
       reserves.Add(newUnit);
-    
+
       newUnit.MoveTo(target);
       yield return new WaitForSeconds(0.5f);
     }

@@ -9,9 +9,11 @@ public class UnitTargeting : MonoBehaviour {
   MapControl mapControl;
   LayerMask terrainMask;
 
-  float timeToCheck = 7;
+  float timeToCheck = 5;
+  float timeToHide = 2;
 
   float visualRange = 1.0f;
+  
   public float VisualRange {
     get { return visualRange; }
     set {
@@ -40,7 +42,7 @@ public class UnitTargeting : MonoBehaviour {
 
   bool inMelee = false;
   bool InMelee {
-    get {
+    get { 
       return inMelee;
     }
     set {
@@ -58,7 +60,6 @@ public class UnitTargeting : MonoBehaviour {
     }
   }
 
-
   public UnitControl CurrentTarget { get; set; }
   public bool TargetVisible {
     get {
@@ -71,11 +72,21 @@ public class UnitTargeting : MonoBehaviour {
   public bool IsAiming { get; set; }
   public bool CheckOnTarget {
     get {
-      return checkOnTargetDuration > 0 && mapControl.IsPositionPeekableEitherWay(CurrentTarget.TargetPoint, unitControl.TargetPoint);
+      bool braveEnough = unitControl.Reckless || !unitControl.IsInjured;
+      return checkOnTargetDuration > 0 && braveEnough;
     }
   }
-  public float checkOnTargetCoolDown = 5;
-  public float checkOnTargetDuration = 5;
+  public bool TakeCover {
+    set {
+      takeCoverDuration = value ? Random.Range(timeToHide, timeToHide * 1.5f) : -1;
+    }
+    get {
+      return takeCoverDuration > 0;
+    }
+  }
+  public float checkOnTargetCoolDown = -1;
+  public float checkOnTargetDuration = -1;
+  public float takeCoverDuration = -1;
 
   public bool LineOfSightBlocked {
     get {
@@ -118,19 +129,25 @@ public class UnitTargeting : MonoBehaviour {
     //if (gameObject.tag.Equals("Player") && mapControl.IsPositionPeekableEitherWay(CurrentTarget.TargetPoint, unitControl.TargetPoint)) 
     //  Debug.DrawLine(CurrentTarget.TargetPoint, unitControl.TargetPoint, Color.magenta);
 
-    if (!targetVisible) {
+    if (checkOnTargetCoolDown > 0) {
       checkOnTargetCoolDown -= Time.deltaTime;
-      if (checkOnTargetCoolDown < 0 && checkOnTargetDuration < 0) {
-        checkOnTargetDuration = (Random.value * timeToCheck) + timeToCheck;
-      }
-      if (checkOnTargetDuration > 0) {
-        checkOnTargetDuration -= Time.deltaTime;
-      }
-    } else {
-      checkOnTargetCoolDown = (Random.value * timeToCheck) + timeToCheck;
-      checkOnTargetDuration = -1;
     }
+    if (checkOnTargetCoolDown < 0 && checkOnTargetDuration < 0) {
+      checkOnTargetDuration = (Random.value * timeToCheck) + timeToCheck;
+    }
+    if (checkOnTargetDuration > 0) {
+      checkOnTargetDuration -= Time.deltaTime;
+      checkOnTargetCoolDown = (Random.value * timeToCheck * 1.5f) + timeToCheck;
+    }
+    if (takeCoverDuration > 0) {
+      takeCoverDuration -= Time.deltaTime;
+    }
+
     bool shouldCheck = CheckOnTarget;
+    bool takeCover = TakeCover;
+
+    if (shouldCheck) Debug.DrawLine(transform.position, transform.position + (Vector3.up * 2), Color.green);
+    if (takeCover) Debug.DrawLine(transform.position, transform.position + (Vector3.up * 3), Color.red);
 
     Vector3 targetDir = transform.InverseTransformPoint(CurrentTarget.transform.position).normalized;
     float angleToTarget = Vector3.Angle(targetDir, Vector3.forward) * Mathf.Sign(targetDir.x);
@@ -138,11 +155,11 @@ public class UnitTargeting : MonoBehaviour {
     bool leftPeekable = mapControl.IsPositionPeekableLeft(transform.position, CurrentTarget.TargetPoint);
     bool rightPeekable = mapControl.IsPositionPeekableRight(transform.position, CurrentTarget.TargetPoint);
 
-    bool peekLeft = (leftPeekable && (angleToTarget <= 0 && angleToTarget >= -75)) ||
+    bool peekLeft = (!takeCover && leftPeekable && (angleToTarget <= 0 && angleToTarget >= -75)) ||
       (leftPeekable && Mathf.Abs(angleToTarget) <= 65) ||
       shouldCheck && mapControl.LeftIsOpen(transform.position) && Mathf.Abs(angleToTarget) <= 65;
 
-    bool peekRight = (rightPeekable && (angleToTarget >= 0 && angleToTarget <= 75)) ||
+    bool peekRight = (!takeCover && rightPeekable && (angleToTarget >= 0 && angleToTarget <= 75)) ||
       (rightPeekable && Mathf.Abs(angleToTarget) <= 65) ||
       shouldCheck && mapControl.RightIsOpen(transform.position) && Mathf.Abs(angleToTarget) <= 65;
 
@@ -158,13 +175,12 @@ public class UnitTargeting : MonoBehaviour {
     animator.SetBool("PeekLeft", peekLeft);
     animator.SetBool("PeekRight", peekRight);
     bool readyToFire =
-      ((targetIsBlockedTimer < 0) &&
-        !unitControl.MoveQueued &&
+      (!unitControl.MoveQueued &&
         unitControl.EquippedWeapon &&
         (!unitControl.IsMoving || unitControl.EquippedWeapon.type != Weapon.WeaponType.Main) &&
         unitControl.EquippedWeapon.IsReady &&
         (targetVisible || shouldCheck)) &&
-        !InMelee;
+        !InMelee && !takeCover;
 
     animator.SetBool("ReadyToFire", readyToFire);
 
