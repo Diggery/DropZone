@@ -1,6 +1,6 @@
 //Maya ASCII 2020 scene
 //Name: MainWeapon_Cover.ma
-//Last modified: Mon, Feb 17, 2020 02:31:04 PM
+//Last modified: Tue, Feb 18, 2020 08:12:47 AM
 //Codeset: UTF-8
 file -rdi 1 -ns "Squaddie" -rfn "SquaddieRN" -op "v=0;" -typ "mayaAscii" "/Users/briancollins/Unity/DropZone/ArtSource/Squaddie/Squaddie.ma";
 file -rdi 1 -ns "MkII" -rfn "MkIIRN" -op "v=0;" -typ "mayaAscii" "/Users/briancollins/Unity/DropZone/ArtSource/Weapons/MkII.ma";
@@ -16,7 +16,7 @@ fileInfo "product" "Maya 2020";
 fileInfo "version" "2020";
 fileInfo "cutIdentifier" "201911140446-42a737a01c";
 fileInfo "osv" "Mac OS X 10.14.6";
-fileInfo "UUID" "0C50402D-154E-DF96-C97A-43A7E2F3572E";
+fileInfo "UUID" "8292098C-AC4C-8918-A0B2-45942804FF65";
 createNode transform -s -n "persp";
 	rename -uid "ABF7CAC9-7042-CBE0-D916-39910278FA3A";
 	setAttr ".v" no;
@@ -136,7 +136,7 @@ createNode mesh -n "pCubeShape1" -p "pCube1";
 	setAttr ".cdvm[0]"  0 1 1;
 	setAttr ".ai_translator" -type "string" "polymesh";
 createNode fosterParent -n "MkIIRNfosterParent1";
-	rename -uid "658AE4ED-D946-3EAE-F445-7C9795890D6A";
+	rename -uid "12FF24E1-5446-209C-C3BD-90B03B17D718";
 createNode parentConstraint -n "Weapon_MkII1_parentConstraint1" -p "MkIIRNfosterParent1";
 	rename -uid "A26D8F31-E54A-A9E4-2FC6-888819FFBBF5";
 	addAttr -dcb 0 -ci true -k true -sn "w0" -ln "Attach_RightHandW0" -dv 1 -min 0 
@@ -1860,7 +1860,7 @@ createNode gameFbxExporter -n "gameExporterPreset2";
 	setAttr ".ac[20].acn" -type "string" "ExitCover";
 	setAttr ".ac[20].acs" 360;
 	setAttr ".ac[20].ace" 370;
-	setAttr ".ac[21].acn" -type "string" "SwitchWeapon";
+	setAttr ".ac[21].acn" -type "string" "SwitchWeapon_Cover";
 	setAttr ".ac[21].acs" 380;
 	setAttr ".ac[21].ace" 405;
 	setAttr ".ic" no;
