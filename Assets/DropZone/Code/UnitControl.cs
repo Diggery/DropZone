@@ -199,9 +199,6 @@ public class UnitControl : MonoBehaviour {
   }
 
   public void MoveTo(Vector3 movePos) {
-    animator.ResetTrigger("UnderFire");
-    animator.ResetTrigger("Dive");
-
     movePos = gameManager.mapControl.GetCellPos(movePos);
 
     if (Vector3.Distance(transform.position, movePos) < 0.5f) return;
@@ -217,6 +214,8 @@ public class UnitControl : MonoBehaviour {
   }
 
   public void MoveComplete() {
+    animator.ResetTrigger("UnderFire");
+    animator.ResetTrigger("Dive");
     MoveComplete(navAgent.destination);
   }
   public void MoveComplete(Vector3 EndPos) {
