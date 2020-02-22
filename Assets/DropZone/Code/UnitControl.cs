@@ -214,12 +214,11 @@ public class UnitControl : MonoBehaviour {
   }
 
   public void MoveComplete() {
-    animator.ResetTrigger("UnderFire");
-    animator.ResetTrigger("Dive");
     MoveComplete(navAgent.destination);
   }
-  public void MoveComplete(Vector3 EndPos) {
 
+  public void MoveComplete(Vector3 EndPos) {
+    gameManager.ActivateLootables(EndPos);
     MapData.MapCell mapCell = gameManager.mapControl.GetMapCell(EndPos);
 
     InCover = mapCell.HasCover && !IgnoreCover;
@@ -235,6 +234,9 @@ public class UnitControl : MonoBehaviour {
     endValue.w = InCover ? gameManager.mapControl.GetCoverHeading(mapCell) : currentHeading;
     LerpToPose.endValue = endValue;
     currentInterpolation = Interpolator.Start(LerpToPose, gameObject.name + " is moving to cover");
+
+    animator.ResetTrigger("UnderFire");
+    animator.ResetTrigger("Dive");
 
     pathComplete.Invoke();
   }
@@ -416,10 +418,15 @@ public class UnitControl : MonoBehaviour {
         if (switchingToMainWeapon) {
           MainWeapon.Equip();
           animator.runtimeAnimatorController = mainWeaponController;
-        }
-        if (switchingToSideArm) {
+        } else if (switchingToSideArm) {
           SideArm.Equip();
           animator.runtimeAnimatorController = sideArmController;
+        } else {
+          if (MainWeapon) {
+            MainWeapon.Equip();
+          } else if (SideArm) {
+            SideArm.Equip();
+          }
         }
         switchingToMainWeapon = switchingToSideArm = false;
         if (EquippedWeapon) EquippedWeapon.Reloaded();

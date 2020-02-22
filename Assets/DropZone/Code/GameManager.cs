@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour {
 
   public HashSet<string> UnitTypes = new HashSet<string>();
 
+  List<Lootable> lootables = new List<Lootable>();
   List<UnitControl> units = new List<UnitControl>();
   public List<UnitControl> Units {
     get { return units; }
@@ -69,9 +70,20 @@ public class GameManager : MonoBehaviour {
   public void AddDrone(HelperDrone drone) {
     playerManager.Add(drone);
   }
+  public void AddLootable(Lootable lootable) {
+    lootables.Add(lootable);
+  }
   public void SetUI(UILayout newUI) {
     uiLayout = newUI;
     inputControl = gameObject.AddComponent<InputControl>().Init();
+  }
+
+  public void ActivateLootables(Vector3 pos) {
+    foreach(Lootable lootable in lootables) {
+      if (lootable.CheckPosition(pos)) {
+        lootable.ShowUI();
+      }
+    }
   }
 
 }
