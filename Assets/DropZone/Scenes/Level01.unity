@@ -2390,7 +2390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 758c2fb8d8a5fca46911e3346d8af29f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reserveAmount: 0
+  reserveAmount: 5
 --- !u!4 &1442584835
 Transform:
   m_ObjectHideFlags: 0

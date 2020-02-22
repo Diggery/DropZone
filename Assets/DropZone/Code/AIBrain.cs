@@ -170,7 +170,7 @@ public class AIBrain : MonoBehaviour {
 
   public void OnAttacked(UnitControl enemy) {
     CurrentState.OnAttacked(enemy);
-    SquadManager.UnitAttacked(enemy, this);
+    SquadManager.UnitAttacked(enemy.TargetPoint, this);
   }
 
   public void OnDamageTaken(UnitControl enemy) {
@@ -179,7 +179,7 @@ public class AIBrain : MonoBehaviour {
 
   public void OnEnemySpotted(UnitControl enemy) {
     CurrentState.OnEnemySpotted(enemy);
-    SquadManager.EnemySpotted(enemy, this);
+    SquadManager.EnemySpotted(enemy.TargetPoint, this);
   }
 
   public void OnOutOfAmmo(UnitControl unit) {

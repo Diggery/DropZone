@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour {
   public UILayout uiLayout;
   public CharacterEntry[] characters;
   public PlayerManager playerManager;
+  public AIOverlord aiOverlord;
 
   public static GameManager Instance { get; private set; }
 
@@ -32,6 +33,7 @@ public class GameManager : MonoBehaviour {
 
   void Awake() {
     CreateInstance();
+    aiOverlord = gameObject.AddComponent<AIOverlord>();
   }
 
   void Start() {

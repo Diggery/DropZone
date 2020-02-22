@@ -6,6 +6,7 @@ using UnityEngine;
 public class AISquadManager : MonoBehaviour {
 
   GameManager gameManager;
+  AIOverlord aiOverlord;
   int spawnQueue = 0;
   float coolDownTime = 3;
   float coolDownTimer = 3;
@@ -22,8 +23,10 @@ public class AISquadManager : MonoBehaviour {
   public AISpawnPoint[] spawnPositions;
   public AISpawnPoint spawnReservesPosition;
 
-  private void Awake() {
+  private void Start() {
     gameManager = GameManager.Instance;
+    aiOverlord = gameManager.aiOverlord;
+    aiOverlord.AddSquad(this);
   }
 
   void Update() {
@@ -59,7 +62,7 @@ public class AISquadManager : MonoBehaviour {
   AIBrain CreateUnit(string unitName, Vector3 pos, Quaternion rot) {
 
     CharacterEntry entry = gameManager.GetCharacter(unitName);
-    GameObject newUnit = GameObject.Instantiate(entry.prefab, pos, rot);
+    GameObject newUnit = Instantiate(entry.prefab, pos, rot);
     newUnit.tag = teamTag;
     gameManager.UnitTypes.Add(teamTag);
 
@@ -74,14 +77,17 @@ public class AISquadManager : MonoBehaviour {
     coolDownTimer = coolDownTime;
     return brain;
   }
-  public void EnemySpotted(UnitControl attacker, AIBrain victim) { }
-  public void UnitAttacked(UnitControl attacker, AIBrain victim) { }
+  public void EnemySpotted(Vector3 attackerPos, AIBrain victim) { }
+
+  public void UnitAttacked(Vector3 attackerPos, AIBrain victim) { }
+
   public void UnitInjured(UnitControl attacker, AIBrain victim) {
     if (spawnReservesPosition && !spawnReservesOut) StartCoroutine(SpawnReserves(attacker.transform.position));
   }
 
   public void UnitDead(AIBrain victim) {
     if (units.Contains(victim)) units.Remove(victim);
+    aiOverlord.UnitDead();
   }
 
   public void UnitNeedOrders(AIBrain unit) {
