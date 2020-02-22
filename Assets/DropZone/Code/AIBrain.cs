@@ -78,6 +78,7 @@ public class AIBrain : MonoBehaviour {
     unitControl.damageTaken.AddListener(OnDamageTaken);
     unitControl.outOfAmmo.AddListener(OnOutOfAmmo);
     unitControl.knockedOut.AddListener(OnKnockedOut);
+    unitControl.removed.AddListener(OnRemoved);
     unitControl.IgnoreCover = MeleeOnly;
     gameObject.AddComponent<AIStateIdle>();
     gameObject.AddComponent<AIStateShooting>();
@@ -187,6 +188,9 @@ public class AIBrain : MonoBehaviour {
   }
   public void OnKnockedOut(UnitControl killer) {
     if (SquadManager) SquadManager.UnitDead(this);
+  }
+  public void OnRemoved(UnitControl unit) {
+    if (SquadManager) SquadManager.UnitRemoved(this);
   }
 
   public void AddPatrolRoute(List<Vector3> route) {

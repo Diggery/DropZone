@@ -64,9 +64,10 @@ public class AIOverlord : MonoBehaviour {
     mode = AIMode.Passive;
   }
 
-  void retreat() {
+  void Retreat() {
     retreatTimer = retreatLength;
     mode = AIMode.Retreating;
+    foreach (AISquadManager squad in squads) squad.Retreat();
   }
 
   public void UnitDead() {

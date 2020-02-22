@@ -104,6 +104,7 @@ public class UnitControl : MonoBehaviour {
   public EnemyAlert damageTaken = new EnemyAlert();
   public EnemyAlert outOfAmmo = new EnemyAlert();
   public EnemyAlert knockedOut = new EnemyAlert();
+  public EnemyAlert removed = new EnemyAlert();
 
   public class NeedEquipment : UnityEvent<HelperDrone.DroneTask, UnitControl> { }
   public NeedEquipment needsEquipment = new NeedEquipment();
@@ -432,6 +433,7 @@ public class UnitControl : MonoBehaviour {
   }
 
   public void Remove() {
+    removed.Invoke(this);
     Debug.Log("Removing Unit");
     if (currentInterpolation) currentInterpolation.Cancel();
     if (MainWeapon) Destroy(MainWeapon.gameObject);

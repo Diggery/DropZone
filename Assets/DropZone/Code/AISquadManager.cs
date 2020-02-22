@@ -10,15 +10,22 @@ public class AISquadManager : MonoBehaviour {
   int spawnQueue = 0;
   float coolDownTime = 3;
   float coolDownTimer = 3;
-  bool readyToSpawn = true;
+  bool ReadyToSpawn {
+    get { return coolDownTimer < 0; }
+  }
   public int spawnLimit = 5;
   public int spawnReserves = 5;
   bool spawnReservesOut = false;
   public string unitType;
   public string teamTag = "Enemy";
   public bool autoFill = false;
+  float morale = 0;
+  float penaltyDeath = 3;
+  float penaltyInjury = 0.5f;
   List<AIBrain> units = new List<AIBrain>();
   List<AIBrain> reserves = new List<AIBrain>();
+
+  float retreatCoolDown = 15;
 
   public AISpawnPoint[] spawnPositions;
   public AISpawnPoint spawnReservesPosition;
@@ -32,12 +39,9 @@ public class AISquadManager : MonoBehaviour {
   void Update() {
     if (coolDownTimer > 0) {
       coolDownTimer -= Time.deltaTime;
-      if (coolDownTimer < 0) {
-        readyToSpawn = true;
-      }
     }
 
-    if (readyToSpawn && (autoFill || spawnQueue > 0) && (units.Count < spawnLimit)) {
+    if (ReadyToSpawn && (autoFill || spawnQueue > 0) && (units.Count < spawnLimit)) {
       Vector3 position;
       if (spawnPositions.Length > 0) {
         position = spawnPositions[Random.Range(0, spawnPositions.Length)].position;
@@ -52,6 +56,10 @@ public class AISquadManager : MonoBehaviour {
         for (int i = 0; i < transform.childCount; i++) patrolRoute.Add(transform.GetChild(i).position);
         newUnit.AddPatrolRoute(patrolRoute);
       }
+    }
+
+    if (morale > 0) {
+      morale -= Time.deltaTime;
     }
   }
 
@@ -73,7 +81,6 @@ public class AISquadManager : MonoBehaviour {
 
     unitControl.Enemies.Add("Player");
     spawnQueue--;
-    readyToSpawn = false;
     coolDownTimer = coolDownTime;
     return brain;
   }
@@ -83,29 +90,37 @@ public class AISquadManager : MonoBehaviour {
 
   public void UnitInjured(UnitControl attacker, AIBrain victim) {
     if (spawnReservesPosition && !spawnReservesOut) StartCoroutine(SpawnReserves(attacker.transform.position));
+    AdjustMorale(penaltyInjury);
   }
 
   public void UnitDead(AIBrain victim) {
     if (units.Contains(victim)) units.Remove(victim);
     aiOverlord.UnitDead();
+    AdjustMorale(penaltyDeath);
   }
 
-  public void UnitNeedOrders(AIBrain unit) {
-    if (reserves.Contains(unit)) {
-      unit.Leave(spawnReservesPosition.position);
-      Debug.Log("Sending " + unit.name + " back to the reserves");
+  public void UnitRemoved(AIBrain victim) {
+    if (units.Contains(victim)) units.Remove(victim);
+    if (reserves.Contains(victim)) reserves.Remove(victim);
+  }
+
+  public void UnitNeedOrders(AIBrain brain) {
+    if (reserves.Contains(brain)) {
+      brain.Leave(spawnReservesPosition.position);
+      Debug.Log("Sending " + brain.name + " back to the reserves");
     }
   }
 
   IEnumerator SpawnReserves(Vector3 target) {
     spawnReservesOut = true;
     for (int i = 0; i < spawnReserves; i++) {
+      yield return new WaitForSeconds(0.5f);
+
       Debug.Log("Spawning reserve");
       AIBrain newUnit = CreateUnit(unitType, spawnReservesPosition.position, transform.rotation);
       reserves.Add(newUnit);
 
       newUnit.MoveTo(target);
-      yield return new WaitForSeconds(0.5f);
     }
 
     foreach (var unit in reserves) unit.State = "Searching";
@@ -144,5 +159,17 @@ public class AISquadManager : MonoBehaviour {
       int selector = Random.Range(0, spawnPositions.Length);
       return spawnPositions[selector].position;
     }
+  }
+
+  public void Retreat() {
+    Debug.Log(gameObject.name + " is retreating");
+    foreach (AIBrain unit in units) unit.Leave();
+    foreach (AIBrain reserveUnit in reserves) reserveUnit.Leave();
+    coolDownTimer = retreatCoolDown;
+  }
+
+  public void AdjustMorale(float amount) {
+    morale += amount;
+    if (morale > 1) Retreat();
   }
 }
