@@ -1,6 +1,6 @@
 //Maya ASCII 2020 scene
 //Name: MainWeapon_Recovery.ma
-//Last modified: Sat, Feb 22, 2020 10:24:44 AM
+//Last modified: Sat, Feb 22, 2020 11:24:39 AM
 //Codeset: UTF-8
 file -rdi 1 -ns "Squaddie" -rfn "SquaddieRN" -op "v=0;" -typ "mayaAscii" "/Users/briancollins/Unity/DropZone/ArtSource/Squaddie/Squaddie.ma";
 file -r -ns "Squaddie" -dr 1 -rfn "SquaddieRN" -op "v=0;" -typ "mayaAscii" "/Users/briancollins/Unity/DropZone/ArtSource/Squaddie/Squaddie.ma";
@@ -14,17 +14,17 @@ fileInfo "product" "Maya 2020";
 fileInfo "version" "2020";
 fileInfo "cutIdentifier" "201911140446-42a737a01c";
 fileInfo "osv" "Mac OS X 10.14.6";
-fileInfo "UUID" "D561D249-B24E-2BB9-A89E-899101FA57D3";
+fileInfo "UUID" "86737589-1C4B-C443-AE2D-1E8E9012965C";
 createNode transform -s -n "persp";
 	rename -uid "ABF7CAC9-7042-CBE0-D916-39910278FA3A";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" -182.13982913083643 139.60093557818288 144.65631566242337 ;
+	setAttr ".t" -type "double3" -183.89557831139888 140.20714556613953 145.9986872720682 ;
 	setAttr ".r" -type "double3" -15.338352729318867 -772.59999999984666 -1.3091377996288932e-15 ;
 createNode camera -s -n "perspShape" -p "persp";
 	rename -uid "3D0D0238-014B-4FD1-30CB-E49DEC31D45C";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999986;
-	setAttr ".coi" 271.86016769234288;
+	setAttr ".coi" 274.15191533833803;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
@@ -142,84 +142,7 @@ createNode parentConstraint -n "Weapon_MkII1_parentConstraint1" -p "Weapon_MkIIR
 	setAttr ".rsrr" -type "double3" -279.28390905197301 -25.901963470933062 -12.387353205233294 ;
 	setAttr -k on ".w0";
 createNode fosterParent -n "SquaddieRNfosterParent1";
-	rename -uid "B9D11C74-A44F-743B-7A6F-37BDE08A61DF";
-createNode transform -n "LeftFootMarker" -p "SquaddieRNfosterParent1";
-	rename -uid "165D6CD8-8949-87EB-766E-33AAC624CC7E";
-	setAttr ".t" -type "double3" 45.098758502456832 0 8.5142882805117956 ;
-	setAttr -k off -cb on ".tx";
-	setAttr -k off -cb on ".ty";
-	setAttr -k off -cb on ".tz";
-	setAttr ".r" -type "double3" 0 -9.0119428502058163 0 ;
-	setAttr -k off -cb on ".rx";
-	setAttr -k off -cb on ".ry";
-	setAttr -k off -cb on ".rz";
-	setAttr ".rp" -type "double3" -19.81879997253418 13.875100135803221 -9.6157197952270508 ;
-	setAttr ".sp" -type "double3" -19.81879997253418 13.875100135803221 -9.6157197952270508 ;
-createNode nurbsCurve -n "LeftFootMarkerShape" -p "LeftFootMarker";
-	rename -uid "4A0B6E5F-804C-240D-F5D6-3BB3212B661E";
-	setAttr -k off ".v";
-	setAttr ".cc" -type "nurbsCurve" 
-		3 8 2 no 3
-		13 -2 -1 0 1 2 3 4 5 6 7 8 9 10
-		11
-		-10.993838228102476 9.4377743565695507e-16 -24.859748430010843
-		-19.842925384176908 1.3347028493677681e-15 -27.604050131216177
-		-28.692012540251326 9.4377743565695566e-16 -24.859748430010853
-		-32.357424454918913 3.8676349411794827e-31 -12.806269536437693
-		-28.692012540251326 -9.4377743565695547e-16 -7.6419371515570997
-		-19.842925384176908 -1.3347028493677683e-15 -6.6855909458136535
-		-10.99383822810249 -9.4377743565695566e-16 -7.6419371515570926
-		-7.3284263134348961 -7.1687150404627847e-31 -12.806269536437672
-		-10.993838228102476 9.4377743565695507e-16 -24.859748430010843
-		-19.842925384176908 1.3347028493677681e-15 -27.604050131216177
-		-28.692012540251326 9.4377743565695566e-16 -24.859748430010853
-		;
-createNode transform -n "RightToes_Control" -p "LeftFootMarker";
-	rename -uid "C4E6EADC-E944-18BA-ECFA-9E8FFCE33D1B";
-	setAttr ".rp" -type "double3" -19.818799972534176 5.4871802330017081 2.819849967956543 ;
-	setAttr ".sp" -type "double3" -19.818799972534176 5.4871802330017081 2.819849967956543 ;
-createNode nurbsCurve -n "RightToes_ControlShape" -p "|SquaddieRNfosterParent1|LeftFootMarker|RightToes_Control";
-	rename -uid "B90B2B7E-FB45-46EE-F968-E6B5C7913722";
-	setAttr -k off ".v";
-	setAttr ".cc" -type "nurbsCurve" 
-		3 8 2 no 3
-		13 -2 -1 0 1 2 3 4 5 6 7 8 9 10
-		11
-		-32.888869636864918 9.4377743565695507e-16 23.601423805597928
-		-19.842925384176901 1.3347028493677681e-15 31.686646952214989
-		-6.7969811314889039 9.4377743565695566e-16 23.601423805597946
-		-7.3284263134348926 3.8676349411794827e-31 3.1274903383294328
-		-10.993838228102478 -9.4377743565695547e-16 -2.036842046551163
-		-19.842925384176898 -1.3347028493677683e-15 -2.9931882522946109
-		-28.692012540251316 -9.4377743565695566e-16 -2.0368420465511741
-		-32.357424454918913 -7.1687150404627847e-31 3.1274903383294035
-		-32.888869636864918 9.4377743565695507e-16 23.601423805597928
-		-19.842925384176901 1.3347028493677681e-15 31.686646952214989
-		-6.7969811314889039 9.4377743565695566e-16 23.601423805597946
-		;
-createNode transform -n "RightKnee_Control" -p "LeftFootMarker";
-	rename -uid "A805A5BD-314E-6D31-286C-A48A918D26AA";
-	setAttr ".rp" -type "double3" -19.818799972534176 51.407199859619134 76.610130652251613 ;
-	setAttr ".sp" -type "double3" -19.818799972534176 51.407199859619134 76.610130652251613 ;
-createNode nurbsCurve -n "RightKnee_ControlShape" -p "|SquaddieRNfosterParent1|LeftFootMarker|RightKnee_Control";
-	rename -uid "BBB0A8E5-314A-C63B-3807-F0B3CB8E9DF6";
-	setAttr -k off ".v";
-	setAttr ".cc" -type "nurbsCurve" 
-		3 8 2 no 3
-		13 -2 -1 0 1 2 3 4 5 6 7 8 9 10
-		11
-		-14.179700380499479 57.046299451653823 76.610130652251613
-		-19.818799972534176 59.382090982247185 76.610130652251613
-		-25.457899564568869 57.04629945165383 76.610130652251613
-		-27.793691095162227 51.407199859619134 76.610130652251613
-		-25.457899564568869 45.768100267584444 76.610130652251613
-		-19.81879997253418 43.432308736991082 76.610130652251613
-		-14.179700380499487 45.768100267584437 76.610130652251613
-		-11.843908849906125 51.407199859619126 76.610130652251613
-		-14.179700380499479 57.046299451653823 76.610130652251613
-		-19.818799972534176 59.382090982247185 76.610130652251613
-		-25.457899564568869 57.04629945165383 76.610130652251613
-		;
+	rename -uid "4F06146B-B546-5959-FEC2-268B3EDEC0C0";
 createNode transform -n "RightFootMarker" -p "SquaddieRNfosterParent1";
 	rename -uid "44CD5C4D-1346-C3B3-B701-0FAB71EBF57B";
 	setAttr ".t" -type "double3" -4.880356671542593 -5.6843418860808015e-14 -18.012907151152209 ;
@@ -280,6 +203,83 @@ createNode transform -n "RightKnee_Control" -p "RightFootMarker";
 	setAttr ".sp" -type "double3" -19.818799972534176 51.407199859619134 76.610130652251613 ;
 createNode nurbsCurve -n "RightKnee_ControlShape" -p "|SquaddieRNfosterParent1|RightFootMarker|RightKnee_Control";
 	rename -uid "F25B8A98-F44C-5111-CB08-72BC2959ADE0";
+	setAttr -k off ".v";
+	setAttr ".cc" -type "nurbsCurve" 
+		3 8 2 no 3
+		13 -2 -1 0 1 2 3 4 5 6 7 8 9 10
+		11
+		-14.179700380499479 57.046299451653823 76.610130652251613
+		-19.818799972534176 59.382090982247185 76.610130652251613
+		-25.457899564568869 57.04629945165383 76.610130652251613
+		-27.793691095162227 51.407199859619134 76.610130652251613
+		-25.457899564568869 45.768100267584444 76.610130652251613
+		-19.81879997253418 43.432308736991082 76.610130652251613
+		-14.179700380499487 45.768100267584437 76.610130652251613
+		-11.843908849906125 51.407199859619126 76.610130652251613
+		-14.179700380499479 57.046299451653823 76.610130652251613
+		-19.818799972534176 59.382090982247185 76.610130652251613
+		-25.457899564568869 57.04629945165383 76.610130652251613
+		;
+createNode transform -n "LeftFootMarker" -p "SquaddieRNfosterParent1";
+	rename -uid "165D6CD8-8949-87EB-766E-33AAC624CC7E";
+	setAttr ".t" -type "double3" 45.098758502456832 0 8.5142882805117956 ;
+	setAttr -k off -cb on ".tx";
+	setAttr -k off -cb on ".ty";
+	setAttr -k off -cb on ".tz";
+	setAttr ".r" -type "double3" 0 -9.0119428502058163 0 ;
+	setAttr -k off -cb on ".rx";
+	setAttr -k off -cb on ".ry";
+	setAttr -k off -cb on ".rz";
+	setAttr ".rp" -type "double3" -19.81879997253418 13.875100135803221 -9.6157197952270508 ;
+	setAttr ".sp" -type "double3" -19.81879997253418 13.875100135803221 -9.6157197952270508 ;
+createNode nurbsCurve -n "LeftFootMarkerShape" -p "LeftFootMarker";
+	rename -uid "4A0B6E5F-804C-240D-F5D6-3BB3212B661E";
+	setAttr -k off ".v";
+	setAttr ".cc" -type "nurbsCurve" 
+		3 8 2 no 3
+		13 -2 -1 0 1 2 3 4 5 6 7 8 9 10
+		11
+		-10.993838228102476 9.4377743565695507e-16 -24.859748430010843
+		-19.842925384176908 1.3347028493677681e-15 -27.604050131216177
+		-28.692012540251326 9.4377743565695566e-16 -24.859748430010853
+		-32.357424454918913 3.8676349411794827e-31 -12.806269536437693
+		-28.692012540251326 -9.4377743565695547e-16 -7.6419371515570997
+		-19.842925384176908 -1.3347028493677683e-15 -6.6855909458136535
+		-10.99383822810249 -9.4377743565695566e-16 -7.6419371515570926
+		-7.3284263134348961 -7.1687150404627847e-31 -12.806269536437672
+		-10.993838228102476 9.4377743565695507e-16 -24.859748430010843
+		-19.842925384176908 1.3347028493677681e-15 -27.604050131216177
+		-28.692012540251326 9.4377743565695566e-16 -24.859748430010853
+		;
+createNode transform -n "RightToes_Control" -p "LeftFootMarker";
+	rename -uid "C4E6EADC-E944-18BA-ECFA-9E8FFCE33D1B";
+	setAttr ".rp" -type "double3" -19.818799972534176 5.4871802330017081 2.819849967956543 ;
+	setAttr ".sp" -type "double3" -19.818799972534176 5.4871802330017081 2.819849967956543 ;
+createNode nurbsCurve -n "RightToes_ControlShape" -p "|SquaddieRNfosterParent1|LeftFootMarker|RightToes_Control";
+	rename -uid "B90B2B7E-FB45-46EE-F968-E6B5C7913722";
+	setAttr -k off ".v";
+	setAttr ".cc" -type "nurbsCurve" 
+		3 8 2 no 3
+		13 -2 -1 0 1 2 3 4 5 6 7 8 9 10
+		11
+		-32.888869636864918 9.4377743565695507e-16 23.601423805597928
+		-19.842925384176901 1.3347028493677681e-15 31.686646952214989
+		-6.7969811314889039 9.4377743565695566e-16 23.601423805597946
+		-7.3284263134348926 3.8676349411794827e-31 3.1274903383294328
+		-10.993838228102478 -9.4377743565695547e-16 -2.036842046551163
+		-19.842925384176898 -1.3347028493677683e-15 -2.9931882522946109
+		-28.692012540251316 -9.4377743565695566e-16 -2.0368420465511741
+		-32.357424454918913 -7.1687150404627847e-31 3.1274903383294035
+		-32.888869636864918 9.4377743565695507e-16 23.601423805597928
+		-19.842925384176901 1.3347028493677681e-15 31.686646952214989
+		-6.7969811314889039 9.4377743565695566e-16 23.601423805597946
+		;
+createNode transform -n "RightKnee_Control" -p "LeftFootMarker";
+	rename -uid "A805A5BD-314E-6D31-286C-A48A918D26AA";
+	setAttr ".rp" -type "double3" -19.818799972534176 51.407199859619134 76.610130652251613 ;
+	setAttr ".sp" -type "double3" -19.818799972534176 51.407199859619134 76.610130652251613 ;
+createNode nurbsCurve -n "RightKnee_ControlShape" -p "|SquaddieRNfosterParent1|LeftFootMarker|RightKnee_Control";
+	rename -uid "BBB0A8E5-314A-C63B-3807-F0B3CB8E9DF6";
 	setAttr -k off ".v";
 	setAttr ".cc" -type "nurbsCurve" 
 		3 8 2 no 3
@@ -722,9 +722,9 @@ createNode reference -n "SquaddieRN";
 		5 3 "SquaddieRN" "|Squaddie:SkeletonGroup|Squaddie:Attach_RootMotion|Squaddie:Hips_Skel|Squaddie:Spine1_Skel|Squaddie:Spine2_Skel|Squaddie:LeftClav_Skel|Squaddie:LeftUpperArm_Skel|Squaddie:LeftUpperArm_Skel_pointConstraint1.message" 
 		"SquaddieRN.placeHolderList[280]" ""
 		"SquaddieRN" 626
-		0 "|SquaddieRNfosterParent1|RightFootMarker" "|Squaddie:Root_Control|Squaddie:RootMotion_Control" 
-		"-s -r "
 		0 "|SquaddieRNfosterParent1|LeftFootMarker" "|Squaddie:Root_Control|Squaddie:RootMotion_Control" 
+		"-s -r "
+		0 "|SquaddieRNfosterParent1|RightFootMarker" "|Squaddie:Root_Control|Squaddie:RootMotion_Control" 
 		"-s -r "
 		2 "|Squaddie:Root_Control" "visibility" " -av 1"
 		2 "|Squaddie:Root_Control" "translate" " -type \"double3\" 0 0 0"
@@ -2050,7 +2050,7 @@ createNode gameFbxExporter -n "gameExporterPreset2";
 	setAttr ".ft" 1;
 	setAttr ".fv" -type "string" "FBX201800";
 	setAttr ".exp" -type "string" "/Users/briancollins/Unity/DropZone/Assets/DropZone/Characters/Squaddie";
-	setAttr ".exf" -type "string" "MainWeapon_Recovery.fbx";
+	setAttr ".exf" -type "string" "MainWeapon_Recovery2.fbx";
 createNode gameFbxExporter -n "gameExporterPreset3";
 	rename -uid "F7DE087A-9F46-A0FE-850E-6F971DC5ADE2";
 	setAttr ".pn" -type "string" "TE Anim Default";
@@ -7611,50 +7611,6 @@ connectAttr "polyTweakUV1.out" "pPlaneShape1.i";
 connectAttr "polyTweakUV1.uvtk[0]" "pPlaneShape1.uvst[0].uvtw";
 connectAttr "Weapon_MkII1_parentConstraint1.w0" "Weapon_MkII1_parentConstraint1.tg[0].tw"
 		;
-connectAttr "LeftFootMarker_visibility.o" "LeftFootMarker.v";
-connectAttr "LeftFootMarker_scaleX.o" "LeftFootMarker.sx";
-connectAttr "LeftFootMarker_scaleY.o" "LeftFootMarker.sy";
-connectAttr "LeftFootMarker_scaleZ.o" "LeftFootMarker.sz";
-connectAttr "RightToes_Control_rotateX1.o" "|SquaddieRNfosterParent1|LeftFootMarker|RightToes_Control.rx"
-		;
-connectAttr "RightToes_Control_rotateY1.o" "|SquaddieRNfosterParent1|LeftFootMarker|RightToes_Control.ry"
-		;
-connectAttr "RightToes_Control_rotateZ1.o" "|SquaddieRNfosterParent1|LeftFootMarker|RightToes_Control.rz"
-		;
-connectAttr "RightToes_Control_visibility1.o" "|SquaddieRNfosterParent1|LeftFootMarker|RightToes_Control.v"
-		;
-connectAttr "RightToes_Control_translateX1.o" "|SquaddieRNfosterParent1|LeftFootMarker|RightToes_Control.tx"
-		;
-connectAttr "RightToes_Control_translateY1.o" "|SquaddieRNfosterParent1|LeftFootMarker|RightToes_Control.ty"
-		;
-connectAttr "RightToes_Control_translateZ1.o" "|SquaddieRNfosterParent1|LeftFootMarker|RightToes_Control.tz"
-		;
-connectAttr "RightToes_Control_scaleX1.o" "|SquaddieRNfosterParent1|LeftFootMarker|RightToes_Control.sx"
-		;
-connectAttr "RightToes_Control_scaleY1.o" "|SquaddieRNfosterParent1|LeftFootMarker|RightToes_Control.sy"
-		;
-connectAttr "RightToes_Control_scaleZ1.o" "|SquaddieRNfosterParent1|LeftFootMarker|RightToes_Control.sz"
-		;
-connectAttr "RightKnee_Control_translateX1.o" "|SquaddieRNfosterParent1|LeftFootMarker|RightKnee_Control.tx"
-		;
-connectAttr "RightKnee_Control_translateY1.o" "|SquaddieRNfosterParent1|LeftFootMarker|RightKnee_Control.ty"
-		;
-connectAttr "RightKnee_Control_translateZ1.o" "|SquaddieRNfosterParent1|LeftFootMarker|RightKnee_Control.tz"
-		;
-connectAttr "RightKnee_Control_visibility1.o" "|SquaddieRNfosterParent1|LeftFootMarker|RightKnee_Control.v"
-		;
-connectAttr "RightKnee_Control_rotateX1.o" "|SquaddieRNfosterParent1|LeftFootMarker|RightKnee_Control.rx"
-		;
-connectAttr "RightKnee_Control_rotateY1.o" "|SquaddieRNfosterParent1|LeftFootMarker|RightKnee_Control.ry"
-		;
-connectAttr "RightKnee_Control_rotateZ1.o" "|SquaddieRNfosterParent1|LeftFootMarker|RightKnee_Control.rz"
-		;
-connectAttr "RightKnee_Control_scaleX1.o" "|SquaddieRNfosterParent1|LeftFootMarker|RightKnee_Control.sx"
-		;
-connectAttr "RightKnee_Control_scaleY1.o" "|SquaddieRNfosterParent1|LeftFootMarker|RightKnee_Control.sy"
-		;
-connectAttr "RightKnee_Control_scaleZ1.o" "|SquaddieRNfosterParent1|LeftFootMarker|RightKnee_Control.sz"
-		;
 connectAttr "RightFootMarker_visibility.o" "RightFootMarker.v";
 connectAttr "RightFootMarker_scaleX.o" "RightFootMarker.sx";
 connectAttr "RightFootMarker_scaleY.o" "RightFootMarker.sy";
@@ -7698,6 +7654,50 @@ connectAttr "RightKnee_Control_scaleX2.o" "|SquaddieRNfosterParent1|RightFootMar
 connectAttr "RightKnee_Control_scaleY2.o" "|SquaddieRNfosterParent1|RightFootMarker|RightKnee_Control.sy"
 		;
 connectAttr "RightKnee_Control_scaleZ2.o" "|SquaddieRNfosterParent1|RightFootMarker|RightKnee_Control.sz"
+		;
+connectAttr "LeftFootMarker_visibility.o" "LeftFootMarker.v";
+connectAttr "LeftFootMarker_scaleX.o" "LeftFootMarker.sx";
+connectAttr "LeftFootMarker_scaleY.o" "LeftFootMarker.sy";
+connectAttr "LeftFootMarker_scaleZ.o" "LeftFootMarker.sz";
+connectAttr "RightToes_Control_rotateX1.o" "|SquaddieRNfosterParent1|LeftFootMarker|RightToes_Control.rx"
+		;
+connectAttr "RightToes_Control_rotateY1.o" "|SquaddieRNfosterParent1|LeftFootMarker|RightToes_Control.ry"
+		;
+connectAttr "RightToes_Control_rotateZ1.o" "|SquaddieRNfosterParent1|LeftFootMarker|RightToes_Control.rz"
+		;
+connectAttr "RightToes_Control_visibility1.o" "|SquaddieRNfosterParent1|LeftFootMarker|RightToes_Control.v"
+		;
+connectAttr "RightToes_Control_translateX1.o" "|SquaddieRNfosterParent1|LeftFootMarker|RightToes_Control.tx"
+		;
+connectAttr "RightToes_Control_translateY1.o" "|SquaddieRNfosterParent1|LeftFootMarker|RightToes_Control.ty"
+		;
+connectAttr "RightToes_Control_translateZ1.o" "|SquaddieRNfosterParent1|LeftFootMarker|RightToes_Control.tz"
+		;
+connectAttr "RightToes_Control_scaleX1.o" "|SquaddieRNfosterParent1|LeftFootMarker|RightToes_Control.sx"
+		;
+connectAttr "RightToes_Control_scaleY1.o" "|SquaddieRNfosterParent1|LeftFootMarker|RightToes_Control.sy"
+		;
+connectAttr "RightToes_Control_scaleZ1.o" "|SquaddieRNfosterParent1|LeftFootMarker|RightToes_Control.sz"
+		;
+connectAttr "RightKnee_Control_translateX1.o" "|SquaddieRNfosterParent1|LeftFootMarker|RightKnee_Control.tx"
+		;
+connectAttr "RightKnee_Control_translateY1.o" "|SquaddieRNfosterParent1|LeftFootMarker|RightKnee_Control.ty"
+		;
+connectAttr "RightKnee_Control_translateZ1.o" "|SquaddieRNfosterParent1|LeftFootMarker|RightKnee_Control.tz"
+		;
+connectAttr "RightKnee_Control_visibility1.o" "|SquaddieRNfosterParent1|LeftFootMarker|RightKnee_Control.v"
+		;
+connectAttr "RightKnee_Control_rotateX1.o" "|SquaddieRNfosterParent1|LeftFootMarker|RightKnee_Control.rx"
+		;
+connectAttr "RightKnee_Control_rotateY1.o" "|SquaddieRNfosterParent1|LeftFootMarker|RightKnee_Control.ry"
+		;
+connectAttr "RightKnee_Control_rotateZ1.o" "|SquaddieRNfosterParent1|LeftFootMarker|RightKnee_Control.rz"
+		;
+connectAttr "RightKnee_Control_scaleX1.o" "|SquaddieRNfosterParent1|LeftFootMarker|RightKnee_Control.sx"
+		;
+connectAttr "RightKnee_Control_scaleY1.o" "|SquaddieRNfosterParent1|LeftFootMarker|RightKnee_Control.sy"
+		;
+connectAttr "RightKnee_Control_scaleZ1.o" "|SquaddieRNfosterParent1|LeftFootMarker|RightKnee_Control.sz"
 		;
 relationship "link" ":lightLinker1" ":initialShadingGroup.message" ":defaultLightSet.message";
 relationship "link" ":lightLinker1" ":initialParticleSE.message" ":defaultLightSet.message";
