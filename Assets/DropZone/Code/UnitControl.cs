@@ -271,7 +271,6 @@ public class UnitControl : MonoBehaviour {
   }
 
   public void DrawMainWeapon() {
-    Debug.Log("Drawing Main Weapon");
     if (switchingToMainWeapon || switchingToSideArm) return;
     if (!MainWeapon || MainWeapon == EquippedWeapon) return;
     if (EquippedWeapon) EquippedWeapon.Disabled = true;

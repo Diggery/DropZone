@@ -9,6 +9,7 @@ TagManager:
   - Floor
   - Enemy
   - UILayer
+  - LootBox
   layers:
   - Default
   - TransparentFX
