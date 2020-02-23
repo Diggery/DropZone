@@ -36,6 +36,8 @@ public class UnitControl : MonoBehaviour {
   Interpolator.LerpVector LerpToPose = new Interpolator.LerpVector();
   Interpolator currentInterpolation;
 
+  Lootable currentLootable;
+
   public bool HasTarget {
     get { return targeting.CurrentTarget; }
   }
@@ -199,6 +201,9 @@ public class UnitControl : MonoBehaviour {
   }
 
   public void MoveTo(Vector3 movePos) {
+    if (gameObject.tag.Equals("Player") && currentLootable)
+      currentLootable.DoneLooting(this);
+
     movePos = gameManager.mapControl.GetCellPos(movePos);
 
     if (Vector3.Distance(transform.position, movePos) < 0.5f) return;
@@ -218,7 +223,9 @@ public class UnitControl : MonoBehaviour {
   }
 
   public void MoveComplete(Vector3 EndPos) {
-    gameManager.ActivateLootables(EndPos);
+    if (gameObject.tag.Equals("Player"))
+      currentLootable = gameManager.ActivateLootables(EndPos);
+
     MapData.MapCell mapCell = gameManager.mapControl.GetMapCell(EndPos);
 
     InCover = mapCell.HasCover && !IgnoreCover;

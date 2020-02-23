@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 3322311758075184883}
   - component: {fileID: 6943005435945999118}
   - component: {fileID: 8445619195864745628}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Squaddie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
