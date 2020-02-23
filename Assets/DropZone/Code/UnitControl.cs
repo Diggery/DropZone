@@ -38,6 +38,24 @@ public class UnitControl : MonoBehaviour {
 
   Lootable currentLootable;
 
+  bool isSearching = false;
+  public bool IsSearching {
+    get { return isSearching; }
+    set {
+      if (isSearching == value) return;
+
+      if (value) {
+        animator.SetTrigger("Search");
+        FacePosition(currentLootable.transform.position);
+      } else {
+        currentLootable.CancelLooting();
+      }
+
+      isSearching = value;
+      animator.SetBool("IsSearching", isSearching);
+    }
+  }
+
   public bool HasTarget {
     get { return targeting.CurrentTarget; }
   }
@@ -223,8 +241,9 @@ public class UnitControl : MonoBehaviour {
   }
 
   public void MoveComplete(Vector3 EndPos) {
-    if (gameObject.tag.Equals("Player"))
-      currentLootable = gameManager.ActivateLootables(EndPos);
+    if (gameObject.tag.Equals("Player")) {
+      currentLootable = gameManager.ActivateLootables(EndPos, this);
+    }
 
     MapData.MapCell mapCell = gameManager.mapControl.GetMapCell(EndPos);
 
@@ -246,6 +265,18 @@ public class UnitControl : MonoBehaviour {
     animator.ResetTrigger("Dive");
 
     pathComplete.Invoke();
+  }
+
+  void FacePosition(Vector3 position) {
+    Vector4 startValue = transform.position;
+    float currentHeading = Vector3.Angle(transform.forward, Vector3.forward) * Mathf.Sign(transform.forward.x);
+    startValue.w = currentHeading;
+    LerpToPose.startValue = startValue;
+    Vector4 endValue = startValue;
+    endValue.y = startValue.y;
+    endValue.w = Utils.HeadingToTarget(startValue, position);
+    LerpToPose.endValue = endValue;
+    currentInterpolation = Interpolator.Start(LerpToPose, gameObject.name + " is moving to cover");
   }
 
   public void AddWeapon(Weapon weapon) {
@@ -331,6 +362,8 @@ public class UnitControl : MonoBehaviour {
       animator.SetInteger("AttackDirection", info.GetOrthagonalDirection(transform));
       animator.SetTrigger("Hit");
     }
+
+    if (IsSearching) IsSearching = false;
     damageTaken.Invoke(info.attacker);
   }
 

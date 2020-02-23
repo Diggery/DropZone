@@ -8,14 +8,14 @@ public class Lootable : MonoBehaviour {
   GameObject UI;
   Transform viewCamera;
   List<Vector3> lootPositions = new List<Vector3>();
-
+  UnitControl currentLooter;
 
   Vector2 uiOpenSize = new Vector2(200, 180);
   Vector2 uiClosedSize = new Vector2(128, 16);
   public Interpolator.LerpFloat uiTransition;
 
   bool isOpen = false;
-  public bool IsOpen {
+  bool IsOpen {
     get { return isOpen; }
     set { 
       isOpen = value;
@@ -23,13 +23,14 @@ public class Lootable : MonoBehaviour {
     }
   }
 
-  bool uiUnlocked;
-  bool UIUnlocked {
-    get { return uiUnlocked; }
-    set { 
-      uiUnlocked = value;
-      contentsGroup.interactable = uiUnlocked;
-      if (uiUnlocked) {
+  bool unlocked;
+  bool Unlocked {
+    get { return unlocked; }
+    set {
+      if (Unlocked == value) return;
+      unlocked = value;
+      contentsGroup.interactable = unlocked;
+      if (unlocked) {
         Interpolator.Start(uiTransition);
       } else {
         Interpolator.Reverse(uiTransition);
@@ -37,9 +38,33 @@ public class Lootable : MonoBehaviour {
     }
   }
 
+  float unlockTime = 10f;
+  float unlockTimer = 0;
+
   RectTransform uiBackground;
   Button unlockButton;
   CanvasGroup contentsGroup;
+
+  bool InUse {
+    get {
+      LayerMask uiMask = LayerMask.GetMask("UI");
+      bool stillInUse = false;
+      for (int i = 0; i < 4; i++) {
+        Vector3 startPos = transform.position + (Vector3.up * 1f);
+        Vector3 endPos = startPos + (Quaternion.AngleAxis(90 * i, Vector3.up) * Vector3.forward);
+
+        if (Physics.Linecast(startPos, endPos, out RaycastHit hit, uiMask)) {
+          if (hit.transform.root.tag.Equals("Player")) {
+            UnitControl unit = hit.transform.root.GetComponent<UnitControl>();
+            if (unit.IsSearching) {
+              stillInUse = true;
+            }
+          }
+        }
+      }
+      return stillInUse;
+    }
+  }
 
   void Start() {
     GameManager gameManager = GameManager.Instance;
@@ -73,6 +98,10 @@ public class Lootable : MonoBehaviour {
 
   void Update() {
     UI.transform.rotation = viewCamera.rotation;
+    if (currentLooter && currentLooter.IsSearching && unlockTimer > 0) {
+      unlockTimer -= Time.deltaTime;
+      if (unlockTimer < 0) Unlocked = true;
+    }
   }
 
   public bool CheckPosition(Vector3 checkPos, out Lootable thisLootable) {
@@ -82,6 +111,15 @@ public class Lootable : MonoBehaviour {
       if (Vector3.Distance(checkPos, pos) < 0.25f) isLootable = true;
     }
     return isLootable;
+  }
+
+  public void StartLooting(UnitControl looter) {
+    IsOpen = true;
+    currentLooter = looter;
+  }
+
+  public void CancelLooting() {
+    Unlocked = false;
   }
 
   public void DoneLooting(UnitControl looter) {
@@ -103,7 +141,15 @@ public class Lootable : MonoBehaviour {
   }
 
   void UnlockLootable() {
-    UIUnlocked = !UIUnlocked;
+    if (Unlocked) {
+      Unlocked = false;
+      if (currentLooter) currentLooter.IsSearching = false;
+    } else if (unlockTimer < 0) {
+      Unlocked = true;
+    } else {
+      if (currentLooter) currentLooter.IsSearching = true;
+      unlockTimer = unlockTime;
+    }
   }
 
   void OnUITransitionTick(float amount) {
@@ -112,6 +158,8 @@ public class Lootable : MonoBehaviour {
   }
 
   void OnUITransitionFinished(bool reversed) {
-
+    uiBackground.sizeDelta = reversed ? uiClosedSize : uiOpenSize;
+    contentsGroup.alpha = reversed ? 0 : 1;
+    if (reversed && IsOpen && !InUse) IsOpen = false;
   }
 }

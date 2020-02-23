@@ -78,11 +78,11 @@ public class GameManager : MonoBehaviour {
     inputControl = gameObject.AddComponent<InputControl>().Init();
   }
 
-  public Lootable ActivateLootables(Vector3 pos) { 
+  public Lootable ActivateLootables(Vector3 pos, UnitControl looter) { 
     Lootable nearbyLootable = null;
     foreach(Lootable lootable in lootables) {
       if (lootable.CheckPosition(pos, out nearbyLootable)) {
-        lootable.IsOpen = true;
+        lootable.StartLooting(looter);
       }
     }
     return nearbyLootable;
