@@ -127,8 +127,14 @@ public class UIPlayerPanel : MonoBehaviour {
     itemButton.onClick.AddListener(() => UseItem(itemButton));
   }
 
-  void UseItem(Button buttonPressed) {
-    Debug.Log("Using " + buttonPressed.name);
+  void UseItem(Button buttonClicked) {
+    Debug.Log("Using " + buttonClicked.name);
+    if (player.CurrentLootable) {
+      if (player.CurrentLootable.AddItem(buttonClicked.name)) {
+        Destroy(buttonClicked.gameObject);
+        player.RemoveLoot(buttonClicked.name);
+      }
+    }
   }
 
   void SelectPlayer() {

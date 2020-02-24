@@ -40,7 +40,7 @@ public class UnitControl : MonoBehaviour {
   Interpolator.LerpVector LerpToPose = new Interpolator.LerpVector();
   Interpolator currentInterpolation;
 
-  Lootable currentLootable;
+  public Lootable CurrentLootable { get; set; }
 
   bool isSearching = false;
   public bool IsSearching {
@@ -50,9 +50,10 @@ public class UnitControl : MonoBehaviour {
 
       if (value) {
         animator.SetTrigger("Search");
-        FacePosition(currentLootable.transform.position);
+        FacePosition(CurrentLootable.transform.position);
       } else {
-        currentLootable.CancelLooting();
+        CurrentLootable.CancelLooting();
+        CurrentLootable = null;
       }
 
       isSearching = value;
@@ -227,8 +228,10 @@ public class UnitControl : MonoBehaviour {
   }
 
   public void MoveTo(Vector3 movePos) {
-    if (gameObject.tag.Equals("Player") && currentLootable)
-      currentLootable.DoneLooting(this);
+    if (gameObject.tag.Equals("Player") && CurrentLootable) {
+      CurrentLootable.DoneLooting(this);
+      CurrentLootable = null;
+    }
 
     movePos = gameManager.mapControl.GetCellPos(movePos);
 
@@ -250,7 +253,7 @@ public class UnitControl : MonoBehaviour {
 
   public void MoveComplete(Vector3 EndPos) {
     if (gameObject.tag.Equals("Player")) {
-      currentLootable = gameManager.ActivateLootables(EndPos, this);
+      CurrentLootable = gameManager.ActivateLootables(EndPos, this);
     }
 
     MapData.MapCell mapCell = gameManager.mapControl.GetMapCell(EndPos);
@@ -292,7 +295,7 @@ public class UnitControl : MonoBehaviour {
     switch (weapon.type) {
       case Weapon.WeaponType.Main:
         if (MainWeapon != null) MainWeapon.Drop();
-        MainWeapon = (RangedWeapon) weapon;
+        MainWeapon = (RangedWeapon)weapon;
         MainWeapon.Init(this, attachPoints["Backpack"], attachPoints["RightHand"]);
         MainWeapon.SetStockAttach(animator.GetBoneTransform(HumanBodyBones.Chest));
         MainWeapon.Equip();
@@ -300,7 +303,7 @@ public class UnitControl : MonoBehaviour {
         break;
       case Weapon.WeaponType.SideArm:
         if (SideArm != null) SideArm.Drop();
-        SideArm = (RangedWeapon) weapon;
+        SideArm = (RangedWeapon)weapon;
         SideArm.Init(this, attachPoints["LeftHip"], attachPoints["RightHand"]);
         SideArm.SetStockAttach(animator.GetBoneTransform(HumanBodyBones.Chest));
         if (!EquippedWeapon) {
@@ -311,7 +314,7 @@ public class UnitControl : MonoBehaviour {
         }
         break;
       case Weapon.WeaponType.Melee:
-        Melee = (MeleeWeapon) weapon;
+        Melee = (MeleeWeapon)weapon;
         Melee.Init(this, attachPoints["RightHip"], attachPoints["RightHand"]);
         Melee.Stow();
         break;
@@ -429,6 +432,11 @@ public class UnitControl : MonoBehaviour {
         break;
     }
     return tookLoot;
+  }
+
+  public bool RemoveLoot(string lootName) {
+    bool lootRemoved = characterEntry.inventory.Remove(lootName);
+    return lootRemoved;
   }
 
   public void OutOfAmmo() {

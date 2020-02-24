@@ -9,6 +9,7 @@ public class Lootable : MonoBehaviour {
   Transform viewCamera;
   List<Vector3> lootPositions = new List<Vector3>();
   UnitControl currentLooter;
+  GameObject itemPrefab;
 
   Vector2 uiOpenSize = new Vector2(200, 180);
   Vector2 uiClosedSize = new Vector2(128, 16);
@@ -50,6 +51,7 @@ public class Lootable : MonoBehaviour {
   public enum ValueLevel { High, Medium, Low };
   public ValueLevel valueLevel;
   public bool autoFill;
+  int contentsSize = 6;
 
   bool InUse {
     get {
@@ -101,13 +103,10 @@ public class Lootable : MonoBehaviour {
     contentsGroup.interactable = false;
     UI.SetActive(false);
 
-    GameObject itemPrefab = gameManager.GetPrefab("LootItem");
+    itemPrefab = gameManager.GetPrefab("LootItem");
 
     foreach (string itemName in contents) {
-      GameObject item = Instantiate(itemPrefab, contentsGroup.transform);
-      item.name = itemName;
-      Button itemButton = item.GetComponent<Button>();
-      itemButton.onClick.AddListener(() => GetLoot(itemButton));
+      AddItem(itemName);
     }
   }
 
@@ -155,9 +154,19 @@ public class Lootable : MonoBehaviour {
     if (!stillInUse) IsOpen = false;
   }
 
+  public bool AddItem(string itemName) {
+    if (contentsGroup.transform.childCount >= contentsSize) return false;
+    GameObject item = Instantiate(itemPrefab, contentsGroup.transform);
+    item.name = itemName;
+    Button itemButton = item.GetComponent<Button>();
+    itemButton.onClick.AddListener(() => GetLoot(itemButton));
+    return true;
+  }
+
   void GetLoot(Button buttonClicked) {
-    currentLooter.AddLoot(buttonClicked.name);
-    Destroy(buttonClicked.gameObject);
+    if (currentLooter.AddLoot(buttonClicked.name)) {
+      Destroy(buttonClicked.gameObject);
+    }
   }
 
   void UnlockLootable() {
