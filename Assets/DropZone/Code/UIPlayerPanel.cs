@@ -25,7 +25,7 @@ public class UIPlayerPanel : MonoBehaviour {
   Vector2 inventoryClosedPos = new Vector2(0, -90);
 
   bool inventoryOpen = false;
-  bool InventoryOpen {
+  public bool InventoryOpen {
     get { return inventoryOpen; }
     set {
       if (inventoryOpen == value) return;
@@ -97,7 +97,6 @@ public class UIPlayerPanel : MonoBehaviour {
   }
 
   void SetContainerContents(RectTransform container, GameObject prefab, int amount, bool withEffect) {
-    Debug.Log("Setting " + container.name + " to " + amount);
     int currentAmount = container.childCount;
     if (currentAmount > amount) {
       for (int i = currentAmount; i > amount; i--) {

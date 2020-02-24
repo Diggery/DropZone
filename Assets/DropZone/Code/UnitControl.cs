@@ -405,10 +405,7 @@ public class UnitControl : MonoBehaviour {
     switch (lootName) {
       case "Magazine":
         if (MainWeapon) {
-          Debug.Log("Mags was: " + MainWeapon.Magazines);
-
           MainWeapon.Magazines++;
-          Debug.Log("Mags now: " + MainWeapon.Magazines);
           if (PlayerPanel) PlayerPanel.SetMagazines(MainWeapon.Magazines);
           DrawMainWeapon();
         }

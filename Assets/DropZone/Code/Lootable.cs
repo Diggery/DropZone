@@ -32,6 +32,7 @@ public class Lootable : MonoBehaviour {
       contentsGroup.interactable = unlocked;
       if (unlocked) {
         Interpolator.Start(uiTransition);
+        if (currentLooter.PlayerPanel) currentLooter.PlayerPanel.InventoryOpen = true;
       } else {
         Interpolator.Reverse(uiTransition);
       }
