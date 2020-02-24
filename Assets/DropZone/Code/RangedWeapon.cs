@@ -16,8 +16,9 @@ public class RangedWeapon : Weapon {
   public int burstCount = 3;
   public float burstCooldown = 0.5f;
 
-  public int magazines { get; set; }
-  int magazineSize = 15;
+  public int Magazines { get; set; }
+  public bool IsEmpty { get { return roundsInMagazine <= 0; } }
+  int magazineSize = 5;
   int roundsInMagazine = 0;
   float fireRateTimer = 0;
   int burstAmount = 3;
@@ -168,7 +169,7 @@ public class RangedWeapon : Weapon {
   public void Reloaded() {
     Reloading = false;
     roundsInMagazine = magazineSize;
-    magazines--;
+    Magazines--;
     magazine.GetComponent<Renderer>().enabled = true;
   }
   public void EjectMagazine() {
@@ -183,11 +184,10 @@ public class RangedWeapon : Weapon {
     magazine.GetComponent<Renderer>().enabled = false;
     Reloading = true;
 
-    if (type == WeaponType.Main && magazines <= 0) {
+    if (type == WeaponType.Main && Magazines <= 0) {
       owner.OutOfAmmo();
     } else {
       owner.Reload();
     }
-
   }
 }

@@ -21,3 +21,5 @@ MonoBehaviour:
   speed: 3.5
   visualRange: 20
   hits: 10
+  inventory: []
+  maxInventory: 6

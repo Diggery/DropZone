@@ -3,25 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Equipment : MonoBehaviour {
-  public enum Type { Ammo, MedKit, SmokeGrendes }
-  public Type equipmentType;
+  string equipmentName;
+
   UnitControl owner;
   Vector3 startPos;
   Rigidbody rbody;
 
   public Interpolator.LerpFloat moveToOwner;
 
-  public Equipment Init(UnitControl owner) {
+  public Equipment Init(string equipmentName, UnitControl owner) {
     this.owner = owner;
+    this.equipmentName = equipmentName;
     moveToOwner.onTick = MoveToOwner;
     moveToOwner.onFinish = GotToOwner;
     rbody = GetComponent<Rigidbody>();
     return this;
-
-  }
-
-  void Update() {
-
   }
 
   void MoveToOwner(float amount) {
@@ -29,15 +25,15 @@ public class Equipment : MonoBehaviour {
   }
 
   void GotToOwner(bool reversed) {
-
-    owner.AddEquipment(equipmentType);
+    owner.AddLoot(equipmentName);
     Destroy(gameObject);
   }
 
   private void OnCollisionEnter(Collision other) {
-    rbody.isKinematic = true;
-    startPos = transform.position;
-    Interpolator.Start(moveToOwner);
+    if (other.transform.tag.Equals("Floor")) {
+      rbody.isKinematic = true;
+      startPos = transform.position;
+      Interpolator.Start(moveToOwner);
+    }
   }
-
 }

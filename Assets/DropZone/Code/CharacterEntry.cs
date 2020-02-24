@@ -16,5 +16,7 @@ public class CharacterEntry : ScriptableObject {
   public float speed;
   public float visualRange;
   public float hits;
+  public List<string> inventory = new List<string>();
+  public int maxInventory = 6;
 
 }

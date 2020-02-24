@@ -53,7 +53,7 @@ public class CharacterSetup : MonoBehaviour {
     if (!string.IsNullOrEmpty(entry.mainWeapon)) {
       GameObject mainWeaponPrefab = gameManager.weaponInventory.GetPrefab(entry.mainWeapon);
       RangedWeapon mainWeapon = Instantiate(mainWeaponPrefab, transform.position, transform.rotation).GetComponent<RangedWeapon>();
-      mainWeapon.magazines = 1;
+      mainWeapon.Magazines = 3;
       unitControl.AddWeapon(mainWeapon);
     }
 
@@ -68,7 +68,7 @@ public class CharacterSetup : MonoBehaviour {
     MeleeWeapon melee = Instantiate(meleePrefab, transform.position, transform.rotation).GetComponent<MeleeWeapon>();
     unitControl.AddWeapon(melee);
 
-    unitControl.SetStats(entry.hits, entry.visualRange, entry.speed);
+    unitControl.SetStats(entry);
 
     Destroy(this);
   }

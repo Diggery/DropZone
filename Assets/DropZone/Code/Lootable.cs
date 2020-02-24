@@ -45,6 +45,11 @@ public class Lootable : MonoBehaviour {
   Button unlockButton;
   CanvasGroup contentsGroup;
 
+  public string[] contents;
+  public enum ValueLevel { High, Medium, Low };
+  public ValueLevel valueLevel;
+  public bool autoFill;
+
   bool InUse {
     get {
       LayerMask uiMask = LayerMask.GetMask("UI");
@@ -94,6 +99,15 @@ public class Lootable : MonoBehaviour {
     contentsGroup.alpha = 0;
     contentsGroup.interactable = false;
     UI.SetActive(false);
+
+    GameObject itemPrefab = gameManager.GetPrefab("LootItem");
+
+    foreach (string itemName in contents) {
+      GameObject item = Instantiate(itemPrefab, contentsGroup.transform);
+      item.name = itemName;
+      Button itemButton = item.GetComponent<Button>();
+      itemButton.onClick.AddListener(() => GetLoot(itemButton));
+    }
   }
 
   void Update() {
@@ -140,15 +154,22 @@ public class Lootable : MonoBehaviour {
     if (!stillInUse) IsOpen = false;
   }
 
+  void GetLoot(Button buttonClicked) {
+    currentLooter.AddLoot(buttonClicked.name);
+    Destroy(buttonClicked.gameObject);
+  }
+
   void UnlockLootable() {
     if (Unlocked) {
       Unlocked = false;
       if (currentLooter) currentLooter.IsSearching = false;
-    } else if (unlockTimer < 0) {
-      Unlocked = true;
     } else {
+      if (unlockTimer < 0) {
+        Unlocked = true;
+      } else {
+        unlockTimer = unlockTime;
+      }
       if (currentLooter) currentLooter.IsSearching = true;
-      unlockTimer = unlockTime;
     }
   }
 

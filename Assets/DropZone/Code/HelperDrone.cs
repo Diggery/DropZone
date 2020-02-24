@@ -3,37 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class HelperDrone : MonoBehaviour {
+public class DroneTask {
+  public static implicit operator bool(DroneTask value) { return value != null; }
 
-  public class DroneTask {
-    public static implicit operator bool(DroneTask value) { return value != null; }
-
-
-    public Equipment.Type taskType;
-    public Vector3 pos;
-    public UnitControl target;
-    public DroneTask(string type, Vector3 position, UnitControl recepient = null) {
-
-      switch (type) {
-        case "Ammo":
-          taskType = Equipment.Type.Ammo;
-          break;
-        case "MedKit":
-          taskType = Equipment.Type.MedKit;
-
-          break;
-        case "SmokeGrenades":
-          taskType = Equipment.Type.SmokeGrendes;
-          break;
-        default:
-          Debug.Log("Don't have any " + type + " to give");
-          break;
-      }
-
-      pos = position;
-      target = recepient;
-    }
+  public string taskType;
+  public Vector3 pos;
+  public UnitControl target;
+  public DroneTask(string type, Vector3 position, UnitControl recepient = null) {
+    taskType = type;
+    pos = position;
+    target = recepient;
   }
+}
+
+public class HelperDrone : MonoBehaviour {
 
   GameManager gameManager;
   NavMeshAgent navAgent;
@@ -119,25 +102,9 @@ public class HelperDrone : MonoBehaviour {
     IsMoving = false;
   }
 
-  void LaunchEquipment(Equipment.Type type) {
-    string equipmentType = "";
-    switch (type) {
-      case Equipment.Type.Ammo:
-        equipmentType = "Magazine";
-        break;
-      case Equipment.Type.MedKit:
-        equipmentType = "Medkit";
-
-        break;
-      case Equipment.Type.SmokeGrendes:
-        equipmentType = "SmokeGrendes";
-        break;
-      default:
-        Debug.Log("Don't have any " + type + " to give");
-        break;
-    }
-    GameObject equipment = Instantiate(gameManager.GetPrefab(equipmentType), launchPoint.position, Quaternion.identity);
-    equipment.GetComponent<Equipment>().Init(currentTask.target);
+  void LaunchEquipment(string equipmentName) {
+    GameObject equipment = Instantiate(gameManager.GetPrefab(equipmentName), launchPoint.position, Quaternion.identity);
+    equipment.GetComponent<Equipment>().Init(equipmentName, currentTask.target);
     Vector3 force = Utils.CalculateBestTrajectory(launchPoint.position, currentTask.target.transform.position, 1);
     Rigidbody rbody = equipment.GetComponent<Rigidbody>();
     rbody.AddForce(force, ForceMode.VelocityChange);

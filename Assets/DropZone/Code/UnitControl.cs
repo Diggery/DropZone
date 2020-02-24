@@ -19,12 +19,16 @@ public class UnitControl : MonoBehaviour {
   public bool autoInit;
   NavMeshAgent navAgent;
   Animator animator;
+  CharacterEntry characterEntry;
+  public List<string> inventory { get { return characterEntry.inventory; } }
+
   public RuntimeAnimatorController mainWeaponController;
   public RuntimeAnimatorController sideArmController;
 
   UnitIK unitIK;
   UnitTargeting targeting;
 
+  public UIPlayerPanel PlayerPanel { get; set; }
   public RangedWeapon EquippedWeapon { get; set; }
   public RangedWeapon MainWeapon { get; set; }
   public RangedWeapon SideArm { get; set; }
@@ -126,7 +130,7 @@ public class UnitControl : MonoBehaviour {
   public EnemyAlert knockedOut = new EnemyAlert();
   public EnemyAlert removed = new EnemyAlert();
 
-  public class NeedEquipment : UnityEvent<HelperDrone.DroneTask, UnitControl> { }
+  public class NeedEquipment : UnityEvent<DroneTask, UnitControl> { }
   public NeedEquipment needsEquipment = new NeedEquipment();
 
   public bool IsPathComplete {
@@ -182,7 +186,10 @@ public class UnitControl : MonoBehaviour {
     OccupyingPosition = transform.position;
 
     SkeletonConfig skelConfig = GetComponent<SkeletonConfig>();
-    if (skelConfig) skelConfig.Init();
+    if (skelConfig) {
+      skelConfig.Init();
+      Destroy(skelConfig);
+    }
     return this;
   }
 
@@ -209,12 +216,13 @@ public class UnitControl : MonoBehaviour {
     if (animator) animator.SetFloat("Random", Random.value);
   }
 
-  public void SetStats(float maxHits, float visualRange, float speed) {
-    targeting.VisualRange = visualRange;
+  public void SetStats(CharacterEntry entry) {
+    characterEntry = entry;
+    targeting.VisualRange = entry.visualRange;
     targeting.MeleeRange = 1.75f;
-    this.MaxHits = maxHits;
-    this.hitpoints = maxHits;
-    this.MoveSpeed = speed;
+    this.MaxHits = entry.hits;
+    this.hitpoints = entry.hits;
+    this.MoveSpeed = entry.speed;
     navAgent.speed = MoveSpeed;
   }
 
@@ -362,7 +370,7 @@ public class UnitControl : MonoBehaviour {
       animator.SetInteger("AttackDirection", info.GetOrthagonalDirection(transform));
       animator.SetTrigger("Hit");
     }
-
+    if (PlayerPanel) PlayerPanel.SetHits(Mathf.FloorToInt(hitpoints));
     if (IsSearching) IsSearching = false;
     damageTaken.Invoke(info.attacker);
   }
@@ -370,6 +378,7 @@ public class UnitControl : MonoBehaviour {
   public void TakeHealing(float amount) {
     Debug.Log("NICE: " + amount + " points of healing");
     hitpoints = Mathf.Min(MaxHits, hitpoints + amount);
+    if (PlayerPanel) PlayerPanel.SetHits(Mathf.FloorToInt(hitpoints));
   }
 
   public void Incapacitate(DamageInfo info = null) {
@@ -387,32 +396,49 @@ public class UnitControl : MonoBehaviour {
       EquippedWeapon.Drop();
       EquippedWeapon = null;
     }
+    if (PlayerPanel) PlayerPanel.Incapacitated();
+
   }
 
-  public void AddEquipment(Equipment.Type equipmentType) {
-    switch (equipmentType) {
-      case Equipment.Type.Ammo:
+  public bool AddLoot(string lootName) {
+    bool tookLoot = false;
+    switch (lootName) {
+      case "Magazine":
         if (MainWeapon) {
-          MainWeapon.magazines++;
+          Debug.Log("Mags was: " + MainWeapon.Magazines);
+
+          MainWeapon.Magazines++;
+          Debug.Log("Mags now: " + MainWeapon.Magazines);
+          if (PlayerPanel) PlayerPanel.SetMagazines(MainWeapon.Magazines);
           DrawMainWeapon();
         }
+        tookLoot = true;
         break;
-      case Equipment.Type.MedKit:
+      case "MedKit":
+        tookLoot = true;
 
         break;
-      case Equipment.Type.SmokeGrendes:
+      case "EnergyCell":
+        tookLoot = true;
+
         break;
       default:
-        Debug.Log("Don't know what to do with " + equipmentType);
+        int currentInventorySlots = characterEntry.inventory.Count;
+        tookLoot = currentInventorySlots < characterEntry.maxInventory;
+        if (tookLoot) {
+          characterEntry.inventory.Add(lootName);
+          if (PlayerPanel) PlayerPanel.AddInventoryItem(lootName);
+        }
         break;
     }
+    return tookLoot;
   }
 
   public void OutOfAmmo() {
     Debug.Log(gameObject.name + " is out of ammo");
     outOfAmmo.Invoke(this);
     if (SideArm) DrawSideArm();
-    HelperDrone.DroneTask task = new HelperDrone.DroneTask("Ammo", transform.position, this);
+    DroneTask task = new DroneTask("Magazine", transform.position, this);
     needsEquipment.Invoke(task, this);
   }
 
@@ -431,6 +457,7 @@ public class UnitControl : MonoBehaviour {
 
   public void ReloadComplete() {
     EquippedWeapon.Reloaded();
+    if (PlayerPanel) PlayerPanel.SetMagazines(EquippedWeapon.Magazines);
   }
 
   void LerpPoseTick(Vector4 amount) {
@@ -457,19 +484,23 @@ public class UnitControl : MonoBehaviour {
       case "DrawWeapon":
         if (switchingToMainWeapon) {
           MainWeapon.Equip();
+          if (PlayerPanel) PlayerPanel.MainWeaponEquipped();
           animator.runtimeAnimatorController = mainWeaponController;
         } else if (switchingToSideArm) {
           SideArm.Equip();
+          if (PlayerPanel) PlayerPanel.SideArmEquipped();
           animator.runtimeAnimatorController = sideArmController;
         } else {
           if (MainWeapon) {
             MainWeapon.Equip();
+            if (PlayerPanel) PlayerPanel.MainWeaponEquipped();
           } else if (SideArm) {
             SideArm.Equip();
+            if (PlayerPanel) PlayerPanel.SideArmEquipped();
           }
         }
         switchingToMainWeapon = switchingToSideArm = false;
-        if (EquippedWeapon) EquippedWeapon.Reloaded();
+        if (EquippedWeapon && EquippedWeapon.IsEmpty) Reload();
         break;
       default:
         Debug.Log("Don't know what to do with a " + eventName + " event");

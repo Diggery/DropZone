@@ -19,7 +19,7 @@ public class PlayerManager : MonoBehaviour {
     drones.Add(drone);
   }
 
-  void NeedsEquipment(HelperDrone.DroneTask task, UnitControl player) {
+  void NeedsEquipment(DroneTask task, UnitControl player) {
     if (drones.Count <= 0) Debug.Log("There are no drones to make a delivery");
     int offset = Random.Range(0, drones.Count);
     for(int i = 0; i< drones.Count; i++) {

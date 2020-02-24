@@ -790,6 +790,12 @@ MonoBehaviour:
     container: {fileID: 0}
     startValue: 0
     endValue: 1
+  contents:
+  - Hello
+  - mad
+  - jkf
+  valueLevel: 0
+  autoFill: 0
 --- !u!4 &311507165
 Transform:
   m_ObjectHideFlags: 0
@@ -1303,7 +1309,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &561051390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3410,7 +3416,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1897145532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3806,7 +3812,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2138931012
 MonoBehaviour:
   m_ObjectHideFlags: 0
