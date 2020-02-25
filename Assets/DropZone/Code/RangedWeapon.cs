@@ -124,6 +124,7 @@ public class RangedWeapon : Weapon {
       burstCooldownTimer = burstCooldown;
     }
     roundsInMagazine--;
+    if (owner.PlayerPanel) owner.PlayerPanel.SetAmmoCount(roundsInMagazine);
     fireRateTimer = fireRate;
 
     weaponFlash.enabled = true;
@@ -166,12 +167,15 @@ public class RangedWeapon : Weapon {
     base.Drop();
     grip.localPosition = Vector3.zero;
   }
+
   public void Reloaded() {
     Reloading = false;
     roundsInMagazine = magazineSize;
     Magazines--;
     magazine.GetComponent<Renderer>().enabled = true;
+    if (owner.PlayerPanel) owner.PlayerPanel.SetAmmoCount(roundsInMagazine);
   }
+
   public void EjectMagazine() {
 
     var oldMag = Instantiate(magazine.gameObject, magazine.position, magazine.rotation);

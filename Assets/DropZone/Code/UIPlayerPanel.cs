@@ -15,6 +15,8 @@ public class UIPlayerPanel : MonoBehaviour {
   Button sideArm;
   RectTransform hitsContainer;
   GameObject hitsPrefab;
+  RectTransform magazineInUse;
+  TextMeshProUGUI magazineCounter;
   RectTransform magazineContainer;
   GameObject magazinePrefab;
 
@@ -56,7 +58,9 @@ public class UIPlayerPanel : MonoBehaviour {
     mainWeapon.onClick.AddListener(SelectMainWeapon);
     sideArm = transform.Find("MainGroup/SideArm").GetComponent<Button>();
     sideArm.onClick.AddListener(SelectSideArm);
-    magazineContainer = transform.Find("MainGroup/MainWeapon/Magazines").GetComponent<RectTransform>();
+    magazineInUse = mainWeapon.transform.Find("Magazines/InUse").GetComponent<RectTransform>();
+    magazineCounter = mainWeapon.transform.Find("Magazines/Counter").GetComponent<TextMeshProUGUI>();
+    magazineContainer = mainWeapon.transform.Find("Magazines/Container").GetComponent<RectTransform>();
     magazinePrefab = magazineContainer.GetChild(0).gameObject;
     magazinePrefab.transform.SetParent(mainGroup.transform);
     magazinePrefab.SetActive(false);
@@ -84,6 +88,9 @@ public class UIPlayerPanel : MonoBehaviour {
   }
   public void SetMaxHits(int amount) {
     SetContainerContents(hitsContainer, hitsPrefab, amount, false);
+  }
+  public void SetAmmoCount(int amount) {
+    magazineCounter.text = amount.ToString();
   }
   public void SetHits(int amount) {
   }
