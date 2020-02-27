@@ -153,9 +153,11 @@ public class UnitControl : MonoBehaviour {
 
   float hitPoints = 10;
   float armorPoints = 10;
+
   bool armorRegen = true;
   float armorCoolDown;
-  float armorRegenTime = 5;
+  float armorRegenTime = 5.0f;
+  float armorRegenSpeed = 1.0f;
 
   public bool IgnoreCover { get; set; }
   public bool Reckless { get; set; }
@@ -224,7 +226,7 @@ public class UnitControl : MonoBehaviour {
       armorCoolDown -= Time.deltaTime;
     }
     if (armorRegen && armorPoints < hitPoints && armorCoolDown < 0)
-      RepairArmor(Time.deltaTime);
+      RepairArmor(Time.deltaTime * armorRegenSpeed);
   }
 
   public void SetStats(CharacterEntry entry) {
