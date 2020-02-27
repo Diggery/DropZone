@@ -151,13 +151,17 @@ public class UnitControl : MonoBehaviour {
   public float MoveSpeed { get; set; }
   public float MaxHits { get; set; }
 
-  float hitpoints = 10;
+  float hitPoints = 10;
+  float armorPoints = 10;
+  bool armorRegen = true;
+  float armorCoolDown;
+  float armorRegenTime = 5;
 
   public bool IgnoreCover { get; set; }
   public bool Reckless { get; set; }
 
   public bool IsInjured {
-    get { return hitpoints < 3; }
+    get { return hitPoints < 3; }
   }
 
   public bool IsDead { get; set; }
@@ -215,15 +219,22 @@ public class UnitControl : MonoBehaviour {
     if (!IsDead) targeting.Process();
 
     if (animator) animator.SetFloat("Random", Random.value);
+
+    if (armorCoolDown > 0) {
+      armorCoolDown -= Time.deltaTime;
+    }
+    if (armorRegen && armorPoints < hitPoints && armorCoolDown < 0)
+      RepairArmor(Time.deltaTime);
   }
 
   public void SetStats(CharacterEntry entry) {
     characterEntry = entry;
     targeting.VisualRange = entry.visualRange;
     targeting.MeleeRange = 1.75f;
-    this.MaxHits = entry.hits;
-    this.hitpoints = entry.hits;
-    this.MoveSpeed = entry.speed;
+    MaxHits = entry.hits;
+    hitPoints = entry.hits;
+    armorPoints = entry.hits;
+    MoveSpeed = entry.speed;
     navAgent.speed = MoveSpeed;
   }
 
@@ -365,23 +376,38 @@ public class UnitControl : MonoBehaviour {
 
   public void TakeDamage(DamageInfo info) {
     targeting.TakeCover = true;
-    hitpoints -= info.damageAmount;
-    if (hitpoints < 0) {
+    float throughArmor = 0;
+    if (info.damageAmount > armorPoints) {
+      throughArmor = info.damageAmount - armorPoints;
+      armorPoints = 0;
+    } else {
+      armorPoints -= info.damageAmount;
+    }
+
+    hitPoints -= throughArmor;
+
+    if (hitPoints < 0) {
       Incapacitate(info);
     }
     if (!IsMoving && !InCover) {
       animator.SetInteger("AttackDirection", info.GetOrthagonalDirection(transform));
       animator.SetTrigger("Hit");
     }
-    if (PlayerPanel) PlayerPanel.SetHits(Mathf.FloorToInt(hitpoints));
+    if (PlayerPanel) PlayerPanel.SetHits(armorPoints, hitPoints);
     if (IsSearching) IsSearching = false;
+    armorCoolDown = armorRegenTime;
     damageTaken.Invoke(info.attacker);
+  }
+
+  public void RepairArmor(float amount) {
+    armorPoints = Mathf.Clamp(armorPoints + amount, 0, hitPoints);
+    if (PlayerPanel) PlayerPanel.SetHits(armorPoints, hitPoints);
   }
 
   public void TakeHealing(float amount) {
     Debug.Log("NICE: " + amount + " points of healing");
-    hitpoints = Mathf.Min(MaxHits, hitpoints + amount);
-    if (PlayerPanel) PlayerPanel.SetHits(Mathf.FloorToInt(hitpoints));
+    hitPoints = Mathf.Min(MaxHits, hitPoints + amount);
+    if (PlayerPanel) PlayerPanel.SetHits(armorPoints, hitPoints);
   }
 
   public void Incapacitate(DamageInfo info = null) {
@@ -390,7 +416,7 @@ public class UnitControl : MonoBehaviour {
     UnitControl attacker = info != null ? info.attacker : null;
     knockedOut.Invoke(attacker);
 
-    hitpoints = -1;
+    hitPoints = -1;
     SkeletonControl skeleton = GetComponent<SkeletonControl>();
     Vector3 direction = info == null ? Vector3.up : info.GetDamageDirection(transform);
     skeleton.SwitchToRagdoll(direction);
@@ -450,7 +476,7 @@ public class UnitControl : MonoBehaviour {
   public void Revive() {
     if (!IsDead) return;
     IsDead = false;
-    hitpoints = 1;
+    hitPoints = 1;
     SkeletonControl skeleton = GetComponent<SkeletonControl>();
     skeleton.SwitchToAnimator();
     navAgent.enabled = true;

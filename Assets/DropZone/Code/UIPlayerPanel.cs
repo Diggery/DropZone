@@ -26,6 +26,10 @@ public class UIPlayerPanel : MonoBehaviour {
   Vector2 inventoryOpenPos = new Vector2(0, 0);
   Vector2 inventoryClosedPos = new Vector2(0, -90);
 
+  public Color shieldColor = Color.blue;
+  public Color healthColor = Color.red;
+  public Color emptyColor = Color.black;
+
   bool inventoryOpen = false;
   public bool InventoryOpen {
     get { return inventoryOpen; }
@@ -74,7 +78,8 @@ public class UIPlayerPanel : MonoBehaviour {
 
     playerName.text = player.UnitType;
     SetMagazines(player.MainWeapon.Magazines);
-    SetMaxHits(Mathf.FloorToInt(player.MaxHits));
+    SetMaxHits(player.MaxHits);
+    SetHits(player.MaxHits, player.MaxHits);
     Debug.Log("player panel set");
 
     ClearInventory();
@@ -86,20 +91,38 @@ public class UIPlayerPanel : MonoBehaviour {
   public void SetMagazines(int amount, bool withEffect = false) {
     SetContainerContents(magazineContainer, magazinePrefab, amount, withEffect);
   }
-  public void SetMaxHits(int amount) {
-    SetContainerContents(hitsContainer, hitsPrefab, amount, false);
+
+  public void SetMaxHits(float amount) {
+    SetContainerContents(hitsContainer, hitsPrefab, Mathf.CeilToInt(amount), false);
   }
+
   public void SetAmmoCount(int amount) {
     magazineCounter.text = amount.ToString();
   }
-  public void SetHits(int amount) {
+  public void SetHits(float armorPoints, float hitPoints) {
+
+    int armor = Mathf.CeilToInt(armorPoints);
+    int hits = Mathf.CeilToInt(hitPoints);
+    for (int i = 0; i < hitsContainer.childCount; i++) {
+      int counter = hitsContainer.childCount - 1 - i;
+      Image hitMarker = hitsContainer.GetChild(counter).GetComponent<Image>();
+      if (i < armor) {
+        hitMarker.color = shieldColor;
+      } else if (i < hits) {
+        hitMarker.color = healthColor;
+      } else {
+        hitMarker.color = emptyColor;
+      }
+    }
   }
+
+
   public void MainWeaponEquipped() {
-
   }
+
   public void SideArmEquipped() {
-
   }
+
   public void Incapacitated() {
   }
 
