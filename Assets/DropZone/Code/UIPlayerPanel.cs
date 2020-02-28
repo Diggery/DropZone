@@ -84,6 +84,7 @@ public class UIPlayerPanel : MonoBehaviour {
 
     openInventory.onTick = openInventoryTick;
     openInventory.onFinish = openInventoryFinish;
+    inventoryClosedPos = inventoryGroup.anchoredPosition;
     flashPanel.onTickVector = color => panelBackground.color = color;
     flashMagazines.onTickVector = color => magazinePanel.color = color;
     playerName.text = player.UnitType;
@@ -197,7 +198,7 @@ public class UIPlayerPanel : MonoBehaviour {
 
   void openInventoryTick(float amount) {
     inventoryGroup.anchoredPosition = Vector2.Lerp(inventoryClosedPos, inventoryOpenPos, amount);
-    mainGroup.alpha = Mathf.Lerp(1.0f, 0.5f, amount);
+    mainGroup.alpha = Mathf.Lerp(1.0f, 0.15f, amount);
   }
   void openInventoryFinish(bool reversed) {
     inventoryGroup.anchoredPosition = reversed ? inventoryClosedPos : inventoryOpenPos;
