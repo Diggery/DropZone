@@ -8,17 +8,21 @@ public class UIPlayerPanel : MonoBehaviour {
 
   GameManager gameManager;
   UnitControl player;
+  Image panelBackground;
   CanvasGroup mainGroup;
-  Button portrait;
   TextMeshProUGUI playerName;
   Button mainWeapon;
   Button sideArm;
   RectTransform hitsContainer;
   GameObject hitsPrefab;
   RectTransform magazineInUse;
+  Image magazinePanel;
   TextMeshProUGUI magazineCounter;
   RectTransform magazineContainer;
   GameObject magazinePrefab;
+  Material lifeMeterMaterial;
+  Vector2 lifeMeterOffset = Vector2.zero;
+  Vector3 lifeMeterScale = Vector2.one;
 
   RectTransform inventoryGroup;
   RectTransform inventoryContainer;
@@ -44,14 +48,19 @@ public class UIPlayerPanel : MonoBehaviour {
     }
   }
   public Interpolator.LerpFloat openInventory;
+  public Interpolator.LerpColor flashPanel;
+  public Interpolator.LerpColor flashMagazines;
 
   public void Init(UnitControl target) {
     player = target;
     player.PlayerPanel = this;
     gameManager = GameManager.Instance;
+    panelBackground = transform.GetComponent<Image>();
     mainGroup = transform.Find("MainGroup").GetComponent<CanvasGroup>();
-    portrait = transform.Find("MainGroup/Portrait").GetComponent<Button>();
-    portrait.onClick.AddListener(SelectPlayer);
+    Image lifeMeterImage = transform.Find("MainGroup/LifeMeter").GetComponent<Image>();
+    lifeMeterMaterial = lifeMeterImage.material;
+    lifeMeterImage.GetComponent<Button>().onClick.AddListener(SelectPlayer);
+    lifeMeterOffset.x = Random.value;
     playerName = transform.Find("MainGroup/PlayerName").GetComponent<TextMeshProUGUI>();
     hitsContainer = transform.Find("MainGroup/Hits").GetComponent<RectTransform>();
     hitsPrefab = hitsContainer.GetChild(0).gameObject;
@@ -63,6 +72,7 @@ public class UIPlayerPanel : MonoBehaviour {
     sideArm = transform.Find("MainGroup/SideArm").GetComponent<Button>();
     sideArm.onClick.AddListener(SelectSideArm);
     magazineInUse = mainWeapon.transform.Find("Magazines/InUse").GetComponent<RectTransform>();
+    magazinePanel = mainWeapon.transform.Find("Magazines").GetComponent<Image>();
     magazineCounter = mainWeapon.transform.Find("Magazines/Counter").GetComponent<TextMeshProUGUI>();
     magazineContainer = mainWeapon.transform.Find("Magazines/Container").GetComponent<RectTransform>();
     magazinePrefab = magazineContainer.GetChild(0).gameObject;
@@ -72,10 +82,10 @@ public class UIPlayerPanel : MonoBehaviour {
     inventoryGroup.GetComponent<Button>().onClick.AddListener(() => InventoryOpen = !InventoryOpen);
     inventoryContainer = transform.Find("InventoryGroup/Inventory").GetComponent<RectTransform>();
 
-
     openInventory.onTick = openInventoryTick;
     openInventory.onFinish = openInventoryFinish;
-
+    flashPanel.onTickVector = color => panelBackground.color = color;
+    flashMagazines.onTickVector = color => magazinePanel.color = color;
     playerName.text = player.UnitType;
     SetMagazines(player.MainWeapon.Magazines);
     SetMaxHits(player.MaxHits);
@@ -88,7 +98,13 @@ public class UIPlayerPanel : MonoBehaviour {
     }
   }
 
+  void Update() {
+    lifeMeterOffset.x = (lifeMeterOffset.x + Time.deltaTime) % 1.0f;
+    lifeMeterMaterial.SetTextureOffset("_BaseLayer", lifeMeterOffset);
+  }
+
   public void SetMagazines(int amount, bool withEffect = false) {
+    Interpolator.Start(flashMagazines);
     SetContainerContents(magazineContainer, magazinePrefab, amount, withEffect);
   }
 
@@ -100,7 +116,7 @@ public class UIPlayerPanel : MonoBehaviour {
     magazineCounter.text = amount.ToString();
   }
   public void SetHits(float armorPoints, float hitPoints) {
-
+    if (armorPoints <= 0) Interpolator.Start(flashPanel);
     int armor = Mathf.CeilToInt(armorPoints);
     int hits = Mathf.CeilToInt(hitPoints);
     for (int i = 0; i < hitsContainer.childCount; i++) {
