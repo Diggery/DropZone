@@ -10,7 +10,7 @@ public class UIPlayerPanel : MonoBehaviour {
   UnitControl player;
 
   Image panelBackground;
-  Image panelHeader;
+  Image panelOverlay;
   CanvasGroup mainGroup;
   TextMeshProUGUI playerName;
   Button mainWeapon;
@@ -42,6 +42,7 @@ public class UIPlayerPanel : MonoBehaviour {
     set {
       if (inventoryOpen == value) return;
       inventoryOpen = value;
+      Debug.Log("Inventory " + value);
       if (inventoryOpen) {
         Interpolator.Start(openInventory);
       } else {
@@ -58,7 +59,7 @@ public class UIPlayerPanel : MonoBehaviour {
     player.PlayerPanel = this;
     gameManager = GameManager.Instance;
     panelBackground = transform.GetComponent<Image>();
-    panelHeader = transform.Find("MainGroup/Header").GetComponent<Image>();
+    panelOverlay = transform.Find("MainGroup").GetComponent<Image>();
     mainGroup = transform.Find("MainGroup").GetComponent<CanvasGroup>();
     Image lifeMeterImage = transform.Find("MainGroup/LifeMeter").GetComponent<Image>();
     lifeMeterMaterial = Instantiate(lifeMeterImage.material);
@@ -89,7 +90,7 @@ public class UIPlayerPanel : MonoBehaviour {
     openInventory.onTick = openInventoryTick;
     openInventory.onFinish = openInventoryFinish;
     inventoryClosedPos = inventoryGroup.anchoredPosition;
-    flashPanel.onTickVector = color => panelHeader.color = panelBackground.color = color;
+    flashPanel.onTickVector = color => panelOverlay.color = panelBackground.color = color;
     flashMagazines.onTickVector = color => magazinePanel.color = color;
     playerName.text = player.UnitType;
     SetMagazines(player.MainWeapon.Magazines);
