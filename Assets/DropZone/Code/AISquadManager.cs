@@ -19,7 +19,9 @@ public class AISquadManager : MonoBehaviour {
   public string unitType;
   public string teamTag = "Enemy";
   public bool autoFill = false;
+
   float morale = 0;
+  float moraleThreshold = 3;
   float penaltyDeath = 3;
   float penaltyInjury = 0.5f;
   List<AIBrain> units = new List<AIBrain>();
@@ -170,6 +172,6 @@ public class AISquadManager : MonoBehaviour {
 
   public void AdjustMorale(float amount) {
     morale += amount;
-    if (morale > 1) Retreat();
+    if (morale > moraleThreshold) Retreat();
   }
 }

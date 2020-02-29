@@ -36,6 +36,7 @@ public class Lootable : MonoBehaviour {
         if (currentLooter.PlayerPanel) currentLooter.PlayerPanel.InventoryOpen = true;
       } else {
         Interpolator.Reverse(uiTransition);
+        if (currentLooter.PlayerPanel) currentLooter.PlayerPanel.InventoryOpen = false;
       }
     }
   }

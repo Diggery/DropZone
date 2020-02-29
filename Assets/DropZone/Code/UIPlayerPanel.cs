@@ -8,7 +8,9 @@ public class UIPlayerPanel : MonoBehaviour {
 
   GameManager gameManager;
   UnitControl player;
+
   Image panelBackground;
+  Image panelOverlay;
   CanvasGroup mainGroup;
   TextMeshProUGUI playerName;
   Button mainWeapon;
@@ -40,6 +42,7 @@ public class UIPlayerPanel : MonoBehaviour {
     set {
       if (inventoryOpen == value) return;
       inventoryOpen = value;
+      Debug.Log("Inventory " + value);
       if (inventoryOpen) {
         Interpolator.Start(openInventory);
       } else {
@@ -56,9 +59,11 @@ public class UIPlayerPanel : MonoBehaviour {
     player.PlayerPanel = this;
     gameManager = GameManager.Instance;
     panelBackground = transform.GetComponent<Image>();
+    panelOverlay = transform.Find("MainGroup").GetComponent<Image>();
     mainGroup = transform.Find("MainGroup").GetComponent<CanvasGroup>();
     Image lifeMeterImage = transform.Find("MainGroup/LifeMeter").GetComponent<Image>();
-    lifeMeterMaterial = lifeMeterImage.material;
+    lifeMeterMaterial = Instantiate(lifeMeterImage.material);
+    lifeMeterImage.material = lifeMeterMaterial;
     lifeMeterImage.GetComponent<Button>().onClick.AddListener(SelectPlayer);
     lifeMeterOffset.x = Random.value;
     playerName = transform.Find("MainGroup/PlayerName").GetComponent<TextMeshProUGUI>();
@@ -85,13 +90,14 @@ public class UIPlayerPanel : MonoBehaviour {
     openInventory.onTick = openInventoryTick;
     openInventory.onFinish = openInventoryFinish;
     inventoryClosedPos = inventoryGroup.anchoredPosition;
-    flashPanel.onTickVector = color => panelBackground.color = color;
+    flashPanel.onTickVector = color => panelOverlay.color = panelBackground.color = color;
     flashMagazines.onTickVector = color => magazinePanel.color = color;
     playerName.text = player.UnitType;
     SetMagazines(player.MainWeapon.Magazines);
     SetMaxHits(player.MaxHits);
     SetHits(player.MaxHits, player.MaxHits);
     Debug.Log("player panel set");
+    Interpolator.Start(flashPanel);
 
     ClearInventory();
     foreach (string item in player.inventory) {
@@ -100,7 +106,7 @@ public class UIPlayerPanel : MonoBehaviour {
   }
 
   void Update() {
-    lifeMeterOffset.x = (lifeMeterOffset.x + Time.deltaTime) % 1.0f;
+    lifeMeterOffset.x = (lifeMeterOffset.x + (Time.deltaTime * lifeMeterScale.x)) % 1.0f;
     lifeMeterMaterial.SetTextureOffset("_BaseLayer", lifeMeterOffset);
   }
 
@@ -131,6 +137,14 @@ public class UIPlayerPanel : MonoBehaviour {
         hitMarker.color = emptyColor;
       }
     }
+
+    float amount = hitPoints / (float)hitsContainer.childCount;
+    Color meterColor = lifeMeterMaterial.color;
+    meterColor.a = Mathf.Lerp(1.0f, 0.25f, amount);
+    lifeMeterMaterial.color = meterColor;
+    lifeMeterScale.x = Mathf.Lerp(2.0f, 0.5f, amount) ;
+    lifeMeterMaterial.SetTextureScale("_BaseLayer", lifeMeterScale);
+
   }
 
 
