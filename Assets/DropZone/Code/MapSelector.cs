@@ -33,11 +33,14 @@ public class MapSelector : MonoBehaviour {
 
       if (isOpen && !wasOpen) {
         Interpolator.Start(labelTrans, "MapSelectorOpen");
-        GameTime.AutoPause("OpenMapSelector", GameTime.TimeSetting.SlowMo);
+        string target = inputControl.SelectedUnit ? inputControl.SelectedUnit.UnitType : "none";
+        GameTime.AutoPause( "OpenMapSelector",  GameTime.TimeSetting.SlowMo, target);
       }
       if (!isOpen && wasOpen) {
         Interpolator.Reverse(labelTrans, "MapSelectorClose");
-        GameTime.AutoPause("OpenMapSelector", GameTime.TimeSetting.Normal);
+        string target = inputControl.SelectedUnit ? inputControl.SelectedUnit.UnitType : "none";
+
+        GameTime.AutoPause( "OpenMapSelector",  GameTime.TimeSetting.Normal, target);
       }
     }
   }
@@ -76,7 +79,6 @@ public class MapSelector : MonoBehaviour {
   }
 
   public void SelectMapPos(Vector3 mapPos) {
-
     transform.position = mapPos + (Vector3.up * 0.1f);
 
     MapData.MapCell mapCell = gameManager.mapControl.GetMapCell(transform.position);

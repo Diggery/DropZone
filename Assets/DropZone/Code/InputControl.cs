@@ -159,7 +159,8 @@ public class InputControl : MonoBehaviour {
       gameManager.Units.Add(selected);
     }
 
-    if (SelectedUnit != selected) GameTime.AutoPause("SelectUnit", GameTime.TimeSetting.SlowMo);
+    if (SelectedUnit != selected) 
+      GameTime.AutoPause("SelectUnit", GameTime.TimeSetting.SlowMo, selected.UnitType);
 
     mapSelector.IsOpen = false;
     unitSelector.IsOpen = true;

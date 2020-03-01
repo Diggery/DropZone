@@ -29,8 +29,8 @@ public class UIPlayerPanel : MonoBehaviour {
   RectTransform inventoryGroup;
   RectTransform inventoryContainer;
 
-  Vector2 inventoryOpenPos = new Vector2(0, 0);
-  Vector2 inventoryClosedPos = new Vector2(0, -90);
+  Vector2 inventoryOpenPos = new Vector2(-280, 0);
+  Vector2 inventoryClosedPos = new Vector2(0, 0);
 
   public Color shieldColor = Color.blue;
   public Color healthColor = Color.red;
@@ -212,11 +212,12 @@ public class UIPlayerPanel : MonoBehaviour {
 
   void openInventoryTick(float amount) {
     inventoryGroup.anchoredPosition = Vector2.Lerp(inventoryClosedPos, inventoryOpenPos, amount);
+    mainGroup.transform.localScale = Vector3.Lerp(Vector3.one, Vector3.one * 0.75f, amount);
     mainGroup.alpha = Mathf.Lerp(1.0f, 0.15f, amount);
   }
   void openInventoryFinish(bool reversed) {
     inventoryGroup.anchoredPosition = reversed ? inventoryClosedPos : inventoryOpenPos;
-    mainGroup.alpha = reversed ? 1.0f : 0.5f;
+    mainGroup.alpha = reversed ? 1.0f : 0.15f;
   }
 
 }

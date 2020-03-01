@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+
+public class TimeModeChange : UnityEvent<GameTime.TimeSetting, string> { }
 
 public class GameTime : MonoBehaviour {
 
   public static GameTime Instance { get; private set; }
 
   public Dictionary<string, bool> timeConfig = new Dictionary<string, bool>();
+
+  public TimeModeChange modeChanged = new TimeModeChange();
 
   public void Init() {
     if (Instance == null) {
@@ -32,27 +37,7 @@ public class GameTime : MonoBehaviour {
   TimeSetting autoSetting = TimeSetting.Normal;
   TimeSetting manualSetting = TimeSetting.Normal;
 
-  static TimeSetting AutoSetting {
-    get {
-      return Instance.autoSetting;
-    }
-    set {
-      Instance.autoSetting = value;
-      if (ManualSetting.Equals(TimeSetting.Normal)) Instance.SetTime(value);
-    }
-  }
-
-  public static TimeSetting ManualSetting {
-    get {
-      return Instance.manualSetting;
-    }
-    set {
-      Instance.manualSetting = value;
-      Instance.SetTime(value);
-    }
-  }
-
-  void SetTime(TimeSetting setting) {
+  void SetTime(TimeSetting setting, string target) {
     switch (setting) {
       case TimeSetting.Normal:
         timeScaleGoal = 1.0f;
@@ -67,9 +52,9 @@ public class GameTime : MonoBehaviour {
         timeScaleGoal = 1.0f;
         break;
     }
+
+    modeChanged.Invoke(setting, target);
   }
-
-
 
   void Update() {
     currentDeltaTime = Time.realtimeSinceStartup - lastUpdateTime;
@@ -79,21 +64,29 @@ public class GameTime : MonoBehaviour {
     Time.timeScale = currentTimeScale;
   }
 
+  public static void AutoPause(string type, TimeSetting setting, string target) {
+    if (Instance.timeConfig.ContainsKey(type) && Instance.timeConfig[type]) {
+      Instance.autoSetting = setting;
+      if (Instance.manualSetting.Equals(TimeSetting.Normal))
+        Instance.SetTime(setting, target);
+    }
+  }
+
+  public static void AddListener(UnityAction<TimeSetting, string> newListener) {
+    Instance.modeChanged.AddListener(newListener);
+  }
+
   public static void TogglePause() {
     if (Instance.manualSetting.Equals(TimeSetting.Normal)) {
-      ManualSetting = TimeSetting.SlowMo;
+      Instance.manualSetting = TimeSetting.SlowMo;
       return;
     }
     if (Instance.manualSetting.Equals(TimeSetting.SlowMo)) {
-      ManualSetting = TimeSetting.Normal;
+      Instance.manualSetting = TimeSetting.Normal;
       return;
     }
+    Instance.SetTime(Instance.manualSetting, "User");
   }
-
-  public static void AutoPause(string type, TimeSetting setting) {
-    if (Instance.timeConfig.ContainsKey(type) && Instance.timeConfig[type]) AutoSetting = setting;
-  }
-
   public static void AutoPauseConfig(string type, bool setting) {
     Instance.timeConfig[type] = setting;
   }
