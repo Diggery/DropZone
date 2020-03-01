@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class TimeModeChange : UnityEvent<GameTime.TimeSetting, string> { }
+public class TimeModeChange : UnityEvent<GameTime.TimeSetting, string, string> { }
 
 public class GameTime : MonoBehaviour {
 
@@ -37,7 +37,7 @@ public class GameTime : MonoBehaviour {
   TimeSetting autoSetting = TimeSetting.Normal;
   TimeSetting manualSetting = TimeSetting.Normal;
 
-  void SetTime(TimeSetting setting, string target) {
+  void SetTime(TimeSetting setting, string target, string reason) {
     switch (setting) {
       case TimeSetting.Normal:
         timeScaleGoal = 1.0f;
@@ -53,7 +53,7 @@ public class GameTime : MonoBehaviour {
         break;
     }
 
-    modeChanged.Invoke(setting, target);
+    modeChanged.Invoke(setting, target, reason);
   }
 
   void Update() {
@@ -68,24 +68,22 @@ public class GameTime : MonoBehaviour {
     if (Instance.timeConfig.ContainsKey(type) && Instance.timeConfig[type]) {
       Instance.autoSetting = setting;
       if (Instance.manualSetting.Equals(TimeSetting.Normal))
-        Instance.SetTime(setting, target);
+        Instance.SetTime(setting, target, type);
     }
   }
 
-  public static void AddListener(UnityAction<TimeSetting, string> newListener) {
+  public static void AddListener(UnityAction<TimeSetting, string, string> newListener) {
     Instance.modeChanged.AddListener(newListener);
   }
 
   public static void TogglePause() {
+    Debug.Log("Toggle");
     if (Instance.manualSetting.Equals(TimeSetting.Normal)) {
       Instance.manualSetting = TimeSetting.SlowMo;
-      return;
-    }
-    if (Instance.manualSetting.Equals(TimeSetting.SlowMo)) {
+    } else if (Instance.manualSetting.Equals(TimeSetting.SlowMo)) {
       Instance.manualSetting = TimeSetting.Normal;
-      return;
     }
-    Instance.SetTime(Instance.manualSetting, "User");
+    Instance.SetTime(Instance.manualSetting, "user", "user");
   }
   public static void AutoPauseConfig(string type, bool setting) {
     Instance.timeConfig[type] = setting;

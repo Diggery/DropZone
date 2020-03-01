@@ -1639,6 +1639,38 @@ MonoBehaviour:
     container: {fileID: 0}
     startValue: 0
     endValue: 1
+  normalColor: {r: 0, g: 1, b: 0, a: 1}
+  pauseColor: {r: 1, g: 0, b: 0, a: 1}
+  pauseShift:
+    duration: 0.5
+    useGameTime: 1
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    container: {fileID: 0}
+    startValue: {r: 0, g: 0, b: 0, a: 1}
+    endValue: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1028367564
 GameObject:
   m_ObjectHideFlags: 0

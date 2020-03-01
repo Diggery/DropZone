@@ -13,6 +13,7 @@ public class UILayout : MonoBehaviour {
   RectTransform controls;
 
   CanvasGroup pauseControlsGroup;
+  Image pauseBackground;
   RectTransform pauseControls;
   TextMeshProUGUI pauseLabel;
   TextMeshProUGUI pauseReason;
@@ -22,7 +23,11 @@ public class UILayout : MonoBehaviour {
   public Sprite checkBoxEmpty;
   public Sprite checkBoxFilled;
 
-  public Interpolator.LerpFloat openOptions; 
+  public Interpolator.LerpFloat openOptions;
+
+  public Color normalColor = Color.green;
+  public Color pauseColor = Color.red;
+  public Interpolator.LerpColor pauseShift;
 
   string PauseLabel {
     set {
@@ -58,9 +63,10 @@ public class UILayout : MonoBehaviour {
     GameTime.AutoPauseConfig("SelectUnit", true);
     GameTime.AutoPauseConfig("OpenMapSelector", true);
     playerPanels = transform.Find("PlayerPanels").GetComponent<RectTransform>();
-    controls = transform.Find("Controls").GetComponent<RectTransform>();
 
+    controls = transform.Find("Controls").GetComponent<RectTransform>();
     pauseControlsGroup = transform.Find("Controls/PauseControls").GetComponent<CanvasGroup>();
+    pauseBackground = transform.Find("Controls/PauseControls").GetComponent<Image>();
     pauseControls = transform.Find("Controls/PauseControls").GetComponent<RectTransform>();
     pauseLabel = transform.Find("Controls/PauseControls/Label").GetComponent<TextMeshProUGUI>();
     pauseReason = transform.Find("Controls/PauseControls/Reason").GetComponent<TextMeshProUGUI>();
@@ -86,7 +92,7 @@ public class UILayout : MonoBehaviour {
     options.transform.localScale = Vector3.one;
     options.gameObject.SetActive(false);
 
-
+    pauseShift.onTickVector = (color) => pauseBackground.color = color;
     gameManager = GameManager.Instance;
     gameManager.SetUI(this);
   }
@@ -97,25 +103,33 @@ public class UILayout : MonoBehaviour {
     panel.GetComponent<UIPlayerPanel>().Init(player);
   }
 
-  void ModeChange(GameTime.TimeSetting setting, string target) {
-    Debug.Log("Mode Changer " + target);
+  void ModeChange(GameTime.TimeSetting setting, string target, string reason) {
+    Color backgroundColor = pauseColor;
     switch (setting) {
       case GameTime.TimeSetting.Normal:
         PauseLabel = "Real-Time";
         PauseReason = "Press to Pause";
+        backgroundColor = normalColor;
         break;
       case GameTime.TimeSetting.SlowMo:
         PauseLabel = "Tactical Pause";
-        if (target.Equals("auto")) {
+        if (target.Equals("user")) {
           PauseReason = "Press to Resume";
         } else {
-          PauseReason = "Waiting on command for " + target;
+          PauseReason = reason + ": Waiting on command for " + target;
         }
+        backgroundColor = pauseColor;
         break;
       case GameTime.TimeSetting.Stopped:
         PauseLabel = "Time Stopped";
+        backgroundColor = Color.black;
+
         break;
     }
+    pauseShift.startValue = pauseBackground.color;
+    pauseShift.endValue = backgroundColor;
+    Debug.Log("Setting color to " + backgroundColor.ToString());
+    Interpolator.Start(pauseShift);
   }
 
   void OnOptionsOpen(float amount) {
