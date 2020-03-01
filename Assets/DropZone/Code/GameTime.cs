@@ -43,7 +43,7 @@ public class GameTime : MonoBehaviour {
         timeScaleGoal = 1.0f;
         break;
       case TimeSetting.SlowMo:
-       timeScaleGoal = 0.05f;
+        timeScaleGoal = 0.05f;
         break;
       case TimeSetting.Stopped:
         timeScaleGoal = 0.0f;
@@ -66,6 +66,8 @@ public class GameTime : MonoBehaviour {
 
   public static void AutoPause(string type, TimeSetting setting, string target) {
     if (Instance.timeConfig.ContainsKey(type) && Instance.timeConfig[type]) {
+      Debug.Log("Autopausing on " + type);
+
       Instance.autoSetting = setting;
       if (Instance.manualSetting.Equals(TimeSetting.Normal))
         Instance.SetTime(setting, target, type);
@@ -77,15 +79,18 @@ public class GameTime : MonoBehaviour {
   }
 
   public static void TogglePause() {
-    Debug.Log("Toggle");
-    if (Instance.manualSetting.Equals(TimeSetting.Normal)) {
+    if (Instance.autoSetting != TimeSetting.Normal) {
+      Instance.manualSetting = TimeSetting.Normal;
+    } else if (Instance.manualSetting.Equals(TimeSetting.Normal)) {
       Instance.manualSetting = TimeSetting.SlowMo;
     } else if (Instance.manualSetting.Equals(TimeSetting.SlowMo)) {
       Instance.manualSetting = TimeSetting.Normal;
     }
+
     Instance.SetTime(Instance.manualSetting, "user", "user");
   }
   public static void AutoPauseConfig(string type, bool setting) {
+    Debug.Log("setting up " + type + " to " + setting);
     Instance.timeConfig[type] = setting;
   }
 }

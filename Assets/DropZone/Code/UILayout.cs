@@ -60,8 +60,7 @@ public class UILayout : MonoBehaviour {
 
   void Start() {
     
-    GameTime.AutoPauseConfig("SelectUnit", true);
-    GameTime.AutoPauseConfig("OpenMapSelector", true);
+
     playerPanels = transform.Find("PlayerPanels").GetComponent<RectTransform>();
 
     controls = transform.Find("Controls").GetComponent<RectTransform>();
@@ -128,7 +127,6 @@ public class UILayout : MonoBehaviour {
     }
     pauseShift.startValue = pauseBackground.color;
     pauseShift.endValue = backgroundColor;
-    Debug.Log("Setting color to " + backgroundColor.ToString());
     Interpolator.Start(pauseShift);
   }
 
@@ -151,6 +149,7 @@ public class UILayout : MonoBehaviour {
   }
 
   void SetOption(string settingName, Image checkBox, bool settingValue) {
+    Debug.Log("Setting option " + settingName + " to " + settingValue);
     PlayerPrefs.SetInt(settingName, settingValue ? 1 : 0);
     GameTime.AutoPauseConfig(settingName, settingValue);
     checkBox.sprite = settingValue ? checkBoxFilled : checkBoxEmpty;
@@ -161,6 +160,7 @@ public class UILayout : MonoBehaviour {
     Debug.Log(optionsContainer.name);
     foreach(Transform option in optionsContainer) {
       bool setting = PlayerPrefs.GetInt(option.name, 0) != 0;
+      Debug.Log("Option " + option.name + " is " + PlayerPrefs.GetInt(option.name, 0));
       Toggle optionToggle = option.gameObject.AddComponent<Toggle>();
       optionToggle.isOn = setting;
       Image checkBox = option.transform.Find("CheckBox").GetComponent<Image>();

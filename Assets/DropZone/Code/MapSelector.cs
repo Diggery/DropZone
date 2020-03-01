@@ -34,13 +34,13 @@ public class MapSelector : MonoBehaviour {
       if (isOpen && !wasOpen) {
         Interpolator.Start(labelTrans, "MapSelectorOpen");
         string target = inputControl.SelectedUnit ? inputControl.SelectedUnit.UnitType : "none";
-        GameTime.AutoPause( "OpenMapSelector",  GameTime.TimeSetting.SlowMo, target);
+        GameTime.AutoPause("MapSelected", GameTime.TimeSetting.SlowMo, target);
       }
       if (!isOpen && wasOpen) {
         Interpolator.Reverse(labelTrans, "MapSelectorClose");
         string target = inputControl.SelectedUnit ? inputControl.SelectedUnit.UnitType : "none";
 
-        GameTime.AutoPause( "OpenMapSelector",  GameTime.TimeSetting.Normal, target);
+        GameTime.AutoPause("MapSelected", GameTime.TimeSetting.Normal, target);
       }
     }
   }
@@ -98,7 +98,7 @@ public class MapSelector : MonoBehaviour {
 
     newPathLine.positionCount = path.corners.Length;
     Vector3[] pathCorners = path.corners;
-    for (int i = 0; i < pathCorners.Length; i++)pathCorners[i] += Vector3.up * 0.1f;
+    for (int i = 0; i < pathCorners.Length; i++) pathCorners[i] += Vector3.up * 0.1f;
     newPathLine.SetPositions(pathCorners);
   }
 
@@ -114,7 +114,7 @@ public class MapSelector : MonoBehaviour {
   }
 
   void OnLabelLerp(float amount) {
-    if (!confirmLabel.gameObject.activeSelf)confirmLabel.gameObject.SetActive(true);
+    if (!confirmLabel.gameObject.activeSelf) confirmLabel.gameObject.SetActive(true);
     confirmLabel.localScale = Vector2.Lerp(Vector2.zero, Vector2.one, amount);
     frame.localPosition = Vector3.Lerp(Vector3.up * -2, Vector3.up * 0.95f, amount);
   }
