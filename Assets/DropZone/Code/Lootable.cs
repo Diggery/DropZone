@@ -18,7 +18,7 @@ public class Lootable : MonoBehaviour {
   bool isOpen = false;
   bool IsOpen {
     get { return isOpen; }
-    set { 
+    set {
       isOpen = value;
       UI.SetActive(isOpen);
     }
@@ -32,9 +32,17 @@ public class Lootable : MonoBehaviour {
       unlocked = value;
       contentsGroup.interactable = unlocked;
       if (unlocked) {
+        unlockIcon.enabled = false;
+        openIcon.enabled = false;
+        closeIcon.enabled = true;
         Interpolator.Start(uiTransition);
+        Interpolator.Start(buttonFlash);
+        loadingBar.enabled = false;
         if (currentLooter.PlayerPanel) currentLooter.PlayerPanel.InventoryOpen = true;
       } else {
+        unlockIcon.enabled = false;
+        openIcon.enabled = true;
+        closeIcon.enabled = false;
         Interpolator.Reverse(uiTransition);
         if (currentLooter.PlayerPanel) currentLooter.PlayerPanel.InventoryOpen = false;
       }
@@ -46,10 +54,13 @@ public class Lootable : MonoBehaviour {
 
   RectTransform uiBackground;
   Button unlockButton;
+  Image unlockIcon;
+  Image openIcon;
+  Image closeIcon;
   CanvasGroup contentsGroup;
-
+  Image loadingBar;
   public string[] contents;
-  public enum ValueLevel { High, Medium, Low };
+  public enum ValueLevel { High, Medium, Low }
   public ValueLevel valueLevel;
   public bool autoFill;
   int contentsSize = 6;
@@ -98,10 +109,24 @@ public class Lootable : MonoBehaviour {
 
     uiBackground = UI.transform.Find("Background").GetComponent<RectTransform>();
     unlockButton = UI.transform.Find("Background/Unlock").GetComponent<Button>();
+    Image unlockImage = unlockButton.transform.GetComponent<Image>();
     unlockButton.onClick.AddListener(UnlockLootable);
+
+    unlockIcon = UI.transform.Find("Background/Unlock/UnlockIcon").GetComponent<Image>();
+    openIcon = UI.transform.Find("Background/Unlock/OpenIcon").GetComponent<Image>();
+    closeIcon = UI.transform.Find("Background/Unlock/CloseIcon").GetComponent<Image>();
+
+    unlockIcon.enabled = true;
+    openIcon.enabled = false;
+    closeIcon.enabled = false;
+
     contentsGroup = UI.transform.Find("Background/Contents").GetComponent<CanvasGroup>();
     contentsGroup.alpha = 0;
     contentsGroup.interactable = false;
+
+    loadingBar = UI.transform.Find("Background/Unlock/LoadingBar").GetComponent<Image>();
+    loadingBar.enabled = false;
+
     UI.SetActive(false);
 
     itemPrefab = gameManager.GetPrefab("LootItem");
@@ -115,6 +140,7 @@ public class Lootable : MonoBehaviour {
     UI.transform.rotation = viewCamera.rotation;
     if (currentLooter && currentLooter.IsSearching && unlockTimer > 0) {
       unlockTimer -= Time.deltaTime;
+      loadingBar.fillAmount = unlockTimer / unlockTime;
       if (unlockTimer < 0) Unlocked = true;
     }
   }
@@ -122,7 +148,7 @@ public class Lootable : MonoBehaviour {
   public bool CheckPosition(Vector3 checkPos, out Lootable thisLootable) {
     thisLootable = this;
     bool isLootable = false;
-    foreach(Vector3 pos in lootPositions) {
+    foreach (Vector3 pos in lootPositions) {
       if (Vector3.Distance(checkPos, pos) < 0.25f) isLootable = true;
     }
     return isLootable;
@@ -143,10 +169,10 @@ public class Lootable : MonoBehaviour {
     for (int i = 0; i < 4; i++) {
       Vector3 startPos = transform.position + (Vector3.up * 1f);
       Vector3 endPos = startPos + (Quaternion.AngleAxis(90 * i, Vector3.up) * Vector3.forward);
-      
+
       if (Physics.Linecast(startPos, endPos, out RaycastHit hit, uiMask)) {
         if (hit.transform.root.tag.Equals("Player")) {
-          if(!hit.transform.root.name.Equals(looter.gameObject.name)) {
+          if (!hit.transform.root.name.Equals(looter.gameObject.name)) {
             stillInUse = true;
           }
         }
@@ -179,6 +205,8 @@ public class Lootable : MonoBehaviour {
         Unlocked = true;
       } else {
         unlockTimer = unlockTime;
+        loadingBar.fillAmount = 0;
+        loadingBar.enabled = true;
       }
       if (currentLooter) currentLooter.IsSearching = true;
     }
