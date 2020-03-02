@@ -36,7 +36,6 @@ public class Lootable : MonoBehaviour {
         openIcon.enabled = false;
         closeIcon.enabled = true;
         Interpolator.Start(uiTransition);
-        Interpolator.Start(buttonFlash);
         loadingBar.enabled = false;
         if (currentLooter.PlayerPanel) currentLooter.PlayerPanel.InventoryOpen = true;
       } else {
