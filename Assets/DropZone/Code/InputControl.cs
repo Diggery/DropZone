@@ -31,6 +31,21 @@ public class InputControl : MonoBehaviour {
     private set;
   }
 
+  enum CursorState { Normal, Select, Help }
+  void SetCursor(CursorState mode) {
+    switch (mode) {
+      case CursorState.Normal:
+        Cursor.SetCursor(gameManager.cursorNormal, new Vector2(9, 0), CursorMode.Auto);
+        break;
+      case CursorState.Select:
+        Cursor.SetCursor(gameManager.cursorSelect, new Vector2(16, 16), CursorMode.Auto);
+        break;
+      case CursorState.Help:
+        Cursor.SetCursor(gameManager.cursorHelp, new Vector2(16, 16), CursorMode.Auto);
+        break;
+    }
+  }
+
   public InputControl Init() {
     mainCamera = Camera.main;
     CameraControl = mainCamera.transform.root.GetComponent<CameraControl>();
@@ -41,6 +56,7 @@ public class InputControl : MonoBehaviour {
     unitSelector = Instantiate(gameManager.GetPrefab("UnitSelector")).GetComponent<UnitSelector>();
     unitSelector.Init(this);
     _ = new OnModifierMode(onModifierMode);
+    SetCursor(CursorState.Normal);
     return this;
   }
 
@@ -48,7 +64,6 @@ public class InputControl : MonoBehaviour {
   void Update() {
     if (mouseLeftInProgress) mouseLeftClickTime += GameTime.DeltaTime;
     if (mouseRightInProgress) mouseRightClickTime += GameTime.DeltaTime;
-
 
     //handle left mouse button
     if (Input.GetMouseButtonDown(0)) {
@@ -71,7 +86,7 @@ public class InputControl : MonoBehaviour {
     }
 
     if (Input.GetMouseButtonUp(0)) {
-      if (mouseLeftInProgress) {  //clicked on the floor
+      if (mouseLeftInProgress) { //clicked on the floor
         if (SelectedUnit) {
           mapSelector.SelectMapPos(mapControl.GetCellPos(mouseLeftDownPos));
         }
@@ -139,7 +154,6 @@ public class InputControl : MonoBehaviour {
       onModifierMode(KeyCode.LeftShift, false);
   }
 
-
   public void SelectUnit(UnitControl selected) {
 
     foreach (UnitControl unit in gameManager.Units) {
@@ -159,7 +173,7 @@ public class InputControl : MonoBehaviour {
       gameManager.Units.Add(selected);
     }
 
-    if (SelectedUnit != selected) 
+    if (SelectedUnit != selected)
       GameTime.AutoPause("PlayerSelected", GameTime.TimeSetting.SlowMo, selected.UnitType);
 
     mapSelector.IsOpen = false;
@@ -177,7 +191,6 @@ public class InputControl : MonoBehaviour {
     SelectedUnit.MoveTo(mapPos);
   }
 
-
   public bool GetTerrainIntersection(out Vector3 mapPos) {
     Ray ray = mainCamera.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0.0f));
     LayerMask terrainMask = LayerMask.GetMask("Terrain");
@@ -185,8 +198,6 @@ public class InputControl : MonoBehaviour {
     mapPos = didHit ? hit.point : Vector3.zero;
     return didHit;
   }
-
-
 
   void onModifierMode(KeyCode key, bool setting) {
     switch (key) {
@@ -208,6 +219,5 @@ public class InputControl : MonoBehaviour {
     EventSystem.current.RaycastAll(eventData, results);
     return results[0].gameObject;
   }
-
 
 }
