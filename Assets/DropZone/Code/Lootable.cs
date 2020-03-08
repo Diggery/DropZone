@@ -15,12 +15,20 @@ public class Lootable : MonoBehaviour {
   Vector2 uiClosedSize = new Vector2(128, 16);
   public Interpolator.LerpFloat uiTransition;
 
-  bool isOpen = false;
-  bool IsOpen {
-    get { return isOpen; }
+  bool isActive = false;
+  bool IsActive {
+    get { return isActive; }
     set {
-      isOpen = value;
-      UI.SetActive(isOpen);
+      isActive = value;
+      if (isActive) {
+        UI.SetActive(true);
+      } else {
+        if (Unlocked) {
+          Unlocked = false;
+        } else {
+          UI.SetActive(true);
+        }
+      }
     }
   }
 
@@ -48,7 +56,7 @@ public class Lootable : MonoBehaviour {
     }
   }
 
-  float unlockTime = 10f;
+  float unlockTime = 1f;
   float unlockTimer = 0;
 
   RectTransform uiBackground;
@@ -154,30 +162,13 @@ public class Lootable : MonoBehaviour {
   }
 
   public void StartLooting(UnitControl looter) {
-    IsOpen = true;
+    IsActive = true;
     currentLooter = looter;
   }
 
-  public void CancelLooting() {
-    Unlocked = false;
-  }
-
   public void DoneLooting(UnitControl looter) {
-    LayerMask uiMask = LayerMask.GetMask("UI");
-    bool stillInUse = false;
-    for (int i = 0; i < 4; i++) {
-      Vector3 startPos = transform.position + (Vector3.up * 1f);
-      Vector3 endPos = startPos + (Quaternion.AngleAxis(90 * i, Vector3.up) * Vector3.forward);
-
-      if (Physics.Linecast(startPos, endPos, out RaycastHit hit, uiMask)) {
-        if (hit.transform.root.tag.Equals("Player")) {
-          if (!hit.transform.root.name.Equals(looter.gameObject.name)) {
-            stillInUse = true;
-          }
-        }
-      }
-    }
-    if (!stillInUse) IsOpen = false;
+    Debug.Log("Done Looting");
+    if (!InUse) IsActive = false;
   }
 
   public bool AddItem(string itemName) {
@@ -197,6 +188,8 @@ public class Lootable : MonoBehaviour {
 
   void UnlockLootable() {
     if (Unlocked) {
+      Debug.Log("Unlocked");
+
       Unlocked = false;
       if (currentLooter) currentLooter.IsSearching = false;
     } else {
@@ -213,12 +206,11 @@ public class Lootable : MonoBehaviour {
 
   void OnUITransitionTick(float amount) {
     uiBackground.sizeDelta = Vector2.Lerp(uiClosedSize, uiOpenSize, amount);
-    contentsGroup.alpha = amount;
   }
 
   void OnUITransitionFinished(bool reversed) {
     uiBackground.sizeDelta = reversed ? uiClosedSize : uiOpenSize;
     contentsGroup.alpha = reversed ? 0 : 1;
-    if (reversed && IsOpen && !InUse) IsOpen = false;
+    if (reversed && !InUse && !IsActive) UI.SetActive(false);
   }
 }

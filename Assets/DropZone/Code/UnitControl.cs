@@ -50,10 +50,10 @@ public class UnitControl : MonoBehaviour {
 
       if (value) {
         animator.SetTrigger("Search");
-        FacePosition(CurrentLootable.transform.position);
+        if (CurrentLootable)
+          FacePosition(CurrentLootable.transform.position);
       } else {
-        CurrentLootable.CancelLooting();
-        CurrentLootable = null;
+        if (CurrentLootable) CurrentLootable.DoneLooting(this);
       }
 
       isSearching = value;
@@ -242,6 +242,8 @@ public class UnitControl : MonoBehaviour {
 
   public void MoveTo(Vector3 movePos) {
     if (gameObject.tag.Equals("Player") && CurrentLootable) {
+      IsSearching = false;
+
       CurrentLootable.DoneLooting(this);
       CurrentLootable = null;
     }

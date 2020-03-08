@@ -42,7 +42,6 @@ public class UIPlayerPanel : MonoBehaviour {
     set {
       if (inventoryOpen == value) return;
       inventoryOpen = value;
-      Debug.Log("Inventory " + value);
       if (inventoryOpen) {
         Interpolator.Start(openInventory);
       } else {
