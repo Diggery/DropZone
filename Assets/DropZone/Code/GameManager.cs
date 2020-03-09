@@ -86,7 +86,7 @@ public class GameManager : MonoBehaviour {
     Lootable nearbyLootable = null;
     foreach(Lootable lootable in lootables) {
       if (lootable.CheckPosition(pos, out nearbyLootable)) {
-        lootable.StartLooting(looter);
+        lootable.StartInteracting(looter);
       }
     }
     return nearbyLootable;

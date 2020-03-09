@@ -208,10 +208,10 @@ public class SkeletonControl : MonoBehaviour {
 
 
     Quaternion oldRot = skeletonData.rootTransform.rotation;
-    Vector3 headingDir = skeletonData.rootTransform.right;
+    Vector3 headingDir = skeletonData.rootTransform.forward;
     headingDir.y = 0;
     headingDir.Normalize();
-    transform.rotation = Quaternion.LookRotation(headingDir) * Quaternion.AngleAxis(-90, Vector3.up);
+    transform.rotation = Quaternion.LookRotation(headingDir);// * Quaternion.AngleAxis(-90, Vector3.up);
     skeletonData.rootTransform.rotation = oldRot;
 
     skeletonData.rootStoredPosition = skeletonData.rootTransform.position;
@@ -222,7 +222,7 @@ public class SkeletonControl : MonoBehaviour {
     animator.enabled = true;
 
     float forwardDotUp = Vector3.Dot(Vector3.up, skeletonData.rootTransform.up);
-    animator.SetTrigger((forwardDotUp > 0) ? "StandUp_Front" : "StandUp_Back");
+    animator.SetTrigger((forwardDotUp < 0) ? "StandUp_Front" : "StandUp_Back");
     DisableColliders();
     Rigidbody[] rigidbodies = root.GetComponentsInChildren<Rigidbody>();
     foreach (Rigidbody currentRigidbody in rigidbodies) {

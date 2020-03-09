@@ -157,7 +157,6 @@ public class UILayout : MonoBehaviour {
 
   void SetUpOptions() {
     Transform optionsContainer = options.transform.Find("OptionContainer");
-    Debug.Log(optionsContainer.name);
     foreach(Transform option in optionsContainer) {
       bool setting = PlayerPrefs.GetInt(option.name, 0) != 0;
       Toggle optionToggle = option.gameObject.AddComponent<Toggle>();

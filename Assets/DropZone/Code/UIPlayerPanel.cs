@@ -190,8 +190,9 @@ public class UIPlayerPanel : MonoBehaviour {
 
   void UseItem(Button buttonClicked) {
     Debug.Log("Using " + buttonClicked.name);
-    if (player.CurrentLootable) {
-      if (player.CurrentLootable.AddItem(buttonClicked.name)) {
+    if (player.CurrentInteractable && player.CurrentInteractable.IsContainer) {
+      Lootable lootable = (Lootable)player.CurrentInteractable;
+      if (lootable.AddItem(buttonClicked.name)) {
         Destroy(buttonClicked.gameObject);
         player.RemoveLoot(buttonClicked.name);
       }

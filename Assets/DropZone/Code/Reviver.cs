@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Reviver : MonoBehaviour {
+public class Reviver : Interactable {
 
   GameObject UI;
   Transform viewCamera;
   UnitControl helper;
   UnitControl victim;
 
-  bool isActive = false;
-  bool IsActive {
-    get { return isActive; }
+  bool isOpen = false;
+  bool IsOpen {
+    get { return isOpen; }
     set {
-      isActive = value;
+      isOpen = value;
       UI.SetActive(true);
     }
   }
@@ -26,25 +26,23 @@ public class Reviver : MonoBehaviour {
   Button reviveButton;
   Image loadingBar;
 
-  public Reviver(UnitControl helper, UnitControl victim) {
-    this.helper = helper;
+  public Reviver Init(UnitControl victim) {
     this.victim = victim;
 
-    GameObject uiPrefab = GameManager.Instance.GetPrefab("LootableUI");
+    GameObject uiPrefab = GameManager.Instance.GetPrefab("ReviverUI");
     UI = Instantiate(uiPrefab, transform);
     UI.transform.localPosition = Vector3.up;
 
     viewCamera = Camera.main.transform;
 
-    uiBackground = UI.transform.Find("Background").GetComponent<RectTransform>();
-    reviveButton = UI.transform.Find("Background/ReviveButton").GetComponent<Button>();
+    reviveButton = UI.transform.Find("ReviveButton").GetComponent<Button>();
     reviveButton.onClick.AddListener(StartRevive);
 
-    loadingBar = UI.transform.Find("Background/ReviveButton/LoadingBar").GetComponent<Image>();
+    loadingBar = UI.transform.Find("ReviveButton/LoadingBar").GetComponent<Image>();
     loadingBar.enabled = false;
 
     UI.SetActive(false);
-
+    return this;
   }
 
   void Update() {
@@ -56,12 +54,19 @@ public class Reviver : MonoBehaviour {
     }
   }
 
-  public void StartRevive() {
+  public override void StartInteracting(UnitControl helper) {
+    this.helper = helper;
+    IsOpen = true;
+  }
 
+  public void StartRevive() {
+    reviveTimer = reviveTime;
+    loadingBar.fillAmount = 0;
+    loadingBar.enabled = true;
   }
 
   public void FinishRevive() {
-
+    victim.Revive();
   }
 
 }
