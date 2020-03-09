@@ -31,6 +31,9 @@ public class GameManager : MonoBehaviour {
     get { return units; }
   }
 
+  public Texture2D cursorNormal;
+  public Texture2D cursorSelect;
+  public Texture2D cursorHelp;
 
   void Awake() {
     CreateInstance();
