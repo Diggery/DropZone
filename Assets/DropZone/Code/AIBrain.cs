@@ -122,7 +122,7 @@ public class AIBrain : MonoBehaviour {
   }
 
   public bool MoveToSafeSpot(Vector3 position) {
-    Debug.Log(gameObject.name + " is moving to safe spot");
+  //  Debug.Log(gameObject.name + " is moving to safe spot");
 
     bool hasPosition = mapControl.FindSafePos(position, targeting.VisualRange, unitControl, targeting.VisualRange, out Vector3 safePos);
     if (hasPosition) {
@@ -133,7 +133,7 @@ public class AIBrain : MonoBehaviour {
   }
 
   public bool MoveToCover() {
-    Debug.Log(gameObject.name + " is moving to cover");
+   // Debug.Log(gameObject.name + " is moving to cover");
     bool hasPosition = mapControl.FindSafePos(transform.position, targeting.VisualRange, unitControl, targeting.VisualRange, out Vector3 safePos);
     if (hasPosition) {
       MoveTo(safePos);
@@ -144,7 +144,7 @@ public class AIBrain : MonoBehaviour {
   }
 
   public bool MoveToFiringPosition(Vector3 targetPosition) {
-    Debug.Log(gameObject.name + " is moving to firing position");
+    //Debug.Log(gameObject.name + " is moving to firing position");
 
     bool hasPosition = mapControl.FindFiringPosition(transform.position, targeting.VisualRange, unitControl, targetPosition, false, out Vector3 position);
     if (hasPosition) {

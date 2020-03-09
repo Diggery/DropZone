@@ -67,7 +67,6 @@ public class GameManager : MonoBehaviour {
   }
 
   public void AddPlayer(UnitControl player) {
-    Debug.Log("Adding " + player.UnitType);
     UnitTypes.Add("Player");
     playerManager.Add(player);
     uiLayout.AddPlayerPanel(player);

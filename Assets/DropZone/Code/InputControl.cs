@@ -131,8 +131,8 @@ public class InputControl : MonoBehaviour {
     if (Input.GetKey(KeyCode.S)) CameraControl.Move(Vector3.back);
     if (Input.GetKey(KeyCode.D)) CameraControl.Move(Vector3.right);
 
-    if (Input.GetKeyUp(KeyCode.Z) && SelectedUnit) SelectedUnit.DrawMainWeapon();
-    if (Input.GetKeyUp(KeyCode.X) && SelectedUnit) SelectedUnit.DrawSideArm();
+    if ((Input.GetAxis("SelectSideArm") != 0) && SelectedUnit) SelectedUnit.DrawSideArm();
+    if ((Input.GetAxis("SelectMainWeapon") != 0) && SelectedUnit) SelectedUnit.DrawMainWeapon();
 
     if (Input.GetKeyUp(KeyCode.Space)) GameTime.TogglePause();
 
@@ -188,11 +188,13 @@ public class InputControl : MonoBehaviour {
   }
 
   public void HoverEnterUnit(PointerEventData hoverEvent) {
-    Debug.Log(hoverEvent.pointerEnter.transform.root.name);
+    UnitControl unit = hoverEvent.pointerEnter.transform.root.GetComponent<UnitControl>();
+    bool showHelpCursor = unit && unit.IsDead && SelectedUnit && SelectedUnit.HasMedkit;
+    SetCursor(showHelpCursor ? CursorState.Help : CursorState.Select);
   }
 
   public void HoverExitUnit(PointerEventData hoverEvent) {
-    Debug.Log(hoverEvent.pointerEnter.transform.root.name + " exit");
+    SetCursor(CursorState.Normal);
   }
 
   public void MoveSelectedUnit(Vector3 mapPos) {

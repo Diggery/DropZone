@@ -22,7 +22,6 @@ MonoBehaviour:
   visualRange: 20
   hits: 4
   inventory:
-  - Hello
+  - Medkit
   - mad
-  - jkf
   maxInventory: 6

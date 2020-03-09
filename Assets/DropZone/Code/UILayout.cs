@@ -45,7 +45,6 @@ public class UILayout : MonoBehaviour {
   bool OptionsMenuOpen {
     get { return optionsMenuOpen; }
     set {
-      Debug.Log("Opening: " + value);
       if (optionsMenuOpen == value) return;
       options.gameObject.SetActive(true);
       pauseControls.gameObject.SetActive(true);
@@ -59,7 +58,6 @@ public class UILayout : MonoBehaviour {
   }
 
   void Start() {
-  
     playerPanels = transform.Find("PlayerPanels").GetComponent<RectTransform>();
 
     controls = transform.Find("Controls").GetComponent<RectTransform>();
@@ -68,8 +66,12 @@ public class UILayout : MonoBehaviour {
     pauseControls = transform.Find("Controls/PauseControls").GetComponent<RectTransform>();
     pauseLabel = transform.Find("Controls/PauseControls/Label").GetComponent<TextMeshProUGUI>();
     pauseReason = transform.Find("Controls/PauseControls/Reason").GetComponent<TextMeshProUGUI>();
+
+    Button pauseButton = pauseControlsGroup.GetComponent<Button>();
+    pauseButton.onClick.AddListener(() => GameTime.TogglePause());
+
     Button optionsButton = 
-      transform.Find("Controls/PauseControls/OptionsButton/Button").GetComponent<Button>();
+      transform.Find("Controls/PauseControls/OptionsButton").GetComponent<Button>();
     optionsButton.onClick.AddListener(() => OptionsMenuOpen = true);
 
     optionsGroup = transform.Find("Controls/Options").GetComponent<CanvasGroup>();
@@ -148,7 +150,6 @@ public class UILayout : MonoBehaviour {
   }
 
   void SetOption(string settingName, Image checkBox, bool settingValue) {
-    Debug.Log("Setting option " + settingName + " to " + settingValue);
     PlayerPrefs.SetInt(settingName, settingValue ? 1 : 0);
     GameTime.AutoPauseConfig(settingName, settingValue);
     checkBox.sprite = settingValue ? checkBoxFilled : checkBoxEmpty;
@@ -159,7 +160,6 @@ public class UILayout : MonoBehaviour {
     Debug.Log(optionsContainer.name);
     foreach(Transform option in optionsContainer) {
       bool setting = PlayerPrefs.GetInt(option.name, 0) != 0;
-      Debug.Log("Option " + option.name + " is " + PlayerPrefs.GetInt(option.name, 0));
       Toggle optionToggle = option.gameObject.AddComponent<Toggle>();
       optionToggle.isOn = setting;
       Image checkBox = option.transform.Find("CheckBox").GetComponent<Image>();

@@ -42,6 +42,14 @@ public class UnitControl : MonoBehaviour {
 
   public Lootable CurrentLootable { get; set; }
 
+  public bool HasMedkit {
+    get {
+      foreach (var item in inventory)
+        if (item.Contains("Medkit")) return true;
+      return false;
+    }
+  }
+
   bool isSearching = false;
   public bool IsSearching {
     get { return isSearching; }

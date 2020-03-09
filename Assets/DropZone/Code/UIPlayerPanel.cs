@@ -43,8 +43,10 @@ public class UIPlayerPanel : MonoBehaviour {
       if (inventoryOpen == value) return;
       inventoryOpen = value;
       if (inventoryOpen) {
+        GameTime.AutoPause("InventoryOpened", GameTime.TimeSetting.SlowMo, player.UnitType);
         Interpolator.Start(openInventory);
       } else {
+        GameTime.AutoPause("InventoryOpened", GameTime.TimeSetting.Normal, player.UnitType);
         Interpolator.Reverse(openInventory);
       }
     }
@@ -95,7 +97,6 @@ public class UIPlayerPanel : MonoBehaviour {
     SetMagazines(player.MainWeapon.Magazines);
     SetMaxHits(player.MaxHits);
     SetHits(player.MaxHits, player.MaxHits);
-    Debug.Log("player panel set");
     Interpolator.Start(flashPanel);
 
     ClearInventory();

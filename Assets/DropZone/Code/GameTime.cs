@@ -90,7 +90,6 @@ public class GameTime : MonoBehaviour {
     Instance.SetTime(Instance.manualSetting, "user", "user");
   }
   public static void AutoPauseConfig(string type, bool setting) {
-    Debug.Log("setting up " + type + " to " + setting);
     Instance.timeConfig[type] = setting;
   }
 }

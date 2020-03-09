@@ -2632,6 +2632,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 42fc17303711eb24d8c2d72b633bbc92, type: 2}
   playerManager: {fileID: 0}
   aiOverlord: {fileID: 0}
+  cursorNormal: {fileID: 2800000, guid: 0cf73ee6aa5584e43bcbea2bc7a114fc, type: 3}
+  cursorSelect: {fileID: 2800000, guid: 67c6cb02ee3204aacade9a3e5810e0da, type: 3}
+  cursorHelp: {fileID: 2800000, guid: 5e5ba98ee9aa144c18dc758f9ff2b5e4, type: 3}
 --- !u!1 &1326110926
 GameObject:
   m_ObjectHideFlags: 0
