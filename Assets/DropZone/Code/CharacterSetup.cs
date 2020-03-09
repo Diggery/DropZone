@@ -41,6 +41,9 @@ public class CharacterSetup : MonoBehaviour {
     head.localRotation = Quaternion.Euler(85, 0, 0);
 
     Transform selector = transform.Find("SelectorCollision");
+    InputRelay relay = selector.gameObject.AddComponent<InputRelay>();
+    relay.onEnter.AddListener(gameManager.inputControl.HoverEnterUnit);
+    relay.onExit.AddListener(gameManager.inputControl.HoverExitUnit);
     selector.SetParent(animator.GetBoneTransform(HumanBodyBones.Chest));
 
     unitControl.SetAttachPoint("RightHand", rightHandAttach);

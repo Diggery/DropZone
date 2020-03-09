@@ -46,9 +46,9 @@ public class InputControl : MonoBehaviour {
 
   // Update is called once per frame
   void Update() {
+
     if (mouseLeftInProgress) mouseLeftClickTime += GameTime.DeltaTime;
     if (mouseRightInProgress) mouseRightClickTime += GameTime.DeltaTime;
-
 
     //handle left mouse button
     if (Input.GetMouseButtonDown(0)) {
@@ -172,6 +172,14 @@ public class InputControl : MonoBehaviour {
 
   }
 
+  public void HoverEnterUnit(PointerEventData hoverEvent) {
+    Debug.Log(hoverEvent.pointerEnter.transform.root.name);
+  }
+
+  public void HoverExitUnit(PointerEventData hoverEvent) {
+    Debug.Log(hoverEvent.pointerEnter.transform.root.name + " exit");
+  }
+
   public void MoveSelectedUnit(Vector3 mapPos) {
     if (!SelectedUnit) return;
     SelectedUnit.MoveTo(mapPos);
@@ -185,8 +193,6 @@ public class InputControl : MonoBehaviour {
     mapPos = didHit ? hit.point : Vector3.zero;
     return didHit;
   }
-
-
 
   void onModifierMode(KeyCode key, bool setting) {
     switch (key) {
