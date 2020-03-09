@@ -79,13 +79,7 @@ public class InputControl : MonoBehaviour {
         }
       } else if (clickedOn.transform.root.tag.Equals("Player")) {
         UnitControl unit = clickedOn.transform.root.GetComponent<UnitControl>();
-        if (unit.IsDead) {
-          if (SelectedUnit && SelectedUnit.HasMedkit) {
-            SelectedUnit.Revive(unit);
-          }
-        } else {
-          SelectUnit(unit);
-        }
+        SelectUnit(unit);
       }
     }
 
@@ -142,6 +136,7 @@ public class InputControl : MonoBehaviour {
     if ((Input.GetAxis("SelectMainWeapon") != 0) && SelectedUnit) SelectedUnit.DrawMainWeapon();
 
     if (Input.GetKey(KeyCode.Z) && SelectedUnit) SelectedUnit.Incapacitate();
+    if (Input.GetKey(KeyCode.X) && SelectedUnit) SelectedUnit.Revive();
 
     if (Input.GetKeyUp(KeyCode.Space)) GameTime.TogglePause();
 

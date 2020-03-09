@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Lootable : MonoBehaviour {
+public class Lootable : Interactable {
 
   GameObject UI;
   Transform viewCamera;
@@ -26,7 +26,7 @@ public class Lootable : MonoBehaviour {
         if (Unlocked) {
           Unlocked = false;
         } else {
-          UI.SetActive(true);
+          UI.SetActive(false);
         }
       }
     }
@@ -83,7 +83,7 @@ public class Lootable : MonoBehaviour {
         if (Physics.Linecast(startPos, endPos, out RaycastHit hit, uiMask)) {
           if (hit.transform.root.tag.Equals("Player")) {
             UnitControl unit = hit.transform.root.GetComponent<UnitControl>();
-            if (unit.IsSearching) {
+            if (unit.IsInteracting) {
               stillInUse = true;
             }
           }
@@ -94,6 +94,9 @@ public class Lootable : MonoBehaviour {
   }
 
   void Start() {
+
+    IsContainer = true;
+
     GameManager gameManager = GameManager.Instance;
     gameManager.AddLootable(this);
     LayerMask terrainMask = LayerMask.GetMask("Terrain");
@@ -145,7 +148,7 @@ public class Lootable : MonoBehaviour {
 
   void Update() {
     UI.transform.rotation = viewCamera.rotation;
-    if (currentLooter && currentLooter.IsSearching && unlockTimer > 0) {
+    if (currentLooter && currentLooter.IsInteracting && unlockTimer > 0) {
       unlockTimer -= Time.deltaTime;
       loadingBar.fillAmount = unlockTimer / unlockTime;
       if (unlockTimer < 0) Unlocked = true;
@@ -161,13 +164,12 @@ public class Lootable : MonoBehaviour {
     return isLootable;
   }
 
-  public void StartLooting(UnitControl looter) {
+  public override void StartInteracting(UnitControl user) {
     IsActive = true;
-    currentLooter = looter;
+    currentLooter = user;
   }
 
-  public void DoneLooting(UnitControl looter) {
-    Debug.Log("Done Looting");
+  public override void FinishInteracting(UnitControl user) {
     if (!InUse) IsActive = false;
   }
 
@@ -189,9 +191,8 @@ public class Lootable : MonoBehaviour {
   void UnlockLootable() {
     if (Unlocked) {
       Debug.Log("Unlocked");
-
       Unlocked = false;
-      if (currentLooter) currentLooter.IsSearching = false;
+      if (currentLooter) currentLooter.IsInteracting = false;
     } else {
       if (unlockTimer < 0) {
         Unlocked = true;
@@ -200,7 +201,7 @@ public class Lootable : MonoBehaviour {
         loadingBar.fillAmount = 0;
         loadingBar.enabled = true;
       }
-      if (currentLooter) currentLooter.IsSearching = true;
+      if (currentLooter) currentLooter.IsInteracting = true;
     }
   }
 

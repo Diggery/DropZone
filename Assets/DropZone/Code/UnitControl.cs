@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
 
-public class UnitControl : MonoBehaviour {
+public class UnitControl : Interactable {
 
   string unitName;
   public string UnitName {
@@ -40,32 +40,34 @@ public class UnitControl : MonoBehaviour {
   Interpolator.LerpVector LerpToPose = new Interpolator.LerpVector();
   Interpolator currentInterpolation;
 
-  public Lootable CurrentLootable { get; set; }
+  public Interactable CurrentInteractable { get; set; }
+
+
+
+  bool isInteracting = false;
+  public bool IsInteracting {
+    get { return isInteracting; }
+    set {
+      isInteracting = value;
+
+      if (isInteracting) {
+        animator.SetTrigger("Interact");
+        if (CurrentInteractable)
+          FacePosition(CurrentInteractable.transform.position);
+      } else {
+        if (CurrentInteractable) {
+          CurrentInteractable.FinishInteracting(this);
+        }
+      }
+      animator.SetBool("IsInteracting", isInteracting);
+    }
+  }
 
   public bool HasMedkit {
     get {
       foreach (var item in inventory)
         if (item.Contains("Medkit")) return true;
       return false;
-    }
-  }
-
-  bool isSearching = false;
-  public bool IsSearching {
-    get { return isSearching; }
-    set {
-      if (isSearching == value) return;
-
-      if (value) {
-        animator.SetTrigger("Search");
-        if (CurrentLootable)
-          FacePosition(CurrentLootable.transform.position);
-      } else {
-        if (CurrentLootable) CurrentLootable.DoneLooting(this);
-      }
-
-      isSearching = value;
-      animator.SetBool("IsSearching", isSearching);
     }
   }
 
@@ -248,11 +250,9 @@ public class UnitControl : MonoBehaviour {
   }
 
   public void MoveTo(Vector3 movePos) {
-    if (gameObject.tag.Equals("Player") && CurrentLootable) {
-      IsSearching = false;
-
-      CurrentLootable.DoneLooting(this);
-      CurrentLootable = null;
+    if (gameObject.tag.Equals("Player") && CurrentInteractable) {
+      IsInteracting = false;
+      CurrentInteractable = null;
     }
 
     movePos = gameManager.mapControl.GetCellPos(movePos);
@@ -275,7 +275,7 @@ public class UnitControl : MonoBehaviour {
 
   public void MoveComplete(Vector3 EndPos) {
     if (gameObject.tag.Equals("Player")) {
-      CurrentLootable = gameManager.ActivateLootables(EndPos, this);
+      CurrentInteractable = gameManager.ActivateLootables(EndPos, this);
     }
 
     MapData.MapCell mapCell = gameManager.mapControl.GetMapCell(EndPos);
@@ -300,11 +300,9 @@ public class UnitControl : MonoBehaviour {
     if (HasMedkit) {
       GameObject[] allUnits = GameObject.FindGameObjectsWithTag(gameObject.tag);
       foreach (GameObject unit in allUnits) {
-        if ((unit.transform.position - transform.position).sqrMagnitude < (1.25f * 1.25f)) {
-          UnitControl unitToTest = unit.GetComponent<UnitControl>();
-          if (unitToTest && unitToTest.IsDead) {
-
-          }
+        if (Vector3.Distance(unit.transform.position, transform.position) < targeting.MeleeRange) {
+          Reviver reviver = unit.GetComponent<Reviver>();
+          if (reviver) reviver.StartInteracting(this);
         }
       }
     }
@@ -417,7 +415,7 @@ public class UnitControl : MonoBehaviour {
       animator.SetTrigger("Hit");
     }
     if (PlayerPanel) PlayerPanel.SetHits(armorPoints, hitPoints);
-    if (IsSearching) IsSearching = false;
+    if (IsInteracting) IsInteracting = false;
     armorCoolDown = armorRegenTime;
     damageTaken.Invoke(info.attacker);
   }
@@ -438,7 +436,7 @@ public class UnitControl : MonoBehaviour {
     IsDead = true;
     UnitControl attacker = info != null ? info.attacker : null;
     knockedOut.Invoke(attacker);
-
+    IsMoving = false;
     hitPoints = -1;
     SkeletonControl skeleton = GetComponent<SkeletonControl>();
     Vector3 direction = info == null ? Vector3.up : info.GetDamageDirection(transform);
@@ -448,7 +446,10 @@ public class UnitControl : MonoBehaviour {
       EquippedWeapon.Drop();
       EquippedWeapon = null;
     }
-    if (PlayerPanel) PlayerPanel.Incapacitated();
+    if (PlayerPanel) {
+      PlayerPanel.Incapacitated();
+      gameObject.AddComponent<Reviver>().Init(this);
+    }
 
   }
 
@@ -503,11 +504,7 @@ public class UnitControl : MonoBehaviour {
     skeleton.SwitchToAnimator();
     navAgent.enabled = true;
   }
-
-  public void Revive(UnitControl victim) {
-    if (IsDead) return;
-  }
-
+  
   public void Reload() {
     animator.SetTrigger("Reload");
   }
