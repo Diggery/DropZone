@@ -185,6 +185,8 @@ public class UnitControl : MonoBehaviour {
     if (autoInit) Init(gameObject.name);
   }
 
+  public UnitControl Init(string newUnitName) {
+    UnitName = newUnitName;
     gameManager = GameManager.Instance;
     navAgent = GetComponent<NavMeshAgent>();
     navAgent.avoidancePriority = Random.Range(0, 50);
