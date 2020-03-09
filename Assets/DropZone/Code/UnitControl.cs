@@ -6,12 +6,12 @@ using UnityEngine.Events;
 
 public class UnitControl : MonoBehaviour {
 
-  string unitType;
-  public string UnitType {
-    get { return unitType; }
+  string unitName;
+  public string UnitName {
+    get { return unitName; }
     set {
-      unitType = value;
-      gameObject.name = "Unit-" + unitType + "_" + Random.value;
+      unitName = value;
+      gameObject.name = "Unit-" + unitName + "_" + Random.value;
     }
   }
 
@@ -130,7 +130,6 @@ public class UnitControl : MonoBehaviour {
 
   [HideInInspector]
   public UnityEvent pathComplete = new UnityEvent();
-
   public class EnemyAlert : UnityEvent<UnitControl> { }
   public EnemyAlert attackedAlert = new EnemyAlert();
   public EnemyAlert enemySpottedAlert = new EnemyAlert();
@@ -186,8 +185,6 @@ public class UnitControl : MonoBehaviour {
     if (autoInit) Init(gameObject.name);
   }
 
-  public UnitControl Init(string unitType) {
-    UnitType = unitType;
     gameManager = GameManager.Instance;
     navAgent = GetComponent<NavMeshAgent>();
     navAgent.avoidancePriority = Random.Range(0, 50);
@@ -298,6 +295,18 @@ public class UnitControl : MonoBehaviour {
     animator.ResetTrigger("UnderFire");
     animator.ResetTrigger("Dive");
 
+    if (HasMedkit) {
+      GameObject[] allUnits = GameObject.FindGameObjectsWithTag(gameObject.tag);
+      foreach (GameObject unit in allUnits) {
+        if ((unit.transform.position - transform.position).sqrMagnitude < (1.25f * 1.25f)) {
+          UnitControl unitToTest = unit.GetComponent<UnitControl>();
+          if (unitToTest && unitToTest.IsDead) {
+
+          }
+        }
+      }
+    }
+
     pathComplete.Invoke();
   }
 
@@ -318,7 +327,7 @@ public class UnitControl : MonoBehaviour {
     switch (weapon.type) {
       case Weapon.WeaponType.Main:
         if (MainWeapon != null) MainWeapon.Drop();
-        MainWeapon = (RangedWeapon)weapon;
+        MainWeapon = (RangedWeapon) weapon;
         MainWeapon.Init(this, attachPoints["Backpack"], attachPoints["RightHand"]);
         MainWeapon.SetStockAttach(animator.GetBoneTransform(HumanBodyBones.Chest));
         MainWeapon.Equip();
@@ -326,7 +335,7 @@ public class UnitControl : MonoBehaviour {
         break;
       case Weapon.WeaponType.SideArm:
         if (SideArm != null) SideArm.Drop();
-        SideArm = (RangedWeapon)weapon;
+        SideArm = (RangedWeapon) weapon;
         SideArm.Init(this, attachPoints["LeftHip"], attachPoints["RightHand"]);
         SideArm.SetStockAttach(animator.GetBoneTransform(HumanBodyBones.Chest));
         if (!EquippedWeapon) {
@@ -337,7 +346,7 @@ public class UnitControl : MonoBehaviour {
         }
         break;
       case Weapon.WeaponType.Melee:
-        Melee = (MeleeWeapon)weapon;
+        Melee = (MeleeWeapon) weapon;
         Melee.Init(this, attachPoints["RightHip"], attachPoints["RightHand"]);
         Melee.Stow();
         break;
@@ -478,7 +487,6 @@ public class UnitControl : MonoBehaviour {
   }
 
   public void OutOfAmmo() {
-    Debug.Log(gameObject.name + " is out of ammo");
     outOfAmmo.Invoke(this);
     if (SideArm) DrawSideArm();
     DroneTask task = new DroneTask("Magazine", transform.position, this);
@@ -492,6 +500,10 @@ public class UnitControl : MonoBehaviour {
     SkeletonControl skeleton = GetComponent<SkeletonControl>();
     skeleton.SwitchToAnimator();
     navAgent.enabled = true;
+  }
+
+  public void Revive(UnitControl victim) {
+    if (IsDead) return;
   }
 
   public void Reload() {
@@ -553,7 +565,6 @@ public class UnitControl : MonoBehaviour {
 
   public void Remove() {
     removed.Invoke(this);
-    Debug.Log("Removing Unit");
     if (currentInterpolation) currentInterpolation.Cancel();
     if (MainWeapon) Destroy(MainWeapon.gameObject);
     if (SideArm) Destroy(SideArm.gameObject);

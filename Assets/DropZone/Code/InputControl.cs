@@ -78,7 +78,14 @@ public class InputControl : MonoBehaviour {
           mouseLeftDownPos = mapPos;
         }
       } else if (clickedOn.transform.root.tag.Equals("Player")) {
-        SelectUnit(clickedOn.transform.root.GetComponent<UnitControl>());
+        UnitControl unit = clickedOn.transform.root.GetComponent<UnitControl>();
+        if (unit.IsDead) {
+          if (SelectedUnit && SelectedUnit.HasMedkit) {
+            SelectedUnit.Revive(unit);
+          }
+        } else {
+          SelectUnit(unit);
+        }
       }
     }
 
@@ -134,6 +141,8 @@ public class InputControl : MonoBehaviour {
     if ((Input.GetAxis("SelectSideArm") != 0) && SelectedUnit) SelectedUnit.DrawSideArm();
     if ((Input.GetAxis("SelectMainWeapon") != 0) && SelectedUnit) SelectedUnit.DrawMainWeapon();
 
+    if (Input.GetKey(KeyCode.Z) && SelectedUnit) SelectedUnit.Incapacitate();
+
     if (Input.GetKeyUp(KeyCode.Space)) GameTime.TogglePause();
 
     float scrollAmount = Input.GetAxis("Mouse ScrollWheel");
@@ -175,7 +184,7 @@ public class InputControl : MonoBehaviour {
     }
 
     if (SelectedUnit != selected)
-      GameTime.AutoPause("PlayerSelected", GameTime.TimeSetting.SlowMo, selected.UnitType);
+      GameTime.AutoPause("PlayerSelected", GameTime.TimeSetting.SlowMo, selected.UnitName);
 
     mapSelector.IsOpen = false;
     unitSelector.IsOpen = true;

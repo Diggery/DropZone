@@ -43,10 +43,10 @@ public class UIPlayerPanel : MonoBehaviour {
       if (inventoryOpen == value) return;
       inventoryOpen = value;
       if (inventoryOpen) {
-        GameTime.AutoPause("InventoryOpened", GameTime.TimeSetting.SlowMo, player.UnitType);
+        GameTime.AutoPause("InventoryOpened", GameTime.TimeSetting.SlowMo, player.UnitName);
         Interpolator.Start(openInventory);
       } else {
-        GameTime.AutoPause("InventoryOpened", GameTime.TimeSetting.Normal, player.UnitType);
+        GameTime.AutoPause("InventoryOpened", GameTime.TimeSetting.Normal, player.UnitName);
         Interpolator.Reverse(openInventory);
       }
     }
@@ -93,7 +93,7 @@ public class UIPlayerPanel : MonoBehaviour {
     inventoryClosedPos = inventoryGroup.anchoredPosition;
     flashPanel.onTickVector = color => panelOverlay.color = panelBackground.color = color;
     flashMagazines.onTickVector = color => magazinePanel.color = color;
-    playerName.text = player.UnitType;
+    playerName.text = player.UnitName;
     SetMagazines(player.MainWeapon.Magazines);
     SetMaxHits(player.MaxHits);
     SetHits(player.MaxHits, player.MaxHits);

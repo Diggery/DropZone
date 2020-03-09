@@ -33,12 +33,12 @@ public class MapSelector : MonoBehaviour {
 
       if (isOpen && !wasOpen) {
         Interpolator.Start(labelTrans, "MapSelectorOpen");
-        string target = inputControl.SelectedUnit ? inputControl.SelectedUnit.UnitType : "none";
+        string target = inputControl.SelectedUnit ? inputControl.SelectedUnit.UnitName : "none";
         GameTime.AutoPause("MapSelected", GameTime.TimeSetting.SlowMo, target);
       }
       if (!isOpen && wasOpen) {
         Interpolator.Reverse(labelTrans, "MapSelectorClose");
-        string target = inputControl.SelectedUnit ? inputControl.SelectedUnit.UnitType : "none";
+        string target = inputControl.SelectedUnit ? inputControl.SelectedUnit.UnitName : "none";
 
         GameTime.AutoPause("MapSelected", GameTime.TimeSetting.Normal, target);
       }

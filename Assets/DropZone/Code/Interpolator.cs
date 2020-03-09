@@ -183,7 +183,6 @@ public class Interpolator : MonoBehaviour {
 
   public void Cancel() {
     done = true;
-    Debug.Log("Stopping interpolation");
     Destroy(gameObject);
   }
 
