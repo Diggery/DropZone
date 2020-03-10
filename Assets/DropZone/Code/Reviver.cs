@@ -46,6 +46,7 @@ public class Reviver : Interactable {
   }
 
   void Update() {
+    if (!UI) return;
     UI.transform.rotation = viewCamera.rotation;
     if (reviveTimer > 0) {
       reviveTimer -= Time.deltaTime;
@@ -67,6 +68,8 @@ public class Reviver : Interactable {
 
   public void FinishRevive() {
     victim.Revive();
+    Destroy(UI);
+    Destroy(this);
   }
 
 }

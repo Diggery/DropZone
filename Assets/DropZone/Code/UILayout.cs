@@ -132,13 +132,13 @@ public class UILayout : MonoBehaviour {
   }
 
   void OnOptionsOpen(float amount) {
-    Debug.Log(amount);
     pauseControlsGroup.alpha = 1 - amount;
     pauseControls.transform.localScale = Vector3.Lerp(Vector3.one, Vector3.one * 0.85f, amount);
 
     optionsGroup.alpha = amount;
     options.transform.localScale = Vector3.Lerp(Vector3.one * 1.15f, Vector3.one, amount);
   }
+  
   void OnOptionsFinish(bool reversed) {
     pauseControlsGroup.alpha = reversed ? 1 : 0;
     pauseControls.transform.localScale = reversed ? Vector3.one : Vector3.one * 0.85f;

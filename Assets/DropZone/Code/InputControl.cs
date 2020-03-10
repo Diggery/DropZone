@@ -79,7 +79,7 @@ public class InputControl : MonoBehaviour {
         }
       } else if (clickedOn.transform.root.tag.Equals("Player")) {
         UnitControl unit = clickedOn.transform.root.GetComponent<UnitControl>();
-        SelectUnit(unit);
+        if (!unit.IsDead) SelectUnit(unit);
       }
     }
 

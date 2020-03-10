@@ -204,14 +204,13 @@ public class SkeletonControl : MonoBehaviour {
     newTransformPos.x = newRootPos.x;
     newTransformPos.z = newRootPos.z;
     transform.position = newTransformPos;
-    skeletonData.rootTransform.localPosition = new Vector3 (0, skeletonData.rootTransform.localPosition.y, 0);
-
+    skeletonData.rootTransform.localPosition = new Vector3(0, skeletonData.rootTransform.localPosition.y, 0);
 
     Quaternion oldRot = skeletonData.rootTransform.rotation;
-    Vector3 headingDir = skeletonData.rootTransform.forward;
+    Vector3 headingDir = skeletonData.rootTransform.right;
     headingDir.y = 0;
     headingDir.Normalize();
-    transform.rotation = Quaternion.LookRotation(headingDir);// * Quaternion.AngleAxis(-90, Vector3.up);
+    transform.rotation = Quaternion.LookRotation(headingDir) * Quaternion.AngleAxis(-90, Vector3.up);
     skeletonData.rootTransform.rotation = oldRot;
 
     skeletonData.rootStoredPosition = skeletonData.rootTransform.position;
@@ -221,9 +220,9 @@ public class SkeletonControl : MonoBehaviour {
     switchingToAnimator = switchingToAnimatorTime;
     animator.enabled = true;
 
-    float forwardDotUp = Vector3.Dot(Vector3.up, skeletonData.rootTransform.up);
+    float forwardDotUp = Vector3.Dot(Vector3.up, skeletonData.rootTransform.forward);
     animator.SetTrigger((forwardDotUp < 0) ? "StandUp_Front" : "StandUp_Back");
-    DisableColliders();
+    DisableRagdollColliders();
     Rigidbody[] rigidbodies = root.GetComponentsInChildren<Rigidbody>();
     foreach (Rigidbody currentRigidbody in rigidbodies) {
       currentRigidbody.useGravity = false;
@@ -235,13 +234,12 @@ public class SkeletonControl : MonoBehaviour {
 
     animator.enabled = false;
     Transform forceTarget = root;
-    EnableColliders();
+    EnableRagdollColliders();
     Rigidbody[] rigidbodies = root.GetComponentsInChildren<Rigidbody>();
     foreach (Rigidbody currentRigidbody in rigidbodies) {
       if (currentRigidbody.transform.Equals(hitTarget)) {
         forceTarget = hitTarget;
       }
-
       currentRigidbody.useGravity = true;
       currentRigidbody.isKinematic = false;
     }
@@ -252,19 +250,23 @@ public class SkeletonControl : MonoBehaviour {
     );
   }
 
-  public void DisableColliders() {
-    if (!root)Debug.Log("Need a root object");
+  public void DisableRagdollColliders() {
+    if (!root) Debug.Log("Need a root object");
     Collider[] colliders = root.GetComponentsInChildren<Collider>();
     foreach (Collider currentCollider in colliders) {
-      currentCollider.enabled = false;
+      bool isSelector =
+        LayerMask.LayerToName(currentCollider.gameObject.layer).Equals("UI");
+      currentCollider.enabled = isSelector;
     }
   }
 
-  public void EnableColliders() {
-    if (!root)Debug.Log("Need a root object");
+  public void EnableRagdollColliders() {
+    if (!root) Debug.Log("Need a root object");
     Collider[] colliders = root.GetComponentsInChildren<Collider>();
     foreach (Collider currentCollider in colliders) {
-      currentCollider.enabled = true;
+      bool isSelector =
+        LayerMask.LayerToName(currentCollider.gameObject.layer).Equals("UI");
+      currentCollider.enabled = !isSelector;
     }
   }
 

@@ -106,10 +106,12 @@ public class UnitControl : Interactable {
     get {
       return isMoving;
     }
+    
     set {
       inMovingState = value;
       if (inMovingState) {
-        navAgent.SetDestination(moveDestination.Value);
+        if (moveDestination.HasValue)
+          navAgent.SetDestination(moveDestination.Value);
         moveDestination = null;
       }
     }
