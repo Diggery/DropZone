@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 [CreateAssetMenu(fileName = "NewCharacter", menuName = "New Character")]
-public class CharacterEntry : ScriptableObject {
+public class EntryCharacter : ScriptableObject {
 
   public string characterName;
   public GameObject prefab;
@@ -12,6 +12,7 @@ public class CharacterEntry : ScriptableObject {
   public string mainWeapon;
   public string sideArm;
   public string melee;
+  public EntryArmor armor;
 
   public float speed;
   public float visualRange;

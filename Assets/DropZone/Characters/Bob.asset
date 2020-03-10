@@ -18,6 +18,7 @@ MonoBehaviour:
   mainWeapon: MkII
   sideArm: Sidewinder
   melee: 
+  armor: {fileID: 11400000, guid: 370d0d77a2133144ea8514a0bdda4572, type: 2}
   speed: 3.5
   visualRange: 20
   hits: 8

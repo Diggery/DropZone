@@ -71,7 +71,7 @@ public class AISquadManager : MonoBehaviour {
 
   AIBrain CreateUnit(string unitName, Vector3 pos, Quaternion rot) {
 
-    CharacterEntry entry = gameManager.GetCharacter(unitName);
+    EntryCharacter entry = gameManager.GetCharacter(unitName);
     GameObject newUnit = Instantiate(entry.prefab, pos, rot);
     newUnit.tag = teamTag;
     gameManager.UnitTypes.Add(teamTag);

@@ -25,7 +25,7 @@ public class Equipment : MonoBehaviour {
   }
 
   void GotToOwner(bool reversed) {
-    owner.AddLoot(equipmentName);
+    owner.AddItem(equipmentName);
     Destroy(gameObject);
   }
 

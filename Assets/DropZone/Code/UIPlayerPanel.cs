@@ -96,7 +96,7 @@ public class UIPlayerPanel : MonoBehaviour {
     playerName.text = player.UnitName;
     SetMagazines(player.MainWeapon.Magazines);
     SetMaxHits(player.MaxHits);
-    SetHits(player.MaxHits, player.MaxHits);
+    SetHits(player.MaxArmor, player.MaxHits);
     Interpolator.Start(flashPanel);
 
     ClearInventory();
@@ -189,14 +189,18 @@ public class UIPlayerPanel : MonoBehaviour {
   }
 
   void UseItem(Button buttonClicked) {
-    Debug.Log("Using " + buttonClicked.name);
     if (player.CurrentInteractable && player.CurrentInteractable.IsContainer) {
       Lootable lootable = (Lootable)player.CurrentInteractable;
       if (lootable.AddItem(buttonClicked.name)) {
+        Debug.Log("Sending " + buttonClicked.name + " to container");
         Destroy(buttonClicked.gameObject);
-        player.RemoveLoot(buttonClicked.name);
+        player.RemoveItem(buttonClicked.name);
       }
+      return;
     }
+
+    EntryItem itemEntry = gameManager.GetItem(buttonClicked.name);
+
   }
 
   void SelectPlayer() {

@@ -183,7 +183,7 @@ public class Lootable : Interactable {
   }
 
   void GetLoot(Button buttonClicked) {
-    if (currentLooter.AddLoot(buttonClicked.name)) {
+    if (currentLooter.AddItem(buttonClicked.name)) {
       Destroy(buttonClicked.gameObject);
     }
   }

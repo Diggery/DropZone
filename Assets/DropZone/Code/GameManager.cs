@@ -9,7 +9,8 @@ public class GameManager : MonoBehaviour {
   public MapControl mapControl;
   public InputControl inputControl;
   public UILayout uiLayout;
-  public CharacterEntry[] characters;
+  public EntryCharacter[] characters;
+  public EntryItem[] items;
   public PlayerManager playerManager;
   public AIOverlord aiOverlord;
 
@@ -46,17 +47,30 @@ public class GameManager : MonoBehaviour {
     SceneManager.LoadScene("UILayout", LoadSceneMode.Additive);
   }
 
-  public GameObject GetPrefab(string name) {
-    return prefabInventory.GetPrefab(name);
+  public GameObject GetPrefab(string prefabName) {
+    return prefabInventory.GetPrefab(prefabName);
   }
+
+  public EntryItem GetItem(string itemName) {
+    EntryItem entryItem = null;
+    foreach (EntryItem entry in items) {
+      if (entry.itemName.Equals(itemName)) {
+        entryItem = entry;
+        break;
+      }
+    }
+    if (!entryItem) Debug.Log("Couldnt find an entry for " + itemName);
+    return entryItem;
+  }
+
 
   public GameObject GetWeapon(string name) {
     return weaponInventory.GetPrefab(name);
   }
 
-  public CharacterEntry GetCharacter(string characterName) {
-    CharacterEntry characterEntry = null;
-    foreach (CharacterEntry entry in characters) {
+  public EntryCharacter GetCharacter(string characterName) {
+    EntryCharacter characterEntry = null;
+    foreach (EntryCharacter entry in characters) {
       if (entry.characterName.Equals(characterName) && entry.prefab) {
         characterEntry = entry;
         break;

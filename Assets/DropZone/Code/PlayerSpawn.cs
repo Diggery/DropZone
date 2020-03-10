@@ -12,7 +12,7 @@ public class PlayerSpawn : MonoBehaviour {
     yield return new WaitForSeconds(0.5f);
 
     GameManager gameManager = GameManager.Instance;
-    CharacterEntry entry = gameManager.GetCharacter(gameObject.name);
+    EntryCharacter entry = gameManager.GetCharacter(gameObject.name);
     GameObject character = Instantiate(entry.prefab, transform.position, transform.rotation);
     UnitControl unitControl = character.GetComponent<UnitControl>().Init(entry.characterName);
 

@@ -159,6 +159,10 @@ public class RangedWeapon : Weapon {
 
   public override void Equip() {
     base.Equip();
+    if (!owner) {
+      Debug.Log(this.name + " doesn't have an owner");
+        return;
+    }
     owner.EquippedWeapon = this;
     Disabled = false;
   }

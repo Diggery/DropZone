@@ -16,7 +16,7 @@ public class CharacterSetup : MonoBehaviour {
     UnitControl unitControl = gameObject.GetComponent<UnitControl>();
     Animator animator = GetComponent<Animator>();
 
-    CharacterEntry entry = gameManager.GetCharacter(unitControl.UnitName);
+    EntryCharacter entry = gameManager.GetCharacter(unitControl.UnitName);
 
     Transform head = null;
     if (entry.head) head = Instantiate(entry.head).transform;

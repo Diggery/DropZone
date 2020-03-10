@@ -22,7 +22,7 @@ public class Reviver : Interactable {
   float reviveTime = 1f;
   float reviveTimer = 0;
 
-  RectTransform uiBackground;
+  Image background;
   Button reviveButton;
   Image loadingBar;
 
@@ -37,6 +37,8 @@ public class Reviver : Interactable {
 
     reviveButton = UI.transform.Find("ReviveButton").GetComponent<Button>();
     reviveButton.onClick.AddListener(StartRevive);
+
+    background = reviveButton.GetComponent<Image>();
 
     loadingBar = UI.transform.Find("ReviveButton/LoadingBar").GetComponent<Image>();
     loadingBar.enabled = false;
@@ -67,9 +69,13 @@ public class Reviver : Interactable {
   }
 
   public void FinishRevive() {
-    victim.Revive();
-    Destroy(UI);
-    Destroy(this);
+    if (helper.RemoveItem("Medkit")) {
+      victim.Revive();
+      Destroy(UI);
+      Destroy(this);
+    } else {
+      background.color = Color.red;
+    }
   }
 
 }

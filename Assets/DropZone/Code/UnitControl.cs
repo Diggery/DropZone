@@ -19,7 +19,7 @@ public class UnitControl : Interactable {
   public bool autoInit;
   NavMeshAgent navAgent;
   Animator animator;
-  CharacterEntry characterEntry;
+  EntryCharacter characterEntry;
   public List<string> inventory { get { return characterEntry.inventory; } }
 
   public RuntimeAnimatorController mainWeaponController;
@@ -161,6 +161,7 @@ public class UnitControl : Interactable {
 
   public float MoveSpeed { get; set; }
   public float MaxHits { get; set; }
+  public float MaxArmor { get; set; }
 
   float hitPoints = 10;
   float armorPoints = 10;
@@ -236,20 +237,26 @@ public class UnitControl : Interactable {
     if (armorCoolDown > 0) {
       armorCoolDown -= Time.deltaTime;
     }
-    if (armorRegen && armorPoints < hitPoints && armorCoolDown < 0)
+    if (armorRegen && armorPoints < Mathf.Min(MaxArmor, hitPoints) && armorCoolDown < 0)
       RepairArmor(Time.deltaTime * armorRegenSpeed);
   }
 
-  public void SetStats(CharacterEntry entry) {
+  public void SetStats(EntryCharacter entry) {
     characterEntry = entry;
     targeting.VisualRange = entry.visualRange;
     targeting.MeleeRange = 1.75f;
     MaxHits = entry.hits;
-    hitPoints = entry.hits;
-    armorPoints = entry.hits;
+    hitPoints = MaxHits;
     MoveSpeed = entry.speed;
     navAgent.speed = MoveSpeed;
-  }
+
+    EntryArmor armor = entry.armor;
+    MaxArmor = armor.armorPoints;
+    armorPoints = Mathf.Min(MaxArmor, MaxHits);
+    armorRegen = armor.canRegen;
+    armorRegenTime = armor.armorRegenTime;
+    armorRegenSpeed = armor.armorRegenTime;
+}
 
   public void MoveTo(Vector3 movePos) {
     if (gameObject.tag.Equals("Player") && CurrentInteractable) {
@@ -444,10 +451,13 @@ public class UnitControl : Interactable {
     Vector3 direction = info == null ? Vector3.up : info.GetDamageDirection(transform);
     skeleton.SwitchToRagdoll(direction);
     navAgent.enabled = false;
+
     if (EquippedWeapon) {
       EquippedWeapon.Drop();
+      if (SideArm) SideArm.Equip();
       EquippedWeapon = null;
     }
+    
     if (PlayerPanel) {
       PlayerPanel.Incapacitated();
       gameObject.AddComponent<Reviver>().Init(this);
@@ -455,38 +465,38 @@ public class UnitControl : Interactable {
 
   }
 
-  public bool AddLoot(string lootName) {
-    bool tookLoot = false;
-    switch (lootName) {
+  public bool AddItem(string itemName) {
+    bool tookItem;
+    switch (itemName) {
       case "Magazine":
         if (MainWeapon) {
           MainWeapon.Magazines++;
           if (PlayerPanel) PlayerPanel.SetMagazines(MainWeapon.Magazines);
           DrawMainWeapon();
         }
-        tookLoot = true;
+        tookItem = true;
         break;
       case "MedKit":
-        tookLoot = true;
+        tookItem = true;
 
         break;
       case "EnergyCell":
-        tookLoot = true;
+        tookItem = true;
 
         break;
       default:
         int currentInventorySlots = characterEntry.inventory.Count;
-        tookLoot = currentInventorySlots < characterEntry.maxInventory;
-        if (tookLoot) {
-          characterEntry.inventory.Add(lootName);
-          if (PlayerPanel) PlayerPanel.AddInventoryItem(lootName);
+        tookItem = currentInventorySlots < characterEntry.maxInventory;
+        if (tookItem) {
+          characterEntry.inventory.Add(itemName);
+          if (PlayerPanel) PlayerPanel.AddInventoryItem(itemName);
         }
         break;
     }
-    return tookLoot;
+    return tookItem;
   }
 
-  public bool RemoveLoot(string lootName) {
+  public bool RemoveItem(string lootName) {
     bool lootRemoved = characterEntry.inventory.Remove(lootName);
     return lootRemoved;
   }
