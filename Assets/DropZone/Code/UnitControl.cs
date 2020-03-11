@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
 
-public class UnitControl : Interactable {
+public class UnitControl : MonoBehaviour {
 
   string unitName;
   public string UnitName {

@@ -99,7 +99,8 @@ public class GameManager : MonoBehaviour {
   public Lootable ActivateLootables(Vector3 pos, UnitControl looter) { 
     Lootable nearbyLootable = null;
     foreach(Lootable lootable in lootables) {
-      if (lootable.CheckPosition(pos, out nearbyLootable)) {
+      if (lootable.CheckPosition(pos)) {
+        nearbyLootable = lootable;
         lootable.StartInteracting(looter);
       }
     }

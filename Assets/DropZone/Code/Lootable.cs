@@ -5,28 +5,22 @@ using UnityEngine.UI;
 
 public class Lootable : Interactable {
 
-  GameObject UI;
-  Transform viewCamera;
   List<Vector3> lootPositions = new List<Vector3>();
   UnitControl currentLooter;
   GameObject itemPrefab;
-
   Vector2 uiOpenSize = new Vector2(200, 180);
   Vector2 uiClosedSize = new Vector2(128, 16);
   public Interpolator.LerpFloat uiTransition;
 
-  bool isActive = false;
-  bool IsActive {
-    get { return isActive; }
+  public override bool IsOpen {
+    get { return isOpen; }
     set {
-      isActive = value;
-      if (isActive) {
-        UI.SetActive(true);
-      } else {
+      base.IsOpen = value;
+      isOpen = value;
+      if (!isOpen) {
         if (Unlocked) {
           Unlocked = false;
-        } else {
-          UI.SetActive(false);
+          UI.SetActive(true);
         }
       }
     }
@@ -94,7 +88,7 @@ public class Lootable : Interactable {
   }
 
   void Start() {
-
+    base.Init("LootableUI");
     IsContainer = true;
 
     GameManager gameManager = GameManager.Instance;
@@ -109,11 +103,6 @@ public class Lootable : Interactable {
       }
     }
 
-    GameObject uiPrefab = gameManager.GetPrefab("LootableUI");
-    UI = Instantiate(uiPrefab, transform);
-    UI.transform.localPosition = Vector3.up;
-
-    viewCamera = Camera.main.transform;
     uiTransition.onTick = OnUITransitionTick;
     uiTransition.onFinish = OnUITransitionFinished;
 
@@ -155,8 +144,7 @@ public class Lootable : Interactable {
     }
   }
 
-  public bool CheckPosition(Vector3 checkPos, out Lootable thisLootable) {
-    thisLootable = this;
+  public bool CheckPosition(Vector3 checkPos) {
     bool isLootable = false;
     foreach (Vector3 pos in lootPositions) {
       if (Vector3.Distance(checkPos, pos) < 0.25f) isLootable = true;
@@ -165,12 +153,12 @@ public class Lootable : Interactable {
   }
 
   public override void StartInteracting(UnitControl user) {
-    IsActive = true;
+    IsOpen = true;
     currentLooter = user;
   }
 
   public override void FinishInteracting(UnitControl user) {
-    if (!InUse) IsActive = false;
+    if (!InUse) IsOpen = false;
   }
 
   public bool AddItem(string itemName) {
@@ -212,6 +200,6 @@ public class Lootable : Interactable {
   void OnUITransitionFinished(bool reversed) {
     uiBackground.sizeDelta = reversed ? uiClosedSize : uiOpenSize;
     contentsGroup.alpha = reversed ? 0 : 1;
-    if (reversed && !InUse && !IsActive) UI.SetActive(false);
+    if (reversed && !InUse && !IsOpen) UI.SetActive(false);
   }
 }

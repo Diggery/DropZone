@@ -66,7 +66,6 @@ public class GameTime : MonoBehaviour {
 
   public static void AutoPause(string type, TimeSetting setting, string target) {
     if (Instance.timeConfig.ContainsKey(type) && Instance.timeConfig[type]) {
-      Debug.Log("Autopausing on " + type);
 
       Instance.autoSetting = setting;
       if (Instance.manualSetting.Equals(TimeSetting.Normal))

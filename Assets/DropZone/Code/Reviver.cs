@@ -5,19 +5,8 @@ using UnityEngine.UI;
 
 public class Reviver : Interactable {
 
-  GameObject UI;
-  Transform viewCamera;
   UnitControl helper;
   UnitControl victim;
-
-  bool isOpen = false;
-  bool IsOpen {
-    get { return isOpen; }
-    set {
-      isOpen = value;
-      UI.SetActive(true);
-    }
-  }
 
   float reviveTime = 1f;
   float reviveTimer = 0;
@@ -27,13 +16,8 @@ public class Reviver : Interactable {
   Image loadingBar;
 
   public Reviver Init(UnitControl victim) {
+    base.Init("ReviverUI");
     this.victim = victim;
-
-    GameObject uiPrefab = GameManager.Instance.GetPrefab("ReviverUI");
-    UI = Instantiate(uiPrefab, transform);
-    UI.transform.localPosition = Vector3.up;
-
-    viewCamera = Camera.main.transform;
 
     reviveButton = UI.transform.Find("ReviveButton").GetComponent<Button>();
     reviveButton.onClick.AddListener(StartRevive);
@@ -66,9 +50,14 @@ public class Reviver : Interactable {
     reviveTimer = reviveTime;
     loadingBar.fillAmount = 0;
     loadingBar.enabled = true;
+    if (helper) helper.IsInteracting = true;
+
   }
 
   public void FinishRevive() {
+    if (!helper) return;
+    Debug.Log("Finishing");
+    helper.IsInteracting = false;
     if (helper.RemoveItem("Medkit")) {
       victim.Revive();
       Destroy(UI);
