@@ -283,14 +283,34 @@ public class UnitControl : MonoBehaviour {
   }
 
   public void MoveComplete(Vector3 EndPos) {
+
+    // check for lootables
     if (gameObject.tag.Equals("Player")) {
       CurrentInteractable = gameManager.ActivateLootables(EndPos, this);
     }
 
+    // check for people to revive
+    if (HasMedkit) {
+      GameObject[] allUnits = 
+        gameManager.FindNearbyObjects(transform.position, targeting.MeleeRange, gameObject.tag);
+      foreach (GameObject unit in allUnits) {
+        Reviver reviver = unit.GetComponent<Reviver>();
+        if (reviver) reviver.StartInteracting(this);
+      }
+    }
+
+    // check for weapons to pick up
+    // check for people to revive
+    GameObject[] allWeapons =
+      gameManager.FindNearbyObjects(transform.position, targeting.MeleeRange, "Weapon");
+    foreach (GameObject item in allWeapons) {
+      WeaponPickup weaponPickup = item.GetComponent<WeaponPickup>();
+      if (weaponPickup) weaponPickup.StartInteracting(this);
+    }
+
+
     MapData.MapCell mapCell = gameManager.mapControl.GetMapCell(EndPos);
-
     InCover = mapCell.HasCover && !IgnoreCover;
-
     IsMoving = false;
 
     Vector4 startValue = transform.position;
@@ -305,16 +325,6 @@ public class UnitControl : MonoBehaviour {
 
     animator.ResetTrigger("UnderFire");
     animator.ResetTrigger("Dive");
-
-    if (HasMedkit) {
-      GameObject[] allUnits = GameObject.FindGameObjectsWithTag(gameObject.tag);
-      foreach (GameObject unit in allUnits) {
-        if (Vector3.Distance(unit.transform.position, transform.position) < targeting.MeleeRange) {
-          Reviver reviver = unit.GetComponent<Reviver>();
-          if (reviver) reviver.StartInteracting(this);
-        }
-      }
-    }
 
     pathComplete.Invoke();
   }
@@ -455,7 +465,6 @@ public class UnitControl : MonoBehaviour {
     if (EquippedWeapon) {
       EquippedWeapon.Drop();
       if (SideArm) SideArm.Equip();
-      animator.runtimeAnimatorController = sideArmController;
       EquippedWeapon = null;
     }
     
@@ -515,6 +524,7 @@ public class UnitControl : MonoBehaviour {
     hitPoints = 1;
     SkeletonControl skeleton = GetComponent<SkeletonControl>();
     skeleton.SwitchToAnimator();
+    animator.runtimeAnimatorController = sideArmController;
     navAgent.enabled = true;
   }
   

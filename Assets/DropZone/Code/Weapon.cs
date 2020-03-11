@@ -63,7 +63,8 @@ public class Weapon : MonoBehaviour {
     rbody.AddTorque(torque * 10, ForceMode.VelocityChange);
     rbody.AddForce(force, ForceMode.VelocityChange);
     GetComponent<BoxCollider>().enabled = true;
-    pickUpCollision.enabled = true;
+    Debug.Log("jsdhjdsa");
+    gameObject.AddComponent<WeaponPickup>();
   }
 
   public virtual void PickUp(UnitControl newOwner) {

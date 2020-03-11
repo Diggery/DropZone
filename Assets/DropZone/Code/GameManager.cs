@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour {
         break;
       }
     }
-    if (!entryItem) Debug.Log("Couldnt find an entry for " + itemName);
+    if (!entryItem) Debug.Log("Couldn't find an entry for " + itemName);
     return entryItem;
   }
 
@@ -105,6 +105,17 @@ public class GameManager : MonoBehaviour {
       }
     }
     return nearbyLootable;
+  }
+
+  public GameObject[] FindNearbyObjects(Vector3 pos, float range, string targetTag) {
+    GameObject[] allObjects = GameObject.FindGameObjectsWithTag(targetTag);
+    List<GameObject> inRange = new List<GameObject>();
+    foreach (GameObject item in allObjects) {
+      if (Vector3.Distance(item.transform.position, pos) < range) {
+        inRange.Add(item);
+      }
+    }
+    return inRange.ToArray();
   }
 }
 

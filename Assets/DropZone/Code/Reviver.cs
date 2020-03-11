@@ -25,10 +25,13 @@ public class Reviver : Interactable {
   }
 
   public void StartRevive() {
+    if (!currentUser) return;
+    if (currentUser.IsInteracting) return;
+
     loadingTimer = loadingTime;
     loadingBar.fillAmount = 0;
     loadingBar.enabled = true;
-    if (currentUser) currentUser.IsInteracting = true;
+    currentUser.IsInteracting = true;
   }
 
   protected override void LoadingComplete() {
@@ -42,6 +45,10 @@ public class Reviver : Interactable {
     } else {
       background.color = Color.red;
     }
+  }
+
+  public override void FinishInteracting(UnitControl user) {
+    IsOpen = false;
   }
 
 }
