@@ -455,6 +455,7 @@ public class UnitControl : MonoBehaviour {
     if (EquippedWeapon) {
       EquippedWeapon.Drop();
       if (SideArm) SideArm.Equip();
+      animator.runtimeAnimatorController = sideArmController;
       EquippedWeapon = null;
     }
     

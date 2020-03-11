@@ -24,5 +24,9 @@ MonoBehaviour:
   hits: 4
   inventory:
   - Medkit
-  - mad
+  - Medkit
+  - Medkit
+  - Medkit
+  - Medkit
+  - Medkit
   maxInventory: 6

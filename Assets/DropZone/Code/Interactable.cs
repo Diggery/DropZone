@@ -1,11 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class Interactable : MonoBehaviour {
 
   protected GameObject UI;
   protected Transform viewCamera;
+  protected UnitControl currentUser;
+
+  protected Image loadingBar;
+  protected float loadingTime = 1f;
+  protected float loadingTimer = 0;
 
   public bool IsContainer { get; set; }
 
@@ -23,10 +27,24 @@ public class Interactable : MonoBehaviour {
     GameObject uiPrefab = GameManager.Instance.GetPrefab(uiPrefabName);
     UI = Instantiate(uiPrefab, transform);
     UI.transform.localPosition = Vector3.up;
+    loadingBar = UI.transform.Find("Button/LoadingBar").GetComponent<Image>();
+    loadingBar.enabled = false;
+    UI.SetActive(false);
     return this;
   }
-  public virtual void StartInteracting(UnitControl user) { }
 
+  void Update() {
+    if (!UI) return;
+    UI.transform.rotation = viewCamera.rotation;
+    if (currentUser && currentUser.IsInteracting && loadingTimer > 0) {
+      loadingTimer -= Time.deltaTime;
+      loadingBar.fillAmount = loadingTimer / loadingTime;
+      if (loadingTimer < 0) LoadingComplete();
+    }
+  }
+
+  public virtual void StartInteracting(UnitControl user) { }
+  protected virtual void LoadingComplete() { }
   public virtual void FinishInteracting(UnitControl user) { }
 
 }
