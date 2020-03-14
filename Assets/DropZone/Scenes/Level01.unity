@@ -791,9 +791,7 @@ MonoBehaviour:
     startValue: 0
     endValue: 1
   contents:
-  - Hello
-  - mad
-  - jkf
+  - Medkit
   valueLevel: 0
   autoFill: 0
 --- !u!4 &311507165

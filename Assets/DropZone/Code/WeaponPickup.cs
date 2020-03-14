@@ -19,11 +19,6 @@ public class WeaponPickup : Interactable {
     return this;
   }
 
-  public override void StartInteracting(UnitControl helper) {
-    currentUser = helper;
-    IsOpen = true;
-  }
-
   public void StartLooting() {
     loadingTimer = loadingTime;
     loadingBar.fillAmount = 0;

@@ -63,27 +63,6 @@ public class Lootable : Interactable {
   public bool autoFill;
   readonly int contentsSize = 6;
 
-  bool InUse {
-    get {
-      LayerMask uiMask = LayerMask.GetMask("UI");
-      bool stillInUse = false;
-      for (int i = 0; i < 4; i++) {
-        Vector3 startPos = transform.position + (Vector3.up * 1f);
-        Vector3 endPos = startPos + (Quaternion.AngleAxis(90 * i, Vector3.up) * Vector3.forward);
-
-        if (Physics.Linecast(startPos, endPos, out RaycastHit hit, uiMask)) {
-          if (hit.transform.root.tag.Equals("Player")) {
-            UnitControl unit = hit.transform.root.GetComponent<UnitControl>();
-            if (unit.IsInteracting) {
-              stillInUse = true;
-            }
-          }
-        }
-      }
-      return stillInUse;
-    }
-  }
-
   void Start() {
     base.Init("LootableUI");
     IsContainer = true;
@@ -127,26 +106,24 @@ public class Lootable : Interactable {
     }
   }
 
-  public bool CheckPosition(Vector3 checkPos) {
-    bool isLootable = false;
-    foreach (Vector3 pos in lootPositions) {
-      if (Vector3.Distance(checkPos, pos) < 0.25f) isLootable = true;
+  public override bool CheckStatus(UnitControl user, Vector3 checkPos) {
+    bool isLootable = base.CheckStatus(user, checkPos);
+    if (!isLootable) return false;
+
+    for (int i = 0; i < 4; i++) {
+      Vector3 startPos = transform.position + (Vector3.up * 1f);
+      Vector3 endPos = startPos + (Quaternion.AngleAxis(90 * i, Vector3.up) * Vector3.forward);
+      LayerMask lootMask = LayerMask.GetMask("UI") | LayerMask.GetMask("Terrain");
+      if (Physics.Linecast(startPos, endPos, out RaycastHit hit, lootMask)) {
+        if (hit.transform.root.Equals(user.transform)) isLootable = true;
+      }
     }
     return isLootable;
-  }
-
-  public override void StartInteracting(UnitControl user) {
-    IsOpen = true;
-    currentUser = user;
   }
 
   protected override void LoadingComplete() {
     base.LoadingComplete();
     Unlocked = true;
-  }
-
-  public override void FinishInteracting(UnitControl user) {
-    if (!InUse) IsOpen = false;
   }
 
   public bool AddItem(string itemName) {
@@ -188,6 +165,6 @@ public class Lootable : Interactable {
   void OnUITransitionFinished(bool reversed) {
     uiBackground.sizeDelta = reversed ? uiClosedSize : uiOpenSize;
     contentsGroup.alpha = reversed ? 0 : 1;
-    if (reversed && !InUse && !IsOpen) UI.SetActive(false);
+    if (reversed && !IsOpen) UI.SetActive(false);
   }
 }

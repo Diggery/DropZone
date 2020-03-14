@@ -19,9 +19,9 @@ public class Reviver : Interactable {
     return this;
   }
 
-  public override void StartInteracting(UnitControl helper) {
-    currentUser = helper;
-    IsOpen = true;
+  public override bool CheckStatus(UnitControl user, Vector3 pos) {
+    bool inRange = base.CheckStatus(user, pos);
+    return inRange && user.HasMedkit;
   }
 
   public void StartRevive() {
@@ -47,8 +47,6 @@ public class Reviver : Interactable {
     }
   }
 
-  public override void FinishInteracting(UnitControl user) {
-    IsOpen = false;
-  }
+
 
 }

@@ -43,8 +43,18 @@ public class Interactable : MonoBehaviour {
     }
   }
 
-  public virtual void StartInteracting(UnitControl user) { }
-  protected virtual void LoadingComplete() { }
-  public virtual void FinishInteracting(UnitControl user) { }
+  public virtual bool CheckStatus(UnitControl user, Vector3 pos) {
+    return (Vector3.Distance(transform.position, pos) < 1.25f);
+  } 
 
+  public virtual void StartInteracting(UnitControl user) {
+    IsOpen = true;
+    currentUser = user;
+    user.CurrentInteractable = this;
+  }
+
+  protected virtual void LoadingComplete() { }
+  public virtual void FinishInteracting(UnitControl user) {
+    IsOpen = false;
+  }
 }

@@ -20,7 +20,7 @@ public class UnitControl : MonoBehaviour {
   NavMeshAgent navAgent;
   Animator animator;
   EntryCharacter characterEntry;
-  public List<string> inventory { get { return characterEntry.inventory; } }
+  public List<string> Inventory { get { return characterEntry.inventory; } }
 
   public RuntimeAnimatorController mainWeaponController;
   public RuntimeAnimatorController sideArmController;
@@ -42,8 +42,6 @@ public class UnitControl : MonoBehaviour {
 
   public Interactable CurrentInteractable { get; set; }
 
-
-
   bool isInteracting = false;
   public bool IsInteracting {
     get { return isInteracting; }
@@ -54,10 +52,6 @@ public class UnitControl : MonoBehaviour {
         animator.SetTrigger("Interact");
         if (CurrentInteractable)
           FacePosition(CurrentInteractable.transform.position);
-      } else {
-        if (CurrentInteractable) {
-          CurrentInteractable.FinishInteracting(this);
-        }
       }
       animator.SetBool("IsInteracting", isInteracting);
     }
@@ -65,7 +59,7 @@ public class UnitControl : MonoBehaviour {
 
   public bool HasMedkit {
     get {
-      foreach (var item in inventory)
+      foreach (var item in Inventory)
         if (item.Contains("Medkit")) return true;
       return false;
     }
@@ -106,7 +100,7 @@ public class UnitControl : MonoBehaviour {
     get {
       return isMoving;
     }
-    
+
     set {
       inMovingState = value;
       if (inMovingState) {
@@ -130,7 +124,24 @@ public class UnitControl : MonoBehaviour {
     }
   }
 
-  public bool IsSelected { get; set; } = false;
+  bool isSelected;
+  public bool IsSelected {
+    get { return isSelected; }
+    set {
+      isSelected = value;
+      if (PlayerPanel) PlayerPanel.IsSelected = isSelected;
+      if (isSelected) {
+        gameManager.ActivateInteractables(this, transform.position);
+      } else {
+
+        if (gameObject.tag.Equals("Player") && CurrentInteractable) {
+          IsInteracting = false;
+          CurrentInteractable.FinishInteracting(this);
+          CurrentInteractable = null;
+        }
+      }
+    }
+  }
 
   [HideInInspector]
   public UnityEvent pathComplete = new UnityEvent();
@@ -256,11 +267,12 @@ public class UnitControl : MonoBehaviour {
     armorRegen = armor.canRegen;
     armorRegenTime = armor.armorRegenTime;
     armorRegenSpeed = armor.armorRegenTime;
-}
+  }
 
   public void MoveTo(Vector3 movePos) {
     if (gameObject.tag.Equals("Player") && CurrentInteractable) {
       IsInteracting = false;
+      CurrentInteractable.FinishInteracting(this);
       CurrentInteractable = null;
     }
 
@@ -282,34 +294,11 @@ public class UnitControl : MonoBehaviour {
     MoveComplete(navAgent.destination);
   }
 
-  public void MoveComplete(Vector3 EndPos) {
+  public void MoveComplete(Vector3 endPos) {
+    if (gameObject.tag.Equals("Player") && IsSelected)
+      gameManager.ActivateInteractables(this, endPos);
 
-    // check for lootables
-    if (gameObject.tag.Equals("Player")) {
-      CurrentInteractable = gameManager.ActivateLootables(EndPos, this);
-    }
-
-    // check for people to revive
-    if (HasMedkit) {
-      GameObject[] allUnits = 
-        gameManager.FindNearbyObjects(transform.position, targeting.MeleeRange, gameObject.tag);
-      foreach (GameObject unit in allUnits) {
-        Reviver reviver = unit.GetComponent<Reviver>();
-        if (reviver) reviver.StartInteracting(this);
-      }
-    }
-
-    // check for weapons to pick up
-    // check for people to revive
-    GameObject[] allWeapons =
-      gameManager.FindNearbyObjects(transform.position, targeting.MeleeRange, "Weapon");
-    foreach (GameObject item in allWeapons) {
-      WeaponPickup weaponPickup = item.GetComponent<WeaponPickup>();
-      if (weaponPickup) weaponPickup.StartInteracting(this);
-    }
-
-
-    MapData.MapCell mapCell = gameManager.mapControl.GetMapCell(EndPos);
+    MapData.MapCell mapCell = gameManager.mapControl.GetMapCell(endPos);
     InCover = mapCell.HasCover && !IgnoreCover;
     IsMoving = false;
 
@@ -346,7 +335,7 @@ public class UnitControl : MonoBehaviour {
     switch (weapon.type) {
       case Weapon.WeaponType.Main:
         if (MainWeapon != null) MainWeapon.Drop();
-        MainWeapon = (RangedWeapon) weapon;
+        MainWeapon = (RangedWeapon)weapon;
         MainWeapon.Init(this, attachPoints["Backpack"], attachPoints["RightHand"]);
         MainWeapon.SetStockAttach(animator.GetBoneTransform(HumanBodyBones.Chest));
         MainWeapon.Equip();
@@ -354,7 +343,7 @@ public class UnitControl : MonoBehaviour {
         break;
       case Weapon.WeaponType.SideArm:
         if (SideArm != null) SideArm.Drop();
-        SideArm = (RangedWeapon) weapon;
+        SideArm = (RangedWeapon)weapon;
         SideArm.Init(this, attachPoints["LeftHip"], attachPoints["RightHand"]);
         SideArm.SetStockAttach(animator.GetBoneTransform(HumanBodyBones.Chest));
         if (!EquippedWeapon) {
@@ -365,7 +354,7 @@ public class UnitControl : MonoBehaviour {
         }
         break;
       case Weapon.WeaponType.Melee:
-        Melee = (MeleeWeapon) weapon;
+        Melee = (MeleeWeapon)weapon;
         Melee.Init(this, attachPoints["RightHip"], attachPoints["RightHand"]);
         Melee.Stow();
         break;
@@ -467,7 +456,7 @@ public class UnitControl : MonoBehaviour {
       if (SideArm) SideArm.Equip();
       EquippedWeapon = null;
     }
-    
+
     if (PlayerPanel) {
       PlayerPanel.Incapacitated();
       gameObject.AddComponent<Reviver>().Init(this);
@@ -527,7 +516,7 @@ public class UnitControl : MonoBehaviour {
     animator.runtimeAnimatorController = sideArmController;
     navAgent.enabled = true;
   }
-  
+
   public void Reload() {
     animator.SetTrigger("Reload");
   }
