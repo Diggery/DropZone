@@ -5,60 +5,40 @@ using UnityEngine.UI;
 
 public class Reviver : Interactable {
 
-  UnitControl helper;
   UnitControl victim;
 
-  float reviveTime = 1f;
-  float reviveTimer = 0;
-
-  Image background;
   Button reviveButton;
-  Image loadingBar;
+  Image background;
 
   public Reviver Init(UnitControl victim) {
     base.Init("ReviverUI");
     this.victim = victim;
-
-    reviveButton = UI.transform.Find("ReviveButton").GetComponent<Button>();
+    reviveButton = UI.transform.Find("Button").GetComponent<Button>();
     reviveButton.onClick.AddListener(StartRevive);
-
     background = reviveButton.GetComponent<Image>();
-
-    loadingBar = UI.transform.Find("ReviveButton/LoadingBar").GetComponent<Image>();
-    loadingBar.enabled = false;
-
-    UI.SetActive(false);
     return this;
   }
 
-  void Update() {
-    if (!UI) return;
-    UI.transform.rotation = viewCamera.rotation;
-    if (reviveTimer > 0) {
-      reviveTimer -= Time.deltaTime;
-      loadingBar.fillAmount = reviveTimer / reviveTime;
-      if (reviveTimer < 0) FinishRevive();
-    }
-  }
-
-  public override void StartInteracting(UnitControl helper) {
-    this.helper = helper;
-    IsOpen = true;
+  public override bool CheckStatus(UnitControl user, Vector3 pos) {
+    bool inRange = base.CheckStatus(user, pos);
+    return inRange && user.HasMedkit;
   }
 
   public void StartRevive() {
-    reviveTimer = reviveTime;
+    if (!currentUser) return;
+    if (currentUser.IsInteracting) return;
+
+    loadingTimer = loadingTime;
     loadingBar.fillAmount = 0;
     loadingBar.enabled = true;
-    if (helper) helper.IsInteracting = true;
-
+    currentUser.IsInteracting = true;
   }
 
-  public void FinishRevive() {
-    if (!helper) return;
+  protected override void LoadingComplete() {
+    if (!currentUser) return;
     Debug.Log("Finishing");
-    helper.IsInteracting = false;
-    if (helper.RemoveItem("Medkit")) {
+    currentUser.IsInteracting = false;
+    if (currentUser.RemoveItem("Medkit")) {
       victim.Revive();
       Destroy(UI);
       Destroy(this);
@@ -66,5 +46,7 @@ public class Reviver : Interactable {
       background.color = Color.red;
     }
   }
+
+
 
 }

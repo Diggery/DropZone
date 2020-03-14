@@ -6,25 +6,10 @@ using UnityEngine.UI;
 public class Lootable : Interactable {
 
   List<Vector3> lootPositions = new List<Vector3>();
-  UnitControl currentLooter;
   GameObject itemPrefab;
   Vector2 uiOpenSize = new Vector2(200, 180);
   Vector2 uiClosedSize = new Vector2(128, 16);
   public Interpolator.LerpFloat uiTransition;
-
-  public override bool IsOpen {
-    get { return isOpen; }
-    set {
-      base.IsOpen = value;
-      isOpen = value;
-      if (!isOpen) {
-        if (Unlocked) {
-          Unlocked = false;
-          UI.SetActive(true);
-        }
-      }
-    }
-  }
 
   bool unlocked;
   bool Unlocked {
@@ -39,19 +24,32 @@ public class Lootable : Interactable {
         closeIcon.enabled = true;
         Interpolator.Start(uiTransition);
         loadingBar.enabled = false;
-        if (currentLooter.PlayerPanel) currentLooter.PlayerPanel.InventoryOpen = true;
+        if (currentUser.PlayerPanel) currentUser.PlayerPanel.InventoryOpen = true;
       } else {
         unlockIcon.enabled = false;
         openIcon.enabled = true;
         closeIcon.enabled = false;
         Interpolator.Reverse(uiTransition);
-        if (currentLooter.PlayerPanel) currentLooter.PlayerPanel.InventoryOpen = false;
+        if (currentUser.PlayerPanel) currentUser.PlayerPanel.InventoryOpen = false;
       }
     }
   }
 
-  float unlockTime = 1f;
-  float unlockTimer = 0;
+  public override bool IsOpen {
+    get { return isOpen; }
+    set {
+      isOpen = value;
+      if (isOpen) {
+        UI.SetActive(true);
+      } else {
+        if (Unlocked) {
+          Unlocked = false;
+        } else {
+          UI.SetActive(false);
+        }
+      }
+    }
+  }
 
   RectTransform uiBackground;
   Button unlockButton;
@@ -59,33 +57,11 @@ public class Lootable : Interactable {
   Image openIcon;
   Image closeIcon;
   CanvasGroup contentsGroup;
-  Image loadingBar;
   public string[] contents;
   public enum ValueLevel { High, Medium, Low }
   public ValueLevel valueLevel;
   public bool autoFill;
-  int contentsSize = 6;
-
-  bool InUse {
-    get {
-      LayerMask uiMask = LayerMask.GetMask("UI");
-      bool stillInUse = false;
-      for (int i = 0; i < 4; i++) {
-        Vector3 startPos = transform.position + (Vector3.up * 1f);
-        Vector3 endPos = startPos + (Quaternion.AngleAxis(90 * i, Vector3.up) * Vector3.forward);
-
-        if (Physics.Linecast(startPos, endPos, out RaycastHit hit, uiMask)) {
-          if (hit.transform.root.tag.Equals("Player")) {
-            UnitControl unit = hit.transform.root.GetComponent<UnitControl>();
-            if (unit.IsInteracting) {
-              stillInUse = true;
-            }
-          }
-        }
-      }
-      return stillInUse;
-    }
-  }
+  readonly int contentsSize = 6;
 
   void Start() {
     base.Init("LootableUI");
@@ -107,13 +83,13 @@ public class Lootable : Interactable {
     uiTransition.onFinish = OnUITransitionFinished;
 
     uiBackground = UI.transform.Find("Background").GetComponent<RectTransform>();
-    unlockButton = UI.transform.Find("Background/Unlock").GetComponent<Button>();
+    unlockButton = UI.transform.Find("Button").GetComponent<Button>();
     Image unlockImage = unlockButton.transform.GetComponent<Image>();
     unlockButton.onClick.AddListener(UnlockLootable);
 
-    unlockIcon = UI.transform.Find("Background/Unlock/UnlockIcon").GetComponent<Image>();
-    openIcon = UI.transform.Find("Background/Unlock/OpenIcon").GetComponent<Image>();
-    closeIcon = UI.transform.Find("Background/Unlock/CloseIcon").GetComponent<Image>();
+    unlockIcon = UI.transform.Find("Button/UnlockIcon").GetComponent<Image>();
+    openIcon = UI.transform.Find("Button/OpenIcon").GetComponent<Image>();
+    closeIcon = UI.transform.Find("Button/CloseIcon").GetComponent<Image>();
 
     unlockIcon.enabled = true;
     openIcon.enabled = false;
@@ -123,11 +99,6 @@ public class Lootable : Interactable {
     contentsGroup.alpha = 0;
     contentsGroup.interactable = false;
 
-    loadingBar = UI.transform.Find("Background/Unlock/LoadingBar").GetComponent<Image>();
-    loadingBar.enabled = false;
-
-    UI.SetActive(false);
-
     itemPrefab = gameManager.GetPrefab("LootItem");
 
     foreach (string itemName in contents) {
@@ -135,30 +106,24 @@ public class Lootable : Interactable {
     }
   }
 
-  void Update() {
-    UI.transform.rotation = viewCamera.rotation;
-    if (currentLooter && currentLooter.IsInteracting && unlockTimer > 0) {
-      unlockTimer -= Time.deltaTime;
-      loadingBar.fillAmount = unlockTimer / unlockTime;
-      if (unlockTimer < 0) Unlocked = true;
-    }
-  }
+  public override bool CheckStatus(UnitControl user, Vector3 checkPos) {
+    bool isLootable = base.CheckStatus(user, checkPos);
+    if (!isLootable) return false;
 
-  public bool CheckPosition(Vector3 checkPos) {
-    bool isLootable = false;
-    foreach (Vector3 pos in lootPositions) {
-      if (Vector3.Distance(checkPos, pos) < 0.25f) isLootable = true;
+    for (int i = 0; i < 4; i++) {
+      Vector3 startPos = transform.position + (Vector3.up * 1f);
+      Vector3 endPos = startPos + (Quaternion.AngleAxis(90 * i, Vector3.up) * Vector3.forward);
+      LayerMask lootMask = LayerMask.GetMask("UI") | LayerMask.GetMask("Terrain");
+      if (Physics.Linecast(startPos, endPos, out RaycastHit hit, lootMask)) {
+        if (hit.transform.root.Equals(user.transform)) isLootable = true;
+      }
     }
     return isLootable;
   }
 
-  public override void StartInteracting(UnitControl user) {
-    IsOpen = true;
-    currentLooter = user;
-  }
-
-  public override void FinishInteracting(UnitControl user) {
-    if (!InUse) IsOpen = false;
+  protected override void LoadingComplete() {
+    base.LoadingComplete();
+    Unlocked = true;
   }
 
   public bool AddItem(string itemName) {
@@ -171,7 +136,7 @@ public class Lootable : Interactable {
   }
 
   void GetLoot(Button buttonClicked) {
-    if (currentLooter.AddItem(buttonClicked.name)) {
+    if (currentUser.AddItem(buttonClicked.name)) {
       Destroy(buttonClicked.gameObject);
     }
   }
@@ -180,16 +145,16 @@ public class Lootable : Interactable {
     if (Unlocked) {
       Debug.Log("Unlocked");
       Unlocked = false;
-      if (currentLooter) currentLooter.IsInteracting = false;
+      if (currentUser) currentUser.IsInteracting = false;
     } else {
-      if (unlockTimer < 0) {
+      if (loadingTimer < 0) {
         Unlocked = true;
       } else {
-        unlockTimer = unlockTime;
+        loadingTimer = loadingTime;
         loadingBar.fillAmount = 0;
         loadingBar.enabled = true;
       }
-      if (currentLooter) currentLooter.IsInteracting = true;
+      if (currentUser) currentUser.IsInteracting = true;
     }
   }
 
@@ -200,6 +165,6 @@ public class Lootable : Interactable {
   void OnUITransitionFinished(bool reversed) {
     uiBackground.sizeDelta = reversed ? uiClosedSize : uiOpenSize;
     contentsGroup.alpha = reversed ? 0 : 1;
-    if (reversed && !InUse && !IsOpen) UI.SetActive(false);
+    if (reversed && !IsOpen) UI.SetActive(false);
   }
 }

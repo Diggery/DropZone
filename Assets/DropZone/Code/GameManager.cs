@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour {
         break;
       }
     }
-    if (!entryItem) Debug.Log("Couldnt find an entry for " + itemName);
+    if (!entryItem) Debug.Log("Couldn't find an entry for " + itemName);
     return entryItem;
   }
 
@@ -96,15 +96,57 @@ public class GameManager : MonoBehaviour {
     inputControl = gameObject.AddComponent<InputControl>().Init();
   }
 
-  public Lootable ActivateLootables(Vector3 pos, UnitControl looter) { 
-    Lootable nearbyLootable = null;
-    foreach(Lootable lootable in lootables) {
-      if (lootable.CheckPosition(pos)) {
-        nearbyLootable = lootable;
-        lootable.StartInteracting(looter);
+  public void ActivateInteractables(UnitControl user, Vector3 pos) {
+    if (!user.IsSelected) return;
+
+    Interactable[] allInteractables = FindObjectsOfType<Interactable>();
+    foreach(Interactable interactable in allInteractables) {
+      bool isUseable = interactable.CheckStatus(user, pos);
+      if (isUseable) interactable.StartInteracting(user);
+    }
+    //Lootable nearbyLootable = null;
+    //foreach (Lootable lootable in lootables) {
+    //  if (lootable.CheckPosition(pos)) {
+    //    nearbyLootable = lootable;
+    //    lootable.StartInteracting(looter);
+    //  }
+    //}
+    //return nearbyLootable;
+
+
+    //if (gameObject.tag.Equals("Player")) {
+    //  CurrentInteractable = gameManager.ActivateLootables(EndPos, this);
+    //}
+
+    //// check for people to revive
+    //if (HasMedkit) {
+    //  GameObject[] allUnits =
+    //    gameManager.FindNearbyObjects(transform.position, targeting.MeleeRange, gameObject.tag);
+    //  foreach (GameObject unit in allUnits) {
+    //    Reviver reviver = unit.GetComponent<Reviver>();
+    //    if (reviver) reviver.StartInteracting(this);
+    //  }
+    //}
+
+    //// check for weapons to pick up
+    //// check for people to revive
+    //GameObject[] allWeapons =
+    //  gameManager.FindNearbyObjects(transform.position, targeting.MeleeRange, "Weapon");
+    //foreach (GameObject item in allWeapons) {
+    //  WeaponPickup weaponPickup = item.GetComponent<WeaponPickup>();
+    //  if (weaponPickup) weaponPickup.StartInteracting(this);
+    //}
+  }
+
+  public GameObject[] FindNearbyObjects(Vector3 pos, float range, string targetTag) {
+    GameObject[] allObjects = GameObject.FindGameObjectsWithTag(targetTag);
+    List<GameObject> inRange = new List<GameObject>();
+    foreach (GameObject item in allObjects) {
+      if (Vector3.Distance(item.transform.position, pos) < range) {
+        inRange.Add(item);
       }
     }
-    return nearbyLootable;
+    return inRange.ToArray();
   }
 }
 

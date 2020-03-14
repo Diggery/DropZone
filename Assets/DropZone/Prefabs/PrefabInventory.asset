@@ -44,3 +44,6 @@ MonoBehaviour:
   - name: ReviverUI
     prefab: {fileID: 1936075713103760227, guid: b6ffd300697d74b0f99b04a245cbb7f5,
       type: 3}
+  - name: PickupUI
+    prefab: {fileID: 1936075713103760227, guid: 0df4286c90bb67a4dac7cf28ae347db0,
+      type: 3}

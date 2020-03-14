@@ -10,7 +10,6 @@ public class UIPlayerPanel : MonoBehaviour {
   UnitControl player;
 
   Image panelBackground;
-  Image panelOverlay;
   CanvasGroup mainGroup;
   TextMeshProUGUI playerName;
   Button mainWeapon;
@@ -22,9 +21,7 @@ public class UIPlayerPanel : MonoBehaviour {
   TextMeshProUGUI magazineCounter;
   RectTransform magazineContainer;
   GameObject magazinePrefab;
-  Material lifeMeterMaterial;
-  Vector2 lifeMeterOffset = Vector2.zero;
-  Vector3 lifeMeterScale = Vector2.one;
+  Image selectIndicator;
 
   RectTransform inventoryGroup;
   RectTransform inventoryContainer;
@@ -53,20 +50,29 @@ public class UIPlayerPanel : MonoBehaviour {
   }
   public Interpolator.LerpFloat openInventory;
   public Interpolator.LerpColor flashPanel;
+  public Interpolator.LerpColor flashSelector;
   public Interpolator.LerpColor flashMagazines;
 
+  bool isSelected;
+  public bool IsSelected {
+    get { return IsSelected; }
+    set {
+      isSelected = value;
+      flashSelector.startValue = isSelected ? Color.white : selectIndicator.color;
+      flashSelector.endValue = isSelected ? Color.red : Color.black;
+      if (isSelected) Interpolator.Start(flashPanel);
+      Interpolator.Start(flashSelector);
+    }
+  }
   public void Init(UnitControl target) {
     player = target;
     player.PlayerPanel = this;
     gameManager = GameManager.Instance;
-    panelBackground = transform.GetComponent<Image>();
-    panelOverlay = transform.Find("MainGroup").GetComponent<Image>();
+    panelBackground = transform.Find("MainGroup").GetComponent<Image>();
     mainGroup = transform.Find("MainGroup").GetComponent<CanvasGroup>();
-    Image lifeMeterImage = transform.Find("MainGroup/LifeMeter").GetComponent<Image>();
-    lifeMeterMaterial = Instantiate(lifeMeterImage.material);
-    lifeMeterImage.material = lifeMeterMaterial;
-    lifeMeterImage.GetComponent<Button>().onClick.AddListener(SelectPlayer);
-    lifeMeterOffset.x = Random.value;
+    mainGroup.GetComponent<Button>().onClick.AddListener(SelectPlayer);
+
+    selectIndicator = transform.Find("MainGroup/Selector").GetComponent<Image>();
     playerName = transform.Find("MainGroup/PlayerName").GetComponent<TextMeshProUGUI>();
     hitsContainer = transform.Find("MainGroup/Hits").GetComponent<RectTransform>();
     hitsPrefab = hitsContainer.GetChild(0).gameObject;
@@ -91,7 +97,8 @@ public class UIPlayerPanel : MonoBehaviour {
     openInventory.onTick = openInventoryTick;
     openInventory.onFinish = openInventoryFinish;
     inventoryClosedPos = inventoryGroup.anchoredPosition;
-    flashPanel.onTickVector = color => panelOverlay.color = panelBackground.color = color;
+    flashPanel.onTickVector = color => panelBackground.color = color;
+    flashSelector.onTickVector = color => selectIndicator.color = color;
     flashMagazines.onTickVector = color => magazinePanel.color = color;
     playerName.text = player.UnitName;
     SetMagazines(player.MainWeapon.Magazines);
@@ -100,14 +107,11 @@ public class UIPlayerPanel : MonoBehaviour {
     Interpolator.Start(flashPanel);
 
     ClearInventory();
-    foreach (string item in player.inventory) {
+    foreach (string item in player.Inventory) {
       AddInventoryItem(item);
     }
-  }
 
-  void Update() {
-    lifeMeterOffset.x = (lifeMeterOffset.x + (Time.deltaTime * lifeMeterScale.x)) % 1.0f;
-    lifeMeterMaterial.SetTextureOffset("_BaseLayer", lifeMeterOffset);
+    IsSelected = false;
   }
 
   public void SetMagazines(int amount, bool withEffect = false) {
@@ -139,12 +143,6 @@ public class UIPlayerPanel : MonoBehaviour {
     }
 
     float amount = hitPoints / (float)hitsContainer.childCount;
-    Color meterColor = lifeMeterMaterial.color;
-    meterColor.a = Mathf.Lerp(1.0f, 0.25f, amount);
-    lifeMeterMaterial.color = meterColor;
-    lifeMeterScale.x = Mathf.Lerp(2.0f, 0.5f, amount) ;
-    lifeMeterMaterial.SetTextureScale("_BaseLayer", lifeMeterScale);
-
   }
 
 
