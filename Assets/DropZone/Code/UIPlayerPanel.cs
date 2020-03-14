@@ -59,7 +59,7 @@ public class UIPlayerPanel : MonoBehaviour {
     set {
       isSelected = value;
       flashSelector.startValue = isSelected ? Color.white : selectIndicator.color;
-      flashSelector.endValue = isSelected ? Color.red : Color.black;
+      flashSelector.endValue = isSelected ? Color.red : Color.clear;
       if (isSelected) Interpolator.Start(flashPanel);
       Interpolator.Start(flashSelector);
     }
