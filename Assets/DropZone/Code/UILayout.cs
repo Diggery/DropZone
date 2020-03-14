@@ -58,7 +58,7 @@ public class UILayout : MonoBehaviour {
   }
 
   void Start() {
-    playerPanels = transform.Find("PlayerPanels").GetComponent<RectTransform>();
+    playerPanels = transform.Find("SideBar/PlayerPanels").GetComponent<RectTransform>();
 
     controls = transform.Find("Controls").GetComponent<RectTransform>();
     pauseControlsGroup = transform.Find("Controls/PauseControls").GetComponent<CanvasGroup>();

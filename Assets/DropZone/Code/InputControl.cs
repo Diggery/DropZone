@@ -132,8 +132,9 @@ public class InputControl : MonoBehaviour {
     if (Input.GetKey(KeyCode.S)) CameraControl.Move(Vector3.back);
     if (Input.GetKey(KeyCode.D)) CameraControl.Move(Vector3.right);
 
-    if ((Input.GetAxis("SelectSideArm") != 0) && SelectedUnit) SelectedUnit.DrawSideArm();
-    if ((Input.GetAxis("SelectMainWeapon") != 0) && SelectedUnit) SelectedUnit.DrawMainWeapon();
+    if ((Input.GetButtonUp("SelectSideArm")) && SelectedUnit) SelectedUnit.DrawSideArm();
+    if ((Input.GetButtonUp("SelectMainWeapon")) && SelectedUnit) SelectedUnit.DrawMainWeapon();
+    if ((Input.GetButtonUp("Inventory")) && SelectedUnit) SelectedUnit.PlayerPanel.ToggleInventory();
 
     if (Input.GetKey(KeyCode.Z) && SelectedUnit) SelectedUnit.Incapacitate();
     if (Input.GetKey(KeyCode.X) && SelectedUnit) SelectedUnit.Revive();

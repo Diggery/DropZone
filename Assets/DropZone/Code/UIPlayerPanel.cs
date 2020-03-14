@@ -91,8 +91,8 @@ public class UIPlayerPanel : MonoBehaviour {
     magazinePrefab.transform.SetParent(mainGroup.transform);
     magazinePrefab.SetActive(false);
     inventoryGroup = transform.Find("InventoryGroup").GetComponent<RectTransform>();
-    inventoryGroup.GetComponent<Button>().onClick.AddListener(() => InventoryOpen = !InventoryOpen);
-    inventoryContainer = transform.Find("InventoryGroup/Inventory").GetComponent<RectTransform>();
+    inventoryGroup.GetComponent<Button>().onClick.AddListener(() => ToggleInventory()); 
+     inventoryContainer = transform.Find("InventoryGroup/Inventory").GetComponent<RectTransform>();
 
     openInventory.onTick = openInventoryTick;
     openInventory.onFinish = openInventoryFinish;
@@ -145,6 +145,9 @@ public class UIPlayerPanel : MonoBehaviour {
     float amount = hitPoints / (float)hitsContainer.childCount;
   }
 
+  public void ToggleInventory() {
+    InventoryOpen = !InventoryOpen;
+  }
 
   public void MainWeaponEquipped() {
   }
@@ -210,8 +213,6 @@ public class UIPlayerPanel : MonoBehaviour {
   void SelectSideArm() {
     player.DrawSideArm();
   }
-
-
 
   void openInventoryTick(float amount) {
     inventoryGroup.anchoredPosition = Vector2.Lerp(inventoryClosedPos, inventoryOpenPos, amount);
