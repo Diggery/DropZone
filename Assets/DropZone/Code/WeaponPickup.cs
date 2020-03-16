@@ -1,19 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class WeaponPickup : Interactable {
 
-  Image background;
   Button button;
   Weapon weapon;
   public WeaponPickup Start() {
-    Init("PickupUI");
-    Debug.Log("Adding weapon pickup");
+    base.Init("InteractableUI");
     button = UI.transform.Find("Button").GetComponent<Button>();
     button.onClick.AddListener(StartLooting);
     weapon = transform.GetComponent<Weapon>();
+    TextMeshProUGUI label = button.transform.Find("Label").GetComponent<TextMeshProUGUI>();
+    label.text = "Pick Up";
 
     UI.SetActive(false);
     return this;

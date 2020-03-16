@@ -6,6 +6,8 @@ public class Interactable : MonoBehaviour {
   protected GameObject UI;
   protected Transform viewCamera;
   protected UnitControl currentUser;
+  RectTransform canvas;
+  Interpolator.LerpVector introAnim;
 
   protected Image loadingBar;
   protected float loadingTime = 1f;
@@ -19,6 +21,7 @@ public class Interactable : MonoBehaviour {
     set {
       isOpen = value;
       UI.SetActive(value);
+      if (isOpen) Interpolator.Start(introAnim);
     }
   }
 
@@ -26,10 +29,20 @@ public class Interactable : MonoBehaviour {
     viewCamera = Camera.main.transform;
     GameObject uiPrefab = GameManager.Instance.GetPrefab(uiPrefabName);
     UI = Instantiate(uiPrefab, transform);
-    UI.transform.localPosition = Vector3.up;
+    UI.transform.localPosition = Vector3.zero;
     loadingBar = UI.transform.Find("Button/LoadingBar").GetComponent<Image>();
     loadingBar.enabled = false;
+
+    canvas = UI.GetComponent<RectTransform>();
+    introAnim = new Interpolator.LerpVector();
+    Vector4 introStart = canvas.sizeDelta;
+    Vector4 introEnd = new Vector4(introStart.x, introStart.y * 3, 0, 0);
+    introAnim.startValue = introStart;
+    introAnim.endValue = introEnd;
+    introAnim.onTickVector = (value) => canvas.sizeDelta = value;;
+
     UI.SetActive(false);
+
     return this;
   }
 

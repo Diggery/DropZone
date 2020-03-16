@@ -8,8 +8,8 @@ public class Lootable : Interactable {
   List<Vector3> lootPositions = new List<Vector3>();
   GameObject itemPrefab;
   Vector2 uiOpenSize = new Vector2(200, 180);
-  Vector2 uiClosedSize = new Vector2(128, 16);
-  public Interpolator.LerpFloat uiTransition;
+  Vector2 uiClosedSize = new Vector2(64, 64);
+  Interpolator.LerpFloat uiTransition;
 
   bool unlocked;
   bool Unlocked {
@@ -24,13 +24,13 @@ public class Lootable : Interactable {
         closeIcon.enabled = true;
         Interpolator.Start(uiTransition);
         loadingBar.enabled = false;
-        if (currentUser.PlayerPanel) currentUser.PlayerPanel.InventoryOpen = true;
+        if (currentUser.PlayerPanel) currentUser.PlayerPanel.OpenDetails();
       } else {
         unlockIcon.enabled = false;
         openIcon.enabled = true;
         closeIcon.enabled = false;
         Interpolator.Reverse(uiTransition);
-        if (currentUser.PlayerPanel) currentUser.PlayerPanel.InventoryOpen = false;
+        if (currentUser.PlayerPanel) currentUser.PlayerPanel.CloseDetails();
       }
     }
   }
@@ -78,7 +78,8 @@ public class Lootable : Interactable {
         lootPositions.Add(endPos);
       }
     }
-
+    uiTransition = new Interpolator.LerpFloat();
+    uiTransition.duration = 0.5f;
     uiTransition.onTick = OnUITransitionTick;
     uiTransition.onFinish = OnUITransitionFinished;
 

@@ -8,6 +8,8 @@ public class UIPlayerPanel : MonoBehaviour {
 
   GameManager gameManager;
   UnitControl player;
+  UILayout uiLayout;
+  UIDetailsPanel detailsPanel;
 
   Image panelBackground;
   CanvasGroup mainGroup;
@@ -23,32 +25,11 @@ public class UIPlayerPanel : MonoBehaviour {
   GameObject magazinePrefab;
   Image selectIndicator;
 
-  RectTransform inventoryGroup;
-  RectTransform inventoryContainer;
-
-  Vector2 inventoryOpenPos = new Vector2(-280, 0);
-  Vector2 inventoryClosedPos = new Vector2(0, 0);
 
   public Color shieldColor = Color.blue;
   public Color healthColor = Color.red;
   public Color emptyColor = Color.black;
 
-  bool inventoryOpen = false;
-  public bool InventoryOpen {
-    get { return inventoryOpen; }
-    set {
-      if (inventoryOpen == value) return;
-      inventoryOpen = value;
-      if (inventoryOpen) {
-        GameTime.AutoPause("InventoryOpened", GameTime.TimeSetting.SlowMo, player.UnitName);
-        Interpolator.Start(openInventory);
-      } else {
-        GameTime.AutoPause("InventoryOpened", GameTime.TimeSetting.Normal, player.UnitName);
-        Interpolator.Reverse(openInventory);
-      }
-    }
-  }
-  public Interpolator.LerpFloat openInventory;
   public Interpolator.LerpColor flashPanel;
   public Interpolator.LerpColor flashSelector;
   public Interpolator.LerpColor flashMagazines;
@@ -64,8 +45,10 @@ public class UIPlayerPanel : MonoBehaviour {
       Interpolator.Start(flashSelector);
     }
   }
-  public void Init(UnitControl target) {
+  public void Init(UILayout layout, UnitControl target, UIDetailsPanel details) {
+    uiLayout = layout;
     player = target;
+    detailsPanel = details;
     player.PlayerPanel = this;
     gameManager = GameManager.Instance;
     panelBackground = transform.Find("MainGroup").GetComponent<Image>();
@@ -90,13 +73,10 @@ public class UIPlayerPanel : MonoBehaviour {
     magazinePrefab = magazineContainer.GetChild(0).gameObject;
     magazinePrefab.transform.SetParent(mainGroup.transform);
     magazinePrefab.SetActive(false);
-    inventoryGroup = transform.Find("InventoryGroup").GetComponent<RectTransform>();
-    inventoryGroup.GetComponent<Button>().onClick.AddListener(() => ToggleInventory()); 
-     inventoryContainer = transform.Find("InventoryGroup/Inventory").GetComponent<RectTransform>();
 
-    openInventory.onTick = openInventoryTick;
-    openInventory.onFinish = openInventoryFinish;
-    inventoryClosedPos = inventoryGroup.anchoredPosition;
+    Button detailsButton = transform.Find("Details").GetComponent<Button>();
+    detailsButton.onClick.AddListener(OpenDetails);
+
     flashPanel.onTickVector = color => panelBackground.color = color;
     flashSelector.onTickVector = color => selectIndicator.color = color;
     flashMagazines.onTickVector = color => magazinePanel.color = color;
@@ -105,11 +85,6 @@ public class UIPlayerPanel : MonoBehaviour {
     SetMaxHits(player.MaxHits);
     SetHits(player.MaxArmor, player.MaxHits);
     Interpolator.Start(flashPanel);
-
-    ClearInventory();
-    foreach (string item in player.Inventory) {
-      AddInventoryItem(item);
-    }
 
     IsSelected = false;
   }
@@ -145,8 +120,24 @@ public class UIPlayerPanel : MonoBehaviour {
     float amount = hitPoints / (float)hitsContainer.childCount;
   }
 
-  public void ToggleInventory() {
-    InventoryOpen = !InventoryOpen;
+  public void OpenDetails() {
+    detailsPanel.Open(player);
+  }
+  public void CloseDetails() {
+    detailsPanel.Close();
+  }
+  public void ToggleDetails() {
+    if (detailsPanel.IsOpen) {
+      detailsPanel.Close();
+    } else {
+      detailsPanel.Open(player);
+    }
+  }
+
+  public void AddInventoryItem(string itemName) {
+    if(detailsPanel.IsOpen && detailsPanel.CurrentPlayer.Equals(player)) {
+      detailsPanel.AddInventoryItem(itemName);
+    }
   }
 
   public void MainWeaponEquipped() {
@@ -174,36 +165,6 @@ public class UIPlayerPanel : MonoBehaviour {
     }
   }
 
-  void ClearInventory() {
-    int oldItems = inventoryContainer.childCount;
-    for (int i = oldItems - 1; i >= 0; i--) {
-      Destroy(inventoryContainer.GetChild(i).gameObject);
-    }
-  }
-
-  public void AddInventoryItem(string itemName) {
-    GameObject itemPrefab = gameManager.GetPrefab("LootItem");
-    GameObject item = Instantiate(itemPrefab, inventoryContainer.transform);
-    item.name = itemName;
-    Button itemButton = item.GetComponent<Button>();
-    itemButton.onClick.AddListener(() => UseItem(itemButton));
-  }
-
-  void UseItem(Button buttonClicked) {
-    if (player.CurrentInteractable && player.CurrentInteractable.IsContainer) {
-      Lootable lootable = (Lootable)player.CurrentInteractable;
-      if (lootable.AddItem(buttonClicked.name)) {
-        Debug.Log("Sending " + buttonClicked.name + " to container");
-        Destroy(buttonClicked.gameObject);
-        player.RemoveItem(buttonClicked.name);
-      }
-      return;
-    }
-
-    EntryItem itemEntry = gameManager.GetItem(buttonClicked.name);
-
-  }
-
   void SelectPlayer() {
     gameManager.inputControl.SelectUnit(player);
   }
@@ -213,15 +174,4 @@ public class UIPlayerPanel : MonoBehaviour {
   void SelectSideArm() {
     player.DrawSideArm();
   }
-
-  void openInventoryTick(float amount) {
-    inventoryGroup.anchoredPosition = Vector2.Lerp(inventoryClosedPos, inventoryOpenPos, amount);
-    mainGroup.transform.localScale = Vector3.Lerp(Vector3.one, Vector3.one * 0.75f, amount);
-    mainGroup.alpha = Mathf.Lerp(1.0f, 0.15f, amount);
-  }
-  void openInventoryFinish(bool reversed) {
-    inventoryGroup.anchoredPosition = reversed ? inventoryClosedPos : inventoryOpenPos;
-    mainGroup.alpha = reversed ? 1.0f : 0.15f;
-  }
-
 }

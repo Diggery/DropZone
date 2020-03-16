@@ -10,6 +10,7 @@ public class UILayout : MonoBehaviour {
   GameManager gameManager;
 
   RectTransform playerPanels;
+  UIDetailsPanel detailsPanel;
   RectTransform controls;
 
   CanvasGroup pauseControlsGroup;
@@ -66,6 +67,7 @@ public class UILayout : MonoBehaviour {
     pauseControls = transform.Find("Controls/PauseControls").GetComponent<RectTransform>();
     pauseLabel = transform.Find("Controls/PauseControls/Label").GetComponent<TextMeshProUGUI>();
     pauseReason = transform.Find("Controls/PauseControls/Reason").GetComponent<TextMeshProUGUI>();
+    detailsPanel = transform.Find("SideBar/Details").GetComponent<UIDetailsPanel>().Init();
 
     Button pauseButton = pauseControlsGroup.GetComponent<Button>();
     pauseButton.onClick.AddListener(() => GameTime.TogglePause());
@@ -93,6 +95,7 @@ public class UILayout : MonoBehaviour {
     options.gameObject.SetActive(false);
 
     pauseShift.onTickVector = (color) => pauseBackground.color = color;
+
     gameManager = GameManager.Instance;
     gameManager.SetUI(this);
   }
@@ -100,7 +103,7 @@ public class UILayout : MonoBehaviour {
   public void AddPlayerPanel(UnitControl player) {
     GameObject panelPrefab = gameManager.GetPrefab("LootItem");
     GameObject panel = Instantiate(gameManager.GetPrefab("PlayerPanel"), playerPanels);
-    panel.GetComponent<UIPlayerPanel>().Init(player);
+    panel.GetComponent<UIPlayerPanel>().Init(this, player, detailsPanel);
   }
 
   void ModeChange(GameTime.TimeSetting setting, string target, string reason) {

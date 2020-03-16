@@ -134,7 +134,7 @@ public class InputControl : MonoBehaviour {
 
     if ((Input.GetButtonUp("SelectSideArm")) && SelectedUnit) SelectedUnit.DrawSideArm();
     if ((Input.GetButtonUp("SelectMainWeapon")) && SelectedUnit) SelectedUnit.DrawMainWeapon();
-    if ((Input.GetButtonUp("Inventory")) && SelectedUnit) SelectedUnit.PlayerPanel.ToggleInventory();
+    if ((Input.GetButtonUp("Inventory")) && SelectedUnit) SelectedUnit.PlayerPanel.ToggleDetails();
 
     if (Input.GetKey(KeyCode.Z) && SelectedUnit) SelectedUnit.Incapacitate();
     if (Input.GetKey(KeyCode.X) && SelectedUnit) SelectedUnit.Revive();

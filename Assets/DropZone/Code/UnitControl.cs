@@ -15,7 +15,7 @@ public class UnitControl : MonoBehaviour {
     }
   }
 
-  GameManager gameManager;
+    GameManager gameManager;
   public bool autoInit;
   NavMeshAgent navAgent;
   Animator animator;

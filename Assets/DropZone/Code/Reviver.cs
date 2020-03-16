@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Reviver : Interactable {
 
@@ -11,11 +12,14 @@ public class Reviver : Interactable {
   Image background;
 
   public Reviver Init(UnitControl victim) {
-    base.Init("ReviverUI");
+    base.Init("InteractableUI");
     this.victim = victim;
     reviveButton = UI.transform.Find("Button").GetComponent<Button>();
     reviveButton.onClick.AddListener(StartRevive);
     background = reviveButton.GetComponent<Image>();
+    TextMeshProUGUI label = reviveButton.transform.Find("Label").GetComponent<TextMeshProUGUI>();
+    label.text = "Revive";
+
     return this;
   }
 
