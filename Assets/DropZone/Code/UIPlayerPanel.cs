@@ -8,7 +8,6 @@ public class UIPlayerPanel : MonoBehaviour {
 
   GameManager gameManager;
   UnitControl player;
-  UILayout uiLayout;
   UIDetailsPanel detailsPanel;
 
   Image panelBackground;
@@ -45,8 +44,7 @@ public class UIPlayerPanel : MonoBehaviour {
       Interpolator.Start(flashSelector);
     }
   }
-  public void Init(UILayout layout, UnitControl target, UIDetailsPanel details) {
-    uiLayout = layout;
+  public void Init(UnitControl target, UIDetailsPanel details) {
     player = target;
     detailsPanel = details;
     player.PlayerPanel = this;
@@ -77,6 +75,7 @@ public class UIPlayerPanel : MonoBehaviour {
     Button detailsButton = transform.Find("Details").GetComponent<Button>();
     detailsButton.onClick.AddListener(OpenDetails);
 
+    flashPanel.endValue = panelBackground.color;
     flashPanel.onTickVector = color => panelBackground.color = color;
     flashSelector.onTickVector = color => selectIndicator.color = color;
     flashMagazines.onTickVector = color => magazinePanel.color = color;
@@ -116,8 +115,6 @@ public class UIPlayerPanel : MonoBehaviour {
         hitMarker.color = emptyColor;
       }
     }
-
-    float amount = hitPoints / (float)hitsContainer.childCount;
   }
 
   public void OpenDetails() {

@@ -19,6 +19,7 @@ public class AISquadManager : MonoBehaviour {
   public string unitType;
   public string teamTag = "Enemy";
   public bool autoFill = false;
+  public bool patrol = false;
 
   float morale = 0;
   float moraleThreshold = 3;
@@ -54,9 +55,14 @@ public class AISquadManager : MonoBehaviour {
       AIBrain newUnit = CreateUnit(unitType, position, transform.rotation);
       units.Add(newUnit);
       if (transform.childCount > 0) {
-        List<Vector3> patrolRoute = new List<Vector3>();
-        for (int i = 0; i < transform.childCount; i++) patrolRoute.Add(transform.GetChild(i).position);
-        newUnit.AddPatrolRoute(patrolRoute);
+        if (patrol) {
+          List<Vector3> patrolRoute = new List<Vector3>();
+          for (int i = 0; i < transform.childCount; i++) patrolRoute.Add(transform.GetChild(i).position);
+          newUnit.AddPatrolRoute(patrolRoute);
+        } else {
+          Vector3 movePos = transform.GetChild(Random.Range(0, transform.childCount)).position;
+          newUnit.MoveTo(movePos);
+        }
       }
     }
 

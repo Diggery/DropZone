@@ -103,7 +103,7 @@ public class UILayout : MonoBehaviour {
   public void AddPlayerPanel(UnitControl player) {
     GameObject panelPrefab = gameManager.GetPrefab("LootItem");
     GameObject panel = Instantiate(gameManager.GetPrefab("PlayerPanel"), playerPanels);
-    panel.GetComponent<UIPlayerPanel>().Init(this, player, detailsPanel);
+    panel.GetComponent<UIPlayerPanel>().Init(player, detailsPanel);
   }
 
   void ModeChange(GameTime.TimeSetting setting, string target, string reason) {

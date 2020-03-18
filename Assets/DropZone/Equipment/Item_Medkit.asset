@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Medkit
   description: a medkit
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 0b11f8a832a4bf942ba31bfc8166fbab, type: 3}
   prefab: {fileID: 0}
   isUsable: 1

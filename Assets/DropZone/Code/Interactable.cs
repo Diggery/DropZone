@@ -7,11 +7,12 @@ public class Interactable : MonoBehaviour {
   protected Transform viewCamera;
   protected UnitControl currentUser;
   RectTransform canvas;
-  Interpolator.LerpVector introAnim;
+  protected Interpolator.LerpVector introAnim;
 
   protected Image loadingBar;
   protected float loadingTime = 1f;
   protected float loadingTimer = 0;
+  protected float distFromCamera = 5;
 
   public bool IsContainer { get; set; }
 
@@ -36,19 +37,22 @@ public class Interactable : MonoBehaviour {
     canvas = UI.GetComponent<RectTransform>();
     introAnim = new Interpolator.LerpVector();
     Vector4 introStart = canvas.sizeDelta;
-    Vector4 introEnd = new Vector4(introStart.x, introStart.y * 3, 0, 0);
+    Vector4 introEnd = new Vector4(introStart.x, introStart.y * 2, 0, 0);
     introAnim.startValue = introStart;
     introAnim.endValue = introEnd;
     introAnim.onTickVector = (value) => canvas.sizeDelta = value;;
+    introAnim.useGameTime = true;
 
     UI.SetActive(false);
 
     return this;
   }
 
-  void Update() {
+  void LateUpdate() {
     if (!UI) return;
     UI.transform.rotation = viewCamera.rotation;
+    Vector3 camOffset = (transform.position - viewCamera.position).normalized;
+    UI.transform.position = viewCamera.position + (camOffset * distFromCamera);
     if (currentUser && currentUser.IsInteracting && loadingTimer > 0) {
       loadingTimer -= Time.deltaTime;
       loadingBar.fillAmount = loadingTimer / loadingTime;
@@ -64,6 +68,7 @@ public class Interactable : MonoBehaviour {
     IsOpen = true;
     currentUser = user;
     user.CurrentInteractable = this;
+    Debug.Log("Starting " + this.name);
   }
 
   protected virtual void LoadingComplete() { }

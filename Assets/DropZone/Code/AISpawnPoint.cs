@@ -20,6 +20,6 @@ public class AISpawnPoint : MonoBehaviour {
 
   void OnDrawGizmos() {
     Gizmos.color = Color.green;
-    Gizmos.DrawSphere(transform.position, 1);
+    Gizmos.DrawSphere(transform.position, 0.5f);
   }
 }

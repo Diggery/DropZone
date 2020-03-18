@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Lootable : Interactable {
 
   List<Vector3> lootPositions = new List<Vector3>();
   GameObject itemPrefab;
-  Vector2 uiOpenSize = new Vector2(200, 180);
+  Vector2 uiOpenSize = new Vector2(262, 180);
   Vector2 uiClosedSize = new Vector2(64, 64);
-  Interpolator.LerpFloat uiTransition;
+  public Interpolator.LerpFloat uiTransition;
 
   bool unlocked;
   bool Unlocked {
@@ -22,8 +23,9 @@ public class Lootable : Interactable {
         unlockIcon.enabled = false;
         openIcon.enabled = false;
         closeIcon.enabled = true;
-        Interpolator.Start(uiTransition);
         loadingBar.enabled = false;
+        contentsGroup.alpha = 1;
+        Interpolator.Start(uiTransition);
         if (currentUser.PlayerPanel) currentUser.PlayerPanel.OpenDetails();
       } else {
         unlockIcon.enabled = false;
@@ -41,6 +43,7 @@ public class Lootable : Interactable {
       isOpen = value;
       if (isOpen) {
         UI.SetActive(true);
+        Interpolator.Start(introAnim);
       } else {
         if (Unlocked) {
           Unlocked = false;
@@ -56,6 +59,8 @@ public class Lootable : Interactable {
   Image unlockIcon;
   Image openIcon;
   Image closeIcon;
+
+  RectTransform contentsTransform;
   CanvasGroup contentsGroup;
   public string[] contents;
   public enum ValueLevel { High, Medium, Low }
@@ -78,8 +83,8 @@ public class Lootable : Interactable {
         lootPositions.Add(endPos);
       }
     }
-    uiTransition = new Interpolator.LerpFloat();
-    uiTransition.duration = 0.5f;
+   // uiTransition = new Interpolator.LerpFloat();
+    //uiTransition.duration = 0.5f;
     uiTransition.onTick = OnUITransitionTick;
     uiTransition.onFinish = OnUITransitionFinished;
 
@@ -96,6 +101,7 @@ public class Lootable : Interactable {
     openIcon.enabled = false;
     closeIcon.enabled = false;
 
+    contentsTransform = UI.transform.Find("Background/Contents").GetComponent<RectTransform>();
     contentsGroup = UI.transform.Find("Background/Contents").GetComponent<CanvasGroup>();
     contentsGroup.alpha = 0;
     contentsGroup.interactable = false;
@@ -132,7 +138,12 @@ public class Lootable : Interactable {
     GameObject item = Instantiate(itemPrefab, contentsGroup.transform);
     item.name = itemName;
     Button itemButton = item.GetComponent<Button>();
+    EntryItem itemEntry = GameManager.Instance.GetItem(itemName); 
     itemButton.onClick.AddListener(() => GetLoot(itemButton));
+    TextMeshProUGUI itemLabel = item.transform.Find("Label").GetComponent<TextMeshProUGUI>();
+    itemLabel.text = itemEntry.itemName;
+    Image itemIcon = item.transform.Find("Icon").GetComponent<Image>();
+    itemIcon.sprite = itemEntry.icon;
     return true;
   }
 
@@ -160,12 +171,17 @@ public class Lootable : Interactable {
   }
 
   void OnUITransitionTick(float amount) {
-    uiBackground.sizeDelta = Vector2.Lerp(uiClosedSize, uiOpenSize, amount);
+    contentsTransform.sizeDelta = Vector2.Lerp(uiClosedSize, uiOpenSize, amount);
+    contentsTransform.anchoredPosition = Vector2.Lerp(Vector2.zero, Vector2.up * 64, amount);
+    contentsGroup.alpha = amount;// Mathf.Clamp01(amount * 5);
   }
 
   void OnUITransitionFinished(bool reversed) {
-    uiBackground.sizeDelta = reversed ? uiClosedSize : uiOpenSize;
-    contentsGroup.alpha = reversed ? 0 : 1;
-    if (reversed && !IsOpen) UI.SetActive(false);
+    contentsTransform.sizeDelta = reversed ? uiClosedSize : uiOpenSize;
+    if (reversed) {
+      if (!IsOpen) {
+        UI.SetActive(false);
+      }
+    }
   }
 }
