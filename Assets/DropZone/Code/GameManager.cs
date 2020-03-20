@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour {
   public EntryItem[] items;
   public PlayerManager playerManager;
   public AIOverlord aiOverlord;
+
+  public bool ObjectivesMet { get; set; }
 
   public static GameManager Instance { get; private set; }
 
@@ -45,6 +47,7 @@ public class GameManager : MonoBehaviour {
     gameObject.AddComponent<GameTime>().Init();
     playerManager = gameObject.AddComponent<PlayerManager>().Init();
     SceneManager.LoadScene("UILayout", LoadSceneMode.Additive);
+    ObjectivesMet = true;
   }
 
   public GameObject GetPrefab(string prefabName) {
@@ -62,7 +65,6 @@ public class GameManager : MonoBehaviour {
     if (!entryItem) Debug.Log("Couldn't find an entry for " + itemName);
     return entryItem;
   }
-
 
   public GameObject GetWeapon(string name) {
     return weaponInventory.GetPrefab(name);
@@ -100,7 +102,7 @@ public class GameManager : MonoBehaviour {
     if (!user.IsSelected) return;
 
     Interactable[] allInteractables = FindObjectsOfType<Interactable>();
-    foreach(Interactable interactable in allInteractables) {
+    foreach (Interactable interactable in allInteractables) {
       bool isUseable = interactable.CheckStatus(user, pos);
       if (isUseable) interactable.StartInteracting(user);
     }
@@ -112,7 +114,6 @@ public class GameManager : MonoBehaviour {
     //  }
     //}
     //return nearbyLootable;
-
 
     //if (gameObject.tag.Equals("Player")) {
     //  CurrentInteractable = gameManager.ActivateLootables(EndPos, this);
@@ -149,4 +150,3 @@ public class GameManager : MonoBehaviour {
     return inRange.ToArray();
   }
 }
-
