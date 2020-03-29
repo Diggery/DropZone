@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 024621ea883d8c7488a90d9eb0cc08af, type: 3}
   m_Name: Armor_BattleSuit
   m_EditorClassIdentifier: 
-  armorName: BasicArmor
+  itemName: BattleSuit
   description: Pretty much basic armor
   icon: {fileID: 0}
   prefab: {fileID: 0}
+  isUsable: 0
   armorPoints: 10
   canRegen: 1
   armorRegenTime: 5

@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 024621ea883d8c7488a90d9eb0cc08af, type: 3}
   m_Name: Armor_Clothes
   m_EditorClassIdentifier: 
-  armorName: Clothes
+  itemName: Clothes
   description: Just street clothes
   icon: {fileID: 0}
   prefab: {fileID: 0}
+  isUsable: 0
   armorPoints: 0
   canRegen: 0
   armorRegenTime: 0

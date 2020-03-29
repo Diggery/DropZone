@@ -42,7 +42,6 @@ public class AIState : MonoBehaviour {
   }
 
   public virtual void StateEnter() {
-   // Debug.Log(gameObject.name + " is entering " + StateName + " state.");
     isActive = true;
     timeInState = 0;
   }

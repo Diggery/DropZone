@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class GameManager : MonoBehaviour {
 
@@ -10,9 +11,12 @@ public class GameManager : MonoBehaviour {
   public InputControl inputControl;
   public UILayout uiLayout;
   public EntryCharacter[] characters;
-  public EntryItem[] items;
   public PlayerManager playerManager;
   public AIOverlord aiOverlord;
+
+  public EntryItem[] items;
+  public EntryWeapon[] weapons;
+  public EntryArmor[] armor;
 
   public static GameManager Instance { get; private set; }
 
@@ -53,7 +57,9 @@ public class GameManager : MonoBehaviour {
 
   public EntryItem GetItem(string itemName) {
     EntryItem entryItem = null;
-    foreach (EntryItem entry in items) {
+    var itemsAndWeapons = items.Concat(weapons);
+    var allItems = itemsAndWeapons.Concat(armor);
+    foreach (EntryItem entry in allItems) {
       if (entry.itemName.Equals(itemName)) {
         entryItem = entry;
         break;
@@ -62,7 +68,6 @@ public class GameManager : MonoBehaviour {
     if (!entryItem) Debug.Log("Couldn't find an entry for " + itemName);
     return entryItem;
   }
-
 
   public GameObject GetWeapon(string name) {
     return weaponInventory.GetPrefab(name);

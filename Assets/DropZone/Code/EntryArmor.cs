@@ -2,14 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public class EntryArmor : EntryItem {
 
-[CreateAssetMenu(fileName = "NewArmor", menuName = "New Armor")]
-public class EntryArmor : ScriptableObject {
-
-  public string armorName;
-  public string description;
-  public Sprite icon;
-  public GameObject prefab;
   public int armorPoints;
   public bool canRegen;
   public float armorRegenTime = 5.0f;

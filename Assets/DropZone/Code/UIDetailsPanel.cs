@@ -87,6 +87,8 @@ public class UIDetailsPanel : MonoBehaviour {
     item.name = itemName;
     Button itemButton = item.GetComponent<Button>();
     itemButton.onClick.AddListener(() => UseItem(itemButton));
+    EntryItem entryItem = gameManager.GetItem(itemName);
+    item.transform.Find("Icon").GetComponent<Image>().sprite = entryItem.icon;
   }
 
 
